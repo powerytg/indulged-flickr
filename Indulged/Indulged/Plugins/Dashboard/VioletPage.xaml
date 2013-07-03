@@ -1,0 +1,33 @@
+﻿<UserControl x:Class="Indulged.Plugins.Dashboard.VioletPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:local="clr-namespace:Indulged.Plugins.Dashboard"
+    xmlns:renderers="clr-namespace:Indulged.Plugins.Dashboard.VioletRenderers"
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    d:DesignHeight="480" d:DesignWidth="480">
+    
+    <Grid x:Name="LayoutRoot">
+        <phone:LongListSelector x:Name="PhotoStreamListView" Margin="0,0,-12,0" ItemsSource="{Binding Items}">
+            <phone:LongListSelector.ItemTemplate>
+                <DataTemplate>
+                    <local:VioletRendererSelector Content="{Binding}">
+                        <local:VioletRendererSelector.LayoutTemplate1>
+                            <DataTemplate>
+                                <renderers:VioletRenderer1 PhotoGroup="{Binding}"/>
+                            </DataTemplate>
+                        </local:VioletRendererSelector.LayoutTemplate1>
+
+
+                    </local:VioletRendererSelector>
+
+                </DataTemplate>
+            </phone:LongListSelector.ItemTemplate>
+        </phone:LongListSelector>
+    </Grid>
+</UserControl>

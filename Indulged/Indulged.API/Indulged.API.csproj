@@ -1,0 +1,192 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0.20506</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{02FA5945-AE64-4D19-8062-290244E7A450}</ProjectGuid>
+    <ProjectTypeGuids>{C089C8C0-30E0-4E22-80C0-CE093F111A43};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Indulged.API</RootNamespace>
+    <AssemblyName>Indulged.API</AssemblyName>
+    <TargetFrameworkIdentifier>WindowsPhone</TargetFrameworkIdentifier>
+    <TargetFrameworkVersion>v8.0</TargetFrameworkVersion>
+    <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
+    <SilverlightApplication>false</SilverlightApplication>
+    <ValidateXaml>true</ValidateXaml>
+    <MinimumVisualStudioVersion>11.0</MinimumVisualStudioVersion>
+    <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>Bin\Release</OutputPath>
+    <DefineConstants>TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Bin\x86\Debug</OutputPath>
+    <DefineConstants>DEBUG;TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>Bin\x86\Release</OutputPath>
+    <DefineConstants>TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|ARM' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Bin\ARM\Debug</OutputPath>
+    <DefineConstants>DEBUG;TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|ARM' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>Bin\ARM\Release</OutputPath>
+    <DefineConstants>TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Anaconda\Anaconda.cs" />
+    <Compile Include="Anaconda\AnacondaCore.cs" />
+    <Compile Include="Anaconda\AnacondaCoreEventExtension.cs" />
+    <Compile Include="Anaconda\AnacondaCoreOAuthExtension.cs" />
+    <Compile Include="Anaconda\AnacondaCoreStorageExtension.cs" />
+    <Compile Include="Anaconda\AnacondaCorePhotoSetExtension.cs" />
+    <Compile Include="Anaconda\AnacondaCoreUserExtension.cs" />
+    <Compile Include="Anaconda\Events\GetPhotoStreamEventArgs.cs" />
+    <Compile Include="Anaconda\Events\PhotoSetListEventArgs.cs" />
+    <Compile Include="Cinderella\Cinderella.cs" />
+    <Compile Include="Cinderella\CinderellaPhotoSetExtension.cs" />
+    <Compile Include="Cinderella\CinderellaStorageExtension.cs" />
+    <Compile Include="Cinderella\CinderellaUserExtension.cs" />
+    <Compile Include="Cinderella\Events\PhotoSetListUpdatedEventArgs.cs" />
+    <Compile Include="Cinderella\Events\PhotoStreamUpdatedEventArgs.cs" />
+    <Compile Include="Cinderella\Factories\PhotoFactory.cs" />
+    <Compile Include="Cinderella\Factories\PhotoSetFactory.cs" />
+    <Compile Include="Cinderella\Models\ModelBase.cs" />
+    <Compile Include="Cinderella\Models\Photo.cs" />
+    <Compile Include="Cinderella\Models\PhotoSet.cs" />
+    <Compile Include="Cinderella\Models\User.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utils\Algorithms.cs" />
+    <Compile Include="Avarice\Controls\Button.cs" />
+    <Compile Include="Avarice\Controls\DataTemplateSelector.cs" />
+    <Compile Include="Avarice\Controls\Magazine.cs" />
+    <Compile Include="Avarice\Controls\ModalPopup.cs" />
+    <Compile Include="Avarice\Controls\PhotoBlinds.cs" />
+    <Compile Include="Avarice\Controls\PhotoGrid.cs" />
+    <Compile Include="Avarice\Controls\PhotoMosaic.cs" />
+    <Compile Include="Avarice\Controls\SupportClasses\Magazine\Layouts\LayoutFrame.cs" />
+    <Compile Include="Avarice\Controls\SupportClasses\Magazine\Layouts\VirtualLayout1.cs" />
+    <Compile Include="Avarice\Controls\SupportClasses\Magazine\Layouts\VirtualLayout2.cs" />
+    <Compile Include="Avarice\Controls\SupportClasses\Magazine\Layouts\VirtualLayout3.cs" />
+    <Compile Include="Avarice\Controls\SupportClasses\Magazine\Layouts\VirtualLayout4.cs" />
+    <Compile Include="Avarice\Controls\SupportClasses\Magazine\Layouts\VirtualLayout5.cs" />
+    <Compile Include="Avarice\Controls\SupportClasses\Magazine\Layouts\VirtualLayout6.cs" />
+    <Compile Include="Avarice\Controls\SupportClasses\Magazine\Layouts\VirtualLayoutBase.cs" />
+    <Compile Include="Avarice\Controls\SupportClasses\Magazine\MagazineLayoutManager.cs" />
+    <Compile Include="Avarice\Events\ModalPopupEventArgs.cs" />
+    <Compile Include="Utils\ColorExtension.cs" />
+    <Compile Include="Utils\DateTimeUtils.cs" />
+    <Compile Include="Utils\DictionaryExtension.cs" />
+    <Compile Include="Utils\EventDispatcher.cs" />
+    <Compile Include="Utils\helper.cs" />
+    <Compile Include="Utils\HTTPWebRequestExtension.cs" />
+    <Compile Include="Utils\MD5.cs" />
+    <Compile Include="Utils\StringExtension.cs" />
+    <Compile Include="Utils\UrlHelper.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Avarice\Themes\ButtonStyle.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Avarice\Themes\Generic.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Avarice\Themes\MagazineStyle.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Avarice\Themes\ModalPopupStyle.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Avarice\Themes\PhotoBlindsStyle.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Avarice\Themes\PhotoGridStyle.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Avarice\Themes\PhotoMosaicStyle.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Generic.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Avarice\Themes\Assets\PopupBackground.png" />
+    <Content Include="Avarice\Themes\Assets\PopupBottomShadow.png" />
+    <Content Include="Avarice\Themes\Assets\PopupGlow.png" />
+    <Content Include="Avarice\Themes\Assets\PopupTopShadow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.5.0.6\lib\portable-net45+wp80+win8\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="WriteableBitmapExWinPhone">
+      <HintPath>..\packages\WriteableBitmapEx.1.0.8.0\lib\WindowsPhone8\WriteableBitmapExWinPhone.dll</HintPath>
+    </Reference>
+    <Reference Include="WriteableBitmapExWinPhoneXnaDependant">
+      <HintPath>..\packages\WriteableBitmapEx.1.0.8.0\lib\WindowsPhone8\WriteableBitmapExWinPhoneXnaDependant.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).CSharp.targets" />
+  <ProjectExtensions />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

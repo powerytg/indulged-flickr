@@ -1,0 +1,32 @@
+﻿<UserControl x:Class="Indulged.Plugins.Dashboard.PreludePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:dashboard="clr-namespace:Indulged.Plugins.Dashboard"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    d:DesignHeight="480" d:DesignWidth="480">
+
+    <Grid Margin="0, 100, 0, 0">
+        <ScrollViewer VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Disabled">
+            <StackPanel Orientation="Vertical">
+                <!-- Logo -->
+                <Image Source="/Assets/Dashboard/Prelude/PreludeContentGuide.png" Height="142" HorizontalAlignment="Left"/>
+
+                <!-- Special section -->
+                <dashboard:NavigatorSection Title="impressionism"/>
+                <phone:LongListSelector x:Name="FeatureListView" Style="{StaticResource PreludeListStyle}"/>
+
+                <!-- Common stream section -->
+                <dashboard:NavigatorSection Title="la plaza"/>
+                <phone:LongListSelector x:Name="StreamListView" Style="{StaticResource PreludeListStyle}"/>
+
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+    
+</UserControl>

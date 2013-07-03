@@ -1,0 +1,13 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/Indulged.API;component/Avarice/Themes/ModalPopupStyle.xaml" />
+        <ResourceDictionary Source="/Indulged.API;component/Avarice/Themes/ButtonStyle.xaml" />
+        <ResourceDictionary Source="/Indulged.API;component/Avarice/Themes/PhotoGridStyle.xaml" />
+        <ResourceDictionary Source="/Indulged.API;component/Avarice/Themes/PhotoMosaicStyle.xaml" />
+        <ResourceDictionary Source="/Indulged.API;component/Avarice/Themes/PhotoBlindsStyle.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+    
+</ResourceDictionary>

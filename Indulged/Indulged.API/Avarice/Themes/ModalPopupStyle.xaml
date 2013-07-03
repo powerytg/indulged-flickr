@@ -1,0 +1,57 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:avarice ="clr-namespace:Indulged.API.Avarice.Controls">
+
+    <Style TargetType="avarice:ModalPopup">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="avarice:ModalPopup">
+                    <Grid Height="800">
+                        <!-- Curtain -->
+                        <Image x:Name="Curtain" Source="/Avarice/Themes/Assets/PopupBackground.png" Stretch="None"/>
+
+                        <Grid VerticalAlignment="Center">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="36"/>
+                            </Grid.RowDefinitions>
+
+                            <!-- Border area -->
+                            <Canvas x:Name="BorderCanvas" VerticalAlignment="Center" Height="0" Grid.Row="0">
+                                <!-- Upper shadow -->
+                                <Image x:Name="TopShadow" Source="/Avarice/Themes/Assets/PopupTopShadow.png" Stretch="Fill" Height="28" Canvas.Top="-28"/>
+
+                                <!-- Lower shadow -->
+                                <Image x:Name="BottomShadow" Source="/Avarice/Themes/Assets/PopupBottomShadow.png" Stretch="Fill" Height="28"/>
+                            </Canvas>
+
+                            <!-- Content area -->
+                            <Grid x:Name="ContentView" VerticalAlignment="Center" Height="{Binding ElementName=BorderCanvas,Path=Height}" 
+                              Margin="0,28,0,28">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+
+                                <Grid.Background>
+                                    <ImageBrush ImageSource="/Avarice/Themes/Assets/PopupGlow.png" Opacity="0.6"/>
+                                </Grid.Background>
+                            </Grid>
+
+                            <!-- Button area -->
+                            <StackPanel x:Name="ButtonContainer" Orientation="Horizontal" Grid.Row="1" Margin="20, -10, 20, 0"
+                                    HorizontalAlignment="Right" />
+                        </Grid>
+
+
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+    </Style>
+
+</ResourceDictionary>
