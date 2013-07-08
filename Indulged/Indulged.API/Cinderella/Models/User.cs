@@ -14,6 +14,7 @@ namespace Indulged.API.Cinderella.Models
             : base()
         {
             Photos = new List<Photo>();
+            IsLoadingPhotoStream = false;
         }
 
         public string Name { get; set; }
@@ -26,5 +27,8 @@ namespace Indulged.API.Cinderella.Models
         public List<Photo> Photos { get; set; }
 
         public int PhotoCount { get; set; }
+
+        // Status
+        public bool IsLoadingPhotoStream { get; set; }
     }
 }

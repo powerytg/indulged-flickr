@@ -13,7 +13,7 @@
     d:DesignHeight="480" d:DesignWidth="480">
     
     <Grid x:Name="LayoutRoot">
-        <phone:LongListSelector x:Name="PhotoStreamListView" Margin="0,0,-12,0" ItemsSource="{Binding Items}">
+        <phone:LongListSelector x:Name="PhotoStreamListView" Margin="0,0,-12,0" ItemsSource="{Binding Items}" ItemRealized="OnItemRealized">
             <phone:LongListSelector.ItemTemplate>
                 <DataTemplate>
                     <local:VioletRendererSelector Content="{Binding}">
@@ -23,6 +23,59 @@
                             </DataTemplate>
                         </local:VioletRendererSelector.LayoutTemplate1>
 
+                        <local:VioletRendererSelector.LayoutTemplate2>
+                            <DataTemplate>
+                                <renderers:VioletRenderer2 PhotoGroup="{Binding}"/>
+                            </DataTemplate>
+                        </local:VioletRendererSelector.LayoutTemplate2>
+
+                        <local:VioletRendererSelector.LayoutTemplate3>
+                            <DataTemplate>
+                                <renderers:VioletRenderer3 PhotoGroup="{Binding}"/>
+                            </DataTemplate>
+                        </local:VioletRendererSelector.LayoutTemplate3>
+
+                        <local:VioletRendererSelector.LayoutTemplate3A>
+                            <DataTemplate>
+                                <renderers:VioletRenderer3A PhotoGroup="{Binding}"/>
+                            </DataTemplate>
+                        </local:VioletRendererSelector.LayoutTemplate3A>
+
+                        <local:VioletRendererSelector.LayoutTemplate4>
+                            <DataTemplate>
+                                <renderers:VioletRenderer4 PhotoGroup="{Binding}"/>
+                            </DataTemplate>
+                        </local:VioletRendererSelector.LayoutTemplate4>
+
+                        <local:VioletRendererSelector.LayoutTemplate4A>
+                            <DataTemplate>
+                                <renderers:VioletRenderer4A PhotoGroup="{Binding}"/>
+                            </DataTemplate>
+                        </local:VioletRendererSelector.LayoutTemplate4A>
+
+                        <local:VioletRendererSelector.LayoutTemplate4B>
+                            <DataTemplate>
+                                <renderers:VioletRenderer4B PhotoGroup="{Binding}"/>
+                            </DataTemplate>
+                        </local:VioletRendererSelector.LayoutTemplate4B>
+
+                        <local:VioletRendererSelector.LayoutTemplate5>
+                            <DataTemplate>
+                                <renderers:VioletRenderer5 PhotoGroup="{Binding}"/>
+                            </DataTemplate>
+                        </local:VioletRendererSelector.LayoutTemplate5>
+
+                        <local:VioletRendererSelector.LayoutTemplate5A>
+                            <DataTemplate>
+                                <renderers:VioletRenderer5A PhotoGroup="{Binding}"/>
+                            </DataTemplate>
+                        </local:VioletRendererSelector.LayoutTemplate5A>
+
+                        <local:VioletRendererSelector.LayoutTemplate5B>
+                            <DataTemplate>
+                                <renderers:VioletRenderer5B PhotoGroup="{Binding}"/>
+                            </DataTemplate>
+                        </local:VioletRendererSelector.LayoutTemplate5B>
 
                     </local:VioletRendererSelector>
 

@@ -8,6 +8,9 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
+using Indulged.API.Cinderella;
+using Indulged.API.Cinderella.Models;
+
 namespace Indulged.API.Anaconda
 {
     public partial class AnacondaCore
@@ -43,12 +46,24 @@ namespace Indulged.API.Anaconda
 
             paramDict["extras"] = UrlHelper.Encode("description,views,tags");
 
+            User user = null;
+            if (Cinderella.Cinderella.CinderellaCore.UserCache.ContainsKey(userId))
+            {
+                user = Cinderella.Cinderella.CinderellaCore.UserCache[userId];
+                user.IsLoadingPhotoStream = true;
+            }
+
             string paramString = GenerateParamString(paramDict);
             string signature = GenerateSignature("GET", AccessTokenSecret, "http://api.flickr.com/services/rest", paramString);
             string requestUrl = "http://api.flickr.com/services/rest?" + paramString + "&oauth_signature=" + signature;
             HttpWebResponse response = await DispatchRequest("GET", requestUrl, null);
             using (StreamReader reader = new StreamReader(response.GetResponseStream()))
             {
+                if (user != null)
+                {
+                    user.IsLoadingPhotoStream = false;
+                }
+
                 string jsonString = reader.ReadToEnd();
 
                 GetPhotoStreamEventArgs args = new GetPhotoStreamEventArgs();

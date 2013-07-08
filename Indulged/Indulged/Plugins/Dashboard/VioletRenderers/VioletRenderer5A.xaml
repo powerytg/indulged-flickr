@@ -1,0 +1,45 @@
+﻿<renderer:VioletRendererBase x:Class="Indulged.Plugins.Dashboard.VioletRenderers.VioletRenderer5A"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:renderer="clr-namespace:Indulged.Plugins.Dashboard.VioletRenderers"
+    xmlns:photoRenderer="clr-namespace:Indulged.Plugins.Common.Renderers"                                                                                                                    
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    d:DesignHeight="480" d:DesignWidth="480" 
+    Width="480" Height="540" >
+    
+    <Grid x:Name="LayoutRoot">        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="300"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <photoRenderer:LargePhotoRenderer x:Name="ImageView1" Grid.Row="0"/>
+            <photoRenderer:SmallPhotoRenderer x:Name="ImageView2" Grid.Row="1"/>
+        </Grid>
+        
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="180"/>
+                <RowDefinition Height="180"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            
+            <photoRenderer:SmallPhotoRenderer x:Name="ImageView3" Grid.Row="0"/>
+            <photoRenderer:SmallPhotoRenderer x:Name="ImageView4" Grid.Row="1"/>
+            <photoRenderer:SmallPhotoRenderer x:Name="ImageView5" Grid.Row="2"/>
+
+        </Grid>
+        
+    </Grid>
+</renderer:VioletRendererBase>

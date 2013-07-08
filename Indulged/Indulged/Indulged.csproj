@@ -108,6 +108,22 @@
     <Compile Include="Plugins\Common\ProgressView.xaml.cs">
       <DependentUpon>ProgressView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Plugins\Common\Renderers\SmallPhotoRenderer.xaml.cs">
+      <DependentUpon>SmallPhotoRenderer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\Common\Renderers\WidePhotoRenderer.xaml.cs">
+      <DependentUpon>WidePhotoRenderer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\Common\Renderers\LargeDescriptionView.xaml.cs">
+      <DependentUpon>LargeDescriptionView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\Common\Renderers\LargePhotoRenderer.xaml.cs">
+      <DependentUpon>LargePhotoRenderer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\Common\Renderers\PhotoRendererBase.cs" />
+    <Compile Include="Plugins\Common\Renderers\PhotoStatView.xaml.cs">
+      <DependentUpon>PhotoStatView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Plugins\Dashboard\DashboardNavigator.xaml.cs">
       <DependentUpon>DashboardNavigator.xaml</DependentUpon>
     </Compile>
@@ -127,10 +143,41 @@
     </Compile>
     <Compile Include="Plugins\Dashboard\VioletRendererSelector.cs" />
     <Compile Include="Plugins\Dashboard\VioletPhotoGroupFactory.cs" />
+    <Compile Include="Plugins\Dashboard\VioletRenderers\VioletRenderer5B.xaml.cs">
+      <DependentUpon>VioletRenderer5B.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\Dashboard\VioletRenderers\VioletRenderer5A.xaml.cs">
+      <DependentUpon>VioletRenderer5A.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\Dashboard\VioletRenderers\VioletRenderer5.xaml.cs">
+      <DependentUpon>VioletRenderer5.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\Dashboard\VioletRenderers\VioletRenderer4B.xaml.cs">
+      <DependentUpon>VioletRenderer4B.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\Dashboard\VioletRenderers\VioletRenderer4A.xaml.cs">
+      <DependentUpon>VioletRenderer4A.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\Dashboard\VioletRenderers\VioletRenderer4.xaml.cs">
+      <DependentUpon>VioletRenderer4.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\Dashboard\VioletRenderers\VioletRenderer3A.xaml.cs">
+      <DependentUpon>VioletRenderer3A.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\Dashboard\VioletRenderers\VioletRenderer3.xaml.cs">
+      <DependentUpon>VioletRenderer3.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\Dashboard\VioletRenderers\VioletRenderer2.xaml.cs">
+      <DependentUpon>VioletRenderer2.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Plugins\Dashboard\VioletRenderers\VioletRenderer1.xaml.cs">
       <DependentUpon>VioletRenderer1.xaml</DependentUpon>
     </Compile>
     <Compile Include="Plugins\Dashboard\VioletRenderers\VioletRendererBase.cs" />
+    <Compile Include="Plugins\Detail\DetailPage.xaml.cs">
+      <DependentUpon>DetailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\Detail\PhotoSourceConverter.cs" />
     <Compile Include="Plugins\Login\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>
@@ -161,6 +208,26 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Plugins\Common\Renderers\SmallPhotoRenderer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Plugins\Common\Renderers\WidePhotoRenderer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Plugins\Common\Renderers\LargeDescriptionView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Plugins\Common\Renderers\LargePhotoRenderer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Plugins\Common\Renderers\PhotoStatView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Plugins\Dashboard\DashboardNavigator.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -180,7 +247,47 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Plugins\Dashboard\VioletRenderers\VioletRenderer5B.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Plugins\Dashboard\VioletRenderers\VioletRenderer5A.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Plugins\Dashboard\VioletRenderers\VioletRenderer5.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Plugins\Dashboard\VioletRenderers\VioletRenderer4B.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Plugins\Dashboard\VioletRenderers\VioletRenderer4A.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Plugins\Dashboard\VioletRenderers\VioletRenderer4.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Plugins\Dashboard\VioletRenderers\VioletRenderer3A.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Plugins\Dashboard\VioletRenderers\VioletRenderer3.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Plugins\Dashboard\VioletRenderers\VioletRenderer2.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Plugins\Dashboard\VioletRenderers\VioletRenderer1.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Plugins\Detail\DetailPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -197,13 +304,17 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Chrome\Thumbs.db" />
-    <Resource Include="Assets\Fonts\advent.ttf">
+    <Content Include="Assets\Common\View.png" />
+    <Content Include="Assets\Fonts\advent.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Assets\Fonts\MyriadPro-Cond.ttf">
+    </Content>
+    <Content Include="Assets\Fonts\MyriadPro-Cond.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
+    </Content>
     <None Include="Assets\Dashboard\Prelude\Thumbs.db" />
+    <Content Include="Assets\Fonts\futura-condensed-normal.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="packages.config" />
     <None Include="Properties\AppManifest.xml" />
     <None Include="Properties\WMAppManifest.xml">
