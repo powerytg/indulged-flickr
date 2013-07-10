@@ -13,9 +13,8 @@
         <Grid.Background>
             <SolidColorBrush Color="#191d24" Opacity="0.85"/>
         </Grid.Background>
-        <TextBlock x:Name="DescriptionLabel" TextWrapping="Wrap" TextTrimming="WordEllipsis" TextAlignment="Center"
-                       HorizontalAlignment="Center" VerticalAlignment="Top"
-                       Foreground="#36e49b" FontSize="26" FontFamily="/Indulged;component/Assets/Fonts/MyriadPro-Cond.ttf#Myriad Pro Cond"
+        <TextBlock x:Name="DescriptionLabel" TextWrapping="Wrap" TextTrimming="WordEllipsis"
+                       Foreground="#6a7277" FontSize="26" FontFamily="/Indulged;component/Assets/Fonts/MyriadPro-Cond.ttf#Myriad Pro Cond"
                        Margin="8,8,8,8" />
     </Grid>
 </UserControl>

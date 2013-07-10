@@ -20,17 +20,22 @@
             </Grid.RowDefinitions>
 
             <!-- Tool bar -->
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Row="1"
-                        Opacity="0.85" Margin="0,0, 14, 0">
+            <Grid Grid.Row="1" MaxWidth="330" HorizontalAlignment="Left" Margin="8,0,8,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
                 <!-- Title view -->
-                <TextBlock x:Name="TitleLabel" TextWrapping="NoWrap" TextTrimming="WordEllipsis" 
-                       HorizontalAlignment="Right" MaxWidth="200" Grid.Row="0"
-                       Foreground="#ffffff" FontSize="24" FontFamily="/Indulged;component/Assets/Fonts/MyriadPro-Cond.ttf#Myriad Pro Cond"
-                       VerticalAlignment="Center"/>
+                <TextBlock x:Name="TitleLabel" TextTrimming="WordEllipsis"  TextWrapping="Wrap"
+                       HorizontalAlignment="Left" TextAlignment="Left"
+                       Foreground="#ffffff" FontSize="36" FontWeight="Bold"
+                       Grid.Row="0"/>
 
                 <!-- Stat view -->
-                <renderer:PhotoStatView x:Name="StatView" VerticalAlignment="Center" Margin="14,0,0,0"/>
-            </StackPanel>
+                <renderer:PhotoStatView x:Name="StatView" HorizontalAlignment="Left" Opacity="0.85" 
+                                        Grid.Row="1"/>
+            </Grid>
             
 
             <!-- Description view -->

@@ -50,7 +50,10 @@ namespace Indulged.Plugins.Chrome
 
         private void FadeOutAnimationCompleted(object sender, EventArgs e)
         {
-            BackgroundImage.Source = new BitmapImage(new Uri(selectedDashboardPage.BackgroundImageUrl, UriKind.Relative));
+            if (selectedDashboardPage.BackgroundImageUrl != null)
+                BackgroundImage.Source = new BitmapImage(new Uri(selectedDashboardPage.BackgroundImageUrl, UriKind.Relative));
+            else
+                BackgroundImage.Source = null;
 
             // Fade in the new image
             Storyboard animation = new Storyboard();

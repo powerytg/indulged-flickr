@@ -11,26 +11,14 @@
     d:DesignHeight="480" d:DesignWidth="480">
     
     <Grid x:Name="LayoutRoot" Margin="2,2,2,2">
-        <Image x:Name="ImageView" Stretch="UniformToFill"/>        
-            <!-- Tool bar -->
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Stretch"
-                        Opacity="0.85">
-
-            <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" Margin="0,0,14,0">
-                <!-- Title view -->
-                <TextBlock x:Name="TitleLabel" TextWrapping="NoWrap" TextTrimming="WordEllipsis" 
-                       MaxWidth="200"
-                       Foreground="#ffffff" FontSize="24" FontFamily="/Indulged;component/Assets/Fonts/MyriadPro-Cond.ttf#Myriad Pro Cond"
-                       VerticalAlignment="Center"/>
-
-                <!-- Stat view -->
-                <renderer:PhotoStatView x:Name="StatView" VerticalAlignment="Center"/>
-
-            </StackPanel>
-
-                <!-- Description view -->
-                <renderer:LargeDescriptionView x:Name="DescriptionView" MaxWidth="200"/>
-            </StackPanel>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <Image x:Name="ImageView" Stretch="UniformToFill" Grid.Column="0"/> 
+        
+         <!-- Description view -->
+         <renderer:WideDescriptionView x:Name="DescriptionView" MaxWidth="200" Grid.Column="1"/>
         
     </Grid>
 </renderer:PhotoRendererBase>

@@ -138,6 +138,7 @@ namespace Indulged.API.Avarice.Controls
             // Add any custom content
             if (contentElement != null)
             {
+                contentElement.SetValue(Grid.RowProperty, 1);
                 contentView.Children.Add(contentElement);
                 contentView.InvalidateArrange();
                 contentView.UpdateLayout();
@@ -149,7 +150,8 @@ namespace Indulged.API.Avarice.Controls
                     measuredHeight += titleLabel.ActualHeight;
                 }
 
-                measuredHeight += contentElement.ActualHeight + contentElement.Margin.Top + contentElement.Margin.Bottom;
+                double contentHeight = Math.Max(contentElement.ActualHeight, contentElement.Height);
+                measuredHeight += contentHeight + contentElement.Margin.Top + contentElement.Margin.Bottom;
 
                 expectedContentSize = new Size(measuredWidth, measuredHeight);
             }

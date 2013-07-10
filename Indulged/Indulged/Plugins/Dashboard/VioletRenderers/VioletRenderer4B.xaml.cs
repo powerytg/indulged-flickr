@@ -21,13 +21,13 @@ namespace Indulged.Plugins.Dashboard.VioletRenderers
             InitializeComponent();
         }
 
-        protected override void OnPhotoGroupChanged()
+        protected override void OnPhotoGroupSourceChanged()
         {
-            base.OnPhotoGroupChanged();
-            ImageView1.PhotoSource = PhotoGroup[0];
-            ImageView2.PhotoSource = PhotoGroup[1];
-            ImageView3.PhotoSource = PhotoGroup[2];
-            ImageView4.PhotoSource = PhotoGroup[3];
+            base.OnPhotoGroupSourceChanged();
+            ImageView1.PhotoSource = PhotoGroupSource.Photos[0];
+            ImageView2.PhotoSource = PhotoGroupSource.Photos[1];
+            ImageView3.PhotoSource = PhotoGroupSource.Photos[2];
+            ImageView4.PhotoSource = PhotoGroupSource.Photos[3];
         }
     }
 }

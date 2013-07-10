@@ -1,0 +1,32 @@
+﻿<UserControl x:Class="Indulged.Plugins.Common.Renderers.WideDescriptionView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    d:DesignHeight="480" d:DesignWidth="480">
+    
+    <Grid x:Name="LayoutRoot">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.Background>
+            <SolidColorBrush Color="#191d24" Opacity="0.85"/>
+        </Grid.Background>
+
+        <TextBlock x:Name="TitleLabel" HorizontalAlignment="Left" FontSize="38" Foreground="#bbbbbb" 
+                       TextAlignment="Left" TextWrapping="Wrap" TextTrimming="WordEllipsis"
+                       Margin="8,8,8,8"
+                       Grid.Row="0" />
+        <TextBlock x:Name="DescriptionLabel" TextWrapping="Wrap" TextTrimming="WordEllipsis" TextAlignment="Left"
+                       HorizontalAlignment="Left"
+                       Foreground="#3c4449" FontSize="26" FontFamily="/Indulged;component/Assets/Fonts/MyriadPro-Cond.ttf#Myriad Pro Cond"
+                       Margin="8,8,8,8" Grid.Row="1"/>
+
+
+    </Grid>
+</UserControl>

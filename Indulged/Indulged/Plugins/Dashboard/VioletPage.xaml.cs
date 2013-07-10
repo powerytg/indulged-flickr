@@ -13,6 +13,7 @@ using Indulged.API.Anaconda;
 using Indulged.API.Cinderella;
 using Indulged.API.Cinderella.Models;
 using Indulged.API.Cinderella.Events;
+using Indulged.PolKit;
 using Indulged.Plugins.Dashboard.Events;
 
 namespace Indulged.Plugins.Dashboard
@@ -23,12 +24,13 @@ namespace Indulged.Plugins.Dashboard
         {
             get
             {
-                return "/Assets/Chrome/VioletBackground.png";
+                //return "/Assets/Chrome/VioletBackground.png";
+                return null;
             }
         }
 
         // Photo data source
-        public ObservableCollection<List<Photo>> PhotoCollection { get; set; }
+        public ObservableCollection<PhotoGroup> PhotoCollection { get; set; }
 
         // Constructor
         public VioletPage()
@@ -36,11 +38,13 @@ namespace Indulged.Plugins.Dashboard
             InitializeComponent();
 
             // Initialize data providers
-            PhotoCollection = new ObservableCollection<List<Photo>>();
+            PhotoCollection = new ObservableCollection<PhotoGroup>();
             PhotoStreamListView.ItemsSource = PhotoCollection;
 
             // Events
+            PolicyKit.PolicyChanged += OnPolicyChanged;
             Cinderella.CinderellaCore.PhotoStreamUpdated += OnPhotoStreamUpdated;
+            Cinderella.CinderellaCore.DiscoveryStreamUpdated += OnDiscoveryStreamUpdated;
         }
 
         // Photo stream updated
@@ -49,7 +53,20 @@ namespace Indulged.Plugins.Dashboard
             if (e.NewPhotos.Count == 0 || e.UserId != Cinderella.CinderellaCore.CurrentUser.ResourceId)
                 return;
 
-            List<List<Photo>> newGroups = VioletPhotoGroupFactory.GeneratePhotoGroup(e.NewPhotos);
+            List<PhotoGroup> newGroups = VioletPhotoGroupFactory.GeneratePhotoGroup(e.NewPhotos);
+            foreach (var group in newGroups)
+            {
+                PhotoCollection.Add(group);
+            }
+        }
+
+        // Discovery stream updated
+        private void OnDiscoveryStreamUpdated(object sender, DiscoveryStreamUpdatedEventArgs e)
+        {
+            if (e.NewPhotos.Count == 0)
+                return;
+
+            List<PhotoGroup> newGroups = VioletPhotoGroupFactory.GeneratePhotoGroup(e.NewPhotos);
             foreach (var group in newGroups)
             {
                 PhotoCollection.Add(group);
@@ -59,20 +76,73 @@ namespace Indulged.Plugins.Dashboard
         // Implementation of inifinite scrolling
         private void OnItemRealized(object sender, ItemRealizationEventArgs e)
         {
-            List<Photo> photoGroup = e.Container.Content as List<Photo>;
+            PhotoGroup photoGroup = e.Container.Content as PhotoGroup;
             if (photoGroup == null)
                 return;
 
             int index = PhotoCollection.IndexOf(photoGroup);
             User currentUser = Cinderella.CinderellaCore.CurrentUser;
 
-            if (PhotoCollection.Count - index <= 2 && !currentUser.IsLoadingPhotoStream && currentUser.Photos.Count < currentUser.PhotoCount)
+            bool canLoad = false;
+            if (PolicyKit.VioletPageSubscription == PolicyKit.MyStream)
+                canLoad = (!currentUser.IsLoadingPhotoStream && currentUser.Photos.Count < currentUser.PhotoCount);
+            else if (PolicyKit.VioletPageSubscription == PolicyKit.DiscoveryStream)
+                canLoad = (!Anaconda.AnacondaCore.IsLoadingDiscoveryStream && Cinderella.CinderellaCore.DiscoveryList.Count < Cinderella.CinderellaCore.TotalDiscoveryPhotosCount);
+
+            if (PhotoCollection.Count - index <= 2 && canLoad )
             {
                 int page = currentUser.Photos.Count / 100 + 1;
                 System.Diagnostics.Debug.WriteLine("page=" + page.ToString());
-                Anaconda.AnacondaCore.GetPhotoStreamAsync(currentUser.ResourceId, new Dictionary<string, string> { { "page", page.ToString() }, { "per_page", "100" } });
+
+                if (PolicyKit.VioletPageSubscription == PolicyKit.MyStream)
+                {
+                    Anaconda.AnacondaCore.GetPhotoStreamAsync(currentUser.ResourceId, new Dictionary<string, string> { { "page", page.ToString() }, { "per_page", "100" } });
+                }
+                else if (PolicyKit.VioletPageSubscription == PolicyKit.DiscoveryStream)
+                {
+                    Anaconda.AnacondaCore.GetDiscoveryStreamAsync(new Dictionary<string, string> { { "page", page.ToString() }, { "per_page", "100" } });
+                }
             }
         }
 
+        private void OnPolicyChanged(object sender, PolicyChangedEventArgs e)
+        {
+            if (e.PolicyName != "VioletPageSubscription")
+                return;
+
+            PhotoCollection.Clear();
+            if (PolicyKit.VioletPageSubscription == PolicyKit.MyStream)
+            {
+                User currentUser = Cinderella.CinderellaCore.CurrentUser;
+                if (currentUser.Photos.Count > 0)
+                {
+                    List<PhotoGroup> newGroups = VioletPhotoGroupFactory.GeneratePhotoGroup(currentUser.Photos);
+                    foreach (var group in newGroups)
+                    {
+                        PhotoCollection.Add(group);
+                    }
+                }
+                else
+                {
+                    Anaconda.AnacondaCore.GetPhotoStreamAsync(currentUser.ResourceId, new Dictionary<string, string> { { "page", "1" }, { "per_page", "100" } });
+                }
+                
+            }
+            else if (PolicyKit.VioletPageSubscription == PolicyKit.DiscoveryStream)
+            {
+                if (Cinderella.CinderellaCore.DiscoveryList.Count > 0)
+                {
+                    List<PhotoGroup> newGroups = VioletPhotoGroupFactory.GeneratePhotoGroup(Cinderella.CinderellaCore.DiscoveryList);
+                    foreach (var group in newGroups)
+                    {
+                        PhotoCollection.Add(group);
+                    }
+                }
+                else
+                {
+                    Anaconda.AnacondaCore.GetDiscoveryStreamAsync(new Dictionary<string, string> { { "page", "1" }, { "per_page", "100" } });
+                }
+            }
+        }
     }
 }

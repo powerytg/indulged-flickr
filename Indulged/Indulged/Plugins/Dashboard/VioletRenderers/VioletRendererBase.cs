@@ -12,26 +12,26 @@ namespace Indulged.Plugins.Dashboard.VioletRenderers
 {
     public class VioletRendererBase : UserControl
     {
-        public static readonly DependencyProperty PhotoGroupProperty = DependencyProperty.Register("PhotoGroup", typeof(List<Photo>), typeof(VioletRendererBase), new PropertyMetadata(OnPhotoGroupPropertyChanged));
+        public static readonly DependencyProperty PhotoGroupSourceProperty = DependencyProperty.Register("PhotoGroupSource", typeof(PhotoGroup), typeof(VioletRendererBase), new PropertyMetadata(OnPhotoGroupSourcePropertyChanged));
 
-        public List<Photo> PhotoGroup
+        public PhotoGroup PhotoGroupSource
         {
             get 
             { 
-                return (List<Photo>)GetValue(PhotoGroupProperty); 
+                return (PhotoGroup)GetValue(PhotoGroupSourceProperty); 
             }
             set 
             { 
-                SetValue(PhotoGroupProperty, value);
+                SetValue(PhotoGroupSourceProperty, value);
             }
         }
 
-        public static void OnPhotoGroupPropertyChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
+        public static void OnPhotoGroupSourcePropertyChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
         {
-            ((VioletRendererBase)sender).OnPhotoGroupChanged();
+            ((VioletRendererBase)sender).OnPhotoGroupSourceChanged();
         }
 
-        protected virtual void OnPhotoGroupChanged()
+        protected virtual void OnPhotoGroupSourceChanged()
         {
         }
 

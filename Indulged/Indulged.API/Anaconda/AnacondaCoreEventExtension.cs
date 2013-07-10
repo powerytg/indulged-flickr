@@ -24,5 +24,8 @@ namespace Indulged.API.Anaconda
 
         // Retrieved photo stream for an user
         public EventHandler<GetPhotoStreamEventArgs> PhotoStreamReturned;
+
+        // Retrieved discovery stream
+        public EventHandler<GetDiscoveryStreamEventArgs> DiscoveryStreamReturned;
     }
 }

@@ -13,10 +13,11 @@ using Indulged.API.Cinderella.Models;
 
 namespace Indulged.Plugins.Dashboard.VioletRenderers
 {
-    public partial class VioletRenderer5A : VioletRendererBase
+    public partial class VioletHeadlineRenderer : VioletRendererBase
     {
         // Constructor
-        public VioletRenderer5A() : base()
+        public VioletHeadlineRenderer()
+            : base()
         {
             InitializeComponent();
         }
@@ -24,12 +25,7 @@ namespace Indulged.Plugins.Dashboard.VioletRenderers
         protected override void OnPhotoGroupSourceChanged()
         {
             base.OnPhotoGroupSourceChanged();
-            ImageView1.PhotoSource = PhotoGroupSource.Photos[0];
-            ImageView2.PhotoSource = PhotoGroupSource.Photos[1];
-            ImageView3.PhotoSource = PhotoGroupSource.Photos[2];
-            ImageView4.PhotoSource = PhotoGroupSource.Photos[3];
-            ImageView5.PhotoSource = PhotoGroupSource.Photos[4];
+            ImageView.PhotoSource = PhotoGroupSource.Photos[0];
         }
-
     }
 }

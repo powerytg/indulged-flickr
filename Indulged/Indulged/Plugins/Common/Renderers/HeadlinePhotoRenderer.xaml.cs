@@ -11,9 +11,9 @@ using Microsoft.Phone.Shell;
 
 namespace Indulged.Plugins.Common.Renderers
 {
-    public partial class WidePhotoRenderer : PhotoRendererBase
+    public partial class HeadlinePhotoRenderer : PhotoRendererBase
     {
-        public WidePhotoRenderer()
+        public HeadlinePhotoRenderer()
         {
             InitializeComponent();
         }
@@ -28,16 +28,8 @@ namespace Indulged.Plugins.Common.Renderers
             base.OnPhotoSourceChanged();
             ImageView.Source = new BitmapImage(new Uri(PhotoSource.GetImageUrl()));
 
-            if (PhotoSource.Description.Length > 0)
-            {
-                DescriptionView.PhotoSource = PhotoSource;
-                DescriptionView.Visibility = Visibility.Visible;
-            }
-            else
-            {
-                DescriptionView.Visibility = Visibility.Collapsed;
-            }
-
+            TitleLabel.Text = "Cover Photo: " + PhotoSource.Title;
+            DescriptionLabel.Text = PhotoSource.Description;
         }
     }
 }

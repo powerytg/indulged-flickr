@@ -13,17 +13,30 @@ namespace Indulged.Plugins.Dashboard
         // Random generator
         private static Random randomGenerator = new Random();
 
-        public static List<List<Photo>> GeneratePhotoGroup(List<Photo> photos)
+        public static List<PhotoGroup> GeneratePhotoGroup(List<Photo> photos)
         {
-            List<List<Photo>> result = new List<List<Photo>>();
+            List<PhotoGroup> result = new List<PhotoGroup>();
 
             // Randomly slice the photo into groups
-            int min = 3;
+            int min = 1;
             int max = 6;
             int position = 0;
+            bool headlineProcessed = false;
 
             while (position < photos.Count)
             {
+                if (!headlineProcessed)
+                {
+                    headlineProcessed = true;
+
+                    PhotoGroup headGroup = new PhotoGroup();
+                    headGroup.IsHeadline = true;
+                    headGroup.Photos.Add(photos[0]);
+                    result.Add(headGroup);
+                    position = 1;
+                    continue;
+                }
+
                 int ranNum = randomGenerator.Next(min, max);
                 List<Photo> group = new List<Photo>();
 
@@ -34,7 +47,7 @@ namespace Indulged.Plugins.Dashboard
                         group.Add(photos[i]);
                     }
 
-                    result.Add(group);
+                    result.Add(new PhotoGroup(group));
                     break;
                 }
 
@@ -43,7 +56,7 @@ namespace Indulged.Plugins.Dashboard
                     group.Add(photos[i]);
                 }
 
-                result.Add(group);
+                result.Add(new PhotoGroup(group));
                 position += ranNum;
             }
 

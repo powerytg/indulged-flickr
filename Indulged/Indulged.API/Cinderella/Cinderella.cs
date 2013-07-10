@@ -17,6 +17,7 @@ namespace Indulged.API.Cinderella
         // Events
         public EventHandler<PhotoSetListUpdatedEventArgs> PhotoSetListUpdated;
         public EventHandler<PhotoStreamUpdatedEventArgs> PhotoStreamUpdated;
+        public EventHandler<DiscoveryStreamUpdatedEventArgs> DiscoveryStreamUpdated;
 
         // Singleton
         private static Cinderella instance;
@@ -49,6 +50,10 @@ namespace Indulged.API.Cinderella
         // Photo cache
         public Dictionary<string, Photo> PhotoCache { get; set; }
 
+        // Discovery stream
+        public List<Photo> DiscoveryList { get; set; }
+        public int TotalDiscoveryPhotosCount { get; set; }
+
         // Constructor
         public Cinderella()
         {
@@ -62,9 +67,13 @@ namespace Indulged.API.Cinderella
             // Photo cache
             PhotoCache = new Dictionary<string,Photo>();
 
+            // Discovery stream
+            DiscoveryList = new List<Photo>();
+
             // Events
             Anaconda.Anaconda.AnacondaCore.PhotoSetListReturned += PhotoListReturned;
             Anaconda.Anaconda.AnacondaCore.PhotoStreamReturned += PhotoStreamReturned;
+            Anaconda.Anaconda.AnacondaCore.DiscoveryStreamReturned += OnDiscoveryStreamReturned;
         }
     }
 }

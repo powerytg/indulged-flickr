@@ -9,11 +9,15 @@ using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using Indulged.Resources;
 
+using Indulged.API.Utils;
 using Indulged.API.Avarice.Controls;
 using Indulged.API.Avarice.Events;
 using Indulged.API.Anaconda;
 using Indulged.API.Cinderella;
 using Indulged.API.Cinderella.Models;
+using Indulged.PolKit;
+using Indulged.Plugins.Dashboard;
+
 
 namespace Indulged
 {
@@ -23,6 +27,9 @@ namespace Indulged
         public MainPage()
         {
             InitializeComponent();
+
+            // Retrieve policy settings
+            PolicyKit.RetrieveSettings();
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -39,7 +46,10 @@ namespace Indulged
                 Anaconda.AnacondaCore.GetPhotoSetListAsync();
 
                 // Get the first page of current_user's photo stream
-                Anaconda.AnacondaCore.GetPhotoStreamAsync(Cinderella.CinderellaCore.CurrentUser.ResourceId, new Dictionary<string, string> { {"page" , "1"}, {"per_page" , "100"} });
+                if(PolicyKit.VioletPageSubscription == PolicyKit.MyStream)
+                    Anaconda.AnacondaCore.GetPhotoStreamAsync(Cinderella.CinderellaCore.CurrentUser.ResourceId, new Dictionary<string, string> { {"page" , "1"}, {"per_page" , "100"} });
+                else
+                    Anaconda.AnacondaCore.GetDiscoveryStreamAsync(new Dictionary<string, string> { { "page", "1" }, { "per_page", "100" } });
             }
             else
             {
@@ -47,6 +57,36 @@ namespace Indulged
                 NavigationService.Navigate(new Uri("/Plugins/Login/LoginPage.xaml", UriKind.Relative));
             }
 
+        }
+
+        private void OnSubscriptionSettingsClick(object sender, EventArgs e)
+        {
+            SubscriptionSettingsView settingsView = new SubscriptionSettingsView();
+            settingsView.Height = 150;
+            //settingsView.SetValue(Grid.RowProperty, 1);
+            var settingsDialog = ModalPopup.Show(settingsView, "Subscription", new List<string> {"Confirm", "Cancel" });
+            settingsDialog.DismissWithButtonClick += (s, args) =>
+            {
+                int buttonIndex = (args as ModalPopupEventArgs).ButtonIndex;
+                if (buttonIndex == 0)
+                {
+                    string subscriptionName = "";
+                    if (settingsView.MyStreamButton.IsChecked == true)
+                        subscriptionName = PolicyKit.MyStream;
+                    else if (settingsView.DiscoveryStreamButton.IsChecked == true)
+                        subscriptionName = PolicyKit.DiscoveryStream;
+
+                    if (subscriptionName != PolicyKit.VioletPageSubscription)
+                    {
+                        PolicyKit.VioletPageSubscription = subscriptionName;
+                        PolicyChangedEventArgs policyArgs = new PolicyChangedEventArgs();
+                        policyArgs.PolicyName = "VioletPageSubscription";
+                        PolicyKit.SaveSettings();
+                        PolicyKit.PolicyChanged.DispatchEvent(this, policyArgs);
+                    }
+
+                }
+            };
         }
 
         // Sample code for building a localized ApplicationBar
