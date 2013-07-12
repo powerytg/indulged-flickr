@@ -6,6 +6,8 @@
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:chrome="clr-namespace:Indulged.Plugins.Chrome"
+    xmlns:avarice="clr-namespace:Indulged.API.Avarice.Controls;assembly=Indulged.API"
     xmlns:local="clr-namespace:Indulged.Plugins.Detail"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
@@ -15,13 +17,24 @@
     shell:SystemTray.IsVisible="True"
     Style="{StaticResource TransitionPageStyle}">
 
-    <phone:PhoneApplicationPage.Resources>
-        <local:PhotoSourceConverter x:Key="PhotoSourceConverter"/>
-    </phone:PhoneApplicationPage.Resources>
-    
     <!--LayoutRoot is the root grid where all page content is placed-->
-    <Grid x:Name="LayoutRoot" Background="Black">
-        <Image Source="{Binding Converter={StaticResource PhotoSourceConverter}}" VerticalAlignment="Top" />
+    <Grid x:Name="LayoutRoot" Background="Black" Margin="0">
+        <!-- Content -->
+        <phone:Pivot x:Name="PhotoPivot" Style="{StaticResource PhotoNavigatorStyle}"
+                     Margin="0, 95, 0, 0" SelectionChanged="OnCurrentPageChanged" >
+            <phone:Pivot.ItemTemplate>
+                <DataTemplate>
+                    <local:PhotoInfoView x:Name="InfoView" PhotoSource="{Binding}"/>
+                </DataTemplate>
+            </phone:Pivot.ItemTemplate>
+        </phone:Pivot>
+
+        <!-- Title view -->
+        <chrome:TitleView x:Name="TitleView" VerticalAlignment="Top" IsHitTestVisible="False"/>
+
+
+        
     </Grid>
 
+    
 </phone:PhoneApplicationPage>

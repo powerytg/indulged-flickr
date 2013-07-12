@@ -44,7 +44,7 @@ namespace Indulged.API.Anaconda
             else
                 paramDict["user_id"] = Cinderella.Cinderella.CinderellaCore.CurrentUser.ResourceId;
 
-            paramDict["extras"] = UrlHelper.Encode("description,views,tags");
+            paramDict["extras"] = UrlHelper.Encode(commonExtraParameters);
 
             User user = null;
             if (Cinderella.Cinderella.CinderellaCore.UserCache.ContainsKey(userId))

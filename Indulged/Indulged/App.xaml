@@ -12,6 +12,8 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Themes/NavigatorStyle.xaml"/>
                 <ResourceDictionary Source="Themes/PreludeListStyle.xaml"/>
+                <ResourceDictionary Source="Themes/PhotoNavigatorStyle.xaml"/>
+                <ResourceDictionary Source="Themes/LicenseButtonStyle.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
             <Style x:Key="TransitionPageStyle" TargetType="phone:PhoneApplicationPage">

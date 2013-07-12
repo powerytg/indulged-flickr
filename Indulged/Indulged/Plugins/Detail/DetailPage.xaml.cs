@@ -8,8 +8,10 @@ using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 
+using Indulged.API.Anaconda;
 using Indulged.API.Cinderella;
 using Indulged.API.Cinderella.Models;
+using Indulged.PolKit;
 
 namespace Indulged.Plugins.Detail
 {
@@ -21,34 +23,37 @@ namespace Indulged.Plugins.Detail
             InitializeComponent();
         }
 
-        // Photo object
-        private Photo _photo;
-        public Photo CurrentPhoto
-        {
-            get
-            {
-                return _photo;
-            }
-
-            set
-            {
-                _photo = value;
-                this.DataContext = _photo;
-            }
-        }
+        // Photo collection context
+        public List<Photo> CollectionContext = new List<Photo>();
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
 
             string photoId = NavigationContext.QueryString["photo_id"];
-            if (Cinderella.CinderellaCore.PhotoCache.ContainsKey(photoId))
-            {
-                CurrentPhoto = Cinderella.CinderellaCore.PhotoCache[photoId];
-            }
-            else
-            {
+            string contextString = NavigationContext.QueryString["context"];
+            
+            if (contextString == PolicyKit.MyStream)
+                CollectionContext = Cinderella.CinderellaCore.CurrentUser.Photos.ToList();
+            else if (contextString == PolicyKit.DiscoveryStream)
+                CollectionContext = Cinderella.CinderellaCore.DiscoveryList.ToList();
+            
+            PhotoPivot.ItemsSource = CollectionContext;
+            
+            Photo currentPhoto = Cinderella.CinderellaCore.PhotoCache[photoId];
+            PhotoPivot.SelectedIndex = CollectionContext.IndexOf(currentPhoto);
+        }
 
+        private void OnCurrentPageChanged(object sender, SelectionChangedEventArgs e)
+        {
+            int selectedIndex = PhotoPivot.SelectedIndex;
+            Photo currentPhoto = CollectionContext[selectedIndex];
+
+            // Download EXIF info
+            if (currentPhoto.EXIF == null)
+            {
+                if (!Anaconda.AnacondaCore.IsGettingEXIFInfo(currentPhoto.ResourceId))
+                    Anaconda.AnacondaCore.GetEXIFAsync(currentPhoto.ResourceId);
             }
         }
     }

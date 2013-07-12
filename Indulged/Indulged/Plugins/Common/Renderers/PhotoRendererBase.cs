@@ -15,6 +15,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using Indulged.Plugins.Detail;
+using Indulged.PolKit;
 
 namespace Indulged.Plugins.Common.Renderers
 {
@@ -56,7 +57,11 @@ namespace Indulged.Plugins.Common.Renderers
 
             Frame rootVisual = System.Windows.Application.Current.RootVisual as Frame;
             PhoneApplicationPage currentPage = (PhoneApplicationPage)rootVisual.Content;
-            currentPage.NavigationService.Navigate(new Uri("/Plugins/Detail/DetailPage.xaml?photo_id=" + PhotoSource.ResourceId, UriKind.Relative));
+
+            // Get photo collection context
+            string collectionContext = PolicyKit.VioletPageSubscription;
+
+            currentPage.NavigationService.Navigate(new Uri("/Plugins/Detail/DetailPage.xaml?photo_id=" + PhotoSource.ResourceId + "&context=" + collectionContext, UriKind.Relative));
         }
 
 

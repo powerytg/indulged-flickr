@@ -27,5 +27,8 @@ namespace Indulged.API.Anaconda
 
         // Retrieved discovery stream
         public EventHandler<GetDiscoveryStreamEventArgs> DiscoveryStreamReturned;
+
+        // Retrieved EXIF info
+        public EventHandler<GetEXIFEventArgs> EXIFReturned;
     }
 }

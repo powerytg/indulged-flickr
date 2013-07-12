@@ -12,18 +12,26 @@ namespace Indulged.API.Anaconda
 {
     public partial class AnacondaCore
     {
-        // Status
-        public bool IsLoadingDiscoveryStream { get; set; }
+        // Status keeper
+        private List<string> exifQueue = new List<string>();
 
-        public async void GetDiscoveryStreamAsync(Dictionary<string, string> parameters = null)
+        public bool IsGettingEXIFInfo(string photoId)
         {
-            IsLoadingDiscoveryStream = true;
+            return exifQueue.Contains(photoId);
+        }
+
+        public async void GetEXIFAsync(string photoId)
+        {
+            if (IsGettingEXIFInfo(photoId))
+                return;
+
+            exifQueue.Add(photoId);
 
             string timestamp = DateTimeUtils.GetTimestamp();
             string nonce = Guid.NewGuid().ToString().Replace("-", null);
 
             Dictionary<string, string> paramDict = new Dictionary<string, string>();
-            paramDict["method"] = "flickr.interestingness.getList";
+            paramDict["method"] = "flickr.photos.getExif";
             paramDict["format"] = "json";
             paramDict["nojsoncallback"] = "1";
             paramDict["oauth_consumer_key"] = consumerKey;
@@ -32,29 +40,22 @@ namespace Indulged.API.Anaconda
             paramDict["oauth_timestamp"] = timestamp;
             paramDict["oauth_token"] = AccessToken;
             paramDict["oauth_version"] = "1.0";
+            paramDict["photo_id"] = photoId;
 
-            if (parameters != null)
-            {
-                foreach (var entry in parameters)
-                {
-                    paramDict[entry.Key] = entry.Value;
-                }
-            }
-
-            paramDict["extras"] = UrlHelper.Encode(commonExtraParameters);
             string paramString = GenerateParamString(paramDict);
             string signature = GenerateSignature("GET", AccessTokenSecret, "http://api.flickr.com/services/rest", paramString);
             string requestUrl = "http://api.flickr.com/services/rest?" + paramString + "&oauth_signature=" + signature;
             HttpWebResponse response = await DispatchRequest("GET", requestUrl, null);
             using (StreamReader reader = new StreamReader(response.GetResponseStream()))
             {
-                IsLoadingDiscoveryStream = false;
+                exifQueue.Remove(photoId);
 
                 string jsonString = reader.ReadToEnd();
 
-                GetDiscoveryStreamEventArgs args = new GetDiscoveryStreamEventArgs();
+                GetEXIFEventArgs args = new GetEXIFEventArgs();
+                args.PhotoId = photoId;
                 args.Response = jsonString;
-                DiscoveryStreamReturned.DispatchEvent(this, args);
+                EXIFReturned.DispatchEvent(this, args);
             }
         }
     }

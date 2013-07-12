@@ -37,6 +37,12 @@ namespace Indulged.API.Cinderella.Factories
             photo.Title = json["title"].ToString();
             photo.Description = json["description"]["_content"].ToString();
 
+            JToken licenseValue;
+            if (json.TryGetValue("license", out licenseValue))
+            {
+                photo.LicenseId = json["license"].ToString();
+            }
+
             return photo;
 
         }

@@ -14,6 +14,9 @@ namespace Indulged.API.Anaconda
 {
     public partial class AnacondaCore
     {
+        // Common extra parameters
+        private string commonExtraParameters = "description,views,tags,license";
+
         // Convert an dictionary to a query string
         public string FormatQueryString(Dictionary<string, string> dict)
         {

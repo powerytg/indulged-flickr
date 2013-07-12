@@ -17,6 +17,10 @@ namespace Indulged.API.Cinderella.Models
         public string Title { get; set; }
         public string Description { get; set; }
         public int ViewCount { get; set; }
+        public string LicenseId { get; set; }
+
+        // EXIF
+        public Dictionary<string, string> EXIF { get; set; }
 
         public string GetImageUrl(PhotoSize size = PhotoSize.Medium)
         {

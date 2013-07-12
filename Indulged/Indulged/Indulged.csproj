@@ -189,13 +189,24 @@
       <DependentUpon>VioletRenderer1.xaml</DependentUpon>
     </Compile>
     <Compile Include="Plugins\Dashboard\VioletRenderers\VioletRendererBase.cs" />
+    <Compile Include="Plugins\Detail\PhotoEXIFView.xaml.cs">
+      <DependentUpon>PhotoEXIFView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\Detail\PhotoInfoView.xaml.cs">
+      <DependentUpon>PhotoInfoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\Detail\PhotoLicenseConverter.cs" />
     <Compile Include="Plugins\Detail\DetailPage.xaml.cs">
       <DependentUpon>DetailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\Detail\PhotoBasicInfoView.xaml.cs">
+      <DependentUpon>PhotoBasicInfoView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Plugins\Detail\PhotoSourceConverter.cs" />
     <Compile Include="Plugins\Login\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PolKit\License.cs" />
     <Compile Include="PolKit\PolicyChangedEventArgs.cs" />
     <Compile Include="PolKit\PolicyKit.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -328,9 +339,27 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Plugins\Detail\PhotoBasicInfoView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Plugins\Detail\PhotoEXIFView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Plugins\Detail\PhotoInfoView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Plugins\Login\LoginPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <ApplicationDefinition Include="Themes\LicenseButtonStyle.xaml">
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Page Include="Themes\PhotoNavigatorStyle.xaml">
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Themes\NavigatorStyle.xaml">
       <SubType>Designer</SubType>
@@ -341,6 +370,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Chrome\Thumbs.db" />
+    <Content Include="Assets\Common\LicenseIcon.png" />
     <Content Include="Assets\Common\View.png" />
     <Content Include="Assets\Fonts\advent.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -391,6 +421,7 @@
     <Content Include="Assets\Tiles\IconicTileSmall.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Assets\Common\PageCurlBottom.png" />
     <Content Include="README_FIRST.txt" />
     <Content Include="Toolkit.Content\ApplicationBar.Cancel.png" />
     <Content Include="Toolkit.Content\ApplicationBar.Check.png" />
