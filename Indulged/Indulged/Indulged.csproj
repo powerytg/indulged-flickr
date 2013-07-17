@@ -100,6 +100,9 @@
     <Compile Include="Plugins\Chrome\BackgroundView.xaml.cs">
       <DependentUpon>BackgroundView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Plugins\Chrome\PhotoBackgroundView.xaml.cs">
+      <DependentUpon>PhotoBackgroundView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Plugins\Chrome\Events\ThemeChangedEventArgs.cs" />
     <Compile Include="Plugins\Chrome\ThemeManager.cs" />
     <Compile Include="Plugins\Chrome\TitleView.xaml.cs">
@@ -107,6 +110,16 @@
     </Compile>
     <Compile Include="Plugins\Common\ProgressView.xaml.cs">
       <DependentUpon>ProgressView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\Common\Renderers\SearchPhotoRenderer.xaml.cs">
+      <DependentUpon>SearchPhotoRenderer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\Common\Renderers\SmallUserInfoRenderer.xaml.cs">
+      <DependentUpon>SmallUserInfoRenderer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\Common\Renderers\TagButton.cs" />
+    <Compile Include="Plugins\Common\Renderers\WeightedTagButton.xaml.cs">
+      <DependentUpon>WeightedTagButton.xaml</DependentUpon>
     </Compile>
     <Compile Include="Plugins\Common\Renderers\WideDescriptionView.xaml.cs">
       <DependentUpon>WideDescriptionView.xaml</DependentUpon>
@@ -189,6 +202,9 @@
       <DependentUpon>VioletRenderer1.xaml</DependentUpon>
     </Compile>
     <Compile Include="Plugins\Dashboard\VioletRenderers\VioletRendererBase.cs" />
+    <Compile Include="Plugins\Detail\PhotoTagsView.xaml.cs">
+      <DependentUpon>PhotoTagsView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Plugins\Detail\PhotoEXIFView.xaml.cs">
       <DependentUpon>PhotoEXIFView.xaml</DependentUpon>
     </Compile>
@@ -205,6 +221,18 @@
     <Compile Include="Plugins\Detail\PhotoSourceConverter.cs" />
     <Compile Include="Plugins\Login\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\Search\PhotoSearchResultView.xaml.cs">
+      <DependentUpon>PhotoSearchResultView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\Search\SearchPage.xaml.cs">
+      <DependentUpon>SearchPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\Search\SearchResultPage.xaml.cs">
+      <DependentUpon>SearchResultPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\Search\SearchTagListView.xaml.cs">
+      <DependentUpon>SearchTagListView.xaml</DependentUpon>
     </Compile>
     <Compile Include="PolKit\License.cs" />
     <Compile Include="PolKit\PolicyChangedEventArgs.cs" />
@@ -229,10 +257,26 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Plugins\Chrome\PhotoBackgroundView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Plugins\Chrome\TitleView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Plugins\Common\ProgressView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Plugins\Common\Renderers\SearchPhotoRenderer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Plugins\Common\Renderers\SmallUserInfoRenderer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Plugins\Common\Renderers\WeightedTagButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -335,6 +379,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Plugins\Detail\PhotoTagsView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Plugins\Detail\DetailPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -358,6 +406,28 @@
     <ApplicationDefinition Include="Themes\LicenseButtonStyle.xaml">
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <ApplicationDefinition Include="Themes\TagButtonStyle.xaml">
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Page Include="Plugins\Search\PhotoSearchResultView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Plugins\Search\SearchPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Plugins\Search\SearchResultPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <ApplicationDefinition Include="Themes\SearchBoxStyle.xaml">
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Page Include="Plugins\Search\SearchTagListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Themes\PhotoNavigatorStyle.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -371,15 +441,20 @@
   <ItemGroup>
     <None Include="Assets\Chrome\Thumbs.db" />
     <Content Include="Assets\Common\LicenseIcon.png" />
+    <Content Include="Assets\Common\QuoteLeft.png" />
+    <Content Include="Assets\Common\TagIcon.png" />
     <Content Include="Assets\Common\View.png" />
     <Content Include="Assets\Fonts\advent.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Assets\Dashboard\Prelude\Thumbs.db" />
-    <Content Include="Assets\Fonts\futura-condensed-normal.ttf">
+    <Content Include="Assets\Fonts\BenchNine-Bold.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Fonts\MyriadPro-Cond.ttf">
+    <Content Include="Assets\Fonts\BenchNine-Light.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Fonts\BenchNine-Regular.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="packages.config" />
@@ -441,8 +516,21 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="CS.Windows.Controls">
+      <HintPath>..\packages\WindowsPhoneControls.0.3.0\lib\sl4-windowsphone71\CS.Windows.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Phone.Controls, Version=8.0.0.0, Culture=neutral, PublicKeyToken=24eec0d8c86cda1e, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Phone.Controls.Toolkit">
       <HintPath>..\packages\WPToolkit.4.2013.06.11\lib\wp8\Microsoft.Phone.Controls.Toolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="Nokia.Graphics.Imaging">
+      <HintPath>..\packages\NokiaImagingSDK.0.9.1\lib\wp8\$(Platform)\Nokia.Graphics.Imaging.winmd</HintPath>
+    </Reference>
+    <Reference Include="Nokia.Graphics.Imaging.Managed">
+      <HintPath>..\packages\NokiaImagingSDK.0.9.1\lib\wp8\Nokia.Graphics.Imaging.Managed.dll</HintPath>
+    </Reference>
+    <Reference Include="Nokia.InteropServices.WindowsRuntime">
+      <HintPath>..\packages\NokiaImagingSDK.0.9.1\lib\wp8\$(Platform)\Nokia.InteropServices.WindowsRuntime.winmd</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup />

@@ -19,6 +19,8 @@ namespace Indulged.API.Cinderella
         public EventHandler<PhotoStreamUpdatedEventArgs> PhotoStreamUpdated;
         public EventHandler<DiscoveryStreamUpdatedEventArgs> DiscoveryStreamUpdated;
         public EventHandler<EXIFUpdatedEventArgs> EXIFUpdated;
+        public EventHandler<PhotoSearchResultEventArgs> PhotoSearchCompleted;
+        public EventHandler<PopularTagListUpdatedEventArgs> PopularTagsUpdated;
 
         // Singleton
         private static Cinderella instance;
@@ -76,6 +78,8 @@ namespace Indulged.API.Cinderella
             Anaconda.Anaconda.AnacondaCore.PhotoStreamReturned += PhotoStreamReturned;
             Anaconda.Anaconda.AnacondaCore.DiscoveryStreamReturned += OnDiscoveryStreamReturned;
             Anaconda.Anaconda.AnacondaCore.EXIFReturned += OnEXIFReturned;
+            Anaconda.Anaconda.AnacondaCore.PhotoSearchReturned += OnPhotoSearchReturned;
+            Anaconda.Anaconda.AnacondaCore.PopularTagListReturned += OnPopularTagListReturned;
         }
     }
 }

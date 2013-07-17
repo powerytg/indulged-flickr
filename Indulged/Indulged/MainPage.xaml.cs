@@ -17,7 +17,7 @@ using Indulged.API.Cinderella;
 using Indulged.API.Cinderella.Models;
 using Indulged.PolKit;
 using Indulged.Plugins.Dashboard;
-
+using Indulged.Plugins.Search;
 
 namespace Indulged
 {
@@ -87,6 +87,11 @@ namespace Indulged
 
                 }
             };
+        }
+
+        private void OnSearchClick(object sender, EventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/Plugins/Search/SearchPage.xaml", UriKind.Relative));
         }
 
         // Sample code for building a localized ApplicationBar

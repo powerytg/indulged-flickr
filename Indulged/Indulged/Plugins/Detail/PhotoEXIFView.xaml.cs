@@ -11,6 +11,8 @@ using Microsoft.Phone.Shell;
 using Indulged.API.Cinderella;
 using Indulged.API.Cinderella.Events;
 using Indulged.API.Cinderella.Models;
+using Indulged.API.Anaconda;
+using Indulged.API.Anaconda.Events;
 
 namespace Indulged.Plugins.Detail
 {
@@ -57,6 +59,7 @@ namespace Indulged.Plugins.Detail
 
             // Events
             Cinderella.CinderellaCore.EXIFUpdated += OnEXIFUpdated;
+            Anaconda.AnacondaCore.EXIFException += OnEXIFException;
         }
 
         private void OnEXIFUpdated(object sender, EXIFUpdatedEventArgs e)
@@ -67,6 +70,16 @@ namespace Indulged.Plugins.Detail
              LoadingView.Visibility = Visibility.Collapsed;
              DescriptionLabel.Visibility = Visibility.Visible;
              DescriptionLabel.Text = this.GetEXIFString();
+        }
+
+        private void OnEXIFException(object sender, GetEXIFExceptionEventArgs e)
+        {
+            if (e.PhotoId != PhotoSource.ResourceId)
+                return;
+
+            LoadingView.Visibility = Visibility.Collapsed;
+            DescriptionLabel.Visibility = Visibility.Visible;
+            DescriptionLabel.Text = "Cannot retrieve EXIF Info";
         }
 
         private string GetEXIFString()

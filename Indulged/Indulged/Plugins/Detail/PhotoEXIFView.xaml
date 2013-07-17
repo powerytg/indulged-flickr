@@ -9,7 +9,7 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     d:DesignHeight="480" d:DesignWidth="480">
     
-    <Grid x:Name="LayoutRoot" Background="{StaticResource PhoneChromeBrush}">
+    <Grid x:Name="LayoutRoot">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
@@ -17,7 +17,7 @@
         </Grid.RowDefinitions>
         <TextBlock Text="EXIF Info" Foreground="#4a6e7b" FontSize="48" FontWeight="Light" TextWrapping="Wrap"
                    Margin="12, 0, 12, 12" 
-                   Grid.Row="1" />
+                   Grid.Row="0" />
 
         <StackPanel x:Name="LoadingView" Orientation="Horizontal" Margin="12, 12, 12, 12"
                     Grid.Row="1" >

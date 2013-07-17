@@ -19,6 +19,9 @@
 
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Black" Margin="0">
+        <!-- Background image -->
+        <chrome:PhotoBackgroundView x:Name="BackgroundImage"/>
+        
         <!-- Content -->
         <phone:Pivot x:Name="PhotoPivot" Style="{StaticResource PhotoNavigatorStyle}"
                      Margin="0, 95, 0, 0" SelectionChanged="OnCurrentPageChanged" >

@@ -11,6 +11,7 @@ using Indulged.API.Cinderella.Models;
 
 using Indulged.PolKit;
 using Microsoft.Phone.Tasks;
+using Indulged.API.Cinderella;
 
 namespace Indulged.Plugins.Detail
 {
@@ -37,6 +38,13 @@ namespace Indulged.Plugins.Detail
 
         protected virtual void OnPhotoSourceChanged()
         {
+            if (PhotoSource.UserId == null || !Cinderella.CinderellaCore.UserCache.ContainsKey(PhotoSource.UserId))
+                UserRenderer.UserSource = null;
+            else
+            {
+                User photoOwner = Cinderella.CinderellaCore.UserCache[PhotoSource.UserId];
+                UserRenderer.UserSource = photoOwner;
+            }
         }
 
         public PhotoBasicInfoView()

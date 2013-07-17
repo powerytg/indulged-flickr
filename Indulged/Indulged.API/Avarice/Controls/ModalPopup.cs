@@ -12,6 +12,7 @@ using Microsoft.Phone.Controls;
 
 using Indulged.API.Utils;
 using Indulged.API.Avarice.Events;
+using System.Windows.Shapes;
 
 namespace Indulged.API.Avarice.Controls
 {
@@ -44,7 +45,7 @@ namespace Indulged.API.Avarice.Controls
         }
 
         // Curtain and borders
-        protected Image curtain;
+        protected Rectangle curtain;
         protected Image topShadow;
         protected Image bottomShadow;
         protected Canvas borderCanvas;
@@ -114,7 +115,7 @@ namespace Indulged.API.Avarice.Controls
         {
             double w = System.Windows.Application.Current.Host.Content.ActualWidth;
 
-            curtain = GetTemplateChild("Curtain") as Image;
+            curtain = GetTemplateChild("Curtain") as Rectangle;
             topShadow = GetTemplateChild("TopShadow") as Image;
             bottomShadow = GetTemplateChild("BottomShadow") as Image;
             borderCanvas = GetTemplateChild("BorderCanvas") as Canvas;
@@ -149,9 +150,12 @@ namespace Indulged.API.Avarice.Controls
                 {
                     measuredHeight += titleLabel.ActualHeight;
                 }
-
+                
                 double contentHeight = Math.Max(contentElement.ActualHeight, contentElement.Height);
-                measuredHeight += contentHeight + contentElement.Margin.Top + contentElement.Margin.Bottom;
+                if(!double.IsNaN(contentHeight))
+                    measuredHeight += contentHeight + contentElement.Margin.Top + contentElement.Margin.Bottom;
+                else
+                    measuredHeight += 240 + contentElement.Margin.Top + contentElement.Margin.Bottom;
 
                 expectedContentSize = new Size(measuredWidth, measuredHeight);
             }

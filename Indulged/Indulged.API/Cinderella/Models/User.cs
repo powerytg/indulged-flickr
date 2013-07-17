@@ -18,10 +18,20 @@ namespace Indulged.API.Cinderella.Models
         }
 
         public string Name { get; set; }
+        public string Server { get; set; }
+        public string Farm { get; set; }
 
         public string UserName { get; set; }
 
-        public string AvatarUrl { get; set; }
+        public string AvatarUrl {
+            get
+            {
+                if (Farm == null || Server == null || ResourceId == null)
+                    return null;
+
+                return "http://farm" + Farm + ".staticflickr.com/" + Server + "/buddyicons" + ResourceId + ".jpg";
+            }
+        }
 
         // Photo stream
         public List<Photo> Photos { get; set; }

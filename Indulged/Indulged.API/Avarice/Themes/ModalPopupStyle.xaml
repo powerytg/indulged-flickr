@@ -11,7 +11,11 @@
                 <ControlTemplate TargetType="avarice:ModalPopup">
                     <Grid Height="800">
                         <!-- Curtain -->
-                        <Image x:Name="Curtain" Source="/Avarice/Themes/Assets/PopupBackground.png" Stretch="None"/>
+                        <Rectangle x:Name="Curtain">
+                            <Rectangle.Fill>
+                                <SolidColorBrush Color="Black" Opacity="0.85"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
 
                         <Grid VerticalAlignment="Center">
                             <Grid.RowDefinitions>

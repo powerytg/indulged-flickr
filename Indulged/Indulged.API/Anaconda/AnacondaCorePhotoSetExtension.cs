@@ -36,7 +36,15 @@ namespace Indulged.API.Anaconda
             HttpWebResponse response = await DispatchRequest("GET", requestUrl, null);
             using (StreamReader reader = new StreamReader(response.GetResponseStream()))
             {
+                if (response.StatusCode != HttpStatusCode.OK)
+                {
+                    HandleHTTPException(response);
+                    return;
+                }
+
                 string jsonString = reader.ReadToEnd();
+                if (!TryHandleResponseException(jsonString, () => { GetPhotoSetListAsync(); }))
+                    return;
 
                 PhotoSetListEventArgs args = new PhotoSetListEventArgs();
                 args.Response = jsonString;

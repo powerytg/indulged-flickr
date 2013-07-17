@@ -30,5 +30,7 @@ namespace Indulged.API.Cinderella
             evt.PhotoId = photo.ResourceId;
             EXIFUpdated.DispatchEvent(this, evt);
         }
+
+        
     }
 }

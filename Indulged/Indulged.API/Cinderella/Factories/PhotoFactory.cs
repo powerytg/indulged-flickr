@@ -30,6 +30,10 @@ namespace Indulged.API.Cinderella.Factories
             }
 
             photo.UserId = json["owner"].ToString();
+
+            // Parse user
+            User user = UserFactory.UserWithJObject(json);
+            
             photo.Secret = json["secret"].ToString();
             photo.Server = json["server"].ToString();
             photo.Farm = json["farm"].ToString();
@@ -41,6 +45,19 @@ namespace Indulged.API.Cinderella.Factories
             if (json.TryGetValue("license", out licenseValue))
             {
                 photo.LicenseId = json["license"].ToString();
+            }
+
+            // Tags
+            photo.Tags = new List<string>();
+            JToken tagsValue;
+            if (json.TryGetValue("tags", out tagsValue))
+            {
+                string tagsString = json["tags"].ToString();
+                if (tagsString.Length != 0)
+                {
+                    photo.Tags = new List<string>(tagsString.Split(' '));
+                }
+                
             }
 
             return photo;

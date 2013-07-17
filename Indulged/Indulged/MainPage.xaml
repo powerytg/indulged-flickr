@@ -20,6 +20,7 @@
         <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True" Mode="Minimized">
             <shell:ApplicationBar.MenuItems>
                 <shell:ApplicationBarMenuItem Text="subscription settings" Click="OnSubscriptionSettingsClick"/>
+                <shell:ApplicationBarMenuItem Text="search" Click="OnSearchClick"/>
             </shell:ApplicationBar.MenuItems>
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>

@@ -50,7 +50,16 @@ namespace Indulged.API.Anaconda
             {
                 IsLoadingDiscoveryStream = false;
 
+                if (response.StatusCode != HttpStatusCode.OK)
+                {
+                    HandleHTTPException(response);
+                    return;
+                }
+
                 string jsonString = reader.ReadToEnd();
+                if (!TryHandleResponseException(jsonString, () => { GetDiscoveryStreamAsync(parameters); }))
+                    return;
+
 
                 GetDiscoveryStreamEventArgs args = new GetDiscoveryStreamEventArgs();
                 args.Response = jsonString;

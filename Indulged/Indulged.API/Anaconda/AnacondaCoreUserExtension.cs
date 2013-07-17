@@ -64,7 +64,15 @@ namespace Indulged.API.Anaconda
                     user.IsLoadingPhotoStream = false;
                 }
 
+                if (response.StatusCode != HttpStatusCode.OK)
+                {
+                    HandleHTTPException(response);
+                    return;
+                }
+
                 string jsonString = reader.ReadToEnd();
+                if (!TryHandleResponseException(jsonString, () => { GetPhotoStreamAsync(userId, parameters); }))
+                    return;
 
                 GetPhotoStreamEventArgs args = new GetPhotoStreamEventArgs();
                 args.UserId = userId;

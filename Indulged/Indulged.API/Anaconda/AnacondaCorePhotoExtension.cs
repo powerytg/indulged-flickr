@@ -41,6 +41,7 @@ namespace Indulged.API.Anaconda
             paramDict["oauth_token"] = AccessToken;
             paramDict["oauth_version"] = "1.0";
             paramDict["photo_id"] = photoId;
+            paramDict["extras"] = UrlHelper.Encode(commonExtraParameters);
 
             string paramString = GenerateParamString(paramDict);
             string signature = GenerateSignature("GET", AccessTokenSecret, "http://api.flickr.com/services/rest", paramString);
@@ -50,7 +51,26 @@ namespace Indulged.API.Anaconda
             {
                 exifQueue.Remove(photoId);
 
+                GetEXIFExceptionEventArgs exceptionArgs = null;
+                if (response.StatusCode != HttpStatusCode.OK)
+                {
+                    exceptionArgs = new GetEXIFExceptionEventArgs();
+                    exceptionArgs.PhotoId = photoId;
+                    EXIFException.DispatchEvent(this, exceptionArgs);
+
+                    return;
+                }
+
                 string jsonString = reader.ReadToEnd();
+                if (!IsResponseSuccess(jsonString))
+                {
+                    exceptionArgs = new GetEXIFExceptionEventArgs();
+                    exceptionArgs.PhotoId = photoId;
+                    EXIFException.DispatchEvent(this, exceptionArgs);
+
+                    return;
+                }
+
 
                 GetEXIFEventArgs args = new GetEXIFEventArgs();
                 args.PhotoId = photoId;
@@ -58,5 +78,7 @@ namespace Indulged.API.Anaconda
                 EXIFReturned.DispatchEvent(this, args);
             }
         }
+
+        
     }
 }

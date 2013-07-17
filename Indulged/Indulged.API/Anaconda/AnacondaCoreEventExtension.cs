@@ -30,5 +30,12 @@ namespace Indulged.API.Anaconda
 
         // Retrieved EXIF info
         public EventHandler<GetEXIFEventArgs> EXIFReturned;
+        public EventHandler<GetEXIFExceptionEventArgs> EXIFException;
+
+        // Popular tag list returned
+        public EventHandler<GetPopularTagListEventArgs> PopularTagListReturned;
+
+        // Seach result
+        public EventHandler<PhotoSearchEventArgs> PhotoSearchReturned;
     }
 }

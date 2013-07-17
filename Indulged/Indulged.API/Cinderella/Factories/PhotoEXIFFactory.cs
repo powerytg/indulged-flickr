@@ -13,6 +13,9 @@ namespace Indulged.API.Cinderella.Factories
     {
         public static Dictionary<string, string> EXIFWithJObject(JObject json)
         {
+            if (json == null)
+                return null;
+
             Dictionary<string, string> result = new Dictionary<string, string>();
 
             foreach (JObject entry in json["exif"])

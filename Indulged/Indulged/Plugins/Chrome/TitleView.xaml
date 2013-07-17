@@ -10,6 +10,6 @@
     d:DesignHeight="480" d:DesignWidth="480">
 
     <Grid x:Name="LayoutRoot" Background="Transparent">
-        <Image Source="/Assets/Chrome/DarkTitleView.png" Stretch="Uniform" VerticalAlignment="Top"/>
+        <Image x:Name="BackgroundImage" Source="/Assets/Chrome/DarkTitleView.png" Stretch="Uniform" VerticalAlignment="Top"/>
     </Grid>
 </UserControl>

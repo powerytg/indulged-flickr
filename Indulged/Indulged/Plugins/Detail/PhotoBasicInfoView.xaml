@@ -3,7 +3,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:local="clr-namespace:Indulged.Plugins.Detail"             
+    xmlns:local="clr-namespace:Indulged.Plugins.Detail"        
+    xmlns:renderer="clr-namespace:Indulged.Plugins.Common.Renderers"
     mc:Ignorable="d"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
@@ -16,15 +17,26 @@
     </UserControl.Resources>
 
 
-    <Grid x:Name="LayoutRoot" Background="#222222">
+    <Grid x:Name="LayoutRoot">
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <Image Source="{Binding Converter={StaticResource PhotoSourceConverter}}"  Stretch="Uniform" Grid.Row="0"/>
+        <Image Source="{Binding Converter={StaticResource PhotoSourceConverter}}"  Stretch="Uniform" Grid.Row="0">
+            
+            <Image.OpacityMask>
+                <LinearGradientBrush StartPoint="0, 0" EndPoint="0, 1">
+                    <GradientStop Color="#00000000" Offset="0"/>
+                    <GradientStop Color="#ff000000" Offset="0.25"/>
+                    <GradientStop Color="#ff000000" Offset="1"/>
+                </LinearGradientBrush>
+            </Image.OpacityMask>
+            
+        </Image>
         <Image Source="/Assets/Common/PageCurlBottom.png" Grid.Row="0" VerticalAlignment="Bottom" HorizontalAlignment="Right"
                        Stretch="None" />
 
@@ -32,13 +44,15 @@
                    Margin="12, 0, 12, 12" 
                    Grid.Row="1" />
 
+        <renderer:SmallUserInfoRenderer x:Name="UserRenderer" Grid.Row="2"/>
+        
         <TextBlock Text="{Binding Description}" Foreground="#8b93a0" FontSize="24" FontWeight="Light" TextWrapping="Wrap"
                    Margin="12, 0, 12, 12" 
-                   Grid.Row="2" />
+                   Grid.Row="3" />
 
-        <StackPanel Orientation="Horizontal" Margin="12, 0, 12, 12" Grid.Row="3">
-            <Button Content="{Binding Converter={StaticResource PhotoLicenseConverter}}" Style="{StaticResource LicenseButtonStyle}"
-                            Click="OnLicenseButtonClick" />
-        </StackPanel>
+        <Button Content="{Binding Converter={StaticResource PhotoLicenseConverter}}" Style="{StaticResource LicenseButtonStyle}"
+                            Click="OnLicenseButtonClick" 
+                            Margin="12, 0, 12, 12" Grid.Row="4"/>
+
     </Grid>
 </UserControl>
