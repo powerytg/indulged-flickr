@@ -41,5 +41,8 @@ namespace Indulged.API.Anaconda
         // Seach results
         public EventHandler<PhotoSearchEventArgs> PhotoSearchReturned;
         public EventHandler<GroupSearchEventArgs> GroupSearchReturned;
+
+        // Group info
+        public EventHandler<GetGroupInfoEventArgs> GroupInfoReturned;
     }
 }

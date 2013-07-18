@@ -24,6 +24,10 @@ namespace Indulged.API.Cinderella.Models
         public FlickrGroupPrivicy Privacy { get; set; }
         public string Rules { get; set; }
 
+        public string ThrottleMode { get; set; }
+        public int ThrottleMaxCount { get; set; }
+        public int ThrottleRemainingCount { get; set; }
+
         public override string ToString()
         {
             return Name;

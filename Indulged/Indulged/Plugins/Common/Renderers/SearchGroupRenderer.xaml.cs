@@ -11,6 +11,8 @@ using Microsoft.Phone.Shell;
 using Indulged.PolKit;
 using Indulged.API.Cinderella.Models;
 using Indulged.API.Utils;
+using Indulged.API.Avarice.Controls;
+using Indulged.Plugins.Group;
 
 namespace Indulged.Plugins.Common.Renderers
 {
@@ -73,7 +75,9 @@ namespace Indulged.Plugins.Common.Renderers
             Frame rootVisual = System.Windows.Application.Current.RootVisual as Frame;
             PhoneApplicationPage currentPage = (PhoneApplicationPage)rootVisual.Content;
 
-            
+            GroupInfoView infoView = new GroupInfoView();
+            infoView.Group = GroupSource;
+            ModalPopup.Show(infoView, GroupSource.Name, null);
         }
     }
 }

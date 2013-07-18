@@ -95,6 +95,30 @@ namespace Indulged.API.Cinderella.Factories
                 group.Privacy = (FlickrGroupPrivicy)privacyId;
             }
 
+            JToken throttleValue;
+            if (json.TryGetValue("throttle", out throttleValue))
+            {
+                JObject throttleObject = (JObject)json["throttle"];
+
+                JToken modeValue;
+                if(throttleObject.TryGetValue("mode", out modeValue))
+                {
+                    group.ThrottleMode = json["throttle"]["mode"].ToString();
+                }
+
+                JToken countValue;
+                if(throttleObject.TryGetValue("count", out countValue))
+                {
+                    group.ThrottleMaxCount = int.Parse(json["throttle"]["count"].ToString());
+                }
+
+                JToken remainingValue;
+                if(throttleObject.TryGetValue("count", out remainingValue))
+                {
+                    group.ThrottleRemainingCount = int.Parse(json["throttle"]["remaining"].ToString());
+                }
+            }
+
 
             return group;
         }

@@ -18,6 +18,8 @@
     <ValidateXaml>true</ValidateXaml>
     <MinimumVisualStudioVersion>11.0</MinimumVisualStudioVersion>
     <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -88,6 +90,7 @@
     <Compile Include="Anaconda\AnacondaCoreDiscoveryExtension.cs" />
     <Compile Include="Anaconda\AnacondaCoreErrorExtension.cs" />
     <Compile Include="Anaconda\AnacondaCoreEventExtension.cs" />
+    <Compile Include="Anaconda\AnacondaCoreGroupExtension.cs" />
     <Compile Include="Anaconda\AnacondaCoreOAuthExtension.cs" />
     <Compile Include="Anaconda\AnacondaCorePhotoExtension.cs" />
     <Compile Include="Anaconda\AnacondaCoreSearchExtension.cs" />
@@ -98,6 +101,7 @@
     <Compile Include="Anaconda\Events\GetDiscoveryStreamEventArgs.cs" />
     <Compile Include="Anaconda\Events\GetEXIFEventArgs.cs" />
     <Compile Include="Anaconda\Events\GetEXIFExceptionEventArgs.cs" />
+    <Compile Include="Anaconda\Events\GetGroupInfoEventArgs.cs" />
     <Compile Include="Anaconda\Events\GetGroupListEventArgs.cs" />
     <Compile Include="Anaconda\Events\GetPhotoStreamEventArgs.cs" />
     <Compile Include="Anaconda\Events\GetPopularTagListEventArgs.cs" />
@@ -106,6 +110,7 @@
     <Compile Include="Anaconda\Events\PhotoSetListEventArgs.cs" />
     <Compile Include="Cinderella\Cinderella.cs" />
     <Compile Include="Cinderella\CinderellaDiscoveryExtension.cs" />
+    <Compile Include="Cinderella\CinderellaGroupExtension.cs" />
     <Compile Include="Cinderella\CinderellaPhotoExtension.cs" />
     <Compile Include="Cinderella\CinderellaPhotoSetExtension.cs" />
     <Compile Include="Cinderella\CinderellaSearchExtension.cs" />
@@ -114,6 +119,7 @@
     <Compile Include="Cinderella\CinderellaUserExtension.cs" />
     <Compile Include="Cinderella\Events\DiscoveryStreamUpdatedEventArgs.cs" />
     <Compile Include="Cinderella\Events\EXIFUpdatedEventArgs.cs" />
+    <Compile Include="Cinderella\Events\GroupInfoUpdatedEventArgs.cs" />
     <Compile Include="Cinderella\Events\GroupListUpdatedEventArgs.cs" />
     <Compile Include="Cinderella\Events\GroupSearchResultEventArgs.cs" />
     <Compile Include="Cinderella\Events\PhotoSetListUpdatedEventArgs.cs" />
@@ -208,10 +214,13 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).CSharp.targets" />
   <ProjectExtensions />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
