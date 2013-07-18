@@ -21,9 +21,13 @@
                 <dashboard:NavigatorSection Title="impressionism"/>
                 <phone:LongListSelector x:Name="FeatureListView" Style="{StaticResource PreludeListStyle}"/>
 
-                <!-- Common stream section -->
+                <!-- Photo set section -->
                 <dashboard:NavigatorSection Title="la plaza"/>
                 <phone:LongListSelector x:Name="StreamListView" Style="{StaticResource PreludeListStyle}"/>
+
+                <!-- Group section -->
+                <dashboard:NavigatorSection Title="community"/>
+                <phone:LongListSelector x:Name="GroupListView" Style="{StaticResource PreludeListStyle}"/>
 
             </StackPanel>
         </ScrollViewer>

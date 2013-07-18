@@ -1,4 +1,4 @@
-﻿<renderer:PhotoRendererBase x:Class="Indulged.Plugins.Common.Renderers.SearchPhotoRenderer"
+﻿<UserControl x:Class="Indulged.Plugins.Common.Renderers.SearchGroupRenderer"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -12,24 +12,32 @@
     Margin="0, 0, 0, 18">
 
     <Grid x:Name="LayoutRoot" Margin="2,2,2,2">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+            
+        <!-- Icon -->
+        <Image x:Name="IconView" Grid.Column="0" VerticalAlignment="Top"/>
+        
+        <Grid Grid.Column="1" VerticalAlignment="Top" Margin="12, -4, 0, 0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
 
-        <!-- Title -->
-        <TextBlock x:Name="TitleLabel" TextWrapping="Wrap"
+            <!-- Title -->
+            <TextBlock x:Name="TitleLabel" TextWrapping="Wrap"
                        HorizontalAlignment="Left" TextAlignment="Left" 
                        Foreground="#32afe0" FontSize="38" FontFamily="/Assets/Fonts/BenchNine-Regular.ttf#BenchNine"
                        Grid.Row="0"/>
 
-        <TextBlock x:Name="DescriptionLabel" TextWrapping="Wrap"
+            <TextBlock x:Name="DescriptionLabel" TextWrapping="Wrap"
                        HorizontalAlignment="Left" TextAlignment="Left" 
                        Foreground="#6b757b" FontSize="26" FontFamily="/Assets/Fonts/BenchNine-Regular.ttf#BenchNine"
                        Grid.Row="1"/>
 
-        <Image x:Name="ImageView" Stretch="UniformToFill" Grid.Row="2"/>
+        </Grid>
     </Grid>
     
-</renderer:PhotoRendererBase>
+</UserControl>

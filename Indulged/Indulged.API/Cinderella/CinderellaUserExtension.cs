@@ -47,13 +47,42 @@ namespace Indulged.API.Cinderella
             }
 
             // Dispatch event
-            PhotoStreamUpdatedEventArgs args = new PhotoStreamUpdatedEventArgs();
-            args.Page = page;
-            args.PageCount = numPages;
-            args.PerPage = perPage;
-            args.NewPhotos = newPhotos;
-            args.UserId = e.UserId;
-            PhotoStreamUpdated.DispatchEvent(this, args);
+            PhotoStreamUpdatedEventArgs evt = new PhotoStreamUpdatedEventArgs();
+            evt.Page = page;
+            evt.PageCount = numPages;
+            evt.PerPage = perPage;
+            evt.NewPhotos = newPhotos;
+            evt.UserId = e.UserId;
+            PhotoStreamUpdated.DispatchEvent(this, evt);
+        }
+
+        // Group list retrieved for a user
+        private void OnGroupListReturned(object sender, GetGroupListEventArgs e)
+        {
+            // Find the user
+            if (!UserCache.ContainsKey(e.UserId))
+                return;
+
+            User user = UserCache[e.UserId];
+
+            JObject rawJson = JObject.Parse(e.Response);
+            JObject rootJson = (JObject)rawJson["groups"];
+
+            List<FlickrGroup> result = new List<FlickrGroup>();
+            user.GroupIds = new List<string>();
+            foreach (var entry in rootJson["group"])
+            {
+                JObject json = (JObject)entry;
+                FlickrGroup group = FlickrGroupFactory.GroupWithJObject(json);
+                user.GroupIds.Add(group.ResourceId);
+                result.Add(group);
+            }
+
+            // Dispatch event
+            GroupListUpdatedEventArgs evt = new GroupListUpdatedEventArgs();
+            evt.UserId = e.UserId;
+            evt.Groups = result;
+            GroupListUpdated.DispatchEvent(this, evt);
         }
     }
 }

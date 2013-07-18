@@ -42,5 +42,31 @@ namespace Indulged.API.Cinderella
             evt.Photos = photos;
             PhotoSearchCompleted.DispatchEvent(this, evt);
         }
+
+        private void OnGroupSearchReturned(object sender, GroupSearchEventArgs e)
+        {
+            JObject json = JObject.Parse(e.Response);
+            JObject groupJson = (JObject)json["groups"];
+
+            int page = int.Parse(groupJson["page"].ToString());
+            int perPage = int.Parse(groupJson["perpage"].ToString());
+            int numTotal = int.Parse(groupJson["total"].ToString());
+
+            List<FlickrGroup> groups = new List<FlickrGroup>();
+            foreach (var js in groupJson["group"])
+            {
+                FlickrGroup group = FlickrGroupFactory.GroupWithJObject((JObject)js);
+                groups.Add(group);
+            }
+
+
+            GroupSearchResultEventArgs evt = new GroupSearchResultEventArgs();
+            evt.SearchSessionId = e.SearchSessionId;
+            evt.Page = page;
+            evt.PerPage = perPage;
+            evt.TotalCount = numTotal;
+            evt.Groups = groups;
+            GroupSearchCompleted.DispatchEvent(this, evt);
+        }
     }
 }

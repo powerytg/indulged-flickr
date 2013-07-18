@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="Indulged.Plugins.Search.PhotoSearchResultView"
+﻿<UserControl x:Class="Indulged.Plugins.Search.GroupSearchResultView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -21,7 +21,7 @@
                 <TextBlock x:Name="NoResultLabel" Text="No result found" Foreground="Gray"  Margin="12, 12, 12, 12"/>
 
                 <StackPanel x:Name="LoadingView" Orientation="Horizontal" Margin="12, 12, 12, 12">
-                    <TextBlock Text="Searching photos" Foreground="Gray"/>
+                    <TextBlock Text="Searching groups" Foreground="Gray"/>
                     <ProgressBar IsIndeterminate="True" Width="200"/>
                 </StackPanel>
 
@@ -29,7 +29,7 @@
                 <phone:LongListSelector x:Name="ResultListView" ItemRealized="OnItemRealized" Grid.Row="0">
                     <phone:LongListSelector.ItemTemplate>
                         <DataTemplate>
-                            <renderer:SearchPhotoRenderer PhotoSource="{Binding}"/>
+                            <renderer:SearchGroupRenderer GroupSource="{Binding}"/>
                         </DataTemplate>
                     </phone:LongListSelector.ItemTemplate>
                 </phone:LongListSelector>

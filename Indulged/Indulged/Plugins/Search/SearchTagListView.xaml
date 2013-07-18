@@ -24,7 +24,7 @@
 
                 <StackPanel x:Name="LoadingView" Orientation="Horizontal" Margin="12, 12, 12, 12"
                     Grid.Row="1" >
-                    <TextBlock Text="Retrieving Popular Tags"/>
+                    <TextBlock Text="Retrieving Popular Tags" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                     <ProgressBar IsIndeterminate="True" Width="200"/>
                 </StackPanel>
 

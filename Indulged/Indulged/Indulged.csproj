@@ -111,6 +111,9 @@
     <Compile Include="Plugins\Common\ProgressView.xaml.cs">
       <DependentUpon>ProgressView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Plugins\Common\Renderers\SearchGroupRenderer.xaml.cs">
+      <DependentUpon>SearchGroupRenderer.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Plugins\Common\Renderers\SearchPhotoRenderer.xaml.cs">
       <DependentUpon>SearchPhotoRenderer.xaml</DependentUpon>
     </Compile>
@@ -222,6 +225,9 @@
     <Compile Include="Plugins\Login\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Plugins\Search\GroupSearchResultView.xaml.cs">
+      <DependentUpon>GroupSearchResultView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Plugins\Search\PhotoSearchResultView.xaml.cs">
       <DependentUpon>PhotoSearchResultView.xaml</DependentUpon>
     </Compile>
@@ -267,6 +273,10 @@
     <Page Include="Plugins\Common\ProgressView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Plugins\Common\Renderers\SearchGroupRenderer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Plugins\Common\Renderers\SearchPhotoRenderer.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -409,6 +419,10 @@
     <ApplicationDefinition Include="Themes\TagButtonStyle.xaml">
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Plugins\Search\GroupSearchResultView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Plugins\Search\PhotoSearchResultView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -440,6 +454,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Chrome\Thumbs.db" />
+    <Content Include="Assets\Chrome\BlankTitleView.png" />
     <Content Include="Assets\Common\LicenseIcon.png" />
     <Content Include="Assets\Common\QuoteLeft.png" />
     <Content Include="Assets\Common\TagIcon.png" />

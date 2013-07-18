@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Indulged.API.Anaconda.Events
 {
-    public class PhotoSetListEventArgs : EventArgs
+    public class GroupSearchEventArgs : EventArgs
     {
-        public string UserId { get; set; }
+        public string SearchSessionId { get; set; }
         public string Response { get; set; }
     }
 }

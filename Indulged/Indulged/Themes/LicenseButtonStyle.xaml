@@ -33,13 +33,14 @@
                         </VisualStateManager.VisualStateGroups>
                     
                         <StackPanel Orientation="Horizontal">
-                            <Image Source="/Assets/Common/LicenseIcon.png" Margin="0, 0, 8, 0"/>
-                            
                             <ContentControl x:Name="ContentContainer" ContentTemplate="{TemplateBinding ContentTemplate}" 
                                             Content="{TemplateBinding Content}" 
                                             Foreground="#add4e4" 
                                             HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" 
-                                            Padding="{TemplateBinding Padding}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                            Padding="{TemplateBinding Padding}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                            VerticalAlignment="Center" />
+
+                            <Image Source="/Assets/Common/LicenseIcon.png" Margin="8, 0, 8, 0" VerticalAlignment="Center"/>
 
                         </StackPanel>
 

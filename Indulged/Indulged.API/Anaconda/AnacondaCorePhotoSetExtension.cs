@@ -16,7 +16,7 @@ namespace Indulged.API.Anaconda
 {
     public partial class AnacondaCore
     {
-        public async void GetPhotoSetListAsync()
+        public async void GetPhotoSetListAsync(string userId)
         {
             string timestamp = DateTimeUtils.GetTimestamp();
             string nonce = Guid.NewGuid().ToString().Replace("-", null);
@@ -28,7 +28,7 @@ namespace Indulged.API.Anaconda
             paramString += "&oauth_version=1.0";
             paramString += "&oauth_token=" + AccessToken;
             paramString += "&format=json&nojsoncallback=1";
-            paramString += "&user_id=" + Cinderella.Cinderella.CinderellaCore.CurrentUser.ResourceId;
+            paramString += "&user_id=" + userId;
             paramString += "&method=flickr.photosets.getList";
 
             string signature = GenerateSignature("GET", AccessTokenSecret, "http://api.flickr.com/services/rest/", paramString);
@@ -43,12 +43,13 @@ namespace Indulged.API.Anaconda
                 }
 
                 string jsonString = reader.ReadToEnd();
-                if (!TryHandleResponseException(jsonString, () => { GetPhotoSetListAsync(); }))
+                if (!TryHandleResponseException(jsonString, () => { GetPhotoSetListAsync(userId); }))
                     return;
 
-                PhotoSetListEventArgs args = new PhotoSetListEventArgs();
-                args.Response = jsonString;
-                PhotoSetListReturned.DispatchEvent(this, args);
+                PhotoSetListEventArgs evt = new PhotoSetListEventArgs();
+                evt.UserId = userId;
+                evt.Response = jsonString;
+                PhotoSetListReturned.DispatchEvent(this, evt);
             }
 
         }

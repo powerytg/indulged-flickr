@@ -21,6 +21,8 @@ namespace Indulged.API.Cinderella
         public EventHandler<EXIFUpdatedEventArgs> EXIFUpdated;
         public EventHandler<PhotoSearchResultEventArgs> PhotoSearchCompleted;
         public EventHandler<PopularTagListUpdatedEventArgs> PopularTagsUpdated;
+        public EventHandler<GroupListUpdatedEventArgs> GroupListUpdated;
+        public EventHandler<GroupSearchResultEventArgs> GroupSearchCompleted;
 
         // Singleton
         private static Cinderella instance;
@@ -57,6 +59,9 @@ namespace Indulged.API.Cinderella
         public List<Photo> DiscoveryList { get; set; }
         public int TotalDiscoveryPhotosCount { get; set; }
 
+        // Group cache
+        public Dictionary<string, FlickrGroup> GroupCache { get; set; }
+
         // Constructor
         public Cinderella()
         {
@@ -73,6 +78,9 @@ namespace Indulged.API.Cinderella
             // Discovery stream
             DiscoveryList = new List<Photo>();
 
+            // Group cache
+            GroupCache = new Dictionary<string, FlickrGroup>();
+
             // Events
             Anaconda.Anaconda.AnacondaCore.PhotoSetListReturned += PhotoListReturned;
             Anaconda.Anaconda.AnacondaCore.PhotoStreamReturned += PhotoStreamReturned;
@@ -80,6 +88,8 @@ namespace Indulged.API.Cinderella
             Anaconda.Anaconda.AnacondaCore.EXIFReturned += OnEXIFReturned;
             Anaconda.Anaconda.AnacondaCore.PhotoSearchReturned += OnPhotoSearchReturned;
             Anaconda.Anaconda.AnacondaCore.PopularTagListReturned += OnPopularTagListReturned;
+            Anaconda.Anaconda.AnacondaCore.GroupListReturned += OnGroupListReturned;
+            Anaconda.Anaconda.AnacondaCore.GroupSearchReturned += OnGroupSearchReturned;
         }
     }
 }

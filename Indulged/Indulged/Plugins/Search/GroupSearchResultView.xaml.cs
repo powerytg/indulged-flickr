@@ -15,22 +15,21 @@ using Indulged.API.Cinderella.Models;
 
 namespace Indulged.Plugins.Search
 {
-    public partial class PhotoSearchResultView : UserControl
+    public partial class GroupSearchResultView : UserControl
     {
         public string SearchSessionId { get; set; }
 
         public string Query { get; set; }
-        public string Tags { get; set; }
 
         public int Page { get; set; }
         private int perPage = 20;
         public int TotalCount { get; set; }
 
-        private ObservableCollection<Photo> _photos = new ObservableCollection<Photo>();
+        private ObservableCollection<FlickrGroup> _groups = new ObservableCollection<FlickrGroup>();
 
 
         // Constructor
-        public PhotoSearchResultView()
+        public GroupSearchResultView()
         {
             InitializeComponent();
 
@@ -38,24 +37,24 @@ namespace Indulged.Plugins.Search
             ResultListView.Visibility = Visibility.Collapsed;
             LoadingView.Visibility = Visibility.Visible;
 
-            ResultListView.ItemsSource = _photos;
+            ResultListView.ItemsSource = _groups;
 
             // Events
-            Cinderella.CinderellaCore.PhotoSearchCompleted += OnPhotoSearchResult;
+            Cinderella.CinderellaCore.GroupSearchCompleted += OnGroupSearchResult;
         }
 
         public void PerformSearch()
         {
             SearchSessionId = Guid.NewGuid().ToString().Replace("-", null);
-            Anaconda.AnacondaCore.SearchPhotoAsync(SearchSessionId, Query, Tags, new Dictionary<string, string> { { "page", "1" }, { "per_page", perPage.ToString() } });
+            Anaconda.AnacondaCore.SearchGroupsAsync(SearchSessionId, Query, new Dictionary<string, string> { { "page", "1" }, { "per_page", perPage.ToString() } });
         }
 
-        private void OnPhotoSearchResult(object sender, PhotoSearchResultEventArgs e)
+        private void OnGroupSearchResult(object sender, GroupSearchResultEventArgs e)
         {
             if (e.SearchSessionId != SearchSessionId)
                 return;
 
-            if (_photos.Count == 0 && e.Photos.Count == 0)
+            if (_groups.Count == 0 && e.Groups.Count == 0)
             {
                 NoResultLabel.Visibility = Visibility.Visible;
                 ResultListView.Visibility = Visibility.Collapsed;
@@ -65,36 +64,36 @@ namespace Indulged.Plugins.Search
             }
 
             // Add new photos
-            foreach (Photo photo in e.Photos)
+            foreach (FlickrGroup group in e.Groups)
             {
-                if (!_photos.Contains(photo))
-                    _photos.Add(photo);
+                if (!_groups.Contains(group))
+                    _groups.Add(group);
             }
 
             NoResultLabel.Visibility = Visibility.Collapsed;
             ResultListView.Visibility = Visibility.Visible;
             LoadingView.Visibility = Visibility.Collapsed;
 
-            int page = _photos.Count / perPage + 1;
+            int page = _groups.Count / perPage + 1;
             TotalCount = e.TotalCount;
         }
 
         // Implementation of inifinite scrolling
         private void OnItemRealized(object sender, ItemRealizationEventArgs e)
         {
-            Photo photoItem = e.Container.Content as Photo;
-            if (photoItem == null)
+            FlickrGroup groupItem = e.Container.Content as FlickrGroup;
+            if (groupItem == null)
                 return;
 
-            int index = _photos.IndexOf(photoItem);
-            bool canLoad = (_photos.Count < TotalCount);
+            int index = _groups.IndexOf(groupItem);
+            bool canLoad = (_groups.Count < TotalCount);
             if (!canLoad)
                 return;
 
-            if (_photos.Count - index <= 2 && canLoad)
+            if (_groups.Count - index <= 2 && canLoad)
             {
-                int page = _photos.Count / 100 + 1;
-                Anaconda.AnacondaCore.SearchPhotoAsync(SearchSessionId, Query, Tags, new Dictionary<string, string> { { "page", page.ToString() }, { "per_page", perPage.ToString() } });
+                int page = _groups.Count / 100 + 1;
+                Anaconda.AnacondaCore.SearchGroupsAsync(SearchSessionId, Query, new Dictionary<string, string> { { "page", page.ToString() }, { "per_page", perPage.ToString() } });
             }
         }
     }

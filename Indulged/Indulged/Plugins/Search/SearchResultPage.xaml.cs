@@ -32,6 +32,7 @@ namespace Indulged.Plugins.Search
             {
                 tags = NavigationContext.QueryString["tags"];
                 PhotoResultView.Tags = tags;
+                GroupResultView.Query = tags;
             }
 
 
@@ -39,6 +40,7 @@ namespace Indulged.Plugins.Search
             {
                 query = NavigationContext.QueryString["query"];
                 PhotoResultView.Query = query;
+                GroupResultView.Query = query;
             }
 
             if (query == null)
@@ -48,6 +50,7 @@ namespace Indulged.Plugins.Search
 
             // Perform a search
             PhotoResultView.PerformSearch();
+            GroupResultView.PerformSearch();
         }
 
     }

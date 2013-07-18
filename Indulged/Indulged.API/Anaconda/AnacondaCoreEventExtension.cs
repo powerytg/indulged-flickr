@@ -25,6 +25,9 @@ namespace Indulged.API.Anaconda
         // Retrieved photo stream for an user
         public EventHandler<GetPhotoStreamEventArgs> PhotoStreamReturned;
 
+        // Retrieved group list for an user
+        public EventHandler<GetGroupListEventArgs> GroupListReturned;
+
         // Retrieved discovery stream
         public EventHandler<GetDiscoveryStreamEventArgs> DiscoveryStreamReturned;
 
@@ -35,7 +38,8 @@ namespace Indulged.API.Anaconda
         // Popular tag list returned
         public EventHandler<GetPopularTagListEventArgs> PopularTagListReturned;
 
-        // Seach result
+        // Seach results
         public EventHandler<PhotoSearchEventArgs> PhotoSearchReturned;
+        public EventHandler<GroupSearchEventArgs> GroupSearchReturned;
     }
 }

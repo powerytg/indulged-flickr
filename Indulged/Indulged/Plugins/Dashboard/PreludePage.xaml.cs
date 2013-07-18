@@ -11,6 +11,7 @@ using Microsoft.Phone.Shell;
 
 using Indulged.API.Cinderella;
 using Indulged.API.Cinderella.Models;
+using Indulged.API.Cinderella.Events;
 
 namespace Indulged.Plugins.Dashboard
 {
@@ -30,6 +31,9 @@ namespace Indulged.Plugins.Dashboard
         // Photo sets
         ObservableCollection<PhotoSet> PhotoSetList;
 
+        // Group list
+        ObservableCollection<FlickrGroup> GroupList;
+
         // Constructor
         public PreludePage()
         {
@@ -37,6 +41,9 @@ namespace Indulged.Plugins.Dashboard
 
             PhotoSetList = new ObservableCollection<PhotoSet>();
             StreamListView.ItemsSource = PhotoSetList;
+
+            GroupList = new ObservableCollection<FlickrGroup>();
+            GroupListView.ItemsSource = GroupList;
 
             FeatureStreams = new ObservableCollection<string>();
             FeatureStreams.Add("Prelude");
@@ -46,17 +53,37 @@ namespace Indulged.Plugins.Dashboard
 
             // Events
             Cinderella.CinderellaCore.PhotoSetListUpdated += OnPhotoSetListUpdated;
+            Cinderella.CinderellaCore.GroupListUpdated += OnGroupListUpdated;
         }
 
         // Stream updated
-        private void OnPhotoSetListUpdated(object sender, EventArgs args)
+        private void OnPhotoSetListUpdated(object sender, PhotoSetListUpdatedEventArgs e)
         {
+            if (e.UserId != Cinderella.CinderellaCore.CurrentUser.ResourceId)
+                return;
+
             Dispatcher.BeginInvoke(() =>
             {
                 PhotoSetList.Clear();
                 foreach (PhotoSet photoset in Cinderella.CinderellaCore.PhotoSetList)
                 {
                     PhotoSetList.Add(photoset);
+                }
+            });
+        }
+
+        // Group list updated
+        private void OnGroupListUpdated(object sender, GroupListUpdatedEventArgs e)
+        {
+            if (e.UserId != Cinderella.CinderellaCore.CurrentUser.ResourceId)
+                return;
+
+            Dispatcher.BeginInvoke(() =>
+            {
+                GroupList.Clear();
+                foreach (FlickrGroup group in e.Groups)
+                {
+                    GroupList.Add(group);
                 }
             });
         }

@@ -98,8 +98,10 @@
     <Compile Include="Anaconda\Events\GetDiscoveryStreamEventArgs.cs" />
     <Compile Include="Anaconda\Events\GetEXIFEventArgs.cs" />
     <Compile Include="Anaconda\Events\GetEXIFExceptionEventArgs.cs" />
+    <Compile Include="Anaconda\Events\GetGroupListEventArgs.cs" />
     <Compile Include="Anaconda\Events\GetPhotoStreamEventArgs.cs" />
     <Compile Include="Anaconda\Events\GetPopularTagListEventArgs.cs" />
+    <Compile Include="Anaconda\Events\GroupSearchEventArgs.cs" />
     <Compile Include="Anaconda\Events\PhotoSearchEventArgs.cs" />
     <Compile Include="Anaconda\Events\PhotoSetListEventArgs.cs" />
     <Compile Include="Cinderella\Cinderella.cs" />
@@ -112,14 +114,18 @@
     <Compile Include="Cinderella\CinderellaUserExtension.cs" />
     <Compile Include="Cinderella\Events\DiscoveryStreamUpdatedEventArgs.cs" />
     <Compile Include="Cinderella\Events\EXIFUpdatedEventArgs.cs" />
+    <Compile Include="Cinderella\Events\GroupListUpdatedEventArgs.cs" />
+    <Compile Include="Cinderella\Events\GroupSearchResultEventArgs.cs" />
     <Compile Include="Cinderella\Events\PhotoSetListUpdatedEventArgs.cs" />
     <Compile Include="Cinderella\Events\PhotoStreamUpdatedEventArgs.cs" />
     <Compile Include="Cinderella\Events\PopularTagListUpdatedEventArgs.cs" />
     <Compile Include="Cinderella\Events\SearchResultEventArgs.cs" />
+    <Compile Include="Cinderella\Factories\FlickrGroupFactory.cs" />
     <Compile Include="Cinderella\Factories\PhotoEXIFFactory.cs" />
     <Compile Include="Cinderella\Factories\PhotoFactory.cs" />
     <Compile Include="Cinderella\Factories\PhotoSetFactory.cs" />
     <Compile Include="Cinderella\Factories\UserFactory.cs" />
+    <Compile Include="Cinderella\Models\FlickrGroup.cs" />
     <Compile Include="Cinderella\Models\ModelBase.cs" />
     <Compile Include="Cinderella\Models\Photo.cs" />
     <Compile Include="Cinderella\Models\PhotoGroup.cs" />
@@ -152,6 +158,7 @@
     <Compile Include="Utils\helper.cs" />
     <Compile Include="Utils\HTTPWebRequestExtension.cs" />
     <Compile Include="Utils\MD5.cs" />
+    <Compile Include="Utils\NumerUtils.cs" />
     <Compile Include="Utils\StringExtension.cs" />
     <Compile Include="Utils\UrlHelper.cs" />
   </ItemGroup>

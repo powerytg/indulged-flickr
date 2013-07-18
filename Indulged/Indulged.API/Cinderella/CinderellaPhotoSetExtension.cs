@@ -40,6 +40,7 @@ namespace Indulged.API.Cinderella
             args.Page = page;
             args.PerPage = perPage;
             args.TotalCount = numTotal;
+            args.UserId = e.UserId;
             PhotoSetListUpdated.DispatchEvent(this, args);
         }
     }

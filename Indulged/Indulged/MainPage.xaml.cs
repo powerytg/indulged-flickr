@@ -43,7 +43,10 @@ namespace Indulged
             if (tokenRetrieved && currentUser != null)
             {
                 // Get the set list
-                Anaconda.AnacondaCore.GetPhotoSetListAsync();
+                Anaconda.AnacondaCore.GetPhotoSetListAsync(currentUser.ResourceId);
+
+                // Get group list
+                Anaconda.AnacondaCore.GetGroupListAsync(currentUser.ResourceId);
 
                 // Get the first page of current_user's photo stream
                 if(PolicyKit.VioletPageSubscription == PolicyKit.MyStream)

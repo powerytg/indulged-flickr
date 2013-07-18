@@ -3,27 +3,34 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Runtime.Serialization;
-using System.Xml.Serialization;
 
 namespace Indulged.API.Cinderella.Models
 {
-    public class User : ModelBase
-    {
-        public User()
-            : base()
-        {
-            Photos = new List<Photo>();
-            IsLoadingPhotoStream = false;
-        }
+    public enum FlickrGroupPrivicy { Private = 1, InviteOnlyPublic = 2, Public = 3 };
 
+    public class FlickrGroup : ModelBase
+    {
+        
         public string Name { get; set; }
+        public string Description { get; set; }
         public string Server { get; set; }
         public string Farm { get; set; }
 
-        public string UserName { get; set; }
+        public bool IsAdmin { get; set; }
+        public bool IsInvitationOnly { get; set; }
+        public int MemberCount { get; set; }
+        public int PhotoCount { get; set; }
+        public int TopicCount { get; set; }
+        public FlickrGroupPrivicy Privacy { get; set; }
+        public string Rules { get; set; }
 
-        public string AvatarUrl {
+        public override string ToString()
+        {
+            return Name;
+        }
+
+        public string AvatarUrl
+        {
             get
             {
                 if (Farm == null || Server == null || ResourceId == null)
@@ -36,16 +43,5 @@ namespace Indulged.API.Cinderella.Models
             }
         }
 
-        // Photo stream
-        public List<Photo> Photos { get; set; }
-
-        public int PhotoCount { get; set; }
-
-        // Group ids
-        public List<string> GroupIds { get; set; }
-
-
-        // Status
-        public bool IsLoadingPhotoStream { get; set; }
     }
 }

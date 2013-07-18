@@ -31,7 +31,7 @@
     
     <!--LayoutRoot contains the root grid where all other page content is placed-->
     <Grid x:Name="LayoutRoot" Background="White">
-        <phone:Panorama Margin="0, 95, 0, 0">
+        <phone:Panorama Margin="0, 0, 0, 0">
             <!--  Title bar -->
             <phone:Panorama.Title>
                 <Grid>
@@ -42,7 +42,7 @@
 
                     <Image Source="/Assets/Common/QuoteLeft.png" Grid.Column="0"/>
                     <TextBlock x:Name="TitleLabel" Foreground="#f67056" 
-                               FontFamily="/Indulged;component/Assets/Fonts/MyriadPro-Cond.ttf#Myriad Pro Cond" FontSize="96" TextWrapping="Wrap"
+                               FontSize="96" TextWrapping="Wrap" FontWeight="Bold"
                                Margin="16, 92, 12, 8" Grid.Column="1" />
 
                 </Grid>
@@ -55,12 +55,12 @@
 
             <!--Panorama item two-->
             <phone:PanoramaItem Header="groups" HeaderTemplate="{StaticResource SearchItemHeaderTemplate}">
-                <Grid/>
+                <local:GroupSearchResultView x:Name="GroupResultView"/>
             </phone:PanoramaItem>
         </phone:Panorama>
 
         <!-- Title view -->
-        <chrome:TitleView x:Name="TitleView" VerticalAlignment="Top" IsHitTestVisible="False" Theme="Light"/>
+        <chrome:TitleView x:Name="TitleView" VerticalAlignment="Top" IsHitTestVisible="False" Titleless="True"/>
 
     </Grid>
 
