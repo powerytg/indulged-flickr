@@ -17,13 +17,18 @@ namespace Indulged.API.Cinderella.Models
         }
 
         // Constructor
-        public PhotoGroup(List<Photo> _photos) : base()
+        public PhotoGroup(List<Photo> _photos, string _context, string _contextType) : base()
         {
             Photos = _photos;
             this.ResourceId = Guid.NewGuid().ToString().Replace("-", null);
+            this.context = _context;
+            this.contextType = _contextType;
         }
 
         public bool IsHeadline { get; set; }
         public List<Photo> Photos { get; set; }
+
+        public string context { get; set; }
+        public string contextType { get; set; }
     }
 }

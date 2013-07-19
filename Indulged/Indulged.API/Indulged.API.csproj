@@ -104,6 +104,7 @@
     <Compile Include="Anaconda\Events\GetGroupInfoEventArgs.cs" />
     <Compile Include="Anaconda\Events\GetGroupListEventArgs.cs" />
     <Compile Include="Anaconda\Events\GetGroupPhotosEventArgs.cs" />
+    <Compile Include="Anaconda\Events\GetPhotoSetPhotosEventArgs.cs" />
     <Compile Include="Anaconda\Events\GetPhotoStreamEventArgs.cs" />
     <Compile Include="Anaconda\Events\GetPopularTagListEventArgs.cs" />
     <Compile Include="Anaconda\Events\GroupSearchEventArgs.cs" />
@@ -126,6 +127,7 @@
     <Compile Include="Cinderella\Events\GroupPhotoListUpdatedEventArgs.cs" />
     <Compile Include="Cinderella\Events\GroupSearchResultEventArgs.cs" />
     <Compile Include="Cinderella\Events\PhotoSetListUpdatedEventArgs.cs" />
+    <Compile Include="Cinderella\Events\PhotoSetPhotosUpdatedEventArgs.cs" />
     <Compile Include="Cinderella\Events\PhotoStreamUpdatedEventArgs.cs" />
     <Compile Include="Cinderella\Events\PopularTagListUpdatedEventArgs.cs" />
     <Compile Include="Cinderella\Events\SearchResultEventArgs.cs" />

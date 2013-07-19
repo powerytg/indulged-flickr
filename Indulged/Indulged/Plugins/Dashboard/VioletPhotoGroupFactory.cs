@@ -13,7 +13,7 @@ namespace Indulged.Plugins.Dashboard
         // Random generator
         private static Random randomGenerator = new Random();
 
-        public static List<PhotoGroup> GeneratePhotoGroup(List<Photo> photos)
+        public static List<PhotoGroup> GeneratePhotoGroup(List<Photo> photos, string context = null, string contextType = null)
         {
             List<PhotoGroup> result = new List<PhotoGroup>();
 
@@ -30,6 +30,8 @@ namespace Indulged.Plugins.Dashboard
                     headlineProcessed = true;
 
                     PhotoGroup headGroup = new PhotoGroup();
+                    headGroup.context = context;
+                    headGroup.contextType = contextType;
                     headGroup.IsHeadline = true;
                     headGroup.Photos.Add(photos[0]);
                     result.Add(headGroup);
@@ -47,7 +49,7 @@ namespace Indulged.Plugins.Dashboard
                         group.Add(photos[i]);
                     }
 
-                    result.Add(new PhotoGroup(group));
+                    result.Add(new PhotoGroup(group, context, contextType));
                     break;
                 }
 
@@ -56,7 +58,7 @@ namespace Indulged.Plugins.Dashboard
                     group.Add(photos[i]);
                 }
 
-                result.Add(new PhotoGroup(group));
+                result.Add(new PhotoGroup(group, context, contextType));
                 position += ranNum;
             }
 

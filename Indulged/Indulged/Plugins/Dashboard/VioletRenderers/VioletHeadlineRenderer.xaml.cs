@@ -26,6 +26,8 @@ namespace Indulged.Plugins.Dashboard.VioletRenderers
         {
             base.OnPhotoGroupSourceChanged();
             ImageView.PhotoSource = PhotoGroupSource.Photos[0];
+            ImageView.context = PhotoGroupSource.context;
+            ImageView.contextType = PhotoGroupSource.contextType;
         }
     }
 }

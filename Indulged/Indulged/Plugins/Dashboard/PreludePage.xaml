@@ -19,11 +19,11 @@
 
                 <!-- Special section -->
                 <dashboard:NavigatorSection Title="impressionism"/>
-                <phone:LongListSelector x:Name="FeatureListView" Style="{StaticResource PreludeListStyle}"/>
+                <phone:LongListSelector x:Name="FeatureListView" Style="{StaticResource PreludeListStyle}" SelectionChanged="OnFeatureListViewSelectionChanged"/>
 
                 <!-- Photo set section -->
                 <dashboard:NavigatorSection Title="la plaza"/>
-                <phone:LongListSelector x:Name="StreamListView" Style="{StaticResource PreludeListStyle}"/>
+                <phone:LongListSelector x:Name="StreamListView" Style="{StaticResource PreludeListStyle}" SelectionChanged="OnStreamListViewSelectionChanged"/>
 
                 <!-- Group section -->
                 <dashboard:NavigatorSection Title="community"/>

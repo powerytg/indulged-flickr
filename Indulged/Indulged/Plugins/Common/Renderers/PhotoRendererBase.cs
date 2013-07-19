@@ -21,6 +21,10 @@ namespace Indulged.Plugins.Common.Renderers
 {
     public abstract class PhotoRendererBase : UserControl
     {
+        public string context { get; set; }
+        public string contextType { get; set; }
+
+
         public static readonly DependencyProperty PhotoSourceProperty = DependencyProperty.Register("PhotoSource", typeof(Photo), typeof(PhotoRendererBase), new PropertyMetadata(OnPhotoSourcePropertyChanged));
 
         public Photo PhotoSource
@@ -61,7 +65,11 @@ namespace Indulged.Plugins.Common.Renderers
             // Get photo collection context
             string collectionContext = PolicyKit.VioletPageSubscription;
 
-            currentPage.NavigationService.Navigate(new Uri("/Plugins/Detail/DetailPage.xaml?photo_id=" + PhotoSource.ResourceId + "&context=" + collectionContext, UriKind.Relative));
+            string urlString = "/Plugins/Detail/DetailPage.xaml?photo_id=" + PhotoSource.ResourceId + "&context=" + context;
+            if (contextType != null)
+                urlString += "&context_type=" + contextType;
+
+            currentPage.NavigationService.Navigate(new Uri(urlString, UriKind.Relative));
         }
 
 

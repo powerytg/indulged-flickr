@@ -15,7 +15,6 @@ namespace Indulged.API.Cinderella
     public partial class Cinderella
     {
         // Events
-        public EventHandler<PhotoSetListUpdatedEventArgs> PhotoSetListUpdated;
         public EventHandler<PhotoStreamUpdatedEventArgs> PhotoStreamUpdated;
         public EventHandler<DiscoveryStreamUpdatedEventArgs> DiscoveryStreamUpdated;
         public EventHandler<EXIFUpdatedEventArgs> EXIFUpdated;
@@ -25,6 +24,9 @@ namespace Indulged.API.Cinderella
         public EventHandler<GroupSearchResultEventArgs> GroupSearchCompleted;
         public EventHandler<GroupInfoUpdatedEventArgs> GroupInfoUpdated;
         public EventHandler<GroupPhotoListUpdatedEventArgs> GroupPhotoListUpdated;
+
+        public EventHandler<PhotoSetListUpdatedEventArgs> PhotoSetListUpdated;
+        public EventHandler<PhotoSetPhotosUpdatedEventArgs> PhotoSetPhotosUpdated;
 
         // Singleton
         private static Cinderella instance;
@@ -85,6 +87,8 @@ namespace Indulged.API.Cinderella
 
             // Events
             Anaconda.Anaconda.AnacondaCore.PhotoSetListReturned += PhotoListReturned;
+            Anaconda.Anaconda.AnacondaCore.PhotoSetPhotosReturned += OnPhotoSetPhotosReturned;
+
             Anaconda.Anaconda.AnacondaCore.PhotoStreamReturned += PhotoStreamReturned;
             Anaconda.Anaconda.AnacondaCore.DiscoveryStreamReturned += OnDiscoveryStreamReturned;
             Anaconda.Anaconda.AnacondaCore.EXIFReturned += OnEXIFReturned;
@@ -94,6 +98,7 @@ namespace Indulged.API.Cinderella
             Anaconda.Anaconda.AnacondaCore.GroupSearchReturned += OnGroupSearchReturned;
             Anaconda.Anaconda.AnacondaCore.GroupInfoReturned += OnGroupInfoReturned;
             Anaconda.Anaconda.AnacondaCore.GroupPhotoReturned += OnGroupPhotosReturned;
+            
         }
     }
 }

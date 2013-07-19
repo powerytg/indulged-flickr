@@ -42,11 +42,23 @@ namespace Indulged.Plugins.Detail
             string contextString = null;
             if(NavigationContext.QueryString.ContainsKey("context"))
                 contextString = NavigationContext.QueryString["context"];
-            
+
+            string contextTypeString = null;
+            if (NavigationContext.QueryString.ContainsKey("context_type"))
+                contextTypeString = NavigationContext.QueryString["context_type"];
+
+
             if (contextString == PolicyKit.MyStream)
                 CollectionContext = Cinderella.CinderellaCore.CurrentUser.Photos.ToList();
             else if (contextString == PolicyKit.DiscoveryStream)
                 CollectionContext = Cinderella.CinderellaCore.DiscoveryList.ToList();
+            else if (contextTypeString != null)
+            {
+                if (contextTypeString == "Group")
+                {
+                    CollectionContext = Cinderella.CinderellaCore.GroupCache[contextString].Photos.ToList();
+                }
+            }
             else
             {
                 CollectionContext.Add(currentPhoto);

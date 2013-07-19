@@ -23,6 +23,21 @@ namespace Indulged.API.Cinderella.Models
         public DateTime CreationDate { get; set; }
         public DateTime UpdatedDate { get; set; }
 
+        private List<Photo> _photos = new List<Photo>();
+        public List<Photo> Photos
+        {
+            get
+            {
+                return _photos;
+            }
+
+            set
+            {
+                _photos = value;
+            }
+
+        }
+
         public override string ToString()
         {
             return Title;

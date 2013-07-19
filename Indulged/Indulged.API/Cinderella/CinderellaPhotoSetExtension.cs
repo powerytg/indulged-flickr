@@ -43,5 +43,43 @@ namespace Indulged.API.Cinderella
             args.UserId = e.UserId;
             PhotoSetListUpdated.DispatchEvent(this, args);
         }
+
+        private void OnPhotoSetPhotosReturned(object sender, GetPhotoSetPhotosEventArgs e)
+        {
+            if (!Cinderella.CinderellaCore.PhotoSetCache.ContainsKey(e.PhotoSetId))
+                return;
+
+            PhotoSet photoset = Cinderella.CinderellaCore.PhotoSetCache[e.PhotoSetId];
+
+            JObject rawJson = JObject.Parse(e.Response);
+            JObject rootJson = (JObject)rawJson["photoset"];
+            int TotalCount = int.Parse(rootJson["total"].ToString());
+            int page = int.Parse(rootJson["page"].ToString());
+            int numPages = int.Parse(rootJson["pages"].ToString());
+            int perPage = int.Parse(rootJson["perpage"].ToString());
+
+            List<Photo> newPhotos = new List<Photo>();
+            foreach (var entry in rootJson["photo"])
+            {
+                JObject json = (JObject)entry;
+                Photo photo = PhotoFactory.PhotoWithJObject(json);
+
+                if (!photoset.Photos.Contains(photo))
+                {
+                    photoset.Photos.Add(photo);
+                    newPhotos.Add(photo);
+                }
+            }
+
+            // Dispatch event
+            PhotoSetPhotosUpdatedEventArgs evt = new PhotoSetPhotosUpdatedEventArgs();
+            evt.PhotoSetId = photoset.ResourceId;
+            evt.Page = page;
+            evt.PageCount = numPages;
+            evt.PerPage = perPage;
+            evt.NewPhotos = newPhotos;
+            PhotoSetPhotosUpdated.DispatchEvent(this, evt);
+
+        }
     }
 }

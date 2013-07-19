@@ -29,10 +29,17 @@ namespace Indulged.API.Cinderella.Factories
                 Cinderella.CinderellaCore.PhotoCache[photoId] = photo;
             }
 
-            photo.UserId = json["owner"].ToString();
+            JToken ownerValue;
+            if (json.TryGetValue("owner", out ownerValue))
+            {
+                photo.UserId = json["owner"].ToString();
 
-            // Parse user
-            User user = UserFactory.UserWithJObject(json);
+                // Parse user
+                User user = UserFactory.UserWithJObject(json);
+            }
+            else
+            {
+            }
             
             photo.Secret = json["secret"].ToString();
             photo.Server = json["server"].ToString();

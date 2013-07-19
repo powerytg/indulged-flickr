@@ -19,8 +19,9 @@ namespace Indulged.API.Anaconda
         // Access token failure
         public EventHandler AccessTokenFailed;
 
-        // Retrieved photo set
+        // Photo set
         public EventHandler<PhotoSetListEventArgs> PhotoSetListReturned;
+        public EventHandler<GetPhotoSetPhotosEventArgs> PhotoSetPhotosReturned;
 
         // Retrieved photo stream for an user
         public EventHandler<GetPhotoStreamEventArgs> PhotoStreamReturned;

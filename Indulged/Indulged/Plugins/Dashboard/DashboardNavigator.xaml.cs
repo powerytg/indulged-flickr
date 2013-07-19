@@ -18,10 +18,19 @@ namespace Indulged.Plugins.Dashboard
         // Events
         public static EventHandler<DashboardPageEventArgs> DashboardPageChanged;
 
+        public static EventHandler RequestPreludePage;
+        public static EventHandler RequestVioletPage;
+        public static EventHandler RequestSummersaltPage;
+
+
         // Constructor
         public DashboardNavigator()
         {
             InitializeComponent();
+
+            // Events
+            RequestVioletPage += OnRequestVioletPage;
+            RequestSummersaltPage += OnRequestSummersaltPage;
         }
 
         private void OnSelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -31,5 +40,16 @@ namespace Indulged.Plugins.Dashboard
             evt.SelectedPage = (IDashboardPage)selectedItem.Content;
             DashboardPageChanged.DispatchEvent(this, evt);
         }
+
+        private void OnRequestVioletPage(object sender, EventArgs e)
+        {
+            MainPivot.SelectedIndex = 1;
+        }
+
+        private void OnRequestSummersaltPage(object sender, EventArgs e)
+        {
+            MainPivot.SelectedIndex = 2;
+        }
+
     }
 }

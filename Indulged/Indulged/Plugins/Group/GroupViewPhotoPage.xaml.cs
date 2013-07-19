@@ -42,7 +42,7 @@ namespace Indulged.Plugins.Group
             if (e.NewPhotos.Count == 0 || e.GroupId != Group.ResourceId)
                 return;
 
-            List<PhotoGroup> newGroups = VioletPhotoGroupFactory.GeneratePhotoGroup(e.NewPhotos);
+            List<PhotoGroup> newGroups = VioletPhotoGroupFactory.GeneratePhotoGroup(e.NewPhotos, Group.ResourceId, "Group");
             foreach (var group in newGroups)
             {
                 PhotoCollection.Add(group);

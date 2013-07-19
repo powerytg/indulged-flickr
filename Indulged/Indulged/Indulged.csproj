@@ -236,6 +236,9 @@
     <Compile Include="Plugins\Login\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Plugins\PhotoCollection\PhotoSetPage.xaml.cs">
+      <DependentUpon>PhotoSetPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Plugins\Search\GroupSearchResultView.xaml.cs">
       <DependentUpon>GroupSearchResultView.xaml</DependentUpon>
     </Compile>
@@ -442,6 +445,10 @@
     <ApplicationDefinition Include="Themes\TagButtonStyle.xaml">
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Plugins\PhotoCollection\PhotoSetPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Plugins\Search\GroupSearchResultView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

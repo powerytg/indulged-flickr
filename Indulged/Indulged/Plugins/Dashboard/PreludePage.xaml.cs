@@ -96,5 +96,32 @@ namespace Indulged.Plugins.Dashboard
             PhoneApplicationPage currentPage = (PhoneApplicationPage)rootVisual.Content;
             currentPage.NavigationService.Navigate(new Uri("/Plugins/Group/GroupPage.xaml?group_id=" + group.ResourceId, UriKind.Relative));
         }
+
+        private void OnFeatureListViewSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            string entry = (string)FeatureListView.SelectedItem;
+            if (entry == "Prelude")
+            {
+                // Ignore
+            }
+            else if (entry == "Violet")
+            {
+                DashboardNavigator.RequestVioletPage(this, null);
+            }
+            else if (entry == "Summersalt")
+            {
+                DashboardNavigator.RequestSummersaltPage(this, null);
+            }
+        }
+
+        private void OnStreamListViewSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            PhotoSet pset = (PhotoSet)StreamListView.SelectedItem;
+
+            Frame rootVisual = System.Windows.Application.Current.RootVisual as Frame;
+            PhoneApplicationPage currentPage = (PhoneApplicationPage)rootVisual.Content;
+            currentPage.NavigationService.Navigate(new Uri("/Plugins/PhotoCollection/PhotoSetPage.xaml?photoset_id=" + pset.ResourceId, UriKind.Relative));
+
+        }
     }
 }
