@@ -9,14 +9,41 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     d:DesignHeight="480" d:DesignWidth="480">
     
-    <Grid x:Name="LayoutRoot" Background="{StaticResource PhoneChromeBrush}">
+    <Grid x:Name="LayoutRoot" Background="Transparent">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         
-        <!-- Title view -->
-        <TextBlock Text="{Binding Name}" Padding="28" 
-                   FontSize="42" Foreground="#00d9f3" HorizontalAlignment="Center" 
-                   TextWrapping="Wrap" Grid.Row="0"/>
+        <!-- Loading view -->
+        <StackPanel x:Name="LoadingView" Orientation="Horizontal" Margin="12, 12, 12, 12"
+                        VerticalAlignment="Center" HorizontalAlignment="Center">
+            <TextBlock Text="Retriving group Info"/>
+            <ProgressBar IsIndeterminate="True" Width="200"/>
+        </StackPanel>
+
+        <!-- Description view -->
+        <ScrollViewer  x:Name="DescriptionView" Grid.Row="1" Margin="0, 0, 0, 12">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <TextBlock x:Name="DescriptionLabel" Foreground="#8b93a0" FontSize="24" FontWeight="Light" TextWrapping="Wrap"
+                       TextAlignment="Center" 
+                       Margin="16, 20, 16, 24" 
+                       Grid.Row="0" />
+
+                <!-- throttle view -->
+                <StackPanel Orientation="Horizontal" Grid.Row="1" Height="36" HorizontalAlignment="Center">
+                    <Image x:Name="ThrottleIconView" Margin="0, 0, 10, 0"/>
+                    <TextBlock x:Name="ThrottleDescriptionView"/>
+                </StackPanel>
+                
+            </Grid>
+
+        </ScrollViewer>
+        
     </Grid>
 </UserControl>

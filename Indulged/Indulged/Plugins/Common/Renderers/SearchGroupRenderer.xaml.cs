@@ -13,6 +13,7 @@ using Indulged.API.Cinderella.Models;
 using Indulged.API.Utils;
 using Indulged.API.Avarice.Controls;
 using Indulged.Plugins.Group;
+using Indulged.API.Cinderella;
 
 namespace Indulged.Plugins.Common.Renderers
 {
@@ -75,9 +76,17 @@ namespace Indulged.Plugins.Common.Renderers
             Frame rootVisual = System.Windows.Application.Current.RootVisual as Frame;
             PhoneApplicationPage currentPage = (PhoneApplicationPage)rootVisual.Content;
 
-            GroupInfoView infoView = new GroupInfoView();
-            infoView.Group = GroupSource;
-            ModalPopup.Show(infoView, GroupSource.Name, null);
+            // Is member of the group? If so, go to the group page directly; Otherwise show the info page
+            if (Cinderella.CinderellaCore.CurrentUser.GroupIds.Contains(GroupSource.ResourceId))
+            {
+                currentPage.NavigationService.Navigate(new Uri("/Plugins/Group/GroupPage.xaml?group_id=" + GroupSource.ResourceId, UriKind.Relative));
+            }
+            else
+            {
+                GroupInfoView infoView = new GroupInfoView();
+                infoView.Group = GroupSource;
+                infoView.ShowAsModal();
+            }
         }
     }
 }

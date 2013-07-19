@@ -87,5 +87,14 @@ namespace Indulged.Plugins.Dashboard
                 }
             });
         }
+
+        private void OnGroupListViewSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            FlickrGroup group = (FlickrGroup)GroupListView.SelectedItem;
+
+            Frame rootVisual = System.Windows.Application.Current.RootVisual as Frame;
+            PhoneApplicationPage currentPage = (PhoneApplicationPage)rootVisual.Content;
+            currentPage.NavigationService.Navigate(new Uri("/Plugins/Group/GroupPage.xaml?group_id=" + group.ResourceId, UriKind.Relative));
+        }
     }
 }

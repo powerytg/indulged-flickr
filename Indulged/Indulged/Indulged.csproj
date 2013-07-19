@@ -227,6 +227,12 @@
     <Compile Include="Plugins\Group\GroupInfoView.xaml.cs">
       <DependentUpon>GroupInfoView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Plugins\Group\GroupPage.xaml.cs">
+      <DependentUpon>GroupPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\Group\GroupViewPhotoPage.xaml.cs">
+      <DependentUpon>GroupViewPhotoPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Plugins\Login\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>
@@ -418,6 +424,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Plugins\Group\GroupPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Plugins\Group\GroupViewPhotoPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Plugins\Login\LoginPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -505,6 +519,8 @@
     <Content Include="Assets\Chrome\SearchButton.png" />
     <Content Include="Assets\Chrome\VioletBackground.png" />
     <Content Include="Assets\Dashboard\Prelude\PreludeContentGuide.png" />
+    <Content Include="Assets\Group\NoThrottleIcon.png" />
+    <Content Include="Assets\Group\ThrottleIcon.png" />
     <Content Include="Assets\Tiles\FlipCycleTileLarge.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

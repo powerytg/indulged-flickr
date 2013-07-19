@@ -103,12 +103,14 @@
     <Compile Include="Anaconda\Events\GetEXIFExceptionEventArgs.cs" />
     <Compile Include="Anaconda\Events\GetGroupInfoEventArgs.cs" />
     <Compile Include="Anaconda\Events\GetGroupListEventArgs.cs" />
+    <Compile Include="Anaconda\Events\GetGroupPhotosEventArgs.cs" />
     <Compile Include="Anaconda\Events\GetPhotoStreamEventArgs.cs" />
     <Compile Include="Anaconda\Events\GetPopularTagListEventArgs.cs" />
     <Compile Include="Anaconda\Events\GroupSearchEventArgs.cs" />
     <Compile Include="Anaconda\Events\PhotoSearchEventArgs.cs" />
     <Compile Include="Anaconda\Events\PhotoSetListEventArgs.cs" />
     <Compile Include="Cinderella\Cinderella.cs" />
+    <Compile Include="Cinderella\CinderellaConstants.cs" />
     <Compile Include="Cinderella\CinderellaDiscoveryExtension.cs" />
     <Compile Include="Cinderella\CinderellaGroupExtension.cs" />
     <Compile Include="Cinderella\CinderellaPhotoExtension.cs" />
@@ -121,6 +123,7 @@
     <Compile Include="Cinderella\Events\EXIFUpdatedEventArgs.cs" />
     <Compile Include="Cinderella\Events\GroupInfoUpdatedEventArgs.cs" />
     <Compile Include="Cinderella\Events\GroupListUpdatedEventArgs.cs" />
+    <Compile Include="Cinderella\Events\GroupPhotoListUpdatedEventArgs.cs" />
     <Compile Include="Cinderella\Events\GroupSearchResultEventArgs.cs" />
     <Compile Include="Cinderella\Events\PhotoSetListUpdatedEventArgs.cs" />
     <Compile Include="Cinderella\Events\PhotoStreamUpdatedEventArgs.cs" />

@@ -28,6 +28,8 @@ namespace Indulged.API.Cinderella.Models
         public int ThrottleMaxCount { get; set; }
         public int ThrottleRemainingCount { get; set; }
 
+        public bool IsInfoRetrieved { get; set; }
+
         public override string ToString()
         {
             return Name;
@@ -47,5 +49,19 @@ namespace Indulged.API.Cinderella.Models
             }
         }
 
+        // Photos
+        private List<Photo> _photos = new List<Photo>();
+        public List<Photo> Photos
+        {
+            get
+            {
+                return _photos;
+            }
+
+            set
+            {
+                _photos = value;
+            }
+        }
     }
 }

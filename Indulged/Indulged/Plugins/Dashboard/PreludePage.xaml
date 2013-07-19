@@ -27,7 +27,7 @@
 
                 <!-- Group section -->
                 <dashboard:NavigatorSection Title="community"/>
-                <phone:LongListSelector x:Name="GroupListView" Style="{StaticResource PreludeListStyle}"/>
+                <phone:LongListSelector x:Name="GroupListView" Style="{StaticResource PreludeListStyle}" SelectionChanged="OnGroupListViewSelectionChanged"/>
 
             </StackPanel>
         </ScrollViewer>

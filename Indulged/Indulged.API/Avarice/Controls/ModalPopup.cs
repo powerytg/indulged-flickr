@@ -63,8 +63,32 @@ namespace Indulged.API.Avarice.Controls
 
         // Button titles
         protected List<String> buttonTitles = new List<string>();
+        public List<Avarice.Controls.Button> Buttons = new List<Button>();
 
         // Show the popup window with custom content
+        public static ModalPopup ShowWithButtons(FrameworkElement content, string title = null, List<Avarice.Controls.Button> _buttons = null)
+        {
+            ModalPopup popup = new ModalPopup();
+            popup.contentElement = content;
+
+            // Set title
+            if (title != null)
+                popup.title = title;
+
+            // Create optional buttons
+            if (_buttons != null)
+            {
+                foreach (var btn in _buttons)
+                {
+                    popup.Buttons.Add(btn);
+                }
+            }
+
+            popup.HostView.Children.Add(popup);
+            return popup;
+
+        }
+
         public static ModalPopup Show(FrameworkElement content, string title = null, List<string> buttonTitles = null)
         {
             ModalPopup popup = new ModalPopup();
@@ -176,6 +200,17 @@ namespace Indulged.API.Avarice.Controls
                     buttonContainer.Children.Add(button);
                     button.Click += OnButtonClick;
                 }
+            }
+            else if(Buttons.Count > 0)
+            {
+                foreach (var button in Buttons)
+                {
+                    button.Margin = new Thickness(14, 0, 0, 0);
+                    button.HorizontalAlignment = HorizontalAlignment.Right;
+                    buttonContainer.Children.Add(button);
+                    button.Click += OnButtonClick;
+                }
+
             }
         }
 

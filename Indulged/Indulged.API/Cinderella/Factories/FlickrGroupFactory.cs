@@ -13,7 +13,20 @@ namespace Indulged.API.Cinderella.Factories
         public static FlickrGroup GroupWithJObject(JObject json)
         {
             FlickrGroup group = null;
-            string groupId = json["nsid"].ToString();
+
+            // Get group id
+            string groupId;
+            JToken nsidValue;
+            if (json.TryGetValue("nsid", out nsidValue))
+            {
+                groupId = json["nsid"].ToString();
+            }
+            else
+            {
+                groupId = json["id"].ToString();
+            }
+
+            
             if (Cinderella.CinderellaCore.GroupCache.ContainsKey(groupId))
                 group = Cinderella.CinderellaCore.GroupCache[groupId];
             else
@@ -37,7 +50,10 @@ namespace Indulged.API.Cinderella.Factories
                 {
                     group.Name = json["name"]["_content"].ToString();
                 }
-               
+
+                if (group.Name.Length > CinderellaConstants.MaxTitleLength)
+                    group.Name = group.Name.Substring(0, CinderellaConstants.MaxTitleLength) + "...";
+
             }
 
             JToken descValue;
@@ -51,7 +67,10 @@ namespace Indulged.API.Cinderella.Factories
                 {
                     group.Description = json["description"]["_content"].ToString();
                 }
-                
+
+                if (group.Description.Length > CinderellaConstants.MaxDescriptionLength)
+                    group.Description = group.Description.Substring(0, CinderellaConstants.MaxDescriptionLength) + "...";
+
             }
 
             JToken rulesValue;
@@ -113,7 +132,7 @@ namespace Indulged.API.Cinderella.Factories
                 }
 
                 JToken remainingValue;
-                if(throttleObject.TryGetValue("count", out remainingValue))
+                if (throttleObject.TryGetValue("remaining", out remainingValue))
                 {
                     group.ThrottleRemainingCount = int.Parse(json["throttle"]["remaining"].ToString());
                 }

@@ -14,22 +14,6 @@ namespace Indulged.API.Cinderella.Factories
 {
     public class PhotoFactory
     {
-        public static int MaxTitleLength
-        {
-            get
-            {
-                return 42;
-            }
-        }
-
-        public static int MaxDescriptionLength
-        {
-            get
-            {
-                return 140;
-            }
-        }
-
         public static Photo PhotoWithJObject(JObject json)
         {
             string photoId = json["id"].ToString();
@@ -55,12 +39,12 @@ namespace Indulged.API.Cinderella.Factories
             photo.Farm = json["farm"].ToString();
             photo.ViewCount = int.Parse(json["views"].ToString());
             photo.Title = json["title"].ToString();
-            if (photo.Title.Length > MaxTitleLength)
-                photo.Title = photo.Title.Substring(0, MaxTitleLength) + "...";
+            if (photo.Title.Length > CinderellaConstants.MaxTitleLength)
+                photo.Title = photo.Title.Substring(0, CinderellaConstants.MaxTitleLength) + "...";
 
             photo.Description = json["description"]["_content"].ToString();
-            if (photo.Description.Length > MaxDescriptionLength)
-                photo.Description = photo.Description.Substring(0, MaxDescriptionLength) + "...";
+            if (photo.Description.Length > CinderellaConstants.MaxDescriptionLength)
+                photo.Description = photo.Description.Substring(0, CinderellaConstants.MaxDescriptionLength) + "...";
 
             JToken licenseValue;
             if (json.TryGetValue("license", out licenseValue))

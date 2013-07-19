@@ -24,6 +24,7 @@ namespace Indulged.API.Cinderella
         public EventHandler<GroupListUpdatedEventArgs> GroupListUpdated;
         public EventHandler<GroupSearchResultEventArgs> GroupSearchCompleted;
         public EventHandler<GroupInfoUpdatedEventArgs> GroupInfoUpdated;
+        public EventHandler<GroupPhotoListUpdatedEventArgs> GroupPhotoListUpdated;
 
         // Singleton
         private static Cinderella instance;
@@ -92,6 +93,7 @@ namespace Indulged.API.Cinderella
             Anaconda.Anaconda.AnacondaCore.GroupListReturned += OnGroupListReturned;
             Anaconda.Anaconda.AnacondaCore.GroupSearchReturned += OnGroupSearchReturned;
             Anaconda.Anaconda.AnacondaCore.GroupInfoReturned += OnGroupInfoReturned;
+            Anaconda.Anaconda.AnacondaCore.GroupPhotoReturned += OnGroupPhotosReturned;
         }
     }
 }
