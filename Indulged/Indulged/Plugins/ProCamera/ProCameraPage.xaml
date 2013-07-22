@@ -1,0 +1,72 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="Indulged.Plugins.ProCamera.ProCameraPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="clr-namespace:Indulged.Plugins.ProCamera"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="PortraitOrLandscape" Orientation="Portrait"
+    mc:Ignorable="d"
+    shell:SystemTray.IsVisible="True">
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot" Background="Black">
+        <!-- Camera -->
+        <Canvas x:Name="Viewfinder" Tap="OnViewFinderTap">
+            <Canvas.Background>
+                <VideoBrush x:Name="ViewfinderBrush">
+                    <VideoBrush.RelativeTransform>
+                        <CompositeTransform x:Name="cameraViewBrushTransform" CenterX=".5" CenterY=".5" />
+                    </VideoBrush.RelativeTransform>
+                </VideoBrush>
+            </Canvas.Background>           
+        </Canvas>
+
+        <!-- Top toolbar -->
+        <Grid x:Name="TopToolbar" Height="48" VerticalAlignment="Top">
+            <Grid.Background>
+                <SolidColorBrush Color="Black" Opacity="0.8"/>
+            </Grid.Background>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <local:CameraSettingsButton x:Name="FlashModeButton" Content="FLASH" Grid.Column="0" VerticalAlignment="Center" Click="OnFlashButtonClick"/>
+            <local:CameraSettingsButton x:Name="ISOModeButton" Content="ISO" DisplayValue="auto" Grid.Column="1" VerticalAlignment="Center" Click="OnISOButtonClick"/>
+            <local:CameraSettingsButton Content="WB" DisplayValue="auto" Grid.Column="2" VerticalAlignment="Center"/>
+            
+            <Button x:Name="FlipButton" BorderThickness="0" Grid.Column="3" Margin="8, 0, 8, 0" Padding="0" Click="OnFlipButtonClick">
+                <Button.Content>
+                    <Image Source="/Assets/ProCamera/CameraFlipIcon.png" Height="20"/>
+                </Button.Content>
+            </Button>
+        </Grid>
+
+
+        <!-- Bottom toolbar -->
+        <Image x:Name="BottomShadowImage" Source="/Assets/ProCamera/CameraBottomMask.png" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Stretch="Fill"
+               Height="146"/>
+                
+        <Button x:Name="ShutterButton" VerticalAlignment="Bottom" HorizontalAlignment="Center"
+                Style="{StaticResource ShutterButtonStyle}" Click="OnShutterButtonClick">
+            <Button.Content>
+                <Image Source="/Assets/ProCamera/ShutterButton.png" Stretch="None" VerticalAlignment="Bottom"/>
+            </Button.Content>
+        </Button>
+        
+        <!-- Waiting view -->
+        <TextBlock x:Name="LoadingView" Foreground="#448ccb" FontFamily="/Assets/Fonts/BenchNine-Bold.ttf#BenchNine" FontSize="24" FontWeight="Bold"
+                   Text="Initializing Camera ..." 
+                   HorizontalAlignment="Center"  VerticalAlignment="Center"/>
+        
+    </Grid>
+
+</phone:PhoneApplicationPage>

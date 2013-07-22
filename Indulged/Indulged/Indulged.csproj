@@ -239,6 +239,23 @@
     <Compile Include="Plugins\PhotoCollection\PhotoSetPage.xaml.cs">
       <DependentUpon>PhotoSetPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Plugins\ProCamera\CameraSettingsButton.cs" />
+    <Compile Include="Plugins\ProCamera\ImageProcessingPage.xaml.cs">
+      <DependentUpon>ImageProcessingPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\ProCamera\ProCameraFlashSettingsView.xaml.cs">
+      <DependentUpon>ProCameraFlashSettingsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\ProCamera\ProCameraISOSettingsView.xaml.cs">
+      <DependentUpon>ProCameraISOSettingsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\ProCamera\ProCameraPage.xaml.cs">
+      <DependentUpon>ProCameraPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\ProCamera\ProCameraPageAnimationExtension.cs" />
+    <Compile Include="Plugins\ProCamera\ProCameraPageStreamExtension.cs" />
+    <Compile Include="Plugins\ProCamera\ProCameraPageSettingsExtension.cs" />
+    <Compile Include="Plugins\ProCamera\ProCameraSettingsViewBase.cs" />
     <Compile Include="Plugins\Search\GroupSearchResultView.xaml.cs">
       <DependentUpon>GroupSearchResultView.xaml</DependentUpon>
     </Compile>
@@ -449,6 +466,22 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Plugins\ProCamera\ImageProcessingPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Plugins\ProCamera\ProCameraFlashSettingsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Plugins\ProCamera\ProCameraISOSettingsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Plugins\ProCamera\ProCameraPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Plugins\Search\GroupSearchResultView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -472,6 +505,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <ApplicationDefinition Include="Themes\CameraSettingsButtonStyle.xaml">
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <ApplicationDefinition Include="Themes\CameraShutterButtonStyle.xaml">
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <ApplicationDefinition Include="Themes\CameraSubsettingsButtonStyle.xaml">
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
     <Page Include="Themes\PhotoNavigatorStyle.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -483,6 +525,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Vendor\ExifLib.dll" />
     <None Include="Assets\Chrome\Thumbs.db" />
     <Content Include="Assets\Chrome\BlankTitleView.png" />
     <Content Include="Assets\Common\LicenseIcon.png" />
@@ -528,6 +571,9 @@
     <Content Include="Assets\Dashboard\Prelude\PreludeContentGuide.png" />
     <Content Include="Assets\Group\NoThrottleIcon.png" />
     <Content Include="Assets\Group\ThrottleIcon.png" />
+    <Content Include="Assets\ProCamera\CameraBottomMask.png" />
+    <Content Include="Assets\ProCamera\CameraFlipIcon.png" />
+    <Content Include="Assets\ProCamera\ShutterButton.png" />
     <Content Include="Assets\Tiles\FlipCycleTileLarge.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -566,6 +612,7 @@
     <Reference Include="CS.Windows.Controls">
       <HintPath>..\packages\WindowsPhoneControls.0.3.0\lib\sl4-windowsphone71\CS.Windows.Controls.dll</HintPath>
     </Reference>
+    <Reference Include="ExifLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Phone.Controls, Version=8.0.0.0, Culture=neutral, PublicKeyToken=24eec0d8c86cda1e, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Phone.Controls.Toolkit">
       <HintPath>..\packages\WPToolkit.4.2013.06.11\lib\wp8\Microsoft.Phone.Controls.Toolkit.dll</HintPath>
@@ -579,6 +626,9 @@
     <Reference Include="Nokia.InteropServices.WindowsRuntime">
       <HintPath>..\packages\NokiaImagingSDK.0.9.1\lib\wp8\$(Platform)\Nokia.InteropServices.WindowsRuntime.winmd</HintPath>
     </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />

@@ -62,6 +62,11 @@ namespace Indulged
 
         }
 
+        private void OnTakePhotoClick(object sender, EventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/Plugins/ProCamera/ProCameraPage.xaml", UriKind.Relative));
+        }
+
         private void OnSubscriptionSettingsClick(object sender, EventArgs e)
         {
             SubscriptionSettingsView settingsView = new SubscriptionSettingsView();
