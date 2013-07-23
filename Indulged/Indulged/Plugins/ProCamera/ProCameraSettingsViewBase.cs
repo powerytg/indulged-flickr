@@ -1,11 +1,6 @@
-﻿using Microsoft.Devices;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Controls;
+﻿using System.Windows.Controls;
 using System.Windows.Media;
+using Windows.Phone.Media.Capture;
 
 namespace Indulged.Plugins.ProCamera
 {
@@ -15,8 +10,8 @@ namespace Indulged.Plugins.ProCamera
         public static SolidColorBrush UnselectedForeground = new SolidColorBrush(Color.FromArgb(0xff, 0x6b, 0xa1, 0xb5));
 
         // Reference to the camera
-        private PhotoCamera _cam;
-        public PhotoCamera cam
+        private PhotoCaptureDevice _cam;
+        public PhotoCaptureDevice cam
         {
             get
             {

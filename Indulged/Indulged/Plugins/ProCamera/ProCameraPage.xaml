@@ -41,7 +41,7 @@
 
             <local:CameraSettingsButton x:Name="FlashModeButton" Content="FLASH" Grid.Column="0" VerticalAlignment="Center" Click="OnFlashButtonClick"/>
             <local:CameraSettingsButton x:Name="ISOModeButton" Content="ISO" DisplayValue="auto" Grid.Column="1" VerticalAlignment="Center" Click="OnISOButtonClick"/>
-            <local:CameraSettingsButton Content="WB" DisplayValue="auto" Grid.Column="2" VerticalAlignment="Center"/>
+            <local:CameraSettingsButton x:Name="WhiteBalanceButton" Content="WB" DisplayValue="auto" Grid.Column="2" VerticalAlignment="Center" Click="OnWBButtonClick"/>
             
             <Button x:Name="FlipButton" BorderThickness="0" Grid.Column="3" Margin="8, 0, 8, 0" Padding="0" Click="OnFlipButtonClick">
                 <Button.Content>

@@ -8,6 +8,7 @@ using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using Microsoft.Devices;
+using Windows.Phone.Media.Capture;
 
 namespace Indulged.Plugins.ProCamera
 {
@@ -21,43 +22,53 @@ namespace Indulged.Plugins.ProCamera
             InitializeComponent();
         }
 
+        private IReadOnlyList<FlashState> GetAvailableFlashStates(CameraSensorLocation cameraSensorLocation)
+        {
+            IReadOnlyList<object> rawValueList = PhotoCaptureDevice.GetSupportedPropertyValues(cameraSensorLocation, KnownCameraPhotoProperties.FlashMode);
+            List<FlashState> flashStates = new List<FlashState>(rawValueList.Count);
+
+            foreach (object rawValue in rawValueList)
+            {
+                flashStates.Add((FlashState)(uint)rawValue);
+            }
+
+            return flashStates.AsReadOnly();
+        }
+
         protected override void OnCameraChanged()
         {
             base.OnCameraChanged();
 
-            OnButton.IsEnabled = cam.IsFlashModeSupported(FlashMode.On);
-            OffButton.IsEnabled = cam.IsFlashModeSupported(FlashMode.Off);
-            AutoButton.IsEnabled = cam.IsFlashModeSupported(FlashMode.Auto);
-            RedEyeButton.IsEnabled = cam.IsFlashModeSupported(FlashMode.RedEyeReduction);
+            IReadOnlyList<FlashState> supportedFlashMode = GetAvailableFlashStates(cam.SensorLocation);
 
-            OnButton.Foreground = (cam.FlashMode == FlashMode.On) ? SelectedForeground : UnselectedForeground;
-            OffButton.Foreground = (cam.FlashMode == FlashMode.Off) ? SelectedForeground : UnselectedForeground;
-            AutoButton.Foreground = (cam.FlashMode == FlashMode.Auto) ? SelectedForeground : UnselectedForeground;
-            RedEyeButton.Foreground = (cam.FlashMode == FlashMode.RedEyeReduction) ? SelectedForeground : UnselectedForeground;
+            OnButton.IsEnabled = supportedFlashMode.Contains(FlashState.On);
+            OffButton.IsEnabled = supportedFlashMode.Contains(FlashState.Off);
+            AutoButton.IsEnabled = supportedFlashMode.Contains(FlashState.Auto);
+
+            FlashState currentFlashState = (FlashState)(uint)cam.GetProperty(KnownCameraPhotoProperties.FlashMode);
+
+            OnButton.Foreground = (currentFlashState == FlashState.On) ? SelectedForeground : UnselectedForeground;
+            OffButton.Foreground = (currentFlashState == FlashState.Off) ? SelectedForeground : UnselectedForeground;
+            AutoButton.Foreground = (currentFlashState == FlashState.Auto) ? SelectedForeground : UnselectedForeground;
         }
 
         private void AutoButton_Click(object sender, RoutedEventArgs e)
         {
-            cam.FlashMode = FlashMode.Auto;
+            cam.SetProperty(KnownCameraPhotoProperties.FlashMode, FlashState.Auto);
             FlashModeChanged(this, null);
         }
 
         private void OnButton_Click(object sender, RoutedEventArgs e)
         {
-            cam.FlashMode = FlashMode.On;
+            cam.SetProperty(KnownCameraPhotoProperties.FlashMode, FlashState.On);
             FlashModeChanged(this, null);
         }
 
         private void OffButton_Click(object sender, RoutedEventArgs e)
         {
-            cam.FlashMode = FlashMode.Off;
+            cam.SetProperty(KnownCameraPhotoProperties.FlashMode, FlashState.Off);
             FlashModeChanged(this, null);
         }
 
-        private void RedEyeButton_Click(object sender, RoutedEventArgs e)
-        {
-            cam.FlashMode = FlashMode.RedEyeReduction;
-            FlashModeChanged(this, null);
-        }
     }
 }

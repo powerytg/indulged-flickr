@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media.Imaging;
 
 namespace Indulged.Plugins.ProCamera
 {
@@ -30,6 +31,29 @@ namespace Indulged.Plugins.ProCamera
         }
 
         protected virtual void OnDisplayValueChanged()
+        {
+        }
+
+        public static readonly DependencyProperty DisplayIconProperty = DependencyProperty.Register("DisplayIcon", typeof(BitmapImage), typeof(CameraSettingsButton), new PropertyMetadata(OnDisplayIconPropertyChanged));
+
+        public BitmapImage DisplayIcon
+        {
+            get
+            {
+                return (BitmapImage)GetValue(DisplayIconProperty);
+            }
+            set
+            {
+                SetValue(DisplayIconProperty, value);
+            }
+        }
+
+        public static void OnDisplayIconPropertyChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
+        {
+            ((CameraSettingsButton)sender).OnDisplayIconChanged();
+        }
+
+        protected virtual void OnDisplayIconChanged()
         {
         }
     }

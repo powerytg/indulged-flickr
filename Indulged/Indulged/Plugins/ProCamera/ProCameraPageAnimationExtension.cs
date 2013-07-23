@@ -141,7 +141,7 @@ namespace Indulged.Plugins.ProCamera
                 extendedPanel = new Grid();
                 extendedPanel.VerticalAlignment = VerticalAlignment.Top;
                 extendedPanel.Background = TopToolbar.Background;
-                extendedPanel.Height = 80;
+                //extendedPanel.Height = 80;
                 extendedPanel.Margin = new Thickness(0, TopToolbar.Height, 0, 0);
                 extendedPanel.Children.Add(contentView);
                 extendedPanel.Opacity = 0;

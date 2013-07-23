@@ -1,4 +1,4 @@
-﻿<local:ProCameraSettingsViewBase x:Class="Indulged.Plugins.ProCamera.ProCameraFlashSettingsView"
+﻿<local:ProCameraSettingsViewBase x:Class="Indulged.Plugins.ProCamera.ProCameraWhiteBalanceSettingsView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -15,11 +15,17 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
         <Button x:Name="AutoButton" Style="{StaticResource CameraSubSettingsButtonStyle}" Content="AUTO" Grid.Column="0" Click="AutoButton_Click"/>
-        <Button x:Name="OnButton" Style="{StaticResource CameraSubSettingsButtonStyle}" Content="ON" Grid.Column="1" Click="OnButton_Click"/>
-        <Button x:Name="OffButton" Style="{StaticResource CameraSubSettingsButtonStyle}" Content="OFF" Grid.Column="2" Click="OffButton_Click"/>
+        <Button x:Name="DayLightButton" Style="{StaticResource CameraSubSettingsButtonStyle}" Grid.Column="1" Click="DayLightButton_Click"/>
+        <Button x:Name="CloudyButton" Style="{StaticResource CameraSubSettingsButtonStyle}" Grid.Column="2" Click="CloudyButton_Click"/>
+        <Button x:Name="TungstenButton" Style="{StaticResource CameraSubSettingsButtonStyle}" Grid.Column="3" Click="TungstenButton_Click"/>
+        <Button x:Name="FluorescentButton" Style="{StaticResource CameraSubSettingsButtonStyle}" Grid.Column="4" Click="FluorescentButton_Click"/>
+        <Button x:Name="FlashButton" Style="{StaticResource CameraSubSettingsButtonStyle}" Grid.Column="5" Click="FlashButton_Click"/>
         
         
     </Grid>

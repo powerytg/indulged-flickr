@@ -56,6 +56,7 @@
                                            Text="{TemplateBinding DisplayValue}" VerticalAlignment="Center"
                                            />
 
+                                <Image Source="{TemplateBinding DisplayIcon}" VerticalAlignment="Center"/>
                             </StackPanel>
                         </Border>
                         

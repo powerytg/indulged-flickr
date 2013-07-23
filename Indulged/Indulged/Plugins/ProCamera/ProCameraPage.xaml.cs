@@ -8,6 +8,9 @@ using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
+using Windows.Phone.Media.Capture;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Indulged.Plugins.ProCamera
 {
@@ -22,11 +25,10 @@ namespace Indulged.Plugins.ProCamera
             InitializeComponent();
 
             ProCameraFlashSettingsView.FlashModeChanged += OnFlashModeChanged;
+            ProCameraISOSettingsView.ISOChanged += OnISOChanged;
+            ProCameraWhiteBalanceSettingsView.WhiteBalanceModeChanged += OnWhiteBalanceChanged;
         }
         
-        // Camera
-        private PhotoCamera cam;
-
         // Media library
         private MediaLibrary library = new MediaLibrary();
 
@@ -35,16 +37,14 @@ namespace Indulged.Plugins.ProCamera
             LoadingView.Text = "Initializing Camera ...";
             HideAllUIChrome();
 
-            if (PhotoCamera.IsCameraTypeSupported(CameraType.Primary) == true)
+            if (PhotoCaptureDevice.AvailableSensorLocations.Contains(CameraSensorLocation.Back))
             {
-                CreateCam(CameraType.Primary);
+                CreateCam(CameraSensorLocation.Back);
             }
-            else if(PhotoCamera.IsCameraTypeSupported(CameraType.FrontFacing) == true)
+            else if (PhotoCaptureDevice.AvailableSensorLocations.Contains(CameraSensorLocation.Front))
             {
-                CreateCam(CameraType.FrontFacing);                
+                CreateCam(CameraSensorLocation.Front);
             }
-
-            ViewfinderBrush.SetSource(cam);
 
             // Can switch camera?
             if (PhotoCamera.IsCameraTypeSupported(CameraType.Primary) && PhotoCamera.IsCameraTypeSupported(CameraType.FrontFacing))
@@ -61,21 +61,18 @@ namespace Indulged.Plugins.ProCamera
             Viewfinder.Opacity = 0;
         }
 
-        private void DestroyCam()
+        private void ShowUIChromeAnimated()
         {
-            if (cam != null)
-            {
-                cam.Dispose();
-                cam.CaptureImageAvailable -= OnCameraImageAvailable;
-                cam.Initialized -= OnCameraInitialized;
-            }
-        }
+            CorrectViewfinderOrientation(Orientation);
+            Viewfinder.Opacity = 1;
 
-        private void CreateCam(CameraType camType)
-        {
-            cam = new PhotoCamera(camType);
-            cam.CaptureImageAvailable += OnCameraImageAvailable;
-            cam.Initialized += OnCameraInitialized;
+            if (Viewfinder.Background != ViewfinderBrush)
+                Viewfinder.Background = ViewfinderBrush;
+
+            UpdateFlashModeButton();
+
+            LoadingView.Visibility = Visibility.Collapsed;
+            PerformUIChromeAppearanceAnimation();
         }
 
         protected override void OnNavigatingFrom(System.Windows.Navigation.NavigatingCancelEventArgs e)
@@ -83,26 +80,6 @@ namespace Indulged.Plugins.ProCamera
             DestroyCam();
             Viewfinder.Background = new SolidColorBrush(Colors.Black);
         }
-
-        private void OnCameraInitialized(object sender, CameraOperationCompletedEventArgs e)
-        {
-            // Show the UI chrome
-            Dispatcher.BeginInvoke(() =>
-                {
-                    CorrectViewfinderOrientation(Orientation);
-                    Viewfinder.Opacity = 1;
-
-                    if(Viewfinder.Background != ViewfinderBrush)
-                        Viewfinder.Background = ViewfinderBrush;
-
-                    UpdateFlashModeButton();
-
-                    LoadingView.Visibility = Visibility.Collapsed;
-                    PerformUIChromeAppearanceAnimation();
-                });
-        }
-
-        
 
         // Ensure that the viewfinder is upright in LandscapeRight.
         private void CorrectViewfinderOrientation(PageOrientation orientation)
@@ -114,7 +91,7 @@ namespace Indulged.Plugins.ProCamera
                 int portraitRotation = 90;
 
                 // Change LandscapeRight rotation for front-facing camera.
-                if (cam.CameraType == CameraType.FrontFacing)
+                if (cam.SensorLocation == CameraSensorLocation.Front)
                 {
                     portraitRotation = -90;
                     landscapeRightRotation = -180;
@@ -152,16 +129,13 @@ namespace Indulged.Plugins.ProCamera
         {
             HideAllUIChrome();
 
-            CameraType previousType = cam.CameraType;
+            CameraSensorLocation previousType = cam.SensorLocation;
             DestroyCam();
 
-            if(previousType == CameraType.Primary)
-                CreateCam(CameraType.FrontFacing);
+            if(previousType == CameraSensorLocation.Back)
+                CreateCam(CameraSensorLocation.Front);
             else
-                CreateCam(CameraType.Primary);
-
-            ViewfinderBrush.SetSource(cam);
-            CorrectViewfinderOrientation(Orientation);
+                CreateCam(CameraSensorLocation.Back);
         }
 
         private void OnShutterButtonClick(object sender, RoutedEventArgs e)
@@ -169,79 +143,13 @@ namespace Indulged.Plugins.ProCamera
             // Play shutter sound
             PerformCaptureAnimation();
 
-            if (cam != null)
-            {
-                try
-                {
-                    // Start image capture.
-                    cam.CaptureImage();
-                }
-                catch (Exception ex)
-                {
-                    System.Diagnostics.Debug.WriteLine(ex.Message);
-                }
-            }
+            // Capture into memory stream
+            CapturePhoto();
         }
 
         #endregion
 
-        private void OnCameraImageAvailable(object sender, ContentReadyEventArgs e)
-        {
-            string ramdomFileName = Guid.NewGuid().ToString().Replace("-", null);
-            string fileName = ramdomFileName + ".jpg";
-
-            Dispatcher.BeginInvoke(() =>
-            {
-                try
-                {
-                    Stream ms = null;
-                    int angle = 0;
-                    if (Orientation == PageOrientation.PortraitUp || Orientation == PageOrientation.PortraitDown)
-                    {
-                        if (cam.CameraType == CameraType.Primary)
-                        {
-                            angle = 90;
-                        }
-                        else
-                        {
-                            angle = 270;
-                        }
-                    }
-
-                    if (angle == 0)
-                        ms = e.ImageStream;
-                    else
-                        ms = RotateStream(e.ImageStream, angle);
-
-                    ProCameraPage.CapturedImage = new BitmapImage();
-                    CapturedImage.SetSource(ms);
-
-                    ImageBrush staticBrush = new ImageBrush();
-                    staticBrush.ImageSource = ProCameraPage.CapturedImage;
-                    Viewfinder.Background = staticBrush;
-                    Viewfinder.Opacity = 1;
-
-                }
-                catch (Exception ex)
-                {
-                    System.Diagnostics.Debug.WriteLine(ex.Message);
-                    CapturedImage = null;
-                }
-                finally
-                {
-                    // Close image stream
-                    e.ImageStream.Close();
-
-                    // Go to processing page
-                    if (CapturedImage != null)
-                    {
-                        NavigationService.Navigate(new Uri("/Plugins/ProCamera/ImageProcessingPage.xaml", UriKind.Relative));
-                    }
-
-                }
-            });
-        }
-
+        
         private void OnViewFinderTap(object sender, System.Windows.Input.GestureEventArgs e)
         {
             if (extendedPanel != null && !isAnimatingExtendedPanel)

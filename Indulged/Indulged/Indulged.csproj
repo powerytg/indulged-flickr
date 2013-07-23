@@ -240,6 +240,9 @@
       <DependentUpon>PhotoSetPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Plugins\ProCamera\CameraSettingsButton.cs" />
+    <Compile Include="Plugins\ProCamera\ProCameraWhiteBalanceSettingsView.xaml.cs">
+      <DependentUpon>ProCameraWhiteBalanceSettingsView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Plugins\ProCamera\ImageProcessingPage.xaml.cs">
       <DependentUpon>ImageProcessingPage.xaml</DependentUpon>
     </Compile>
@@ -253,6 +256,7 @@
       <DependentUpon>ProCameraPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Plugins\ProCamera\ProCameraPageAnimationExtension.cs" />
+    <Compile Include="Plugins\ProCamera\ProCameraPageCoreExtension.cs" />
     <Compile Include="Plugins\ProCamera\ProCameraPageStreamExtension.cs" />
     <Compile Include="Plugins\ProCamera\ProCameraPageSettingsExtension.cs" />
     <Compile Include="Plugins\ProCamera\ProCameraSettingsViewBase.cs" />
@@ -466,6 +470,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Plugins\ProCamera\ProCameraWhiteBalanceSettingsView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Plugins\ProCamera\ImageProcessingPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -525,6 +533,18 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\ProCamera\WB-Cloudy-Selected.png" />
+    <Content Include="Assets\ProCamera\WB-Cloudy.png" />
+    <Content Include="Assets\ProCamera\WB-Daylight-Selected.png" />
+    <Content Include="Assets\ProCamera\WB-Daylight.png" />
+    <Content Include="Assets\ProCamera\WB-Flash-Selected.png" />
+    <Content Include="Assets\ProCamera\WB-Flash.png" />
+    <Content Include="Assets\ProCamera\WB-Fluorescent-Selected.png" />
+    <Content Include="Assets\ProCamera\WB-Fluorescent.png" />
+    <Content Include="Assets\ProCamera\WB-Shade-Selected.png" />
+    <Content Include="Assets\ProCamera\WB-Shade.png" />
+    <Content Include="Assets\ProCamera\WB-Tungsten-Selected.png" />
+    <Content Include="Assets\ProCamera\WB-Tungsten.png" />
     <Content Include="Vendor\ExifLib.dll" />
     <None Include="Assets\Chrome\Thumbs.db" />
     <Content Include="Assets\Chrome\BlankTitleView.png" />
