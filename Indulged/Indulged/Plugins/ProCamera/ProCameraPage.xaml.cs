@@ -156,6 +156,16 @@ namespace Indulged.Plugins.ProCamera
             {
                 HideExtendedPanel();
             }
+            else
+            {
+                // Perform focus
+                Point pt = e.GetPosition(Viewfinder);
+                CompositeTransform ct = (CompositeTransform)AutoFocusBrackets.RenderTransform;
+                ct.TranslateX = pt.X - LayoutRoot.ActualWidth / 2;
+                ct.TranslateY = pt.Y - LayoutRoot.ActualHeight / 2;
+                
+                BeginAutoFocus(new Windows.Foundation.Point(pt.X, pt.Y));
+            }
         }
 
         

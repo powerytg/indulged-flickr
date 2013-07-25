@@ -10,7 +10,8 @@ using System.IO;
 using Microsoft.Devices;
 using Microsoft.Phone.Controls;
 using System.Windows.Media.Imaging;
-using System.Windows.Media;   
+using System.Windows.Media;
+using System.Windows.Media.Animation;   
 
 namespace Indulged.Plugins.ProCamera
 {
@@ -109,14 +110,49 @@ namespace Indulged.Plugins.ProCamera
         }
 
 
-        #region Shutter control
+        #region Shutter and focus
+
+        private int focusId = 0;
+
+        private async void PerformFocus(int fid, Windows.Foundation.Point? point = null)
+        {
+            if (point != null)
+                cam.FocusRegion = new Windows.Foundation.Rect(point.Value.X, point.Value.Y, 0, 0);
+            else
+                cam.FocusRegion = null;
+
+            await this.cam.FocusAsync();
+
+            Dispatcher.BeginInvoke(() =>
+            {
+                OnFocusLocked(fid);
+            });
+        }
+
+        private void BeginAutoFocus(Windows.Foundation.Point? point = null)
+        {
+            FocusAnimation.Begin();
+            focusId++;
+            PerformFocus(focusId);
+        }
+
+        private void OnFocusLocked(int fid)
+        {
+            if (fid != focusId)
+                return;
+
+            FocusAnimation.Stop();
+            FocusLockedAnimation.Begin();
+        }
 
         private void OnShutterHalfPress(object sender, EventArgs e)
         {
+            BeginAutoFocus();
         }
 
         private void OnShutterFullPress(object sender, EventArgs e)
         {
+            CapturePhoto();
         }
 
         private void OnShutterReleased(object sender, EventArgs e)

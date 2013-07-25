@@ -15,17 +15,19 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <Button x:Name="AutoButton" Style="{StaticResource CameraSubSettingsButtonStyle}" Content="AUTO" Grid.Column="0" Click="AutoButton_Click"/>
-        <Button x:Name="DayLightButton" Style="{StaticResource CameraSubSettingsButtonStyle}" Grid.Column="1" Click="DayLightButton_Click"/>
-        <Button x:Name="CloudyButton" Style="{StaticResource CameraSubSettingsButtonStyle}" Grid.Column="2" Click="CloudyButton_Click"/>
-        <Button x:Name="TungstenButton" Style="{StaticResource CameraSubSettingsButtonStyle}" Grid.Column="3" Click="TungstenButton_Click"/>
-        <Button x:Name="FluorescentButton" Style="{StaticResource CameraSubSettingsButtonStyle}" Grid.Column="4" Click="FluorescentButton_Click"/>
-        <Button x:Name="FlashButton" Style="{StaticResource CameraSubSettingsButtonStyle}" Grid.Column="5" Click="FlashButton_Click"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="80"/>
+        </Grid.RowDefinitions>
+        
+        <Button x:Name="AutoButton" Style="{StaticResource CameraSubSettingsButtonStyle}" Content="AUTO" Grid.Column="0" Grid.Row="0" Click="AutoButton_Click"/>
+        <Button x:Name="DayLightButton" Style="{StaticResource CameraSubSettingsButtonStyle}" Grid.Column="1" Grid.Row="0" Click="DayLightButton_Click"/>
+        <Button x:Name="CloudyButton" Style="{StaticResource CameraSubSettingsButtonStyle}" Grid.Column="2" Grid.Row="0" Click="CloudyButton_Click"/>
+            <Button x:Name="TungstenButton" Style="{StaticResource CameraSubSettingsButtonStyle}" Grid.Column="0" Grid.Row="1" Click="TungstenButton_Click" Margin="0, 15, 0, 15"/>
+        <Button x:Name="FluorescentButton" Style="{StaticResource CameraSubSettingsButtonStyle}" Grid.Column="1" Grid.Row="1" Click="FluorescentButton_Click" Margin="0, 15, 0, 15"/>
+        <Button x:Name="FlashButton" Style="{StaticResource CameraSubSettingsButtonStyle}" Grid.Column="2" Grid.Row="1" Click="FlashButton_Click" Margin="0, 15, 0, 15"/>
         
         
     </Grid>

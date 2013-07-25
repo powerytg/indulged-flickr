@@ -10,6 +10,7 @@ using Microsoft.Phone.Shell;
 using Microsoft.Devices;
 using Windows.Phone.Media.Capture;
 using System.Windows.Media.Imaging;
+using System.Windows.Media;
 
 namespace Indulged.Plugins.ProCamera
 {
@@ -37,34 +38,43 @@ namespace Indulged.Plugins.ProCamera
 
             DayLightIcon = new Image();
             DayLightIcon.Source = new BitmapImage(new Uri("/Assets/ProCamera/WB-Daylight.png", UriKind.Relative));
+            DayLightIcon.Stretch = Stretch.None;
 
             SelectedDayLightIcon = new Image();
             SelectedDayLightIcon.Source = new BitmapImage(new Uri("/Assets/ProCamera/WB-Daylight-Selected.png", UriKind.Relative));
+            SelectedDayLightIcon.Stretch = Stretch.None;
 
             CloudyIcon = new Image();
             CloudyIcon.Source = new BitmapImage(new Uri("/Assets/ProCamera/WB-Cloudy.png", UriKind.Relative));
+            CloudyIcon.Stretch = Stretch.None;
 
             SelectedCloudyIcon = new Image();
             SelectedCloudyIcon.Source = new BitmapImage(new Uri("/Assets/ProCamera/WB-Cloudy-Selected.png", UriKind.Relative));
+            SelectedCloudyIcon.Stretch = Stretch.None;
 
             TungstenIcon = new Image();
             TungstenIcon.Source = new BitmapImage(new Uri("/Assets/ProCamera/WB-Tungsten.png", UriKind.Relative));
+            TungstenIcon.Stretch = Stretch.None;
 
             SelectedTungstenIcon = new Image();
             SelectedTungstenIcon.Source = new BitmapImage(new Uri("/Assets/ProCamera/WB-Tungsten-Selected.png", UriKind.Relative));
+            SelectedTungstenIcon.Stretch = Stretch.None;
 
             FluorescentIcon = new Image();
             FluorescentIcon.Source = new BitmapImage(new Uri("/Assets/ProCamera/WB-Fluorescent.png", UriKind.Relative));
+            FluorescentIcon.Stretch = Stretch.None;
 
             SelectedFluorescentIcon = new Image();
             SelectedFluorescentIcon.Source = new BitmapImage(new Uri("/Assets/ProCamera/WB-Fluorescent-Selected.png", UriKind.Relative));
+            SelectedFluorescentIcon.Stretch = Stretch.None;
 
             FlashIcon = new Image();
             FlashIcon.Source = new BitmapImage(new Uri("/Assets/ProCamera/WB-Flash.png", UriKind.Relative));
+            FlashIcon.Stretch = Stretch.None;
 
             SelectedFlashIcon = new Image();
             SelectedFlashIcon.Source = new BitmapImage(new Uri("/Assets/ProCamera/WB-Flash-Selected.png", UriKind.Relative));
-
+            SelectedFlashIcon.Stretch = Stretch.None;
         }
 
         private IReadOnlyList<WhiteBalancePreset> GetAvailableWhiteBalancePresets(CameraSensorLocation cameraSensorLocation)

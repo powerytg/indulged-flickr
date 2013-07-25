@@ -14,6 +14,27 @@
     mc:Ignorable="d"
     shell:SystemTray.IsVisible="True">
 
+    <phone:PhoneApplicationPage.Resources>
+        <Storyboard x:Name="FocusAnimation" AutoReverse="True" RepeatBehavior="Forever">
+            <ObjectAnimationUsingKeyFrames  
+          Storyboard.TargetProperty="(UIElement.Visibility)"  
+          Storyboard.TargetName="AutoFocusBrackets">
+                <DiscreteObjectKeyFrame KeyTime="0">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Visible</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+            </ObjectAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="AutoFocusBrackets">
+                <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Name="FocusLockedAnimation" Duration="0:0:3">
+            <DoubleAnimation Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="AutoFocusBrackets" To="0"/>
+        </Storyboard>
+    </phone:PhoneApplicationPage.Resources>
+    
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Black">
         <!-- Camera -->
@@ -67,6 +88,19 @@
                    Text="Initializing Camera ..." 
                    HorizontalAlignment="Center"  VerticalAlignment="Center"/>
         
+        <!-- Focus region -->
+        <Border x:Name="AutoFocusBrackets" Width="50" Height="50" Visibility="Collapsed">
+            <Border.RenderTransform>
+                <CompositeTransform/>
+            </Border.RenderTransform>
+            <Border.BorderBrush>
+                <SolidColorBrush Color="#448ccb" Opacity="0.7"/>
+            </Border.BorderBrush>
+            
+            <Border.Background>
+                <SolidColorBrush Color="#448ccb" Opacity="0.4"/>
+            </Border.Background>
+        </Border>
     </Grid>
 
 </phone:PhoneApplicationPage>
