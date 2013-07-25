@@ -1,5 +1,5 @@
 ﻿<phone:PhoneApplicationPage
-    x:Class="Indulged.Plugins.ProCamera.ImageProcessingPage"
+    x:Class="Indulged.Plugins.ProFX.ImageProcessingPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
@@ -37,7 +37,31 @@
 
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
-        <Image x:Name="PhotoView"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="360"/>
+        </Grid.RowDefinitions>
+        <!-- Preview section -->
+        <Image x:Name="PhotoView" Grid.Row="0"/>
+        
+        <!-- Processor section-->
+        <Grid Background="Black" Grid.Row="1">
+            <!-- Logo-->
+            <Image Source="/Assets/ProFX/IndulgedFXLogo.png" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="14"/>
+            
+            <!-- Add filter icon -->
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top">
+                <TextBlock Text="add filter" FontWeight="Light" FontSize="18" Foreground="#448ccb"
+                           VerticalAlignment="Center" Margin="0, 0, 12, 0" />
+                <Button x:Name="AddFilterButton" BorderThickness="0" Background="Transparent"
+                        VerticalAlignment="Center" >
+                    <Button.Content>
+                        <Image Source="/Assets/ProFX/AddFilterIcon.png"/>
+                    </Button.Content>
+                </Button>
+            </StackPanel>
+            
+        </Grid>
     </Grid>
 
 </phone:PhoneApplicationPage>

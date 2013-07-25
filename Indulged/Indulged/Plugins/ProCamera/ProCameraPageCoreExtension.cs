@@ -105,7 +105,7 @@ namespace Indulged.Plugins.ProCamera
             Viewfinder.Background = staticBrush;
             Viewfinder.Opacity = 1;
 
-            NavigationService.Navigate(new Uri("/Plugins/ProCamera/ImageProcessingPage.xaml", UriKind.Relative));
+            NavigationService.Navigate(new Uri("/Plugins/ProFX/ImageProcessingPage.xaml", UriKind.Relative));
  
         }
 

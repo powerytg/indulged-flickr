@@ -243,7 +243,7 @@
     <Compile Include="Plugins\ProCamera\ProCameraWhiteBalanceSettingsView.xaml.cs">
       <DependentUpon>ProCameraWhiteBalanceSettingsView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Plugins\ProCamera\ImageProcessingPage.xaml.cs">
+    <Compile Include="Plugins\ProFX\ImageProcessingPage.xaml.cs">
       <DependentUpon>ImageProcessingPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Plugins\ProCamera\ProCameraFlashSettingsView.xaml.cs">
@@ -260,6 +260,7 @@
     <Compile Include="Plugins\ProCamera\ProCameraPageStreamExtension.cs" />
     <Compile Include="Plugins\ProCamera\ProCameraPageSettingsExtension.cs" />
     <Compile Include="Plugins\ProCamera\ProCameraSettingsViewBase.cs" />
+    <Compile Include="Plugins\ProFX\ImageProcessingPageCoreExtension.cs" />
     <Compile Include="Plugins\Search\GroupSearchResultView.xaml.cs">
       <DependentUpon>GroupSearchResultView.xaml</DependentUpon>
     </Compile>
@@ -474,7 +475,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Plugins\ProCamera\ImageProcessingPage.xaml">
+    <Page Include="Plugins\ProFX\ImageProcessingPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -545,6 +546,9 @@
     <Content Include="Assets\ProCamera\WB-Shade.png" />
     <Content Include="Assets\ProCamera\WB-Tungsten-Selected.png" />
     <Content Include="Assets\ProCamera\WB-Tungsten.png" />
+    <Content Include="Assets\ProFX\AddFilterIcon.png" />
+    <Content Include="Assets\ProFX\IndulgedFXLogo.png" />
+    <Content Include="Assets\ProFX\SelectedFilterIcon.png" />
     <Content Include="Vendor\ExifLib.dll" />
     <None Include="Assets\Chrome\Thumbs.db" />
     <Content Include="Assets\Chrome\BlankTitleView.png" />
