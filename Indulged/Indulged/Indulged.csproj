@@ -243,6 +243,14 @@
     <Compile Include="Plugins\ProCamera\ProCameraWhiteBalanceSettingsView.xaml.cs">
       <DependentUpon>ProCameraWhiteBalanceSettingsView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Plugins\ProFX\Events\AddFilterEventArgs.cs" />
+    <Compile Include="Plugins\ProFX\FilterGalleryView.xaml.cs">
+      <DependentUpon>FilterGalleryView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\ProFX\Filters\FilterBase.cs" />
+    <Compile Include="Plugins\ProFX\Filters\FXBlurFilter.xaml.cs">
+      <DependentUpon>FXBlurFilter.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Plugins\ProFX\ImageProcessingPage.xaml.cs">
       <DependentUpon>ImageProcessingPage.xaml</DependentUpon>
     </Compile>
@@ -260,6 +268,7 @@
     <Compile Include="Plugins\ProCamera\ProCameraPageStreamExtension.cs" />
     <Compile Include="Plugins\ProCamera\ProCameraPageSettingsExtension.cs" />
     <Compile Include="Plugins\ProCamera\ProCameraSettingsViewBase.cs" />
+    <Compile Include="Plugins\ProFX\ImageProcessingPageAnimationExtension.cs" />
     <Compile Include="Plugins\ProFX\ImageProcessingPageCoreExtension.cs" />
     <Compile Include="Plugins\Search\GroupSearchResultView.xaml.cs">
       <DependentUpon>GroupSearchResultView.xaml</DependentUpon>
@@ -475,6 +484,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Plugins\ProFX\FilterGalleryView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Plugins\ProFX\Filters\FXBlurFilter.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Plugins\ProFX\ImageProcessingPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -547,8 +564,11 @@
     <Content Include="Assets\ProCamera\WB-Tungsten-Selected.png" />
     <Content Include="Assets\ProCamera\WB-Tungsten.png" />
     <Content Include="Assets\ProFX\AddFilterIcon.png" />
+    <Content Include="Assets\ProFX\FXBackButton.png" />
+    <Content Include="Assets\ProFX\FXForwardButton.png" />
     <Content Include="Assets\ProFX\IndulgedFXLogo.png" />
     <Content Include="Assets\ProFX\SelectedFilterIcon.png" />
+    <Content Include="Assets\SamplePhoto.jpg" />
     <Content Include="Vendor\ExifLib.dll" />
     <None Include="Assets\Chrome\Thumbs.db" />
     <Content Include="Assets\Chrome\BlankTitleView.png" />

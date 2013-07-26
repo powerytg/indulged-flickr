@@ -1,0 +1,39 @@
+﻿<UserControl x:Class="Indulged.Plugins.ProFX.FilterGalleryView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    d:DesignHeight="480" d:DesignWidth="480">
+    
+    <UserControl.RenderTransform>
+        <CompositeTransform/>
+    </UserControl.RenderTransform>
+    
+    <Grid x:Name="LayoutRoot">        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        
+        <Button x:Name="BackToEditorButton" BorderThickness="0" Background="Transparent" Padding="0" Margin="14"
+                        VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Column="0" Click="BackToEditorButton_Click" >
+            <Button.Content>
+                <Image Source="/Assets/ProFX/FXBackButton.png" Stretch="Uniform" Width="48"/>
+            </Button.Content>
+        </Button>
+
+        <phone:LongListSelector x:Name="GalleryListView" SelectionChanged="GalleryListView_SelectionChanged"
+                                Margin="20" Grid.Column="1">
+            <phone:LongListSelector.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Foreground="#448ccb" FontSize="36" FontWeight="Light" Text="{Binding}"/>
+                </DataTemplate>
+            </phone:LongListSelector.ItemTemplate>
+        </phone:LongListSelector>
+    </Grid>
+</UserControl>

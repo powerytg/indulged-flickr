@@ -37,31 +37,60 @@
 
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="360"/>
-        </Grid.RowDefinitions>
-        <!-- Preview section -->
-        <Image x:Name="PhotoView" Grid.Row="0"/>
         
-        <!-- Processor section-->
-        <Grid Background="Black" Grid.Row="1">
-            <!-- Logo-->
-            <Image Source="/Assets/ProFX/IndulgedFXLogo.png" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="14"/>
-            
-            <!-- Add filter icon -->
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top">
-                <TextBlock Text="add filter" FontWeight="Light" FontSize="18" Foreground="#448ccb"
+        <!-- Background blurred image -->
+        <Image x:Name="BackgroundImage" Stretch="UniformToFill" Opacity="0"/>
+        
+        <!-- Content -->
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <!-- Preview section -->
+            <Image x:Name="PhotoView" Source="/Assets/SamplePhoto.jpg" Grid.Row="0" MaxHeight="600"/>
+
+            <!-- Processor section-->
+            <Grid Grid.Row="1">
+                <Grid.Background>
+                    <SolidColorBrush Color="Black" Opacity="0.7"/>
+                </Grid.Background>
+                
+                <!-- Editor page -->
+                <Grid x:Name="EditorPage">
+                    <Grid.RenderTransform>
+                        <CompositeTransform/>
+                    </Grid.RenderTransform>
+
+                    <!-- Logo-->
+                    <Image Source="/Assets/ProFX/IndulgedFXLogo.png" Stretch="None" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="14, 30, 0, 0"/>
+
+                    <!-- Add filter icon -->
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0, 0, 0, 0">
+                        <TextBlock Text="add filter" FontWeight="Light" FontSize="18" Foreground="#448ccb"
                            VerticalAlignment="Center" Margin="0, 0, 12, 0" />
-                <Button x:Name="AddFilterButton" BorderThickness="0" Background="Transparent"
-                        VerticalAlignment="Center" >
-                    <Button.Content>
-                        <Image Source="/Assets/ProFX/AddFilterIcon.png"/>
-                    </Button.Content>
-                </Button>
-            </StackPanel>
-            
+                        <Button x:Name="AddFilterButton" BorderThickness="0" Background="Transparent" Padding="0" Margin="0"
+                        VerticalAlignment="Center" HorizontalAlignment="Right" Click="AddFilterButton_Click" >
+                            <Button.Content>
+                                <Image Source="/Assets/ProFX/AddFilterIcon.png" Stretch="Uniform" Width="76"/>
+                            </Button.Content>
+                        </Button>
+                    </StackPanel>
+                </Grid>
+                
+                <!-- Secondery view -->
+                <Grid x:Name="SeconderyPage" Visibility="Collapsed">
+                    <Grid.RenderTransform>
+                        <CompositeTransform/>
+                    </Grid.RenderTransform>
+
+                    <!-- Content view -->
+                    <Grid x:Name="SeconderyContentView"/>
+                </Grid>
+            </Grid>
+
         </Grid>
+        
     </Grid>
 
 </phone:PhoneApplicationPage>

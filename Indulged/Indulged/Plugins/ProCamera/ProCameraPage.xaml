@@ -93,6 +93,7 @@
             <Border.RenderTransform>
                 <CompositeTransform/>
             </Border.RenderTransform>
+            
             <Border.BorderBrush>
                 <SolidColorBrush Color="#448ccb" Opacity="0.7"/>
             </Border.BorderBrush>
