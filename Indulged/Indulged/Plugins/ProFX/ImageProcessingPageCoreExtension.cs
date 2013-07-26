@@ -22,8 +22,15 @@ namespace Indulged.Plugins.ProFX
         // Original Photo
         private BitmapImage originalImage;
 
-        // Editing session
-        private EditingSession session;
+        // Sampled preview image
+        private WriteableBitmap originalPreviewBitmap;
+
+        // Preview image showed in the view finder
+        private WriteableBitmap currentPreviewBitmap;
+
+        // Buffer
+        private MemoryStream previewStream;
+        private IBuffer previewBuffer;
 
         // Available filters
         public static List<FilterBase> AvailableFilters = new List<FilterBase> {
@@ -31,14 +38,47 @@ namespace Indulged.Plugins.ProFX
         };
 
         // Applied filters
-        public static List<string> AppliedFilterNames = new List<string>();
+        public static List<FilterBase> AppliedFilters = new List<FilterBase>();
 
         private void OnRequestAddFilter(object sender, AddFilterEventArgs e)
         {
-            AppliedFilterNames.Add(e.Filter.DisplayName);
+            AppliedFilters.Add(e.Filter);
 
             // Show the filter control view
             SwitchSeconderyViewWithContent(e.Filter);
+            e.Filter.OriginalImage = originalPreviewBitmap;
+            e.Filter.Buffer = previewBuffer;
+            e.Filter.OnFilterUIAdded();
         }
+
+        public static FilterBase GetAppliedFilterByName(string displayName)
+        {
+            foreach (FilterBase filter in AppliedFilters)
+            {
+                if (filter.DisplayName == displayName)
+                    return filter;
+            }
+
+            return null;
+        }
+
+        // Sample the original image
+        private void SampleOriginalImage()
+        {            
+            WriteableBitmap bmp = new WriteableBitmap(originalImage);
+            originalPreviewBitmap = bmp.Resize((int)PhotoView.RenderSize.Width, (int)PhotoView.RenderSize.Height, System.Windows.Media.Imaging.WriteableBitmapExtensions.Interpolation.Bilinear);
+
+            // Create buffer
+            previewStream = new MemoryStream();
+            originalPreviewBitmap.SaveJpeg(previewStream, originalPreviewBitmap.PixelWidth, originalPreviewBitmap.PixelHeight, 0, 75);
+            previewBuffer = previewStream.GetWindowsRuntimeBuffer();
+
+        }
+
+        private void UpdateCurrentPreviewImageExcluveFilter(FilterBase filter)
+        {
+            
+        }
+
     }
 }

@@ -14,26 +14,20 @@
         <CompositeTransform/>
     </UserControl.RenderTransform>
     
-    <Grid x:Name="LayoutRoot">        
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        
-        <Button x:Name="BackToEditorButton" BorderThickness="0" Background="Transparent" Padding="0" Margin="14"
-                        VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Column="0" Click="BackToEditorButton_Click" >
-            <Button.Content>
-                <Image Source="/Assets/ProFX/FXBackButton.png" Stretch="Uniform" Width="48"/>
-            </Button.Content>
-        </Button>
+    <Grid x:Name="LayoutRoot">
+        <TextBlock x:Name="NoMoreFiltersLabel" Text="Congrats! You've added all the filters we have!" FontWeight="Light" FontSize="36" Foreground="#448ccb"
+                   Visibility="Collapsed" TextWrapping="Wrap" Margin="40" TextAlignment="Center"
+                   HorizontalAlignment="Center" VerticalAlignment="Center" />
+
 
         <phone:LongListSelector x:Name="GalleryListView" SelectionChanged="GalleryListView_SelectionChanged"
-                                Margin="20" Grid.Column="1">
+                                Margin="20">
             <phone:LongListSelector.ItemTemplate>
                 <DataTemplate>
                     <TextBlock Foreground="#448ccb" FontSize="36" FontWeight="Light" Text="{Binding}"/>
                 </DataTemplate>
             </phone:LongListSelector.ItemTemplate>
         </phone:LongListSelector>
+        
     </Grid>
 </UserControl>

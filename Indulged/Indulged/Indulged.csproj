@@ -670,6 +670,13 @@
     <Reference Include="Nokia.InteropServices.WindowsRuntime">
       <HintPath>..\packages\NokiaImagingSDK.0.9.1\lib\wp8\$(Platform)\Nokia.InteropServices.WindowsRuntime.winmd</HintPath>
     </Reference>
+    <Reference Include="WriteableBitmapExWinPhone, Version=1.0.8.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\WriteableBitmapEx.1.0.8.0\lib\WindowsPhone8\WriteableBitmapExWinPhone.dll</HintPath>
+    </Reference>
+    <Reference Include="WriteableBitmapExWinPhoneXnaDependant">
+      <HintPath>..\packages\WriteableBitmapEx.1.0.8.0\lib\WindowsPhone8\WriteableBitmapExWinPhoneXnaDependant.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

@@ -16,21 +16,9 @@
     </local:FilterBase.RenderTransform>
 
     <Grid x:Name="LayoutRoot">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-
-        <Button x:Name="BackToEditorButton" BorderThickness="0" Background="Transparent" Padding="0" Margin="14"
-                        VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Column="0" Click="BackToEditorButton_Click" >
-            <Button.Content>
-                <Image Source="/Assets/ProFX/FXBackButton.png" Stretch="Uniform" Width="48"/>
-            </Button.Content>
-        </Button>
-
-        <StackPanel Margin="40" Grid.Column="1">
+        <StackPanel Margin="40">
             <TextBlock Foreground="#448ccb" FontWeight="Light" FontSize="36" Text="Blur Amount"/>
-            <Slider x:Name="AmountSlider" Minimum="0" Maximum="7" Value="4"/>
+            <Slider x:Name="AmountSlider" Minimum="0" Maximum="7" Value="4" SmallChange="1" LargeChange="1" ValueChanged="AmountSlider_ValueChanged" />
         </StackPanel>
 
     </Grid>

@@ -39,9 +39,8 @@ namespace Indulged.Plugins.ProFX
             originalImage.CreateOptions = BitmapCreateOptions.None;
             //PhotoView.Source = originalImage;
             
-            // Creat an in-memory editing session
-            WriteableBitmap wb = new WriteableBitmap(originalImage);
-            session = new EditingSession(wb.AsBitmap());
+            // Sampling
+            PhotoView.SizeChanged += OnPhotoViewSizeChanged;
 
             // Generate a blurred background view
             ApplyFilterToBackgroundImageAsync();
@@ -49,12 +48,14 @@ namespace Indulged.Plugins.ProFX
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
-            if (session != null)
-            {
-                session.Dispose();
-            }
-
             base.OnNavigatedFrom(e);
+        }
+
+        private void OnPhotoViewSizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            PhotoView.SizeChanged -= OnPhotoViewSizeChanged;
+            SampleOriginalImage();
+            PhotoView.Source = originalPreviewBitmap;
         }
 
         private async void ApplyFilterToBackgroundImageAsync()
@@ -101,6 +102,11 @@ namespace Indulged.Plugins.ProFX
         private void AddFilterButton_Click(object sender, RoutedEventArgs e)
         {
             ShowSeconderyViewWithContent(new FilterGalleryView());
+        }
+
+        private void BackToEditorButton_Click(object sender, RoutedEventArgs e)
+        {
+            ShowFilterListView();
         }
 
         private void OnRequestFilterListView(object sender, EventArgs e)

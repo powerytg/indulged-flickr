@@ -84,8 +84,22 @@
                         <CompositeTransform/>
                     </Grid.RenderTransform>
 
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+
+                    <Button x:Name="BackToEditorButton" BorderThickness="0" Background="Transparent" Padding="0" Margin="14"
+                        VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Column="0" Click="BackToEditorButton_Click" >
+                        <Button.Content>
+                            <Image Source="/Assets/ProFX/FXBackButton.png" Stretch="Uniform" Width="48"/>
+                        </Button.Content>
+                    </Button>
+
+
                     <!-- Content view -->
-                    <Grid x:Name="SeconderyContentView"/>
+                    <Grid x:Name="SeconderyContentView" Grid.Column="1"/>
                 </Grid>
             </Grid>
 

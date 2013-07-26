@@ -35,7 +35,7 @@ namespace Indulged.Plugins.ProFX
         {
             foreach (FilterBase filter in ImageProcessingPage.AvailableFilters)
             {
-                if (ImageProcessingPage.AppliedFilterNames.Contains(filter.DisplayName))
+                if (ImageProcessingPage.GetAppliedFilterByName(filter.DisplayName) != null)
                     continue;
 
                 filterList.Add(filter.DisplayName);
@@ -43,6 +43,17 @@ namespace Indulged.Plugins.ProFX
             }
 
             GalleryListView.ItemsSource = filterList;
+
+            if (filterList.Count == 0)
+            {
+                NoMoreFiltersLabel.Visibility = Visibility.Visible;
+                GalleryListView.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                NoMoreFiltersLabel.Visibility = Visibility.Collapsed;
+                GalleryListView.Visibility = Visibility.Visible;
+            }
         }
 
         private void BackToEditorButton_Click(object sender, RoutedEventArgs e)

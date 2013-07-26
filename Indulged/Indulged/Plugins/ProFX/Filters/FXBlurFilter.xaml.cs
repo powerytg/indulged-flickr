@@ -7,20 +7,41 @@ using System.Windows.Controls;
 using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
+using Nokia.Graphics.Imaging;
 
 namespace Indulged.Plugins.ProFX.Filters
 {
     public partial class FXBlurFilter : FilterBase
     {
+        private BlurLevel blurLevel;
+
         public FXBlurFilter()
         {
-            DisplayName = "Gaussian Blur";
             InitializeComponent();
+
+            DisplayName = "Gaussian Blur";
+            blurLevel = BlurLevel.Blur4;
         }
 
-        private void BackToEditorButton_Click(object sender, RoutedEventArgs e)
+        protected override void CreateFilter()
         {
-            ImageProcessingPage.RequestFilterListView(this, null);
+            Filter = FilterFactory.CreateBlurFilter(blurLevel);
         }
+
+        private void AmountSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            if (AmountSlider == null)
+                return;
+
+            int intValue = (int)AmountSlider.Value;
+
+            if ((BlurLevel)intValue != blurLevel)
+            {
+                blurLevel = (BlurLevel)intValue;
+                UpdatePreview();
+            }
+            
+        }
+
     }
 }
