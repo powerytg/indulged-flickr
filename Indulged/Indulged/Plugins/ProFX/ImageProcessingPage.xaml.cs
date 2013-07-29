@@ -37,8 +37,7 @@ namespace Indulged.Plugins.ProFX
             //originalImage = ProCameraPage.CapturedImage;
             originalImage = (BitmapImage)PhotoView.Source;
             originalImage.CreateOptions = BitmapCreateOptions.None;
-            //PhotoView.Source = originalImage;
-            
+
             // Sampling
             PhotoView.SizeChanged += OnPhotoViewSizeChanged;
         }
@@ -52,7 +51,7 @@ namespace Indulged.Plugins.ProFX
         {
             PhotoView.SizeChanged -= OnPhotoViewSizeChanged;
             SampleOriginalImage();
-            PhotoView.Source = originalPreviewBitmap;
+            PhotoView.Source = currentPreviewBitmap;
         }
         
         private void AddFilterButton_Click(object sender, RoutedEventArgs e)

@@ -19,6 +19,9 @@ namespace Indulged.Plugins.ProFX.Filters
         // Original Bitmap Image
         public WriteableBitmap OriginalImage { get; set; }
 
+        // Current preview image
+        public WriteableBitmap CurrentImage { get; set; }
+
         public string DisplayName { get; set; }
 
         // Filter reference
@@ -40,9 +43,18 @@ namespace Indulged.Plugins.ProFX.Filters
             {
                 CreateFilter();
 
+                // Add all previous filters
+                foreach (FilterBase filterContainer in ImageProcessingPage.AppliedFilters)
+                {
+                    if (filterContainer.Filter != this.Filter)
+                    {
+                        session.AddFilter(filterContainer.Filter);
+                    }
+                }
+
                 session.AddFilter(Filter);
-                await session.RenderToWriteableBitmapAsync(OriginalImage, OutputOption.PreserveAspectRatio);
-                OriginalImage.Invalidate();
+                await session.RenderToWriteableBitmapAsync(CurrentImage, OutputOption.PreserveAspectRatio);
+                CurrentImage.Invalidate();
             }
 
 

@@ -51,6 +51,7 @@ namespace Indulged.Plugins.ProFX
             // Show the filter control view
             SwitchSeconderyViewWithContent(e.Filter);
             e.Filter.OriginalImage = originalPreviewBitmap;
+            e.Filter.CurrentImage = currentPreviewBitmap;
             e.Filter.Buffer = previewBuffer;
             e.Filter.OnFilterUIAdded();
 
@@ -83,17 +84,12 @@ namespace Indulged.Plugins.ProFX
         {            
             WriteableBitmap bmp = new WriteableBitmap(originalImage);
             originalPreviewBitmap = bmp.Resize((int)PhotoView.RenderSize.Width, (int)PhotoView.RenderSize.Height, System.Windows.Media.Imaging.WriteableBitmapExtensions.Interpolation.Bilinear);
+            currentPreviewBitmap = bmp.Resize((int)PhotoView.RenderSize.Width, (int)PhotoView.RenderSize.Height, System.Windows.Media.Imaging.WriteableBitmapExtensions.Interpolation.Bilinear);
 
             // Create buffer
             previewStream = new MemoryStream();
-            originalPreviewBitmap.SaveJpeg(previewStream, originalPreviewBitmap.PixelWidth, originalPreviewBitmap.PixelHeight, 0, 75);
+            currentPreviewBitmap.SaveJpeg(previewStream, originalPreviewBitmap.PixelWidth, originalPreviewBitmap.PixelHeight, 0, 75);
             previewBuffer = previewStream.GetWindowsRuntimeBuffer();
-
-        }
-
-        private void UpdateCurrentPreviewImageExcluveFilter(FilterBase filter)
-        {
-            
         }
 
     }
