@@ -13,7 +13,10 @@ using Microsoft.Phone.Tasks;
 using Windows.Storage.Streams;
 using Microsoft.Xna.Framework.Media;
 using Indulged.Plugins.ProFX.Filters;
-using Indulged.Plugins.ProFX.Events; 
+using Indulged.Plugins.ProFX.Events;
+using System.Windows.Controls;
+using System.Windows.Media;
+using System.Windows; 
 
 namespace Indulged.Plugins.ProFX
 {
@@ -34,7 +37,8 @@ namespace Indulged.Plugins.ProFX
 
         // Available filters
         public static List<FilterBase> AvailableFilters = new List<FilterBase> {
-            new FXBlurFilter()
+            new FXBlurFilter(),
+            new FXColorAdjustFilter()
         };
 
         // Applied filters
@@ -49,6 +53,18 @@ namespace Indulged.Plugins.ProFX
             e.Filter.OriginalImage = originalPreviewBitmap;
             e.Filter.Buffer = previewBuffer;
             e.Filter.OnFilterUIAdded();
+
+            // Update the UI
+            FilterButton filterButton = new FilterButton();
+            filterButton.Filter = e.Filter;
+            filterButton.HorizontalContentAlignment = HorizontalAlignment.Left;
+            filterButton.FontWeight = FontWeights.Light;
+            filterButton.FontSize = 36;
+            filterButton.Content = e.Filter.DisplayName;
+            filterButton.BorderThickness = new Thickness(0);
+            filterButton.Background = new SolidColorBrush(Colors.Transparent);
+            filterButton.Margin = new Thickness(0);
+            FilterListView.Children.Insert(0, filterButton);
         }
 
         public static FilterBase GetAppliedFilterByName(string displayName)

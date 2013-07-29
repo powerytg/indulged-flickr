@@ -41,9 +41,6 @@ namespace Indulged.Plugins.ProFX
             
             // Sampling
             PhotoView.SizeChanged += OnPhotoViewSizeChanged;
-
-            // Generate a blurred background view
-            ApplyFilterToBackgroundImageAsync();
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
@@ -57,48 +54,7 @@ namespace Indulged.Plugins.ProFX
             SampleOriginalImage();
             PhotoView.Source = originalPreviewBitmap;
         }
-
-        private async void ApplyFilterToBackgroundImageAsync()
-        {
-            WriteableBitmap bmp = new WriteableBitmap(originalImage);
-
-            MemoryStream bitmapStream = new MemoryStream();
-            bmp.SaveJpeg(bitmapStream, bmp.PixelWidth, bmp.PixelHeight, 0, 50);
-            IBuffer bmpBuffer = bitmapStream.GetWindowsRuntimeBuffer();
-
-            // Output buffer
-            WriteableBitmap outputImage = new WriteableBitmap(bmp.PixelWidth, bmp.PixelHeight);
-
-            using (EditingSession editsession = new EditingSession(bmpBuffer))
-            {
-                // First add an antique effect 
-                editsession.AddFilter(FilterFactory.CreateBlurFilter(BlurLevel.Blur6));
-
-                // Finally, execute the filtering and render to a bitmap
-                await editsession.RenderToBitmapAsync(outputImage.AsBitmap());
-                outputImage.Invalidate();
-                FadeInNewImage(outputImage);
-            }
-        }
-
-        private void FadeInNewImage(WriteableBitmap newImage)
-        {
-            // Fade in the new image
-            BackgroundImage.Source = newImage;
-
-            Storyboard animation = new Storyboard();
-            animation.Duration = new Duration(TimeSpan.FromSeconds(0.3));
-
-            DoubleAnimation fadeInAnimation = new DoubleAnimation();
-            animation.Children.Add(fadeInAnimation);
-            fadeInAnimation.Duration = animation.Duration;
-            fadeInAnimation.To = 1;
-            Storyboard.SetTarget(fadeInAnimation, BackgroundImage);
-            Storyboard.SetTargetProperty(fadeInAnimation, new PropertyPath("Opacity"));
-            animation.Begin();
-
-        }
-
+        
         private void AddFilterButton_Click(object sender, RoutedEventArgs e)
         {
             ShowSeconderyViewWithContent(new FilterGalleryView());

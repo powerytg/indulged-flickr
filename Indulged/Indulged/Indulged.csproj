@@ -244,8 +244,12 @@
       <DependentUpon>ProCameraWhiteBalanceSettingsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Plugins\ProFX\Events\AddFilterEventArgs.cs" />
+    <Compile Include="Plugins\ProFX\FilterButton.cs" />
     <Compile Include="Plugins\ProFX\FilterGalleryView.xaml.cs">
       <DependentUpon>FilterGalleryView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\ProFX\Filters\FXColorAdjustFilter.xaml.cs">
+      <DependentUpon>FXColorAdjustFilter.xaml</DependentUpon>
     </Compile>
     <Compile Include="Plugins\ProFX\Filters\FilterBase.cs" />
     <Compile Include="Plugins\ProFX\Filters\FXBlurFilter.xaml.cs">
@@ -487,6 +491,10 @@
     <Page Include="Plugins\ProFX\FilterGalleryView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Plugins\ProFX\Filters\FXColorAdjustFilter.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Plugins\ProFX\Filters\FXBlurFilter.xaml">
       <SubType>Designer</SubType>
