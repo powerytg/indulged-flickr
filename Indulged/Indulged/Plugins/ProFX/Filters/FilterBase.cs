@@ -8,6 +8,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 using Windows.Storage.Streams;
+using Indulged.Plugins.ProFX.Events;
 
 namespace Indulged.Plugins.ProFX.Filters
 {
@@ -34,10 +35,37 @@ namespace Indulged.Plugins.ProFX.Filters
 
         public virtual void OnFilterUIAdded()
         {
-            UpdatePreview();
+            UpdatePreviewAsync();
         }
 
-        protected async void UpdatePreview()
+        public void OnDeleteFilter(object sender, RoutedEventArgs e)
+        {
+            DeleteFilterAsync();
+        }
+
+        public async void DeleteFilterAsync()
+        {
+            using (EditingSession session = new EditingSession(Buffer))
+            {
+                // Add all previous filters
+                foreach (FilterBase filterContainer in ImageProcessingPage.AppliedFilters)
+                {
+                    if (filterContainer != this)
+                    {
+                        session.AddFilter(filterContainer.Filter);
+                    }
+                }
+
+                await session.RenderToWriteableBitmapAsync(CurrentImage, OutputOption.PreserveAspectRatio);
+                CurrentImage.Invalidate();
+            }
+
+            var evt = new DeleteFilterEventArgs();
+            evt.Filter = this;
+            ImageProcessingPage.RequestDeleteFilter(this, evt);
+        }
+
+        protected async void UpdatePreviewAsync()
         {
             using (EditingSession session = new EditingSession(Buffer))
             {

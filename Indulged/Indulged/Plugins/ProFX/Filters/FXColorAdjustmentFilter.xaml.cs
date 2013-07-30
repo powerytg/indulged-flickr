@@ -38,7 +38,7 @@ namespace Indulged.Plugins.ProFX.Filters
                 return;
             
             redLevel = RedAmountSlider.Value;
-            UpdatePreview();
+            UpdatePreviewAsync();
         }
 
         private void GreenAmountSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
@@ -47,7 +47,7 @@ namespace Indulged.Plugins.ProFX.Filters
                 return;
 
             greenLevel = GreenAmountSlider.Value;
-            UpdatePreview();
+            UpdatePreviewAsync();
         }
 
         private void BlueAmountSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
@@ -56,7 +56,12 @@ namespace Indulged.Plugins.ProFX.Filters
                 return;
 
             blueLevel = BlueAmountSlider.Value;
-            UpdatePreview();
+            UpdatePreviewAsync();
+        }
+
+        private void DeleteButton_Click(object sender, RoutedEventArgs e)
+        {
+            DeleteFilterAsync();
         }
 
     }

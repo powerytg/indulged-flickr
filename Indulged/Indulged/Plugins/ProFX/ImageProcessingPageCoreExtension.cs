@@ -37,8 +37,11 @@ namespace Indulged.Plugins.ProFX
 
         // Available filters
         public static List<FilterBase> AvailableFilters = new List<FilterBase> {
+            new FXAutoEnhanceFilter(),
+            new FXAntiqueFilter(),
             new FXBlurFilter(),
-            new FXColorAdjustmentFilter()
+            new FXColorAdjustmentFilter(),
+            new FXLevelFilter()
         };
 
         // Applied filters
@@ -68,6 +71,29 @@ namespace Indulged.Plugins.ProFX
             filterButton.Click += OnFilterClick;
             FilterListView.Children.Insert(0, filterButton);
         }
+
+        private void OnRequestDeleteFilter(object sender, DeleteFilterEventArgs e)
+        {
+            AppliedFilters.Remove(e.Filter);
+            
+            // Find the filter button
+            FilterButton targetFilterButton = null;
+            foreach (FilterButton filterButton in FilterListView.Children)
+            {
+                if (filterButton.Filter == e.Filter)
+                {
+                    targetFilterButton = filterButton;
+                    break;
+                }
+            }
+
+            FilterListView.Children.Remove(targetFilterButton);
+
+            // Show the filter list view
+            ShowFilterListView();
+        }
+
+
 
         public static FilterBase GetAppliedFilterByName(string displayName)
         {

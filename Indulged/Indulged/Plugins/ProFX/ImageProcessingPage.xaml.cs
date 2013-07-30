@@ -19,6 +19,7 @@ namespace Indulged.Plugins.ProFX
         // Events
         public static EventHandler RequestFilterListView;
         public static EventHandler<AddFilterEventArgs> RequestAddFilter;
+        public static EventHandler<DeleteFilterEventArgs> RequestDeleteFilter;
 
         // Constructor
         public ImageProcessingPage()
@@ -28,6 +29,7 @@ namespace Indulged.Plugins.ProFX
             // Events
             RequestFilterListView += OnRequestFilterListView;
             RequestAddFilter += OnRequestAddFilter;
+            RequestDeleteFilter += OnRequestDeleteFilter;
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)

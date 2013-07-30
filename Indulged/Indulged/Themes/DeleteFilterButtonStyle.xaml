@@ -7,14 +7,14 @@
 
     <Style x:Key="FXDeleteButtonStyle" TargetType="Button">
         <Setter Property="BorderThickness" Value="0"/>
-        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Background" Value="#2a80e1"/>
         <Setter Property="Foreground">
             <Setter.Value>
-                <SolidColorBrush Color="#ed145b"/>
+                <SolidColorBrush Color="White"/>
             </Setter.Value>
         </Setter>
         <Setter Property="FontFamily" Value="{StaticResource PhoneFontFamilySemiBold}"/>
-        <Setter Property="FontSize" Value="{StaticResource PhoneFontSizeMedium}"/>
+        <Setter Property="FontSize" Value="28"/>
         <Setter Property="Padding" Value="10,5,10,6"/>
     </Style>
 </ResourceDictionary>

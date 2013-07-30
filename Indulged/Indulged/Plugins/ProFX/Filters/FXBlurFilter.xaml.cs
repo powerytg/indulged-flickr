@@ -38,10 +38,16 @@ namespace Indulged.Plugins.ProFX.Filters
             if ((BlurLevel)intValue != blurLevel)
             {
                 blurLevel = (BlurLevel)intValue;
-                UpdatePreview();
+                UpdatePreviewAsync();
             }
             
         }
 
+        private void DeleteButton_Click(object sender, RoutedEventArgs e)
+        {
+            DeleteFilterAsync();
+        }
+
+        
     }
 }

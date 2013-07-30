@@ -16,18 +16,23 @@
     </local:FilterBase.RenderTransform>
 
     <Grid x:Name="LayoutRoot">
-        <StackPanel Margin="40">
-            <TextBlock Foreground="#cccccc" FontWeight="Light" FontSize="36" Text="Red Amount"/>
-            <Slider x:Name="RedAmountSlider" Minimum="-1" Maximum="1" Value="0" Foreground="#ff4458" ValueChanged="RedAmountSlider_ValueChanged" />
+        <ScrollViewer>
+            <StackPanel Margin="14, 40, 14, 14">
+                <TextBlock Foreground="#2a80e1" FontWeight="Light" FontSize="36" Text="adjust color" Margin="0, 0, 10, 12"/>
 
-            <TextBlock Foreground="#cccccc" FontWeight="Light" FontSize="36" Text="Green Amount"/>
-            <Slider x:Name="GreenAmountSlider" Minimum="-1" Maximum="1" Value="0" Foreground="#b2f09b" ValueChanged="GreenAmountSlider_ValueChanged" />
+                <TextBlock Foreground="#cccccc" FontWeight="Light" FontSize="24" Text="Red Amount"/>
+                <Slider x:Name="RedAmountSlider" Minimum="-1" Maximum="1" Value="0" Foreground="#ff4458" ValueChanged="RedAmountSlider_ValueChanged" />
 
-            <TextBlock Foreground="#cccccc" FontWeight="Light" FontSize="36" Text="Blue Amount"/>
-            <Slider x:Name="BlueAmountSlider" Minimum="-1" Maximum="1" Value="0" Foreground="#b3dfff" ValueChanged="BlueAmountSlider_ValueChanged" />
+                <TextBlock Foreground="#cccccc" FontWeight="Light" FontSize="24" Text="Green Amount"/>
+                <Slider x:Name="GreenAmountSlider" Minimum="-1" Maximum="1" Value="0" Foreground="#b2f09b" ValueChanged="GreenAmountSlider_ValueChanged" />
 
-        </StackPanel>
+                <TextBlock Foreground="#cccccc" FontWeight="Light" FontSize="24" Text="Blue Amount"/>
+                <Slider x:Name="BlueAmountSlider" Minimum="-1" Maximum="1" Value="0" Foreground="#b3dfff" ValueChanged="BlueAmountSlider_ValueChanged" />
 
+                <Button x:Name="DeleteButton" Content="remove this filter"  Style="{StaticResource FXDeleteButtonStyle}" HorizontalAlignment="Left" Click="DeleteButton_Click"/>
+
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 
 </local:FilterBase>

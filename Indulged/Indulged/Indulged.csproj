@@ -244,8 +244,18 @@
       <DependentUpon>ProCameraWhiteBalanceSettingsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Plugins\ProFX\Events\AddFilterEventArgs.cs" />
+    <Compile Include="Plugins\ProFX\Events\DeleteFilterEventArgs.cs" />
     <Compile Include="Plugins\ProFX\FilterGalleryView.xaml.cs">
       <DependentUpon>FilterGalleryView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\ProFX\Filters\FXLevelFilter.xaml.cs">
+      <DependentUpon>FXLevelFilter.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\ProFX\Filters\FXAutoEnhanceFilter.xaml.cs">
+      <DependentUpon>FXAutoEnhanceFilter.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\ProFX\Filters\FXAntiqueFilter.xaml.cs">
+      <DependentUpon>FXAntiqueFilter.xaml</DependentUpon>
     </Compile>
     <Compile Include="Plugins\ProFX\Filters\FXColorAdjustmentFilter.xaml.cs">
       <DependentUpon>FXColorAdjustmentFilter.xaml</DependentUpon>
@@ -491,6 +501,18 @@
     <Page Include="Plugins\ProFX\FilterGalleryView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Plugins\ProFX\Filters\FXLevelFilter.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Plugins\ProFX\Filters\FXAutoEnhanceFilter.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Plugins\ProFX\Filters\FXAntiqueFilter.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Plugins\ProFX\Filters\FXColorAdjustmentFilter.xaml">
       <Generator>MSBuild:Compile</Generator>
