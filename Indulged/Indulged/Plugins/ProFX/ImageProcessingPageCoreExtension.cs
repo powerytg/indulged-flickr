@@ -38,7 +38,7 @@ namespace Indulged.Plugins.ProFX
         // Available filters
         public static List<FilterBase> AvailableFilters = new List<FilterBase> {
             new FXBlurFilter(),
-            new FXColorAdjustFilter()
+            new FXColorAdjustmentFilter()
         };
 
         // Applied filters
@@ -65,6 +65,7 @@ namespace Indulged.Plugins.ProFX
             filterButton.BorderThickness = new Thickness(0);
             filterButton.Background = new SolidColorBrush(Colors.Transparent);
             filterButton.Margin = new Thickness(0);
+            filterButton.Click += OnFilterClick;
             FilterListView.Children.Insert(0, filterButton);
         }
 
@@ -90,6 +91,12 @@ namespace Indulged.Plugins.ProFX
             previewStream = new MemoryStream();
             currentPreviewBitmap.SaveJpeg(previewStream, originalPreviewBitmap.PixelWidth, originalPreviewBitmap.PixelHeight, 0, 75);
             previewBuffer = previewStream.GetWindowsRuntimeBuffer();
+        }
+
+        private void OnFilterClick(object sender, RoutedEventArgs e)
+        {
+            FilterButton button = sender as FilterButton;
+            ShowSeconderyViewWithContent(button.Filter, 500);
         }
 
     }

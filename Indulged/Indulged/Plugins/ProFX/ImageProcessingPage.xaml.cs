@@ -56,7 +56,7 @@ namespace Indulged.Plugins.ProFX
         
         private void AddFilterButton_Click(object sender, RoutedEventArgs e)
         {
-            ShowSeconderyViewWithContent(new FilterGalleryView());
+            ShowSeconderyViewWithContent(new FilterGalleryView(), 500);
         }
 
         private void BackToEditorButton_Click(object sender, RoutedEventArgs e)

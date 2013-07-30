@@ -244,13 +244,13 @@
       <DependentUpon>ProCameraWhiteBalanceSettingsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Plugins\ProFX\Events\AddFilterEventArgs.cs" />
-    <Compile Include="Plugins\ProFX\FilterButton.cs" />
     <Compile Include="Plugins\ProFX\FilterGalleryView.xaml.cs">
       <DependentUpon>FilterGalleryView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Plugins\ProFX\Filters\FXColorAdjustFilter.xaml.cs">
-      <DependentUpon>FXColorAdjustFilter.xaml</DependentUpon>
+    <Compile Include="Plugins\ProFX\Filters\FXColorAdjustmentFilter.xaml.cs">
+      <DependentUpon>FXColorAdjustmentFilter.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Plugins\ProFX\Filters\FilterButton.cs" />
     <Compile Include="Plugins\ProFX\Filters\FilterBase.cs" />
     <Compile Include="Plugins\ProFX\Filters\FXBlurFilter.xaml.cs">
       <DependentUpon>FXBlurFilter.xaml</DependentUpon>
@@ -492,7 +492,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Plugins\ProFX\Filters\FXColorAdjustFilter.xaml">
+    <Page Include="Plugins\ProFX\Filters\FXColorAdjustmentFilter.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -548,6 +548,9 @@
     <ApplicationDefinition Include="Themes\CameraSubsettingsButtonStyle.xaml">
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <ApplicationDefinition Include="Themes\DeleteFilterButtonStyle.xaml">
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
     <Page Include="Themes\PhotoNavigatorStyle.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -571,9 +574,11 @@
     <Content Include="Assets\ProCamera\WB-Shade.png" />
     <Content Include="Assets\ProCamera\WB-Tungsten-Selected.png" />
     <Content Include="Assets\ProCamera\WB-Tungsten.png" />
-    <Content Include="Assets\ProFX\AddFilterIcon.png" />
     <Content Include="Assets\ProFX\FXBackButton.png" />
+    <Content Include="Assets\ProFX\FXBackButton2.png" />
+    <Content Include="Assets\ProFX\FXDeleteButton.png" />
     <Content Include="Assets\ProFX\FXForwardButton.png" />
+    <Content Include="Assets\ProFX\FXNextButton.png" />
     <Content Include="Assets\ProFX\IndulgedFXLogo.png" />
     <Content Include="Assets\ProFX\SelectedFilterIcon.png" />
     <Content Include="Assets\SamplePhoto.jpg" />

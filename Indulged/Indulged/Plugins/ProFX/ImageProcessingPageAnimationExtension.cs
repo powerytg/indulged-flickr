@@ -11,34 +11,42 @@ namespace Indulged.Plugins.ProFX
 {
     public partial class ImageProcessingPage
     {
-        private void ShowSeconderyViewWithContent(FrameworkElement contentElement)
+        private void ShowSeconderyViewWithContent(FrameworkElement contentElement, double height)
         {
             double w = LayoutRoot.ActualWidth;
+            double h = LayoutRoot.ActualHeight;
 
             SeconderyContentView.Children.Clear();
             SeconderyContentView.Children.Add(contentElement);
-            //contentElement.Width = SeconderyContentView.ActualWidth;
-            //contentElement.Height = SeconderyContentView.ActualHeight;
 
             CompositeTransform ct = (CompositeTransform)SeconderyPage.RenderTransform;
-            ct.TranslateX = w;
+            ct.TranslateY = h;
             SeconderyPage.Visibility = Visibility.Visible;
 
             Storyboard animation = new Storyboard();
-            animation.Duration = new Duration(TimeSpan.FromSeconds(0.3));
+            animation.Duration = new Duration(TimeSpan.FromSeconds(0.6));
 
-            DoubleAnimation editorAnimation = new DoubleAnimation();
+            // Page container animation
+            DoubleAnimation containerAnimation = new DoubleAnimation();
+            containerAnimation.Duration = new Duration(TimeSpan.FromSeconds(0.2));
+            containerAnimation.To = height;
+            containerAnimation.EasingFunction = new QuadraticEase() { EasingMode = EasingMode.EaseInOut };
+            Storyboard.SetTarget(containerAnimation, PageContainer);
+            Storyboard.SetTargetProperty(containerAnimation, new PropertyPath("(UIElement.Height)"));
+            animation.Children.Add(containerAnimation);
+
+            DoubleAnimationUsingKeyFrames editorAnimation = new DoubleAnimationUsingKeyFrames();
             editorAnimation.Duration = animation.Duration;
-            editorAnimation.To = -w;
+            editorAnimation.KeyFrames.Add(new EasingDoubleKeyFrame { KeyTime = TimeSpan.FromSeconds(0.2), Value = -w, EasingFunction = new CubicEase() { EasingMode = EasingMode.EaseOut } });
             Storyboard.SetTarget(editorAnimation, EditorPage);
             Storyboard.SetTargetProperty(editorAnimation, new PropertyPath("(UIElement.RenderTransform).(CompositeTransform.TranslateX)"));
             animation.Children.Add(editorAnimation);
 
-            DoubleAnimation galleryAnimation = new DoubleAnimation();
+            DoubleAnimationUsingKeyFrames galleryAnimation = new DoubleAnimationUsingKeyFrames();
             galleryAnimation.Duration = animation.Duration;
-            galleryAnimation.To = 0;
+            galleryAnimation.KeyFrames.Add(new EasingDoubleKeyFrame { KeyTime = TimeSpan.FromSeconds(0.4), Value = 0, EasingFunction = new CubicEase() { EasingMode = EasingMode.EaseIn } });
             Storyboard.SetTarget(galleryAnimation, SeconderyPage);
-            Storyboard.SetTargetProperty(galleryAnimation, new PropertyPath("(UIElement.RenderTransform).(CompositeTransform.TranslateX)"));
+            Storyboard.SetTargetProperty(galleryAnimation, new PropertyPath("(UIElement.RenderTransform).(CompositeTransform.TranslateY)"));
             animation.Children.Add(galleryAnimation);
 
             animation.Begin();
@@ -47,25 +55,32 @@ namespace Indulged.Plugins.ProFX
         private void ShowFilterListView()
         {
             double w = LayoutRoot.ActualWidth;
+            double h = LayoutRoot.ActualHeight;
+
             CompositeTransform ct = (CompositeTransform)EditorPage.RenderTransform;
             ct.TranslateX = -w;
 
-            Storyboard animation = new Storyboard();
-            animation.Duration = new Duration(TimeSpan.FromSeconds(0.3));
+            ct = (CompositeTransform)SeconderyPage.RenderTransform;
+            ct.TranslateY = h;
 
-            DoubleAnimation editorAnimation = new DoubleAnimation();
+            Storyboard animation = new Storyboard();
+            animation.Duration = new Duration(TimeSpan.FromSeconds(0.5));
+
+            // Page container animation
+            DoubleAnimation containerAnimation = new DoubleAnimation();
+            containerAnimation.Duration = new Duration(TimeSpan.FromSeconds(0.2));
+            containerAnimation.To = (ImageProcessingPage.AppliedFilters.Count + 1) * AddFilterButton.ActualHeight;
+            containerAnimation.EasingFunction = new QuadraticEase() { EasingMode = EasingMode.EaseInOut };
+            Storyboard.SetTarget(containerAnimation, PageContainer);
+            Storyboard.SetTargetProperty(containerAnimation, new PropertyPath("(UIElement.Height)"));
+            animation.Children.Add(containerAnimation);
+
+            DoubleAnimationUsingKeyFrames editorAnimation = new DoubleAnimationUsingKeyFrames();
             editorAnimation.Duration = animation.Duration;
-            editorAnimation.To = 0;
+            editorAnimation.KeyFrames.Add(new EasingDoubleKeyFrame { KeyTime = TimeSpan.FromSeconds(0.4), Value = 0, EasingFunction = new CubicEase() { EasingMode = EasingMode.EaseOut } });
             Storyboard.SetTarget(editorAnimation, EditorPage);
             Storyboard.SetTargetProperty(editorAnimation, new PropertyPath("(UIElement.RenderTransform).(CompositeTransform.TranslateX)"));
             animation.Children.Add(editorAnimation);
-
-            DoubleAnimation galleryAnimation = new DoubleAnimation();
-            galleryAnimation.Duration = animation.Duration;
-            galleryAnimation.To = w;
-            Storyboard.SetTarget(galleryAnimation, SeconderyPage);
-            Storyboard.SetTargetProperty(galleryAnimation, new PropertyPath("(UIElement.RenderTransform).(CompositeTransform.TranslateX)"));
-            animation.Children.Add(galleryAnimation);
 
             animation.Begin();
         }

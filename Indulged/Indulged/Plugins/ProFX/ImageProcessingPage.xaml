@@ -46,16 +46,16 @@
                 <SolidColorBrush Color="Black" Opacity="0.7"/>
             </Grid.Background>
 
-            <Image Source="/Assets/ProFX/IndulgedFXLogo.png" Stretch="None" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="26"/>
+            <Image Source="/Assets/ProFX/IndulgedFXLogo.png" Stretch="None" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="24"/>
 
             <!-- Next button -->
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0, 0, 0, 0">
-                <TextBlock Text="next" FontWeight="Bold" FontSize="36" Foreground="#448ccb"
+                <TextBlock Text="next" FontWeight="Light" FontSize="36" Foreground="#2a80e1"
                            VerticalAlignment="Center" Margin="0, 0, 6, 0" />
                 <Button x:Name="NextButton" BorderThickness="0" Background="Transparent" Padding="0" Margin="0"
                         VerticalAlignment="Center" HorizontalAlignment="Right">
                     <Button.Content>
-                        <Image Source="/Assets/ProFX/AddFilterIcon.png" Stretch="Uniform" Width="76"/>
+                        <Image Source="/Assets/ProFX/FXNextButton.png" Stretch="Uniform" Width="76"/>
                     </Button.Content>
                 </Button>
             </StackPanel>
@@ -64,7 +64,7 @@
         
 
         <!-- Processor section-->
-        <Grid VerticalAlignment="Bottom">
+        <Grid x:Name="PageContainer" Height="90" VerticalAlignment="Bottom">
             <Grid.Background>
                 <SolidColorBrush Color="Black" Opacity="0.7"/>
             </Grid.Background>
@@ -77,7 +77,7 @@
 
                 <!-- Filter list -->
                 <StackPanel x:Name="FilterListView" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="10">
-                    <Button x:Name="AddFilterButton" Foreground="#448ccb" FontSize="36" Content="add filter ..." FontWeight="Light" BorderThickness="0" Background="Transparent"
+                    <Button x:Name="AddFilterButton" Foreground="#2a80e1" FontSize="36" Content="add filter ..." FontWeight="Light" BorderThickness="0" Background="Transparent"
                             HorizontalContentAlignment="Left" Margin="0" 
                             Click="AddFilterButton_Click" />
                 </StackPanel>
@@ -99,7 +99,7 @@
                 <Button x:Name="BackToEditorButton" BorderThickness="0" Background="Transparent" Padding="0" Margin="14"
                         VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Column="0" Click="BackToEditorButton_Click" >
                     <Button.Content>
-                        <Image Source="/Assets/ProFX/FXBackButton.png" Stretch="Uniform" Width="48"/>
+                        <Image Source="/Assets/ProFX/FXBackButton2.png" Stretch="None"/>
                     </Button.Content>
                 </Button>
 

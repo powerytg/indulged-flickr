@@ -1,10 +1,9 @@
-﻿<local:FilterBase x:Class="Indulged.Plugins.ProFX.Filters.FXBlurFilter"
+﻿<local:FilterBase x:Class="Indulged.Plugins.ProFX.Filters.FXColorAdjustmentFilter"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:local="clr-namespace:Indulged.Plugins.ProFX.Filters"
-    xmlns:fx="clr-namespace:Indulged.Plugins.ProFX"
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"                  
     mc:Ignorable="d"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
@@ -17,16 +16,16 @@
     </local:FilterBase.RenderTransform>
 
     <Grid x:Name="LayoutRoot">
-        <StackPanel Margin="14, 40, 14, 14">
-            <StackPanel Orientation="Horizontal" Margin="0, 0, 0, 12">
-                <TextBlock Foreground="#2a80e1" FontWeight="Light" FontSize="36" Text="gaussian blur" Margin="0, 0, 10, 0"/>
-                <Button x:Name="DeleteButton" Content="remove"  Style="{StaticResource FXDeleteButtonStyle}" HorizontalAlignment="Left"/>
-            </StackPanel>
-            
-            <TextBlock Foreground="#cccccc" FontWeight="Light" FontSize="24" Text="Blur Amount"/>
-            <Slider x:Name="AmountSlider" Minimum="0" Maximum="7" Value="4" SmallChange="1" LargeChange="1" ValueChanged="AmountSlider_ValueChanged" Margin="0, 0, 0, 40" />
-            
-            
+        <StackPanel Margin="40">
+            <TextBlock Foreground="#cccccc" FontWeight="Light" FontSize="36" Text="Red Amount"/>
+            <Slider x:Name="RedAmountSlider" Minimum="-1" Maximum="1" Value="0" Foreground="#ff4458" ValueChanged="RedAmountSlider_ValueChanged" />
+
+            <TextBlock Foreground="#cccccc" FontWeight="Light" FontSize="36" Text="Green Amount"/>
+            <Slider x:Name="GreenAmountSlider" Minimum="-1" Maximum="1" Value="0" Foreground="#b2f09b" ValueChanged="GreenAmountSlider_ValueChanged" />
+
+            <TextBlock Foreground="#cccccc" FontWeight="Light" FontSize="36" Text="Blue Amount"/>
+            <Slider x:Name="BlueAmountSlider" Minimum="-1" Maximum="1" Value="0" Foreground="#b3dfff" ValueChanged="BlueAmountSlider_ValueChanged" />
+
         </StackPanel>
 
     </Grid>
