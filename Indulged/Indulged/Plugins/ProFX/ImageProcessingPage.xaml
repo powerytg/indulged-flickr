@@ -38,7 +38,7 @@
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Black">
         <!-- Preview section -->
-        <Image x:Name="PhotoView" />
+        <Image x:Name="PhotoView" Source="/Assets/SamplePhoto.jpg" />
 
         <!-- Logo-->
         <Grid VerticalAlignment="Top">

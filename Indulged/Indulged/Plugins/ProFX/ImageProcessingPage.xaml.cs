@@ -37,20 +37,20 @@ namespace Indulged.Plugins.ProFX
         {
             base.OnNavigatedTo(e);
 
-            originalImage = ProCameraPage.CapturedImage;
-            //originalImage = (BitmapImage)PhotoView.Source;
+            //originalImage = ProCameraPage.CapturedImage;
+            originalImage = (BitmapImage)PhotoView.Source;
             originalImage.CreateOptions = BitmapCreateOptions.None;
 
             // Sampling
-            if (originalImage != null && !double.IsNaN(originalImage.PixelWidth) && !double.IsNaN(originalImage.PixelHeight))
-            {
-                SampleOriginalImage();
-                PhotoView.Source = currentPreviewBitmap;
-            }
-            else
-            {
+            //if (originalImage != null && !double.IsNaN(originalImage.PixelWidth) && !double.IsNaN(originalImage.PixelHeight))
+            //{
+            //    SampleOriginalImage();
+            //    PhotoView.Source = currentPreviewBitmap;
+            //}
+            //else
+            //{
                 PhotoView.SizeChanged += OnPhotoViewSizeChanged;
-            }
+            //}
 
         }
 
