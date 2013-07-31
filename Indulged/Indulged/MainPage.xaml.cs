@@ -36,8 +36,8 @@ namespace Indulged
         {
             base.OnNavigatedTo(e);
 
-            NavigationService.Navigate(new Uri("/Plugins/ProFX/ImageProcessingPage.xaml", UriKind.Relative));
-            return;
+            //NavigationService.Navigate(new Uri("/Plugins/ProFX/ImageProcessingPage.xaml", UriKind.Relative));
+            //return;
 
             // Try to get credenticls
             bool tokenRetrieved = Anaconda.AnacondaCore.RetrieveAcessCredentials();

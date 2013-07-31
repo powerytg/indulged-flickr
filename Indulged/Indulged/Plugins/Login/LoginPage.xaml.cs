@@ -74,13 +74,15 @@ namespace Indulged.Plugins.Login
 
         private void accessTokenGranted(object sender, EventArgs e)
         {
-            progressView.Close();
+            if(progressView != null)
+                progressView.Close();
             NavigationService.GoBack();
         }
 
         private void accessTokenFailed(object sender, EventArgs e)
         {
-            progressView.Close();
+            if (progressView != null)
+                progressView.Close();
             NavigationService.GoBack();
 
             ModalPopup.Show("Cannot authenticate with Flickr at this time", "Error", new List<string> {"Confirm"} );

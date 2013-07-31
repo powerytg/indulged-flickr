@@ -1,4 +1,5 @@
-﻿using Indulged.Plugins.ProFX.Events;
+﻿using Indulged.Plugins.ProCamera;
+using Indulged.Plugins.ProFX.Events;
 using Microsoft.Phone.Controls;
 using Nokia.Graphics.Imaging;
 using Nokia.InteropServices.WindowsRuntime;
@@ -36,12 +37,21 @@ namespace Indulged.Plugins.ProFX
         {
             base.OnNavigatedTo(e);
 
-            //originalImage = ProCameraPage.CapturedImage;
-            originalImage = (BitmapImage)PhotoView.Source;
+            originalImage = ProCameraPage.CapturedImage;
+            //originalImage = (BitmapImage)PhotoView.Source;
             originalImage.CreateOptions = BitmapCreateOptions.None;
 
             // Sampling
-            PhotoView.SizeChanged += OnPhotoViewSizeChanged;
+            if (originalImage != null && !double.IsNaN(originalImage.PixelWidth) && !double.IsNaN(originalImage.PixelHeight))
+            {
+                SampleOriginalImage();
+                PhotoView.Source = currentPreviewBitmap;
+            }
+            else
+            {
+                PhotoView.SizeChanged += OnPhotoViewSizeChanged;
+            }
+
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)

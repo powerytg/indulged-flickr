@@ -60,9 +60,6 @@ namespace Indulged.Plugins.ProFX
             CompositeTransform ct = (CompositeTransform)EditorPage.RenderTransform;
             ct.TranslateX = -w;
 
-            ct = (CompositeTransform)SeconderyPage.RenderTransform;
-            ct.TranslateY = h;
-
             Storyboard animation = new Storyboard();
             animation.Duration = new Duration(TimeSpan.FromSeconds(0.5));
 
@@ -75,6 +72,13 @@ namespace Indulged.Plugins.ProFX
             Storyboard.SetTargetProperty(containerAnimation, new PropertyPath("(UIElement.Height)"));
             animation.Children.Add(containerAnimation);
 
+            DoubleAnimation seconderyAnimation = new DoubleAnimation();
+            seconderyAnimation.Duration = new Duration(TimeSpan.FromSeconds(0.2));
+            seconderyAnimation.To = h;
+            Storyboard.SetTarget(seconderyAnimation, SeconderyPage);
+            Storyboard.SetTargetProperty(seconderyAnimation, new PropertyPath("(UIElement.RenderTransform).(CompositeTransform.TranslateY)"));
+            animation.Children.Add(seconderyAnimation);
+
             DoubleAnimationUsingKeyFrames editorAnimation = new DoubleAnimationUsingKeyFrames();
             editorAnimation.Duration = animation.Duration;
             editorAnimation.KeyFrames.Add(new EasingDoubleKeyFrame { KeyTime = TimeSpan.FromSeconds(0.4), Value = 0, EasingFunction = new CubicEase() { EasingMode = EasingMode.EaseOut } });
@@ -85,16 +89,15 @@ namespace Indulged.Plugins.ProFX
             animation.Begin();
         }
 
-        private void SwitchSeconderyViewWithContent(FrameworkElement newContentView)
+        private void SwitchSeconderyViewWithContent(FrameworkElement newContentView, double height)
         {
             double w = LayoutRoot.ActualWidth;
+            double h = LayoutRoot.ActualHeight;
 
             FrameworkElement oldContentView = (FrameworkElement)SeconderyContentView.Children[0];
 
             newContentView.Opacity = 0;
             SeconderyContentView.Children.Add(newContentView);
-            //contentElement.Width = SeconderyContentView.ActualWidth;
-            //contentElement.Height = SeconderyContentView.ActualHeight;
 
             CompositeTransform ct = (CompositeTransform)newContentView.RenderTransform;
             ct.TranslateX = w;
@@ -103,11 +106,20 @@ namespace Indulged.Plugins.ProFX
             Storyboard animation = new Storyboard();
             animation.Duration = new Duration(TimeSpan.FromSeconds(0.3));
 
+            // Page container animation
+            DoubleAnimation containerAnimation = new DoubleAnimation();
+            containerAnimation.Duration = new Duration(TimeSpan.FromSeconds(0.2));
+            containerAnimation.To = height;
+            containerAnimation.EasingFunction = new QuadraticEase() { EasingMode = EasingMode.EaseOut };
+            Storyboard.SetTarget(containerAnimation, PageContainer);
+            Storyboard.SetTargetProperty(containerAnimation, new PropertyPath("(UIElement.Height)"));
+            animation.Children.Add(containerAnimation);
+
             DoubleAnimation oldAnimation = new DoubleAnimation();
             oldAnimation.Duration = animation.Duration;
-            oldAnimation.To = -w;
+            oldAnimation.To = height;
             Storyboard.SetTarget(oldAnimation, oldContentView);
-            Storyboard.SetTargetProperty(oldAnimation, new PropertyPath("(UIElement.RenderTransform).(CompositeTransform.TranslateX)"));
+            Storyboard.SetTargetProperty(oldAnimation, new PropertyPath("(UIElement.RenderTransform).(CompositeTransform.TranslateY)"));
             animation.Children.Add(oldAnimation);
 
             DoubleAnimation galleryAnimation = new DoubleAnimation();

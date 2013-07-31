@@ -41,7 +41,11 @@ namespace Indulged.Plugins.ProFX
             new FXAntiqueFilter(),
             new FXBlurFilter(),
             new FXColorAdjustmentFilter(),
-            new FXLevelFilter()
+            new FXLevelFilter(),
+            new FXCartoonFilter(),
+            new FXColorBoostFilter(),
+            new FXColorizationmentFilter(),
+            new FXExposureFilter()
         };
 
         // Applied filters
@@ -52,7 +56,7 @@ namespace Indulged.Plugins.ProFX
             AppliedFilters.Add(e.Filter);
 
             // Show the filter control view
-            SwitchSeconderyViewWithContent(e.Filter);
+            SwitchSeconderyViewWithContent(e.Filter, e.Filter.Height);
             e.Filter.OriginalImage = originalPreviewBitmap;
             e.Filter.CurrentImage = currentPreviewBitmap;
             e.Filter.Buffer = previewBuffer;
@@ -110,8 +114,25 @@ namespace Indulged.Plugins.ProFX
         private void SampleOriginalImage()
         {            
             WriteableBitmap bmp = new WriteableBitmap(originalImage);
-            originalPreviewBitmap = bmp.Resize((int)PhotoView.RenderSize.Width, (int)PhotoView.RenderSize.Height, System.Windows.Media.Imaging.WriteableBitmapExtensions.Interpolation.Bilinear);
-            currentPreviewBitmap = bmp.Resize((int)PhotoView.RenderSize.Width, (int)PhotoView.RenderSize.Height, System.Windows.Media.Imaging.WriteableBitmapExtensions.Interpolation.Bilinear);
+            double ratio = (double)bmp.PixelWidth / (double)bmp.PixelHeight;
+            double w = Application.Current.RootVisual.RenderSize.Width;
+            double h = Application.Current.RootVisual.RenderSize.Height;
+            double previewWidth;
+            double previewHeight;
+
+            if (w / ratio > h)
+            {
+                previewHeight = h;
+                previewWidth = h * ratio;
+            }
+            else
+            {
+                previewWidth = w;
+                previewHeight = w / ratio;
+            }
+
+            originalPreviewBitmap = bmp.Resize((int)previewWidth, (int)previewHeight, System.Windows.Media.Imaging.WriteableBitmapExtensions.Interpolation.Bilinear);
+            currentPreviewBitmap = bmp.Resize((int)previewWidth, (int)previewHeight, System.Windows.Media.Imaging.WriteableBitmapExtensions.Interpolation.Bilinear);
 
             // Create buffer
             previewStream = new MemoryStream();
@@ -122,7 +143,7 @@ namespace Indulged.Plugins.ProFX
         private void OnFilterClick(object sender, RoutedEventArgs e)
         {
             FilterButton button = sender as FilterButton;
-            ShowSeconderyViewWithContent(button.Filter, 500);
+            ShowSeconderyViewWithContent(button.Filter, button.Filter.Height);
         }
 
     }

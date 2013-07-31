@@ -27,6 +27,7 @@ namespace Indulged.Plugins.ProCamera
             if (cam != null)
             {
                 cam.Dispose();
+                cam = null;
                 seq = null;
             }
         }

@@ -248,6 +248,18 @@
     <Compile Include="Plugins\ProFX\FilterGalleryView.xaml.cs">
       <DependentUpon>FilterGalleryView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Plugins\ProFX\Filters\FXExposureFilter.xaml.cs">
+      <DependentUpon>FXExposureFilter.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\ProFX\Filters\FXColorizationFilter.xaml.cs">
+      <DependentUpon>FXColorizationFilter.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\ProFX\Filters\FXColorBoostFilter.xaml.cs">
+      <DependentUpon>FXColorBoostFilter.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\ProFX\Filters\FXCartoonFilter.xaml.cs">
+      <DependentUpon>FXCartoonFilter.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Plugins\ProFX\Filters\FXLevelFilter.xaml.cs">
       <DependentUpon>FXLevelFilter.xaml</DependentUpon>
     </Compile>
@@ -502,6 +514,22 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Plugins\ProFX\Filters\FXExposureFilter.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Plugins\ProFX\Filters\FXColorizationFilter.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Plugins\ProFX\Filters\FXColorBoostFilter.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Plugins\ProFX\Filters\FXCartoonFilter.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Plugins\ProFX\Filters\FXLevelFilter.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -688,6 +716,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="Coding4Fun.Toolkit.Controls">
+      <HintPath>..\packages\Coding4Fun.Toolkit.Controls.2.0.6\lib\windowsphone8\Coding4Fun.Toolkit.Controls.dll</HintPath>
+    </Reference>
     <Reference Include="CS.Windows.Controls">
       <HintPath>..\packages\WindowsPhoneControls.0.3.0\lib\sl4-windowsphone71\CS.Windows.Controls.dll</HintPath>
     </Reference>
