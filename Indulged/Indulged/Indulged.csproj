@@ -248,6 +248,12 @@
     <Compile Include="Plugins\ProFX\FilterGalleryView.xaml.cs">
       <DependentUpon>FilterGalleryView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Plugins\ProFX\Filters\FXSolarizeFilter.xaml.cs">
+      <DependentUpon>FXSolarizeFilter.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\ProFX\Filters\FXSharpenFilter.xaml.cs">
+      <DependentUpon>FXSharpenFilter.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Plugins\ProFX\Filters\FXSepiaFilter.xaml.cs">
       <DependentUpon>FXSepiaFilter.xaml</DependentUpon>
     </Compile>
@@ -543,6 +549,14 @@
     <Page Include="Plugins\ProFX\FilterGalleryView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Plugins\ProFX\Filters\FXSolarizeFilter.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Plugins\ProFX\Filters\FXSharpenFilter.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Plugins\ProFX\Filters\FXSepiaFilter.xaml">
       <Generator>MSBuild:Compile</Generator>
