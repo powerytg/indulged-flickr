@@ -46,5 +46,10 @@ namespace Indulged.API.Anaconda
         // Group 
         public EventHandler<GetGroupInfoEventArgs> GroupInfoReturned;
         public EventHandler<GetGroupPhotosEventArgs> GroupPhotoReturned;
+
+        // Upload
+        public EventHandler<UploadPhotoEventArgs> PhotoUploaded;
+        public EventHandler<UploadProgressEventArgs> PhotoUploadProgress;
+        public EventHandler<UploadPhotoErrorEventArgs> PhotoUploadError;
     }
 }

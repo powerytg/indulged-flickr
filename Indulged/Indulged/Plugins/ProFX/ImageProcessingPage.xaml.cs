@@ -1,4 +1,5 @@
-﻿using Indulged.Plugins.ProCamera;
+﻿using Indulged.API.Anaconda;
+using Indulged.Plugins.ProCamera;
 using Indulged.Plugins.ProFX.Events;
 using Microsoft.Phone.Controls;
 using Nokia.Graphics.Imaging;
@@ -79,6 +80,17 @@ namespace Indulged.Plugins.ProFX
         private void OnRequestFilterListView(object sender, EventArgs e)
         {
             ShowFilterListView();
+        }
+
+        private void NextButton_Click(object sender, RoutedEventArgs e)
+        {
+            string sessionId = Guid.NewGuid().ToString().Replace("-", null);
+
+            MemoryStream photoStream = new MemoryStream();
+            WriteableBitmap originalBitmap = new WriteableBitmap(originalImage);
+            originalBitmap.SaveJpeg(photoStream, originalBitmap.PixelWidth, originalBitmap.PixelHeight, 0, 85);
+            photoStream.Seek(0, SeekOrigin.Begin);
+            Anaconda.AnacondaCore.UploadPhoto(sessionId, "test.jpg", photoStream, null);
         }
 
     }

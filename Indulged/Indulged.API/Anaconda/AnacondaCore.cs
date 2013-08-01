@@ -77,8 +77,7 @@ namespace Indulged.API.Anaconda
                 if (we != null)
                 {
                     var resp = we.Response as HttpWebResponse;
-                    var code = resp.StatusCode;
-                    MessageBox.Show("RespCallback Exception raised! Message:{0}" + we.Message);
+                    var code = resp.StatusCode;                    
                     Debug.WriteLine("Status:{0}", we.Status);
 
                     return resp;

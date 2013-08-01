@@ -97,6 +97,7 @@
     <Compile Include="Anaconda\AnacondaCoreStorageExtension.cs" />
     <Compile Include="Anaconda\AnacondaCorePhotoSetExtension.cs" />
     <Compile Include="Anaconda\AnacondaCoreTagExtension.cs" />
+    <Compile Include="Anaconda\AnacondaCoreUploadExtension.cs" />
     <Compile Include="Anaconda\AnacondaCoreUserExtension.cs" />
     <Compile Include="Anaconda\Events\GetDiscoveryStreamEventArgs.cs" />
     <Compile Include="Anaconda\Events\GetEXIFEventArgs.cs" />
@@ -110,6 +111,9 @@
     <Compile Include="Anaconda\Events\GroupSearchEventArgs.cs" />
     <Compile Include="Anaconda\Events\PhotoSearchEventArgs.cs" />
     <Compile Include="Anaconda\Events\PhotoSetListEventArgs.cs" />
+    <Compile Include="Anaconda\Events\UploadPhotoErrorEventArgs.cs" />
+    <Compile Include="Anaconda\Events\UploadPhotoEventArgs.cs" />
+    <Compile Include="Anaconda\Events\UploadProgressEventArgs.cs" />
     <Compile Include="Cinderella\Cinderella.cs" />
     <Compile Include="Cinderella\CinderellaConstants.cs" />
     <Compile Include="Cinderella\CinderellaDiscoveryExtension.cs" />
