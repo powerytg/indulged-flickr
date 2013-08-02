@@ -14,8 +14,8 @@
         <CompositeTransform/>
     </UserControl.RenderTransform>
     
-    <Grid x:Name="LayoutRoot">
-        <TextBlock x:Name="NoMoreFiltersLabel" Text="Congrats! You've added all the filters we have!" FontWeight="Light" FontSize="36" Foreground="#448ccb"
+    <Grid x:Name="LayoutRoot">        
+            <TextBlock x:Name="NoMoreFiltersLabel" Text="Congrats! You've added all the filters we have!" FontWeight="Light" FontSize="36" Foreground="#448ccb"
                    Visibility="Collapsed" TextWrapping="Wrap" Margin="40" TextAlignment="Center"
                    HorizontalAlignment="Center" VerticalAlignment="Center" />
 
