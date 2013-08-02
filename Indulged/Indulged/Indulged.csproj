@@ -692,6 +692,9 @@
     <ApplicationDefinition Include="Themes\DeleteFilterButtonStyle.xaml">
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <ApplicationDefinition Include="Themes\AvariceSliderStyle.xaml">
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
     <Page Include="Themes\PhotoNavigatorStyle.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -703,6 +706,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\Common\SliderThumb.png" />
     <Content Include="Assets\ProCamera\WB-Cloudy-Selected.png" />
     <Content Include="Assets\ProCamera\WB-Cloudy.png" />
     <Content Include="Assets\ProCamera\WB-Daylight-Selected.png" />

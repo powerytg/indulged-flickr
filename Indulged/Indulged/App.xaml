@@ -21,6 +21,7 @@
                 <ResourceDictionary Source="Themes/CameraShutterButtonStyle.xaml"/>
                 <ResourceDictionary Source="Themes/DeleteFilterButtonStyle.xaml"/>
                 <ResourceDictionary Source="Themes/TransparentListPickerStyle.xaml"/>
+                <ResourceDictionary Source="Themes/AvariceSliderStyle.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
             <Style x:Key="TransitionPageStyle" TargetType="phone:PhoneApplicationPage">
