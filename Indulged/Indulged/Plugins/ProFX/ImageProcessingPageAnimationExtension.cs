@@ -134,5 +134,83 @@ namespace Indulged.Plugins.ProFX
 
             animation.Begin();
         }
+
+        private void ShowUploaderPage()
+        {
+            double w = LayoutRoot.ActualWidth;
+            double h = LayoutRoot.ActualHeight;
+
+            UploaderPage.Opacity = 0;
+
+            CompositeTransform ct = (CompositeTransform)UploaderPage.RenderTransform;
+            ct.TranslateX = w;
+            UploaderPage.Opacity = 1;
+            UploaderPage.Visibility = Visibility.Visible;
+
+            Storyboard animation = new Storyboard();
+            animation.Duration = new Duration(TimeSpan.FromSeconds(0.3));
+
+            // Processor page animation
+            DoubleAnimation processorPageAnimation = new DoubleAnimation();
+            processorPageAnimation.Duration = new Duration(TimeSpan.FromSeconds(0.2));
+            processorPageAnimation.To = -w;
+            processorPageAnimation.EasingFunction = new QuadraticEase() { EasingMode = EasingMode.EaseOut };
+            Storyboard.SetTarget(processorPageAnimation, ProcessorPage);
+            Storyboard.SetTargetProperty(processorPageAnimation, new PropertyPath("(UIElement.RenderTransform).(CompositeTransform.TranslateX)"));
+            animation.Children.Add(processorPageAnimation);
+
+            DoubleAnimation uploaderPageAnimation = new DoubleAnimation();
+            uploaderPageAnimation.Duration = animation.Duration;
+            uploaderPageAnimation.To = 0;
+            Storyboard.SetTarget(uploaderPageAnimation, UploaderPage);
+            Storyboard.SetTargetProperty(uploaderPageAnimation, new PropertyPath("(UIElement.RenderTransform).(CompositeTransform.TranslateX)"));
+            animation.Children.Add(uploaderPageAnimation);
+
+            animation.Completed += (sender, e) => {
+                ProcessorPage.Visibility = Visibility.Collapsed;
+            };
+
+            animation.Begin();
+        }
+
+        private void ShowProcessorPage()
+        {
+            double w = LayoutRoot.ActualWidth;
+            double h = LayoutRoot.ActualHeight;
+
+            ProcessorPage.Opacity = 0;
+
+            CompositeTransform ct = (CompositeTransform)ProcessorPage.RenderTransform;
+            ct.TranslateX = -w;
+            ProcessorPage.Opacity = 1;
+            ProcessorPage.Visibility = Visibility.Visible;
+
+            Storyboard animation = new Storyboard();
+            animation.Duration = new Duration(TimeSpan.FromSeconds(0.3));
+
+            // Processor page animation
+            DoubleAnimation processorPageAnimation = new DoubleAnimation();
+            processorPageAnimation.Duration = animation.Duration;
+            processorPageAnimation.To = 0;
+            processorPageAnimation.EasingFunction = new QuadraticEase() { EasingMode = EasingMode.EaseOut };
+            Storyboard.SetTarget(processorPageAnimation, ProcessorPage);
+            Storyboard.SetTargetProperty(processorPageAnimation, new PropertyPath("(UIElement.RenderTransform).(CompositeTransform.TranslateX)"));
+            animation.Children.Add(processorPageAnimation);
+
+            DoubleAnimation uploaderPageAnimation = new DoubleAnimation();
+            uploaderPageAnimation.Duration = new Duration(TimeSpan.FromSeconds(0.2));
+            uploaderPageAnimation.To = w;
+            Storyboard.SetTarget(uploaderPageAnimation, UploaderPage);
+            Storyboard.SetTargetProperty(uploaderPageAnimation, new PropertyPath("(UIElement.RenderTransform).(CompositeTransform.TranslateX)"));
+            animation.Children.Add(uploaderPageAnimation);
+
+            animation.Completed += (sender, e) =>
+            {
+                UploaderPage.Visibility = Visibility.Collapsed;
+            };
+
+            animation.Begin();
+        }
+
     }
 }

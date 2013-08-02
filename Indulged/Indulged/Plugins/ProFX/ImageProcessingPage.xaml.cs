@@ -22,6 +22,7 @@ namespace Indulged.Plugins.ProFX
         public static EventHandler RequestFilterListView;
         public static EventHandler<AddFilterEventArgs> RequestAddFilter;
         public static EventHandler<DeleteFilterEventArgs> RequestDeleteFilter;
+        public static EventHandler RequestProcessorPage;
 
         // Constructor
         public ImageProcessingPage()
@@ -32,6 +33,7 @@ namespace Indulged.Plugins.ProFX
             RequestFilterListView += OnRequestFilterListView;
             RequestAddFilter += OnRequestAddFilter;
             RequestDeleteFilter += OnRequestDeleteFilter;
+            RequestProcessorPage += OnRequestProcessorPage;
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -82,8 +84,16 @@ namespace Indulged.Plugins.ProFX
             ShowFilterListView();
         }
 
+        private void OnRequestProcessorPage(object sender, EventArgs e)
+        {
+            ShowProcessorPage();
+        }
+
         private void NextButton_Click(object sender, RoutedEventArgs e)
         {
+            ShowUploaderPage();
+
+            /*
             string sessionId = Guid.NewGuid().ToString().Replace("-", null);
 
             MemoryStream photoStream = new MemoryStream();
@@ -91,6 +101,7 @@ namespace Indulged.Plugins.ProFX
             originalBitmap.SaveJpeg(photoStream, originalBitmap.PixelWidth, originalBitmap.PixelHeight, 0, 85);
             photoStream.Seek(0, SeekOrigin.Begin);
             Anaconda.AnacondaCore.UploadPhoto(sessionId, "test.jpg", photoStream, null);
+             * */
         }
 
     }

@@ -332,6 +332,9 @@
     <Compile Include="Plugins\ProCamera\ProCameraSettingsViewBase.cs" />
     <Compile Include="Plugins\ProFX\ImageProcessingPageAnimationExtension.cs" />
     <Compile Include="Plugins\ProFX\ImageProcessingPageCoreExtension.cs" />
+    <Compile Include="Plugins\ProFX\ImageUploaderView.xaml.cs">
+      <DependentUpon>ImageUploaderView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Plugins\Search\GroupSearchResultView.xaml.cs">
       <DependentUpon>GroupSearchResultView.xaml</DependentUpon>
     </Compile>
@@ -647,6 +650,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Plugins\ProCamera\ProCameraPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Plugins\ProFX\ImageUploaderView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
