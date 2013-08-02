@@ -44,7 +44,7 @@
             </Grid.RenderTransform>
             
             <!-- Preview section -->
-            <Image x:Name="PhotoView" Source="/Assets/SamplePhoto.jpg" />
+            <Image x:Name="PhotoView" Source="/Assets/SamplePhoto.jpg" HorizontalAlignment="Stretch" VerticalAlignment="Center" Stretch="Uniform" MaxHeight="800" />
             <!--
         <Image x:Name="PhotoView" />
         -->
