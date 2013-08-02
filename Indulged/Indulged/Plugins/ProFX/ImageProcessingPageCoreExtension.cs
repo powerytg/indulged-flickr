@@ -37,6 +37,8 @@ namespace Indulged.Plugins.ProFX
 
         // Available filters
         public static List<FilterBase> AvailableFilters = new List<FilterBase> {
+            new FXVignetteFilter(),
+            new FXBlackWhiteFilter(),
             new FXSolarizeFilter(),
             new FXSharpenFilter(),
             new FXSepiaFilter(),

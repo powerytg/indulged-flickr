@@ -243,10 +243,17 @@
     <Compile Include="Plugins\ProCamera\ProCameraWhiteBalanceSettingsView.xaml.cs">
       <DependentUpon>ProCameraWhiteBalanceSettingsView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Plugins\ProFX\ColorSelectorButton.cs" />
     <Compile Include="Plugins\ProFX\Events\AddFilterEventArgs.cs" />
     <Compile Include="Plugins\ProFX\Events\DeleteFilterEventArgs.cs" />
     <Compile Include="Plugins\ProFX\FilterGalleryView.xaml.cs">
       <DependentUpon>FilterGalleryView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\ProFX\Filters\FXVignetteFilter.xaml.cs">
+      <DependentUpon>FXVignetteFilter.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\ProFX\Filters\FXBlackWhiteFilter.xaml.cs">
+      <DependentUpon>FXBlackWhiteFilter.xaml</DependentUpon>
     </Compile>
     <Compile Include="Plugins\ProFX\Filters\FXSolarizeFilter.xaml.cs">
       <DependentUpon>FXSolarizeFilter.xaml</DependentUpon>
@@ -553,6 +560,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Plugins\ProFX\Filters\FXVignetteFilter.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Plugins\ProFX\Filters\FXBlackWhiteFilter.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Plugins\ProFX\Filters\FXSolarizeFilter.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -693,6 +708,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <ApplicationDefinition Include="Themes\AvariceSliderStyle.xaml">
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <ApplicationDefinition Include="Themes\ColorSelectorButtonStyle.xaml">
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Page Include="Themes\PhotoNavigatorStyle.xaml">

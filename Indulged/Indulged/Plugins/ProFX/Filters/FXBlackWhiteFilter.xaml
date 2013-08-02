@@ -1,0 +1,36 @@
+﻿<local:FilterBase x:Class="Indulged.Plugins.ProFX.Filters.FXBlackWhiteFilter"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="clr-namespace:Indulged.Plugins.ProFX.Filters"
+    xmlns:fx="clr-namespace:Indulged.Plugins.ProFX"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"                  
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    d:DesignHeight="480" d:DesignWidth="480" Height="360">
+    
+    <local:FilterBase.RenderTransform>
+        <CompositeTransform />
+    </local:FilterBase.RenderTransform>
+
+    <Grid x:Name="LayoutRoot">
+        <StackPanel Margin="14, 40, 14, 14">
+             <TextBlock Foreground="#2a80e1" FontWeight="Light" FontSize="36" Text="black &amp; white" Margin="0, 0, 10, 12"
+                        HorizontalAlignment="Left" />
+            
+            <TextBlock Foreground="#cccccc" FontWeight="Light" FontSize="24" Text="Smoothness" HorizontalAlignment="Left"/>
+            <Slider x:Name="SmoothAmountSlider" Minimum="0" Maximum="6" Value="2" SmallChange="1" LargeChange="1" ValueChanged="SmoothAmountSlider_ValueChanged" Padding="0"/>
+
+            <TextBlock Foreground="#cccccc" FontWeight="Light" FontSize="24" Text="Threshold" HorizontalAlignment="Left"/>
+            <Slider x:Name="ThresholdAmountSlider" Minimum="0" Maximum="255" Value="128" SmallChange="1" LargeChange="1" ValueChanged="ThresholdAmountSlider_ValueChanged" Margin="0, 0, 0, 40" Padding="0"/>
+
+            <Button x:Name="DeleteButton" Content="remove this filter"  Style="{StaticResource FXDeleteButtonStyle}" HorizontalAlignment="Left" Click="DeleteButton_Click"/>
+
+        </StackPanel>
+
+    </Grid>
+
+</local:FilterBase>
