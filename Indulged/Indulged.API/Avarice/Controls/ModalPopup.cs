@@ -44,6 +44,15 @@ namespace Indulged.API.Avarice.Controls
             }
         }
 
+        private PhoneApplicationPage CurrentPage
+        {
+            get
+            {
+                Frame rootVisual = System.Windows.Application.Current.RootVisual as Frame;
+                return (PhoneApplicationPage)rootVisual.Content;
+            }
+        }
+
         // Curtain and borders
         protected Rectangle curtain;
         protected Image topShadow;
@@ -218,6 +227,10 @@ namespace Indulged.API.Avarice.Controls
         {
             double w = System.Windows.Application.Current.Host.Content.ActualWidth;
             
+            // Hide application bar
+            if(CurrentPage.ApplicationBar != null)
+                CurrentPage.ApplicationBar.IsVisible = false;
+
             // Initial settings
             borderCanvas.Width = w;
             borderCanvas.Height = expectedContentSize.Height;
@@ -288,6 +301,10 @@ namespace Indulged.API.Avarice.Controls
 
         public void DismissWithButtonIndex(int buttonIndex)
         {
+            // Show application bar
+            if (CurrentPage.ApplicationBar != null)
+                CurrentPage.ApplicationBar.IsVisible = true;
+
             Storyboard animation = new Storyboard();
             Duration duration = new Duration(TimeSpan.FromSeconds(0.3));
             animation.Duration = duration;
