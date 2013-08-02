@@ -54,7 +54,7 @@ namespace Indulged.API.Avarice.Controls
         }
 
         // Curtain and borders
-        protected Rectangle curtain;
+        protected Grid curtain;
         protected Image topShadow;
         protected Image bottomShadow;
         protected Canvas borderCanvas;
@@ -148,7 +148,7 @@ namespace Indulged.API.Avarice.Controls
         {
             double w = System.Windows.Application.Current.Host.Content.ActualWidth;
 
-            curtain = GetTemplateChild("Curtain") as Rectangle;
+            curtain = GetTemplateChild("Curtain") as Grid;
             topShadow = GetTemplateChild("TopShadow") as Image;
             bottomShadow = GetTemplateChild("BottomShadow") as Image;
             borderCanvas = GetTemplateChild("BorderCanvas") as Canvas;
