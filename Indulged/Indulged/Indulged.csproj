@@ -320,6 +320,12 @@
     <Compile Include="Plugins\ProFX\Filters\FXBlurFilter.xaml.cs">
       <DependentUpon>FXBlurFilter.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Plugins\ProFX\FXBottomPanel.xaml.cs">
+      <DependentUpon>FXBottomPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\ProFX\FXNormalStatusView.xaml.cs">
+      <DependentUpon>FXNormalStatusView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Plugins\ProFX\ImageProcessingPage.xaml.cs">
       <DependentUpon>ImageProcessingPage.xaml</DependentUpon>
     </Compile>
@@ -652,6 +658,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Plugins\ProFX\FXBottomPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Plugins\ProFX\FXNormalStatusView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Plugins\ProFX\ImageProcessingPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -713,6 +727,9 @@
     <ApplicationDefinition Include="Themes\ColorSelectorButtonStyle.xaml">
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <ApplicationDefinition Include="Themes\FXButtonStyle.xaml">
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
     <Page Include="Themes\PhotoNavigatorStyle.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -737,10 +754,15 @@
     <Content Include="Assets\ProCamera\WB-Shade.png" />
     <Content Include="Assets\ProCamera\WB-Tungsten-Selected.png" />
     <Content Include="Assets\ProCamera\WB-Tungsten.png" />
+    <Content Include="Assets\ProFX\FXAdd.png" />
     <Content Include="Assets\ProFX\FXBackButton.png" />
     <Content Include="Assets\ProFX\FXBackButton2.png" />
+    <Content Include="Assets\ProFX\FXBackward.png" />
+    <Content Include="Assets\ProFX\FXDelete.png" />
     <Content Include="Assets\ProFX\FXDeleteButton.png" />
     <Content Include="Assets\ProFX\FXForwardButton.png" />
+    <Content Include="Assets\ProFX\FXLogo.png" />
+    <Content Include="Assets\ProFX\FXNext.png" />
     <Content Include="Assets\ProFX\FXNextButton.png" />
     <Content Include="Assets\ProFX\IndulgedFXLogo.png" />
     <Content Include="Assets\ProFX\SelectedFilterIcon.png" />
@@ -748,6 +770,7 @@
     <Page Include="Themes\TransparentListPickerStyle.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Content Include="Assets\SamplePhoto2.jpg" />
     <Content Include="Vendor\ExifLib.dll" />
     <None Include="Assets\Chrome\Thumbs.db" />
     <Content Include="Assets\Chrome\BlankTitleView.png" />

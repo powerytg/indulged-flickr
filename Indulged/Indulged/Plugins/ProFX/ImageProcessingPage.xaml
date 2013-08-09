@@ -42,80 +42,35 @@
             <Grid.RenderTransform>
                 <CompositeTransform/>
             </Grid.RenderTransform>
-            
+
             <!-- Preview section -->
-            <Image x:Name="PhotoView" Source="/Assets/SamplePhoto.jpg" HorizontalAlignment="Stretch" VerticalAlignment="Center" Stretch="Uniform" MaxHeight="800" />
+            <Image x:Name="PhotoView" Source="/Assets/SamplePhoto2.jpg" HorizontalAlignment="Stretch" VerticalAlignment="Center" Stretch="Uniform" MaxHeight="800" />
             <!--
         <Image x:Name="PhotoView" />
         -->
             <!-- Logo-->
             <Grid VerticalAlignment="Top">
                 <Grid.Background>
-                    <SolidColorBrush Color="Black" Opacity="0.7"/>
+                    <SolidColorBrush Color="Black" Opacity="0.85"/>
                 </Grid.Background>
 
-                <Image Source="/Assets/ProFX/IndulgedFXLogo.png" Stretch="None" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="24"/>
+                <Image Source="/Assets/ProFX/FXLogo.png" Width="185" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="24"/>
 
                 <!-- Next button -->
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0, 0, 0, 0">
-                    <TextBlock Text="next" FontWeight="Light" FontSize="36" Foreground="#2a80e1"
+                    <TextBlock Text="NEXT" FontWeight="Light" FontSize="36" Foreground="#1c6579" FontFamily="/Assets/Fonts/BenchNine-Bold.ttf#BenchNine"
                            VerticalAlignment="Center" Margin="0, 0, 6, 0" />
                     <Button x:Name="NextButton" BorderThickness="0" Background="Transparent" Padding="0" Margin="0"
                         VerticalAlignment="Center" HorizontalAlignment="Right" Click="NextButton_Click">
                         <Button.Content>
-                            <Image Source="/Assets/ProFX/FXNextButton.png" Stretch="Uniform" Width="76"/>
+                            <Image Source="/Assets/ProFX/FXNext.png" Width="50"/>
                         </Button.Content>
                     </Button>
                 </StackPanel>
-
             </Grid>
 
-
-            <!-- Processor section-->
-            <Grid x:Name="PageContainer" Height="90" VerticalAlignment="Bottom">
-                <Grid.Background>
-                    <SolidColorBrush Color="Black" Opacity="0.7"/>
-                </Grid.Background>
-
-                <!-- First view -->
-                <Grid x:Name="EditorPage">
-                    <Grid.RenderTransform>
-                        <CompositeTransform/>
-                    </Grid.RenderTransform>
-
-                    <!-- Filter list -->
-                    <StackPanel x:Name="FilterListView" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="10">
-                        <Button x:Name="AddFilterButton" Foreground="#2a80e1" FontSize="36" Content="add filter ..." FontWeight="Light" BorderThickness="0" Background="Transparent"
-                            HorizontalContentAlignment="Left" Margin="0" 
-                            Click="AddFilterButton_Click" />
-                    </StackPanel>
-
-                </Grid>
-
-                <!-- Secondery view -->
-                <Grid x:Name="SeconderyPage" Visibility="Collapsed">
-                    <Grid.RenderTransform>
-                        <CompositeTransform/>
-                    </Grid.RenderTransform>
-
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-
-
-                    <Button x:Name="BackToEditorButton" BorderThickness="0" Background="Transparent" Padding="0" Margin="14"
-                        VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Column="0" Click="BackToEditorButton_Click" >
-                        <Button.Content>
-                            <Image Source="/Assets/ProFX/FXBackButton2.png" Stretch="None"/>
-                        </Button.Content>
-                    </Button>
-
-
-                    <!-- Content view -->
-                    <Grid x:Name="SeconderyContentView" Grid.Column="1"/>
-                </Grid>
-            </Grid>
+            <!-- Bottom bar -->
+            <local:FXBottomPanel x:Name="BottomPanel" VerticalAlignment="Bottom" />
         </Grid>
         
         <!-- Uploading page -->

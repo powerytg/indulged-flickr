@@ -23,6 +23,7 @@
                 <ResourceDictionary Source="Themes/TransparentListPickerStyle.xaml"/>
                 <ResourceDictionary Source="Themes/AvariceSliderStyle.xaml"/>
                 <ResourceDictionary Source="Themes/ColorSelectorButtonStyle.xaml"/>
+                <ResourceDictionary Source="Themes/FXButtonStyle.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
             <Style x:Key="TransitionPageStyle" TargetType="phone:PhoneApplicationPage">

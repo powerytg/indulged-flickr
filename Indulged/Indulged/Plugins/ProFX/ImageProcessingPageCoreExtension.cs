@@ -70,45 +70,13 @@ namespace Indulged.Plugins.ProFX
             AppliedFilters.Add(e.Filter);
 
             // Show the filter control view
-            SwitchSeconderyViewWithContent(e.Filter, e.Filter.Height);
-            e.Filter.OriginalImage = originalPreviewBitmap;
-            e.Filter.CurrentImage = currentPreviewBitmap;
-            e.Filter.Buffer = previewBuffer;
-            e.Filter.OnFilterUIAdded();
-
-            // Update the UI
-            FilterButton filterButton = new FilterButton();
-            filterButton.Filter = e.Filter;
-            filterButton.HorizontalContentAlignment = HorizontalAlignment.Left;
-            filterButton.FontWeight = FontWeights.Light;
-            filterButton.FontSize = 36;
-            filterButton.Content = e.Filter.DisplayName;
-            filterButton.BorderThickness = new Thickness(0);
-            filterButton.Background = new SolidColorBrush(Colors.Transparent);
-            filterButton.Margin = new Thickness(0);
-            filterButton.Click += OnFilterClick;
-            FilterListView.Children.Insert(0, filterButton);
+           
         }
 
         private void OnRequestDeleteFilter(object sender, DeleteFilterEventArgs e)
         {
             AppliedFilters.Remove(e.Filter);
             
-            // Find the filter button
-            FilterButton targetFilterButton = null;
-            foreach (FilterButton filterButton in FilterListView.Children)
-            {
-                if (filterButton.Filter == e.Filter)
-                {
-                    targetFilterButton = filterButton;
-                    break;
-                }
-            }
-
-            FilterListView.Children.Remove(targetFilterButton);
-
-            // Show the filter list view
-            ShowFilterListView();
         }
 
 
@@ -152,12 +120,6 @@ namespace Indulged.Plugins.ProFX
             previewStream = new MemoryStream();
             currentPreviewBitmap.SaveJpeg(previewStream, originalPreviewBitmap.PixelWidth, originalPreviewBitmap.PixelHeight, 0, 75);
             previewBuffer = previewStream.GetWindowsRuntimeBuffer();
-        }
-
-        private void OnFilterClick(object sender, RoutedEventArgs e)
-        {
-            FilterButton button = sender as FilterButton;
-            ShowSeconderyViewWithContent(button.Filter, button.Filter.Height);
         }
 
     }

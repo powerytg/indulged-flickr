@@ -24,10 +24,20 @@ namespace Indulged.Plugins.ProFX
         public static EventHandler<DeleteFilterEventArgs> RequestDeleteFilter;
         public static EventHandler RequestProcessorPage;
 
+        // Filter gallery view
+        private FilterGalleryView galleryView;
+
         // Constructor
         public ImageProcessingPage()
         {
             InitializeComponent();
+
+            // Initialize gallery view
+            galleryView = new FilterGalleryView();
+            galleryView.VerticalAlignment = VerticalAlignment.Bottom;
+            galleryView.Margin = new Thickness(0, 0, 0, BottomPanel.Height);
+            galleryView.Visibility = Visibility.Collapsed;
+            ProcessorPage.Children.Add(galleryView);
 
             // Events
             RequestFilterListView += OnRequestFilterListView;
@@ -69,16 +79,6 @@ namespace Indulged.Plugins.ProFX
             PhotoView.Source = currentPreviewBitmap;
         }
         
-        private void AddFilterButton_Click(object sender, RoutedEventArgs e)
-        {
-            ShowSeconderyViewWithContent(new FilterGalleryView(), 500);
-        }
-
-        private void BackToEditorButton_Click(object sender, RoutedEventArgs e)
-        {
-            ShowFilterListView();
-        }
-
         private void OnRequestFilterListView(object sender, EventArgs e)
         {
             ShowFilterListView();
@@ -86,12 +86,12 @@ namespace Indulged.Plugins.ProFX
 
         private void OnRequestProcessorPage(object sender, EventArgs e)
         {
-            ShowProcessorPage();
+            //ShowProcessorPage();
         }
 
         private void NextButton_Click(object sender, RoutedEventArgs e)
         {
-            ShowUploaderPage();
+            //ShowUploaderPage();
 
             /*
             string sessionId = Guid.NewGuid().ToString().Replace("-", null);

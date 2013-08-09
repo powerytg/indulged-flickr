@@ -16,10 +16,7 @@ namespace Indulged.Plugins.ProFX
     public partial class FilterGalleryView : UserControl
     {
         // Filter class table
-        private Dictionary<string, FilterBase> filterTable = new Dictionary<string, FilterBase>();
-
-        // Binding source
-        private ObservableCollection<string> filterList = new ObservableCollection<string>();
+        private Dictionary<string, FilterButton> filterButtonTable = new Dictionary<string, FilterButton>();
 
         // Constructor
         public FilterGalleryView()
@@ -38,36 +35,24 @@ namespace Indulged.Plugins.ProFX
                 if (ImageProcessingPage.GetAppliedFilterByName(filter.DisplayName) != null)
                     continue;
 
-                filterList.Add(filter.DisplayName);
-                filterTable[filter.DisplayName] = filter;
-            }
+                FilterButton button = new FilterButton();
+                button.Content = filter.DisplayName;
+                button.Filter = filter;
+                button.Selected = false;
+                button.Click += OnFilterButtonClicked;
 
-            GalleryListView.ItemsSource = filterList;
-
-            if (filterList.Count == 0)
-            {
-                NoMoreFiltersLabel.Visibility = Visibility.Visible;
-                GalleryListView.Visibility = Visibility.Collapsed;
-            }
-            else
-            {
-                NoMoreFiltersLabel.Visibility = Visibility.Collapsed;
-                GalleryListView.Visibility = Visibility.Visible;
+                FilterListView.Children.Add(button);
+                filterButtonTable[filter.DisplayName] = button;
             }
         }
 
-        private void BackToEditorButton_Click(object sender, RoutedEventArgs e)
+        private void OnFilterButtonClicked(object sender, RoutedEventArgs e)
         {
-            ImageProcessingPage.RequestFilterListView(this, null);
-        }
-
-        private void GalleryListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            string filterName = (string)GalleryListView.SelectedItem;
-            FilterBase selectedFilter = filterTable[filterName];
+            FilterButton button = (FilterButton)sender;
+            button.Selected = true;
 
             var evt = new AddFilterEventArgs();
-            evt.Filter = selectedFilter;
+            evt.Filter = button.Filter;
             ImageProcessingPage.RequestAddFilter(this, evt);
         }
 
