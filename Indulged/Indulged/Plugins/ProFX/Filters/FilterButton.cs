@@ -16,7 +16,8 @@ namespace Indulged.Plugins.ProFX.Filters
         public FilterBase Filter {get; set;}
 
         // Template elements
-        private Ellipse selectedIndicator; 
+        private Ellipse selectedIndicator;
+        private ContentControl contentContainer;
 
         public static readonly DependencyProperty SelectedProperty = DependencyProperty.Register("Selected", typeof(bool), typeof(FilterButton), new PropertyMetadata(OnSelectedPropertyChanged));
 
@@ -41,14 +42,16 @@ namespace Indulged.Plugins.ProFX.Filters
         {
             if (Selected)
             {
-                selectedIndicator.Visibility = Visibility.Visible;
-                Foreground = new SolidColorBrush(Color.FromArgb(0xff, 0x6d, 0x87, 0xf6));
+                selectedIndicator.Opacity = 1;
+                contentContainer.Foreground = new SolidColorBrush(Color.FromArgb(0xff, 0x6d, 0x87, 0xf6));
             }
             else
             {
-                selectedIndicator.Visibility = Visibility.Collapsed;
-                Foreground = new SolidColorBrush(Color.FromArgb(0xff, 0x77, 0x81, 0xaa));
+                selectedIndicator.Opacity = 0;
+                contentContainer.Foreground = new SolidColorBrush(Color.FromArgb(0xff, 0x77, 0x81, 0xaa));
             }
+            
+            
         }
 
         // Constructor
@@ -63,7 +66,9 @@ namespace Indulged.Plugins.ProFX.Filters
             base.OnApplyTemplate();
 
             selectedIndicator = GetTemplateChild("SelectionIndicator") as Ellipse;
-            selectedIndicator.Visibility = Selected ? Visibility.Visible : Visibility.Collapsed;
+            selectedIndicator.Opacity = Selected ? 1 : 0;
+
+            contentContainer = GetTemplateChild("ContentContainer") as ContentControl;
         }
     }
 }

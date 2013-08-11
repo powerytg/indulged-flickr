@@ -70,7 +70,7 @@ namespace Indulged.Plugins.ProFX
             AppliedFilters.Add(e.Filter);
 
             // Show the filter control view
-           
+            ShowFilterControlView(e.Filter);
         }
 
         private void OnRequestDeleteFilter(object sender, DeleteFilterEventArgs e)

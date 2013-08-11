@@ -48,7 +48,7 @@
                         <Border x:Name="ButtonBackground" Background="Transparent" Margin="8, 4, 8, 4" CornerRadius="24">
                             <StackPanel Orientation="Horizontal">
                                 <Ellipse x:Name="SelectionIndicator" Width="15" Height="15" Fill="#0071f0" Margin="4, 0, 8, 0"
-                                         Visibility="Collapsed" />
+                                         Opacity="0" />
                                 
                                 <ContentControl x:Name="ContentContainer" ContentTemplate="{TemplateBinding ContentTemplate}" 
                                             Content="{TemplateBinding Content}" 
