@@ -25,6 +25,9 @@ namespace Indulged.Plugins.ProFX
 
             // Generate the filter list
             PopulateFilterList();
+
+            // Events
+            ImageProcessingPage.RequestDeleteFilter += OnRequestDeleteFilter;
         }
 
         // Populate the filter list
@@ -51,9 +54,26 @@ namespace Indulged.Plugins.ProFX
             FilterButton button = (FilterButton)sender;
             button.Selected = true;
 
-            var evt = new AddFilterEventArgs();
-            evt.Filter = button.Filter;
-            ImageProcessingPage.RequestAddFilter(this, evt);
+            if (ImageProcessingPage.AppliedFilters.Contains(button.Filter))
+            {
+                var evt = new RequestFilterViewEventArgs();
+                evt.Filter = button.Filter;
+                ImageProcessingPage.RequestFilterView(this, evt);
+            }
+            else
+            {
+                var evt = new AddFilterEventArgs();
+                evt.Filter = button.Filter;
+                ImageProcessingPage.RequestAddFilter(this, evt);
+            }
+
+        }
+
+        private void OnRequestDeleteFilter(object sender, DeleteFilterEventArgs e)
+        {
+            // Reset filter button
+            FilterButton button = filterButtonTable[e.Filter.DisplayName];
+            button.Selected = false;
         }
 
     }

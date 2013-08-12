@@ -20,8 +20,11 @@ namespace Indulged.Plugins.ProFX
     {
         // Events
         public static EventHandler RequestFilterListView;
+        public static EventHandler RequestDismissFilterListView;
         public static EventHandler<AddFilterEventArgs> RequestAddFilter;
+        public static EventHandler<RequestFilterViewEventArgs> RequestFilterView;
         public static EventHandler<DeleteFilterEventArgs> RequestDeleteFilter;
+        public static EventHandler<DismissFilterEventArgs> RequestDismissFilterView;
         public static EventHandler RequestProcessorPage;
 
         // Filter gallery view
@@ -41,9 +44,13 @@ namespace Indulged.Plugins.ProFX
 
             // Events
             RequestFilterListView += OnRequestFilterListView;
+            RequestDismissFilterListView += OnRequestDismissFilterListView;
+
             RequestAddFilter += OnRequestAddFilter;
+            RequestFilterView += OnRequestFilterView;
             RequestDeleteFilter += OnRequestDeleteFilter;
             RequestProcessorPage += OnRequestProcessorPage;
+            RequestDismissFilterView += OnRequestDismissFilterView;
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -84,9 +91,24 @@ namespace Indulged.Plugins.ProFX
             ShowFilterListView();
         }
 
+        private void OnRequestDismissFilterListView(object sender, EventArgs e)
+        {
+            DismissFilterListView();
+        }
+
+        private void OnRequestFilterView(object sender, RequestFilterViewEventArgs e)
+        {
+            ShowFilterControlView(e.Filter);
+        }
+
         private void OnRequestProcessorPage(object sender, EventArgs e)
         {
             //ShowProcessorPage();
+        }
+
+        private void OnRequestDismissFilterView(object sender, DismissFilterEventArgs e)
+        {
+            DismissFilterControlView(e.Filter);
         }
 
         private void NextButton_Click(object sender, RoutedEventArgs e)

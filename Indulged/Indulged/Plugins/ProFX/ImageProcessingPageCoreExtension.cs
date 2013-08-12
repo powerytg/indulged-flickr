@@ -76,10 +76,8 @@ namespace Indulged.Plugins.ProFX
         private void OnRequestDeleteFilter(object sender, DeleteFilterEventArgs e)
         {
             AppliedFilters.Remove(e.Filter);
-            
+            DismissFilterControlView(e.Filter);
         }
-
-
 
         public static FilterBase GetAppliedFilterByName(string displayName)
         {

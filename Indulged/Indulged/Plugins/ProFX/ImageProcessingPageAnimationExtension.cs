@@ -49,6 +49,40 @@ namespace Indulged.Plugins.ProFX
             animation.Begin();
         }
 
+        private void DismissFilterListView()
+        {
+            double w = LayoutRoot.ActualWidth;
+            double h = LayoutRoot.ActualHeight;
+
+            Storyboard animation = new Storyboard();
+            animation.Duration = new Duration(TimeSpan.FromSeconds(0.3));
+
+            // Y animation
+            DoubleAnimation galleryAnimation = new DoubleAnimation();
+            galleryAnimation.Duration = new Duration(TimeSpan.FromSeconds(0.3));
+            galleryAnimation.To = galleryView.Height;
+            galleryAnimation.EasingFunction = new QuadraticEase() { EasingMode = EasingMode.EaseOut };
+            Storyboard.SetTarget(galleryAnimation, galleryView);
+            Storyboard.SetTargetProperty(galleryAnimation, new PropertyPath("(UIElement.RenderTransform).(CompositeTransform.TranslateY)"));
+            animation.Children.Add(galleryAnimation);
+
+            // Alpha animation
+            DoubleAnimation alphaAnimation = new DoubleAnimation();
+            alphaAnimation.Duration = new Duration(TimeSpan.FromSeconds(0.3));
+            alphaAnimation.To = 0.0;
+            alphaAnimation.EasingFunction = new QuadraticEase() { EasingMode = EasingMode.EaseOut };
+            Storyboard.SetTarget(alphaAnimation, galleryView);
+            Storyboard.SetTargetProperty(alphaAnimation, new PropertyPath("Opacity"));
+            animation.Children.Add(alphaAnimation);
+
+            animation.Completed += (sender, evt) =>
+            {
+                galleryView.Visibility = Visibility.Collapsed;
+            };
+
+            animation.Begin();
+        }
+
         private void ShowFilterControlView(FilterBase filter)
         {
             double w = LayoutRoot.ActualWidth;
@@ -59,6 +93,7 @@ namespace Indulged.Plugins.ProFX
             filter.Margin = new Thickness(0, 0, 0, BottomPanel.Height);
             filter.Visibility = Visibility.Collapsed;
             filter.CurrentImage = currentPreviewBitmap;
+            filter.Buffer = previewBuffer;
             ProcessorPage.Children.Add(filter);
 
             CompositeTransform ct = (CompositeTransform)filter.RenderTransform;
@@ -90,16 +125,18 @@ namespace Indulged.Plugins.ProFX
 
             // Filter view Y animation
             DoubleAnimationUsingKeyFrames filterYAnimation = new DoubleAnimationUsingKeyFrames();
-            filterYAnimation.KeyFrames.Add(new EasingDoubleKeyFrame { KeyTime = TimeSpan.FromSeconds(0.3), Value = filter.Height, EasingFunction = new CubicEase() { EasingMode = EasingMode.EaseIn } });
-            filterYAnimation.KeyFrames.Add(new EasingDoubleKeyFrame { KeyTime = TimeSpan.FromSeconds(0.6), Value = 0, EasingFunction = new CubicEase() { EasingMode = EasingMode.EaseIn } });
+            filterYAnimation.Duration = animation.Duration;
+            filterYAnimation.KeyFrames.Add(new EasingDoubleKeyFrame { KeyTime = TimeSpan.FromSeconds(0.3), Value = filter.Height, EasingFunction = new CubicEase() { EasingMode = EasingMode.EaseOut } });
+            filterYAnimation.KeyFrames.Add(new EasingDoubleKeyFrame { KeyTime = TimeSpan.FromSeconds(0.6), Value = 0, EasingFunction = new CubicEase() { EasingMode = EasingMode.EaseOut } });
             Storyboard.SetTarget(filterYAnimation, filter);
             Storyboard.SetTargetProperty(filterYAnimation, new PropertyPath("(UIElement.RenderTransform).(CompositeTransform.TranslateY)"));
             animation.Children.Add(filterYAnimation);
 
             // Filter view alpha animation
             DoubleAnimationUsingKeyFrames filterAlphaAnimation = new DoubleAnimationUsingKeyFrames();
-            filterAlphaAnimation.KeyFrames.Add(new EasingDoubleKeyFrame { KeyTime = TimeSpan.FromSeconds(0.3), Value = 0.0, EasingFunction = new CubicEase() { EasingMode = EasingMode.EaseIn } });
-            filterAlphaAnimation.KeyFrames.Add(new EasingDoubleKeyFrame { KeyTime = TimeSpan.FromSeconds(0.6), Value = 1.0, EasingFunction = new CubicEase() { EasingMode = EasingMode.EaseIn } });
+            filterAlphaAnimation.Duration = animation.Duration;
+            filterAlphaAnimation.KeyFrames.Add(new EasingDoubleKeyFrame { KeyTime = TimeSpan.FromSeconds(0.3), Value = 0.0, EasingFunction = new CubicEase() { EasingMode = EasingMode.EaseOut } });
+            filterAlphaAnimation.KeyFrames.Add(new EasingDoubleKeyFrame { KeyTime = TimeSpan.FromSeconds(0.6), Value = 1.0, EasingFunction = new CubicEase() { EasingMode = EasingMode.EaseOut } });
             Storyboard.SetTarget(filterAlphaAnimation, filter);
             Storyboard.SetTargetProperty(filterAlphaAnimation, new PropertyPath("Opacity"));
             animation.Children.Add(filterAlphaAnimation);
@@ -112,5 +149,38 @@ namespace Indulged.Plugins.ProFX
             animation.Begin();
         }
 
+        private void DismissFilterControlView(FilterBase filter)
+        {
+            double w = LayoutRoot.ActualWidth;
+            double h = LayoutRoot.ActualHeight;
+
+            Storyboard animation = new Storyboard();
+            animation.Duration = new Duration(TimeSpan.FromSeconds(0.6));
+
+            // Filter Y animation
+            DoubleAnimation filterYAnimation = new DoubleAnimation();
+            filterYAnimation.Duration = new Duration(TimeSpan.FromSeconds(0.3));
+            filterYAnimation.To = galleryView.Height;
+            filterYAnimation.EasingFunction = new QuadraticEase() { EasingMode = EasingMode.EaseOut };
+            Storyboard.SetTarget(filterYAnimation, filter);
+            Storyboard.SetTargetProperty(filterYAnimation, new PropertyPath("(UIElement.RenderTransform).(CompositeTransform.TranslateY)"));
+            animation.Children.Add(filterYAnimation);
+
+            // Gallery Alpha animation
+            DoubleAnimation alphaAnimation = new DoubleAnimation();
+            alphaAnimation.Duration = new Duration(TimeSpan.FromSeconds(0.3));
+            alphaAnimation.To = 0.0;
+            alphaAnimation.EasingFunction = new QuadraticEase() { EasingMode = EasingMode.EaseOut };
+            Storyboard.SetTarget(alphaAnimation, filter);
+            Storyboard.SetTargetProperty(alphaAnimation, new PropertyPath("Opacity"));
+            animation.Children.Add(alphaAnimation);
+            
+            animation.Completed += (sender, evt) =>
+            {
+                ProcessorPage.Children.Remove(filter);
+            };
+
+            animation.Begin();
+        }
     }
 }

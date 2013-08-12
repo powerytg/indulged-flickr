@@ -7,6 +7,7 @@ using System.Windows.Controls;
 using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
+using Indulged.Plugins.ProFX.Events;
 
 namespace Indulged.Plugins.ProFX
 {
@@ -15,6 +16,9 @@ namespace Indulged.Plugins.ProFX
         public FXNormalStatusView()
         {
             InitializeComponent();
+
+            // Events
+            ImageProcessingPage.RequestAddFilter += OnFilterRequested;
         }
 
         private void TitleButton_Click(object sender, RoutedEventArgs e)
@@ -25,6 +29,11 @@ namespace Indulged.Plugins.ProFX
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
             ImageProcessingPage.RequestFilterListView(this, null);
+        }
+
+        private void OnFilterRequested(object sender, AddFilterEventArgs e)
+        {
+            TitleButton.Content = "Filter Gallery";
         }
     }
 }
