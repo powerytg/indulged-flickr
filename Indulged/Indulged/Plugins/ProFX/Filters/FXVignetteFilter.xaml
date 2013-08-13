@@ -19,7 +19,7 @@
 
     <Grid x:Name="LayoutRoot">
         <StackPanel Margin="14, 40, 14, 14">
-             <TextBlock Foreground="#2a80e1" FontWeight="Light" FontSize="36" Text="gaussian blur" Margin="0, 0, 10, 12"
+             <TextBlock Foreground="#2a80e1" FontWeight="Light" FontSize="36" Text="Vignette" Margin="0, 0, 10, 12"
                         HorizontalAlignment="Left" />
 
             <StackPanel Orientation="Horizontal" Margin="0, 0, 0, 20">

@@ -126,5 +126,10 @@ namespace Indulged.Plugins.ProFX
              * */
         }
 
+        private void CropButton_Click(object sender, RoutedEventArgs e)
+        {
+            PhotoView.ShowCropFinder();
+        }
+
     }
 }

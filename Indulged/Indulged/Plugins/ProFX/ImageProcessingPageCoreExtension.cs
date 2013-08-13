@@ -37,6 +37,7 @@ namespace Indulged.Plugins.ProFX
 
         // Available filters
         public static List<FilterBase> AvailableFilters = new List<FilterBase> {
+            new FXCropFilter(),
             new FXVignetteFilter(),
             new FXBlackWhiteFilter(),
             new FXSolarizeFilter(),
@@ -118,6 +119,16 @@ namespace Indulged.Plugins.ProFX
             previewStream = new MemoryStream();
             currentPreviewBitmap.SaveJpeg(previewStream, originalPreviewBitmap.PixelWidth, originalPreviewBitmap.PixelHeight, 0, 75);
             previewBuffer = previewStream.GetWindowsRuntimeBuffer();
+        }
+
+        private void OnRequestCropFilter(object sender, EventArgs e)
+        {
+            PhotoView.Source = originalPreviewBitmap;
+        }
+
+        private void OnDismissCropFilter(object sender, EventArgs e)
+        {
+            PhotoView.Source = currentPreviewBitmap;
         }
 
     }

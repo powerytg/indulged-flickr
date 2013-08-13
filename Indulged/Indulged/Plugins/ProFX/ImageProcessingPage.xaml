@@ -44,10 +44,8 @@
             </Grid.RenderTransform>
 
             <!-- Preview section -->
-            <Image x:Name="PhotoView" Source="/Assets/SamplePhoto2.jpg" HorizontalAlignment="Stretch" VerticalAlignment="Center" Stretch="UniformToFill" MaxHeight="800" />
-            <!--
-        <Image x:Name="PhotoView" />
-        -->
+            <local:PhotoPreviewer x:Name="PhotoView" Source="/Assets/SamplePhoto.jpg" HorizontalAlignment="Stretch" VerticalAlignment="Center" MaxHeight="800"/>
+
             <!-- Logo-->
             <Grid VerticalAlignment="Top">
                 <Grid.Background>
@@ -69,6 +67,11 @@
                 </StackPanel>
             </Grid>
 
+            <!-- Cropping / rotation toolbar -->
+            <StackPanel VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0, 0, 0, 65">
+                <Button x:Name="CropButton" Content="Crop" Click="CropButton_Click"/>
+            </StackPanel>
+            
             <!-- Bottom bar -->
             <local:FXBottomPanel x:Name="BottomPanel" VerticalAlignment="Bottom" />
         </Grid>

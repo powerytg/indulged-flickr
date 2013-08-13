@@ -356,6 +356,9 @@
     <Compile Include="Plugins\ProFX\ImageUploaderView.xaml.cs">
       <DependentUpon>ImageUploaderView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Plugins\ProFX\PhotoPreviewer.xaml.cs">
+      <DependentUpon>PhotoPreviewer.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Plugins\Search\GroupSearchResultView.xaml.cs">
       <DependentUpon>GroupSearchResultView.xaml</DependentUpon>
     </Compile>
@@ -699,6 +702,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Plugins\ProFX\ImageUploaderView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Plugins\ProFX\PhotoPreviewer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -22,8 +22,16 @@ namespace Indulged.Plugins.ProFX.Filters
 
         // Current preview image
         public WriteableBitmap CurrentImage { get; set; }
+        public WriteableBitmap OriginalPreviewImage { get; set; }
 
         public string DisplayName { get; set; }
+        public bool hasEditorUI 
+        {
+            get
+            {
+                return true;
+            }
+        }
 
         // Filter reference
         public IFilter Filter { get; set; }
