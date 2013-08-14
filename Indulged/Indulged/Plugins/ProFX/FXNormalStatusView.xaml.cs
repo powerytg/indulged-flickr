@@ -16,9 +16,6 @@ namespace Indulged.Plugins.ProFX
         public FXNormalStatusView()
         {
             InitializeComponent();
-
-            // Events
-            ImageProcessingPage.RequestAddFilter += OnFilterRequested;
         }
 
         private void TitleButton_Click(object sender, RoutedEventArgs e)
@@ -31,9 +28,5 @@ namespace Indulged.Plugins.ProFX
             ImageProcessingPage.RequestFilterListView(this, null);
         }
 
-        private void OnFilterRequested(object sender, AddFilterEventArgs e)
-        {
-            TitleButton.Content = "Filter Gallery";
-        }
     }
 }

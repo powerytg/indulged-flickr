@@ -9,6 +9,9 @@ using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using Nokia.Graphics.Imaging;
 
+using Indulged.Plugins.ProFX;
+using Indulged.Plugins.ProFX.Events;
+
 namespace Indulged.Plugins.ProFX.Filters
 {
     public partial class FXCropFilter : FilterBase
@@ -22,6 +25,9 @@ namespace Indulged.Plugins.ProFX.Filters
             InitializeComponent();
 
             DisplayName = "crop";
+
+            // Events
+            ImageProcessingPage.CropAreaChanged += OnCropAreaChanged;
         }
 
         public override bool hasEditorUI
@@ -41,14 +47,38 @@ namespace Indulged.Plugins.ProFX.Filters
                 cropRect.Height = OriginalPreviewImage.PixelHeight / 2;
                 
             }
+
             Filter = FilterFactory.CreateCropFilter(cropRect);
         }
 
-        private void DeleteButton_Click(object sender, RoutedEventArgs e)
+        public override async void DeleteFilterAsync()
         {
-            DeleteFilterAsync();
+            cropRect = new Windows.Foundation.Rect(0, 0, 0, 0);
+            base.DeleteFilterAsync();
         }
 
-        
+        public override void OnFilterUIAdded()
+        {
+            // Show clipping UI
+            ImageProcessingPage.RequestCropView(this, null);
+        }
+
+        public override void OnFilterUIDismissed()
+        {
+            if(cropRect.Width != 0 && cropRect.Height != 0)
+                UpdatePreviewAsync();
+
+            ImageProcessingPage.RequestDismissCropView(this, null);
+
+        }
+
+        private void OnCropAreaChanged(object sender, CropAreaChangedEventArgs e)
+        {
+            // Translate coordinations
+            cropRect.X = e.X;
+            cropRect.Y = e.Y;
+            cropRect.Width = e.Width;
+            cropRect.Height = e.Height;
+        }
     }
 }

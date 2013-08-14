@@ -155,11 +155,7 @@ namespace Indulged.Plugins.ProFX
             
 
             animation.Completed += (sender, evt) => {
-                if (filter.hasEditorUI)
-                {
-                    galleryView.Visibility = Visibility.Collapsed;
-                }
-
+                galleryView.Visibility = Visibility.Collapsed;
                 filter.OnFilterUIAdded();
             };
 
@@ -170,6 +166,12 @@ namespace Indulged.Plugins.ProFX
         {
             double w = LayoutRoot.ActualWidth;
             double h = LayoutRoot.ActualHeight;
+
+            if (!filter.hasEditorUI)
+            {
+                filter.OnFilterUIDismissed();
+                return;
+            }
 
             Storyboard animation = new Storyboard();
             animation.Duration = new Duration(TimeSpan.FromSeconds(0.6));
@@ -194,6 +196,7 @@ namespace Indulged.Plugins.ProFX
             
             animation.Completed += (sender, evt) =>
             {
+                filter.OnFilterUIDismissed();
                 ProcessorPage.Children.Remove(filter);
             };
 

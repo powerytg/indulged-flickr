@@ -25,7 +25,7 @@ namespace Indulged.Plugins.ProFX.Filters
         public WriteableBitmap OriginalPreviewImage { get; set; }
 
         public string DisplayName { get; set; }
-        public bool hasEditorUI 
+        public virtual bool hasEditorUI 
         {
             get
             {
@@ -46,12 +46,17 @@ namespace Indulged.Plugins.ProFX.Filters
             UpdatePreviewAsync();
         }
 
+        public virtual void OnFilterUIDismissed()
+        {
+            // Do nothing
+        }
+
         public void OnDeleteFilter(object sender, RoutedEventArgs e)
         {
             DeleteFilterAsync();
         }
 
-        public async void DeleteFilterAsync()
+        public virtual async void DeleteFilterAsync()
         {
             using (EditingSession session = new EditingSession(Buffer))
             {

@@ -67,11 +67,6 @@
                 </StackPanel>
             </Grid>
 
-            <!-- Cropping / rotation toolbar -->
-            <StackPanel VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0, 0, 0, 65">
-                <Button x:Name="CropButton" Content="Crop" Click="CropButton_Click"/>
-            </StackPanel>
-            
             <!-- Bottom bar -->
             <local:FXBottomPanel x:Name="BottomPanel" VerticalAlignment="Bottom" />
         </Grid>

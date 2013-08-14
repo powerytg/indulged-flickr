@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="Indulged.Plugins.ProFX.FXFilterStatusView"
+﻿<UserControl x:Class="Indulged.Plugins.ProFX.FXCropStatusView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -11,28 +11,20 @@
     
     <Grid x:Name="LayoutRoot" Background="Transparent">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="50"/>
+            <ColumnDefinition Width="100"/>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="50"/>
+            <ColumnDefinition Width="100"/>
         </Grid.ColumnDefinitions>
 
         <Button x:Name="BackButton" Grid.Column="0" Click="BackButton_Click"
-                BorderThickness="0" Padding="0" >
-            <Button.Content>
-                <Image Source="/Assets/ProFX/FXBackward.png"/>
-            </Button.Content>
-        </Button>
+                BorderThickness="0" Padding="0" Content="Done" Foreground="#8e8e8e" FontSize="26" FontWeight="Light" />
 
-        <Button x:Name="TitleButton" Foreground="#6d87f6" FontSize="34" FontFamily="/Assets/Fonts/BenchNine-Bold.ttf#BenchNine"
-                Content="Add Filter" BorderThickness="0" Padding="0" Margin="0" 
+        <Button x:Name="TitleButton" Foreground="#f7941d" FontSize="34" FontFamily="/Assets/Fonts/BenchNine-Bold.ttf#BenchNine"
+                Content="Cropping" BorderThickness="0" Padding="0" Margin="0" 
                 Grid.Column="1" Click="TitleButton_Click" />
 
-        <Button x:Name="DeleteButton" Grid.Column="2" Click="DeleteButton_Click"
-                BorderThickness="0" Padding="0" >
-            <Button.Content>
-                <Image Source="/Assets/ProFX/FXDelete.png"/>
-            </Button.Content>
-        </Button>
+        <Button x:Name="ResetButton" Grid.Column="2" Click="ResetButton_Click"
+                BorderThickness="0" Padding="0" Content="Reset" Foreground="#8e8e8e" FontSize="26" FontWeight="Light" />
 
 
     </Grid>

@@ -24,6 +24,7 @@
                 <local:FXNormalStatusView x:Name="NormalStatusView"/>
                 <local:FXGalleryStatusView x:Name="GalleryStatusView" Visibility="Collapsed"/>
                 <local:FXFilterStatusView x:Name="FilterStatusView" Visibility="Collapsed"/>
+                <local:FXCropStatusView x:Name="CropStatusView" Visibility="Collapsed"/>
             </Grid>
         </Border>
     </Grid>

@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Windows.Input;
+using Indulged.Plugins.ProFX.Events;
 
 namespace Indulged.Plugins.ProFX
 {
@@ -77,6 +78,37 @@ namespace Indulged.Plugins.ProFX
             // Handles
             Handle.Visibility = Visibility.Visible;
             PositionHandlesAroundViewfinder();
+
+            // Events
+            BroadcastCropAreaChangeEvent();
+        }
+
+        public void ResetCropArea()
+        {
+            cropRect = new Rect();
+        }
+
+        private void BroadcastCropAreaChangeEvent()
+        {
+            double viewfinderLeft = (double)Viewfinder.GetValue(Canvas.LeftProperty);
+            double viewfinderTop = (double)Viewfinder.GetValue(Canvas.TopProperty);
+
+            var evt = new CropAreaChangedEventArgs();
+            evt.X = viewfinderLeft;
+            evt.Y = viewfinderTop;
+            evt.Width = Viewfinder.Width;
+            evt.Height = Viewfinder.Height;
+
+            ImageProcessingPage.CropAreaChanged(this, evt);
+        }
+
+        public void DismissCropFinder()
+        {
+            Curtain.Visibility = Visibility.Collapsed;
+            Viewfinder.Visibility = Visibility.Collapsed;
+
+            // Handles
+            Handle.Visibility = Visibility.Collapsed;
         }
 
         private void PositionHandlesAroundViewfinder()
@@ -133,6 +165,8 @@ namespace Indulged.Plugins.ProFX
             Viewfinder.Width = newWidth;
             Viewfinder.Height = newHeight;
 
+            // Events
+            BroadcastCropAreaChangeEvent();
         }
 
         private void OnViewfinderDrag(object sender, ManipulationDeltaEventArgs e)
@@ -159,6 +193,9 @@ namespace Indulged.Plugins.ProFX
 
             // Snap handle
             PositionHandlesAroundViewfinder();
+
+            // Events
+            BroadcastCropAreaChangeEvent();
         }
     }
 }

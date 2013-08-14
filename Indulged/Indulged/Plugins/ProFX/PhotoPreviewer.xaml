@@ -15,20 +15,23 @@
         <!-- Curtain -->
         <Grid x:Name="Curtain" Visibility="Collapsed">
             <Grid.Background>
-                <SolidColorBrush Color="Black" Opacity="0.75"/>
+                <SolidColorBrush Color="Black" Opacity="0.45"/>
             </Grid.Background>
         </Grid>
         
         <Canvas x:Name="CropCanvas">
             <!-- Stretch box -->
-            <Border x:Name="Viewfinder" Visibility="Collapsed">
+            <Border x:Name="Viewfinder" Visibility="Collapsed" BorderThickness="2">
+                <Border.BorderBrush>
+                    <SolidColorBrush Color="White" Opacity="0.7"/>
+                </Border.BorderBrush>
                 <Border.Background>
                     <SolidColorBrush Color="White" Opacity="0.3"/>
                 </Border.Background>
             </Border>
 
             <!-- Drag handles -->
-            <Ellipse x:Name="Handle" Width="24" Height="24" Fill="BlueViolet" Visibility="Collapsed"/>
+            <Image x:Name="Handle" Source="/Assets/ProFX/FXCropHandle.png" Width="42" Height="42" Visibility="Collapsed"/>
 
         </Canvas>
         

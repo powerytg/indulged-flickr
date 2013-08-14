@@ -24,6 +24,7 @@
                 <ResourceDictionary Source="Themes/AvariceSliderStyle.xaml"/>
                 <ResourceDictionary Source="Themes/ColorSelectorButtonStyle.xaml"/>
                 <ResourceDictionary Source="Themes/FXButtonStyle.xaml"/>
+                <ResourceDictionary Source="Themes/FXPanelButtonStyle.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
             <Style x:Key="TransitionPageStyle" TargetType="phone:PhoneApplicationPage">

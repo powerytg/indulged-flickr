@@ -244,7 +244,17 @@
       <DependentUpon>ProCameraWhiteBalanceSettingsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Plugins\ProFX\ColorSelectorButton.cs" />
+    <Compile Include="Plugins\ProFX\Filters\FXRotationFilter.xaml.cs">
+      <DependentUpon>FXRotationFilter.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\ProFX\FXCropStatusView.xaml.cs">
+      <DependentUpon>FXCropStatusView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\ProFX\Events\CropAreaChangedEventArgs.cs" />
     <Compile Include="Plugins\ProFX\Events\RequestFilterViewEventArgs.cs" />
+    <Compile Include="Plugins\ProFX\Filters\FXCropFilter.xaml.cs">
+      <DependentUpon>FXCropFilter.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Plugins\ProFX\FXGalleryStatusView.xaml.cs">
       <DependentUpon>FXGalleryStatusView.xaml</DependentUpon>
     </Compile>
@@ -573,6 +583,18 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Plugins\ProFX\Filters\FXRotationFilter.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Plugins\ProFX\FXCropStatusView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Plugins\ProFX\Filters\FXCropFilter.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Plugins\ProFX\FXGalleryStatusView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -753,6 +775,9 @@
     <ApplicationDefinition Include="Themes\FXButtonStyle.xaml">
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <ApplicationDefinition Include="Themes\FXPanelButtonStyle.xaml">
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
     <Page Include="Themes\PhotoNavigatorStyle.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -778,9 +803,12 @@
     <Content Include="Assets\ProCamera\WB-Tungsten-Selected.png" />
     <Content Include="Assets\ProCamera\WB-Tungsten.png" />
     <Content Include="Assets\ProFX\FXAdd.png" />
+    <Content Include="Assets\ProFX\FXArrowDown.png" />
+    <Content Include="Assets\ProFX\FXArrowUp.png" />
     <Content Include="Assets\ProFX\FXBackButton.png" />
     <Content Include="Assets\ProFX\FXBackButton2.png" />
     <Content Include="Assets\ProFX\FXBackward.png" />
+    <Content Include="Assets\ProFX\FXCropHandle.png" />
     <Content Include="Assets\ProFX\FXDelete.png" />
     <Content Include="Assets\ProFX\FXDeleteButton.png" />
     <Content Include="Assets\ProFX\FXForwardButton.png" />

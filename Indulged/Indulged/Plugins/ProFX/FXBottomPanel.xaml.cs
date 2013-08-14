@@ -9,6 +9,7 @@ using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using System.Windows.Media.Animation;
 
+using Indulged.Plugins.ProFX.Filters;
 using Indulged.Plugins.ProFX.Events;
 
 namespace Indulged.Plugins.ProFX
@@ -41,24 +42,56 @@ namespace Indulged.Plugins.ProFX
 
         private void OnRequestAddFilter(object sender, AddFilterEventArgs e)
         {
-            FilterStatusView.SelectedFilter = e.Filter;
-            SwitchToView(GalleryStatusView, FilterStatusView);
+            if (e.Filter.GetType() == typeof(FXCropFilter))
+            {
+                CropStatusView.SelectedFilter = e.Filter;
+                SwitchToView(GalleryStatusView, CropStatusView);
+            }
+            else
+            {
+                FilterStatusView.SelectedFilter = e.Filter;
+                SwitchToView(GalleryStatusView, FilterStatusView);
+            }
         }
 
         private void OnRequestFilterView(object sender, RequestFilterViewEventArgs e)
         {
-            FilterStatusView.SelectedFilter = e.Filter;
-            SwitchToView(GalleryStatusView, FilterStatusView);
+            if (e.Filter.GetType() == typeof(FXCropFilter))
+            {
+                CropStatusView.SelectedFilter = e.Filter;
+                SwitchToView(GalleryStatusView, CropStatusView);
+            }
+            else
+            {
+                FilterStatusView.SelectedFilter = e.Filter; 
+                SwitchToView(GalleryStatusView, FilterStatusView);
+            }
+            
         }
 
         private void OnRequestDismissFilterView(object sender, DismissFilterEventArgs e)
         {
-            SwitchToView(FilterStatusView, NormalStatusView);
+            if (e.Filter.GetType() == typeof(FXCropFilter))
+            {
+                SwitchToView(CropStatusView, NormalStatusView);
+            }
+            else
+            {
+                SwitchToView(FilterStatusView, NormalStatusView);
+            }
+
         }
 
         private void OnRequestDeleteFilter(object sender, DeleteFilterEventArgs e)
         {
-            SwitchToView(FilterStatusView, NormalStatusView);
+            if (e.Filter.GetType() == typeof(FXCropFilter))
+            {
+                SwitchToView(CropStatusView, NormalStatusView);
+            }
+            else
+            {
+                SwitchToView(FilterStatusView, NormalStatusView);
+            }
         }
 
         private void SwitchToView(FrameworkElement oldView, FrameworkElement newView)

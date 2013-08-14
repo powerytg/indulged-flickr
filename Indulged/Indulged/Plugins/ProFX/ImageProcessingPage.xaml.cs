@@ -27,6 +27,11 @@ namespace Indulged.Plugins.ProFX
         public static EventHandler<DismissFilterEventArgs> RequestDismissFilterView;
         public static EventHandler RequestProcessorPage;
 
+        public static EventHandler RequestCropView;
+        public static EventHandler RequestDismissCropView;
+        public static EventHandler RequestResetCrop;
+        public static EventHandler<CropAreaChangedEventArgs> CropAreaChanged;
+
         // Filter gallery view
         private FilterGalleryView galleryView;
 
@@ -51,6 +56,10 @@ namespace Indulged.Plugins.ProFX
             RequestDeleteFilter += OnRequestDeleteFilter;
             RequestProcessorPage += OnRequestProcessorPage;
             RequestDismissFilterView += OnRequestDismissFilterView;
+            
+            RequestCropView += OnRequestCropView;
+            RequestDismissCropView += OnRequestDismissCropView;
+            RequestResetCrop += OnRequestResetCrop;
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -126,9 +135,23 @@ namespace Indulged.Plugins.ProFX
              * */
         }
 
-        private void CropButton_Click(object sender, RoutedEventArgs e)
+        private void OnRequestCropView(object sender, EventArgs e)
         {
             PhotoView.ShowCropFinder();
+
+            PhotoView.Source = originalPreviewBitmap;
+        }
+
+        private void OnRequestDismissCropView(object sender, EventArgs e)
+        {
+            PhotoView.DismissCropFinder();
+
+            PhotoView.Source = currentPreviewBitmap;
+        }
+
+        private void OnRequestResetCrop(object sender, EventArgs e)
+        {
+            PhotoView.ResetCropArea();
         }
 
     }
