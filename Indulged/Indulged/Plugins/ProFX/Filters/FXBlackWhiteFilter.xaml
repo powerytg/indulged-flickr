@@ -18,7 +18,7 @@
 
     <Grid x:Name="LayoutRoot">
         <StackPanel Margin="14, 40, 14, 14">
-             <TextBlock Foreground="#2a80e1" FontWeight="Light" FontSize="36" Text="black &amp; white" Margin="0, 0, 10, 12"
+             <TextBlock Foreground="#2a80e1" FontWeight="Light" FontSize="36" Text="black/white" Margin="0, 0, 10, 12"
                         HorizontalAlignment="Left" />
             
             <TextBlock Foreground="#cccccc" FontWeight="Light" FontSize="24" Text="Smoothness" HorizontalAlignment="Left"/>

@@ -10,7 +10,7 @@
     d:DesignHeight="480" d:DesignWidth="480">
     
     <Grid x:Name="LayoutRoot">
-        <Image x:Name="PhotoView" Source="/Assets/SamplePhoto.jpg" Stretch="Uniform" MaxHeight="800" />
+        <Image x:Name="PhotoView" Stretch="UniformToFill" MaxHeight="800" />
 
         <!-- Curtain -->
         <Grid x:Name="Curtain" Visibility="Collapsed">

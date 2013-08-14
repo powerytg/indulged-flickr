@@ -20,7 +20,7 @@ namespace Indulged.Plugins.ProFX.Filters
         {
             InitializeComponent();
 
-            DisplayName = "black & white";
+            DisplayName = "black/white";
         }
 
         protected override void CreateFilter()
