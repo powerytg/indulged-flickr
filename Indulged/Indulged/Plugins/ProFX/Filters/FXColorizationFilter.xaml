@@ -4,6 +4,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:local="clr-namespace:Indulged.Plugins.ProFX.Filters"
+    xmlns:fx="clr-namespace:Indulged.Plugins.ProFX"                  
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"            
     xmlns:c4toolkit="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
     mc:Ignorable="d"
@@ -17,26 +18,26 @@
     </local:FilterBase.RenderTransform>
 
     <Grid x:Name="LayoutRoot">
-        <ScrollViewer>
+        <fx:FilterBackground/>
             <StackPanel Margin="14, 40, 14, 14">
-                <TextBlock Foreground="#2a80e1" FontWeight="Light" FontSize="36" Text="colorization" Margin="0, 0, 10, 12"/>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
 
-                <TextBlock Foreground="#cccccc" FontWeight="Light" FontSize="24" Text="Tone Color"/>
-                <!--
-                <c4toolkit:ColorPicker x:Name="Picker" Height="220" Color="#abf350" ColorChanged="Picker_ColorChanged" Margin="0, 20, 0, 20" />
-                -->
-                <c4toolkit:ColorHexagonPicker x:Name="Picker" ColorChanged="Picker_ColorChanged" Margin="0, 20, 0, 20"/>
+                <TextBlock Style="{StaticResource FXSectionTextStyle}" Text="Tone Color"  VerticalAlignment="Center" Grid.Column="0"/>
+                <fx:ColorSelectorButton x:Name="PickerButton" SelectedColorChanged="OnSelectedColorChanged" Width="100" Height="45" VerticalAlignment="Center"
+                                            SelectedColor="#abf350" Grid.Column="1"/>
+
+            </Grid>
 
                 <TextBlock Foreground="#cccccc" FontWeight="Light" FontSize="24" Text="Luminance"/>
                 <Slider x:Name="LuminanceSlider" Minimum="-100" Maximum="200" Value="0"  ValueChanged="LuminanceSlider_ValueChanged" />
 
                 <TextBlock Foreground="#cccccc" FontWeight="Light" FontSize="24" Text="Chrominance"/>
                 <Slider x:Name="ChrominanceSlider" Minimum="-100" Maximum="200" Value="100" ValueChanged="ChrominanceSlider_ValueChanged" />
-
-                <Button x:Name="DeleteButton" Content="remove this filter"  Style="{StaticResource FXDeleteButtonStyle}" HorizontalAlignment="Left" Click="DeleteButton_Click"/>
-
             </StackPanel>
-        </ScrollViewer>
     </Grid>
 
 </local:FilterBase>

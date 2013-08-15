@@ -10,25 +10,23 @@
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
-    d:DesignHeight="480" d:DesignWidth="480" Height="360">
+    d:DesignHeight="480" d:DesignWidth="480" Height="340">
     
     <local:FilterBase.RenderTransform>
         <CompositeTransform />
     </local:FilterBase.RenderTransform>
 
     <Grid x:Name="LayoutRoot">
+        <fx:FilterBackground/>
+        
         <StackPanel Margin="14, 40, 14, 14">
-             <TextBlock Foreground="#2a80e1" FontWeight="Light" FontSize="36" Text="black/white" Margin="0, 0, 10, 12"
-                        HorizontalAlignment="Left" />
-            
-            <TextBlock Foreground="#cccccc" FontWeight="Light" FontSize="24" Text="Smoothness" HorizontalAlignment="Left"/>
-            <Slider x:Name="SmoothAmountSlider" Minimum="0" Maximum="6" Value="2" SmallChange="1" LargeChange="1" ValueChanged="SmoothAmountSlider_ValueChanged" Padding="0"/>
+            <TextBlock Style="{StaticResource FXSectionTextStyle}" Text="Smoothness" HorizontalAlignment="Left"/>
+            <Slider x:Name="SmoothAmountSlider" Minimum="0" Maximum="6" Value="2" SmallChange="1" LargeChange="1" ValueChanged="SmoothAmountSlider_ValueChanged" Padding="0"
+                    Foreground="#6d87f6" Style="{StaticResource FXSliderStyle}" />
 
-            <TextBlock Foreground="#cccccc" FontWeight="Light" FontSize="24" Text="Threshold" HorizontalAlignment="Left"/>
-            <Slider x:Name="ThresholdAmountSlider" Minimum="0" Maximum="255" Value="128" SmallChange="1" LargeChange="1" ValueChanged="ThresholdAmountSlider_ValueChanged" Margin="0, 0, 0, 40" Padding="0"/>
-
-            <Button x:Name="DeleteButton" Content="remove this filter"  Style="{StaticResource FXDeleteButtonStyle}" HorizontalAlignment="Left" Click="DeleteButton_Click"/>
-
+            <TextBlock Style="{StaticResource FXSectionTextStyle}" Text="Threshold" HorizontalAlignment="Left"/>
+            <Slider x:Name="ThresholdAmountSlider" Minimum="0" Maximum="255" Value="128" SmallChange="1" LargeChange="1" ValueChanged="ThresholdAmountSlider_ValueChanged" Margin="0, 0, 0, 40" Padding="0"
+                    Foreground="#6d87f6" Style="{StaticResource FXSliderStyle}" />
         </StackPanel>
 
     </Grid>

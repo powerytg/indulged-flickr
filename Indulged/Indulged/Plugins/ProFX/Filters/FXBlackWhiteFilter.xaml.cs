@@ -21,6 +21,7 @@ namespace Indulged.Plugins.ProFX.Filters
             InitializeComponent();
 
             DisplayName = "black/white";
+            StatusBarName = "Black/White";
         }
 
         protected override void CreateFilter()

@@ -19,7 +19,8 @@ namespace Indulged.Plugins.ProFX.Filters
         {
             InitializeComponent();
 
-            DisplayName = "color boost";
+            DisplayName = "vibrance";
+            StatusBarName = "Vibrance";
         }
 
         protected override void CreateFilter()

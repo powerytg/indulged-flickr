@@ -1,4 +1,6 @@
 ﻿using Indulged.API.Anaconda;
+using Indulged.Plugins.Chrome;
+using Indulged.Plugins.Chrome.Events;
 using Indulged.Plugins.ProCamera;
 using Indulged.Plugins.ProFX.Events;
 using Microsoft.Phone.Controls;
@@ -8,6 +10,7 @@ using System;
 using System.IO;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Windows;
+using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
@@ -21,6 +24,9 @@ namespace Indulged.Plugins.ProFX
         // Events
         public static EventHandler RequestFilterListView;
         public static EventHandler RequestDismissFilterListView;
+        public static EventHandler RequestSettingsView;
+        public static EventHandler RequestDismissSettingsView;
+
         public static EventHandler<AddFilterEventArgs> RequestAddFilter;
         public static EventHandler<RequestFilterViewEventArgs> RequestFilterView;
         public static EventHandler<DeleteFilterEventArgs> RequestDeleteFilter;
@@ -35,10 +41,14 @@ namespace Indulged.Plugins.ProFX
         // Filter gallery view
         private FilterGalleryView galleryView;
 
+        // Settings view
+        private FXSettingsView settingsView;
+
         // Constructor
         public ImageProcessingPage()
         {
             InitializeComponent();
+            ApplyTheme();
 
             // Initialize gallery view
             galleryView = new FilterGalleryView();
@@ -47,9 +57,22 @@ namespace Indulged.Plugins.ProFX
             galleryView.Visibility = Visibility.Collapsed;
             ProcessorPage.Children.Add(galleryView);
 
+            // Initialize settings view
+            settingsView = new FXSettingsView();
+            settingsView.VerticalAlignment = VerticalAlignment.Bottom;
+            settingsView.Margin = new Thickness(0, 0, 0, BottomPanel.Height);
+            settingsView.Visibility = Visibility.Collapsed;
+            ProcessorPage.Children.Add(settingsView);
+
+
             // Events
+            ThemeManager.ThemeChanged += OnThemeChanged;
+
             RequestFilterListView += OnRequestFilterListView;
             RequestDismissFilterListView += OnRequestDismissFilterListView;
+
+            RequestSettingsView += OnRequestSettingsView;
+            RequestDismissSettingsView += OnRequestDismissSettingsView;
 
             RequestAddFilter += OnRequestAddFilter;
             RequestFilterView += OnRequestFilterView;
@@ -60,6 +83,25 @@ namespace Indulged.Plugins.ProFX
             RequestCropView += OnRequestCropView;
             RequestDismissCropView += OnRequestDismissCropView;
             RequestResetCrop += OnRequestResetCrop;
+        }
+
+        private void ApplyTheme()
+        {
+            if (ThemeManager.CurrentTheme == Themes.Dark)
+            {
+                LayoutRoot.Background = new SolidColorBrush(Colors.Black);
+                TitlePanel.Background = new SolidColorBrush(Color.FromArgb(216, 0, 0, 0));
+            }
+            else
+            {
+                LayoutRoot.Background = new SolidColorBrush(Colors.White);
+                TitlePanel.Background = new SolidColorBrush(Color.FromArgb(216, 0xff, 0xff, 0xff));
+            }
+        }
+
+        private void OnThemeChanged(object sender, ThemeChangedEventArgs e)
+        {
+            ApplyTheme();
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -103,6 +145,16 @@ namespace Indulged.Plugins.ProFX
         private void OnRequestDismissFilterListView(object sender, EventArgs e)
         {
             DismissFilterListView();
+        }
+
+        private void OnRequestSettingsView(object sender, EventArgs e)
+        {
+            ShowSettingsView();
+        }
+
+        private void OnRequestDismissSettingsView(object sender, EventArgs e)
+        {
+            DismissSettingsView();
         }
 
         private void OnRequestFilterView(object sender, RequestFilterViewEventArgs e)
@@ -153,6 +205,8 @@ namespace Indulged.Plugins.ProFX
         {
             PhotoView.ResetCropArea();
         }
+
+
 
     }
 }

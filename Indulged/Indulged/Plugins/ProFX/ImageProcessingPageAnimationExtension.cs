@@ -202,5 +202,75 @@ namespace Indulged.Plugins.ProFX
 
             animation.Begin();
         }
+
+        private void ShowSettingsView()
+        {
+            double w = LayoutRoot.ActualWidth;
+            double h = LayoutRoot.ActualHeight;
+
+            CompositeTransform ct = (CompositeTransform)settingsView.RenderTransform;
+            ct.TranslateY = settingsView.Height;
+
+            settingsView.Opacity = 0;
+            settingsView.Visibility = Visibility.Visible;
+
+            Storyboard animation = new Storyboard();
+            animation.Duration = new Duration(TimeSpan.FromSeconds(0.3));
+
+            // Y animation
+            DoubleAnimation yAnimation = new DoubleAnimation();
+            yAnimation.Duration = new Duration(TimeSpan.FromSeconds(0.3));
+            yAnimation.To = 0.0;
+            yAnimation.EasingFunction = new QuadraticEase() { EasingMode = EasingMode.EaseOut };
+            Storyboard.SetTarget(yAnimation, settingsView);
+            Storyboard.SetTargetProperty(yAnimation, new PropertyPath("(UIElement.RenderTransform).(CompositeTransform.TranslateY)"));
+            animation.Children.Add(yAnimation);
+
+            // Alpha animation
+            DoubleAnimation alphaAnimation = new DoubleAnimation();
+            alphaAnimation.Duration = new Duration(TimeSpan.FromSeconds(0.3));
+            alphaAnimation.To = 1.0;
+            alphaAnimation.EasingFunction = new QuadraticEase() { EasingMode = EasingMode.EaseOut };
+            Storyboard.SetTarget(alphaAnimation, settingsView);
+            Storyboard.SetTargetProperty(alphaAnimation, new PropertyPath("Opacity"));
+            animation.Children.Add(alphaAnimation);
+
+
+            animation.Begin();
+        }
+
+        private void DismissSettingsView()
+        {
+            double w = LayoutRoot.ActualWidth;
+            double h = LayoutRoot.ActualHeight;
+
+            Storyboard animation = new Storyboard();
+            animation.Duration = new Duration(TimeSpan.FromSeconds(0.3));
+
+            // Y animation
+            DoubleAnimation yAnimation = new DoubleAnimation();
+            yAnimation.Duration = new Duration(TimeSpan.FromSeconds(0.3));
+            yAnimation.To = settingsView.Height;
+            yAnimation.EasingFunction = new QuadraticEase() { EasingMode = EasingMode.EaseOut };
+            Storyboard.SetTarget(yAnimation, settingsView);
+            Storyboard.SetTargetProperty(yAnimation, new PropertyPath("(UIElement.RenderTransform).(CompositeTransform.TranslateY)"));
+            animation.Children.Add(yAnimation);
+
+            // Alpha animation
+            DoubleAnimation alphaAnimation = new DoubleAnimation();
+            alphaAnimation.Duration = new Duration(TimeSpan.FromSeconds(0.3));
+            alphaAnimation.To = 0.0;
+            alphaAnimation.EasingFunction = new QuadraticEase() { EasingMode = EasingMode.EaseOut };
+            Storyboard.SetTarget(alphaAnimation, settingsView);
+            Storyboard.SetTargetProperty(alphaAnimation, new PropertyPath("Opacity"));
+            animation.Children.Add(alphaAnimation);
+
+            animation.Completed += (sender, evt) =>
+            {
+                settingsView.Visibility = Visibility.Collapsed;
+            };
+
+            animation.Begin();
+        }
     }
 }

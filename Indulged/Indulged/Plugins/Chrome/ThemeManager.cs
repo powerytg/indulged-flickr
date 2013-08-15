@@ -20,6 +20,29 @@ namespace Indulged.Plugins.Chrome
         public static EventHandler<ThemeChangedEventArgs> ThemeChanged;
 
         // Current theme
-        public static Themes CurrentTheme { get; set; }
+        private static Themes _currentTheme = Themes.Light;
+        public static Themes CurrentTheme
+        {
+            get
+            {
+                return _currentTheme;
+            }
+
+            set
+            {
+                if (_currentTheme != value)
+                {
+                    _currentTheme = value;
+
+                    var evt = new ThemeChangedEventArgs();
+                    evt.SelectedTheme = _currentTheme;
+
+                    if (ThemeChanged != null)
+                    {
+                        ThemeChanged(null, evt);
+                    }
+                }
+            }
+        }
     }
 }

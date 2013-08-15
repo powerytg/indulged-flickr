@@ -35,7 +35,7 @@ namespace Indulged.Plugins.ProFX
 
         protected virtual void OnSelectedFilterChanged()
         {
-            TitleButton.Content = SelectedFilter.DisplayName;
+            TitleButton.Content = SelectedFilter.StatusBarName;
         }
 
         // Constructor

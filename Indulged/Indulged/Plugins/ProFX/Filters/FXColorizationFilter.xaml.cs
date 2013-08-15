@@ -26,7 +26,7 @@ namespace Indulged.Plugins.ProFX.Filters
             InitializeComponent();
 
             DisplayName = "colorization";
-
+            StatusBarName = "Colorization";
         }
 
         protected override void CreateFilter()
@@ -60,9 +60,9 @@ namespace Indulged.Plugins.ProFX.Filters
 
         }
 
-        private void Picker_ColorChanged(object sender, Color color)
+        private void OnSelectedColorChanged(object sender, EventArgs e)
         {
-            toneColor = color;
+            toneColor = PickerButton.SelectedColor;
             UpdatePreviewAsync();
         }
 

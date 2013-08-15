@@ -20,6 +20,7 @@ namespace Indulged.Plugins.ProFX.Filters
             InitializeComponent();
 
             DisplayName = "cartoon";
+            StatusBarName = "Cartoon";
         }
 
         protected override void CreateFilter()

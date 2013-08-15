@@ -244,6 +244,9 @@
       <DependentUpon>ProCameraWhiteBalanceSettingsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Plugins\ProFX\ColorSelectorButton.cs" />
+    <Compile Include="Plugins\ProFX\FilterBackground.xaml.cs">
+      <DependentUpon>FilterBackground.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Plugins\ProFX\Filters\FXRotationFilter.xaml.cs">
       <DependentUpon>FXRotationFilter.xaml</DependentUpon>
     </Compile>
@@ -343,6 +346,12 @@
     </Compile>
     <Compile Include="Plugins\ProFX\FXNormalStatusView.xaml.cs">
       <DependentUpon>FXNormalStatusView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\ProFX\FXSettingsStatusView.xaml.cs">
+      <DependentUpon>FXSettingsStatusView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\ProFX\FXSettingsView.xaml.cs">
+      <DependentUpon>FXSettingsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Plugins\ProFX\ImageProcessingPage.xaml.cs">
       <DependentUpon>ImageProcessingPage.xaml</DependentUpon>
@@ -583,6 +592,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Plugins\ProFX\FilterBackground.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Plugins\ProFX\Filters\FXRotationFilter.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -707,6 +720,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Plugins\ProFX\FXSettingsStatusView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Plugins\ProFX\FXSettingsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Plugins\ProFX\ImageProcessingPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -778,6 +799,15 @@
     <ApplicationDefinition Include="Themes\FXPanelButtonStyle.xaml">
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <ApplicationDefinition Include="Themes\FXSectionTextStyle.xaml">
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <ApplicationDefinition Include="Themes\FXRadioButtonStyle.xaml">
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <ApplicationDefinition Include="Themes\FXSliderStyle.xaml">
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
     <Page Include="Themes\PhotoNavigatorStyle.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -805,6 +835,7 @@
     <Content Include="Assets\ProFX\FXAdd.png" />
     <Content Include="Assets\ProFX\FXArrowDown.png" />
     <Content Include="Assets\ProFX\FXArrowUp.png" />
+    <Content Include="Assets\ProFX\FXArrowUpWhite.png" />
     <Content Include="Assets\ProFX\FXBackButton.png" />
     <Content Include="Assets\ProFX\FXBackButton2.png" />
     <Content Include="Assets\ProFX\FXBackward.png" />
@@ -815,6 +846,7 @@
     <Content Include="Assets\ProFX\FXLogo.png" />
     <Content Include="Assets\ProFX\FXNext.png" />
     <Content Include="Assets\ProFX\FXNextButton.png" />
+    <Content Include="Assets\ProFX\FXOptions.png" />
     <Content Include="Assets\ProFX\IndulgedFXLogo.png" />
     <Content Include="Assets\ProFX\SelectedFilterIcon.png" />
     <Content Include="Assets\SamplePhoto.jpg" />

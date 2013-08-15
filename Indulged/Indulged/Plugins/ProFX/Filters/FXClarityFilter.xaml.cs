@@ -25,6 +25,7 @@ namespace Indulged.Plugins.ProFX.Filters
             InitializeComponent();
 
             DisplayName = "clarity";
+            StatusBarName = "Clarity";
         }
 
         protected override void CreateFilter()

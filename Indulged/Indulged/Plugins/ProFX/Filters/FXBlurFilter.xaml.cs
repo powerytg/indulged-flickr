@@ -19,7 +19,9 @@ namespace Indulged.Plugins.ProFX.Filters
         {
             InitializeComponent();
 
-            DisplayName = "gaussian blur";
+            DisplayName = "blur";
+            StatusBarName = "Blur";
+
             blurLevel = BlurLevel.Blur3;
         }
 

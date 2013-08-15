@@ -4,35 +4,33 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:local="clr-namespace:Indulged.Plugins.ProFX.Filters"
+    xmlns:fx="clr-namespace:Indulged.Plugins.ProFX"                  
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"                  
     mc:Ignorable="d"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
-    d:DesignHeight="480" d:DesignWidth="480" Height="500">
+    d:DesignHeight="480" d:DesignWidth="480" Height="420">
     
     <local:FilterBase.RenderTransform>
         <CompositeTransform />
     </local:FilterBase.RenderTransform>
 
     <Grid x:Name="LayoutRoot">
-        <ScrollViewer>
+        <fx:FilterBackground/>
             <StackPanel Margin="14, 40, 14, 14">
-                <TextBlock Foreground="#2a80e1" FontWeight="Light" FontSize="36" Text="adjust color" Margin="0, 0, 10, 12"/>
+                <TextBlock Style="{StaticResource FXSectionTextStyle}" Text="Red Amount"/>
+                <Slider x:Name="RedAmountSlider" Minimum="-1" Maximum="1" Value="0" Foreground="#ff4458" ValueChanged="RedAmountSlider_ValueChanged" 
+                        Style="{StaticResource FXSliderStyle}"/>
 
-                <TextBlock Foreground="#cccccc" FontWeight="Light" FontSize="24" Text="Red Amount"/>
-                <Slider x:Name="RedAmountSlider" Minimum="-1" Maximum="1" Value="0" Foreground="#ff4458" ValueChanged="RedAmountSlider_ValueChanged" />
+                <TextBlock Style="{StaticResource FXSectionTextStyle}" Text="Green Amount"/>
+                <Slider x:Name="GreenAmountSlider" Minimum="-1" Maximum="1" Value="0" Foreground="#b2f09b" ValueChanged="GreenAmountSlider_ValueChanged" 
+                        Style="{StaticResource FXSliderStyle}"/>
 
-                <TextBlock Foreground="#cccccc" FontWeight="Light" FontSize="24" Text="Green Amount"/>
-                <Slider x:Name="GreenAmountSlider" Minimum="-1" Maximum="1" Value="0" Foreground="#b2f09b" ValueChanged="GreenAmountSlider_ValueChanged" />
-
-                <TextBlock Foreground="#cccccc" FontWeight="Light" FontSize="24" Text="Blue Amount"/>
-                <Slider x:Name="BlueAmountSlider" Minimum="-1" Maximum="1" Value="0" Foreground="#b3dfff" ValueChanged="BlueAmountSlider_ValueChanged" />
-
-                <Button x:Name="DeleteButton" Content="remove this filter"  Style="{StaticResource FXDeleteButtonStyle}" HorizontalAlignment="Left" Click="DeleteButton_Click"/>
-
+                <TextBlock Style="{StaticResource FXSectionTextStyle}" Text="Blue Amount"/>
+                <Slider x:Name="BlueAmountSlider" Minimum="-1" Maximum="1" Value="0" Foreground="#b3dfff" ValueChanged="BlueAmountSlider_ValueChanged" 
+                        Style="{StaticResource FXSliderStyle}"/>
             </StackPanel>
-        </ScrollViewer>
     </Grid>
 
 </local:FilterBase>

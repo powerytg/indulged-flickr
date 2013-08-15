@@ -13,6 +13,7 @@ using Indulged.API.Avarice.Events;
 
 namespace Indulged.Plugins.ProFX
 {
+    [TemplatePart(Name="ButtonBackground", Type=typeof(Border))]
     public class ColorSelectorButton : System.Windows.Controls.Button
     {
         // Events
@@ -39,7 +40,14 @@ namespace Indulged.Plugins.ProFX
 
         protected virtual void OnSelectedColorChanged()
         {
+            if (backgroundButton == null)
+                return;
+
+            backgroundButton.Background = new SolidColorBrush(SelectedColor);
         }
+
+        private Border backgroundButton;
+
 
         // Constructor
         public ColorSelectorButton()
@@ -54,6 +62,14 @@ namespace Indulged.Plugins.ProFX
             Click += OnColorSelectorButtonClick;
         }
 
+        public override void OnApplyTemplate()
+        {
+            base.OnApplyTemplate();
+
+            backgroundButton = GetTemplateChild("ButtonBackground") as Border;
+            backgroundButton.Background = new SolidColorBrush(SelectedColor);
+        }
+
         protected ColorHexagonPicker colorPicker;
 
         protected void OnColorSelectorButtonClick(object sender, RoutedEventArgs e)
@@ -61,7 +77,8 @@ namespace Indulged.Plugins.ProFX
             // Create the color picker view
             colorPicker = new ColorHexagonPicker();
             colorPicker.Width = 500;
-            colorPicker.Height = 500;
+            colorPicker.Height = 450;
+            colorPicker.Margin = new Thickness(0, 25, 0, 0);
             colorPicker.Color = SelectedColor;
 
             ModalPopup dialog = ModalPopup.Show(colorPicker, "Choose Color", new List<string> { "OK", "Cancel" });

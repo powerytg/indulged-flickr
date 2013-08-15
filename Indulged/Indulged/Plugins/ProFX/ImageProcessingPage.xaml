@@ -44,10 +44,10 @@
             </Grid.RenderTransform>
 
             <!-- Preview section -->
-            <local:PhotoPreviewer x:Name="PhotoView" Source="/Assets/SamplePhoto2.jpg" HorizontalAlignment="Stretch" VerticalAlignment="Center" MaxHeight="800"/>
+            <local:PhotoPreviewer x:Name="PhotoView" Source="/Assets/SamplePhoto2.jpg" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
 
             <!-- Logo-->
-            <Grid VerticalAlignment="Top">
+            <Grid x:Name="TitlePanel" VerticalAlignment="Top">
                 <Grid.Background>
                     <SolidColorBrush Color="Black" Opacity="0.85"/>
                 </Grid.Background>

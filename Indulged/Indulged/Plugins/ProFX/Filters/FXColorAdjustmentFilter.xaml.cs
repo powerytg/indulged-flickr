@@ -21,7 +21,9 @@ namespace Indulged.Plugins.ProFX.Filters
         {
             InitializeComponent();
 
-            DisplayName = "adjust color";
+            DisplayName = "rgb";
+            StatusBarName = "Adjust Color";
+
             redLevel = 0;
             greenLevel = 0;
             blueLevel = 0;

@@ -11,6 +11,9 @@ using System.Windows.Media.Animation;
 
 using Indulged.Plugins.ProFX.Filters;
 using Indulged.Plugins.ProFX.Events;
+using Indulged.Plugins.Chrome;
+using System.Windows.Media;
+using Indulged.Plugins.Chrome.Events;
 
 namespace Indulged.Plugins.ProFX
 {
@@ -21,13 +24,37 @@ namespace Indulged.Plugins.ProFX
         {
             InitializeComponent();
 
+            ApplyTheme();
+
             // Events
+            ThemeManager.ThemeChanged += OnThemeChanged;
             ImageProcessingPage.RequestFilterListView += OnRequestGalleryView;
             ImageProcessingPage.RequestDismissFilterListView += OnRequestDismissGalleryView;
             ImageProcessingPage.RequestFilterView += OnRequestFilterView;
             ImageProcessingPage.RequestAddFilter += OnRequestAddFilter;
             ImageProcessingPage.RequestDismissFilterView += OnRequestDismissFilterView;
             ImageProcessingPage.RequestDeleteFilter += OnRequestDeleteFilter;
+            ImageProcessingPage.RequestSettingsView += OnRequestSettingsView;
+            ImageProcessingPage.RequestDismissSettingsView += OnRequestDismissSettingsView;
+        }
+
+        private void ApplyTheme()
+        {
+            if (ThemeManager.CurrentTheme == Themes.Dark)
+            {
+                LayoutRoot.Background = new SolidColorBrush(Color.FromArgb(216, 0, 0, 0));
+                UpperBorderBrush.Color = Color.FromArgb(230, 0, 0, 0);
+            }
+            else
+            {
+                LayoutRoot.Background = new SolidColorBrush(Color.FromArgb(216, 0xff, 0xff, 0xff));
+                UpperBorderBrush.Color = Color.FromArgb(230, 0xff, 0xff, 0xff);
+            }
+        }
+
+        private void OnThemeChanged(object sender, ThemeChangedEventArgs e)
+        {
+            ApplyTheme();
         }
 
         private void OnRequestGalleryView(object sender, EventArgs e)
@@ -38,6 +65,16 @@ namespace Indulged.Plugins.ProFX
         private void OnRequestDismissGalleryView(object sender, EventArgs e)
         {
             SwitchToView(GalleryStatusView, NormalStatusView);
+        }
+
+        private void OnRequestSettingsView(object sender, EventArgs e)
+        {
+            SwitchToView(NormalStatusView, SettingsStatusView);
+        }
+
+        private void OnRequestDismissSettingsView(object sender, EventArgs e)
+        {
+            SwitchToView(SettingsStatusView, NormalStatusView);
         }
 
         private void OnRequestAddFilter(object sender, AddFilterEventArgs e)

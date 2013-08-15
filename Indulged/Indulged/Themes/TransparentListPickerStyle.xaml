@@ -6,7 +6,7 @@
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"                  >
 
-  <Style TargetType="toolkit:ListPicker" x:Key="TransparentListPickerStyle">
+    <Style  x:Key="TransparentListPickerStyle" TargetType="toolkit:ListPicker">
     <Setter Property="Background" Value="{StaticResource PhoneTextBoxBrush}"/>
     <Setter Property="Foreground" Value="{StaticResource PhoneTextBoxForegroundBrush}"/>
     <Setter Property="FontSize" Value="{StaticResource PhoneFontSizeMediumLarge}"/>

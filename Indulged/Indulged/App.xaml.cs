@@ -31,9 +31,6 @@ namespace Indulged
             var anaconda = Anaconda.AnacondaCore;
             var cinderella = Cinderella.CinderellaCore;
 
-            // Initial theme
-            ThemeManager.CurrentTheme = Themes.Dark;
-
             // Global handler for uncaught exceptions.
             UnhandledException += Application_UnhandledException;
 

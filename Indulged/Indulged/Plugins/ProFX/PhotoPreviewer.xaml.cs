@@ -17,6 +17,10 @@ namespace Indulged.Plugins.ProFX
 {
     public partial class PhotoPreviewer : UserControl
     {
+        public static EventHandler RequestChangeAspectRatioToFit;
+        public static EventHandler RequestChangeAspectRatioToFill;
+
+
         public static readonly DependencyProperty SourceProperty = DependencyProperty.Register("Source", typeof(ImageSource), typeof(PhotoPreviewer), new PropertyMetadata(OnSourcePropertyChanged));
 
         public ImageSource Source
@@ -49,6 +53,9 @@ namespace Indulged.Plugins.ProFX
             // Events
             Handle.ManipulationDelta += OnHandleDrag;
             Viewfinder.ManipulationDelta += OnViewfinderDrag;
+
+            RequestChangeAspectRatioToFill += OnRequestAspectFill;
+            RequestChangeAspectRatioToFit += OnRequestAspectFit;
         }
 
         // Crop area
@@ -196,6 +203,16 @@ namespace Indulged.Plugins.ProFX
 
             // Events
             BroadcastCropAreaChangeEvent();
+        }
+
+        private void OnRequestAspectFill(object sender, EventArgs e)
+        {
+            PhotoView.Stretch = Stretch.UniformToFill;
+        }
+
+        private void OnRequestAspectFit(object sender, EventArgs e)
+        {
+            PhotoView.Stretch = Stretch.Uniform;
         }
     }
 }

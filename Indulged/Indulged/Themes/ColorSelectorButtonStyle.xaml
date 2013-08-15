@@ -38,7 +38,8 @@
                                 </VisualState>
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
-                        <Border x:Name="ButtonBackground" Background="{TemplateBinding SelectedColor}" Margin="8, 4, 8, 4">
+                        <Border x:Name="ButtonBackground" Margin="8, 4, 8, 4" BorderBrush="White" BorderThickness="1">
+                            
                         </Border>
                         
                     </Grid>

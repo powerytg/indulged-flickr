@@ -10,6 +10,9 @@ using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using Indulged.Plugins.ProFX.Filters;
 using Indulged.Plugins.ProFX.Events;
+using Indulged.Plugins.Chrome.Events;
+using System.Windows.Media;
+using Indulged.Plugins.Chrome;
 
 namespace Indulged.Plugins.ProFX
 {
@@ -22,12 +25,32 @@ namespace Indulged.Plugins.ProFX
         public FilterGalleryView()
         {
             InitializeComponent();
+            
+            ApplyTheme();
 
             // Generate the filter list
             PopulateFilterList();
 
             // Events
+            ThemeManager.ThemeChanged += OnThemeChanged;
             ImageProcessingPage.RequestDeleteFilter += OnRequestDeleteFilter;
+        }
+
+        private void ApplyTheme()
+        {
+            if (ThemeManager.CurrentTheme == Themes.Dark)
+            {
+                LayoutRoot.Background = new SolidColorBrush(Color.FromArgb(216, 0, 0, 0));
+            }
+            else
+            {
+                LayoutRoot.Background = new SolidColorBrush(Color.FromArgb(216, 0xff, 0xff, 0xff));
+            }
+        }
+
+        private void OnThemeChanged(object sender, ThemeChangedEventArgs e)
+        {
+            ApplyTheme();
         }
 
         // Populate the filter list

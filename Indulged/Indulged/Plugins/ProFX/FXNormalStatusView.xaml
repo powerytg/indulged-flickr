@@ -10,14 +10,27 @@
     d:DesignHeight="480" d:DesignWidth="480">
     
     <Grid x:Name="LayoutRoot" Background="Transparent">
-
-        <Button x:Name="TitleButton"
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="80"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="80"/>
+        </Grid.ColumnDefinitions>
+        <Button x:Name="TitleButton" Grid.Column="1"
                 Style="{StaticResource FXPanelButtonStyle}"
                 Click="TitleButton_Click">
             <Button.Content>
                 <Image Source="/Assets/ProFX/FXArrowUp.png"/>
             </Button.Content>
             
+        </Button>
+
+        <Button x:Name="SettingsButton" Grid.Column="2"
+                BorderThickness="0" 
+                Click="SettingsButton_Click">
+            <Button.Content>
+                <Image Source="/Assets/ProFX/FXOptions.png"/>
+            </Button.Content>
+
         </Button>
 
     </Grid>

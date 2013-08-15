@@ -17,7 +17,7 @@
         
         <Border BorderThickness="0, 1, 0, 0">
             <Border.BorderBrush>
-                <SolidColorBrush Color="#000000" Opacity="0.9"/>
+                <SolidColorBrush x:Name="UpperBorderBrush" Color="#000000" Opacity="0.9"/>
             </Border.BorderBrush>
             
             <Grid x:Name="PanelContainer">
@@ -25,6 +25,7 @@
                 <local:FXGalleryStatusView x:Name="GalleryStatusView" Visibility="Collapsed"/>
                 <local:FXFilterStatusView x:Name="FilterStatusView" Visibility="Collapsed"/>
                 <local:FXCropStatusView x:Name="CropStatusView" Visibility="Collapsed"/>
+                <local:FXSettingsStatusView x:Name="SettingsStatusView" Visibility="Collapsed"/>
             </Grid>
         </Border>
     </Grid>

@@ -25,6 +25,8 @@ namespace Indulged.Plugins.ProFX.Filters
         public WriteableBitmap OriginalPreviewImage { get; set; }
 
         public string DisplayName { get; set; }
+        public string StatusBarName { get; set; }
+
         public virtual bool hasEditorUI 
         {
             get

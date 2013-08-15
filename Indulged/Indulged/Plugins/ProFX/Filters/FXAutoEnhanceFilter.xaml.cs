@@ -22,6 +22,7 @@ namespace Indulged.Plugins.ProFX.Filters
             InitializeComponent();
 
             DisplayName = "auto enhance";
+            StatusBarName = "Auto Enhance";
         }
 
         protected override void CreateFilter()
