@@ -87,13 +87,10 @@ namespace Indulged.Plugins.ProFX
                 int buttonIndex = (args as ModalPopupEventArgs).ButtonIndex;
                 if (buttonIndex == 0)
                 {
-                    if (colorPicker.Color != SelectedColor)
-                    {
-                        SelectedColor = colorPicker.Color;
+                    SelectedColor = colorPicker.Color;
 
-                        if (SelectedColorChanged != null)
-                            SelectedColorChanged(this, null);
-                    }
+                    if (SelectedColorChanged != null)
+                        SelectedColorChanged(this, null);
 
                 }
             };

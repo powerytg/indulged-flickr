@@ -17,13 +17,6 @@
     </local:FilterBase.RenderTransform>
 
     <Grid x:Name="LayoutRoot">
-        <StackPanel Margin="14, 40, 14, 14">
-             <TextBlock Foreground="#2a80e1" FontWeight="Light" FontSize="36" Text="sepia" Margin="0, 0, 10, 12"/>
-            
-            <Button x:Name="DeleteButton" Content="remove this filter"  Style="{StaticResource FXDeleteButtonStyle}" HorizontalAlignment="Left" Click="DeleteButton_Click"/>
-
-        </StackPanel>
-
     </Grid>
 
 </local:FilterBase>

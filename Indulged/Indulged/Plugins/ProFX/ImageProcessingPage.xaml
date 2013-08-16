@@ -68,7 +68,7 @@
             </Grid>
 
             <!-- Bottom bar -->
-            <local:FXBottomPanel x:Name="BottomPanel" VerticalAlignment="Bottom" />
+            <local:FXBottomPanel x:Name="BottomPanel" VerticalAlignment="Bottom"/>
         </Grid>
         
         <!-- Uploading page -->

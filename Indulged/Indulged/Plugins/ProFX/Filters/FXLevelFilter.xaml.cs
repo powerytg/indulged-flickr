@@ -21,6 +21,7 @@ namespace Indulged.Plugins.ProFX.Filters
             InitializeComponent();
 
             DisplayName = "levels";
+            StatusBarName = "Levels";
         }
 
         protected override void CreateFilter()

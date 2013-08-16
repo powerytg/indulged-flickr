@@ -64,6 +64,11 @@ namespace Indulged.Plugins.ProFX
             new FXExposureFilter()
         };
 
+        public static List<FilterBase> CommonFilters = new List<FilterBase>
+        {
+
+        };
+
         // Applied filters
         public static List<FilterBase> AppliedFilters = new List<FilterBase>();
 

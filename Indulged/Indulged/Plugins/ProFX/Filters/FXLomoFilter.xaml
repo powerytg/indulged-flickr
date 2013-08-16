@@ -10,20 +10,19 @@
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
-    d:DesignHeight="480" d:DesignWidth="480" Height="500">
+    d:DesignHeight="480" d:DesignWidth="480" Height="440">
     
     <local:FilterBase.RenderTransform>
         <CompositeTransform />
     </local:FilterBase.RenderTransform>
 
     <Grid x:Name="LayoutRoot">
+        <fx:FilterBackground/>
         <ScrollViewer>
             <StackPanel Margin="14, 40, 14, 14">
-                <TextBlock Foreground="#2a80e1" FontWeight="Light" FontSize="36" Text="lomo effect" Margin="0, 0, 10, 12"
-                        HorizontalAlignment="Left" />
-
-                <TextBlock Foreground="#cccccc" FontWeight="Light" FontSize="24" Text="Tint" HorizontalAlignment="Left"/>
-                <toolkit:ListPicker x:Name="TintPicker" Style="{StaticResource TransparentListPickerStyle}" SelectionChanged="TintPicker_SelectionChanged">
+            <TextBlock Style="{StaticResource FXSectionTextStyle}" Text="Tint" HorizontalAlignment="Left"/>
+                <toolkit:ListPicker x:Name="TintPicker" Style="{StaticResource TransparentListPickerStyle}" SelectionChanged="TintPicker_SelectionChanged"
+                                    Margin="0, 0, 0, 20">
                     <toolkit:ListPickerItem Content="Neutral"/>
                     <toolkit:ListPickerItem Content="Red"/>
                     <toolkit:ListPickerItem Content="Green"/>
@@ -31,24 +30,23 @@
                     <toolkit:ListPickerItem Content="Yellow"/>
                 </toolkit:ListPicker>
 
-                <TextBlock Foreground="#cccccc" FontWeight="Light" FontSize="24" Text="Vignetting" HorizontalAlignment="Left"/>
-                <toolkit:ListPicker x:Name="StrengthPicker" Style="{StaticResource TransparentListPickerStyle}" SelectedIndex="1" SelectionChanged="StrengthPicker_SelectionChanged">
+            <TextBlock Style="{StaticResource FXSectionTextStyle}" Text="Vignetting" HorizontalAlignment="Left"/>
+                <toolkit:ListPicker x:Name="StrengthPicker" Style="{StaticResource TransparentListPickerStyle}" SelectedIndex="1" SelectionChanged="StrengthPicker_SelectionChanged"
+                                    Margin="0, 0, 0, 30">
                     <toolkit:ListPickerItem Content="Low"/>
                     <toolkit:ListPickerItem Content="Medium"/>
                     <toolkit:ListPickerItem Content="High"/>
                 </toolkit:ListPicker>
 
-                <TextBlock Foreground="#cccccc" FontWeight="Light" FontSize="24" Text="Brightness" HorizontalAlignment="Left"/>
-                <Slider x:Name="BrightnessSlider" Minimum="0" Maximum="1" Value="0.5" ValueChanged="BrightnessSlider_ValueChanged" Padding="0"/>
+            <TextBlock Style="{StaticResource FXSectionTextStyle}" Text="Brightness" HorizontalAlignment="Left"/>
+                <Slider x:Name="BrightnessSlider" Minimum="0" Maximum="1" Value="0.5" ValueChanged="BrightnessSlider_ValueChanged" Padding="0"
+                         Foreground="#6d87f6" Style="{StaticResource FXSliderStyle}"/>
 
-                <TextBlock Foreground="#cccccc" FontWeight="Light" FontSize="24" Text="Saturation" HorizontalAlignment="Left"/>
-                <Slider x:Name="SaturationSlider" Minimum="0" Maximum="1" Value="0.5" ValueChanged="SaturationSlider_ValueChanged" Margin="0, 0, 0, 40" Padding="0"/>
-
-
-                <Button x:Name="DeleteButton" Content="remove this filter"  Style="{StaticResource FXDeleteButtonStyle}" HorizontalAlignment="Left" Click="DeleteButton_Click"/>
+            <TextBlock Style="{StaticResource FXSectionTextStyle}" Text="Saturation" HorizontalAlignment="Left"/>
+                <Slider x:Name="SaturationSlider" Minimum="0" Maximum="1" Value="0.5" ValueChanged="SaturationSlider_ValueChanged" Margin="0, 0, 0, 40" Padding="0"
+                         Foreground="#6d87f6" Style="{StaticResource FXSliderStyle}"/>
             </StackPanel>
         </ScrollViewer>
-
     </Grid>
 
 </local:FilterBase>

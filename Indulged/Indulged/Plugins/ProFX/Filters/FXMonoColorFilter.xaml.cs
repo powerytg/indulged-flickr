@@ -24,8 +24,8 @@ namespace Indulged.Plugins.ProFX.Filters
         {
             InitializeComponent();
 
-            DisplayName = "mono color";
-
+            DisplayName = "monochrome";
+            StatusBarName = "Mono Color";
         }
 
         protected override void CreateFilter()
@@ -48,10 +48,11 @@ namespace Indulged.Plugins.ProFX.Filters
             UpdatePreviewAsync();
         }
 
-        private void Picker_ColorChanged(object sender, Color color)
+        private void PickerButton_SelectedColorChanged(object sender, EventArgs e)
         {
-            preservedColor = Windows.UI.Color.FromArgb(0xff, color.R, color.G, color.B);
+            preservedColor = Windows.UI.Color.FromArgb(0xff, PickerButton.SelectedColor.R, PickerButton.SelectedColor.G, PickerButton.SelectedColor.B);
             UpdatePreviewAsync();
+
         }
 
     }

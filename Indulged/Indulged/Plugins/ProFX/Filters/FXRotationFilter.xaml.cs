@@ -20,6 +20,7 @@ namespace Indulged.Plugins.ProFX.Filters
             InitializeComponent();
 
             DisplayName = "rotation";
+            StatusBarName = "Rotate Image";
         }
 
         protected override void CreateFilter()

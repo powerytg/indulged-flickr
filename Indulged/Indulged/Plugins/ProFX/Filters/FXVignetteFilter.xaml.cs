@@ -21,6 +21,7 @@ namespace Indulged.Plugins.ProFX.Filters
             InitializeComponent();
 
             DisplayName = "vignette";
+            StatusBarName = "Vigenette";
         }
 
         protected override void CreateFilter()

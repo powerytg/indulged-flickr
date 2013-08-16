@@ -45,7 +45,7 @@
                                 </VisualState>
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
-                        <Border x:Name="ButtonBackground" Background="Transparent" Margin="4, 4, 4, 6" CornerRadius="6">
+                        <Border x:Name="ButtonBackground" Background="Transparent" Margin="4, 4, 16, 6" CornerRadius="6">
                             <StackPanel Orientation="Horizontal">
                                 <Ellipse x:Name="SelectionIndicator" Width="15" Height="15" Fill="#0071f0" Margin="0, 0, 4, 0"
                                          Opacity="0" />

@@ -20,7 +20,7 @@ namespace Indulged.Plugins.Chrome
         public static EventHandler<ThemeChangedEventArgs> ThemeChanged;
 
         // Current theme
-        private static Themes _currentTheme = Themes.Light;
+        private static Themes _currentTheme = Themes.Dark;
         public static Themes CurrentTheme
         {
             get

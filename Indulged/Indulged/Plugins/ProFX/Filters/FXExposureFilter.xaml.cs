@@ -21,6 +21,7 @@ namespace Indulged.Plugins.ProFX.Filters
             InitializeComponent();
 
             DisplayName = "exposure";
+            StatusBarName = "Exposure";
         }
 
         protected override void CreateFilter()

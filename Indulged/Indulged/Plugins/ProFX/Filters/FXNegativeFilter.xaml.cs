@@ -17,7 +17,16 @@ namespace Indulged.Plugins.ProFX.Filters
         {
             InitializeComponent();
 
-            DisplayName = "invert color";
+            DisplayName = "invert";
+            StatusBarName = "Invert Color";
+        }
+
+        public override bool hasEditorUI
+        {
+            get
+            {
+                return false;
+            }
         }
 
         protected override void CreateFilter()

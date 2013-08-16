@@ -18,6 +18,15 @@ namespace Indulged.Plugins.ProFX.Filters
             InitializeComponent();
 
             DisplayName = "oil";
+            StatusBarName = "Oil Effect";
+        }
+
+        public override bool hasEditorUI
+        {
+            get
+            {
+                return false;
+            }
         }
 
         protected override void CreateFilter()

@@ -20,6 +20,7 @@ namespace Indulged.Plugins.ProFX.Filters
             InitializeComponent();
 
             DisplayName = "solarize";
+            StatusBarName = "Solarize";
         }
 
         protected override void CreateFilter()

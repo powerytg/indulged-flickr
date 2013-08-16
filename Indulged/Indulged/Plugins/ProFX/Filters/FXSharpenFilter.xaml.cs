@@ -20,6 +20,7 @@ namespace Indulged.Plugins.ProFX.Filters
             InitializeComponent();
 
             DisplayName = "sharpen";
+            StatusBarName = "Sharpen Image";
         }
 
         protected override void CreateFilter()

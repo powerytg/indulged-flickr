@@ -11,30 +11,30 @@
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
-    d:DesignHeight="480" d:DesignWidth="480" Height="360">
+    d:DesignHeight="480" d:DesignWidth="480" Height="300">
 
     <filters:FilterBase.RenderTransform>
         <CompositeTransform />
     </filters:FilterBase.RenderTransform>
 
     <Grid x:Name="LayoutRoot">
+        <fx:FilterBackground/>
         <StackPanel Margin="14, 40, 14, 14">
-             <TextBlock Foreground="#2a80e1" FontWeight="Light" FontSize="36" Text="Vignette" Margin="0, 0, 10, 12"
-                        HorizontalAlignment="Left" />
+            <Grid Margin="0, 0, 0, 40">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
 
-            <StackPanel Orientation="Horizontal" Margin="0, 0, 0, 20">
-                <TextBlock Foreground="#cccccc" FontWeight="Light" FontSize="24" Text="Color" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                <local:ColorSelectorButton x:Name="PickerButton" SelectedColorChanged="OnSelectedColorChanged" Width="80" Height="36" HorizontalAlignment="Right" VerticalAlignment="Center"/>
-            </StackPanel>
-            
-            
-            
-            <TextBlock Foreground="#cccccc" FontWeight="Light" FontSize="24" Text="Radius" HorizontalAlignment="Left"/>
-            <Slider x:Name="AmountSlider" Minimum="0" Maximum="15" Value="0.6" ValueChanged="AmountSlider_ValueChanged" Margin="0, 0, 0, 40" Padding="0"/>
+                <TextBlock Style="{StaticResource FXSectionTextStyle}" Text="Color"  VerticalAlignment="Center" Grid.Column="0"/>
+                <fx:ColorSelectorButton x:Name="PickerButton" SelectedColorChanged="OnSelectedColorChanged" Width="100" Height="45" VerticalAlignment="Center"
+                                            SelectedColor="#abf350" Grid.Column="1"/>
 
+            </Grid>
 
-            <Button x:Name="DeleteButton" Content="remove this filter"  Style="{StaticResource FXDeleteButtonStyle}" HorizontalAlignment="Left" Click="DeleteButton_Click"/>
-
+            <TextBlock Style="{StaticResource FXSectionTextStyle}" Text="Radius" HorizontalAlignment="Left"/>
+            <Slider x:Name="AmountSlider" Minimum="0" Maximum="15" Value="0.6" ValueChanged="AmountSlider_ValueChanged" Margin="0, 0, 0, 40" Padding="0"
+                     Foreground="#6d87f6" Style="{StaticResource FXSliderStyle}"/>
         </StackPanel>
 
     </Grid>

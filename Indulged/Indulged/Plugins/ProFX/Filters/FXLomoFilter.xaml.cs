@@ -22,7 +22,8 @@ namespace Indulged.Plugins.ProFX.Filters
         {
             InitializeComponent();
 
-            DisplayName = "lomo effect";
+            DisplayName = "lomography";
+            StatusBarName = "Lomography";
         }
 
         protected override void CreateFilter()

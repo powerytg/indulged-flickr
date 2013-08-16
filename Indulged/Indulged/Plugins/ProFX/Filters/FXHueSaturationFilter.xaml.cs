@@ -21,6 +21,7 @@ namespace Indulged.Plugins.ProFX.Filters
             InitializeComponent();
 
             DisplayName = "hue/saturation";
+            StatusBarName = "Hue/Saturation";
         }
 
         protected override void CreateFilter()
