@@ -4,44 +4,57 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="clr-namespace:CS.Windows.Controls;assembly=CS.Windows.Controls"
-    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"             
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:chrome="clr-namespace:Indulged.Plugins.Chrome"             
     mc:Ignorable="d"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     d:DesignHeight="480" d:DesignWidth="480">
     
-    <Grid x:Name="LayoutRoot" Background="{StaticResource PhoneChromeBrush}">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+    <Grid x:Name="LayoutRoot" Background="Black">
+        <!-- Background -->
+        <chrome:BitmapBackgroundView x:Name="BackgroundView"/>
         
-        <!-- Back button -->
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0, 0, 0, 0"
+        <!-- Content UI -->
+        <Grid x:Name="ContentView">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <!-- Back button -->
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0, 0, 0, 0"
                     Grid.Row="0" >
-            <Button x:Name="BackButton" BorderThickness="0" Background="Transparent" Padding="0" Margin="0, 0, 6, 0"
+                <Button x:Name="BackButton" BorderThickness="0" Background="Transparent" Padding="0" Margin="0, 0, 6, 0"
                         VerticalAlignment="Center" HorizontalAlignment="Right" Click="BackButton_Click">
-                <Button.Content>
-                    <Image Source="/Assets/ProFX/FXBackButton.png" Stretch="Uniform" Width="76"/>
-                </Button.Content>
-            </Button>
+                    <Button.Content>
+                        <Image Source="/Assets/ProFX/FXBackButton.png" Stretch="Uniform" Width="76"/>
+                    </Button.Content>
+                </Button>
 
-            <TextBlock Text="back" FontWeight="Light" FontSize="36" Foreground="#2a80e1"
+                <TextBlock Text="back" FontWeight="Light" FontSize="36" Foreground="#2a80e1"
                            VerticalAlignment="Center" />
-        </StackPanel>
+            </StackPanel>
 
-        <StackPanel Orientation="Vertical" Grid.Row="1" Margin="20">
-            <TextBlock Foreground="#cccccc" FontWeight="Light" FontSize="24" Text="Essentials" HorizontalAlignment="Left"/>
-            <controls:WatermarkTextBox x:Name="TitleTextBox" WatermarkText="Title (optional)" Margin="0, 0, 0, 15"/>
-            <controls:WatermarkTextBox x:Name="DescriptionTextBox" WatermarkText="Description (optional)" Margin="0, 0, 0, 20"/>
+            <StackPanel Orientation="Vertical" Grid.Row="1" Margin="20">
+                <TextBlock Foreground="#cccccc" FontWeight="Light" FontSize="24" Text="Essentials" HorizontalAlignment="Left"/>
+                <controls:WatermarkTextBox x:Name="TitleTextBox" WatermarkText="Title (optional)" Margin="0, 0, 0, 15"/>
+                <controls:WatermarkTextBox x:Name="DescriptionTextBox" WatermarkText="Description (optional)" Margin="0, 0, 0, 20"/>
 
-            <TextBlock Foreground="#cccccc" FontWeight="Light" FontSize="24" Text="Visible to the following users" HorizontalAlignment="Left"/>
-            <toolkit:ToggleSwitch x:Name="PublicSwitch" Content="Public" IsChecked="True"/>
-            <toolkit:ToggleSwitch x:Name="FriendSwitch" Content="Friend" IsChecked="True"/>
-            <toolkit:ToggleSwitch x:Name="FamilySwitch" Content="Family" IsChecked="True"/>
+                <TextBlock Foreground="#cccccc" FontWeight="Light" FontSize="24" Text="Visible to the following users" HorizontalAlignment="Left"/>
+                <toolkit:ToggleSwitch x:Name="PublicSwitch" Content="Public" IsChecked="True"/>
+                <toolkit:ToggleSwitch x:Name="FriendSwitch" Content="Friend" IsChecked="True"/>
+                <toolkit:ToggleSwitch x:Name="FamilySwitch" Content="Family" IsChecked="True"/>
 
-        </StackPanel>
+            </StackPanel>
+            
+            <!-- Upload button -->
+            <Button x:Name="UploadButton" Content="Upload Photo" Click="UploadButton_Click"
+                    Grid.Row="3" Margin="20" />
+        </Grid>
+        
         
 
     </Grid>

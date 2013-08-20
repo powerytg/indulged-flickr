@@ -41,7 +41,7 @@ namespace Indulged.API.Anaconda
 
             paramDict["oauth_signature"] = signature;
 
-            HttpWebResponse response = await UploadDataAsync(fileName, stream, paramDict);
+            HttpWebResponse response = await UploadDataAsync(sessionId, fileName, stream, paramDict);
             using (StreamReader reader = new StreamReader(response.GetResponseStream()))
             {
                 if (response.StatusCode != HttpStatusCode.OK)
@@ -82,7 +82,7 @@ namespace Indulged.API.Anaconda
             }
         }
 
-        private async Task<HttpWebResponse> UploadDataAsync(string fileName, Stream imageStream, Dictionary<string, string> parameters)
+        private async Task<HttpWebResponse> UploadDataAsync(string sessionId, string fileName, Stream imageStream, Dictionary<string, string> parameters)
         {
             string boundary = "FLICKR_MIME_" + DateTime.Now.ToString("yyyyMMddhhmmss", System.Globalization.DateTimeFormatInfo.InvariantInfo);
 
@@ -113,7 +113,7 @@ namespace Indulged.API.Anaconda
 
                     if (PhotoUploadProgress != null)
                     {
-                        UploadProgressEventArgs args = new UploadProgressEventArgs(uploadedSoFar, dataBuffer.Length);
+                        UploadProgressEventArgs args = new UploadProgressEventArgs(sessionId, uploadedSoFar, dataBuffer.Length);
                         PhotoUploadProgress(this, args);
                     }
                 }

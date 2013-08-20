@@ -102,6 +102,9 @@
     <Compile Include="Plugins\Chrome\BackgroundView.xaml.cs">
       <DependentUpon>BackgroundView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Plugins\Chrome\BitmapBackgroundView.xaml.cs">
+      <DependentUpon>BitmapBackgroundView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Plugins\Chrome\PhotoBackgroundView.xaml.cs">
       <DependentUpon>PhotoBackgroundView.xaml</DependentUpon>
     </Compile>
@@ -378,6 +381,9 @@
     <Compile Include="Plugins\ProFX\PhotoPreviewer.xaml.cs">
       <DependentUpon>PhotoPreviewer.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Plugins\ProFX\UploadStatusView.xaml.cs">
+      <DependentUpon>UploadStatusView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Plugins\Search\GroupSearchResultView.xaml.cs">
       <DependentUpon>GroupSearchResultView.xaml</DependentUpon>
     </Compile>
@@ -415,6 +421,10 @@
     <Page Include="Plugins\Chrome\BackgroundView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Plugins\Chrome\BitmapBackgroundView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Plugins\Chrome\PhotoBackgroundView.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -749,6 +759,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Plugins\ProFX\PhotoPreviewer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Plugins\ProFX\UploadStatusView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

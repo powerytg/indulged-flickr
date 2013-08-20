@@ -44,7 +44,7 @@
             </Grid.RenderTransform>
 
             <!-- Preview section -->
-            <local:PhotoPreviewer x:Name="PhotoView" Source="/Assets/SamplePhoto2.jpg" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+            <local:PhotoPreviewer x:Name="PhotoView" Source="/Assets/SamplePhoto.jpg" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
 
             <!-- Logo-->
             <Grid x:Name="TitlePanel" VerticalAlignment="Top">

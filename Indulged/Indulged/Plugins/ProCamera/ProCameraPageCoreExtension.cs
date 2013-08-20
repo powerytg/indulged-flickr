@@ -107,7 +107,7 @@ namespace Indulged.Plugins.ProCamera
             Viewfinder.Opacity = 1;
 
             NavigationService.Navigate(new Uri("/Plugins/ProFX/ImageProcessingPage.xaml", UriKind.Relative));
- 
+            NavigationService.RemoveBackEntry(); 
         }
 
 

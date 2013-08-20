@@ -38,6 +38,8 @@ namespace Indulged.Plugins.ProFX
         public static EventHandler RequestResetCrop;
         public static EventHandler<CropAreaChangedEventArgs> CropAreaChanged;
 
+        public static EventHandler RequestDismiss;
+
         // Filter gallery view
         private FilterGalleryView galleryView;
 
@@ -83,6 +85,18 @@ namespace Indulged.Plugins.ProFX
             RequestCropView += OnRequestCropView;
             RequestDismissCropView += OnRequestDismissCropView;
             RequestResetCrop += OnRequestResetCrop;
+
+            RequestDismiss += OnRequestDismiss;
+        }
+
+        private void OnRequestDismiss(object sender, EventArgs e)
+        {
+            if (NavigationService.CanGoBack)
+            {
+                NavigationService.GoBack();
+                NavigationService.RemoveBackEntry();
+            }
+            
         }
 
         private void ApplyTheme()
@@ -174,7 +188,7 @@ namespace Indulged.Plugins.ProFX
 
         private void NextButton_Click(object sender, RoutedEventArgs e)
         {
-            //ShowUploaderPage();
+            ShowUploaderView();
 
             /*
             string sessionId = Guid.NewGuid().ToString().Replace("-", null);
