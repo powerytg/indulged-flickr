@@ -37,7 +37,13 @@ namespace Indulged.Plugins.Group
         protected virtual void OnGroupSourceChanged()
         {
             PhotoPageView.Group = GroupSource;
+            TopicPageView.Group = GroupSource;
+
+            // Get first page of photos
             Anaconda.AnacondaCore.GetGroupPhotosAsync(GroupSource.ResourceId, new Dictionary<string, string> { {"page" , "1"}, {"per_page" , Anaconda.DefaultItemsPerPage.ToString()} });
+
+            // Get first page of topics
+            Anaconda.AnacondaCore.GetGroupTopicsAsync(GroupSource.ResourceId, new Dictionary<string, string> { { "page", "1" }, { "per_page", Anaconda.DefaultItemsPerPage.ToString() } });
         }
 
         // Constructor

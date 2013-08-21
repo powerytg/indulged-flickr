@@ -90,6 +90,9 @@ namespace Indulged.Plugins.Dashboard
 
         private void OnGroupListViewSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            if (GroupListView.SelectedItem == null)
+                return;
+
             FlickrGroup group = (FlickrGroup)GroupListView.SelectedItem;
 
             Frame rootVisual = System.Windows.Application.Current.RootVisual as Frame;
@@ -116,12 +119,22 @@ namespace Indulged.Plugins.Dashboard
 
         private void OnStreamListViewSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            if (StreamListView.SelectedItem == null)
+                return;
+
             PhotoSet pset = (PhotoSet)StreamListView.SelectedItem;
 
             Frame rootVisual = System.Windows.Application.Current.RootVisual as Frame;
             PhoneApplicationPage currentPage = (PhoneApplicationPage)rootVisual.Content;
             currentPage.NavigationService.Navigate(new Uri("/Plugins/PhotoCollection/PhotoSetPage.xaml?photoset_id=" + pset.ResourceId, UriKind.Relative));
 
+        }
+
+        public void ResetListSelection()
+        {
+            FeatureListView.SelectedItem = null;
+            StreamListView.SelectedItem = null;
+            GroupListView.SelectedItem = null;
         }
     }
 }

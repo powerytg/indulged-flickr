@@ -40,8 +40,8 @@ namespace Indulged
             bool tokenRetrieved = Anaconda.AnacondaCore.RetrieveAcessCredentials();
             User currentUser = Cinderella.CinderellaCore.RetrieveCurrentUserInfo();
 
-            NavigationService.Navigate(new Uri("/Plugins/ProFX/ImageProcessingPage.xaml", UriKind.Relative));
-            return;
+            //NavigationService.Navigate(new Uri("/Plugins/ProFX/ImageProcessingPage.xaml", UriKind.Relative));
+            //return;
 
             if (tokenRetrieved && currentUser != null)
             {
@@ -63,6 +63,14 @@ namespace Indulged
                 NavigationService.Navigate(new Uri("/Plugins/Login/LoginPage.xaml", UriKind.Relative));
             }
 
+        }
+
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            // Reset dashboard selections
+            Dashboard.ResetListSelections();
+
+            base.OnNavigatedFrom(e);
         }
 
         private void OnTakePhotoClick(object sender, EventArgs e)

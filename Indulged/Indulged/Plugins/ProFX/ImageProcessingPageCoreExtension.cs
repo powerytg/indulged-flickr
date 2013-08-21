@@ -24,6 +24,7 @@ namespace Indulged.Plugins.ProFX
     {
         // Original Photo
         private BitmapImage originalImage;
+        private WriteableBitmap originalBitmap;
 
         // Sampled preview image
         private WriteableBitmap originalPreviewBitmap;
@@ -99,9 +100,9 @@ namespace Indulged.Plugins.ProFX
 
         // Sample the original image
         private void SampleOriginalImage()
-        {            
-            WriteableBitmap bmp = new WriteableBitmap(originalImage);
-            double ratio = (double)bmp.PixelWidth / (double)bmp.PixelHeight;
+        {
+            originalBitmap = new WriteableBitmap(originalImage);
+            double ratio = (double)originalBitmap.PixelWidth / (double)originalBitmap.PixelHeight;
             double w = Application.Current.RootVisual.RenderSize.Width;
             double h = Application.Current.RootVisual.RenderSize.Height;
             double previewWidth;
@@ -118,8 +119,8 @@ namespace Indulged.Plugins.ProFX
                 previewHeight = w / ratio;
             }
 
-            originalPreviewBitmap = bmp.Resize((int)previewWidth, (int)previewHeight, System.Windows.Media.Imaging.WriteableBitmapExtensions.Interpolation.Bilinear);
-            currentPreviewBitmap = bmp.Resize((int)previewWidth, (int)previewHeight, System.Windows.Media.Imaging.WriteableBitmapExtensions.Interpolation.Bilinear);
+            originalPreviewBitmap = originalBitmap.Resize((int)previewWidth, (int)previewHeight, System.Windows.Media.Imaging.WriteableBitmapExtensions.Interpolation.Bilinear);
+            currentPreviewBitmap = originalBitmap.Resize((int)previewWidth, (int)previewHeight, System.Windows.Media.Imaging.WriteableBitmapExtensions.Interpolation.Bilinear);
 
             // Create buffer
             previewStream = new MemoryStream();

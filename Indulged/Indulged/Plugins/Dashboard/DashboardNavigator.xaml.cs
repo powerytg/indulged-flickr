@@ -51,5 +51,10 @@ namespace Indulged.Plugins.Dashboard
             MainPivot.SelectedIndex = 2;
         }
 
+        public void ResetListSelections()
+        {
+            PreludeView.ResetListSelection();
+        }
+
     }
 }

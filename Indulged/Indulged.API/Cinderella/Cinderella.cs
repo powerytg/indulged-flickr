@@ -14,17 +14,26 @@ namespace Indulged.API.Cinderella
 {
     public partial class Cinderella
     {
-        // Events
+        // Photo events
         public EventHandler<PhotoStreamUpdatedEventArgs> PhotoStreamUpdated;
         public EventHandler<DiscoveryStreamUpdatedEventArgs> DiscoveryStreamUpdated;
         public EventHandler<EXIFUpdatedEventArgs> EXIFUpdated;
+
+        // Search events
         public EventHandler<PhotoSearchResultEventArgs> PhotoSearchCompleted;
         public EventHandler<PopularTagListUpdatedEventArgs> PopularTagsUpdated;
-        public EventHandler<GroupListUpdatedEventArgs> GroupListUpdated;
         public EventHandler<GroupSearchResultEventArgs> GroupSearchCompleted;
+
+        // Upload events
+        public EventHandler<UploadedPhotoInfoReturnedEventArgs> UploadedPhotoInfoReturned;
+
+        // Group events
+        public EventHandler<GroupListUpdatedEventArgs> GroupListUpdated;
         public EventHandler<GroupInfoUpdatedEventArgs> GroupInfoUpdated;
         public EventHandler<GroupPhotoListUpdatedEventArgs> GroupPhotoListUpdated;
+        public EventHandler<GroupTopicsUpdatedEventArgs> GroupTopicsUpdated;
 
+        // Photo set events
         public EventHandler<PhotoSetListUpdatedEventArgs> PhotoSetListUpdated;
         public EventHandler<PhotoSetPhotosUpdatedEventArgs> PhotoSetPhotosUpdated;
 
@@ -85,20 +94,29 @@ namespace Indulged.API.Cinderella
             // Group cache
             GroupCache = new Dictionary<string, FlickrGroup>();
 
-            // Events
+            // Photo list
             Anaconda.Anaconda.AnacondaCore.PhotoSetListReturned += PhotoListReturned;
             Anaconda.Anaconda.AnacondaCore.PhotoSetPhotosReturned += OnPhotoSetPhotosReturned;
 
+            // Photo stream
             Anaconda.Anaconda.AnacondaCore.PhotoStreamReturned += PhotoStreamReturned;
             Anaconda.Anaconda.AnacondaCore.DiscoveryStreamReturned += OnDiscoveryStreamReturned;
             Anaconda.Anaconda.AnacondaCore.EXIFReturned += OnEXIFReturned;
+            
+            // Search
             Anaconda.Anaconda.AnacondaCore.PhotoSearchReturned += OnPhotoSearchReturned;
             Anaconda.Anaconda.AnacondaCore.PopularTagListReturned += OnPopularTagListReturned;
-            Anaconda.Anaconda.AnacondaCore.GroupListReturned += OnGroupListReturned;
             Anaconda.Anaconda.AnacondaCore.GroupSearchReturned += OnGroupSearchReturned;
+
+            // Upload
+            Anaconda.Anaconda.AnacondaCore.PhotoInfoReturned += OnPhotoInfoReturned;
+            Anaconda.Anaconda.AnacondaCore.PhotoUploaded += OnPhotoUploaded;
+
+            // Group
+            Anaconda.Anaconda.AnacondaCore.GroupListReturned += OnGroupListReturned;
             Anaconda.Anaconda.AnacondaCore.GroupInfoReturned += OnGroupInfoReturned;
             Anaconda.Anaconda.AnacondaCore.GroupPhotoReturned += OnGroupPhotosReturned;
-            
+            Anaconda.Anaconda.AnacondaCore.GroupTopicsReturned += OnGroupTopicsReturned;
         }
     }
 }

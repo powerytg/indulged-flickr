@@ -17,6 +17,6 @@
         
         <TextBlock x:Name="StatusLabel" Grid.Row="0" Margin="20" TextAlignment="Center"/>
         
-        <ProgressBar x:Name="ProgressView" IsIndeterminate="True" Grid.Row="1" Margin="20" Minimum="0" Maximum="1"/>
+        <ProgressBar x:Name="ProgressView" IsIndeterminate="True" Grid.Row="1" Margin="20" Minimum="0" Maximum="1" Foreground="#448ccb"/>
     </Grid>
 </UserControl>

@@ -38,6 +38,19 @@ namespace Indulged.Plugins.ProFX.Filters
             }
         }
 
+        public override IFilter FinalOutputFilter
+        {
+            get
+            {
+                double xFactor = OriginalImage.PixelWidth / CurrentImage.PixelWidth;
+                double yFactor = OriginalImage.PixelHeight / CurrentImage.PixelHeight;
+
+                Windows.Foundation.Rect finalCropRect = new Windows.Foundation.Rect(cropRect.X * xFactor, cropRect.Y * yFactor, cropRect.Width * xFactor, cropRect.Height * yFactor);
+
+                IFilter finalCropFilter = FilterFactory.CreateCropFilter(finalCropRect);
+                return finalCropFilter;
+            }
+        }
 
         protected override void CreateFilter()
         {

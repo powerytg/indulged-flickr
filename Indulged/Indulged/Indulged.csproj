@@ -116,6 +116,9 @@
     <Compile Include="Plugins\Common\ProgressView.xaml.cs">
       <DependentUpon>ProgressView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Plugins\Common\Renderers\TopicRenderer.xaml.cs">
+      <DependentUpon>TopicRenderer.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Plugins\Common\Renderers\SearchGroupRenderer.xaml.cs">
       <DependentUpon>SearchGroupRenderer.xaml</DependentUpon>
     </Compile>
@@ -227,6 +230,9 @@
       <DependentUpon>PhotoBasicInfoView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Plugins\Detail\PhotoSourceConverter.cs" />
+    <Compile Include="Plugins\Group\GroupViewTopicsPage.xaml.cs">
+      <DependentUpon>GroupViewTopicsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Plugins\Group\GroupInfoView.xaml.cs">
       <DependentUpon>GroupInfoView.xaml</DependentUpon>
     </Compile>
@@ -437,6 +443,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Plugins\Common\Renderers\TopicRenderer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Plugins\Common\Renderers\SearchGroupRenderer.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -571,6 +581,10 @@
     <Page Include="Plugins\Detail\PhotoInfoView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Plugins\Group\GroupViewTopicsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Plugins\Group\GroupInfoView.xaml">
       <SubType>Designer</SubType>
@@ -836,6 +850,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\Common\Comment.png" />
     <Content Include="Assets\Common\SliderThumb.png" />
     <Content Include="Assets\ProCamera\WB-Cloudy-Selected.png" />
     <Content Include="Assets\ProCamera\WB-Cloudy.png" />
@@ -871,6 +886,7 @@
       <SubType>Designer</SubType>
     </Page>
     <Content Include="Assets\SamplePhoto2.jpg" />
+    <Content Include="Assets\SamplePhoto3.jpg" />
     <Content Include="Vendor\ExifLib.dll" />
     <None Include="Assets\Chrome\Thumbs.db" />
     <Content Include="Assets\Chrome\BlankTitleView.png" />

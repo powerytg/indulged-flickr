@@ -18,7 +18,29 @@ namespace Indulged.Plugins.Group
 {
     public partial class GroupViewPhotoPage : UserControl
     {
-        public FlickrGroup Group { get; set; }
+        private FlickrGroup _group;
+        public FlickrGroup Group 
+        {
+            get
+            {
+                return _group;
+            }
+
+            set
+            {
+                _group = value;
+
+                if (_group.Photos.Count > 0)
+                {
+                    List<PhotoGroup> photoGroups = VioletPhotoGroupFactory.GeneratePhotoGroup(_group.Photos, Group.ResourceId, "Group");
+                    foreach (var group in photoGroups)
+                    {
+                        PhotoCollection.Add(group);
+                    }
+
+                }
+            }
+        }
 
         // Photo data source
         public ObservableCollection<PhotoGroup> PhotoCollection { get; set; }

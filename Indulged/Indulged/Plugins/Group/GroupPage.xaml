@@ -56,7 +56,7 @@
 
             <!--Panorama item two-->
             <phone:PanoramaItem Header="discussions" HeaderTemplate="{StaticResource GroupPageHeaderTemplate}">
-                <Grid/>
+                <local:GroupViewTopicsPage x:Name="TopicPageView"/>
             </phone:PanoramaItem>
         </phone:Panorama>
 

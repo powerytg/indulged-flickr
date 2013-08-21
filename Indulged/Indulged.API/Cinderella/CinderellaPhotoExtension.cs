@@ -31,6 +31,38 @@ namespace Indulged.API.Cinderella
             EXIFUpdated.DispatchEvent(this, evt);
         }
 
+        private void OnPhotoInfoReturned(object sender, GetPhotoInfoEventArgs e)
+        {
+            JObject json = JObject.Parse(e.Response);
+            Photo photo = PhotoFactory.PhotoWithJObject((JObject)json["photo"]);
+
+            // Should add this photo to stream?
+            if (e.IsUploadedPhoto)
+            {
+                // Dispatch event
+                UploadedPhotoInfoReturnedEventArgs evt = new UploadedPhotoInfoReturnedEventArgs();
+                evt.PhotoId = e.PhotoId;
+                UploadedPhotoInfoReturned.DispatchEvent(this, evt);
+            }
+        }
+
+        private void OnPhotoUploaded(object sender, UploadPhotoEventArgs e)
+        {
+            /*
+            Photo newPhoto = new Photo();
+            newPhoto.ResourceId = e.PhotoId;
+
+            PhotoCache[e.PhotoId] = newPhoto;
+
+            CurrentUser.Photos.Add(newPhoto);
+            CurrentUser.PhotoCount++;
+
+            // Dispatch event
+            PhotoUploadCompleteEventArgs evt = new PhotoUploadCompleteEventArgs();
+            evt.PhotoId = e.PhotoId;
+            PhotoUploadCompleted.DispatchEvent(this, evt);
+             * */
+        }
         
     }
 }

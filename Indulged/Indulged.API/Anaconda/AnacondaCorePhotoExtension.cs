@@ -79,6 +79,65 @@ namespace Indulged.API.Anaconda
             }
         }
 
-        
+        private List<string> infoQueue = new List<string>();
+        public async void GetPhotoInfoAsync(string photoId, string OwnerId, bool isUploadedPhoto)
+        {
+            if (infoQueue.Contains(photoId))
+                return;
+
+            infoQueue.Add(photoId);
+
+            string timestamp = DateTimeUtils.GetTimestamp();
+            string nonce = Guid.NewGuid().ToString().Replace("-", null);
+
+            Dictionary<string, string> paramDict = new Dictionary<string, string>();
+            paramDict["method"] = "flickr.photos.getInfo";
+            paramDict["format"] = "json";
+            paramDict["nojsoncallback"] = "1";
+            paramDict["oauth_consumer_key"] = consumerKey;
+            paramDict["oauth_nonce"] = nonce;
+            paramDict["oauth_signature_method"] = "HMAC-SHA1";
+            paramDict["oauth_timestamp"] = timestamp;
+            paramDict["oauth_token"] = AccessToken;
+            paramDict["oauth_version"] = "1.0";
+            paramDict["photo_id"] = photoId;
+
+            string paramString = GenerateParamString(paramDict);
+            string signature = GenerateSignature("GET", AccessTokenSecret, "http://api.flickr.com/services/rest", paramString);
+            string requestUrl = "http://api.flickr.com/services/rest?" + paramString + "&oauth_signature=" + signature;
+            HttpWebResponse response = await DispatchRequest("GET", requestUrl, null);
+            using (StreamReader reader = new StreamReader(response.GetResponseStream()))
+            {
+                infoQueue.Remove(photoId);
+
+                GetPhotoInfoExceptionEventArgs exceptionArgs = null;
+                if (response.StatusCode != HttpStatusCode.OK)
+                {
+                    exceptionArgs = new GetPhotoInfoExceptionEventArgs();
+                    exceptionArgs.PhotoId = photoId;
+                    PhotoInfoException.DispatchEvent(this, exceptionArgs);
+
+                    return;
+                }
+
+                string jsonString = reader.ReadToEnd();
+                if (!IsResponseSuccess(jsonString))
+                {
+                    exceptionArgs = new GetPhotoInfoExceptionEventArgs();
+                    exceptionArgs.PhotoId = photoId;
+                    PhotoInfoException.DispatchEvent(this, exceptionArgs);
+
+                    return;
+                }
+
+
+                GetPhotoInfoEventArgs args = new GetPhotoInfoEventArgs();
+                args.PhotoId = photoId;
+                args.Response = jsonString;
+                args.OwnerId = OwnerId;
+                args.IsUploadedPhoto = isUploadedPhoto;
+                PhotoInfoReturned.DispatchEvent(this, args);
+            }
+        }
     }
 }

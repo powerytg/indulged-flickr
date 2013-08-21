@@ -38,6 +38,15 @@ namespace Indulged.Plugins.ProFX.Filters
         // Filter reference
         public IFilter Filter { get; set; }
 
+        // Filter for final output
+        public virtual IFilter FinalOutputFilter
+        {
+            get
+            {
+                return Filter;
+            }
+        }
+
         protected virtual void CreateFilter()
         {
             // Do nothing

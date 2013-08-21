@@ -32,7 +32,7 @@
         <chrome:BackgroundView x:Name="BackgroundView"/>
 
         <!-- Content -->
-        <dashboard:DashboardNavigator Margin="0, 95, 0, 0" />
+        <dashboard:DashboardNavigator x:Name="Dashboard" Margin="0, 95, 0, 0" />
 
         <!-- Title view -->
         <chrome:TitleView x:Name="TitleView" VerticalAlignment="Top" IsHitTestVisible="False"/>

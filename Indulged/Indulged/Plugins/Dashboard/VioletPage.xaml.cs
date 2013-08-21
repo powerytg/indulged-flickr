@@ -44,7 +44,21 @@ namespace Indulged.Plugins.Dashboard
             // Events
             PolicyKit.PolicyChanged += OnPolicyChanged;
             Cinderella.CinderellaCore.PhotoStreamUpdated += OnPhotoStreamUpdated;
+            Cinderella.CinderellaCore.UploadedPhotoInfoReturned += OnPhotoUploaded;
             Cinderella.CinderellaCore.DiscoveryStreamUpdated += OnDiscoveryStreamUpdated;
+        }
+
+        // Photo uploaded
+        private void OnPhotoUploaded(object sender, UploadedPhotoInfoReturnedEventArgs e)
+        {
+            if (PolicyKit.VioletPageSubscription != PolicyKit.MyStream)
+                return;
+
+            Photo newPhoto = Cinderella.CinderellaCore.PhotoCache[e.PhotoId];
+            List<Photo> newPhotos = new List<Photo> { newPhoto };
+
+            List<PhotoGroup> newGroups = VioletPhotoGroupFactory.GeneratePhotoGroup(newPhotos, PolicyKit.MyStream);
+            PhotoCollection.Insert(0, newGroups[0]);
         }
 
         // Photo stream updated

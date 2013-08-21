@@ -36,6 +36,11 @@ namespace Indulged.API.Anaconda
         public EventHandler<GetEXIFEventArgs> EXIFReturned;
         public EventHandler<GetEXIFExceptionEventArgs> EXIFException;
 
+        // Photo info
+        public EventHandler<GetPhotoInfoEventArgs> PhotoInfoReturned;
+        public EventHandler<GetPhotoInfoExceptionEventArgs> PhotoInfoException;
+
+
         // Popular tag list returned
         public EventHandler<GetPopularTagListEventArgs> PopularTagListReturned;
 
@@ -46,6 +51,7 @@ namespace Indulged.API.Anaconda
         // Group 
         public EventHandler<GetGroupInfoEventArgs> GroupInfoReturned;
         public EventHandler<GetGroupPhotosEventArgs> GroupPhotoReturned;
+        public EventHandler<GetGroupTopicsEventArgs> GroupTopicsReturned;
 
         // Upload
         public EventHandler<UploadPhotoEventArgs> PhotoUploaded;

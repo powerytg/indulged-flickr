@@ -32,6 +32,7 @@ namespace Indulged.Plugins.ProFX
         public static EventHandler<DeleteFilterEventArgs> RequestDeleteFilter;
         public static EventHandler<DismissFilterEventArgs> RequestDismissFilterView;
         public static EventHandler RequestProcessorPage;
+        public static EventHandler RequestDismissUploaderView;
 
         public static EventHandler RequestCropView;
         public static EventHandler RequestDismissCropView;
@@ -86,8 +87,15 @@ namespace Indulged.Plugins.ProFX
             RequestDismissCropView += OnRequestDismissCropView;
             RequestResetCrop += OnRequestResetCrop;
 
+            RequestDismissUploaderView += OnRequestDismissUploaderView;
             RequestDismiss += OnRequestDismiss;
         }
+
+        private void OnRequestDismissUploaderView(object sender, EventArgs e)
+        {
+            DismissUploaderView();
+        }
+
 
         private void OnRequestDismiss(object sender, EventArgs e)
         {
@@ -122,25 +130,31 @@ namespace Indulged.Plugins.ProFX
         {
             base.OnNavigatedTo(e);
 
-            //originalImage = ProCameraPage.CapturedImage;
-            originalImage = (BitmapImage)PhotoView.Source;
+            originalImage = ProCameraPage.CapturedImage;
             originalImage.CreateOptions = BitmapCreateOptions.None;
 
             // Sampling
-            //if (originalImage != null && !double.IsNaN(originalImage.PixelWidth) && !double.IsNaN(originalImage.PixelHeight))
-            //{
-            //    SampleOriginalImage();
-            //    PhotoView.Source = currentPreviewBitmap;
-            //}
-            //else
-            //{
+            if (originalImage != null && !double.IsNaN(originalImage.PixelWidth) && !double.IsNaN(originalImage.PixelHeight))
+            {
+                SampleOriginalImage();
+                PhotoView.Source = currentPreviewBitmap;
+            }
+            else
+            {
                 PhotoView.SizeChanged += OnPhotoViewSizeChanged;
-            //}
+            }
 
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
+            // Clean up
+            if (previewStream != null)
+            {
+                previewStream.Close();
+                previewStream = null;
+            }
+
             base.OnNavigatedFrom(e);
         }
 

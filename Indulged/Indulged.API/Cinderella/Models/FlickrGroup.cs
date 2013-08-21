@@ -63,5 +63,22 @@ namespace Indulged.API.Cinderella.Models
                 _photos = value;
             }
         }
+
+        // Topics
+        private List<Topic> _topics = new List<Topic>();
+        public List<Topic> Topics
+        {
+            get
+            {
+                return _topics;
+            }
+
+            set
+            {
+                _topics = value;
+
+            }
+        }
+
     }
 }

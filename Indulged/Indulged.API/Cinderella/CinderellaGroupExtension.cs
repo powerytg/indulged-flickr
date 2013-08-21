@@ -69,5 +69,42 @@ namespace Indulged.API.Cinderella
             evt.NewPhotos = newPhotos;
             GroupPhotoListUpdated.DispatchEvent(this, evt);
         }
+
+        private void OnGroupTopicsReturned(object sender, GetGroupTopicsEventArgs e)
+        {
+            if (!Cinderella.CinderellaCore.GroupCache.ContainsKey(e.GroupId))
+                return;
+
+            FlickrGroup group = Cinderella.CinderellaCore.GroupCache[e.GroupId];
+
+            JObject rawJson = JObject.Parse(e.Response);
+            JObject rootJson = (JObject)rawJson["topics"];
+            int TotalCount = int.Parse(rootJson["total"].ToString());
+            int page = int.Parse(rootJson["page"].ToString());
+            int numPages = int.Parse(rootJson["pages"].ToString());
+            int perPage = int.Parse(rootJson["per_page"].ToString());
+
+            List<Topic> newTopics = new List<Topic>();
+            foreach (var entry in rootJson["topic"])
+            {
+                JObject json = (JObject)entry;
+                Topic topic = TopicFactory.TopicWithJObject(json);
+
+                if (!group.Topics.Contains(topic))
+                {
+                    group.Topics.Add(topic);
+                    newTopics.Add(topic);
+                }
+            }
+
+            // Dispatch event            
+            GroupTopicsUpdatedEventArgs evt = new GroupTopicsUpdatedEventArgs();
+            evt.GroupId = group.ResourceId;
+            evt.Page = page;
+            evt.PageCount = numPages;
+            evt.PerPage = perPage;
+            evt.NewTopics = newTopics;
+            GroupTopicsUpdated.DispatchEvent(this, evt);
+        }
     }
 }

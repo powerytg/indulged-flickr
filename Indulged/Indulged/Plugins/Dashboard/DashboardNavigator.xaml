@@ -4,7 +4,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
-    xmlns:chrome="clr-namespace:Indulged.Plugins.Dashboard"
+    xmlns:dashboard="clr-namespace:Indulged.Plugins.Dashboard"
     mc:Ignorable="d"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
@@ -14,13 +14,13 @@
     <Grid x:Name="LayoutRoot">
         <phone:Pivot x:Name="MainPivot" Style="{StaticResource NavigatorStyle}" SelectionChanged="OnSelectionChanged">
             <phone:PivotItem x:Name="PreludePageItem" Header="prelude">
-                <chrome:PreludePage />
+                <dashboard:PreludePage x:Name="PreludeView" />
             </phone:PivotItem>
             <phone:PivotItem x:Name="VioletPageItem" Header="violet">
-                <chrome:VioletPage />
+                <dashboard:VioletPage />
             </phone:PivotItem>
             <phone:PivotItem x:Name="SummersaltPageItem" Header="summersalt">
-                <chrome:SummersaltPage />
+                <dashboard:SummersaltPage />
             </phone:PivotItem>
                              
         </phone:Pivot>

@@ -17,7 +17,8 @@ using Indulged.API.Avarice.Controls;
 using Windows.Storage.Streams;
 using Indulged.Plugins.ProFX.Filters;
 using Indulged.API.Anaconda;
-using Indulged.API.Anaconda.Events; 
+using Indulged.API.Anaconda.Events;
+using Indulged.API.Cinderella; 
 
 namespace Indulged.Plugins.ProFX
 {
@@ -33,6 +34,7 @@ namespace Indulged.Plugins.ProFX
         private UploadStatusView statusView;
         private ModalPopup statusDialog;
         private string sessionId;
+        private string photoId;
 
         // Constructor
         public ImageUploaderView()
@@ -43,11 +45,26 @@ namespace Indulged.Plugins.ProFX
             Anaconda.AnacondaCore.PhotoUploadProgress += OnUploadProgress;
             Anaconda.AnacondaCore.PhotoUploaded += OnUploadComplete;
             Anaconda.AnacondaCore.PhotoUploadError += OnUploadFailed;
+
+            Anaconda.AnacondaCore.PhotoInfoReturned += OnPhotoInfoReturned;
+            Anaconda.AnacondaCore.PhotoInfoException += OnPhotoInfoException;
         }
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
-            ImageProcessingPage.RequestProcessorPage(this, null);
+            if (bitmapStream != null)
+            {
+                bitmapStream.Close();
+                bitmapStream = null;
+            }
+
+            if (uploadStream != null)
+            {
+                uploadStream.Close();
+                uploadStream = null;
+            }
+
+            ImageProcessingPage.RequestDismissUploaderView(this, null);
         }
 
         public void PrepareBackgroundImage()
@@ -75,7 +92,7 @@ namespace Indulged.Plugins.ProFX
                 // First add an antique effect 
                 foreach (FilterBase fx in ImageProcessingPage.AppliedFilters)
                 {
-                    editsession.AddFilter(fx.Filter);
+                    editsession.AddFilter(fx.FinalOutputFilter);
                 }                
 
                 // Finally, execute the filtering and render to a bitmap
@@ -173,10 +190,17 @@ namespace Indulged.Plugins.ProFX
             if (statusView == null)
                 return;
 
-            statusView.ProgressView.Value = 1;
-            statusView.StatusLabel.Text = "Upload is complete";
-            statusDialog.Buttons[0].IsEnabled = true;
-            statusDialog.Buttons[0].Content = "Done";
+            // Get full photo info so that we can insert the photo to cache
+            statusView.ProgressView.IsIndeterminate = true;
+            statusView.StatusLabel.Text = "Retrieving photo info";
+
+            photoId = e.PhotoId;
+
+            Dispatcher.BeginInvoke(() => {
+                string currentUserId = Cinderella.CinderellaCore.CurrentUser.ResourceId;
+                Anaconda.AnacondaCore.GetPhotoInfoAsync(e.PhotoId, currentUserId, true);
+            });
+            
         }
 
         private void OnUploadFailed(object sender, UploadPhotoErrorEventArgs e)
@@ -187,10 +211,42 @@ namespace Indulged.Plugins.ProFX
             if (statusView == null)
                 return;
 
+            statusView.ProgressView.IsIndeterminate = false;
             statusView.ProgressView.Value = 1;
             statusView.StatusLabel.Text = "There was an issue while uploading";
             statusDialog.Buttons[0].IsEnabled = true;
             statusDialog.Buttons[0].Content = "Done";
         }
+
+        private void OnPhotoInfoReturned(object sender, GetPhotoInfoEventArgs e)
+        {
+            if (e.PhotoId != photoId)
+                return;
+
+            if (statusView == null)
+                return;
+
+            statusView.ProgressView.Visibility = Visibility.Collapsed;
+            statusView.StatusLabel.Text = "Upload is complete";
+            statusDialog.Buttons[0].IsEnabled = true;
+            statusDialog.Buttons[0].Content = "Done";
+
+        }
+
+        private void OnPhotoInfoException(object sender, GetPhotoInfoExceptionEventArgs e)
+        {
+            if (e.PhotoId != photoId)
+                return;
+
+            if (statusView == null)
+                return;
+
+            statusView.ProgressView.Value = 1;
+            statusView.StatusLabel.Text = "Photo is uploaded, but cannot retrieve from server";
+            statusDialog.Buttons[0].IsEnabled = true;
+            statusDialog.Buttons[0].Content = "Done";
+        }
+
+
     }
 }
