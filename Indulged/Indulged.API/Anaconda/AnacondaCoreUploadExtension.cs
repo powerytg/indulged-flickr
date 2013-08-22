@@ -41,7 +41,7 @@ namespace Indulged.API.Anaconda
 
             paramDict["oauth_signature"] = signature;
 
-            HttpWebResponse response = await UploadDataAsync(sessionId, fileName, stream, paramDict);
+            HttpWebResponse response = await UploadDataAsync(sessionId, fileName, stream, paramDict).ConfigureAwait(false);
             using (StreamReader reader = new StreamReader(response.GetResponseStream()))
             {
                 if (response.StatusCode != HttpStatusCode.OK)
@@ -50,7 +50,7 @@ namespace Indulged.API.Anaconda
                     return;
                 }
 
-                string xmlString = reader.ReadToEnd();
+                string xmlString = await reader.ReadToEndAsync().ConfigureAwait(false);
                 XDocument xmlDoc = XDocument.Parse(xmlString);
                 if (xmlDoc.Element("rsp").Attribute("stat").Value == "fail")
                 {
@@ -99,7 +99,7 @@ namespace Indulged.API.Anaconda
 
             req.ContentLength = dataBuffer.Length;
 
-            using (Stream reqStream = await req.GetRequestStreamAsync())
+            using (Stream reqStream = await req.GetRequestStreamAsync().ConfigureAwait(false))
             {
                 int bufferSize = 32 * 1024;
                 if (dataBuffer.Length / 100 > bufferSize) bufferSize = bufferSize * 2;
@@ -123,7 +123,7 @@ namespace Indulged.API.Anaconda
             // Invoke the API
             try
             {
-                HttpWebResponse response = (HttpWebResponse)await req.GetResponseAsync();
+                HttpWebResponse response = (HttpWebResponse)await req.GetResponseAsync().ConfigureAwait(false);
                 return response;
             }
             catch (Exception e)

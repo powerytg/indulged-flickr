@@ -56,7 +56,7 @@ namespace Indulged.API.Anaconda
             string paramString = GenerateParamString(paramDict);
             string signature = GenerateSignature("GET", AccessTokenSecret, "http://api.flickr.com/services/rest", paramString);
             string requestUrl = "http://api.flickr.com/services/rest?" + paramString + "&oauth_signature=" + signature;
-            HttpWebResponse response = await DispatchRequest("GET", requestUrl, null);
+            HttpWebResponse response = await DispatchRequest("GET", requestUrl, null).ConfigureAwait(false);
             using (StreamReader reader = new StreamReader(response.GetResponseStream()))
             {
                 if (user != null)
@@ -70,7 +70,7 @@ namespace Indulged.API.Anaconda
                     return;
                 }
 
-                string jsonString = reader.ReadToEnd();
+                string jsonString = await reader.ReadToEndAsync().ConfigureAwait(false);
                 if (!TryHandleResponseException(jsonString, () => { GetPhotoStreamAsync(userId, parameters); }))
                     return;
 
@@ -118,7 +118,7 @@ namespace Indulged.API.Anaconda
             string paramString = GenerateParamString(paramDict);
             string signature = GenerateSignature("GET", AccessTokenSecret, "http://api.flickr.com/services/rest", paramString);
             string requestUrl = "http://api.flickr.com/services/rest?" + paramString + "&oauth_signature=" + signature;
-            HttpWebResponse response = await DispatchRequest("GET", requestUrl, null);
+            HttpWebResponse response = await DispatchRequest("GET", requestUrl, null).ConfigureAwait(false);
             using (StreamReader reader = new StreamReader(response.GetResponseStream()))
             {
                 groupListFetchingQueue.Remove(userId);
@@ -128,7 +128,7 @@ namespace Indulged.API.Anaconda
                     return;
                 }
 
-                string jsonString = reader.ReadToEnd();
+                string jsonString = await reader.ReadToEndAsync().ConfigureAwait(false);
                 if (!TryHandleResponseException(jsonString, () => { GetGroupListAsync(userId, parameters); }))
                     return;
 
