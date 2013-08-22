@@ -114,10 +114,10 @@ namespace Indulged.API.Anaconda
 
             // Create the http request
             string requestUrl = "http://www.flickr.com/services/oauth/request_token?" + paramString + "&oauth_signature=" + signature;
-            HttpWebResponse response = await DispatchRequest("GET", requestUrl, null);
+            HttpWebResponse response = await DispatchRequest("GET", requestUrl, null).ConfigureAwait(false);
             using (StreamReader reader = new StreamReader(response.GetResponseStream()))
             {
-                string jsonString = reader.ReadToEnd();
+                string jsonString = await reader.ReadToEndAsync().ConfigureAwait(false);
                 System.Diagnostics.Debug.WriteLine(jsonString);
                 // Dispatch an event
                 if (response.StatusCode == HttpStatusCode.OK)
@@ -157,10 +157,10 @@ namespace Indulged.API.Anaconda
 
             // Create the http request
             string requestUrl = "http://www.flickr.com/services/oauth/access_token?" + paramString + "&oauth_signature=" + signature;
-            HttpWebResponse response = await DispatchRequest("GET", requestUrl, null);
+            HttpWebResponse response = await DispatchRequest("GET", requestUrl, null).ConfigureAwait(false);
             using (StreamReader reader = new StreamReader(response.GetResponseStream()))
             {
-                string jsonString = reader.ReadToEnd();
+                string jsonString = await reader.ReadToEndAsync().ConfigureAwait(false);
                 System.Diagnostics.Debug.WriteLine(jsonString);
                 // Dispatch an event
                 if (response.StatusCode == HttpStatusCode.OK)

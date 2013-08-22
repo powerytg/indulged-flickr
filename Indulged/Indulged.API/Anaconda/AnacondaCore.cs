@@ -50,11 +50,11 @@ namespace Indulged.API.Anaconda
                 request.ContentType = "application/x-www-form-urlencoded;charset=utf-8";
                 if (parameters != null)
                 {
-                    using (Stream stream = await request.GetRequestStreamAsync())
+                    using (Stream stream = await request.GetRequestStreamAsync().ConfigureAwait(false))
                     {
                         using (StreamWriter writer = new StreamWriter(stream))
                         {
-                            writer.Write(this.FormatQueryString(parameters));
+                            await writer.WriteAsync(this.FormatQueryString(parameters)).ConfigureAwait(false);
                         }
                     }
                 }
@@ -63,7 +63,7 @@ namespace Indulged.API.Anaconda
             // Invoke the API
             try
             {
-                HttpWebResponse response = (HttpWebResponse)await request.GetResponseAsync();
+                HttpWebResponse response = (HttpWebResponse)await request.GetResponseAsync().ConfigureAwait(false);
                 return response;
                 //using (StreamReader reader = new StreamReader(response.GetResponseStream()))
                 //{
