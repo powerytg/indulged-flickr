@@ -32,6 +32,7 @@ namespace Indulged.API.Cinderella
         public EventHandler<GroupInfoUpdatedEventArgs> GroupInfoUpdated;
         public EventHandler<GroupPhotoListUpdatedEventArgs> GroupPhotoListUpdated;
         public EventHandler<GroupTopicsUpdatedEventArgs> GroupTopicsUpdated;
+        public EventHandler<AddTopicCompleteEventArgs> AddTopicCompleted;
 
         // Photo set events
         public EventHandler<PhotoSetListUpdatedEventArgs> PhotoSetListUpdated;

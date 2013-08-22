@@ -64,11 +64,16 @@ namespace Indulged.Plugins.Group
             if (e.NewPhotos.Count == 0 || e.GroupId != Group.ResourceId)
                 return;
 
-            List<PhotoGroup> newGroups = VioletPhotoGroupFactory.GeneratePhotoGroup(e.NewPhotos, Group.ResourceId, "Group");
-            foreach (var group in newGroups)
-            {
-                PhotoCollection.Add(group);
-            }
+            Dispatcher.BeginInvoke(() => {
+                if (e.Page == 1)
+                    PhotoCollection.Clear();
+
+                List<PhotoGroup> newGroups = VioletPhotoGroupFactory.GeneratePhotoGroup(e.NewPhotos, Group.ResourceId, "Group");
+                foreach (var group in newGroups)
+                {
+                    PhotoCollection.Add(group);
+                }
+            });
         }
 
         private void OnItemRealized(object sender, ItemRealizationEventArgs e)
@@ -82,7 +87,10 @@ namespace Indulged.Plugins.Group
             bool canLoad = (Group.Photos.Count < Group.PhotoCount);
             if (PhotoCollection.Count - index <= 2 && canLoad)
             {
-                int page = Group.Photos.Count / 100 + 1;
+                // Show progress indicator
+                SystemTray.ProgressIndicator.IsVisible = true;
+
+                int page = Group.Photos.Count / Anaconda.DefaultItemsPerPage + 1;
                 Anaconda.AnacondaCore.GetGroupPhotosAsync(Group.ResourceId, new Dictionary<string, string> { { "page", page.ToString() }, { "per_page", Anaconda.DefaultItemsPerPage.ToString() } });
             }
 

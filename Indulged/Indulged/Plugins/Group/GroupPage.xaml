@@ -13,7 +13,7 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d"
-    shell:SystemTray.IsVisible="False"
+    shell:SystemTray.IsVisible="True" shell:SystemTray.Opacity="0" shell:SystemTray.ForegroundColor="#536585"
     Style="{StaticResource TransitionPageStyle}">
 
     <!--LayoutRoot is the root grid where all page content is placed-->
@@ -28,24 +28,27 @@
                 </ContentPresenter>
             </Grid>
         </DataTemplate>
+
+        <shell:ApplicationBar x:Key="PhotoPageAppBar" IsVisible="True" IsMenuEnabled="False" Mode="Default" Opacity="0.85" >
+            <shell:ApplicationBarIconButton x:Name="RefreshPhotoListButton" IconUri="/Assets/Common/refresh.png" Text="refresh" Click="RefreshPhotoListButton_Click"/>
+        </shell:ApplicationBar>
+
+        <shell:ApplicationBar x:Key="TopicPageAppBar" IsVisible="True" IsMenuEnabled="False" Mode="Default" Opacity="0.5" >
+            <shell:ApplicationBarIconButton x:Name="RefreshTopicListButton" IconUri="/Assets/Common/refresh.png" Text="refresh" Click="RefreshTopicListButton_Click"/>
+            <shell:ApplicationBarIconButton x:Name="AddTopicButton" IconUri="/Assets/Common/add.png" Text="new topic"/>
+        </shell:ApplicationBar>
+
     </phone:PhoneApplicationPage.Resources>
 
     <!--LayoutRoot contains the root grid where all other page content is placed-->
     <Grid x:Name="LayoutRoot" Background="White">
-        <phone:Panorama Margin="0, 0, 0, 0">
+        <phone:Panorama x:Name="PanoramaView" Margin="0, 20, 0, 0" SelectionChanged="Panorama_SelectionChanged">
             <!--  Title bar -->
             <phone:Panorama.Title>
                 <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="Auto"/>
-                    </Grid.ColumnDefinitions>
-
-                    <Image Source="{Binding AvatarUrl}" Grid.Column="0"/>
                     <TextBlock x:Name="TitleLabel" Foreground="#f67056" Text="{Binding Name}"
                                FontSize="96" TextWrapping="Wrap" FontWeight="Bold"
-                               Margin="16, 24, 12, 0" Grid.Column="1"/>
-
+                               Margin="0, 24, 0, 0"/>
                 </Grid>
             </phone:Panorama.Title>
 

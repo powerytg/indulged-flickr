@@ -850,7 +850,9 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\Common\add.png" />
     <Content Include="Assets\Common\Comment.png" />
+    <Content Include="Assets\Common\refresh.png" />
     <Content Include="Assets\Common\SliderThumb.png" />
     <Content Include="Assets\ProCamera\WB-Cloudy-Selected.png" />
     <Content Include="Assets\ProCamera\WB-Cloudy.png" />

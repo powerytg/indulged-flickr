@@ -56,11 +56,13 @@ namespace Indulged.Plugins.PhotoCollection
             if (e.NewPhotos.Count == 0 || e.PhotoSetId != PhotoSetSource.ResourceId)
                 return;
 
-            List<PhotoGroup> newGroups = VioletPhotoGroupFactory.GeneratePhotoGroup(e.NewPhotos, PhotoSetSource.ResourceId, "PhotoSet");
-            foreach (var group in newGroups)
-            {
-                PhotoCollection.Add(group);
-            }
+            Dispatcher.BeginInvoke(() => {
+                List<PhotoGroup> newGroups = VioletPhotoGroupFactory.GeneratePhotoGroup(e.NewPhotos, PhotoSetSource.ResourceId, "PhotoSet");
+                foreach (var group in newGroups)
+                {
+                    PhotoCollection.Add(group);
+                }
+            });
         }
 
 

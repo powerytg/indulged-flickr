@@ -28,7 +28,12 @@ namespace Indulged.Plugins.Common.Renderers
             base.OnPhotoSourceChanged();
             ImageView.Source = new BitmapImage(new Uri(PhotoSource.GetImageUrl()));
 
-            TitleLabel.Text = "Cover Photo: " + PhotoSource.Title;
+            string lowerCaseTitle = PhotoSource.Title.ToLower();
+            if (lowerCaseTitle.Contains(".jpg") || lowerCaseTitle.Contains(".jpeg") || lowerCaseTitle.Contains(".png"))
+                TitleLabel.Text = "Cover Photo";
+            else
+                TitleLabel.Text = "Cover Photo: " + PhotoSource.Title;
+
             DescriptionLabel.Text = PhotoSource.Description;
         }
     }

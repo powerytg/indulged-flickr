@@ -175,5 +175,58 @@ namespace Indulged.API.Anaconda
                 GroupTopicsReturned.DispatchEvent(this, args);
             }
         }
+
+        public async void AddTopicAsync(string sessionId, string groupId, string subject, string message)
+        {
+            string timestamp = DateTimeUtils.GetTimestamp();
+            string nonce = Guid.NewGuid().ToString().Replace("-", null);
+
+            Dictionary<string, string> paramDict = new Dictionary<string, string>();
+            paramDict["method"] = "flickr.groups.discuss.topics.add";
+            paramDict["format"] = "json";
+            paramDict["nojsoncallback"] = "1";
+            paramDict["oauth_consumer_key"] = consumerKey;
+            paramDict["oauth_nonce"] = nonce;
+            paramDict["oauth_signature_method"] = "HMAC-SHA1";
+            paramDict["oauth_timestamp"] = timestamp;
+            paramDict["oauth_token"] = AccessToken;
+            paramDict["oauth_version"] = "1.0";
+            paramDict["group_id"] = groupId;
+
+            string paramString = GenerateParamString(paramDict);
+            string signature = GenerateSignature("POST", AccessTokenSecret, "http://api.flickr.com/services/rest", paramString);
+            string requestUrl = "http://api.flickr.com/services/rest?" + paramString + "&oauth_signature=" + signature;
+            HttpWebResponse response = await DispatchRequest("POST", requestUrl, null).ConfigureAwait(false);
+            using (StreamReader reader = new StreamReader(response.GetResponseStream()))
+            {
+                AddTopicExceptionEventArgs exceptionArgs = null;
+                if (response.StatusCode != HttpStatusCode.OK)
+                {
+                    exceptionArgs = new AddTopicExceptionEventArgs();
+                    exceptionArgs.SessionId = sessionId;
+                    AddTopicException.DispatchEvent(this, exceptionArgs);
+
+                    return;
+                }
+
+                string jsonString = await reader.ReadToEndAsync().ConfigureAwait(false);
+                if (!IsResponseSuccess(jsonString))
+                {
+                    exceptionArgs = new AddTopicExceptionEventArgs();
+                    exceptionArgs.SessionId = sessionId;
+                    AddTopicException.DispatchEvent(this, exceptionArgs);
+
+                    return;
+                }
+
+                AddTopicEventArgs args = new AddTopicEventArgs();
+                args.SessionId = sessionId;
+                args.GroupId = groupId;
+                args.Response = jsonString;
+                args.Subject = subject;
+                args.Message = message;
+                TopicAdded.DispatchEvent(this, args);
+            }
+        }
     }
 }

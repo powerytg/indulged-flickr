@@ -85,16 +85,20 @@ namespace Indulged.API.Cinderella
             int perPage = int.Parse(rootJson["per_page"].ToString());
 
             List<Topic> newTopics = new List<Topic>();
-            foreach (var entry in rootJson["topic"])
+            if (TotalCount > 0)
             {
-                JObject json = (JObject)entry;
-                Topic topic = TopicFactory.TopicWithJObject(json);
-
-                if (!group.Topics.Contains(topic))
+                foreach (var entry in rootJson["topic"])
                 {
-                    group.Topics.Add(topic);
-                    newTopics.Add(topic);
+                    JObject json = (JObject)entry;
+                    Topic topic = TopicFactory.TopicWithJObject(json);
+
+                    if (!group.Topics.Contains(topic))
+                    {
+                        group.Topics.Add(topic);
+                        newTopics.Add(topic);
+                    }
                 }
+
             }
 
             // Dispatch event            
@@ -106,5 +110,28 @@ namespace Indulged.API.Cinderella
             evt.NewTopics = newTopics;
             GroupTopicsUpdated.DispatchEvent(this, evt);
         }
+
+        private void OnTopicAdded(object sender, AddTopicEventArgs e)
+        {
+            FlickrGroup group = Cinderella.CinderellaCore.GroupCache[e.GroupId];
+            
+            JObject rawJson = JObject.Parse(e.Response);
+            string newTopicId = rawJson["topic"]["id"].ToString();
+
+            Topic newTopic = new Topic();
+            newTopic.ResourceId = newTopicId;
+            newTopic.Subject = e.Subject;
+            newTopic.Message = e.Message;
+            newTopic.Author = CurrentUser;
+
+            group.Topics.Insert(0, newTopic);
+            group.TopicCount++;
+
+            AddTopicCompleteEventArgs evt = new AddTopicCompleteEventArgs();
+            evt.SessionId = e.SessionId;
+            evt.TopicId = newTopicId;
+            AddTopicCompleted.DispatchEvent(this, evt);
+        }
+
     }
 }

@@ -67,9 +67,11 @@ namespace Indulged.Plugins.Detail
             if(e.PhotoId != PhotoSource.ResourceId)
                 return;
 
-             LoadingView.Visibility = Visibility.Collapsed;
-             DescriptionLabel.Visibility = Visibility.Visible;
-             DescriptionLabel.Text = this.GetEXIFString();
+            Dispatcher.BeginInvoke(() => {
+                LoadingView.Visibility = Visibility.Collapsed;
+                DescriptionLabel.Visibility = Visibility.Visible;
+                DescriptionLabel.Text = this.GetEXIFString();
+            });
         }
 
         private void OnEXIFException(object sender, GetEXIFExceptionEventArgs e)

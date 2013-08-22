@@ -67,7 +67,24 @@ namespace Indulged.Plugins.ProFX.Filters
         public override async void DeleteFilterAsync()
         {
             cropRect = new Windows.Foundation.Rect(0, 0, 0, 0);
-            base.DeleteFilterAsync();
+            using (EditingSession session = new EditingSession(Buffer))
+            {
+                // Add all previous filters
+                foreach (FilterBase filterContainer in ImageProcessingPage.AppliedFilters)
+                {
+                    if (filterContainer != this)
+                    {
+                        session.AddFilter(filterContainer.Filter);
+                    }
+                }
+
+                await session.RenderToWriteableBitmapAsync(CurrentImage, OutputOption.PreserveAspectRatio);
+                CurrentImage.Invalidate();
+            }
+
+            var evt = new DeleteFilterEventArgs();
+            evt.Filter = this;
+            ImageProcessingPage.RequestDeleteFilter(this, evt);
         }
 
         public override void OnFilterUIAdded()

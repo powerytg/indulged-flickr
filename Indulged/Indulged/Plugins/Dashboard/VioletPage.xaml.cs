@@ -67,11 +67,13 @@ namespace Indulged.Plugins.Dashboard
             if (e.NewPhotos.Count == 0 || e.UserId != Cinderella.CinderellaCore.CurrentUser.ResourceId)
                 return;
 
-            List<PhotoGroup> newGroups = VioletPhotoGroupFactory.GeneratePhotoGroup(e.NewPhotos, PolicyKit.MyStream);
-            foreach (var group in newGroups)
-            {
-                PhotoCollection.Add(group);
-            }
+            Dispatcher.BeginInvoke(() => {
+                List<PhotoGroup> newGroups = VioletPhotoGroupFactory.GeneratePhotoGroup(e.NewPhotos, PolicyKit.MyStream);
+                foreach (var group in newGroups)
+                {
+                    PhotoCollection.Add(group);
+                }
+            });
         }
 
         // Discovery stream updated
@@ -80,11 +82,14 @@ namespace Indulged.Plugins.Dashboard
             if (e.NewPhotos.Count == 0)
                 return;
 
-            List<PhotoGroup> newGroups = VioletPhotoGroupFactory.GeneratePhotoGroup(e.NewPhotos, PolicyKit.DiscoveryStream);
-            foreach (var group in newGroups)
+            Dispatcher.BeginInvoke(() =>
             {
-                PhotoCollection.Add(group);
-            }
+                List<PhotoGroup> newGroups = VioletPhotoGroupFactory.GeneratePhotoGroup(e.NewPhotos, PolicyKit.DiscoveryStream);
+                foreach (var group in newGroups)
+                {
+                    PhotoCollection.Add(group);
+                }
+            });
         }
 
         // Implementation of inifinite scrolling

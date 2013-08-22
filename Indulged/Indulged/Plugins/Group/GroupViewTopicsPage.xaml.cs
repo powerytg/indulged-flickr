@@ -42,10 +42,12 @@ namespace Indulged.Plugins.Group
             if (e.NewTopics.Count == 0 || e.GroupId != Group.ResourceId)
                 return;
 
-            foreach (var topic in e.NewTopics)
-            {
-                TopicCollection.Add(topic);
-            }
+            Dispatcher.BeginInvoke(() => {
+                foreach (var topic in e.NewTopics)
+                {
+                    TopicCollection.Add(topic);
+                }
+            });
         }
 
         private void OnItemRealized(object sender, ItemRealizationEventArgs e)
@@ -59,7 +61,10 @@ namespace Indulged.Plugins.Group
             bool canLoad = (Group.Topics.Count < Group.TopicCount);
             if (TopicCollection.Count - index <= 2 && canLoad)
             {
-                int page = Group.Topics.Count / 100 + 1;
+                SystemTray.ProgressIndicator.Text = "loading topics";
+                SystemTray.ProgressIndicator.IsVisible = true;
+
+                int page = Group.Topics.Count / Anaconda.DefaultItemsPerPage + 1;
                 Anaconda.AnacondaCore.GetGroupTopicsAsync(Group.ResourceId, new Dictionary<string, string> { { "page", page.ToString() }, { "per_page", Anaconda.DefaultItemsPerPage.ToString() } });
             }
 
