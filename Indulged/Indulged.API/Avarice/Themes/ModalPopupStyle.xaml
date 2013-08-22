@@ -9,47 +9,46 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="avarice:ModalPopup">
-                    <Grid Height="800">
-                        <!-- Curtain -->
-                        <Grid x:Name="Curtain" IsHitTestVisible="True">
+                    <Grid VerticalAlignment="Center">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="28"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="28"/>
+                        </Grid.RowDefinitions>
+
+                        <!-- Upper shadow -->
+                        <Image x:Name="TopShadow" Source="/Avarice/Themes/Assets/PopupTopShadow.png" Stretch="Fill" Height="28" Grid.Row="0">
+                            <Image.RenderTransform>
+                                <CompositeTransform/>
+                            </Image.RenderTransform>
+                        </Image>
+
+                        <!-- Content area -->
+                        <Grid x:Name="ContentView" VerticalAlignment="Center" Height="{Binding ElementName=BorderCanvas,Path=Height}" 
+                              Margin="0,28,0,28" Grid.Row="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
                             <Grid.Background>
                                 <SolidColorBrush Color="Black" Opacity="0.85"/>
                             </Grid.Background>
-                        </Grid>
-
-                        <Grid VerticalAlignment="Center">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="36"/>
-                            </Grid.RowDefinitions>
-
-                            <!-- Border area -->
-                            <Canvas x:Name="BorderCanvas" VerticalAlignment="Center" Height="0" Grid.Row="0">
-                                <!-- Upper shadow -->
-                                <Image x:Name="TopShadow" Source="/Avarice/Themes/Assets/PopupTopShadow.png" Stretch="Fill" Height="28" Canvas.Top="-28"/>
-
-                                <!-- Lower shadow -->
-                                <Image x:Name="BottomShadow" Source="/Avarice/Themes/Assets/PopupBottomShadow.png" Stretch="Fill" Height="28"/>
-                            </Canvas>
-
-                            <!-- Content area -->
-                            <Grid x:Name="ContentView" VerticalAlignment="Center" Height="{Binding ElementName=BorderCanvas,Path=Height}" 
-                              Margin="0,28,0,28">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="*"/>
-                                </Grid.RowDefinitions>
-
-                                <Grid.Background>
-                                    <ImageBrush ImageSource="/Avarice/Themes/Assets/PopupGlow.png" Opacity="0.6"/>
-                                </Grid.Background>
-                            </Grid>
 
                             <!-- Button area -->
-                            <StackPanel x:Name="ButtonContainer" Orientation="Horizontal" Grid.Row="1" Margin="20, -10, 20, 0"
-                                    HorizontalAlignment="Center" />
+                            <StackPanel x:Name="ButtonContainer" Orientation="Horizontal" Margin="20, -10, 20, 0"
+                                    HorizontalAlignment="Center"  Grid.Row="2"/>
+
                         </Grid>
 
+
+                        <!-- Lower shadow -->
+                        <Image x:Name="BottomShadow" Source="/Avarice/Themes/Assets/PopupBottomShadow.png" Stretch="Fill" Height="28" Grid.Row="3">
+                            <Image.RenderTransform>
+                                <CompositeTransform/>
+                            </Image.RenderTransform>
+                        </Image>
 
                     </Grid>
                 </ControlTemplate>

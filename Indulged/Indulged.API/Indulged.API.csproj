@@ -99,6 +99,8 @@
     <Compile Include="Anaconda\AnacondaCoreTagExtension.cs" />
     <Compile Include="Anaconda\AnacondaCoreUploadExtension.cs" />
     <Compile Include="Anaconda\AnacondaCoreUserExtension.cs" />
+    <Compile Include="Anaconda\Events\AddTopicEventArgs.cs" />
+    <Compile Include="Anaconda\Events\AddTopicExceptionEventArgs.cs" />
     <Compile Include="Anaconda\Events\GetDiscoveryStreamEventArgs.cs" />
     <Compile Include="Anaconda\Events\GetEXIFEventArgs.cs" />
     <Compile Include="Anaconda\Events\GetEXIFExceptionEventArgs.cs" />
@@ -127,6 +129,7 @@
     <Compile Include="Cinderella\CinderellaStorageExtension.cs" />
     <Compile Include="Cinderella\CinderellaTagExtension.cs" />
     <Compile Include="Cinderella\CinderellaUserExtension.cs" />
+    <Compile Include="Cinderella\Events\AddTopicCompleteEventArgs.cs" />
     <Compile Include="Cinderella\Events\DiscoveryStreamUpdatedEventArgs.cs" />
     <Compile Include="Cinderella\Events\EXIFUpdatedEventArgs.cs" />
     <Compile Include="Cinderella\Events\GroupInfoUpdatedEventArgs.cs" />

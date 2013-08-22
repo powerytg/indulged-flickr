@@ -10,6 +10,8 @@ using Microsoft.Phone.Shell;
 using Indulged.API.Cinderella.Models;
 using Indulged.API.Cinderella;
 using Indulged.API.Anaconda;
+using Indulged.API.Avarice.Controls;
+using Indulged.API.Avarice.Events;
 
 namespace Indulged.Plugins.Group
 {
@@ -121,6 +123,20 @@ namespace Indulged.Plugins.Group
             // Refresh group photos
             Anaconda.AnacondaCore.GetGroupTopicsAsync(GroupSource.ResourceId, new Dictionary<string, string> { { "page", "1" }, { "per_page", Anaconda.DefaultItemsPerPage.ToString() } });
 
+        }
+
+        private void AddTopicButton_Click(object sender, EventArgs e)
+        {
+            var composerView = new TopicComposerView();
+            var composerDialog = ModalPopup.Show(composerView, "New Topic", new List<string> { "Post Topic", "Cancel" });
+            composerDialog.DismissWithButtonClick += (s, args) =>
+            {
+                int buttonIndex = (args as ModalPopupEventArgs).ButtonIndex;
+                if (buttonIndex == 0)
+                {
+                    
+                }
+            };
         }
     }
 }

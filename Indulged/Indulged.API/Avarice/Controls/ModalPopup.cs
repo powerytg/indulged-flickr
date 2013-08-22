@@ -9,10 +9,12 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using Microsoft.Phone.Controls;
+using Microsoft.Phone.Shell;
 
 using Indulged.API.Utils;
 using Indulged.API.Avarice.Events;
 using System.Windows.Shapes;
+using System.Windows.Controls.Primitives;
 
 namespace Indulged.API.Avarice.Controls
 {
@@ -54,10 +56,8 @@ namespace Indulged.API.Avarice.Controls
         }
 
         // Curtain and borders
-        protected Grid curtain;
         protected Image topShadow;
         protected Image bottomShadow;
-        protected Canvas borderCanvas;
         protected Grid contentView;
         protected StackPanel buttonContainer;
 
@@ -100,7 +100,9 @@ namespace Indulged.API.Avarice.Controls
 
         public static ModalPopup Show(FrameworkElement content, string title = null, List<string> buttonTitles = null)
         {
+            Popup popupContainer = new Popup();
             ModalPopup popup = new ModalPopup();
+            popupContainer.Child = popup;
             popup.contentElement = content;
 
             // Set title
@@ -116,7 +118,9 @@ namespace Indulged.API.Avarice.Controls
                 }
             }
 
-            popup.HostView.Children.Add(popup);
+            //popup.HostView.Children.Add(popup);
+            popup.HostView.Opacity = 0.2;
+            popupContainer.IsOpen = true;
             return popup;
         }
 
@@ -148,10 +152,8 @@ namespace Indulged.API.Avarice.Controls
         {
             double w = System.Windows.Application.Current.Host.Content.ActualWidth;
 
-            curtain = GetTemplateChild("Curtain") as Grid;
             topShadow = GetTemplateChild("TopShadow") as Image;
             bottomShadow = GetTemplateChild("BottomShadow") as Image;
-            borderCanvas = GetTemplateChild("BorderCanvas") as Canvas;
             contentView = GetTemplateChild("ContentView") as Grid;
             buttonContainer = GetTemplateChild("ButtonContainer") as StackPanel;
 
@@ -223,44 +225,40 @@ namespace Indulged.API.Avarice.Controls
             }
         }
 
+        private bool isApplicationBarVisibleBeforePopup;
+        private bool isSystemTrayVisibleBeforePopup;
+
         protected void PerformAppearanceAnimation()
         {
-            double w = System.Windows.Application.Current.Host.Content.ActualWidth;
-            
-            // Hide application bar
-            if(CurrentPage.ApplicationBar != null)
+            // Hide application bar and system tray
+            isSystemTrayVisibleBeforePopup = SystemTray.IsVisible;
+            SystemTray.IsVisible = false;
+
+            if (CurrentPage.ApplicationBar != null)
+            {
+                isApplicationBarVisibleBeforePopup = CurrentPage.ApplicationBar.IsVisible;
                 CurrentPage.ApplicationBar.IsVisible = false;
+            }
+
+            double w = System.Windows.Application.Current.Host.Content.ActualWidth;
+            double h = System.Windows.Application.Current.Host.Content.ActualHeight;
 
             // Initial settings
-            borderCanvas.Width = w;
-            borderCanvas.Height = expectedContentSize.Height;
+            CompositeTransform ct = (CompositeTransform)topShadow.RenderTransform;
+            ct.TranslateY = -h;
 
-            topShadow.Width = w;
-            topShadow.SetValue(Canvas.LeftProperty, -w);
-
-            bottomShadow.Width = w;
-            bottomShadow.SetValue(Canvas.LeftProperty, w);
-            bottomShadow.SetValue(Canvas.TopProperty, borderCanvas.Height);
+            ct = (CompositeTransform)bottomShadow.RenderTransform;
+            ct.TranslateY = h;
 
             buttonContainer.Opacity = 0;
             
             // Content view
-            contentView.Projection = new PlaneProjection { CenterOfRotationX = 0, RotationX = -90 };
-            //contentView.Opacity = 0;
+            contentView.Opacity = 0;
 
             Storyboard animation = new Storyboard();
             Duration duration = new Duration(TimeSpan.FromSeconds(0.3));
 
             animation.Duration = duration;
-
-            DoubleAnimation curtainAnimation = new DoubleAnimation();
-            animation.Children.Add(curtainAnimation);
-            curtainAnimation.Duration = duration;
-            curtainAnimation.To = 1;
-            curtainAnimation.From = 0;
-            curtainAnimation.EasingFunction = new CubicEase() { EasingMode = EasingMode.EaseIn };
-            Storyboard.SetTarget(curtainAnimation, curtain);
-            Storyboard.SetTargetProperty(curtainAnimation, new PropertyPath("Opacity"));
 
             DoubleAnimation topShadowAnimation = new DoubleAnimation();
             animation.Children.Add(topShadowAnimation);
@@ -302,19 +300,15 @@ namespace Indulged.API.Avarice.Controls
         public void DismissWithButtonIndex(int buttonIndex)
         {
             // Show application bar
-            if (CurrentPage.ApplicationBar != null)
+            if (isApplicationBarVisibleBeforePopup)
                 CurrentPage.ApplicationBar.IsVisible = true;
+
+            if(isSystemTrayVisibleBeforePopup)
+                SystemTray.IsVisible = true;
 
             Storyboard animation = new Storyboard();
             Duration duration = new Duration(TimeSpan.FromSeconds(0.3));
             animation.Duration = duration;
-
-            DoubleAnimation curtainAnimation = new DoubleAnimation();
-            animation.Children.Add(curtainAnimation);
-            curtainAnimation.Duration = duration;
-            curtainAnimation.To = 0;
-            Storyboard.SetTarget(curtainAnimation, this);
-            Storyboard.SetTargetProperty(curtainAnimation, new PropertyPath("Opacity"));
 
             animation.Begin();
             animation.Completed += (sender, args) =>

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Indulged.API.Anaconda.Events
 {
-    class AddTopicExceptionEventArgs
+    public class AddTopicExceptionEventArgs
     {
         public string SessionId { get; set; }
     }
