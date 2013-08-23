@@ -81,8 +81,11 @@ namespace Indulged.API.Avarice.Controls
         // Show the popup window with custom content
         public static ModalPopup ShowWithButtons(FrameworkElement content, string title = null, List<Avarice.Controls.Button> _buttons = null)
         {
+            Popup popupContainer = new Popup();
             ModalPopup popup = new ModalPopup();
+            popupContainer.Child = popup;
             popup.contentElement = content;
+            popup.popupContainer = popupContainer;
 
             // Set title
             if (title != null)
@@ -97,7 +100,10 @@ namespace Indulged.API.Avarice.Controls
                 }
             }
 
-            popup.HostView.Children.Add(popup);
+            popup.HostView.Opacity = 0.2;
+            popup.HostView.IsHitTestVisible = false;
+            popupContainer.IsOpen = true;
+
             return popup;
 
         }
@@ -123,7 +129,6 @@ namespace Indulged.API.Avarice.Controls
                 }
             }
 
-            //popup.HostView.Children.Add(popup);
             popup.HostView.Opacity = 0.2;
             popup.HostView.IsHitTestVisible = false;
             popupContainer.IsOpen = true;

@@ -119,6 +119,7 @@
     <Compile Include="Anaconda\Events\UploadPhotoErrorEventArgs.cs" />
     <Compile Include="Anaconda\Events\UploadPhotoEventArgs.cs" />
     <Compile Include="Anaconda\Events\UploadProgressEventArgs.cs" />
+    <Compile Include="Avarice\Controls\AvariceTextBox.cs" />
     <Compile Include="Cinderella\Cinderella.cs" />
     <Compile Include="Cinderella\CinderellaConstants.cs" />
     <Compile Include="Cinderella\CinderellaDiscoveryExtension.cs" />
@@ -190,6 +191,9 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="Avarice\Themes\ButtonStyle.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Avarice\Themes\TextBoxStyle.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Avarice\Themes\Generic.xaml">

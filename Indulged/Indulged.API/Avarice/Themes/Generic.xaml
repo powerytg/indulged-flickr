@@ -8,6 +8,7 @@
         <ResourceDictionary Source="/Indulged.API;component/Avarice/Themes/PhotoGridStyle.xaml" />
         <ResourceDictionary Source="/Indulged.API;component/Avarice/Themes/PhotoMosaicStyle.xaml" />
         <ResourceDictionary Source="/Indulged.API;component/Avarice/Themes/PhotoBlindsStyle.xaml" />
+        <ResourceDictionary Source="/Indulged.API;component/Avarice/Themes/TextBoxStyle.xaml" />
     </ResourceDictionary.MergedDictionaries>
     
 </ResourceDictionary>
