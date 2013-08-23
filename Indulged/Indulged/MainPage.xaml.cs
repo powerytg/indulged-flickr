@@ -80,9 +80,7 @@ namespace Indulged
 
         private void OnSubscriptionSettingsClick(object sender, EventArgs e)
         {
-            SubscriptionSettingsView settingsView = new SubscriptionSettingsView();
-            settingsView.Height = 150;
-            //settingsView.SetValue(Grid.RowProperty, 1);
+            SubscriptionSettingsView settingsView = new SubscriptionSettingsView();            
             var settingsDialog = ModalPopup.Show(settingsView, "Subscription", new List<string> {"Confirm", "Cancel" });
             settingsDialog.DismissWithButtonClick += (s, args) =>
             {

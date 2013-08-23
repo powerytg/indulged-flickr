@@ -9,46 +9,57 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="avarice:ModalPopup">
-                    <Grid VerticalAlignment="Center">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="28"/>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="28"/>
-                        </Grid.RowDefinitions>
-
-                        <!-- Upper shadow -->
-                        <Image x:Name="TopShadow" Source="/Avarice/Themes/Assets/PopupTopShadow.png" Stretch="Fill" Height="28" Grid.Row="0">
-                            <Image.RenderTransform>
-                                <CompositeTransform/>
-                            </Image.RenderTransform>
-                        </Image>
-
-                        <!-- Content area -->
-                        <Grid x:Name="ContentView" VerticalAlignment="Center" Height="{Binding ElementName=BorderCanvas,Path=Height}" 
-                              Margin="0,28,0,28" Grid.Row="1">
+                    <Grid>
+                        <Grid VerticalAlignment="Center">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="*"/>
                                 <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
 
-                            <Grid.Background>
-                                <SolidColorBrush Color="Black" Opacity="0.85"/>
-                            </Grid.Background>
+                            <!-- Upper shadow -->
+                            <Rectangle x:Name="TopShadow" Fill="#59a5b5" Height="4" Grid.Row="0">
+                                <Rectangle.RenderTransform>
+                                    <CompositeTransform/>
+                                </Rectangle.RenderTransform>
+                            </Rectangle>
+
+                            <!-- Curtain -->
+                            <Rectangle x:Name="Curtain" Grid.Row="1" Fill="#59a5b5">
+                                <Rectangle.RenderTransform>
+                                    <CompositeTransform/>
+                                </Rectangle.RenderTransform>
+                            </Rectangle>
+                            
+                            <!-- Content area -->
+                            <Grid x:Name="ContentView" Margin="0,28,0,28" Grid.Row="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+
+                                <Grid.Background>
+                                    <SolidColorBrush Color="Black" Opacity="0"/>
+                                </Grid.Background>
+                            </Grid>
+
+                            <!-- Lower shadow -->
+                            <Rectangle x:Name="BottomShadow" Fill="#59a5b5" Height="4" Grid.Row="2">
+                                <Rectangle.RenderTransform>
+                                    <CompositeTransform/>
+                                </Rectangle.RenderTransform>
+                            </Rectangle>
 
                             <!-- Button area -->
-                            <StackPanel x:Name="ButtonContainer" Orientation="Horizontal" Margin="20, -10, 20, 0"
-                                    HorizontalAlignment="Center"  Grid.Row="2"/>
+                            <StackPanel x:Name="ButtonContainer" Orientation="Horizontal" Margin="20, 30, 20, 20" Height="46"
+                                    HorizontalAlignment="Center"  Grid.Row="3">
+                                <StackPanel.RenderTransform>
+                                    <CompositeTransform/>
+                                </StackPanel.RenderTransform>
+                            </StackPanel>
 
                         </Grid>
-
-
-                        <!-- Lower shadow -->
-                        <Image x:Name="BottomShadow" Source="/Avarice/Themes/Assets/PopupBottomShadow.png" Stretch="Fill" Height="28" Grid.Row="3">
-                            <Image.RenderTransform>
-                                <CompositeTransform/>
-                            </Image.RenderTransform>
-                        </Image>
 
                     </Grid>
                 </ControlTemplate>

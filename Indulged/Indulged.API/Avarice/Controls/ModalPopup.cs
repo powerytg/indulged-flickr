@@ -56,8 +56,9 @@ namespace Indulged.API.Avarice.Controls
         }
 
         // Curtain and borders
-        protected Image topShadow;
-        protected Image bottomShadow;
+        protected Rectangle topShadow;
+        protected Rectangle bottomShadow;
+        protected Rectangle curtain;
         protected Grid contentView;
         protected StackPanel buttonContainer;
 
@@ -73,6 +74,9 @@ namespace Indulged.API.Avarice.Controls
         // Button titles
         protected List<String> buttonTitles = new List<string>();
         public List<Avarice.Controls.Button> Buttons = new List<Button>();
+
+        // Reference to the parent popup
+        protected Popup popupContainer;
 
         // Show the popup window with custom content
         public static ModalPopup ShowWithButtons(FrameworkElement content, string title = null, List<Avarice.Controls.Button> _buttons = null)
@@ -104,6 +108,7 @@ namespace Indulged.API.Avarice.Controls
             ModalPopup popup = new ModalPopup();
             popupContainer.Child = popup;
             popup.contentElement = content;
+            popup.popupContainer = popupContainer;
 
             // Set title
             if (title != null)
@@ -120,6 +125,7 @@ namespace Indulged.API.Avarice.Controls
 
             //popup.HostView.Children.Add(popup);
             popup.HostView.Opacity = 0.2;
+            popup.HostView.IsHitTestVisible = false;
             popupContainer.IsOpen = true;
             return popup;
         }
@@ -152,10 +158,11 @@ namespace Indulged.API.Avarice.Controls
         {
             double w = System.Windows.Application.Current.Host.Content.ActualWidth;
 
-            topShadow = GetTemplateChild("TopShadow") as Image;
-            bottomShadow = GetTemplateChild("BottomShadow") as Image;
+            topShadow = GetTemplateChild("TopShadow") as Rectangle;
+            bottomShadow = GetTemplateChild("BottomShadow") as Rectangle;
             contentView = GetTemplateChild("ContentView") as Grid;
             buttonContainer = GetTemplateChild("ButtonContainer") as StackPanel;
+            curtain = GetTemplateChild("Curtain") as Rectangle;
 
             // Add an optional title label
             TextBlock titleLabel = null;
@@ -206,7 +213,7 @@ namespace Indulged.API.Avarice.Controls
                 {
                     var button = new Avarice.Controls.Button();
                     button.Content = buttonTitle;
-                    button.Margin = new Thickness(14, 0, 0, 0);
+                    button.Margin = new Thickness(20, 0, 20, 0);
                     button.HorizontalAlignment = HorizontalAlignment.Right;
                     buttonContainer.Children.Add(button);
                     button.Click += OnButtonClick;
@@ -216,13 +223,15 @@ namespace Indulged.API.Avarice.Controls
             {
                 foreach (var button in Buttons)
                 {
-                    button.Margin = new Thickness(14, 0, 0, 0);
+                    button.Margin = new Thickness(20, 0, 20, 0);
                     button.HorizontalAlignment = HorizontalAlignment.Right;
                     buttonContainer.Children.Add(button);
                     button.Click += OnButtonClick;
                 }
 
             }
+
+            //expectedContentSize.Height += buttonContainer.Margin.Top + buttonContainer.Height + buttonContainer.Margin.Bottom;
         }
 
         private bool isApplicationBarVisibleBeforePopup;
@@ -244,80 +253,149 @@ namespace Indulged.API.Avarice.Controls
             double h = System.Windows.Application.Current.Host.Content.ActualHeight;
 
             // Initial settings
+            Width = w;
+            Height = h;
+
             CompositeTransform ct = (CompositeTransform)topShadow.RenderTransform;
             ct.TranslateY = -h;
 
             ct = (CompositeTransform)bottomShadow.RenderTransform;
             ct.TranslateY = h;
 
-            buttonContainer.Opacity = 0;
-            
+            ct = (CompositeTransform)curtain.RenderTransform;
+            ct.ScaleY = h / expectedContentSize.Height;
+
             // Content view
             contentView.Opacity = 0;
 
+            // Buttons
+            buttonContainer.Opacity = 0;
+            ct = (CompositeTransform)buttonContainer.RenderTransform;
+            ct.TranslateY = -120;
+
             Storyboard animation = new Storyboard();
-            Duration duration = new Duration(TimeSpan.FromSeconds(0.3));
+            Duration duration = new Duration(TimeSpan.FromSeconds(0.5));
 
             animation.Duration = duration;
 
             DoubleAnimation topShadowAnimation = new DoubleAnimation();
             animation.Children.Add(topShadowAnimation);
-            topShadowAnimation.Duration = duration;
+            topShadowAnimation.Duration = new Duration(TimeSpan.FromSeconds(0.2));
             topShadowAnimation.To = 0;
-            topShadowAnimation.EasingFunction = new CubicEase() { EasingMode = EasingMode.EaseIn };
+            topShadowAnimation.EasingFunction = new CubicEase() { EasingMode = EasingMode.EaseOut };
             Storyboard.SetTarget(topShadowAnimation, topShadow);
-            Storyboard.SetTargetProperty(topShadowAnimation, new PropertyPath("(Canvas.Left)"));
+            Storyboard.SetTargetProperty(topShadowAnimation, new PropertyPath("(UIElement.RenderTransform).(CompositeTransform.TranslateY)"));
 
             DoubleAnimation bottomShadowAnimation = new DoubleAnimation();
             animation.Children.Add(bottomShadowAnimation);
-            bottomShadowAnimation.Duration = duration;
+            bottomShadowAnimation.Duration = new Duration(TimeSpan.FromSeconds(0.2));
             bottomShadowAnimation.To = 0;
-            bottomShadowAnimation.EasingFunction = new CubicEase() { EasingMode = EasingMode.EaseIn };
+            bottomShadowAnimation.EasingFunction = new CubicEase() { EasingMode = EasingMode.EaseOut };
             Storyboard.SetTarget(bottomShadowAnimation, bottomShadow);
-            Storyboard.SetTargetProperty(bottomShadowAnimation, new PropertyPath("(Canvas.Left)"));
+            Storyboard.SetTargetProperty(bottomShadowAnimation, new PropertyPath("(UIElement.RenderTransform).(CompositeTransform.TranslateY)"));
 
-            // Button container animation
-            var buttonContainerAnimation = new DoubleAnimation();
-            buttonContainerAnimation.Duration = duration;
-            animation.Children.Add(buttonContainerAnimation);
-            buttonContainerAnimation.EasingFunction = new CubicEase() { EasingMode = EasingMode.EaseIn };
-            buttonContainerAnimation.To = 1;
-            Storyboard.SetTarget(buttonContainerAnimation, buttonContainer);
-            Storyboard.SetTargetProperty(buttonContainerAnimation, new PropertyPath("Opacity"));
+            // Curtain animation
+            DoubleAnimation curtainHeightAnimation = new DoubleAnimation();
+            animation.Children.Add(curtainHeightAnimation);
+            curtainHeightAnimation.Duration = new Duration(TimeSpan.FromSeconds(0.2));
+            curtainHeightAnimation.To = 1.0;
+            curtainHeightAnimation.EasingFunction = new CubicEase() { EasingMode = EasingMode.EaseOut };
+            Storyboard.SetTarget(curtainHeightAnimation, curtain);
+            Storyboard.SetTargetProperty(curtainHeightAnimation, new PropertyPath("(UIElement.RenderTransform).(CompositeTransform.ScaleY)"));
+
+            // Curtain alpha animation
+            var curtainAlphaAnimation = new DoubleAnimationUsingKeyFrames();
+            curtainAlphaAnimation.Duration = duration;
+            animation.Children.Add(curtainAlphaAnimation);
+            curtainAlphaAnimation.KeyFrames.Add(new EasingDoubleKeyFrame { KeyTime = TimeSpan.FromSeconds(0), Value = 0.3 });
+            curtainAlphaAnimation.KeyFrames.Add(new EasingDoubleKeyFrame { KeyTime = TimeSpan.FromSeconds(0.3), Value = 0, EasingFunction = new CubicEase() { EasingMode = EasingMode.EaseIn } });
+            Storyboard.SetTarget(curtainAlphaAnimation, curtain);
+            Storyboard.SetTargetProperty(curtainAlphaAnimation, new PropertyPath("Opacity"));
+
 
             // Content view
-            var contentAnimation = new DoubleAnimation();
+            var contentAnimation = new DoubleAnimationUsingKeyFrames();
             contentAnimation.Duration = duration;
             animation.Children.Add(contentAnimation);
-            contentAnimation.To = 0;
-            Storyboard.SetTarget(contentAnimation, contentView.Projection);
-            Storyboard.SetTargetProperty(contentAnimation, new PropertyPath("RotationX"));
+            contentAnimation.KeyFrames.Add(new EasingDoubleKeyFrame { KeyTime = TimeSpan.FromSeconds(0.2), Value = 0.0, EasingFunction = new CubicEase() { EasingMode = EasingMode.EaseOut } });
+            contentAnimation.KeyFrames.Add(new EasingDoubleKeyFrame { KeyTime = TimeSpan.FromSeconds(0.4), Value = 1.0, EasingFunction = new CubicEase() { EasingMode = EasingMode.EaseOut } });
+            Storyboard.SetTarget(contentAnimation, contentView);
+            Storyboard.SetTargetProperty(contentAnimation, new PropertyPath("Opacity"));
 
+            // Button container animation
+            var buttonAnimation = new DoubleAnimationUsingKeyFrames();
+            buttonAnimation.Duration = duration;
+            animation.Children.Add(buttonAnimation);
+            buttonAnimation.KeyFrames.Add(new EasingDoubleKeyFrame { KeyTime = TimeSpan.FromSeconds(0), Value = -120 });
+            buttonAnimation.KeyFrames.Add(new EasingDoubleKeyFrame { KeyTime = TimeSpan.FromSeconds(0.5), Value = 0, EasingFunction = new CubicEase() { EasingMode = EasingMode.EaseOut } });
+            Storyboard.SetTarget(buttonAnimation, buttonContainer);
+            Storyboard.SetTargetProperty(buttonAnimation, new PropertyPath("(UIElement.RenderTransform).(CompositeTransform.TranslateY)"));
 
+            var buttonAlphaAnimation = new DoubleAnimationUsingKeyFrames();
+            buttonAlphaAnimation.Duration = duration;
+            animation.Children.Add(buttonAlphaAnimation);
+            buttonAlphaAnimation.KeyFrames.Add(new EasingDoubleKeyFrame { KeyTime = TimeSpan.FromSeconds(0.3), Value = 0 });
+            buttonAlphaAnimation.KeyFrames.Add(new EasingDoubleKeyFrame { KeyTime = TimeSpan.FromSeconds(0.5), Value = 1, EasingFunction = new CubicEase() { EasingMode = EasingMode.EaseIn } });
+            Storyboard.SetTarget(buttonAlphaAnimation, buttonContainer);
+            Storyboard.SetTargetProperty(buttonAlphaAnimation, new PropertyPath("Opacity"));
             animation.Begin();
         }
 
         public void DismissWithButtonIndex(int buttonIndex)
         {
-            // Show application bar
-            if (isApplicationBarVisibleBeforePopup)
-                CurrentPage.ApplicationBar.IsVisible = true;
-
-            if(isSystemTrayVisibleBeforePopup)
-                SystemTray.IsVisible = true;
+            this.Projection = new PlaneProjection { CenterOfRotationX = 0, RotationX = 0 };
 
             Storyboard animation = new Storyboard();
             Duration duration = new Duration(TimeSpan.FromSeconds(0.3));
             animation.Duration = duration;
 
+            var hostAnimation = new DoubleAnimation();
+            hostAnimation.Duration = duration;
+            hostAnimation.EasingFunction = new CubicEase() { EasingMode = EasingMode.EaseIn };
+            animation.Children.Add(hostAnimation);
+            hostAnimation.To = 1;
+            Storyboard.SetTarget(hostAnimation, HostView);
+            Storyboard.SetTargetProperty(hostAnimation, new PropertyPath("Opacity"));
+
+            var alphaAnimation = new DoubleAnimation();
+            alphaAnimation.Duration = duration;
+            alphaAnimation.EasingFunction = new CubicEase() { EasingMode = EasingMode.EaseOut };
+            animation.Children.Add(alphaAnimation);
+            alphaAnimation.To = 0;
+            Storyboard.SetTarget(alphaAnimation, this);
+            Storyboard.SetTargetProperty(alphaAnimation, new PropertyPath("Opacity"));
+
+
+            var planeAnimation = new DoubleAnimation();
+            planeAnimation.Duration = duration;
+            planeAnimation.EasingFunction = new CubicEase() { EasingMode = EasingMode.EaseOut };
+            animation.Children.Add(planeAnimation);
+            planeAnimation.To = -90;
+            Storyboard.SetTarget(planeAnimation, this.Projection);
+            Storyboard.SetTargetProperty(planeAnimation, new PropertyPath("RotationX"));
+
             animation.Begin();
             animation.Completed += (sender, args) =>
             {
-                HostView.Children.Remove(this);
+                popupContainer.IsOpen = false;
+                popupContainer = null;
 
                 var e = new ModalPopupEventArgs();
                 e.ButtonIndex = buttonIndex;
                 DismissWithButtonClick.DispatchEventOnMainThread(this, e);
+
+                Dispatcher.BeginInvoke(() => {
+                    // Show application bar
+                    if (isApplicationBarVisibleBeforePopup)
+                        CurrentPage.ApplicationBar.IsVisible = true;
+
+                    if (isSystemTrayVisibleBeforePopup)
+                        SystemTray.IsVisible = true;
+
+                    HostView.IsHitTestVisible = true;
+                    HostView.Opacity = 1;
+                });
+
             };
         }
 
