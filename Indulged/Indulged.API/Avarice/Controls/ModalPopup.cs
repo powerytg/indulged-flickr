@@ -179,6 +179,7 @@ namespace Indulged.API.Avarice.Controls
                 titleLabel.FontSize = 42;
                 titleLabel.HorizontalAlignment = HorizontalAlignment.Center;
                 titleLabel.TextWrapping = TextWrapping.Wrap;
+                titleLabel.Margin = new Thickness(0, 8, 0, 8);
                 titleLabel.SetValue(Grid.RowProperty, 0);
                 contentView.Children.Add(titleLabel);
             }
@@ -186,6 +187,7 @@ namespace Indulged.API.Avarice.Controls
             // Add any custom content
             if (contentElement != null)
             {
+                contentElement.Margin = new Thickness(0, 0, 0, 8);
                 contentElement.SetValue(Grid.RowProperty, 1);
                 contentView.Children.Add(contentElement);
                 contentView.InvalidateArrange();
@@ -353,14 +355,6 @@ namespace Indulged.API.Avarice.Controls
             Storyboard animation = new Storyboard();
             Duration duration = new Duration(TimeSpan.FromSeconds(0.3));
             animation.Duration = duration;
-
-            var hostAnimation = new DoubleAnimation();
-            hostAnimation.Duration = duration;
-            hostAnimation.EasingFunction = new CubicEase() { EasingMode = EasingMode.EaseIn };
-            animation.Children.Add(hostAnimation);
-            hostAnimation.To = 1;
-            Storyboard.SetTarget(hostAnimation, HostView);
-            Storyboard.SetTargetProperty(hostAnimation, new PropertyPath("Opacity"));
 
             var alphaAnimation = new DoubleAnimation();
             alphaAnimation.Duration = duration;

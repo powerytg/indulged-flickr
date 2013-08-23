@@ -33,14 +33,14 @@
                             </Rectangle>
                             
                             <!-- Content area -->
-                            <Grid x:Name="ContentView" Margin="0,28,0,28" Grid.Row="1">
+                            <Grid x:Name="ContentView" Grid.Row="1">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto"/>
                                     <RowDefinition Height="*"/>
                                 </Grid.RowDefinitions>
 
                                 <Grid.Background>
-                                    <SolidColorBrush Color="Black" Opacity="0"/>
+                                    <SolidColorBrush Color="Black" Opacity="0.8"/>
                                 </Grid.Background>
                             </Grid>
 
