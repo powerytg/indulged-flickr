@@ -860,6 +860,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\Common\add.png" />
+    <Content Include="Assets\Common\cancel.png" />
+    <Content Include="Assets\Common\check.png" />
     <Content Include="Assets\Common\Comment.png" />
     <Content Include="Assets\Common\refresh.png" />
     <Content Include="Assets\Common\SliderThumb.png" />

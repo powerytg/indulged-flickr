@@ -12,11 +12,15 @@
     d:DesignHeight="480" d:DesignWidth="480"
     Height="360">
     
-    <UserControl.Resources>
- 
-    </UserControl.Resources>
+    <UserControl.RenderTransform>
+        <CompositeTransform/>
+    </UserControl.RenderTransform>
     
-    <Grid x:Name="LayoutRoot">
+    <Grid x:Name="LayoutRoot" Background="White">
+        <Grid.RenderTransform>
+            <CompositeTransform/>
+        </Grid.RenderTransform>
+        
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>

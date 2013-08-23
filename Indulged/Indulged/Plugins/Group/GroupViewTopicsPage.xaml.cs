@@ -67,7 +67,7 @@ namespace Indulged.Plugins.Group
                 int page = Group.Topics.Count / Anaconda.DefaultItemsPerPage + 1;
                 Anaconda.AnacondaCore.GetGroupTopicsAsync(Group.ResourceId, new Dictionary<string, string> { { "page", page.ToString() }, { "per_page", Anaconda.DefaultItemsPerPage.ToString() } });
             }
-
         }
+
     }
 }

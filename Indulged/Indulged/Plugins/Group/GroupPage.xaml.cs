@@ -12,6 +12,9 @@ using Indulged.API.Cinderella;
 using Indulged.API.Anaconda;
 using Indulged.API.Avarice.Controls;
 using Indulged.API.Avarice.Events;
+using System.Windows.Media;
+using System.Windows.Media.Animation;
+using System.Windows.Controls.Primitives;
 
 namespace Indulged.Plugins.Group
 {
@@ -127,16 +130,54 @@ namespace Indulged.Plugins.Group
 
         private void AddTopicButton_Click(object sender, EventArgs e)
         {
-            var composerView = new TopicComposerView();
-            var composerDialog = ModalPopup.Show(composerView, "New Topic", new List<string> { "Post Topic", "Cancel" });
-            composerDialog.DismissWithButtonClick += (s, args) =>
-            {
-                int buttonIndex = (args as ModalPopupEventArgs).ButtonIndex;
-                if (buttonIndex == 0)
-                {
-                    
-                }
+            ShowComposerView();
+        }
+
+        private Popup composerPopup;
+
+        private void ShowComposerView()
+        {
+            LayoutRoot.Opacity = 0.1;
+
+            var composer = new TopicComposerView();
+            composer.Width = LayoutRoot.ActualWidth;
+            
+            var ct = (CompositeTransform)composer.RenderTransform;
+            ct.TranslateY = -composer.Height;
+
+            composerPopup = new Popup();
+            composerPopup.Child = composer;
+            composerPopup.IsOpen = true;
+
+
+            Storyboard animation = new Storyboard();
+            Duration duration = new Duration(TimeSpan.FromSeconds(0.3));
+            animation.Duration = duration;
+
+            DoubleAnimation yAnimation = new DoubleAnimation();
+            animation.Children.Add(yAnimation);
+            yAnimation.Duration = new Duration(TimeSpan.FromSeconds(0.2));
+            yAnimation.To = 0;
+            yAnimation.EasingFunction = new CubicEase() { EasingMode = EasingMode.EaseOut };
+            Storyboard.SetTarget(yAnimation, composer);
+            Storyboard.SetTargetProperty(yAnimation, new PropertyPath("(UIElement.RenderTransform).(CompositeTransform.TranslateY)"));
+
+            animation.Completed += (sender, e) => {
+                Dispatcher.BeginInvoke(() => {
+                    ApplicationBar = Resources["ComposerAppBar"] as ApplicationBar;
+                });
             };
+            animation.Begin();
+        }
+
+        private void ComfirmAddTopicButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void CancelAddTopicButton_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

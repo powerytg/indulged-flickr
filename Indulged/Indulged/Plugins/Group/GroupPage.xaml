@@ -38,6 +38,12 @@
             <shell:ApplicationBarIconButton x:Name="AddTopicButton" IconUri="/Assets/Common/add.png" Text="new topic" Click="AddTopicButton_Click"/>
         </shell:ApplicationBar>
 
+
+        <shell:ApplicationBar x:Key="ComposerAppBar" IsVisible="True" IsMenuEnabled="False" Mode="Default" Opacity="1" >
+            <shell:ApplicationBarIconButton x:Name="ComfirmAddTopicButton" IconUri="/Assets/Common/check.png" Text="Confirm" Click="ComfirmAddTopicButton_Click"/>
+            <shell:ApplicationBarIconButton x:Name="CancelAddTopicButton" IconUri="/Assets/Common/cancel.png" Text="Cancel" Click="CancelAddTopicButton_Click"/>
+        </shell:ApplicationBar>
+
     </phone:PhoneApplicationPage.Resources>
 
     <!--LayoutRoot contains the root grid where all other page content is placed-->
