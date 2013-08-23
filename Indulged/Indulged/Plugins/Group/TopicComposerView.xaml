@@ -10,39 +10,42 @@
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     d:DesignHeight="480" d:DesignWidth="480"
-    Height="360">
+    Height="440">
     
     <UserControl.RenderTransform>
         <CompositeTransform/>
     </UserControl.RenderTransform>
-    
-    <Grid x:Name="LayoutRoot" Background="White">
+
+    <Grid x:Name="LayoutRoot" Background="{StaticResource PhoneChromeBrush}">
         <Grid.RenderTransform>
             <CompositeTransform/>
         </Grid.RenderTransform>
         
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         
-        <Grid Grid.Row="0">
+        <TextBlock Text="Compose Topic" Foreground="#00d9f3" FontSize="42" TextAlignment="Center" Margin="0, 20, 0, 15"/>
+        
+        <Grid Grid.Row="1" Margin="15, 8, 15, 8">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <TextBlock Text="Subject" Foreground="#448ccb" VerticalAlignment="Center" Grid.Row="0" Margin="15"/>
+            <TextBlock Text="Subject" Foreground="#448ccb" VerticalAlignment="Center" Grid.Row="0" Margin="15" FontSize="24"/>
                        
             <avarice:AvariceTextBox x:Name="SubjectTextBox" Grid.Row="1"/>
         </Grid>
 
-        <Grid Grid.Row="1">
+        <Grid Grid.Row="2" Margin="15, 0, 15, 8">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <TextBlock Text="Message Body" Foreground="#448ccb" VerticalAlignment="Center" Grid.Row="0" Margin="15"/>
+            <TextBlock Text="Message Body" Foreground="#448ccb" VerticalAlignment="Center" Grid.Row="0" Margin="15" FontSize="24"/>
 
             <avarice:AvariceTextBox x:Name="MessageTextBox" Grid.Row="1"/>
         </Grid>

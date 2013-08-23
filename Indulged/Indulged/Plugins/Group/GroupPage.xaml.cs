@@ -133,13 +133,18 @@ namespace Indulged.Plugins.Group
             ShowComposerView();
         }
 
+        private TopicComposerView composer;
         private Popup composerPopup;
+        private ApplicationBar AppBarBeforeComposerPopup;
 
         private void ShowComposerView()
         {
-            LayoutRoot.Opacity = 0.1;
+            LayoutRoot.Opacity = 0;
+            LayoutRoot.IsHitTestVisible = false;
 
-            var composer = new TopicComposerView();
+            AppBarBeforeComposerPopup = (ApplicationBar)this.ApplicationBar;
+
+            composer = new TopicComposerView();
             composer.Width = LayoutRoot.ActualWidth;
             
             var ct = (CompositeTransform)composer.RenderTransform;
@@ -170,14 +175,73 @@ namespace Indulged.Plugins.Group
             animation.Begin();
         }
 
+        private void DismissComposerView()
+        {
+            composer.Projection = new PlaneProjection { CenterOfRotationX = 0, RotationX = 0 };
+
+            Storyboard animation = new Storyboard();
+            Duration duration = new Duration(TimeSpan.FromSeconds(0.3));
+            animation.Duration = duration;
+
+            var alphaAnimation = new DoubleAnimation();
+            alphaAnimation.Duration = duration;
+            animation.Children.Add(alphaAnimation);
+            alphaAnimation.To = 0;
+            Storyboard.SetTarget(alphaAnimation, composer);
+            Storyboard.SetTargetProperty(alphaAnimation, new PropertyPath("Opacity"));
+
+            var yAnimation = new DoubleAnimation();
+            yAnimation.Duration = duration;
+            yAnimation.EasingFunction = new CubicEase() { EasingMode = EasingMode.EaseInOut };
+            animation.Children.Add(yAnimation);
+            yAnimation.To = -composer.Height;
+            Storyboard.SetTarget(yAnimation, composer);
+            Storyboard.SetTargetProperty(yAnimation, new PropertyPath("(UIElement.RenderTransform).(CompositeTransform.TranslateY)"));
+
+            var planeAnimation = new DoubleAnimation();
+            planeAnimation.Duration = duration;
+            planeAnimation.EasingFunction = new CubicEase() { EasingMode = EasingMode.EaseOut };
+            animation.Children.Add(planeAnimation);
+            planeAnimation.To = -90;
+            Storyboard.SetTarget(planeAnimation, composer.Projection);
+            Storyboard.SetTargetProperty(planeAnimation, new PropertyPath("RotationX"));
+
+            animation.Completed += (sender, e) => {
+                composerPopup.IsOpen = false;
+                composerPopup = null;
+                composer = null;
+
+                LayoutRoot.Opacity = 1;
+                LayoutRoot.IsHitTestVisible = true;
+
+                ApplicationBar = AppBarBeforeComposerPopup;
+            };
+
+            animation.Begin();
+        }
+
         private void ComfirmAddTopicButton_Click(object sender, EventArgs e)
         {
-
+            DismissComposerView();
         }
 
         private void CancelAddTopicButton_Click(object sender, EventArgs e)
         {
+            DismissComposerView();
+        }
 
+        // Capture back button
+        protected override void OnBackKeyPress(System.ComponentModel.CancelEventArgs e)
+        {
+            if (composerPopup != null)
+            {
+                e.Cancel = true;
+                DismissComposerView();
+            }
+            else
+            {
+                base.OnBackKeyPress(e);
+            }
         }
     }
 }
