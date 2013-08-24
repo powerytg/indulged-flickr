@@ -118,6 +118,7 @@ namespace Indulged.API.Cinderella
             Anaconda.Anaconda.AnacondaCore.GroupInfoReturned += OnGroupInfoReturned;
             Anaconda.Anaconda.AnacondaCore.GroupPhotoReturned += OnGroupPhotosReturned;
             Anaconda.Anaconda.AnacondaCore.GroupTopicsReturned += OnGroupTopicsReturned;
+            Anaconda.Anaconda.AnacondaCore.TopicAdded += OnTopicAdded;
         }
     }
 }

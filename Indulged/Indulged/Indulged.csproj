@@ -845,9 +845,6 @@
     <ApplicationDefinition Include="Themes\FXHueSliderStyle.xaml">
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <ApplicationDefinition Include="Themes\ComposerTextBoxStyle.xaml">
-      <SubType>Designer</SubType>
-    </ApplicationDefinition>
     <Page Include="Themes\PhotoNavigatorStyle.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -865,6 +862,8 @@
     <Content Include="Assets\Common\Comment.png" />
     <Content Include="Assets\Common\refresh.png" />
     <Content Include="Assets\Common\SliderThumb.png" />
+    <Content Include="Assets\Group\ComposerBottomShadow.png" />
+    <Content Include="Assets\Group\SmallSelectionCircle.png" />
     <Content Include="Assets\ProCamera\WB-Cloudy-Selected.png" />
     <Content Include="Assets\ProCamera\WB-Cloudy.png" />
     <Content Include="Assets\ProCamera\WB-Daylight-Selected.png" />

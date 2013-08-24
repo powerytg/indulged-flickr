@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using Indulged.API.Utils;
 using System.Windows;
 using System.Diagnostics;
+using System.ComponentModel;
 
 namespace Indulged.API.Anaconda
 {
@@ -48,6 +49,8 @@ namespace Indulged.API.Anaconda
                 request = (HttpWebRequest)WebRequest.Create(apiUrl);
                 request.Method = httpMethod;
                 request.ContentType = "application/x-www-form-urlencoded;charset=utf-8";
+                string data = OAuthCalculatePostData(parameters);
+
                 if (parameters != null)
                 {
                     using (Stream stream = await request.GetRequestStreamAsync().ConfigureAwait(false))
@@ -87,5 +90,33 @@ namespace Indulged.API.Anaconda
             }
 
         }
+
+        public void DispatchPostRequest(string httpMethod, string apiUrl, Dictionary<string, string> parameters, Action<string> successCallback, Action<Exception> faultCallback)
+        {
+            WebClient client = new WebClient();
+            client.Encoding = System.Text.Encoding.UTF8;
+
+            string authHeader = OAuthCalculateAuthHeader(parameters);
+            string data = OAuthCalculatePostData(parameters);
+
+            client.Headers["Content-Type"] = "application/x-www-form-urlencoded";
+            if (!String.IsNullOrEmpty(authHeader)) client.Headers["Authorization"] = authHeader;
+
+
+            client.UploadStringCompleted += delegate(object sender, UploadStringCompletedEventArgs e)
+            {
+                if (e.Error != null)
+                {
+                    faultCallback(e.Error);
+                }
+                else
+                {
+                    successCallback(e.Result);
+                }
+            };
+
+            client.UploadStringAsync(new Uri(apiUrl), "POST", data);
+        }
+
     }
 }

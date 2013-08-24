@@ -140,11 +140,12 @@ namespace Indulged.API.Avarice.Controls
         {
             // Create a text label
             TextBlock label = new TextBlock();
+            label.Foreground = new SolidColorBrush(Colors.White);
+            label.FontSize = 24;
             label.Margin = new Thickness(28);
             label.Text = text;
             label.Width = System.Windows.Application.Current.Host.Content.ActualWidth - label.Margin.Left - label.Margin.Right;
             label.TextWrapping = TextWrapping.Wrap;
-            label.SetValue(Grid.RowProperty, 1);
             return Show(label, title, buttonTitles);
         }
 
@@ -187,12 +188,11 @@ namespace Indulged.API.Avarice.Controls
             // Add any custom content
             if (contentElement != null)
             {
-                contentElement.Margin = new Thickness(0, 0, 0, 8);
                 contentElement.SetValue(Grid.RowProperty, 1);
                 contentView.Children.Add(contentElement);
                 contentView.InvalidateArrange();
                 contentView.UpdateLayout();
-
+                
                 double measuredWidth = contentElement.ActualWidth + contentElement.Margin.Left + contentElement.Margin.Right;
                 double measuredHeight = 0;
                 if (titleLabel != null)
@@ -237,8 +237,6 @@ namespace Indulged.API.Avarice.Controls
                 }
 
             }
-
-            //expectedContentSize.Height += buttonContainer.Margin.Top + buttonContainer.Height + buttonContainer.Margin.Bottom;
         }
 
         private bool isApplicationBarVisibleBeforePopup;

@@ -22,26 +22,8 @@
                     <Grid Background="Transparent">
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="CommonStates">
-                                <VisualState x:Name="Normal">
-                                    <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background" Storyboard.TargetName="MainBorder">
-                                            <DiscreteObjectKeyFrame KeyTime="0" Value="#FF111A1E"/>
-                                        </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="MainBorder">
-                                            <DiscreteObjectKeyFrame KeyTime="0" Value="#FF0076A3"/>
-                                        </ObjectAnimationUsingKeyFrames>
-                                    </Storyboard>
-                                </VisualState>
-                                <VisualState x:Name="MouseOver">
-                                    <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background" Storyboard.TargetName="MainBorder">
-                                            <DiscreteObjectKeyFrame KeyTime="0" Value="#FF122C3A"/>
-                                        </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="MainBorder">
-                                            <DiscreteObjectKeyFrame KeyTime="0" Value="#FF00BFF3"/>
-                                        </ObjectAnimationUsingKeyFrames>
-                                    </Storyboard>
-                                </VisualState>
+                                <VisualState x:Name="Normal"/>
+                                <VisualState x:Name="MouseOver"/>
                                 <VisualState x:Name="Disabled">
                                     <Storyboard>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="ContentElement">
@@ -84,11 +66,11 @@
                         </VisualStateManager.VisualStateGroups>
                         <Border x:Name="MainBorder" 
 								BorderThickness="{TemplateBinding BorderThickness}" 
-								Margin="{StaticResource PhoneTouchTargetOverhang}" CornerRadius="6" BorderBrush="#FF0076A3" Background="#FF111A1E"/>
+								Margin="{StaticResource PhoneTouchTargetOverhang}" CornerRadius="2" BorderBrush="#000000" Background="#99000000"/>
                         <Border x:Name="ReadonlyBorder" BorderBrush="{StaticResource PhoneDisabledBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="Transparent" Margin="{StaticResource PhoneTouchTargetOverhang}" Visibility="Collapsed"/>
                         <Border BorderBrush="Transparent" BorderThickness="{TemplateBinding BorderThickness}" Background="Transparent" Margin="{StaticResource PhoneTouchTargetOverhang}">
                             <ContentControl x:Name="ContentElement" BorderThickness="0" HorizontalContentAlignment="Stretch" Margin="{StaticResource PhoneTextBoxInnerMargin}" Padding="{TemplateBinding Padding}" VerticalContentAlignment="Stretch"
-                                            Foreground="#00d9f3"/>
+                                            Foreground="#63767d"/>
                         </Border>
                     </Grid>
                 </ControlTemplate>

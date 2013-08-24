@@ -15,9 +15,6 @@ namespace Indulged.Plugins.Group
         public TopicComposerView()
         {
             InitializeComponent();
-
-            // Focus on the subject field
-            SubjectTextBox.Focus();
         }
     }
 }

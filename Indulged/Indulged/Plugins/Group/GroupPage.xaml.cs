@@ -7,9 +7,11 @@ using System.Windows.Controls;
 using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
+using Indulged.API.Cinderella.Events;
 using Indulged.API.Cinderella.Models;
 using Indulged.API.Cinderella;
 using Indulged.API.Anaconda;
+using Indulged.API.Anaconda.Events;
 using Indulged.API.Avarice.Controls;
 using Indulged.API.Avarice.Events;
 using System.Windows.Media;
@@ -42,7 +44,7 @@ namespace Indulged.Plugins.Group
         protected virtual void OnGroupSourceChanged()
         {
             PhotoPageView.Group = GroupSource;
-            TopicPageView.Group = GroupSource;
+            TopicPageView.GroupSource = GroupSource;
 
             // Show loading progress indicator
             SystemTray.ProgressIndicator = new ProgressIndicator();
@@ -80,6 +82,9 @@ namespace Indulged.Plugins.Group
                         SystemTray.ProgressIndicator.IsVisible = false;
                 });
             };
+
+            Anaconda.AnacondaCore.AddTopicException += OnAddTopicException;
+            Cinderella.CinderellaCore.AddTopicCompleted += OnAddTopicComplete;
 
         }
 
@@ -137,9 +142,10 @@ namespace Indulged.Plugins.Group
         private Popup composerPopup;
         private ApplicationBar AppBarBeforeComposerPopup;
 
+        private string addTopicSessionId;
+
         private void ShowComposerView()
         {
-            LayoutRoot.Opacity = 0;
             LayoutRoot.IsHitTestVisible = false;
 
             AppBarBeforeComposerPopup = (ApplicationBar)this.ApplicationBar;
@@ -159,6 +165,15 @@ namespace Indulged.Plugins.Group
             Duration duration = new Duration(TimeSpan.FromSeconds(0.3));
             animation.Duration = duration;
 
+            // Content view
+            DoubleAnimation contentAnimation = new DoubleAnimation();
+            animation.Children.Add(contentAnimation);
+            contentAnimation.Duration = new Duration(TimeSpan.FromSeconds(0.2));
+            contentAnimation.To = 0.2;
+            contentAnimation.EasingFunction = new CubicEase() { EasingMode = EasingMode.EaseIn };
+            Storyboard.SetTarget(contentAnimation, LayoutRoot);
+            Storyboard.SetTargetProperty(contentAnimation, new PropertyPath("Opacity"));
+
             DoubleAnimation yAnimation = new DoubleAnimation();
             animation.Children.Add(yAnimation);
             yAnimation.Duration = new Duration(TimeSpan.FromSeconds(0.2));
@@ -170,6 +185,9 @@ namespace Indulged.Plugins.Group
             animation.Completed += (sender, e) => {
                 Dispatcher.BeginInvoke(() => {
                     ApplicationBar = Resources["ComposerAppBar"] as ApplicationBar;
+
+                    // Auto focus on subject field
+                    composer.SubjectTextBox.Focus();
                 });
             };
             animation.Begin();
@@ -222,7 +240,26 @@ namespace Indulged.Plugins.Group
 
         private void ComfirmAddTopicButton_Click(object sender, EventArgs e)
         {
-            DismissComposerView();
+            if (composer.SubjectTextBox.Text.Length == 0 || composer.MessageTextBox.Text.Length == 0)
+            {
+                composer.StatusTextView.Text = "Subject and content cannot be empty";
+            }
+            else
+            {
+                // Dismiss keyboard
+                this.Focus();
+
+                ApplicationBar.IsVisible = false;
+                composer.SubjectTextBox.IsEnabled = false;
+                composer.MessageTextBox.IsEnabled = false;
+                composer.ComposerView.Opacity = 0.4;
+
+                composer.StatusTextView.Text = "Posting to discussion board";
+                composer.ProgressView.Visibility = Visibility.Visible;
+
+                addTopicSessionId = Guid.NewGuid().ToString().Replace("-", null);
+                Anaconda.AnacondaCore.AddTopicAsync(addTopicSessionId, GroupSource.ResourceId, composer.SubjectTextBox.Text, composer.MessageTextBox.Text);
+            }
         }
 
         private void CancelAddTopicButton_Click(object sender, EventArgs e)
@@ -242,6 +279,36 @@ namespace Indulged.Plugins.Group
             {
                 base.OnBackKeyPress(e);
             }
+        }
+
+        // Events
+        private void OnAddTopicException(object sender, AddTopicExceptionEventArgs e)
+        {
+            if (composer == null || e.SessionId != addTopicSessionId)
+                return;
+
+            Dispatcher.BeginInvoke(() => {
+                ApplicationBar.IsVisible = true;
+                composer.SubjectTextBox.IsEnabled = true;
+                composer.MessageTextBox.IsEnabled = true;
+                composer.ComposerView.Opacity = 1;
+
+                composer.StatusTextView.Text = "An error occured while adding topic.";
+                composer.ProgressView.Visibility = Visibility.Collapsed;
+            });
+
+        }
+
+        private void OnAddTopicComplete(object sender, AddTopicCompleteEventArgs e)
+        {
+            if (composer == null || e.SessionId != addTopicSessionId)
+                return;
+
+            Dispatcher.BeginInvoke(() =>
+            {
+                ApplicationBar.IsVisible = true;
+                DismissComposerView();               
+            });
         }
     }
 }

@@ -16,40 +16,77 @@
         <CompositeTransform/>
     </UserControl.RenderTransform>
 
-    <Grid x:Name="LayoutRoot" Background="{StaticResource PhoneChromeBrush}">
+    <Grid x:Name="LayoutRoot">
+        <Grid.Background>
+            <SolidColorBrush Color="Black" Opacity="0"/>
+        </Grid.Background>
+        
         <Grid.RenderTransform>
             <CompositeTransform/>
         </Grid.RenderTransform>
         
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        
-        <TextBlock Text="Compose Topic" Foreground="#00d9f3" FontSize="42" TextAlignment="Center" Margin="0, 20, 0, 15"/>
-        
-        <Grid Grid.Row="1" Margin="15, 8, 15, 8">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-            <TextBlock Text="Subject" Foreground="#448ccb" VerticalAlignment="Center" Grid.Row="0" Margin="15" FontSize="24"/>
-                       
-            <avarice:AvariceTextBox x:Name="SubjectTextBox" Grid.Row="1"/>
-        </Grid>
 
-        <Grid Grid.Row="2" Margin="15, 0, 15, 8">
+        <Rectangle Height="2" Fill="#00aeef" Margin="0, 30, 0, 0" Grid.Row="0"/>
+
+        <!--Content-->
+        <Grid x:Name="ComposerView" Grid.Row="1" Margin="12, 15, 12, 8">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <TextBlock Text="Message Body" Foreground="#448ccb" VerticalAlignment="Center" Grid.Row="0" Margin="15" FontSize="24"/>
+            <Grid Grid.Row="0" Margin="0, 4, 0, 4">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <StackPanel Orientation="Horizontal" Grid.Row="0">
+                    <Image Source="/Assets/Group/SmallSelectionCircle.png" Margin="0, 0, 12, 0"/>
+                    <TextBlock Text="Subject" Foreground="#cccccc" VerticalAlignment="Center"  FontSize="24"/>
+                </StackPanel>
 
-            <avarice:AvariceTextBox x:Name="MessageTextBox" Grid.Row="1"/>
+                <avarice:AvariceTextBox x:Name="SubjectTextBox" Grid.Row="1"/>
+            </Grid>
+
+            <Grid Grid.Row="1" Margin="0, 0, 0, 0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <StackPanel Orientation="Horizontal" Grid.Row="0">
+                    <Image Source="/Assets/Group/SmallSelectionCircle.png" Margin="0, 0, 12, 0"/>
+                    <TextBlock Text="Message Body" Foreground="#cccccc" VerticalAlignment="Center"  FontSize="24"/>
+                </StackPanel>
+
+                <avarice:AvariceTextBox x:Name="MessageTextBox" Grid.Row="1" AcceptsReturn="True"/>
+            </Grid>
+
         </Grid>
 
+        <Grid x:Name="StatusView" Margin="28,0,0,12" 
+                   Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock x:Name="StatusTextView" Text="" Foreground="#00aeef" FontSize="16"
+                   Margin="0,0,14,0" VerticalAlignment="Center" 
+                   Grid.Column="0"/>
 
+            <ProgressBar x:Name="ProgressView" IsIndeterminate="True" Grid.Column="1"
+                         Margin="0, 0, 28, 0" Visibility="Collapsed" />
+
+        </Grid>
+
+        <Rectangle Height="2" Fill="#00aeef" Grid.Row="3"/>
+        <Image Source="/Assets/Group/ComposerBottomShadow.png" Grid.Row="4" Height="20" Stretch="Fill"/>
     </Grid>
 </UserControl>

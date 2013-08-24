@@ -283,5 +283,23 @@ namespace Indulged.API.Anaconda
 
             return hash;
         }
+
+        public string OAuthCalculatePostData(Dictionary<string, string> parameters)
+        {
+            string data = String.Empty;
+            foreach (KeyValuePair<string, string> pair in parameters)
+            {
+                // Silverlight < 5 doesn't support modification of the Authorization header, so all data must be sent in post body.
+#if SILVERLIGHT
+                data += pair.Key + "=" + EscapeOAuthString(pair.Value) + "&";
+#else
+                if (!pair.Key.StartsWith("oauth"))
+                {
+                    data += pair.Key + "=" + Uri.EscapeDataString(pair.Value) + "&";
+                }
+#endif
+            }
+            return data;
+        }
     }
 }

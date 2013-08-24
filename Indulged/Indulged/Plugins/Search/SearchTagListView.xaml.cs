@@ -33,16 +33,19 @@ namespace Indulged.Plugins.Search
 
         private void OnPopularTagsReturned(object sender, PopularTagListUpdatedEventArgs e)
         {
-            TagListView.Children.Clear();
-            foreach (PhotoTag tag in e.Tags)
+            Dispatcher.BeginInvoke(() =>
             {
-                WeightedTagButton button = new WeightedTagButton();
-                button.TagSource = tag;
-                TagListView.Children.Add(button);
-            }
+                TagListView.Children.Clear();
+                foreach (PhotoTag tag in e.Tags)
+                {
+                    WeightedTagButton button = new WeightedTagButton();
+                    button.TagSource = tag;
+                    TagListView.Children.Add(button);
+                }
 
-            LoadingView.Visibility = Visibility.Collapsed;
-            TagListView.Visibility = Visibility.Visible;
+                LoadingView.Visibility = Visibility.Collapsed;
+                TagListView.Visibility = Visibility.Visible;
+            });
 
         }
 

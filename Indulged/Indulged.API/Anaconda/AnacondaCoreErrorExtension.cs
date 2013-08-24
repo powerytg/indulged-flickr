@@ -9,6 +9,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Indulged.API.Avarice.Controls;
 using Indulged.API.Avarice.Events;
+using System.Windows;
 
 namespace Indulged.API.Anaconda
 {
@@ -16,7 +17,10 @@ namespace Indulged.API.Anaconda
     {
         private void HandleHTTPException(System.Net.HttpWebResponse response)
         {
-            ModalPopup.Show("This operation cannot be completed at this time. \n Reason: Network Issue", "Network Issue", new List<string> { "Confirm" });
+            Deployment.Current.Dispatcher.BeginInvoke(() => {
+                ModalPopup.Show("This operation cannot be completed at this time. Please try again later. \n\n\n Reason: Network Issue", "Network Issue", new List<string> { "Confirm" });
+            });
+            
         }
 
         private bool IsResponseSuccess(string response)
@@ -74,20 +78,26 @@ namespace Indulged.API.Anaconda
                 {
                     if (retryMethod == null)
                     {
-                        ModalPopup.Show(errorBody, errorTitle, new List<string> { "Confirm" });
+                        Deployment.Current.Dispatcher.BeginInvoke(() => {
+                            ModalPopup.Show(errorBody, errorTitle, new List<string> { "Confirm" });
+                        });
+                        
                     }
                     else
                     {
-                        var errorDialog = ModalPopup.Show(errorBody, errorTitle, new List<string> { "Retry", "Cancel" });
-                        errorDialog.DismissWithButtonClick += (s, args) =>
+                        Deployment.Current.Dispatcher.BeginInvoke(() =>
                         {
-                            int buttonIndex = (args as ModalPopupEventArgs).ButtonIndex;
-                            if (buttonIndex == 0)
+                            var errorDialog = ModalPopup.Show(errorBody, errorTitle, new List<string> { "Retry", "Cancel" });
+                            errorDialog.DismissWithButtonClick += (s, args) =>
                             {
-                                retryMethod();
-                            }
-                        };
+                                int buttonIndex = (args as ModalPopupEventArgs).ButtonIndex;
+                                if (buttonIndex == 0)
+                                {
+                                    retryMethod();
+                                }
+                            };
 
+                        });
                     }
                 }
             }

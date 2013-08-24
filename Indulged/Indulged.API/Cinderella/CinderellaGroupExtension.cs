@@ -90,7 +90,7 @@ namespace Indulged.API.Cinderella
                 foreach (var entry in rootJson["topic"])
                 {
                     JObject json = (JObject)entry;
-                    Topic topic = TopicFactory.TopicWithJObject(json);
+                    Topic topic = TopicFactory.TopicWithJObject(json, group);
 
                     if (!group.Topics.Contains(topic))
                     {
@@ -124,12 +124,14 @@ namespace Indulged.API.Cinderella
             newTopic.Message = e.Message;
             newTopic.Author = CurrentUser;
 
+            group.TopicCache[newTopicId] = newTopic;
             group.Topics.Insert(0, newTopic);
             group.TopicCount++;
 
             AddTopicCompleteEventArgs evt = new AddTopicCompleteEventArgs();
             evt.SessionId = e.SessionId;
-            evt.TopicId = newTopicId;
+            evt.GroupId = group.ResourceId;
+            evt.newTopic = newTopic;
             AddTopicCompleted.DispatchEvent(this, evt);
         }
 

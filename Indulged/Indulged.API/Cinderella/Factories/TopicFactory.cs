@@ -11,12 +11,22 @@ namespace Indulged.API.Cinderella.Factories
 {
     public class TopicFactory
     {
-        public static Topic TopicWithJObject(JObject json)
+        public static Topic TopicWithJObject(JObject json, FlickrGroup group)
         {
             // Get topic id
             string topicId = json["id"].ToString();
-            Topic topic = new Topic();
-            topic.ResourceId = topicId;
+            Topic topic = null;
+            if (group.TopicCache.ContainsKey(topicId))
+            {
+                topic = group.TopicCache[topicId];
+            }
+            else
+            {
+                topic = new Topic();
+                topic.ResourceId = topicId;
+                group.TopicCache[topicId] = topic;
+            }
+
 
             // Parse user
             topic.Author = UserFactory.UserWithTopicJObject(json);

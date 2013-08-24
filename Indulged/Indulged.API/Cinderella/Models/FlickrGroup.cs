@@ -65,6 +65,7 @@ namespace Indulged.API.Cinderella.Models
         }
 
         // Topics
+        public Dictionary<string, Topic> TopicCache = new Dictionary<string, Topic>();
         private List<Topic> _topics = new List<Topic>();
         public List<Topic> Topics
         {

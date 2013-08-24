@@ -18,7 +18,33 @@ namespace Indulged.Plugins.Group
 {
     public partial class GroupViewTopicsPage : UserControl
     {
-        public FlickrGroup Group { get; set; }
+        public static readonly DependencyProperty GroupSourceProperty = DependencyProperty.Register("GroupSource", typeof(FlickrGroup), typeof(GroupViewTopicsPage), new PropertyMetadata(OnGroupSourcePropertyChanged));
+
+        public FlickrGroup GroupSource
+        {
+            get
+            {
+                return (FlickrGroup)GetValue(GroupSourceProperty);
+            }
+            set
+            {
+                SetValue(GroupSourceProperty, value);
+            }
+        }
+
+        public static void OnGroupSourcePropertyChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
+        {
+            ((GroupViewTopicsPage)sender).OnGroupSourceChanged();
+        }
+
+        protected virtual void OnGroupSourceChanged()
+        {
+            TopicCollection.Clear();
+            foreach (var topic in GroupSource.Topics)
+            {
+                TopicCollection.Add(topic);
+            }
+        }
 
         // Photo data source
         public ObservableCollection<Topic> TopicCollection { get; set; }
@@ -34,19 +60,32 @@ namespace Indulged.Plugins.Group
 
             // Events
             Cinderella.CinderellaCore.GroupTopicsUpdated += OnTopicsUpdated;
+            Cinderella.CinderellaCore.AddTopicCompleted += OnAddTopicComplete;
         }
 
         // Photo stream updated
         private void OnTopicsUpdated(object sender, GroupTopicsUpdatedEventArgs e)
         {
-            if (e.NewTopics.Count == 0 || e.GroupId != Group.ResourceId)
-                return;
-
             Dispatcher.BeginInvoke(() => {
+                if (e.NewTopics.Count == 0 || e.GroupId != GroupSource.ResourceId)
+                    return;
+
                 foreach (var topic in e.NewTopics)
                 {
-                    TopicCollection.Add(topic);
+                    if(!TopicCollection.Contains(topic))
+                        TopicCollection.Add(topic);
                 }
+            });
+        }
+
+        private void OnAddTopicComplete(object sender, AddTopicCompleteEventArgs e)
+        {
+            Dispatcher.BeginInvoke(() =>
+            {
+                if (GroupSource.ResourceId != e.GroupId)
+                    return;
+                
+                TopicCollection.Insert(0, e.newTopic);
             });
         }
 
@@ -58,14 +97,14 @@ namespace Indulged.Plugins.Group
 
             int index = TopicCollection.IndexOf(topic);
 
-            bool canLoad = (Group.Topics.Count < Group.TopicCount);
+            bool canLoad = (GroupSource.Topics.Count < GroupSource.TopicCount);
             if (TopicCollection.Count - index <= 2 && canLoad)
             {
                 SystemTray.ProgressIndicator.Text = "loading topics";
                 SystemTray.ProgressIndicator.IsVisible = true;
 
-                int page = Group.Topics.Count / Anaconda.DefaultItemsPerPage + 1;
-                Anaconda.AnacondaCore.GetGroupTopicsAsync(Group.ResourceId, new Dictionary<string, string> { { "page", page.ToString() }, { "per_page", Anaconda.DefaultItemsPerPage.ToString() } });
+                int page = GroupSource.Topics.Count / Anaconda.DefaultItemsPerPage + 1;
+                Anaconda.AnacondaCore.GetGroupTopicsAsync(GroupSource.ResourceId, new Dictionary<string, string> { { "page", page.ToString() }, { "per_page", Anaconda.DefaultItemsPerPage.ToString() } });
             }
         }
 
