@@ -230,6 +230,11 @@
       <DependentUpon>PhotoBasicInfoView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Plugins\Detail\PhotoSourceConverter.cs" />
+    <Compile Include="Plugins\Group\GroupAddPhotoView.xaml.cs">
+      <DependentUpon>GroupAddPhotoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\Group\GroupPagePhotoExtension.cs" />
+    <Compile Include="Plugins\Group\GroupPageTopicExtension.cs" />
     <Compile Include="Plugins\Group\GroupViewTopicsPage.xaml.cs">
       <DependentUpon>GroupViewTopicsPage.xaml</DependentUpon>
     </Compile>
@@ -242,8 +247,12 @@
     <Compile Include="Plugins\Group\GroupViewPhotoPage.xaml.cs">
       <DependentUpon>GroupViewPhotoPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Plugins\Group\SupportClasses\PhotoGridFactory.cs" />
     <Compile Include="Plugins\Group\TopicComposerView.xaml.cs">
       <DependentUpon>TopicComposerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\Group\PhotoGridRenderer.xaml.cs">
+      <DependentUpon>PhotoGridRenderer.xaml</DependentUpon>
     </Compile>
     <Compile Include="Plugins\Login\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
@@ -585,6 +594,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Plugins\Group\GroupAddPhotoView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Plugins\Group\GroupViewTopicsPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -602,6 +615,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Plugins\Group\TopicComposerView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Plugins\Group\PhotoGridRenderer.xaml">
+      <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Plugins\Login\LoginPage.xaml">
