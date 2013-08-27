@@ -41,11 +41,13 @@ namespace Indulged.Plugins.Login
 
         private void requestTokenGranted(object sender, EventArgs e)
         {
-            // Show the authentication page
-            string authUrl = "http://www.flickr.com/services/oauth/authorize?oauth_token=" + Anaconda.AnacondaCore.RequestToken + "&perms=write";
-            Uri loginUri = new Uri(authUrl, UriKind.Absolute);
+            Dispatcher.BeginInvoke(() => {
+                // Show the authentication page
+                string authUrl = "http://www.flickr.com/services/oauth/authorize?oauth_token=" + Anaconda.AnacondaCore.RequestToken + "&perms=write";
+                Uri loginUri = new Uri(authUrl, UriKind.Absolute);
 
-            Browser.Navigate(loginUri);
+                Browser.Navigate(loginUri);
+            });
         }
 
         private void OnBrowserBeginNavigating(object sender, NavigatingEventArgs e)
@@ -74,18 +76,24 @@ namespace Indulged.Plugins.Login
 
         private void accessTokenGranted(object sender, EventArgs e)
         {
-            if(progressView != null)
-                progressView.Close();
-            NavigationService.GoBack();
+            Dispatcher.BeginInvoke(() =>
+            {
+                if (progressView != null)
+                    progressView.Close();
+                NavigationService.GoBack();
+            });
         }
 
         private void accessTokenFailed(object sender, EventArgs e)
         {
-            if (progressView != null)
-                progressView.Close();
-            NavigationService.GoBack();
+            Dispatcher.BeginInvoke(() =>
+            {
+                if (progressView != null)
+                    progressView.Close();
+                NavigationService.GoBack();
 
-            ModalPopup.Show("Cannot authenticate with Flickr at this time", "Error", new List<string> {"Confirm"} );
+                ModalPopup.Show("Cannot authenticate with Flickr at this time", "Error", new List<string> { "Confirm" });
+            });
         }
 
     }

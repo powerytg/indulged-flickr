@@ -11,32 +11,43 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     d:DesignHeight="480" d:DesignWidth="480" Height="500">
     
-    <Grid x:Name="LayoutRoot" Background="{StaticResource PhoneChromeBrush}">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        
+    <Grid x:Name="LayoutRoot">
         <!--Status view-->
-        <Grid x:Name="StatusView">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
+        <Grid x:Name="StatusView" VerticalAlignment="Center" Margin="25">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock x:Name="StatusLabel" Grid.Row="0" HorizontalAlignment="Center" Foreground="#00aeef" FontSize="26"
+                       TextAlignment="Center"/>
+            <ProgressBar x:Name="StatusProgressBar" Grid.Row="1" IsIndeterminate="True" Visibility="Collapsed"
+                         Margin="25" VerticalAlignment="Center" />
+
         </Grid>
 
-        <TextBlock x:Name="StatusLabel" Grid.Column="0" VerticalAlignment="Center" Foreground="#00aeef" FontSize="16"
-                   Margin="0,0,14,0"/>
-        <ProgressBar x:Name="StatusProgressBar" Grid.Column="1" VerticalAlignment="Center" IsIndeterminate="True" Visibility="Collapsed"/>
+        <Grid x:Name="ContentView">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
 
-        <phone:LongListSelector x:Name="PhotoListView" Margin="0,0,-12,0" Grid.Row="1"
-                                ItemsSource="{Binding Items}">
-            <phone:LongListSelector.ItemTemplate>
-                <DataTemplate>
-                    <local:PhotoGridRenderer PhotoGroupSource="{Binding}"/>
-                </DataTemplate>
-            </phone:LongListSelector.ItemTemplate>
-        </phone:LongListSelector>
+            <TextBlock x:Name="ThrottleLabel" Grid.Column="0" VerticalAlignment="Center" Foreground="#00aeef" FontSize="26"
+                   Margin="0,0,14,0" TextAlignment="Center"/>
+
+            <phone:LongListSelector x:Name="PhotoListView" Margin="0, 20, 0, 20" Grid.Row="1" Width="480"
+                                HorizontalAlignment="Center" 
+                                ItemsSource="{Binding Items}" ItemRealized="OnItemRealized" LayoutMode="Grid"
+                                GridCellSize="115, 115">
+                
+                <phone:LongListSelector.ItemTemplate>
+                    <DataTemplate>
+                        <local:PhotoPickerRenderer PhotoSource="{Binding}"/>
+                    </DataTemplate>
+                </phone:LongListSelector.ItemTemplate>
+            </phone:LongListSelector>
+
+        </Grid>
 
     </Grid>
 

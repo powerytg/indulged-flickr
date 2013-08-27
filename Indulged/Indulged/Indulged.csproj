@@ -113,8 +113,12 @@
     <Compile Include="Plugins\Chrome\TitleView.xaml.cs">
       <DependentUpon>TitleView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Plugins\Group\events\PhotoPickerRendererEventArgs.cs" />
     <Compile Include="Plugins\Common\ProgressView.xaml.cs">
       <DependentUpon>ProgressView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\Group\PhotoPickerRenderer.xaml.cs">
+      <DependentUpon>PhotoPickerRenderer.xaml</DependentUpon>
     </Compile>
     <Compile Include="Plugins\Common\Renderers\TopicRenderer.xaml.cs">
       <DependentUpon>TopicRenderer.xaml</DependentUpon>
@@ -247,12 +251,9 @@
     <Compile Include="Plugins\Group\GroupViewPhotoPage.xaml.cs">
       <DependentUpon>GroupViewPhotoPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Plugins\Group\SupportClasses\PhotoGridFactory.cs" />
+    <Compile Include="Plugins\Group\SelectablePhoto.cs" />
     <Compile Include="Plugins\Group\TopicComposerView.xaml.cs">
       <DependentUpon>TopicComposerView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Plugins\Group\PhotoGridRenderer.xaml.cs">
-      <DependentUpon>PhotoGridRenderer.xaml</DependentUpon>
     </Compile>
     <Compile Include="Plugins\Login\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
@@ -455,6 +456,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Plugins\Group\PhotoPickerRenderer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Plugins\Common\Renderers\TopicRenderer.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -615,10 +620,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Plugins\Group\TopicComposerView.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Plugins\Group\PhotoGridRenderer.xaml">
-      <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Plugins\Login\LoginPage.xaml">
@@ -878,6 +879,7 @@
     <Content Include="Assets\Common\check.png" />
     <Content Include="Assets\Common\Comment.png" />
     <Content Include="Assets\Common\refresh.png" />
+    <Content Include="Assets\Common\SelectedIndicator.png" />
     <Content Include="Assets\Common\SliderThumb.png" />
     <Content Include="Assets\Group\ComposerBottomShadow.png" />
     <Content Include="Assets\Group\SmallSelectionCircle.png" />
