@@ -10,10 +10,11 @@
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
-    d:DesignHeight="480" d:DesignWidth="480">
+    d:DesignHeight="480" d:DesignWidth="480">             
     
     <Grid x:Name="LayoutRoot">
-        <phone:LongListSelector x:Name="TopicListView" Margin="0,0,-12,0" ItemsSource="{Binding Items}" ItemRealized="OnItemRealized">
+        <phone:LongListSelector x:Name="TopicListView" Margin="0,0,-12,0" ItemsSource="{Binding Items}" ItemRealized="OnItemRealized"
+                                SelectionChanged="TopicListView_SelectionChanged" >
             <phone:LongListSelector.ItemTemplate>
                 <DataTemplate>
                     <renderers:TopicRenderer TopicSource="{Binding}"/>

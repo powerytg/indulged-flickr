@@ -146,9 +146,15 @@
     <Compile Include="Plugins\Common\Renderers\SidePhotoRenderer.xaml.cs">
       <DependentUpon>SidePhotoRenderer.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Plugins\Group\DiscussionTopicView.xaml.cs">
+      <DependentUpon>DiscussionTopicView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Plugins\Group\events\PhotoPickerRendererEventArgs.cs" />
     <Compile Include="Plugins\Common\ProgressView.xaml.cs">
       <DependentUpon>ProgressView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\Group\GroupDiscussionPage.xaml.cs">
+      <DependentUpon>GroupDiscussionPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Plugins\Group\PhotoPickerRenderer.xaml.cs">
       <DependentUpon>PhotoPickerRenderer.xaml</DependentUpon>
@@ -528,6 +534,14 @@
     <Page Include="Plugins\Common\Renderers\SidePhotoRenderer.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Plugins\Group\DiscussionTopicView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Plugins\Group\GroupDiscussionPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Plugins\Group\PhotoPickerRenderer.xaml">
       <Generator>MSBuild:Compile</Generator>

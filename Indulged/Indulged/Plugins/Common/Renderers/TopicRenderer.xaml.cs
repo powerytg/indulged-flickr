@@ -64,13 +64,5 @@ namespace Indulged.Plugins.Common.Renderers
         {
             InitializeComponent();
         }
-
-        protected override void OnTap(System.Windows.Input.GestureEventArgs e)
-        {
-            Frame rootVisual = System.Windows.Application.Current.RootVisual as Frame;
-            PhoneApplicationPage currentPage = (PhoneApplicationPage)rootVisual.Content;
-
-            
-        }
     }
 }

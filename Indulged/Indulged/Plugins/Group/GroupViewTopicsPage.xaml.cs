@@ -108,5 +108,19 @@ namespace Indulged.Plugins.Group
             }
         }
 
+        private void TopicListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (TopicListView.SelectedItem == null)
+                return;
+
+            Topic selectedTopic =(Topic)TopicListView.SelectedItem;            
+            string urlString = "/Plugins/Group/GroupDiscussionPage.xaml?group_id=" + GroupSource.ResourceId + "&topic_id=" + selectedTopic.ResourceId;
+
+            Frame rootVisual = System.Windows.Application.Current.RootVisual as Frame;
+            PhoneApplicationPage currentPage = (PhoneApplicationPage)rootVisual.Content;
+            currentPage.NavigationService.Navigate(new Uri(urlString, UriKind.Relative));
+            TopicListView.SelectedItem = null;
+        }
+
     }
 }
