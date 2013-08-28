@@ -35,12 +35,7 @@ namespace Indulged.Plugins.Common.Renderers
 
         protected void OnUserSourceChanged()
         {
-            if (UserSource.AvatarUrl != null)
-                AvatarIcon.Source = new BitmapImage(new Uri(UserSource.AvatarUrl));
-            else
-                AvatarIcon.Source = null;
-
-            NameLabel.Text = UserSource.Name;
+            NameLabel.Text = "by " + UserSource.Name;
         }
 
         // Constructor

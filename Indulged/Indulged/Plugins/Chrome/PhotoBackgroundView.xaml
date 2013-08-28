@@ -9,11 +9,11 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     d:DesignHeight="480" d:DesignWidth="480">
 
-    <Grid x:Name="LayoutRoot" Background="#222222">
+    <Grid x:Name="LayoutRoot" Background="Black">
         <Image x:Name="BackgroundImage" Stretch="UniformToFill"/>
         <Grid>
             <Grid.Background>
-                <SolidColorBrush Color="#222222" Opacity="0.65"/>
+                <SolidColorBrush Color="#222222" Opacity="0.85"/>
             </Grid.Background>
         </Grid>
     </Grid>

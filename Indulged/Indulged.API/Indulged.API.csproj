@@ -99,8 +99,10 @@
     <Compile Include="Anaconda\AnacondaCoreTagExtension.cs" />
     <Compile Include="Anaconda\AnacondaCoreUploadExtension.cs" />
     <Compile Include="Anaconda\AnacondaCoreUserExtension.cs" />
+    <Compile Include="Anaconda\Events\AddPhotoToGroupExceptionEventArgs.cs" />
     <Compile Include="Anaconda\Events\AddTopicEventArgs.cs" />
     <Compile Include="Anaconda\Events\AddTopicExceptionEventArgs.cs" />
+    <Compile Include="Anaconda\Events\AddPhotoToGroupEventArgs.cs" />
     <Compile Include="Anaconda\Events\GetDiscoveryStreamEventArgs.cs" />
     <Compile Include="Anaconda\Events\GetEXIFEventArgs.cs" />
     <Compile Include="Anaconda\Events\GetEXIFExceptionEventArgs.cs" />
@@ -116,6 +118,8 @@
     <Compile Include="Anaconda\Events\GroupSearchEventArgs.cs" />
     <Compile Include="Anaconda\Events\PhotoSearchEventArgs.cs" />
     <Compile Include="Anaconda\Events\PhotoSetListEventArgs.cs" />
+    <Compile Include="Anaconda\Events\RemovePhotoFromGroupEventArgs.cs" />
+    <Compile Include="Anaconda\Events\RemovePhotoFromGroupExceptionEventArgs.cs" />
     <Compile Include="Anaconda\Events\UploadPhotoErrorEventArgs.cs" />
     <Compile Include="Anaconda\Events\UploadPhotoEventArgs.cs" />
     <Compile Include="Anaconda\Events\UploadProgressEventArgs.cs" />
@@ -130,6 +134,7 @@
     <Compile Include="Cinderella\CinderellaStorageExtension.cs" />
     <Compile Include="Cinderella\CinderellaTagExtension.cs" />
     <Compile Include="Cinderella\CinderellaUserExtension.cs" />
+    <Compile Include="Cinderella\Events\AddPhotoToGroupCompleteEventArgs.cs" />
     <Compile Include="Cinderella\Events\AddTopicCompleteEventArgs.cs" />
     <Compile Include="Cinderella\Events\DiscoveryStreamUpdatedEventArgs.cs" />
     <Compile Include="Cinderella\Events\EXIFUpdatedEventArgs.cs" />
@@ -143,6 +148,7 @@
     <Compile Include="Cinderella\Events\PhotoStreamUpdatedEventArgs.cs" />
     <Compile Include="Cinderella\Events\PhotoUploadCompleteEventArgs.cs" />
     <Compile Include="Cinderella\Events\PopularTagListUpdatedEventArgs.cs" />
+    <Compile Include="Cinderella\Events\RemovePhotoFromGroupCompleteEventArgs.cs" />
     <Compile Include="Cinderella\Events\SearchResultEventArgs.cs" />
     <Compile Include="Cinderella\Events\UploadedPhotoInfoReturnedEventArgs.cs" />
     <Compile Include="Cinderella\Factories\FlickrGroupFactory.cs" />

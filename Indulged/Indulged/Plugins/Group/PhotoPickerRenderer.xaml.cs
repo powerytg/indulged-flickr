@@ -21,6 +21,7 @@ namespace Indulged.Plugins.Group
 
         // Events
         public static EventHandler<PhotoPickerRendererEventArgs> SelectionChanged;
+        public static EventHandler<PhotoPickerRendererEventArgs> PhotoSourceSelectionStateChanged;
 
         private SolidColorBrush selectedBorderBrush = new SolidColorBrush(Color.FromArgb(0xff, 0x00, 0xef, 0x7c));
         private SolidColorBrush unselectedBorderBrush = new SolidColorBrush(Colors.Transparent);
@@ -67,6 +68,9 @@ namespace Indulged.Plugins.Group
         public PhotoPickerRenderer()
         {
             InitializeComponent();
+
+            // Events
+            PhotoSourceSelectionStateChanged += OnPhotoSourceSelectionStateChanged;
         }
 
         protected void OnPhotoSourceChanged()
@@ -108,6 +112,15 @@ namespace Indulged.Plugins.Group
                 evt.Selected = PhotoSource.Selected;
                 SelectionChanged(this, evt);
             }
+        }
+
+        private void OnPhotoSourceSelectionStateChanged(object sender, PhotoPickerRendererEventArgs e)
+        {
+            if (PhotoSource.PhotoSource.ResourceId != e.PhotoId)
+                return;
+
+            PhotoSource.Selected = e.Selected;
+            UpdateSelectionState();
         }
     }
 }

@@ -80,7 +80,11 @@ namespace Indulged.Plugins.Detail
                     Anaconda.AnacondaCore.GetEXIFAsync(currentPhoto.ResourceId);
             }
 
-            BackgroundImage.PhotoSource = currentPhoto;
+            if (PolicyKit.ShouldUseBlurredBackground)
+                BackgroundImage.PhotoSource = currentPhoto;
+            else if (BackgroundImage.PhotoSource != null)
+                BackgroundImage.PhotoSource = null;
+
         }
 
     }

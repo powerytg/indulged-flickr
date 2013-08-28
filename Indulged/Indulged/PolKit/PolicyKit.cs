@@ -30,6 +30,15 @@ namespace Indulged.PolKit
                 settings.Add("violetPageSubscription", VioletPageSubscription);
             }
 
+            if (settings.Contains("shouldUseBlurredBackground"))
+            {
+                settings["shouldUseBlurredBackground"] = ShouldUseBlurredBackground.ToString();
+            }
+            else
+            {
+                settings.Add("shouldUseBlurredBackground", ShouldUseBlurredBackground.ToString());
+            }
+
             settings.Save();
         }
 
@@ -45,6 +54,17 @@ namespace Indulged.PolKit
             {
                 VioletPageSubscription = MyStream;
             }
+
+            if (settings.Contains("shouldUseBlurredBackground"))
+            {
+                string backgroundValue = settings["shouldUseBlurredBackground"] as string;
+                ShouldUseBlurredBackground = bool.Parse(backgroundValue);
+            }
+            else
+            {
+                ShouldUseBlurredBackground = true;
+            }
+
         }
 
         // Singleton
@@ -77,5 +97,8 @@ namespace Indulged.PolKit
 
         // Licenses
         public Dictionary<string, License> Licenses;
+
+        // Use blurred background
+        public static bool ShouldUseBlurredBackground { get; set; }
     }
 }

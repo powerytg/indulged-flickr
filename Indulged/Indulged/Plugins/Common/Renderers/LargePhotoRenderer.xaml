@@ -29,7 +29,7 @@
                 <!-- Title view -->
                 <TextBlock x:Name="TitleLabel" TextTrimming="WordEllipsis"  TextWrapping="Wrap"
                        HorizontalAlignment="Left" TextAlignment="Left"
-                       Foreground="#ffffff" FontSize="36" FontWeight="Bold"
+                       Foreground="#ffffff" FontSize="28" FontWeight="Bold"
                        Grid.Row="0"/>
 
                 <!-- Stat view -->

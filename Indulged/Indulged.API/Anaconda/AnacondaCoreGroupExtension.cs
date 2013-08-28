@@ -1,7 +1,9 @@
 ﻿using Indulged.API.Anaconda.Events;
 using Indulged.API.Utils;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -215,6 +217,150 @@ namespace Indulged.API.Anaconda
                 });
 
             
+        }
+
+        public void AddPhotoToGroupAsync(string photoId, string groupId)
+        {
+            string timestamp = DateTimeUtils.GetTimestamp();
+            string nonce = Guid.NewGuid().ToString().Replace("-", null);
+
+            Dictionary<string, string> paramDict = new Dictionary<string, string>();
+            paramDict["method"] = "flickr.groups.pools.add";
+            paramDict["format"] = "json";
+            paramDict["nojsoncallback"] = "1";
+            paramDict["oauth_consumer_key"] = consumerKey;
+            paramDict["oauth_nonce"] = nonce;
+            paramDict["oauth_signature_method"] = "HMAC-SHA1";
+            paramDict["oauth_timestamp"] = timestamp;
+            paramDict["oauth_token"] = AccessToken;
+            paramDict["oauth_version"] = "1.0";
+            paramDict["group_id"] = groupId;
+            paramDict["photo_id"] = photoId;
+
+            string signature = OAuthCalculateSignature("POST", "http://api.flickr.com/services/rest/", paramDict, AccessTokenSecret);
+            paramDict["oauth_signature"] = signature;
+
+            DispatchPostRequest("POST", "http://api.flickr.com/services/rest/", paramDict,
+                (response) =>
+                {
+                    bool success = true;
+                    string errorMessage = "";
+
+                    try
+                    {
+                        JObject json = JObject.Parse(response);
+                        string status = json["stat"].ToString();
+                        if (status != "ok")
+                        {
+                            success = false;
+                            errorMessage = json["message"].ToString();
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        Debug.WriteLine(e.Message);
+
+                        success = false;
+                    }
+
+                    if (!success)
+                    {
+                        AddPhotoToGroupExceptionEventArgs exceptionArgs = new AddPhotoToGroupExceptionEventArgs();
+                        exceptionArgs.PhotoId = photoId;
+                        exceptionArgs.GroupId = groupId;
+                        exceptionArgs.ErrorMessage = errorMessage;
+                        AddPhotoToGroupException.DispatchEvent(this, exceptionArgs);
+                    }
+                    else
+                    {
+                        AddPhotoToGroupEventArgs args = new AddPhotoToGroupEventArgs();
+                        args.PhotoId = photoId;
+                        args.GroupId = groupId;
+                        PhotoAddedToGroup.DispatchEvent(this, args);
+                    }
+
+
+                }, (ex) =>
+                {
+                    AddPhotoToGroupExceptionEventArgs exceptionArgs = new AddPhotoToGroupExceptionEventArgs();
+                    exceptionArgs.PhotoId = photoId;
+                    exceptionArgs.GroupId = groupId;
+                    exceptionArgs.ErrorMessage = "Unknown network error";
+                    AddPhotoToGroupException.DispatchEvent(this, exceptionArgs);
+                });
+        }
+
+        public void RemovePhotoFromGroupAsync(string photoId, string groupId)
+        {
+            string timestamp = DateTimeUtils.GetTimestamp();
+            string nonce = Guid.NewGuid().ToString().Replace("-", null);
+
+            Dictionary<string, string> paramDict = new Dictionary<string, string>();
+            paramDict["method"] = "flickr.groups.pools.remove";
+            paramDict["format"] = "json";
+            paramDict["nojsoncallback"] = "1";
+            paramDict["oauth_consumer_key"] = consumerKey;
+            paramDict["oauth_nonce"] = nonce;
+            paramDict["oauth_signature_method"] = "HMAC-SHA1";
+            paramDict["oauth_timestamp"] = timestamp;
+            paramDict["oauth_token"] = AccessToken;
+            paramDict["oauth_version"] = "1.0";
+            paramDict["group_id"] = groupId;
+            paramDict["photo_id"] = photoId;
+
+            string signature = OAuthCalculateSignature("POST", "http://api.flickr.com/services/rest/", paramDict, AccessTokenSecret);
+            paramDict["oauth_signature"] = signature;
+
+            DispatchPostRequest("POST", "http://api.flickr.com/services/rest/", paramDict,
+                (response) =>
+                {
+                    bool success = true;
+                    string errorMessage = "";
+
+                    try
+                    {
+                        JObject json = JObject.Parse(response);
+                        string status = json["stat"].ToString();
+                        if (status != "ok")
+                        {
+                            success = false;
+                            errorMessage = json["message"].ToString();
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        Debug.WriteLine(e.Message);
+
+                        success = false;
+                    }
+
+                    if (!success)
+                    {
+                        RemovePhotoFromGroupExceptionEventArgs exceptionArgs = new RemovePhotoFromGroupExceptionEventArgs();
+                        exceptionArgs.PhotoId = photoId;
+                        exceptionArgs.GroupId = groupId;
+                        exceptionArgs.ErrorMessage = errorMessage;
+                        RemovePhotoFromGroupException.DispatchEvent(this, exceptionArgs);
+                    }
+                    else
+                    {
+                        RemovePhotoFromGroupEventArgs args = new RemovePhotoFromGroupEventArgs();
+                        args.PhotoId = photoId;
+                        args.GroupId = groupId;
+                        PhotoRemovedFromGroup.DispatchEvent(this, args);
+                    }
+
+
+                }, (ex) =>
+                {
+                    RemovePhotoFromGroupExceptionEventArgs exceptionArgs = new RemovePhotoFromGroupExceptionEventArgs();
+                    exceptionArgs.PhotoId = photoId;
+                    exceptionArgs.GroupId = groupId;
+                    exceptionArgs.ErrorMessage = "Unknown network error";
+                    RemovePhotoFromGroupException.DispatchEvent(this, exceptionArgs);
+                });
+
+
         }
     }
 }

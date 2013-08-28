@@ -18,13 +18,13 @@
             <SolidColorBrush Color="#191d24" Opacity="0.85"/>
         </Grid.Background>
 
-        <TextBlock x:Name="TitleLabel" HorizontalAlignment="Left" FontSize="38" Foreground="#bbbbbb" 
+        <TextBlock x:Name="TitleLabel" HorizontalAlignment="Left" FontSize="32" Foreground="#bbbbbb" 
                        TextAlignment="Left" TextWrapping="Wrap" TextTrimming="WordEllipsis"
                        Margin="8,8,8,8"
                        Grid.Row="0" />
         <TextBlock x:Name="DescriptionLabel" TextWrapping="Wrap" TextTrimming="WordEllipsis" TextAlignment="Left"
                        HorizontalAlignment="Left"
-                       Foreground="#3c4449" FontSize="26" FontFamily="/Assets/Fonts/BenchNine-Regular.ttf#BenchNine"
+                       Foreground="#749399" FontSize="26" FontFamily="/Assets/Fonts/BenchNine-Regular.ttf#BenchNine"
                        Margin="8,8,8,8" Grid.Row="1"/>
 
 

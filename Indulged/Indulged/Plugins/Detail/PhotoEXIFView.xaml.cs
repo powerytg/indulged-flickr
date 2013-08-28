@@ -64,10 +64,10 @@ namespace Indulged.Plugins.Detail
 
         private void OnEXIFUpdated(object sender, EXIFUpdatedEventArgs e)
         {
-            if(e.PhotoId != PhotoSource.ResourceId)
-                return;
-
             Dispatcher.BeginInvoke(() => {
+                if (e.PhotoId != PhotoSource.ResourceId)
+                    return;
+
                 LoadingView.Visibility = Visibility.Collapsed;
                 DescriptionLabel.Visibility = Visibility.Visible;
                 DescriptionLabel.Text = this.GetEXIFString();
@@ -76,12 +76,15 @@ namespace Indulged.Plugins.Detail
 
         private void OnEXIFException(object sender, GetEXIFExceptionEventArgs e)
         {
-            if (e.PhotoId != PhotoSource.ResourceId)
-                return;
+            Dispatcher.BeginInvoke(() =>
+            {
+                if (e.PhotoId != PhotoSource.ResourceId)
+                    return;
 
-            LoadingView.Visibility = Visibility.Collapsed;
-            DescriptionLabel.Visibility = Visibility.Visible;
-            DescriptionLabel.Text = "Cannot retrieve EXIF Info";
+                LoadingView.Visibility = Visibility.Collapsed;
+                DescriptionLabel.Visibility = Visibility.Visible;
+                DescriptionLabel.Text = "Cannot retrieve EXIF Info";
+            });
         }
 
         private string GetEXIFString()

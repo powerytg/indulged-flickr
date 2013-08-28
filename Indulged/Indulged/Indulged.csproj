@@ -113,6 +113,39 @@
     <Compile Include="Plugins\Chrome\TitleView.xaml.cs">
       <DependentUpon>TitleView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Plugins\Common\PhotoGroupRenderers\CommonPhotoGroupFactory.cs" />
+    <Compile Include="Plugins\Common\PhotoGroupRenderers\CommonPhotoGroupRendererBase.cs" />
+    <Compile Include="Plugins\Common\PhotoGroupRenderers\CommonPhotoGroupRendererSelector.cs" />
+    <Compile Include="Plugins\Common\PhotoGroupRenderers\CommonPhotoGroupRenderer1.xaml.cs">
+      <DependentUpon>CommonPhotoGroupRenderer1.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\Common\PhotoGroupRenderers\CommonPhotoGroupRenderer2.xaml.cs">
+      <DependentUpon>CommonPhotoGroupRenderer2.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\Common\PhotoGroupRenderers\CommonPhotoGroupRenderer3.xaml.cs">
+      <DependentUpon>CommonPhotoGroupRenderer3.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\Common\PhotoGroupRenderers\CommonPhotoGroupRenderer3A.xaml.cs">
+      <DependentUpon>CommonPhotoGroupRenderer3A.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\Common\PhotoGroupRenderers\CommonPhotoGroupRenderer4.xaml.cs">
+      <DependentUpon>CommonPhotoGroupRenderer4.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\Common\PhotoGroupRenderers\CommonPhotoGroupRenderer4A.xaml.cs">
+      <DependentUpon>CommonPhotoGroupRenderer4A.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\Common\PhotoGroupRenderers\CommonPhotoGroupRenderer4B.xaml.cs">
+      <DependentUpon>CommonPhotoGroupRenderer4B.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\Common\PhotoGroupRenderers\CommonPhotoGroupRenderer5.xaml.cs">
+      <DependentUpon>CommonPhotoGroupRenderer5.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\Common\PhotoGroupRenderers\CommonPhotoGroupRenderer5A.xaml.cs">
+      <DependentUpon>CommonPhotoGroupRenderer5A.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\Common\Renderers\SidePhotoRenderer.xaml.cs">
+      <DependentUpon>SidePhotoRenderer.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Plugins\Group\events\PhotoPickerRendererEventArgs.cs" />
     <Compile Include="Plugins\Common\ProgressView.xaml.cs">
       <DependentUpon>ProgressView.xaml</DependentUpon>
@@ -452,9 +485,49 @@
     <Page Include="Plugins\Chrome\TitleView.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Plugins\Common\PhotoGroupRenderers\CommonPhotoGroupRenderer1.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Plugins\Common\PhotoGroupRenderers\CommonPhotoGroupRenderer2.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Plugins\Common\PhotoGroupRenderers\CommonPhotoGroupRenderer3.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Plugins\Common\PhotoGroupRenderers\CommonPhotoGroupRenderer3A.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Plugins\Common\PhotoGroupRenderers\CommonPhotoGroupRenderer4.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Plugins\Common\PhotoGroupRenderers\CommonPhotoGroupRenderer4A.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Plugins\Common\PhotoGroupRenderers\CommonPhotoGroupRenderer4B.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Plugins\Common\PhotoGroupRenderers\CommonPhotoGroupRenderer5.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Plugins\Common\PhotoGroupRenderers\CommonPhotoGroupRenderer5A.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Plugins\Common\ProgressView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Plugins\Common\Renderers\SidePhotoRenderer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Plugins\Group\PhotoPickerRenderer.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -874,6 +947,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\Chrome\DarkTitleView2.png" />
     <Content Include="Assets\Common\add.png" />
     <Content Include="Assets\Common\cancel.png" />
     <Content Include="Assets\Common\check.png" />
@@ -881,6 +955,7 @@
     <Content Include="Assets\Common\refresh.png" />
     <Content Include="Assets\Common\SelectedIndicator.png" />
     <Content Include="Assets\Common\SliderThumb.png" />
+    <Content Include="Assets\Common\View-Light.png" />
     <Content Include="Assets\Group\ComposerBottomShadow.png" />
     <Content Include="Assets\Group\SmallSelectionCircle.png" />
     <Content Include="Assets\ProCamera\WB-Cloudy-Selected.png" />

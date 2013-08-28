@@ -26,10 +26,7 @@ namespace Indulged.Plugins.Group
         private void AddPhotoButton_Click(object sender, EventArgs e)
         {
             addPhotoView = new GroupAddPhotoView(GroupSource);
-            var addPhotoDialog = ModalPopup.Show(addPhotoView, "Add To Group", new List<string> { "Confirm", "Cancel" });
-            addPhotoDialog.DismissWithButtonClick += (s, args) =>
-            {
-            };
+            var addPhotoDialog = ModalPopup.Show(addPhotoView, "Add To Group", new List<string> { "Done Adding Photos" });
         }
     }
 }

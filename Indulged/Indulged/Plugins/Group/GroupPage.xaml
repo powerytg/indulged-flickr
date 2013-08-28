@@ -31,7 +31,7 @@
 
         <shell:ApplicationBar x:Key="PhotoPageAppBar" IsVisible="True" IsMenuEnabled="False" Mode="Default" Opacity="0.85" >
             <shell:ApplicationBarIconButton x:Name="RefreshPhotoListButton" IconUri="/Assets/Common/refresh.png" Text="refresh" Click="RefreshPhotoListButton_Click"/>
-            <shell:ApplicationBarIconButton x:Name="AddPhotoButton" IconUri="/Assets/Common/add.png" Text="new topic" Click="AddPhotoButton_Click"/>
+            <shell:ApplicationBarIconButton x:Name="AddPhotoButton" IconUri="/Assets/Common/add.png" Text="add photo" Click="AddPhotoButton_Click"/>
         </shell:ApplicationBar>
 
         <shell:ApplicationBar x:Key="TopicPageAppBar" IsVisible="True" IsMenuEnabled="False" Mode="Default" Opacity="0.5" >

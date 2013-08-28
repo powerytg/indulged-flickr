@@ -1,4 +1,6 @@
 ﻿using Indulged.API.Anaconda;
+using Indulged.API.Anaconda.Events;
+using Indulged.API.Avarice.Controls;
 using Indulged.API.Cinderella;
 using Indulged.API.Cinderella.Events;
 using Indulged.API.Cinderella.Models;
@@ -9,6 +11,8 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
+using System.Windows.Media.Animation;
 
 namespace Indulged.Plugins.Group
 {
@@ -22,6 +26,10 @@ namespace Indulged.Plugins.Group
 
         // Can add to group?
         public bool CanAddPhotosToGroup { get; set; }
+
+        // Message colors
+        private SolidColorBrush normalMessageBrush = new SolidColorBrush(Color.FromArgb(0xff, 0x00, 0xae, 0xef));
+        private SolidColorBrush errorMessageBrush = new SolidColorBrush(Color.FromArgb(0xff, 0xf6, 0x70, 0x56));
 
         // Constructor
         public GroupAddPhotoView(FlickrGroup groupSource)
@@ -41,6 +49,12 @@ namespace Indulged.Plugins.Group
             Cinderella.CinderellaCore.GroupInfoUpdated += OnGroupInfoReturned;
             Cinderella.CinderellaCore.PhotoStreamUpdated += OnPhotoStreamUpdated;
 
+            Cinderella.CinderellaCore.AddPhotoToGroupCompleted += OnAddPhotoCompleted;
+            Anaconda.AnacondaCore.AddPhotoToGroupException += OnAddPhotoException;
+
+            Cinderella.CinderellaCore.RemovePhotoFromGroupCompleted += OnRemovePhotoCompleted;
+            Anaconda.AnacondaCore.RemovePhotoFromGroupException += OnRemovePhotoException;
+
             PhotoPickerRenderer.SelectionChanged += OnPhotoPickerToggled;
 
             // Get group info
@@ -57,7 +71,7 @@ namespace Indulged.Plugins.Group
 
                 StatusLabel.Text = "Loading photo collection";
 
-                if (Group.ThrottleMode != null)
+                if (Group.ThrottleMode != "none")
                 {
                     if (Group.ThrottleRemainingCount == 0)
                     {
@@ -77,13 +91,14 @@ namespace Indulged.Plugins.Group
 
         private void UpdateThrottleLabel()
         {
-            StatusProgressBar.Visibility = Visibility.Collapsed;
+            ThrottleLabel.Foreground = normalMessageBrush;
 
-            if (Group.ThrottleMode != null)
+            if (Group.ThrottleMode != "none")
             {
-                if (Group.ThrottleRemainingCount > 0)
+                int remainCount = Group.ThrottleRemainingCount;
+                if (remainCount > 0)
                 {
-                    ThrottleLabel.Text = "You can add " + Group.ThrottleRemainingCount.ToString() + " out of " + Group.ThrottleMaxCount.ToString();
+                    ThrottleLabel.Text = "You can add " + remainCount.ToString() + " out of " + Group.ThrottleMaxCount.ToString();
                 }
                 else
                 {
@@ -91,8 +106,25 @@ namespace Indulged.Plugins.Group
                     StatusProgressBar.Visibility = Visibility.Collapsed;
                 }
             }
+            else
+            {
+                ThrottleLabel.Text = "More photos can be added";
+            }
 
         }
+
+        private void UpdatePickerAvailbility()
+        {
+            if (Group.ThrottleMode == "none")
+                CanAddPhotosToGroup = true;
+            else if (Group.ThrottleRemainingCount > SelectedPhotos.Count)
+                CanAddPhotosToGroup = true;
+            else
+                CanAddPhotosToGroup = false;
+
+            PhotoPickerRenderer.CanSelect = CanAddPhotosToGroup;
+        }
+
 
         // Photo stream updated
         private void OnPhotoStreamUpdated(object sender, PhotoStreamUpdatedEventArgs e)
@@ -109,6 +141,8 @@ namespace Indulged.Plugins.Group
                 List<Photo> photos = null;
                 if (PhotoCollection.Count == 0)
                 {
+                    StatusProgressBar.Visibility = Visibility.Collapsed;
+
                     UpdateThrottleLabel();
                     StatusView.Visibility = Visibility.Collapsed;
                     photos = Cinderella.CinderellaCore.CurrentUser.Photos;
@@ -148,41 +182,156 @@ namespace Indulged.Plugins.Group
         }
 
         private void OnPhotoPickerToggled(object sender, PhotoPickerRendererEventArgs e)
-        {
-            if (e.Selected && !SelectedPhotos.Contains(e.PhotoId))
+        {            
+            // Add or delete photo 
+            if (e.Selected)
             {
-                bool canAddPhoto = false;
-                if (Group.ThrottleMode == null)
-                    canAddPhoto = true;
-                else if (Group.ThrottleRemainingCount > SelectedPhotos.Count)
-                    canAddPhoto = true;
-
-                if (canAddPhoto)
-                {
-                    SelectedPhotos.Add(e.PhotoId);
-                }
+                AddPhotoToGroup(e.PhotoId);
             }
-            else if (!e.Selected && SelectedPhotos.Contains(e.PhotoId))
+            else
             {
-                SelectedPhotos.Remove(e.PhotoId);
-            }
-
-            if (Group.ThrottleMode != null)
-            {
-                int remainCount = Math.Max(0, Group.ThrottleRemainingCount - SelectedPhotos.Count);
-                ThrottleLabel.Text = "You can add " + remainCount.ToString() + " out of " + Group.ThrottleMaxCount.ToString();
-
-                if (remainCount == 0)
-                {
-                    PhotoPickerRenderer.CanSelect = false;
-                }
-                else
-                {
-                    PhotoPickerRenderer.CanSelect = true;
-                }
-
+                RemovePhotoFromGroup(e.PhotoId);
             }
         }
 
+        private string currentProcessinPhotoId;
+
+        private void AddPhotoToGroup(string photoId)
+        {
+            Photo selectedPhoto = Cinderella.CinderellaCore.PhotoCache[photoId];
+            currentProcessinPhotoId = photoId;
+            PhotoListView.IsEnabled = false;
+
+            ThrottleProgressBar.Visibility = Visibility.Visible;
+            ThrottleLabel.Text = "Adding photo";
+
+            Storyboard animation = new Storyboard();
+            Duration duration = new Duration(TimeSpan.FromSeconds(0.3));
+            animation.Duration = duration;
+
+            DoubleAnimation pickerAnimation = new DoubleAnimation();
+            animation.Children.Add(pickerAnimation);
+            pickerAnimation.Duration = animation.Duration;
+            pickerAnimation.To = 0.3;
+            Storyboard.SetTarget(pickerAnimation, PhotoListView);
+            Storyboard.SetTargetProperty(pickerAnimation, new PropertyPath("Opacity"));
+
+            animation.Completed += (sender, e) => {
+                Anaconda.AnacondaCore.AddPhotoToGroupAsync(photoId, Group.ResourceId);
+            };
+
+            animation.Begin();
+            
+        }
+
+        private void RemovePhotoFromGroup(string photoId)
+        {
+            Photo selectedPhoto = Cinderella.CinderellaCore.PhotoCache[photoId];
+            currentProcessinPhotoId = photoId;
+            PhotoListView.IsEnabled = false;
+
+            ThrottleProgressBar.Visibility = Visibility.Visible;
+            ThrottleLabel.Text = "Removing photo";
+
+            Storyboard animation = new Storyboard();
+            Duration duration = new Duration(TimeSpan.FromSeconds(0.3));
+            animation.Duration = duration;
+
+            DoubleAnimation pickerAnimation = new DoubleAnimation();
+            animation.Children.Add(pickerAnimation);
+            pickerAnimation.Duration = animation.Duration;
+            pickerAnimation.To = 0.3;
+            Storyboard.SetTarget(pickerAnimation, PhotoListView);
+            Storyboard.SetTargetProperty(pickerAnimation, new PropertyPath("Opacity"));
+
+            animation.Completed += (sender, e) =>
+            {
+                Anaconda.AnacondaCore.RemovePhotoFromGroupAsync(photoId, Group.ResourceId);
+            };
+
+            animation.Begin();
+        }
+
+        private void OnAddPhotoCompleted(object sender, AddPhotoToGroupCompleteEventArgs e)
+        {
+            Dispatcher.BeginInvoke(() => {
+                if (e.PhotoId != currentProcessinPhotoId)
+                    return;
+
+                currentProcessinPhotoId = null;
+                PhotoListView.Opacity = 1;
+                PhotoListView.IsEnabled = true;
+
+                ThrottleProgressBar.Visibility = Visibility.Collapsed;
+                ThrottleLabel.Foreground = normalMessageBrush;
+                UpdateThrottleLabel();
+
+                SelectedPhotos.Add(e.PhotoId);
+            });
+        }
+
+        private void OnAddPhotoException(object sender, AddPhotoToGroupExceptionEventArgs e)
+        {
+            Dispatcher.BeginInvoke(() => {
+                if (e.PhotoId != currentProcessinPhotoId)
+                    return;
+
+                currentProcessinPhotoId = null;
+                PhotoListView.Opacity = 1;
+                PhotoListView.IsEnabled = true;
+
+                ThrottleProgressBar.Visibility = Visibility.Collapsed;
+                ThrottleLabel.Foreground = errorMessageBrush;
+                ThrottleLabel.Text = e.ErrorMessage;
+
+                // Revert renderer
+                var evt = new PhotoPickerRendererEventArgs();
+                evt.PhotoId = e.PhotoId;
+                evt.Selected = false;
+                PhotoPickerRenderer.PhotoSourceSelectionStateChanged(this, evt);
+            });
+        }
+
+        private void OnRemovePhotoCompleted(object sender, RemovePhotoFromGroupCompleteEventArgs e)
+        {
+            Dispatcher.BeginInvoke(() => {
+                if (e.PhotoId != currentProcessinPhotoId)
+                    return;
+
+                currentProcessinPhotoId = null;
+                PhotoListView.Opacity = 1;
+                PhotoListView.IsEnabled = true;
+
+                ThrottleProgressBar.Visibility = Visibility.Collapsed;
+                ThrottleLabel.Foreground = normalMessageBrush;
+                UpdateThrottleLabel();
+
+                if (SelectedPhotos.Contains(e.PhotoId))
+                    SelectedPhotos.Remove(e.PhotoId);
+            });
+        }
+
+        private void OnRemovePhotoException(object sender, RemovePhotoFromGroupExceptionEventArgs e)
+        {
+            Dispatcher.BeginInvoke(() => {
+                if (e.PhotoId != currentProcessinPhotoId)
+                    return;
+
+                currentProcessinPhotoId = null;
+                PhotoListView.Opacity = 1;
+                PhotoListView.IsEnabled = true;
+
+                ThrottleProgressBar.Visibility = Visibility.Collapsed;
+                ThrottleLabel.Foreground = errorMessageBrush;
+                ThrottleLabel.Text = e.ErrorMessage;
+
+                // Revert renderer
+                var evt = new PhotoPickerRendererEventArgs();
+                evt.PhotoId = e.PhotoId;
+                evt.Selected = true;
+                PhotoPickerRenderer.PhotoSourceSelectionStateChanged(this, evt);
+            });
+            
+        }
     }
 }

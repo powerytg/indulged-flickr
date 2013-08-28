@@ -13,6 +13,7 @@ using Indulged.API.Cinderella;
 using Indulged.API.Cinderella.Events;
 using Indulged.Plugins.Dashboard;
 using Indulged.API.Anaconda;
+using Indulged.Plugins.Common.PhotoGroupRenderers;
 
 namespace Indulged.Plugins.Group
 {
@@ -32,7 +33,7 @@ namespace Indulged.Plugins.Group
 
                 if (_group.Photos.Count > 0)
                 {
-                    List<PhotoGroup> photoGroups = VioletPhotoGroupFactory.GeneratePhotoGroup(_group.Photos, Group.ResourceId, "Group");
+                    List<PhotoGroup> photoGroups = CommonPhotoGroupFactory.GeneratePhotoGroup(_group.Photos, Group.ResourceId, "Group");
                     foreach (var group in photoGroups)
                     {
                         PhotoCollection.Add(group);
@@ -56,6 +57,42 @@ namespace Indulged.Plugins.Group
 
             // Events
             Cinderella.CinderellaCore.GroupPhotoListUpdated += OnPhotoStreamUpdated;
+            Cinderella.CinderellaCore.AddPhotoToGroupCompleted += OnPhotoAddedToGroup;
+            Cinderella.CinderellaCore.RemovePhotoFromGroupCompleted += OnPhotoRemovedFromGroup;
+        }
+
+        private void OnPhotoAddedToGroup(object sender, AddPhotoToGroupCompleteEventArgs e)
+        {
+            Dispatcher.BeginInvoke(() =>
+            {
+                if (e.GroupId != Group.ResourceId)
+                    return;
+
+                Photo newPhoto = Cinderella.CinderellaCore.PhotoCache[e.PhotoId];
+                List<PhotoGroup> photoGroups = CommonPhotoGroupFactory.GeneratePhotoGroup(new List<Photo> { newPhoto }, Group.ResourceId, "Group");
+                foreach (var group in photoGroups)
+                {
+                    PhotoCollection.Insert(0, group);
+                }
+            });
+        }
+
+        private void OnPhotoRemovedFromGroup(object sender, RemovePhotoFromGroupCompleteEventArgs e)
+        {
+
+            Dispatcher.BeginInvoke(() =>
+            {
+                if (e.GroupId != Group.ResourceId || Group.Photos.Count == 0)
+                    return;
+
+                PhotoCollection.Clear();
+                List<PhotoGroup> photoGroups = CommonPhotoGroupFactory.GeneratePhotoGroup(Group.Photos, Group.ResourceId, "Group");
+                foreach (var group in photoGroups)
+                {
+                    PhotoCollection.Add(group);
+                }
+            });
+            
         }
 
         // Photo stream updated
@@ -68,7 +105,7 @@ namespace Indulged.Plugins.Group
                 if (e.Page == 1)
                     PhotoCollection.Clear();
 
-                List<PhotoGroup> newGroups = VioletPhotoGroupFactory.GeneratePhotoGroup(e.NewPhotos, Group.ResourceId, "Group");
+                List<PhotoGroup> newGroups = CommonPhotoGroupFactory.GeneratePhotoGroup(e.NewPhotos, Group.ResourceId, "Group");
                 foreach (var group in newGroups)
                 {
                     PhotoCollection.Add(group);

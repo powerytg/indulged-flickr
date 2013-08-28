@@ -135,5 +135,50 @@ namespace Indulged.API.Cinderella
             AddTopicCompleted.DispatchEvent(this, evt);
         }
 
+        private void OnPhotoAddedToGroup(object sender, AddPhotoToGroupEventArgs e)
+        {
+            // Update group throttle info
+            FlickrGroup group = GroupCache[e.GroupId];
+            Photo photo = PhotoCache[e.PhotoId];
+
+            if (group.ThrottleMode != "none")
+                group.ThrottleRemainingCount--;
+
+            if (!group.Photos.Contains(photo))
+            {
+                group.Photos.Insert(0, photo);
+                group.PhotoCount++;
+
+                // Dispatch event
+                AddPhotoToGroupCompleteEventArgs ae = new AddPhotoToGroupCompleteEventArgs();
+                ae.PhotoId = photo.ResourceId;
+                ae.GroupId = group.ResourceId;
+                AddPhotoToGroupCompleted.DispatchEvent(this, ae);
+            }
+
+        }
+
+        private void OnPhotoRemovedFromGroup(object sender, RemovePhotoFromGroupEventArgs e)
+        {
+            // Update group throttle info
+            FlickrGroup group = GroupCache[e.GroupId];
+            Photo photo = PhotoCache[e.PhotoId];
+
+            if (group.ThrottleMode != "none")
+                group.ThrottleRemainingCount++;
+
+            if (group.Photos.Contains(photo))
+            {
+                group.Photos.Remove(photo);
+                group.PhotoCount--;
+
+                // Dispatch event
+                RemovePhotoFromGroupCompleteEventArgs evt = new RemovePhotoFromGroupCompleteEventArgs();
+                evt.PhotoId = photo.ResourceId;
+                evt.GroupId = group.ResourceId;
+                RemovePhotoFromGroupCompleted.DispatchEvent(this, evt);
+            }
+
+        }
     }
 }

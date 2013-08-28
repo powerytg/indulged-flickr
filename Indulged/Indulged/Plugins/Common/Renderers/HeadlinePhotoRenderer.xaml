@@ -31,14 +31,14 @@
                 <SolidColorBrush Color="#191d24" Opacity="0.85"/>
             </StackPanel.Background>
 
-            <TextBlock x:Name="TitleLabel" HorizontalAlignment="Left" FontSize="48" Foreground="#bbbbbb" 
+            <TextBlock x:Name="TitleLabel" HorizontalAlignment="Left" FontSize="38" Foreground="#bbbbbb" 
                        TextAlignment="Left" TextWrapping="Wrap" TextTrimming="WordEllipsis"
-                       Margin="8,8,8,8"
+                       Margin="8,8,8,4"
                        MaxHeight="160" />
             <TextBlock x:Name="DescriptionLabel" TextWrapping="Wrap" TextTrimming="WordEllipsis" TextAlignment="Left"
                        HorizontalAlignment="Left"
                        Foreground="#3c4449" FontSize="26" FontFamily="/Assets/Fonts/BenchNine-Regular.ttf#BenchNine"
-                       Margin="8,8,8,8" MaxHeight="200" />
+                       Margin="8,4,8,8" MaxHeight="200" />
 
         </StackPanel>
         
