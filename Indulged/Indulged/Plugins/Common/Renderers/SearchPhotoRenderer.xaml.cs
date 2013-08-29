@@ -49,7 +49,9 @@ namespace Indulged.Plugins.Common.Renderers
             else
                 DescriptionLabel.Visibility = Visibility.Collapsed;
 
-            ImageView.Source = new BitmapImage(new Uri(PhotoSource.GetImageUrl()));
+            BitmapImage src = new BitmapImage(new Uri(PhotoSource.GetImageUrl()));
+            src.DecodePixelWidth = 400;
+            ImageView.Source = src;
         }
 
         protected override void OnTap(System.Windows.Input.GestureEventArgs e)

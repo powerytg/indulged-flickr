@@ -157,6 +157,9 @@
       <DependentUpon>TopicReplyRenderer.xaml</DependentUpon>
     </Compile>
     <Compile Include="Plugins\Group\GroupDiscussionPageComposerExtension.cs" />
+    <Compile Include="Plugins\Group\GroupRulesView.xaml.cs">
+      <DependentUpon>GroupRulesView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Plugins\Group\TopicReplyComposerView.xaml.cs">
       <DependentUpon>TopicReplyComposerView.xaml</DependentUpon>
     </Compile>
@@ -555,6 +558,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Plugins\Common\Renderers\TopicReplyRenderer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Plugins\Group\GroupRulesView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

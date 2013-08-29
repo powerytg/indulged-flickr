@@ -62,6 +62,7 @@ namespace Indulged.API.Avarice.Controls
         protected Rectangle curtain;
         protected Grid contentView;
         protected StackPanel buttonContainer;
+        protected TextBlock titleLabel;
 
         // Content elements
         protected FrameworkElement contentElement;
@@ -71,7 +72,7 @@ namespace Indulged.API.Avarice.Controls
 
         // Dialog title
         protected string title = null;
-
+        
         // Button titles
         protected bool shouldAutoDismissWhenClickOnButtons;
         protected List<String> buttonTitles = new List<string>();
@@ -175,7 +176,7 @@ namespace Indulged.API.Avarice.Controls
             curtain = GetTemplateChild("Curtain") as Rectangle;
 
             // Add an optional title label
-            TextBlock titleLabel = null;
+            titleLabel = null;
             if (title != null)
             {
                 titleLabel = new TextBlock();
@@ -246,7 +247,63 @@ namespace Indulged.API.Avarice.Controls
         private bool isApplicationBarVisibleBeforePopup;
         private bool isSystemTrayVisibleBeforePopup;
 
-        public void ReplaceContentWith(FrameworkElement newElement, List<Avarice.Controls.Button> newButtons)
+        public void Dismiss()
+        {
+            DismissWithAction(null);
+        }
+
+        public void DismissWithAction(Action action)
+        {
+            this.Projection = new PlaneProjection { CenterOfRotationX = 0, RotationX = 0 };
+
+            Storyboard animation = new Storyboard();
+            Duration duration = new Duration(TimeSpan.FromSeconds(0.3));
+            animation.Duration = duration;
+
+            var alphaAnimation = new DoubleAnimation();
+            alphaAnimation.Duration = duration;
+            alphaAnimation.EasingFunction = new CubicEase() { EasingMode = EasingMode.EaseOut };
+            animation.Children.Add(alphaAnimation);
+            alphaAnimation.To = 0;
+            Storyboard.SetTarget(alphaAnimation, this);
+            Storyboard.SetTargetProperty(alphaAnimation, new PropertyPath("Opacity"));
+
+
+            var planeAnimation = new DoubleAnimation();
+            planeAnimation.Duration = duration;
+            planeAnimation.EasingFunction = new CubicEase() { EasingMode = EasingMode.EaseOut };
+            animation.Children.Add(planeAnimation);
+            planeAnimation.To = -90;
+            Storyboard.SetTarget(planeAnimation, this.Projection);
+            Storyboard.SetTargetProperty(planeAnimation, new PropertyPath("RotationX"));
+
+            animation.Begin();
+            animation.Completed += (sender, args) =>
+            {
+                popupContainer.IsOpen = false;
+                popupContainer = null;
+
+                Dispatcher.BeginInvoke(() =>
+                {
+                    // Show application bar
+                    if (isApplicationBarVisibleBeforePopup)
+                        CurrentPage.ApplicationBar.IsVisible = true;
+
+                    if (isSystemTrayVisibleBeforePopup)
+                        SystemTray.IsVisible = true;
+
+                    HostView.IsHitTestVisible = true;
+                    HostView.Opacity = 1;
+
+                    // Perform afterburn action
+                    if(action != null)
+                        action();
+                });
+
+            };
+        }
+
+        public void ReplaceContentWith(string newTitle, FrameworkElement newElement, List<Avarice.Controls.Button> newButtons)
         {
             double w = System.Windows.Application.Current.Host.Content.ActualWidth;
 
@@ -280,9 +337,11 @@ namespace Indulged.API.Avarice.Controls
             DoubleAnimationUsingKeyFrames newContentXAnimation = new DoubleAnimationUsingKeyFrames();
             animation.Children.Add(newContentXAnimation);
             newContentXAnimation.Duration = animation.Duration;
-            newContentXAnimation.KeyFrames.Add(new EasingDoubleKeyFrame { KeyTime = TimeSpan.FromSeconds(0), Value = -w });
-            newContentXAnimation.KeyFrames.Add(new EasingDoubleKeyFrame { KeyTime = TimeSpan.FromSeconds(0.2), Value = -w });
-            newContentXAnimation.KeyFrames.Add(new EasingDoubleKeyFrame { KeyTime = TimeSpan.FromSeconds(0), Value = 0 });
+            newContentXAnimation.KeyFrames.Add(new EasingDoubleKeyFrame { KeyTime = TimeSpan.FromSeconds(0), Value = w });
+            newContentXAnimation.KeyFrames.Add(new EasingDoubleKeyFrame { KeyTime = TimeSpan.FromSeconds(0.2), Value = w });
+            newContentXAnimation.KeyFrames.Add(new EasingDoubleKeyFrame { KeyTime = TimeSpan.FromSeconds(0.5), Value = 0 });
+            Storyboard.SetTarget(newContentXAnimation, newElement);
+            Storyboard.SetTargetProperty(newContentXAnimation, new PropertyPath("(UIElement.RenderTransform).(CompositeTransform.TranslateX)"));
 
             animation.Completed += (sender, e) => {
                 contentView.Children.Remove(contentElement);
@@ -291,6 +350,10 @@ namespace Indulged.API.Avarice.Controls
             animation.Begin();
 
             PerformOldButtonSwapOutAnimation(newButtons);
+
+            
+            // Change title
+            titleLabel.Text = newTitle;
         }
 
         private void PerformOldButtonSwapOutAnimation(List<Avarice.Controls.Button> newButtons)

@@ -42,13 +42,23 @@ namespace Indulged.Plugins.Group
                 browseButton.IsEnabled = false;
             }
 
-            _popupContainer = ModalPopup.ShowWithButtons(this, _group.Name, new List<Indulged.API.Avarice.Controls.Button> { browseButton, joinButton, doneButton });
-            _popupContainer.DismissWithButtonClick += (s, args) =>
+            _popupContainer = ModalPopup.ShowWithButtons(this, _group.Name, new List<Indulged.API.Avarice.Controls.Button> { browseButton, joinButton, doneButton }, false);
+            _popupContainer.ButtonClick += (s, args) =>
             {
                 int buttonIndex = (args as ModalPopupEventArgs).ButtonIndex;
                 if (buttonIndex == 0)
                 {
-                    BrowseGroup();
+                    _popupContainer.DismissWithAction(() => {
+                        BrowseGroup();
+                    });
+                }
+                else if (buttonIndex == 1)
+                {
+                    JoinGroup();
+                }
+                else if (buttonIndex == 2)
+                {
+                    _popupContainer.Dismiss();
                 }
             };
         }
@@ -139,6 +149,15 @@ namespace Indulged.Plugins.Group
             Frame rootVisual = System.Windows.Application.Current.RootVisual as Frame;
             PhoneApplicationPage currentPage = (PhoneApplicationPage)rootVisual.Content;
             currentPage.NavigationService.Navigate(new Uri("/Plugins/Group/GroupPage.xaml?group_id=" + _group.ResourceId, UriKind.Relative));
+        }
+
+        private void JoinGroup()
+        {
+            var rulesView = new GroupRulesView();
+            rulesView.GroupSource = Group;
+            rulesView.PopupContainer = _popupContainer;
+
+            _popupContainer.ReplaceContentWith("Group Rules", rulesView, rulesView.Buttons);
         }
     }
 }
