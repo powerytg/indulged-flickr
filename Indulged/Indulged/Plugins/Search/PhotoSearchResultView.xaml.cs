@@ -52,31 +52,33 @@ namespace Indulged.Plugins.Search
 
         private void OnPhotoSearchResult(object sender, PhotoSearchResultEventArgs e)
         {
-            if (e.SearchSessionId != SearchSessionId)
-                return;
+            Dispatcher.BeginInvoke(() => {
+                if (e.SearchSessionId != SearchSessionId)
+                    return;
 
-            if (_photos.Count == 0 && e.Photos.Count == 0)
-            {
-                NoResultLabel.Visibility = Visibility.Visible;
-                ResultListView.Visibility = Visibility.Collapsed;
+                if (_photos.Count == 0 && e.Photos.Count == 0)
+                {
+                    NoResultLabel.Visibility = Visibility.Visible;
+                    ResultListView.Visibility = Visibility.Collapsed;
+                    LoadingView.Visibility = Visibility.Collapsed;
+
+                    return;
+                }
+
+                // Add new photos
+                foreach (Photo photo in e.Photos)
+                {
+                    if (!_photos.Contains(photo))
+                        _photos.Add(photo);
+                }
+
+                NoResultLabel.Visibility = Visibility.Collapsed;
+                ResultListView.Visibility = Visibility.Visible;
                 LoadingView.Visibility = Visibility.Collapsed;
 
-                return;
-            }
-
-            // Add new photos
-            foreach (Photo photo in e.Photos)
-            {
-                if (!_photos.Contains(photo))
-                    _photos.Add(photo);
-            }
-
-            NoResultLabel.Visibility = Visibility.Collapsed;
-            ResultListView.Visibility = Visibility.Visible;
-            LoadingView.Visibility = Visibility.Collapsed;
-
-            int page = _photos.Count / perPage + 1;
-            TotalCount = e.TotalCount;
+                int page = _photos.Count / perPage + 1;
+                TotalCount = e.TotalCount;
+            });
         }
 
         // Implementation of inifinite scrolling
@@ -93,7 +95,7 @@ namespace Indulged.Plugins.Search
 
             if (_photos.Count - index <= 2 && canLoad)
             {
-                int page = _photos.Count / 100 + 1;
+                int page = _photos.Count / perPage + 1;
                 Anaconda.AnacondaCore.SearchPhotoAsync(SearchSessionId, Query, Tags, new Dictionary<string, string> { { "page", page.ToString() }, { "per_page", perPage.ToString() } });
             }
         }

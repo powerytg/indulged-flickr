@@ -72,16 +72,18 @@ namespace Indulged.Plugins.Group
 
         private void OnGroupInfoUpdated(object sender, GroupInfoUpdatedEventArgs e)
         {
-            if(_group == null)
-                return;
+            Dispatcher.BeginInvoke(() => {
+                if (_group == null)
+                    return;
 
-            if (_group.ResourceId != e.GroupId)
-                return;
+                if (_group.ResourceId != e.GroupId)
+                    return;
 
-            joinButton.IsEnabled = true;
-            browseButton.IsEnabled = true;
+                joinButton.IsEnabled = true;
+                browseButton.IsEnabled = true;
 
-            UpdateDisplayListAndHideLoadingView();
+                UpdateDisplayListAndHideLoadingView();
+            });
         }
 
         private void OnGroupChanged()

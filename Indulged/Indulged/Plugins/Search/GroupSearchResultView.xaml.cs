@@ -51,31 +51,33 @@ namespace Indulged.Plugins.Search
 
         private void OnGroupSearchResult(object sender, GroupSearchResultEventArgs e)
         {
-            if (e.SearchSessionId != SearchSessionId)
-                return;
+            Dispatcher.BeginInvoke(() => {
+                if (e.SearchSessionId != SearchSessionId)
+                    return;
 
-            if (_groups.Count == 0 && e.Groups.Count == 0)
-            {
-                NoResultLabel.Visibility = Visibility.Visible;
-                ResultListView.Visibility = Visibility.Collapsed;
+                if (_groups.Count == 0 && e.Groups.Count == 0)
+                {
+                    NoResultLabel.Visibility = Visibility.Visible;
+                    ResultListView.Visibility = Visibility.Collapsed;
+                    LoadingView.Visibility = Visibility.Collapsed;
+
+                    return;
+                }
+
+                // Add new photos
+                foreach (FlickrGroup group in e.Groups)
+                {
+                    if (!_groups.Contains(group))
+                        _groups.Add(group);
+                }
+
+                NoResultLabel.Visibility = Visibility.Collapsed;
+                ResultListView.Visibility = Visibility.Visible;
                 LoadingView.Visibility = Visibility.Collapsed;
 
-                return;
-            }
-
-            // Add new photos
-            foreach (FlickrGroup group in e.Groups)
-            {
-                if (!_groups.Contains(group))
-                    _groups.Add(group);
-            }
-
-            NoResultLabel.Visibility = Visibility.Collapsed;
-            ResultListView.Visibility = Visibility.Visible;
-            LoadingView.Visibility = Visibility.Collapsed;
-
-            int page = _groups.Count / perPage + 1;
-            TotalCount = e.TotalCount;
+                int page = _groups.Count / perPage + 1;
+                TotalCount = e.TotalCount;
+            });
         }
 
         // Implementation of inifinite scrolling
@@ -92,7 +94,7 @@ namespace Indulged.Plugins.Search
 
             if (_groups.Count - index <= 2 && canLoad)
             {
-                int page = _groups.Count / 100 + 1;
+                int page = _groups.Count / perPage + 1;
                 Anaconda.AnacondaCore.SearchGroupsAsync(SearchSessionId, Query, new Dictionary<string, string> { { "page", page.ToString() }, { "per_page", perPage.ToString() } });
             }
         }
