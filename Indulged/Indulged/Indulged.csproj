@@ -143,8 +143,14 @@
     <Compile Include="Plugins\Common\PhotoGroupRenderers\CommonPhotoGroupRenderer5A.xaml.cs">
       <DependentUpon>CommonPhotoGroupRenderer5A.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Plugins\Common\Renderers\ShortTimestampView.xaml.cs">
+      <DependentUpon>ShortTimestampView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Plugins\Common\Renderers\SidePhotoRenderer.xaml.cs">
       <DependentUpon>SidePhotoRenderer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\Common\Renderers\TopicReplyRenderer.xaml.cs">
+      <DependentUpon>TopicReplyRenderer.xaml</DependentUpon>
     </Compile>
     <Compile Include="Plugins\Group\DiscussionTopicView.xaml.cs">
       <DependentUpon>DiscussionTopicView.xaml</DependentUpon>
@@ -531,9 +537,17 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Plugins\Common\Renderers\ShortTimestampView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Plugins\Common\Renderers\SidePhotoRenderer.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Plugins\Common\Renderers\TopicReplyRenderer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Plugins\Group\DiscussionTopicView.xaml">
       <SubType>Designer</SubType>

@@ -5,6 +5,7 @@
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:chrome="clr-namespace:Indulged.Plugins.Chrome"
+    xmlns:renderers="clr-namespace:Indulged.Plugins.Common.Renderers"
     xmlns:local="clr-namespace:Indulged.Plugins.Group"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -52,6 +53,16 @@
                     
                     <!--Original message-->
                     <local:DiscussionTopicView x:Name="TopicView" Grid.Row="1"/>
+                    
+                    <!--Replies-->
+                    <phone:LongListSelector x:Name="ReplyListView" ItemsSource="{Binding Items}" ItemRealized="ReplyListView_ItemRealized"
+                                            Grid.Row="2" >
+                        <phone:LongListSelector.ItemTemplate>
+                            <DataTemplate>
+                                <renderers:TopicReplyRenderer ReplySource="{Binding}"/>
+                            </DataTemplate>
+                        </phone:LongListSelector.ItemTemplate>
+                    </phone:LongListSelector>
                 </Grid>
             </ScrollViewer>
         </Grid>

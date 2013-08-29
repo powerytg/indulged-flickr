@@ -46,7 +46,7 @@ namespace Indulged.Plugins.Group
             }
         }
 
-        // Photo data source
+        // Topic data source
         public ObservableCollection<Topic> TopicCollection { get; set; }
 
         // Constructor

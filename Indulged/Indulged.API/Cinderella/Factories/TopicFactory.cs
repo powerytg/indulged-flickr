@@ -31,6 +31,7 @@ namespace Indulged.API.Cinderella.Factories
             // Parse user
             topic.Author = UserFactory.UserWithTopicJObject(json);
             topic.IsAdmin = (json["role"].ToString() == "admin");
+            topic.CreationDate = json["datecreate"].ToString().ToDateTime();
 
             // Subject
             topic.Subject = json["subject"].ToString();

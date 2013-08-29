@@ -359,8 +359,63 @@ namespace Indulged.API.Anaconda
                     exceptionArgs.ErrorMessage = "Unknown network error";
                     RemovePhotoFromGroupException.DispatchEvent(this, exceptionArgs);
                 });
+        }
 
+        private List<string> topicRepliesFetchingQueue = new List<string>();
+        public async void GetTopicRepliesAsync(string topicId, string groupId, Dictionary<string, string> parameters = null)
+        {
+            if (topicRepliesFetchingQueue.Contains(topicId))
+                return;
 
+            topicRepliesFetchingQueue.Add(topicId);
+
+            string timestamp = DateTimeUtils.GetTimestamp();
+            string nonce = Guid.NewGuid().ToString().Replace("-", null);
+
+            Dictionary<string, string> paramDict = new Dictionary<string, string>();
+            paramDict["method"] = "flickr.groups.discuss.replies.getList";
+            paramDict["format"] = "json";
+            paramDict["nojsoncallback"] = "1";
+            paramDict["oauth_consumer_key"] = consumerKey;
+            paramDict["oauth_nonce"] = nonce;
+            paramDict["oauth_signature_method"] = "HMAC-SHA1";
+            paramDict["oauth_timestamp"] = timestamp;
+            paramDict["oauth_token"] = AccessToken;
+            paramDict["oauth_version"] = "1.0";
+            paramDict["topic_id"] = topicId;
+
+            if (parameters != null)
+            {
+                foreach (var entry in parameters)
+                {
+                    paramDict[entry.Key] = entry.Value;
+                }
+            }
+
+            string paramString = GenerateParamString(paramDict);
+            string signature = GenerateSignature("GET", AccessTokenSecret, "http://api.flickr.com/services/rest", paramString);
+            string requestUrl = "http://api.flickr.com/services/rest?" + paramString + "&oauth_signature=" + signature;
+            HttpWebResponse response = await DispatchRequest("GET", requestUrl, null).ConfigureAwait(false);
+            using (StreamReader reader = new StreamReader(response.GetResponseStream()))
+            {
+                topicRepliesFetchingQueue.Remove(topicId);
+
+                if (response.StatusCode != HttpStatusCode.OK)
+                {
+                    HandleHTTPException(response);
+                    return;
+                }
+
+                string jsonString = await reader.ReadToEndAsync().ConfigureAwait(false);
+                if (!TryHandleResponseException(jsonString, () => { GetTopicRepliesAsync(topicId, groupId, parameters); }))
+                    return;
+
+                GetTopicRepliesEventArgs args = new GetTopicRepliesEventArgs();
+                args.TopicId = topicId;
+                args.Response = jsonString;
+                args.GroupId = groupId;
+                TopicRepliesReturned.DispatchEvent(this, args);
+            }
         }
     }
 }

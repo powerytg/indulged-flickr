@@ -14,7 +14,7 @@ namespace Indulged.Plugins.Group
 {
     public partial class DiscussionTopicView : UserControl
     {
-        // Photo source
+        // Topic source
         public static readonly DependencyProperty TopicSourceProperty = DependencyProperty.Register("TopicSource", typeof(Topic), typeof(DiscussionTopicView), new PropertyMetadata(OnTopicSourcePropertyChanged));
 
         public Topic TopicSource
@@ -37,6 +37,9 @@ namespace Indulged.Plugins.Group
         protected void OnTopicSourceChanged()
         {
             FormatContentText();
+            string dateString = "posted on " + TopicSource.CreationDate.ToShortDateString();
+            string replyString = TopicSource.ReplyCount == 0 ? "no reply yet" : TopicSource.ReplyCount.ToString() + " replies";
+            ReplyDigestLabelView.Text = dateString + ",  " + replyString;
         }
 
         // Constructor

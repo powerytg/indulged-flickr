@@ -1,0 +1,41 @@
+﻿<UserControl x:Class="Indulged.Plugins.Common.Renderers.TopicReplyRenderer"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:common="clr-namespace:Indulged.Plugins.Common.Renderers"                          
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    d:DesignHeight="480" d:DesignWidth="480">
+    
+    <Grid x:Name="LayoutRoot">
+        
+        <Border BorderThickness="0, 0, 0, 1" BorderBrush="#dadad9">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>                    
+                </Grid.ColumnDefinitions>
+
+                <common:ShortTimestampView x:Name="TimestampView" Grid.Column="0" VerticalAlignment="Top" HorizontalAlignment="Left"
+                                           ThemeColor="#aecf37" Timestamp="{Binding CreationDate}" />
+
+                <StackPanel Margin="12" Grid.Column="1" >
+                    <TextBlock x:Name="BodyTextView" TextWrapping="Wrap" TextTrimming="WordEllipsis" Foreground="#535C6B" 
+                               Text="{Binding Message}" FontWeight="Light" FontSize="24"
+                               MaxHeight="600" />
+
+                    <!--Author status-->
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                        <Image x:Name="AvatarView" Width="28" Height="28" VerticalAlignment="Center" Source="{Binding Path=Author.AvatarUrl}"/>
+                        <TextBlock x:Name="AuthorLabel" Foreground="#4a6466" FontSize="28" FontFamily="/Assets/Fonts/BenchNine-Regular.ttf#BenchNine" Margin="16, 0, 0, 0"
+                                   VerticalAlignment="Center" Text="{Binding Path=Author.Name}" />
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+        </Border>
+        
+    </Grid>
+</UserControl>

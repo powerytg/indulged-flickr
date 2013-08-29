@@ -115,6 +115,7 @@
     <Compile Include="Anaconda\Events\GetPhotoSetPhotosEventArgs.cs" />
     <Compile Include="Anaconda\Events\GetPhotoStreamEventArgs.cs" />
     <Compile Include="Anaconda\Events\GetPopularTagListEventArgs.cs" />
+    <Compile Include="Anaconda\Events\GetTopicRepliesEventArgs.cs" />
     <Compile Include="Anaconda\Events\GroupSearchEventArgs.cs" />
     <Compile Include="Anaconda\Events\PhotoSearchEventArgs.cs" />
     <Compile Include="Anaconda\Events\PhotoSetListEventArgs.cs" />
@@ -150,12 +151,14 @@
     <Compile Include="Cinderella\Events\PopularTagListUpdatedEventArgs.cs" />
     <Compile Include="Cinderella\Events\RemovePhotoFromGroupCompleteEventArgs.cs" />
     <Compile Include="Cinderella\Events\SearchResultEventArgs.cs" />
+    <Compile Include="Cinderella\Events\TopicRepliesUpdatedEventArgs.cs" />
     <Compile Include="Cinderella\Events\UploadedPhotoInfoReturnedEventArgs.cs" />
     <Compile Include="Cinderella\Factories\FlickrGroupFactory.cs" />
     <Compile Include="Cinderella\Factories\PhotoEXIFFactory.cs" />
     <Compile Include="Cinderella\Factories\PhotoFactory.cs" />
     <Compile Include="Cinderella\Factories\PhotoSetFactory.cs" />
     <Compile Include="Cinderella\Factories\TopicFactory.cs" />
+    <Compile Include="Cinderella\Factories\TopicReplyFactory.cs" />
     <Compile Include="Cinderella\Factories\UserFactory.cs" />
     <Compile Include="Cinderella\Models\FlickrGroup.cs" />
     <Compile Include="Cinderella\Models\ModelBase.cs" />
@@ -164,6 +167,7 @@
     <Compile Include="Cinderella\Models\PhotoSet.cs" />
     <Compile Include="Cinderella\Models\PhotoTag.cs" />
     <Compile Include="Cinderella\Models\Topic.cs" />
+    <Compile Include="Cinderella\Models\TopicReply.cs" />
     <Compile Include="Cinderella\Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\Algorithms.cs" />

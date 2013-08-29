@@ -3,6 +3,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:common="clr-namespace:Indulged.Plugins.Common.Renderers"             
     mc:Ignorable="d"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
@@ -10,8 +11,13 @@
     d:DesignHeight="480" d:DesignWidth="480">
     
     <Grid x:Name="LayoutRoot">
-        <Border BorderThickness="0, 1, 0, 1" BorderBrush="#cccccc" Background="#fafafa">
-            <TextBlock x:Name="BodyTextView" Margin="12" TextWrapping="Wrap" TextTrimming="None" Foreground="#535C6B" />
+        <Border BorderThickness="0, 1, 0, 1" BorderBrush="#dadad9" Background="#f8f8f8">
+            <StackPanel Margin="12">
+                <TextBlock x:Name="BodyTextView" TextWrapping="Wrap" TextTrimming="None" Foreground="#535C6B" />
+
+                <!--Reply digest-->
+                <TextBlock x:Name="ReplyDigestLabelView" Foreground="#f67056" FontSize="28" FontFamily="/Assets/Fonts/BenchNine-Regular.ttf#BenchNine" Margin="0, 12, 0, 6"/>
+            </StackPanel>
         </Border>
     </Grid>
 </UserControl>

@@ -35,6 +35,7 @@ namespace Indulged.API.Cinderella
         public EventHandler<AddTopicCompleteEventArgs> AddTopicCompleted;
         public EventHandler<AddPhotoToGroupCompleteEventArgs> AddPhotoToGroupCompleted;
         public EventHandler<RemovePhotoFromGroupCompleteEventArgs> RemovePhotoFromGroupCompleted;
+        public EventHandler<TopicRepliesUpdatedEventArgs> TopicRepliesUpdated;
 
         // Photo set events
         public EventHandler<PhotoSetListUpdatedEventArgs> PhotoSetListUpdated;
@@ -123,6 +124,7 @@ namespace Indulged.API.Cinderella
             Anaconda.Anaconda.AnacondaCore.TopicAdded += OnTopicAdded;
             Anaconda.Anaconda.AnacondaCore.PhotoAddedToGroup += OnPhotoAddedToGroup;
             Anaconda.Anaconda.AnacondaCore.PhotoRemovedFromGroup += OnPhotoRemovedFromGroup;
+            Anaconda.Anaconda.AnacondaCore.TopicRepliesReturned += OnTopicRepliesReturned;
         }
     }
 }

@@ -180,5 +180,54 @@ namespace Indulged.API.Cinderella
             }
 
         }
+
+        private void OnTopicRepliesReturned(object sender, GetTopicRepliesEventArgs e)
+        {
+            if (!Cinderella.CinderellaCore.GroupCache.ContainsKey(e.GroupId))
+                return;
+
+            FlickrGroup group = Cinderella.CinderellaCore.GroupCache[e.GroupId];
+
+            if (!group.TopicCache.ContainsKey(e.TopicId))
+                return;
+
+            Topic topic = group.TopicCache[e.TopicId];
+
+            JObject rawJson = JObject.Parse(e.Response);
+            JObject rootJson = (JObject)rawJson["replies"];
+            JObject topicJson = (JObject)rootJson["topic"];
+
+            int TotalCount = int.Parse(topicJson["total"].ToString());
+            int page = int.Parse(topicJson["page"].ToString());
+            int numPages = int.Parse(topicJson["pages"].ToString());
+            int perPage = int.Parse(topicJson["per_page"].ToString());
+
+            List<TopicReply> newReplies = new List<TopicReply>();
+            if (TotalCount > 0)
+            {
+                foreach (var entry in rootJson["reply"])
+                {
+                    JObject json = (JObject)entry;
+                    TopicReply reply = TopicReplyFactory.TopicReplyWithJObject(json, topic);
+
+                    if (!topic.Replies.Contains(reply))
+                    {
+                        topic.Replies.Add(reply);
+                        newReplies.Add(reply);
+                    }
+                }
+
+            }
+
+            // Dispatch event            
+            TopicRepliesUpdatedEventArgs evt = new TopicRepliesUpdatedEventArgs();
+            evt.GroupId = group.ResourceId;
+            evt.TopicId = topic.ResourceId;
+            evt.Page = page;
+            evt.PageCount = numPages;
+            evt.PerPage = perPage;
+            evt.NewReplies = newReplies;
+            TopicRepliesUpdated.DispatchEvent(this, evt);
+        }
     }
 }
