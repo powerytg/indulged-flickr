@@ -103,6 +103,8 @@
     <Compile Include="Anaconda\Events\AddTopicEventArgs.cs" />
     <Compile Include="Anaconda\Events\AddTopicExceptionEventArgs.cs" />
     <Compile Include="Anaconda\Events\AddPhotoToGroupEventArgs.cs" />
+    <Compile Include="Anaconda\Events\AddTopicReplyEventArgs.cs" />
+    <Compile Include="Anaconda\Events\AddTopicReplyExceptionEventArgs.cs" />
     <Compile Include="Anaconda\Events\GetDiscoveryStreamEventArgs.cs" />
     <Compile Include="Anaconda\Events\GetEXIFEventArgs.cs" />
     <Compile Include="Anaconda\Events\GetEXIFExceptionEventArgs.cs" />
@@ -137,6 +139,7 @@
     <Compile Include="Cinderella\CinderellaUserExtension.cs" />
     <Compile Include="Cinderella\Events\AddPhotoToGroupCompleteEventArgs.cs" />
     <Compile Include="Cinderella\Events\AddTopicCompleteEventArgs.cs" />
+    <Compile Include="Cinderella\Events\AddTopicReplyCompleteEventArgs.cs" />
     <Compile Include="Cinderella\Events\DiscoveryStreamUpdatedEventArgs.cs" />
     <Compile Include="Cinderella\Events\EXIFUpdatedEventArgs.cs" />
     <Compile Include="Cinderella\Events\GroupInfoUpdatedEventArgs.cs" />

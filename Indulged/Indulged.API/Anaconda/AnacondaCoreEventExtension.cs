@@ -54,7 +54,10 @@ namespace Indulged.API.Anaconda
         public EventHandler<GetGroupTopicsEventArgs> GroupTopicsReturned;
         public EventHandler<AddTopicExceptionEventArgs> AddTopicException;
         public EventHandler<AddTopicEventArgs> TopicAdded;
+
         public EventHandler<GetTopicRepliesEventArgs> TopicRepliesReturned;
+        public EventHandler<AddTopicReplyExceptionEventArgs> AddTopicReplyException;
+        public EventHandler<AddTopicReplyEventArgs> TopicReplyAdded;
 
         public EventHandler<AddPhotoToGroupEventArgs> PhotoAddedToGroup;
         public EventHandler<AddPhotoToGroupExceptionEventArgs> AddPhotoToGroupException;

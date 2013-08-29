@@ -143,17 +143,22 @@
     <Compile Include="Plugins\Common\PhotoGroupRenderers\CommonPhotoGroupRenderer5A.xaml.cs">
       <DependentUpon>CommonPhotoGroupRenderer5A.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Plugins\Common\Renderers\TopicReplyRendererSelector.cs" />
     <Compile Include="Plugins\Common\Renderers\ShortTimestampView.xaml.cs">
       <DependentUpon>ShortTimestampView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Plugins\Common\Renderers\SidePhotoRenderer.xaml.cs">
       <DependentUpon>SidePhotoRenderer.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Plugins\Common\Renderers\TopicHeaderRenderer.xaml.cs">
+      <DependentUpon>TopicHeaderRenderer.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Plugins\Common\Renderers\TopicReplyRenderer.xaml.cs">
       <DependentUpon>TopicReplyRenderer.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Plugins\Group\DiscussionTopicView.xaml.cs">
-      <DependentUpon>DiscussionTopicView.xaml</DependentUpon>
+    <Compile Include="Plugins\Group\GroupDiscussionPageComposerExtension.cs" />
+    <Compile Include="Plugins\Group\TopicReplyComposerView.xaml.cs">
+      <DependentUpon>TopicReplyComposerView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Plugins\Group\events\PhotoPickerRendererEventArgs.cs" />
     <Compile Include="Plugins\Common\ProgressView.xaml.cs">
@@ -545,13 +550,16 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Plugins\Common\Renderers\TopicHeaderRenderer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Plugins\Common\Renderers\TopicReplyRenderer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Plugins\Group\DiscussionTopicView.xaml">
+    <Page Include="Plugins\Group\TopicReplyComposerView.xaml">
       <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Plugins\Group\GroupDiscussionPage.xaml">
       <SubType>Designer</SubType>

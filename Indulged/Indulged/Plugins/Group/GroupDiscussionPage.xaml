@@ -17,6 +17,20 @@
     shell:SystemTray.IsVisible="True"
     Style="{StaticResource TransitionPageStyle}" shell:SystemTray.Opacity="0" shell:SystemTray.ForegroundColor="#536585">
 
+    <phone:PhoneApplicationPage.Resources>
+        <shell:ApplicationBar x:Key="ReplyListAppBar" IsVisible="True" IsMenuEnabled="False" Mode="Default" Opacity="0.8" BackgroundColor="White" ForegroundColor="Black">
+            <shell:ApplicationBarIconButton x:Name="RefreshReplyListButton" IconUri="/Assets/Common/refresh.png" Text="refresh" Click="RefreshReplyListButton_Click"/>
+            <shell:ApplicationBarIconButton x:Name="ReplyButton" IconUri="/Assets/Common/add.png" Text="reply" Click="ReplyButton_Click"/>
+        </shell:ApplicationBar>
+
+
+        <shell:ApplicationBar x:Key="ComposerAppBar" IsVisible="True" IsMenuEnabled="False" Mode="Default" Opacity="1" >
+            <shell:ApplicationBarIconButton x:Name="ComfirmReplyButton" IconUri="/Assets/Common/check.png" Text="Confirm" Click="ComfirmReplyButton_Click"/>
+            <shell:ApplicationBarIconButton x:Name="CancelReplyButton" IconUri="/Assets/Common/cancel.png" Text="Cancel" Click="CancelReplyButton_Click"/>
+        </shell:ApplicationBar>
+
+    </phone:PhoneApplicationPage.Resources>
+    
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="White">
         <Grid.RowDefinitions>
@@ -35,37 +49,26 @@
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->
-        <Grid x:Name="ContentPanel" Grid.Row="1">
-            <ScrollViewer>
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
-                    
-                    <!--Author bar-->
-                    <StackPanel Orientation="Horizontal" Grid.Row="0">
-                        <Image x:Name="AuthorAvatarView" VerticalAlignment="Center" Width="36" Height="36" Margin="12,0,12,0"/>
-                        <TextBlock x:Name="AuthorLabelView" Foreground="#32afe0" FontSize="38" FontFamily="/Assets/Fonts/BenchNine-Regular.ttf#BenchNine" Margin="16, 0, 0, 0"
-                                   VerticalAlignment="Center" />
-                    </StackPanel>
-                    
-                    <!--Original message-->
-                    <local:DiscussionTopicView x:Name="TopicView" Grid.Row="1"/>
-                    
-                    <!--Replies-->
-                    <phone:LongListSelector x:Name="ReplyListView" ItemsSource="{Binding Items}" ItemRealized="ReplyListView_ItemRealized"
-                                            Grid.Row="2" >
-                        <phone:LongListSelector.ItemTemplate>
+        <phone:LongListSelector x:Name="ReplyListView" ItemsSource="{Binding Items}" ItemRealized="ReplyListView_ItemRealized"
+                                    Margin="0, 0, 0, 100" Grid.Row="1">
+            <phone:LongListSelector.ItemTemplate>
+                <DataTemplate>
+                    <renderers:TopicReplyRendererSelector Content="{Binding}">
+                        <renderers:TopicReplyRendererSelector.TopicTemplate>
+                            <DataTemplate>
+                                <renderers:TopicHeaderRenderer TopicSource="{Binding}"/>
+                            </DataTemplate>
+                        </renderers:TopicReplyRendererSelector.TopicTemplate>
+
+                        <renderers:TopicReplyRendererSelector.ReplyTemplate>
                             <DataTemplate>
                                 <renderers:TopicReplyRenderer ReplySource="{Binding}"/>
                             </DataTemplate>
-                        </phone:LongListSelector.ItemTemplate>
-                    </phone:LongListSelector>
-                </Grid>
-            </ScrollViewer>
-        </Grid>
+                        </renderers:TopicReplyRendererSelector.ReplyTemplate>
+                    </renderers:TopicReplyRendererSelector>
+                </DataTemplate>
+            </phone:LongListSelector.ItemTemplate>
+        </phone:LongListSelector>
 
         <!-- Title view -->
         <chrome:TitleView x:Name="TitleView" VerticalAlignment="Top" IsHitTestVisible="False" Titleless="True"/>

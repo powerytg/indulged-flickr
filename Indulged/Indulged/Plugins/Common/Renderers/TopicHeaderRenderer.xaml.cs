@@ -9,13 +9,14 @@ using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using Indulged.API.Cinderella.Models;
 using System.Windows.Documents;
+using System.Windows.Media.Imaging;
 
-namespace Indulged.Plugins.Group
+namespace Indulged.Plugins.Common.Renderers
 {
-    public partial class DiscussionTopicView : UserControl
+    public partial class TopicHeaderRenderer : UserControl
     {
         // Topic source
-        public static readonly DependencyProperty TopicSourceProperty = DependencyProperty.Register("TopicSource", typeof(Topic), typeof(DiscussionTopicView), new PropertyMetadata(OnTopicSourcePropertyChanged));
+        public static readonly DependencyProperty TopicSourceProperty = DependencyProperty.Register("TopicSource", typeof(Topic), typeof(TopicHeaderRenderer), new PropertyMetadata(OnTopicSourcePropertyChanged));
 
         public Topic TopicSource
         {
@@ -31,19 +32,22 @@ namespace Indulged.Plugins.Group
 
         public static void OnTopicSourcePropertyChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
         {
-            ((DiscussionTopicView)sender).OnTopicSourceChanged();
+            ((TopicHeaderRenderer)sender).OnTopicSourceChanged();
         }
 
         protected void OnTopicSourceChanged()
         {
+            AuthorAvatarView.Source = new BitmapImage(new Uri(TopicSource.Author.AvatarUrl));
+            AuthorLabelView.Text = TopicSource.Author.Name;
+
             FormatContentText();
-            string dateString = "posted on " + TopicSource.CreationDate.ToShortDateString();
+            string dateString = "Posted on " + TopicSource.CreationDate.ToShortDateString();
             string replyString = TopicSource.ReplyCount == 0 ? "no reply yet" : TopicSource.ReplyCount.ToString() + " replies";
             ReplyDigestLabelView.Text = dateString + ",  " + replyString;
         }
 
         // Constructor
-        public DiscussionTopicView()
+        public TopicHeaderRenderer()
         {
             InitializeComponent();
         }
@@ -53,7 +57,7 @@ namespace Indulged.Plugins.Group
             string trimmedMessage = TopicSource.Message.Trim();
             BodyTextView.Inlines.Clear();
 
-            if(trimmedMessage.Length <= 1)
+            if (trimmedMessage.Length <= 1)
                 return;
 
             Run initialRun = new Run();

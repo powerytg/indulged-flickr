@@ -8,7 +8,7 @@
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
-    d:DesignHeight="480" d:DesignWidth="480">
+    d:DesignHeight="480" d:DesignWidth="480" MinHeight="50" Width="480">
     
     <Grid x:Name="LayoutRoot">
         
@@ -25,10 +25,10 @@
                 <StackPanel Margin="12" Grid.Column="1" >
                     <TextBlock x:Name="BodyTextView" TextWrapping="Wrap" TextTrimming="WordEllipsis" Foreground="#535C6B" 
                                Text="{Binding Message}" FontWeight="Light" FontSize="24"
-                               MaxHeight="600" />
+                               MaxHeight="500" />
 
                     <!--Author status-->
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0, 0, 4, 0">
                         <Image x:Name="AvatarView" Width="28" Height="28" VerticalAlignment="Center" Source="{Binding Path=Author.AvatarUrl}"/>
                         <TextBlock x:Name="AuthorLabel" Foreground="#4a6466" FontSize="28" FontFamily="/Assets/Fonts/BenchNine-Regular.ttf#BenchNine" Margin="16, 0, 0, 0"
                                    VerticalAlignment="Center" Text="{Binding Path=Author.Name}" />

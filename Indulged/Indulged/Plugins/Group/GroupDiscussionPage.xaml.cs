@@ -1,18 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Navigation;
+﻿using Indulged.API.Anaconda;
+using Indulged.API.Cinderella;
+using Indulged.API.Cinderella.Events;
+using Indulged.API.Cinderella.Models;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
-using Indulged.API.Cinderella.Models;
-using Indulged.API.Cinderella;
-using System.Windows.Media.Imaging;
+using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using Indulged.API.Anaconda;
-using Indulged.API.Cinderella.Events;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 
 namespace Indulged.Plugins.Group
 {
@@ -22,7 +18,7 @@ namespace Indulged.Plugins.Group
         private Topic topic;
 
         // Reply data source
-        public ObservableCollection<TopicReply> ReplyCollection { get; set; }
+        public ObservableCollection<ModelBase> ReplyCollection { get; set; }
 
         // Constructor
         public GroupDiscussionPage()
@@ -40,22 +36,25 @@ namespace Indulged.Plugins.Group
             string topicId = NavigationContext.QueryString["topic_id"];
             topic = group.TopicCache[topicId];
 
-            User topicUser = topic.Author;
-            AuthorAvatarView.Source = new BitmapImage(new Uri(topicUser.AvatarUrl));
-            AuthorLabelView.Text = topicUser.Name;
-
-            TopicView.TopicSource = topic;
-
             // Reply list
-            ReplyCollection = new ObservableCollection<TopicReply>();
+            ReplyCollection = new ObservableCollection<ModelBase>();
             ReplyListView.ItemsSource = ReplyCollection;
+
+            // Add topic as first item
+            ReplyCollection.Add(topic);
+
             foreach (var reply in topic.Replies)
             {
                 ReplyCollection.Add(reply);
             }
 
+            // Config app bar
+            ApplicationBar = Resources["ReplyListAppBar"] as ApplicationBar;
+
             // Events
             Cinderella.CinderellaCore.TopicRepliesUpdated += OnRepliesUpdated;
+            Anaconda.AnacondaCore.AddTopicReplyException += OnAddReplyException;
+            Cinderella.CinderellaCore.AddTopicReplyCompleted += OnAddReplyComplete;
 
             SystemTray.ProgressIndicator = new ProgressIndicator();
             SystemTray.ProgressIndicator.IsIndeterminate = true;
@@ -70,7 +69,7 @@ namespace Indulged.Plugins.Group
         {
             Dispatcher.BeginInvoke(() =>
             {
-                if (e.NewReplies.Count == 0 || e.TopicId != topic.ResourceId)
+                if (e.TopicId != topic.ResourceId)
                     return;
 
                 foreach (var reply in e.NewReplies)
@@ -102,5 +101,14 @@ namespace Indulged.Plugins.Group
                 Anaconda.AnacondaCore.GetTopicRepliesAsync(topic.ResourceId, group.ResourceId, new Dictionary<string, string> { { "page", page.ToString() }, { "per_page", Anaconda.DefaultItemsPerPage.ToString() } });
             }
         }
+
+        private void RefreshReplyListButton_Click(object sender, EventArgs e)
+        {
+            SystemTray.ProgressIndicator.Text = "retrieving replies";
+            SystemTray.ProgressIndicator.IsVisible = true;
+
+            Anaconda.AnacondaCore.GetTopicRepliesAsync(topic.ResourceId, group.ResourceId, new Dictionary<string, string> { { "page", "1" }, { "per_page", Anaconda.DefaultItemsPerPage.ToString() } });
+        }
+        
     }
 }

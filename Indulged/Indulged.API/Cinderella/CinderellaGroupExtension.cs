@@ -123,6 +123,7 @@ namespace Indulged.API.Cinderella
             newTopic.Subject = e.Subject;
             newTopic.Message = e.Message;
             newTopic.Author = CurrentUser;
+            newTopic.CreationDate = DateTime.Now;
 
             group.TopicCache[newTopicId] = newTopic;
             group.Topics.Insert(0, newTopic);
@@ -133,6 +134,32 @@ namespace Indulged.API.Cinderella
             evt.GroupId = group.ResourceId;
             evt.newTopic = newTopic;
             AddTopicCompleted.DispatchEvent(this, evt);
+        }
+
+        private void OnTopicReplyAdded(object sender, AddTopicReplyEventArgs e)
+        {
+            FlickrGroup group = Cinderella.CinderellaCore.GroupCache[e.GroupId];
+            Topic topic = group.TopicCache[e.TopicId];
+
+            JObject rawJson = JObject.Parse(e.Response);
+            string newReplyId = rawJson["reply"]["id"].ToString();
+
+            TopicReply newReply = new TopicReply();
+            newReply.ResourceId = newReplyId;
+            newReply.Message = e.Message;
+            newReply.Author = CurrentUser;
+            newReply.CreationDate = DateTime.Now;
+
+            topic.ReplyCache[newReplyId] = newReply;
+            topic.Replies.Insert(0, newReply);
+            topic.ReplyCount++;
+
+            AddTopicReplyCompleteEventArgs evt = new AddTopicReplyCompleteEventArgs();
+            evt.SessionId = e.SessionId;
+            evt.GroupId = group.ResourceId;
+            evt.TopicId = topic.ResourceId;
+            evt.newReply = newReply;
+            AddTopicReplyCompleted.DispatchEvent(this, evt);
         }
 
         private void OnPhotoAddedToGroup(object sender, AddPhotoToGroupEventArgs e)

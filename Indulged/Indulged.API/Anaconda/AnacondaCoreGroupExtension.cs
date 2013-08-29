@@ -417,5 +417,47 @@ namespace Indulged.API.Anaconda
                 TopicRepliesReturned.DispatchEvent(this, args);
             }
         }
+
+        public void AddTopicReplyAsync(string sessionId, string topicId, string groupId, string message)
+        {
+            string timestamp = DateTimeUtils.GetTimestamp();
+            string nonce = Guid.NewGuid().ToString().Replace("-", null);
+
+            Dictionary<string, string> paramDict = new Dictionary<string, string>();
+            paramDict["method"] = "flickr.groups.discuss.replies.add";
+            paramDict["format"] = "json";
+            paramDict["nojsoncallback"] = "1";
+            paramDict["oauth_consumer_key"] = consumerKey;
+            paramDict["oauth_nonce"] = nonce;
+            paramDict["oauth_signature_method"] = "HMAC-SHA1";
+            paramDict["oauth_timestamp"] = timestamp;
+            paramDict["oauth_token"] = AccessToken;
+            paramDict["oauth_version"] = "1.0";
+            paramDict["topic_id"] = topicId;
+            paramDict["message"] = message;
+
+            string signature = OAuthCalculateSignature("POST", "http://api.flickr.com/services/rest/", paramDict, AccessTokenSecret);
+            paramDict["oauth_signature"] = signature;
+
+            DispatchPostRequest("POST", "http://api.flickr.com/services/rest/", paramDict,
+                (response) =>
+                {
+                    AddTopicReplyEventArgs args = new AddTopicReplyEventArgs();
+                    args.SessionId = sessionId;
+                    args.GroupId = groupId;
+                    args.TopicId = topicId;
+                    args.Response = response;
+                    args.Message = message;
+                    TopicReplyAdded.DispatchEvent(this, args);
+
+                }, (ex) =>
+                {
+                    AddTopicReplyExceptionEventArgs exceptionArgs = new AddTopicReplyExceptionEventArgs();
+                    exceptionArgs.SessionId = sessionId;
+                    AddTopicReplyException.DispatchEvent(this, exceptionArgs);
+                });
+
+
+        }
     }
 }
