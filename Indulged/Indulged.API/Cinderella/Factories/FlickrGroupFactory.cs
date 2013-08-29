@@ -73,6 +73,12 @@ namespace Indulged.API.Cinderella.Factories
 
             }
 
+            // Is invitation_only
+            JToken invitationValue;
+            if(json.TryGetValue("invitation_only", out invitationValue)){
+                group.IsInvitationOnly = (json["invitation_only"].ToString() == "1");
+            }
+
             JToken rulesValue;
             if (json.TryGetValue("rules", out rulesValue))
             {

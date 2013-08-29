@@ -22,6 +22,7 @@ namespace Indulged.API.Avarice.Controls
     {
         // Button click event
         public event EventHandler<ModalPopupEventArgs> DismissWithButtonClick;
+        public event EventHandler<ModalPopupEventArgs> ButtonClick;
 
         public ModalPopup()
         {
@@ -72,6 +73,7 @@ namespace Indulged.API.Avarice.Controls
         protected string title = null;
 
         // Button titles
+        protected bool shouldAutoDismissWhenClickOnButtons;
         protected List<String> buttonTitles = new List<string>();
         public List<Avarice.Controls.Button> Buttons = new List<Button>();
 
@@ -79,13 +81,14 @@ namespace Indulged.API.Avarice.Controls
         protected Popup popupContainer;
 
         // Show the popup window with custom content
-        public static ModalPopup ShowWithButtons(FrameworkElement content, string title = null, List<Avarice.Controls.Button> _buttons = null)
+        public static ModalPopup ShowWithButtons(FrameworkElement content, string title = null, List<Avarice.Controls.Button> _buttons = null, bool _shoulsAutoDismissWhenClickingOnButtons = true)
         {
             Popup popupContainer = new Popup();
             ModalPopup popup = new ModalPopup();
             popupContainer.Child = popup;
             popup.contentElement = content;
             popup.popupContainer = popupContainer;
+            popup.shouldAutoDismissWhenClickOnButtons = _shoulsAutoDismissWhenClickingOnButtons;
 
             // Set title
             if (title != null)
@@ -108,13 +111,14 @@ namespace Indulged.API.Avarice.Controls
 
         }
 
-        public static ModalPopup Show(FrameworkElement content, string title = null, List<string> buttonTitles = null)
+        public static ModalPopup Show(FrameworkElement content, string title = null, List<string> buttonTitles = null, bool _shoulsAutoDismissWhenClickingOnButtons = true)
         {
             Popup popupContainer = new Popup();
             ModalPopup popup = new ModalPopup();
             popupContainer.Child = popup;
             popup.contentElement = content;
             popup.popupContainer = popupContainer;
+            popup.shouldAutoDismissWhenClickOnButtons = _shoulsAutoDismissWhenClickingOnButtons;
 
             // Set title
             if (title != null)
@@ -136,7 +140,7 @@ namespace Indulged.API.Avarice.Controls
         }
 
         // Show the popup window with text
-        public static ModalPopup Show(string text, string title = null, List<string> buttonTitles = null)
+        public static ModalPopup Show(string text, string title = null, List<string> buttonTitles = null, bool _shoulsAutoDismissWhenClickingOnButtons = true)
         {
             // Create a text label
             TextBlock label = new TextBlock();
@@ -146,7 +150,7 @@ namespace Indulged.API.Avarice.Controls
             label.Text = text;
             label.Width = System.Windows.Application.Current.Host.Content.ActualWidth - label.Margin.Left - label.Margin.Right;
             label.TextWrapping = TextWrapping.Wrap;
-            return Show(label, title, buttonTitles);
+            return Show(label, title, buttonTitles, _shoulsAutoDismissWhenClickingOnButtons);
         }
 
         public override void OnApplyTemplate()
@@ -241,6 +245,112 @@ namespace Indulged.API.Avarice.Controls
 
         private bool isApplicationBarVisibleBeforePopup;
         private bool isSystemTrayVisibleBeforePopup;
+
+        public void ReplaceContentWith(FrameworkElement newElement, List<Avarice.Controls.Button> newButtons)
+        {
+            double w = System.Windows.Application.Current.Host.Content.ActualWidth;
+
+            // Add new content element
+            newElement.SetValue(Grid.RowProperty, 1);
+            CompositeTransform ct = (CompositeTransform)newElement.RenderTransform;
+            if (ct == null)
+            {
+                ct = new CompositeTransform();
+                newElement.RenderTransform = ct;
+            }
+
+            ct.TranslateX = w;
+
+            contentView.Children.Add(newElement);
+
+                
+            // Slide away the old contents
+            Storyboard animation = new Storyboard();
+            Duration duration = new Duration(TimeSpan.FromSeconds(0.5));
+
+            DoubleAnimation oldContentXAnimation = new DoubleAnimation();
+            animation.Children.Add(oldContentXAnimation);
+            oldContentXAnimation.Duration = new Duration(TimeSpan.FromSeconds(0.3));
+            oldContentXAnimation.To = -w;
+            oldContentXAnimation.EasingFunction = new CubicEase() { EasingMode = EasingMode.EaseOut };
+            Storyboard.SetTarget(oldContentXAnimation, contentElement);
+            Storyboard.SetTargetProperty(oldContentXAnimation, new PropertyPath("(UIElement.RenderTransform).(CompositeTransform.TranslateX)"));
+
+            // Slide in the new content element
+            DoubleAnimationUsingKeyFrames newContentXAnimation = new DoubleAnimationUsingKeyFrames();
+            animation.Children.Add(newContentXAnimation);
+            newContentXAnimation.Duration = animation.Duration;
+            newContentXAnimation.KeyFrames.Add(new EasingDoubleKeyFrame { KeyTime = TimeSpan.FromSeconds(0), Value = -w });
+            newContentXAnimation.KeyFrames.Add(new EasingDoubleKeyFrame { KeyTime = TimeSpan.FromSeconds(0.2), Value = -w });
+            newContentXAnimation.KeyFrames.Add(new EasingDoubleKeyFrame { KeyTime = TimeSpan.FromSeconds(0), Value = 0 });
+
+            animation.Completed += (sender, e) => {
+                contentView.Children.Remove(contentElement);
+                contentElement = newElement;
+            };
+            animation.Begin();
+
+            PerformOldButtonSwapOutAnimation(newButtons);
+        }
+
+        private void PerformOldButtonSwapOutAnimation(List<Avarice.Controls.Button> newButtons)
+        {
+            double w = System.Windows.Application.Current.Host.Content.ActualWidth;
+
+            // Slide away old buttons
+            Storyboard animation = new Storyboard();
+            Duration duration = new Duration(TimeSpan.FromSeconds(0.3));
+
+            DoubleAnimation oldButtonDeckAnimation = new DoubleAnimation();
+            animation.Children.Add(oldButtonDeckAnimation);
+            oldButtonDeckAnimation.Duration = new Duration(TimeSpan.FromSeconds(0.3));
+            oldButtonDeckAnimation.To = -w;
+            oldButtonDeckAnimation.EasingFunction = new CubicEase() { EasingMode = EasingMode.EaseOut };
+            Storyboard.SetTarget(oldButtonDeckAnimation, buttonContainer);
+            Storyboard.SetTargetProperty(oldButtonDeckAnimation, new PropertyPath("(UIElement.RenderTransform).(CompositeTransform.TranslateX)"));
+
+            animation.Completed += (sender, e) => {
+                buttonContainer.Children.Clear();
+                PerformNewButtonSwapInAnimation(newButtons);
+            };
+
+            animation.Begin();
+        }
+
+        private void PerformNewButtonSwapInAnimation(List<Avarice.Controls.Button> newButtons)
+        {
+            double w = System.Windows.Application.Current.Host.Content.ActualWidth;
+
+            var ct = (CompositeTransform)buttonContainer.RenderTransform;
+            ct.TranslateX = w;
+
+            foreach (var button in newButtons)
+            {
+                button.Margin = new Thickness(20, 0, 20, 0);
+                button.HorizontalAlignment = HorizontalAlignment.Right;
+                buttonContainer.Children.Add(button);
+                button.Click += OnButtonClick;
+            }
+
+            // Slide in new buttons
+            Storyboard animation = new Storyboard();
+            Duration duration = new Duration(TimeSpan.FromSeconds(0.3));
+
+            DoubleAnimation oldButtonDeckAnimation = new DoubleAnimation();
+            animation.Children.Add(oldButtonDeckAnimation);
+            oldButtonDeckAnimation.Duration = new Duration(TimeSpan.FromSeconds(0.3));
+            oldButtonDeckAnimation.To = 0;
+            oldButtonDeckAnimation.EasingFunction = new CubicEase() { EasingMode = EasingMode.EaseOut };
+            Storyboard.SetTarget(oldButtonDeckAnimation, buttonContainer);
+            Storyboard.SetTargetProperty(oldButtonDeckAnimation, new PropertyPath("(UIElement.RenderTransform).(CompositeTransform.TranslateX)"));
+
+            animation.Completed += (sender, e) =>
+            {
+                Buttons = newButtons;
+            };
+
+            animation.Begin();
+        }
 
         protected void PerformAppearanceAnimation()
         {
@@ -403,7 +513,16 @@ namespace Indulged.API.Avarice.Controls
             int buttonIndex = buttonContainer.Children.IndexOf(targetButton);
 
             // Dismiss self
-            DismissWithButtonIndex(buttonIndex);
+            if (shouldAutoDismissWhenClickOnButtons)
+            {
+                DismissWithButtonIndex(buttonIndex);
+            }
+            else
+            {
+                var evt = new ModalPopupEventArgs();
+                evt.ButtonIndex = buttonIndex;
+                ButtonClick.DispatchEvent(this, evt);
+            }
         }
     }
 }
