@@ -69,6 +69,7 @@ namespace Indulged.Plugins.Common.Renderers
 
             // Get photo collection context
             currentPage.NavigationService.Navigate(new Uri("/Plugins/Search/SearchResultPage.xaml?tags=" + TagSource.Name, UriKind.Relative));
+            currentPage.NavigationService.RemoveBackEntry();
 
         }
     }

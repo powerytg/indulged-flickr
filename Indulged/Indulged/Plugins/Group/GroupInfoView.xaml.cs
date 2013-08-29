@@ -14,6 +14,7 @@ using Indulged.API.Cinderella.Models;
 using Indulged.API.Cinderella.Events;
 using Indulged.API.Avarice.Controls;
 using System.Windows.Media.Imaging;
+using Indulged.API.Avarice.Events;
 
 namespace Indulged.Plugins.Group
 {
@@ -42,6 +43,14 @@ namespace Indulged.Plugins.Group
             }
 
             _popupContainer = ModalPopup.ShowWithButtons(this, _group.Name, new List<Indulged.API.Avarice.Controls.Button> { browseButton, joinButton, doneButton });
+            _popupContainer.DismissWithButtonClick += (s, args) =>
+            {
+                int buttonIndex = (args as ModalPopupEventArgs).ButtonIndex;
+                if (buttonIndex == 0)
+                {
+                    BrowseGroup();
+                }
+            };
         }
 
         private FlickrGroup _group;
@@ -123,6 +132,13 @@ namespace Indulged.Plugins.Group
                 ThrottleDescriptionView.Text = "Upload limit: " + _group.ThrottleMaxCount.ToString() + " per " + _group.ThrottleMode;
 
             }
+        }
+
+        private void BrowseGroup()
+        {
+            Frame rootVisual = System.Windows.Application.Current.RootVisual as Frame;
+            PhoneApplicationPage currentPage = (PhoneApplicationPage)rootVisual.Content;
+            currentPage.NavigationService.Navigate(new Uri("/Plugins/Group/GroupPage.xaml?group_id=" + _group.ResourceId, UriKind.Relative));
         }
     }
 }

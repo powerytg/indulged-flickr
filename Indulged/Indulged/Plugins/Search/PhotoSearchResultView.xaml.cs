@@ -23,7 +23,7 @@ namespace Indulged.Plugins.Search
         public string Tags { get; set; }
 
         public int Page { get; set; }
-        private int perPage = 20;
+        private int perPage = 50;
         public int TotalCount { get; set; }
 
         private ObservableCollection<Photo> _photos = new ObservableCollection<Photo>();
@@ -76,28 +76,9 @@ namespace Indulged.Plugins.Search
                 ResultListView.Visibility = Visibility.Visible;
                 LoadingView.Visibility = Visibility.Collapsed;
 
-                int page = _photos.Count / perPage + 1;
                 TotalCount = e.TotalCount;
             });
         }
-
-        // Implementation of inifinite scrolling
-        private void OnItemRealized(object sender, ItemRealizationEventArgs e)
-        {
-            Photo photoItem = e.Container.Content as Photo;
-            if (photoItem == null)
-                return;
-
-            int index = _photos.IndexOf(photoItem);
-            bool canLoad = (_photos.Count < TotalCount);
-            if (!canLoad)
-                return;
-
-            if (_photos.Count - index <= 2 && canLoad)
-            {
-                int page = _photos.Count / perPage + 1;
-                Anaconda.AnacondaCore.SearchPhotoAsync(SearchSessionId, Query, Tags, new Dictionary<string, string> { { "page", page.ToString() }, { "per_page", perPage.ToString() } });
-            }
-        }
+       
     }
 }

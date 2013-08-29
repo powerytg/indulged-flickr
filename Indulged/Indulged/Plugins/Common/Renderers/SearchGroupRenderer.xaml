@@ -8,7 +8,7 @@
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
-    d:DesignHeight="480" d:DesignWidth="480"
+    d:DesignHeight="480" d:DesignWidth="480" MaxHeight="200"
     Margin="0, 0, 0, 18">
 
     <Grid x:Name="LayoutRoot" Margin="2,2,2,2">
@@ -18,7 +18,7 @@
         </Grid.ColumnDefinitions>
             
         <!-- Icon -->
-        <Image x:Name="IconView" Grid.Column="0" VerticalAlignment="Top"/>
+        <Image x:Name="IconView" Grid.Column="0" VerticalAlignment="Top" Width="36" Height="36"/>
         
         <Grid Grid.Column="1" VerticalAlignment="Top" Margin="12, -4, 0, 0">
             <Grid.RowDefinitions>

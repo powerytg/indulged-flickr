@@ -29,7 +29,7 @@ namespace Indulged.Plugins.Common.Renderers
             base.OnPhotoSourceChanged();
             ImageView.Source = new BitmapImage(new Uri(PhotoSource.GetImageUrl()));
 
-            if (PhotoSource.Title != null)
+            if (PhotoSource.Title != null && PhotoSource.Title.Length > 0)
             {
                 TitleLabel.Text = PhotoSource.Title;
                 TitleLabel.Visibility = Visibility.Visible;
@@ -41,7 +41,7 @@ namespace Indulged.Plugins.Common.Renderers
             }
 
 
-            if (PhotoSource.Description != null)
+            if (PhotoSource.Description != null && PhotoSource.Description.Length > 0)
             {
                 DescriptionLabel.Text = PhotoSource.Description;
                 DescriptionLabel.Visibility = Visibility.Visible;

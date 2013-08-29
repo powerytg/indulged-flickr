@@ -22,7 +22,7 @@ namespace Indulged.Plugins.Search
         public string Query { get; set; }
 
         public int Page { get; set; }
-        private int perPage = 20;
+        private int perPage = 50;
         public int TotalCount { get; set; }
 
         private ObservableCollection<FlickrGroup> _groups = new ObservableCollection<FlickrGroup>();
@@ -80,23 +80,5 @@ namespace Indulged.Plugins.Search
             });
         }
 
-        // Implementation of inifinite scrolling
-        private void OnItemRealized(object sender, ItemRealizationEventArgs e)
-        {
-            FlickrGroup groupItem = e.Container.Content as FlickrGroup;
-            if (groupItem == null)
-                return;
-
-            int index = _groups.IndexOf(groupItem);
-            bool canLoad = (_groups.Count < TotalCount);
-            if (!canLoad)
-                return;
-
-            if (_groups.Count - index <= 2 && canLoad)
-            {
-                int page = _groups.Count / perPage + 1;
-                Anaconda.AnacondaCore.SearchGroupsAsync(SearchSessionId, Query, new Dictionary<string, string> { { "page", page.ToString() }, { "per_page", perPage.ToString() } });
-            }
-        }
     }
 }

@@ -35,6 +35,7 @@ namespace Indulged.Plugins.Search
             if (e.Key == Key.Enter && trimmedQueryString.Length > 0)
             {
                 NavigationService.Navigate(new Uri("/Plugins/Search/SearchResultPage.xaml?query=" + trimmedQueryString, UriKind.Relative));
+                NavigationService.RemoveBackEntry();
             }
         }
     }

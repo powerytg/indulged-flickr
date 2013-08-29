@@ -17,6 +17,7 @@ using Indulged.API.Avarice.Events;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Controls.Primitives;
+using Indulged.Plugins.Common;
 
 namespace Indulged.Plugins.Group
 {
@@ -92,12 +93,16 @@ namespace Indulged.Plugins.Group
         {
             base.OnNavigatedTo(e);
             string groupId = NavigationContext.QueryString["group_id"];
-            
-            this.GroupSource = Cinderella.CinderellaCore.GroupCache[groupId];
-            this.DataContext = GroupSource;
 
-            // Config app bar
-            ApplicationBar = Resources["PhotoPageAppBar"] as ApplicationBar;
+            if (Cinderella.CinderellaCore.GroupCache.ContainsKey(groupId))
+            {
+                this.GroupSource = Cinderella.CinderellaCore.GroupCache[groupId];
+                this.DataContext = GroupSource;
+
+                // Config app bar
+                ApplicationBar = Resources["PhotoPageAppBar"] as ApplicationBar;
+            }
+
         }
 
         private void Panorama_SelectionChanged(object sender, SelectionChangedEventArgs e)

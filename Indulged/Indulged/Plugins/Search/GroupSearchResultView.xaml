@@ -26,7 +26,7 @@
                 </StackPanel>
 
                 <!-- Result view -->
-                <phone:LongListSelector x:Name="ResultListView" ItemRealized="OnItemRealized" Grid.Row="0">
+                <phone:LongListSelector x:Name="ResultListView"  Grid.Row="0">
                     <phone:LongListSelector.ItemTemplate>
                         <DataTemplate>
                             <renderer:SearchGroupRenderer GroupSource="{Binding}"/>

@@ -9,7 +9,7 @@
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     d:DesignHeight="480" d:DesignWidth="480"
-    Margin="0, 0, 0, 18" MaxHeight="420">
+    Margin="0, 0, 0, 18" Height="420">
 
     <Grid x:Name="LayoutRoot" Margin="2,2,2,2">
         <Grid.RowDefinitions>
@@ -19,15 +19,15 @@
         </Grid.RowDefinitions>
 
         <!-- Title -->
-        <TextBlock x:Name="TitleLabel" TextWrapping="Wrap"
+        <TextBlock x:Name="TitleLabel" TextWrapping="Wrap" TextTrimming="WordEllipsis" 
                        HorizontalAlignment="Left" TextAlignment="Left" 
                        Foreground="#32afe0" FontSize="38" FontFamily="/Assets/Fonts/BenchNine-Regular.ttf#BenchNine"
-                       Grid.Row="0"/>
+                       Grid.Row="0" MaxHeight="80"/>
 
-        <TextBlock x:Name="DescriptionLabel" TextWrapping="Wrap"
+        <TextBlock x:Name="DescriptionLabel" TextWrapping="Wrap" TextTrimming="WordEllipsis"
                        HorizontalAlignment="Left" TextAlignment="Left" 
                        Foreground="#6b757b" FontSize="26" FontFamily="/Assets/Fonts/BenchNine-Regular.ttf#BenchNine"
-                       Grid.Row="1"/>
+                       Grid.Row="1" MaxHeight="200"/>
 
         <Image x:Name="ImageView" Stretch="UniformToFill" Grid.Row="2"/>
     </Grid>
