@@ -44,6 +44,10 @@ namespace Indulged.API.Cinderella
                 evt.PhotoId = e.PhotoId;
                 UploadedPhotoInfoReturned.DispatchEvent(this, evt);
             }
+
+            var updateEvt = new PhotoInfoUpdatedEventArgs();
+            updateEvt.PhotoId = photo.ResourceId;
+            PhotoInfoUpdated.DispatchEvent(this, updateEvt);
         }
 
         private void OnPhotoUploaded(object sender, UploadPhotoEventArgs e)

@@ -173,30 +173,32 @@ namespace Indulged.Plugins.ProFX
 
         private void OnUploadProgress(object sender, UploadProgressEventArgs e)
         {
-            if (e.SessionId != sessionId)
-                return;
+            Dispatcher.BeginInvoke(() => {
+                if (e.SessionId != sessionId)
+                    return;
 
-            if (statusView == null)
-                return;
+                if (statusView == null)
+                    return;
 
-            statusView.ProgressView.Value = (float)e.UploadedBytes / (float)e.TotalBytes;
+                statusView.ProgressView.Value = (float)e.UploadedBytes / (float)e.TotalBytes;
+            });
         }
 
         private void OnUploadComplete(object sender, UploadPhotoEventArgs e)
         {
-            if (e.SessionId != sessionId)
-                return;
-
-            if (statusView == null)
-                return;
-
-            // Get full photo info so that we can insert the photo to cache
-            statusView.ProgressView.IsIndeterminate = true;
-            statusView.StatusLabel.Text = "Retrieving photo info";
-
-            photoId = e.PhotoId;
-
             Dispatcher.BeginInvoke(() => {
+                if (e.SessionId != sessionId)
+                    return;
+
+                if (statusView == null)
+                    return;
+
+                // Get full photo info so that we can insert the photo to cache
+                statusView.ProgressView.IsIndeterminate = true;
+                statusView.StatusLabel.Text = "Retrieving photo info";
+
+                photoId = e.PhotoId;
+
                 string currentUserId = Cinderella.CinderellaCore.CurrentUser.ResourceId;
                 Anaconda.AnacondaCore.GetPhotoInfoAsync(e.PhotoId, currentUserId, true);
             });
@@ -205,46 +207,52 @@ namespace Indulged.Plugins.ProFX
 
         private void OnUploadFailed(object sender, UploadPhotoErrorEventArgs e)
         {
-            if (e.SessionId != sessionId)
-                return;
+            Dispatcher.BeginInvoke(() => {
+                if (e.SessionId != sessionId)
+                    return;
 
-            if (statusView == null)
-                return;
+                if (statusView == null)
+                    return;
 
-            statusView.ProgressView.IsIndeterminate = false;
-            statusView.ProgressView.Value = 1;
-            statusView.StatusLabel.Text = "There was an issue while uploading";
-            statusDialog.Buttons[0].IsEnabled = true;
-            statusDialog.Buttons[0].Content = "Done";
+                statusView.ProgressView.IsIndeterminate = false;
+                statusView.ProgressView.Value = 1;
+                statusView.StatusLabel.Text = "There was an issue while uploading";
+                statusDialog.Buttons[0].IsEnabled = true;
+                statusDialog.Buttons[0].Content = "Done";
+            });
         }
 
         private void OnPhotoInfoReturned(object sender, GetPhotoInfoEventArgs e)
         {
-            if (e.PhotoId != photoId)
-                return;
+            Dispatcher.BeginInvoke(() => {
+                if (e.PhotoId != photoId)
+                    return;
 
-            if (statusView == null)
-                return;
+                if (statusView == null)
+                    return;
 
-            statusView.ProgressView.Visibility = Visibility.Collapsed;
-            statusView.StatusLabel.Text = "Upload is complete";
-            statusDialog.Buttons[0].IsEnabled = true;
-            statusDialog.Buttons[0].Content = "Done";
+                statusView.ProgressView.Visibility = Visibility.Collapsed;
+                statusView.StatusLabel.Text = "Upload is complete";
+                statusDialog.Buttons[0].IsEnabled = true;
+                statusDialog.Buttons[0].Content = "Done";
+            });
 
         }
 
         private void OnPhotoInfoException(object sender, GetPhotoInfoExceptionEventArgs e)
         {
-            if (e.PhotoId != photoId)
-                return;
+            Dispatcher.BeginInvoke(() => {
+                if (e.PhotoId != photoId)
+                    return;
 
-            if (statusView == null)
-                return;
+                if (statusView == null)
+                    return;
 
-            statusView.ProgressView.Value = 1;
-            statusView.StatusLabel.Text = "Photo is uploaded, but cannot retrieve from server";
-            statusDialog.Buttons[0].IsEnabled = true;
-            statusDialog.Buttons[0].Content = "Done";
+                statusView.ProgressView.Value = 1;
+                statusView.StatusLabel.Text = "Photo is uploaded, but cannot retrieve from server";
+                statusDialog.Buttons[0].IsEnabled = true;
+                statusDialog.Buttons[0].Content = "Done";
+            });
         }
 
 

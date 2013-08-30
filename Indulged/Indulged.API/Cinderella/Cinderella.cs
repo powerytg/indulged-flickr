@@ -27,6 +27,9 @@ namespace Indulged.API.Cinderella
         // Upload events
         public EventHandler<UploadedPhotoInfoReturnedEventArgs> UploadedPhotoInfoReturned;
 
+        // Photo events
+        public EventHandler<PhotoInfoUpdatedEventArgs> PhotoInfoUpdated;
+
         // Group events
         public EventHandler<GroupListUpdatedEventArgs> GroupListUpdated;
         public EventHandler<GroupInfoUpdatedEventArgs> GroupInfoUpdated;

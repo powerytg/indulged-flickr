@@ -156,6 +156,7 @@
     <Compile Include="Cinderella\Events\GroupPhotoListUpdatedEventArgs.cs" />
     <Compile Include="Cinderella\Events\GroupSearchResultEventArgs.cs" />
     <Compile Include="Cinderella\Events\GroupTopicsUpdatedEventArgs.cs" />
+    <Compile Include="Cinderella\Events\PhotoInfoUpdatedEventArgs.cs" />
     <Compile Include="Cinderella\Events\PhotoSetListUpdatedEventArgs.cs" />
     <Compile Include="Cinderella\Events\PhotoSetPhotosUpdatedEventArgs.cs" />
     <Compile Include="Cinderella\Events\PhotoStreamUpdatedEventArgs.cs" />

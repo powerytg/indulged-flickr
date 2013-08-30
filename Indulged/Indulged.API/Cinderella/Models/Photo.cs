@@ -19,6 +19,7 @@ namespace Indulged.API.Cinderella.Models
         public int ViewCount { get; set; }
         public string LicenseId { get; set; }
         public List<string> Tags { get; set; }
+        public bool IsFavourite { get; set; }
 
         // EXIF
         public Dictionary<string, string> EXIF { get; set; }

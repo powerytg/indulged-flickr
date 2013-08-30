@@ -80,6 +80,9 @@ namespace Indulged.Plugins.Detail
             {
                 if (!Anaconda.AnacondaCore.IsGettingEXIFInfo(currentPhoto.ResourceId))
                     Anaconda.AnacondaCore.GetEXIFAsync(currentPhoto.ResourceId);
+
+                // Get photo info
+                Anaconda.AnacondaCore.GetPhotoInfoAsync(currentPhoto.ResourceId, Cinderella.CinderellaCore.CurrentUser.ResourceId, false);
             }
 
             if (PolicyKit.ShouldUseBlurredBackground)

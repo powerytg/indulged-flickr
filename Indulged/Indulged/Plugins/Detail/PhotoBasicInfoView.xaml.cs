@@ -12,6 +12,7 @@ using Indulged.API.Cinderella.Models;
 using Indulged.PolKit;
 using Microsoft.Phone.Tasks;
 using Indulged.API.Cinderella;
+using Indulged.API.Cinderella.Events;
 
 namespace Indulged.Plugins.Detail
 {
@@ -45,11 +46,35 @@ namespace Indulged.Plugins.Detail
                 User photoOwner = Cinderella.CinderellaCore.UserCache[PhotoSource.UserId];
                 UserRenderer.UserSource = photoOwner;
             }
+
+            // Favourite icon
+            if (PhotoSource.IsFavourite)
+                FavIconView.Visibility = Visibility.Visible;
+            else
+                FavIconView.Visibility = Visibility.Collapsed;
         }
 
         public PhotoBasicInfoView()
         {
             InitializeComponent();
+
+            // Events
+            Cinderella.CinderellaCore.PhotoInfoUpdated += OnPhotoInfoUpdated;
+        }
+
+        private void OnPhotoInfoUpdated(object sender, PhotoInfoUpdatedEventArgs e)
+        {
+            Dispatcher.BeginInvoke(() => {
+                if (e.PhotoId != PhotoSource.ResourceId)
+                    return;
+
+                // Favourite icon
+                if (PhotoSource.IsFavourite)
+                    FavIconView.Visibility = Visibility.Visible;
+                else
+                    FavIconView.Visibility = Visibility.Collapsed;
+
+            });
         }
 
         private void OnLicenseButtonClick(object sender, RoutedEventArgs e)

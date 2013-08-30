@@ -45,7 +45,12 @@ namespace Indulged.API.Cinderella.Factories
             photo.Server = json["server"].ToString();
             photo.Farm = json["farm"].ToString();
             photo.ViewCount = int.Parse(json["views"].ToString());
-            photo.Title = json["title"].ToString();
+            
+            if(json["title"].GetType() == typeof(JValue))
+                photo.Title = json["title"].ToString();
+            else
+                photo.Title = json["title"]["_content"].ToString();                
+            
             if (photo.Title.Length > CinderellaConstants.MaxTitleLength)
                 photo.Title = photo.Title.Substring(0, CinderellaConstants.MaxTitleLength) + "...";
 
@@ -70,6 +75,13 @@ namespace Indulged.API.Cinderella.Factories
                     photo.Tags = new List<string>(tagsString.Split(' '));
                 }
                 
+            }
+
+            // Favourite
+            JToken favValue;
+            if(json.TryGetValue("isfavorite", out favValue))
+            {
+                photo.IsFavourite = (json["isfavorite"].ToString() == "1");
             }
 
             return photo;
