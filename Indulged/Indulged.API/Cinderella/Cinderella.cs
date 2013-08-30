@@ -14,7 +14,7 @@ namespace Indulged.API.Cinderella
 {
     public partial class Cinderella
     {
-        // Photo events
+        // Stream events
         public EventHandler<PhotoStreamUpdatedEventArgs> PhotoStreamUpdated;
         public EventHandler<DiscoveryStreamUpdatedEventArgs> DiscoveryStreamUpdated;
         public EventHandler<EXIFUpdatedEventArgs> EXIFUpdated;
@@ -42,6 +42,9 @@ namespace Indulged.API.Cinderella
         // Photo set events
         public EventHandler<PhotoSetListUpdatedEventArgs> PhotoSetListUpdated;
         public EventHandler<PhotoSetPhotosUpdatedEventArgs> PhotoSetPhotosUpdated;
+
+        // Favourite events
+        public EventHandler<FavouriteStreamUpdatedEventArgs> FavouriteStreamUpdated;
 
         // Singleton
         private static Cinderella instance;
@@ -78,6 +81,10 @@ namespace Indulged.API.Cinderella
         public List<Photo> DiscoveryList { get; set; }
         public int TotalDiscoveryPhotosCount { get; set; }
 
+        // Favourite stream
+        public List<Photo> FavouriteList { get; set; }
+        public int TotalFavouritePhotosCount { get; set; }
+
         // Group cache
         public Dictionary<string, FlickrGroup> GroupCache { get; set; }
 
@@ -96,6 +103,9 @@ namespace Indulged.API.Cinderella
 
             // Discovery stream
             DiscoveryList = new List<Photo>();
+
+            // Favourite stream
+            FavouriteList = new List<Photo>();
 
             // Group cache
             GroupCache = new Dictionary<string, FlickrGroup>();
@@ -129,6 +139,9 @@ namespace Indulged.API.Cinderella
             Anaconda.Anaconda.AnacondaCore.PhotoRemovedFromGroup += OnPhotoRemovedFromGroup;
             Anaconda.Anaconda.AnacondaCore.TopicRepliesReturned += OnTopicRepliesReturned;
             Anaconda.Anaconda.AnacondaCore.GroupJoined += OnGroupJoined;
+
+            // Favourite
+            Anaconda.Anaconda.AnacondaCore.FavouriteStreamReturned += OnFavouriteStreamReturned;
         }
     }
 }

@@ -26,6 +26,9 @@ namespace Indulged.API.Anaconda
         // Retrieved photo stream for an user
         public EventHandler<GetPhotoStreamEventArgs> PhotoStreamReturned;
 
+        // Retrieved favourite stream for an user
+        public EventHandler<GetFavouriteStreamEventArgs> FavouriteStreamReturned;
+
         // Retrieved group list for an user
         public EventHandler<GetGroupListEventArgs> GroupListReturned;
 
