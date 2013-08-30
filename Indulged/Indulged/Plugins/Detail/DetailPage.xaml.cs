@@ -52,6 +52,8 @@ namespace Indulged.Plugins.Detail
                 CollectionContext = Cinderella.CinderellaCore.CurrentUser.Photos.ToList();
             else if (contextString == PolicyKit.DiscoveryStream)
                 CollectionContext = Cinderella.CinderellaCore.DiscoveryList.ToList();
+            else if (contextString == PolicyKit.FavouriteStream)
+                CollectionContext = Cinderella.CinderellaCore.FavouriteList.ToList();
             else if (contextTypeString != null)
             {
                 if (contextTypeString == "Group")
