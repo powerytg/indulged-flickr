@@ -46,49 +46,95 @@ namespace Indulged.Plugins.Dashboard
             Cinderella.CinderellaCore.PhotoStreamUpdated += OnPhotoStreamUpdated;
             Cinderella.CinderellaCore.UploadedPhotoInfoReturned += OnPhotoUploaded;
             Cinderella.CinderellaCore.DiscoveryStreamUpdated += OnDiscoveryStreamUpdated;
+            Cinderella.CinderellaCore.FavouriteStreamUpdated += OnFavouriteStreamUpdated;
         }
 
         // Photo uploaded
         private void OnPhotoUploaded(object sender, UploadedPhotoInfoReturnedEventArgs e)
         {
-            if (PolicyKit.VioletPageSubscription != PolicyKit.MyStream)
-                return;
+            Dispatcher.BeginInvoke(() => {
+                if (PolicyKit.VioletPageSubscription != PolicyKit.MyStream)
+                    return;
 
-            Photo newPhoto = Cinderella.CinderellaCore.PhotoCache[e.PhotoId];
-            List<Photo> newPhotos = new List<Photo> { newPhoto };
+                Photo newPhoto = Cinderella.CinderellaCore.PhotoCache[e.PhotoId];
+                List<Photo> newPhotos = new List<Photo> { newPhoto };
 
-            List<PhotoGroup> newGroups = VioletPhotoGroupFactory.GeneratePhotoGroup(newPhotos, PolicyKit.MyStream);
-            PhotoCollection.Insert(0, newGroups[0]);
+                List<PhotoGroup> newGroups = VioletPhotoGroupFactory.GeneratePhotoGroup(newPhotos, PolicyKit.MyStream);
+                PhotoCollection.Insert(0, newGroups[0]);
+            });
+        }
+
+        private void UpdateStreamVisibility()
+        {
+            if (PhotoCollection.Count == 0)
+            {
+                StatusLabel.Text = "You don't have items in this stream";
+                PhotoStreamListView.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                StatusLabel.Visibility = Visibility.Collapsed;
+                PhotoStreamListView.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void ShowLoadingScreen()
+        {
+            StatusLabel.Text = "Loading stream...";
+            StatusLabel.Visibility = Visibility.Visible;
+            PhotoStreamListView.Visibility = Visibility.Collapsed;
         }
 
         // Photo stream updated
         private void OnPhotoStreamUpdated(object sender, PhotoStreamUpdatedEventArgs e)
         {
-            if (e.NewPhotos.Count == 0 || e.UserId != Cinderella.CinderellaCore.CurrentUser.ResourceId)
-                return;
-
             Dispatcher.BeginInvoke(() => {
+                if (e.NewPhotos.Count == 0 || e.UserId != Cinderella.CinderellaCore.CurrentUser.ResourceId)
+                    return;
+
                 List<PhotoGroup> newGroups = VioletPhotoGroupFactory.GeneratePhotoGroup(e.NewPhotos, PolicyKit.MyStream);
                 foreach (var group in newGroups)
                 {
                     PhotoCollection.Add(group);
                 }
+
+                UpdateStreamVisibility();
             });
         }
 
         // Discovery stream updated
         private void OnDiscoveryStreamUpdated(object sender, DiscoveryStreamUpdatedEventArgs e)
         {
-            if (e.NewPhotos.Count == 0)
-                return;
-
             Dispatcher.BeginInvoke(() =>
             {
+                if (e.NewPhotos.Count == 0)
+                    return;
+                
                 List<PhotoGroup> newGroups = VioletPhotoGroupFactory.GeneratePhotoGroup(e.NewPhotos, PolicyKit.DiscoveryStream);
                 foreach (var group in newGroups)
                 {
                     PhotoCollection.Add(group);
                 }
+
+                UpdateStreamVisibility();
+            });
+        }
+
+        // Favourite stream updated
+        private void OnFavouriteStreamUpdated(object sender, FavouriteStreamUpdatedEventArgs e)
+        {
+            Dispatcher.BeginInvoke(() =>
+            {
+                if (e.NewPhotos.Count == 0)
+                    return;
+
+                List<PhotoGroup> newGroups = VioletPhotoGroupFactory.GeneratePhotoGroup(e.NewPhotos, PolicyKit.FavouriteStream);
+                foreach (var group in newGroups)
+                {
+                    PhotoCollection.Add(group);
+                }
+
+                UpdateStreamVisibility();
             });
         }
 
@@ -107,6 +153,8 @@ namespace Indulged.Plugins.Dashboard
                 canLoad = (!currentUser.IsLoadingPhotoStream && currentUser.Photos.Count < currentUser.PhotoCount);
             else if (PolicyKit.VioletPageSubscription == PolicyKit.DiscoveryStream)
                 canLoad = (!Anaconda.AnacondaCore.IsLoadingDiscoveryStream && Cinderella.CinderellaCore.DiscoveryList.Count < Cinderella.CinderellaCore.TotalDiscoveryPhotosCount);
+            else if (PolicyKit.VioletPageSubscription == PolicyKit.FavouriteStream)
+                canLoad = (!Anaconda.AnacondaCore.isLoadingFavStream && Cinderella.CinderellaCore.FavouriteList.Count < Cinderella.CinderellaCore.TotalFavouritePhotosCount);
 
             if (PhotoCollection.Count - index <= 2 && canLoad )
             {
@@ -121,6 +169,10 @@ namespace Indulged.Plugins.Dashboard
                 {
                     Anaconda.AnacondaCore.GetDiscoveryStreamAsync(new Dictionary<string, string> { { "page", page.ToString() }, { "per_page", PolicyKit.StreamItemsCountPerPage.ToString() } });
                 }
+                else if (PolicyKit.VioletPageSubscription == PolicyKit.FavouriteStream)
+                {
+                    Anaconda.AnacondaCore.GetFavouritePhotoStreamAsync(currentUser.ResourceId, new Dictionary<string, string> { { "page", page.ToString() }, { "per_page", PolicyKit.StreamItemsCountPerPage.ToString() } });
+                }
             }
         }
 
@@ -130,9 +182,10 @@ namespace Indulged.Plugins.Dashboard
                 return;
 
             PhotoCollection.Clear();
+
+            User currentUser = Cinderella.CinderellaCore.CurrentUser;
             if (PolicyKit.VioletPageSubscription == PolicyKit.MyStream)
             {
-                User currentUser = Cinderella.CinderellaCore.CurrentUser;
                 if (currentUser.Photos.Count > 0)
                 {
                     List<PhotoGroup> newGroups = VioletPhotoGroupFactory.GeneratePhotoGroup(currentUser.Photos);
@@ -143,6 +196,7 @@ namespace Indulged.Plugins.Dashboard
                 }
                 else
                 {
+                    ShowLoadingScreen();
                     Anaconda.AnacondaCore.GetPhotoStreamAsync(currentUser.ResourceId, new Dictionary<string, string> { { "page", "1" }, { "per_page", PolicyKit.StreamItemsCountPerPage.ToString() } });
                 }
                 
@@ -159,7 +213,24 @@ namespace Indulged.Plugins.Dashboard
                 }
                 else
                 {
+                    ShowLoadingScreen();
                     Anaconda.AnacondaCore.GetDiscoveryStreamAsync(new Dictionary<string, string> { { "page", "1" }, { "per_page", PolicyKit.StreamItemsCountPerPage.ToString() } });
+                }
+            }
+            else if (PolicyKit.VioletPageSubscription == PolicyKit.FavouriteStream)
+            {
+                if (Cinderella.CinderellaCore.FavouriteList.Count > 0)
+                {
+                    List<PhotoGroup> newGroups = VioletPhotoGroupFactory.GeneratePhotoGroup(Cinderella.CinderellaCore.FavouriteList);
+                    foreach (var group in newGroups)
+                    {
+                        PhotoCollection.Add(group);
+                    }
+                }
+                else
+                {
+                    ShowLoadingScreen();
+                    Anaconda.AnacondaCore.GetFavouritePhotoStreamAsync(currentUser.ResourceId, new Dictionary<string, string> { { "page", "1" }, { "per_page", PolicyKit.StreamItemsCountPerPage.ToString() } });
                 }
             }
         }

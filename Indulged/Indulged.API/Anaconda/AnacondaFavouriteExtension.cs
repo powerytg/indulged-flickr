@@ -12,7 +12,7 @@ namespace Indulged.API.Anaconda
 {
     public partial class AnacondaCore
     {
-        private bool isLoadingFavStream = false;
+        public bool isLoadingFavStream = false;
         public async void GetFavouritePhotoStreamAsync(string userId, Dictionary<string, string> parameters = null)
         {
             isLoadingFavStream = true;

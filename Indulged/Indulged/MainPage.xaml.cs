@@ -62,8 +62,11 @@ namespace Indulged
                 // Get the first page of current_user's photo stream
                 if(PolicyKit.VioletPageSubscription == PolicyKit.MyStream)
                     Anaconda.AnacondaCore.GetPhotoStreamAsync(Cinderella.CinderellaCore.CurrentUser.ResourceId, new Dictionary<string, string> { { "page", "1" }, { "per_page", PolicyKit.StreamItemsCountPerPage.ToString()} });
-                else
+                else if(PolicyKit.VioletPageSubscription == PolicyKit.DiscoveryStream)
                     Anaconda.AnacondaCore.GetDiscoveryStreamAsync(new Dictionary<string, string> { { "page", "1" }, { "per_page", PolicyKit.StreamItemsCountPerPage.ToString() } });
+                else if (PolicyKit.VioletPageSubscription == PolicyKit.FavouriteStream)
+                    Anaconda.AnacondaCore.GetFavouritePhotoStreamAsync(Cinderella.CinderellaCore.CurrentUser.ResourceId, new Dictionary<string, string> { { "page", "1" }, { "per_page", PolicyKit.StreamItemsCountPerPage.ToString() } });
+
             }
             else
             {

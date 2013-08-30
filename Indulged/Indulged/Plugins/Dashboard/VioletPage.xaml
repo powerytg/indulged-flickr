@@ -13,7 +13,10 @@
     d:DesignHeight="480" d:DesignWidth="480">
     
     <Grid x:Name="LayoutRoot">
-        <phone:LongListSelector x:Name="PhotoStreamListView" Margin="0,0,-12,0" ItemsSource="{Binding Items}" ItemRealized="OnItemRealized">
+        <!--Status label-->
+        <TextBlock x:Name="StatusLabel" HorizontalAlignment="Center" VerticalAlignment="Center" Text="Loading stream..."/>
+        
+        <phone:LongListSelector x:Name="PhotoStreamListView" Margin="0,0,-12,0" ItemsSource="{Binding Items}" ItemRealized="OnItemRealized" Visibility="Collapsed">
             <phone:LongListSelector.ItemTemplate>
                 <DataTemplate>
                     <local:VioletRendererSelector Content="{Binding}">
