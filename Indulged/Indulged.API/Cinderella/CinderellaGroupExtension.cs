@@ -256,5 +256,18 @@ namespace Indulged.API.Cinderella
             evt.NewReplies = newReplies;
             TopicRepliesUpdated.DispatchEvent(this, evt);
         }
+
+        private void OnGroupJoined(object sender, JoinGroupEventArgs e)
+        {
+            FlickrGroup group = GroupCache[e.GroupId];
+            if (group == null)
+                return;
+
+            CurrentUser.GroupIds.Add(group.ResourceId);
+
+            var evt = new GroupJoinedEventArgs();
+            evt.GroupId = group.ResourceId;
+            JoinGroupComplete.DispatchEvent(this, evt);
+        }
     }
 }

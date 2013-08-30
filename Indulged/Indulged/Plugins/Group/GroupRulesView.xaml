@@ -15,7 +15,7 @@
     
     <Grid x:Name="LayoutRoot">
         <ScrollViewer>
-            <TextBlock x:Name="RulesLabel" Foreground="White" Margin="14" FontSize="24"/>
+            <TextBlock x:Name="RulesLabel" Foreground="White" Margin="20" TextWrapping="Wrap"/>
         </ScrollViewer>
     </Grid>
 </UserControl>

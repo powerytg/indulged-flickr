@@ -64,6 +64,11 @@ namespace Indulged.API.Anaconda
         public EventHandler<RemovePhotoFromGroupEventArgs> PhotoRemovedFromGroup;
         public EventHandler<RemovePhotoFromGroupExceptionEventArgs> RemovePhotoFromGroupException;
 
+        public EventHandler<JoinGroupEventArgs> GroupJoined;
+        public EventHandler<JoinGroupExceptionEventArgs> JoinGroupException;
+        public EventHandler<JoinGroupRequestEventArgs> JoinGroupRequestComplete;
+        public EventHandler<JoinGroupRequestExceptionEventArgs> JoinGroupRequestException;
+
         // Upload
         public EventHandler<UploadPhotoEventArgs> PhotoUploaded;
         public EventHandler<UploadProgressEventArgs> PhotoUploadProgress;

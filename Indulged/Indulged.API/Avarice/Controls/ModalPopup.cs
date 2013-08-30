@@ -185,6 +185,7 @@ namespace Indulged.API.Avarice.Controls
                 titleLabel.FontSize = 42;
                 titleLabel.HorizontalAlignment = HorizontalAlignment.Center;
                 titleLabel.TextWrapping = TextWrapping.Wrap;
+                titleLabel.TextAlignment = TextAlignment.Center;
                 titleLabel.Margin = new Thickness(0, 8, 0, 8);
                 titleLabel.SetValue(Grid.RowProperty, 0);
                 contentView.Children.Add(titleLabel);
@@ -280,8 +281,11 @@ namespace Indulged.API.Avarice.Controls
             animation.Begin();
             animation.Completed += (sender, args) =>
             {
-                popupContainer.IsOpen = false;
-                popupContainer = null;
+                if (popupContainer != null)
+                {
+                    popupContainer.IsOpen = false;
+                    popupContainer = null;
+                }
 
                 Dispatcher.BeginInvoke(() =>
                 {
@@ -303,7 +307,7 @@ namespace Indulged.API.Avarice.Controls
             };
         }
 
-        public void ReplaceContentWith(string newTitle, FrameworkElement newElement, List<Avarice.Controls.Button> newButtons)
+        public void ReplaceContentWith(string newTitle, FrameworkElement newElement, List<Avarice.Controls.Button> newButtons, Action action = null)
         {
             double w = System.Windows.Application.Current.Host.Content.ActualWidth;
 
@@ -346,6 +350,9 @@ namespace Indulged.API.Avarice.Controls
             animation.Completed += (sender, e) => {
                 contentView.Children.Remove(contentElement);
                 contentElement = newElement;
+
+                if (action != null)
+                    action();
             };
             animation.Begin();
 
@@ -547,8 +554,11 @@ namespace Indulged.API.Avarice.Controls
             animation.Begin();
             animation.Completed += (sender, args) =>
             {
-                popupContainer.IsOpen = false;
-                popupContainer = null;
+                if (popupContainer != null)
+                {
+                    popupContainer.IsOpen = false;
+                    popupContainer = null;
+                }
 
                 var e = new ModalPopupEventArgs();
                 e.ButtonIndex = buttonIndex;

@@ -29,12 +29,21 @@ namespace Indulged.Plugins.Group
         {
             joinButton = new API.Avarice.Controls.Button();
             joinButton.Content = "Join Group";
+            joinButton.Click += (sender, e) => {
+                JoinGroup();
+            };
 
             browseButton = new API.Avarice.Controls.Button();
             browseButton.Content = "Browse";
+            browseButton.Click += (sender, e) => {
+                BrowseGroup();
+            };
 
             doneButton = new API.Avarice.Controls.Button();
             doneButton.Content = "Done";
+            doneButton.Click += (sender, e) => {
+                _popupContainer.Dismiss();
+            };
 
             if (!_group.IsInfoRetrieved)
             {
@@ -42,25 +51,7 @@ namespace Indulged.Plugins.Group
                 browseButton.IsEnabled = false;
             }
 
-            _popupContainer = ModalPopup.ShowWithButtons(this, _group.Name, new List<Indulged.API.Avarice.Controls.Button> { browseButton, joinButton, doneButton }, false);
-            _popupContainer.ButtonClick += (s, args) =>
-            {
-                int buttonIndex = (args as ModalPopupEventArgs).ButtonIndex;
-                if (buttonIndex == 0)
-                {
-                    _popupContainer.DismissWithAction(() => {
-                        BrowseGroup();
-                    });
-                }
-                else if (buttonIndex == 1)
-                {
-                    JoinGroup();
-                }
-                else if (buttonIndex == 2)
-                {
-                    _popupContainer.Dismiss();
-                }
-            };
+            _popupContainer = ModalPopup.ShowWithButtons(this, _group.Name, new List<Indulged.API.Avarice.Controls.Button> { browseButton, joinButton, doneButton }, false);            
         }
 
         private FlickrGroup _group;
@@ -146,18 +137,45 @@ namespace Indulged.Plugins.Group
 
         private void BrowseGroup()
         {
-            Frame rootVisual = System.Windows.Application.Current.RootVisual as Frame;
-            PhoneApplicationPage currentPage = (PhoneApplicationPage)rootVisual.Content;
-            currentPage.NavigationService.Navigate(new Uri("/Plugins/Group/GroupPage.xaml?group_id=" + _group.ResourceId, UriKind.Relative));
+            _popupContainer.DismissWithAction(() => {
+                Frame rootVisual = System.Windows.Application.Current.RootVisual as Frame;
+                PhoneApplicationPage currentPage = (PhoneApplicationPage)rootVisual.Content;
+                currentPage.NavigationService.Navigate(new Uri("/Plugins/Group/GroupPage.xaml?group_id=" + _group.ResourceId, UriKind.Relative));
+            });
         }
 
         private void JoinGroup()
         {
-            var rulesView = new GroupRulesView();
-            rulesView.GroupSource = Group;
-            rulesView.PopupContainer = _popupContainer;
+            if (Group.Rules != null && Group.Rules.Length > 0)
+            {
+                var rulesView = new GroupRulesView();
+                rulesView.GroupSource = Group;
+                rulesView.PopupContainer = _popupContainer;
 
-            _popupContainer.ReplaceContentWith("Group Rules", rulesView, rulesView.Buttons);
+                _popupContainer.ReplaceContentWith("Group Rules", rulesView, rulesView.Buttons);
+            }
+            else
+            {
+                if (Group.IsInvitationOnly)
+                {
+                    var requestView = new GroupJoinRequestView();
+                    requestView.Group = Group;
+                    requestView.PopupContainer = _popupContainer;
+
+                    _popupContainer.ReplaceContentWith("Invitation Request", requestView, requestView.Buttons);
+                }
+                else
+                {
+                    var statusView = new GroupJoiningStatusView();
+                    statusView.Group = Group;
+                    statusView.PopupContainer = _popupContainer;
+
+                    _popupContainer.ReplaceContentWith("Joinning Group", statusView, statusView.Buttons, () =>
+                    {
+                        statusView.BeginJoinGroup();
+                    });
+                }
+            }
         }
     }
 }

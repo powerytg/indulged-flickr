@@ -53,7 +53,26 @@ namespace Indulged.Plugins.Group
             joinButton = new API.Avarice.Controls.Button();
             joinButton.Content = "I Agree";
             joinButton.Click += (sender, e) => {
-                PopupContainer.Dismiss();
+                if (GroupSource.IsInvitationOnly)
+                {
+                    var requestView = new GroupJoinRequestView();
+                    requestView.Group = GroupSource;
+                    requestView.PopupContainer = PopupContainer;
+
+                    PopupContainer.ReplaceContentWith("Invitation Request", requestView, requestView.Buttons);
+                }
+                else
+                {
+                    var statusView = new GroupJoiningStatusView();
+                    statusView.Group = GroupSource;
+                    statusView.PopupContainer = PopupContainer;
+
+                    PopupContainer.ReplaceContentWith("Joinning Group", statusView, statusView.Buttons, () =>
+                    {
+                        statusView.BeginJoinGroup();
+                    });
+                }
+
             };
 
             cancelButton = new API.Avarice.Controls.Button();

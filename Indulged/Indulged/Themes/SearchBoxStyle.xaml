@@ -26,6 +26,7 @@ https://github.com/JoshClose/Windows.Controls
         <Setter Property="SelectionBackground" Value="{StaticResource PhoneAccentBrush}"/>
         <Setter Property="SelectionForeground" Value="{StaticResource PhoneTextBoxSelectionForegroundBrush}"/>
         <Setter Property="BorderThickness" Value="{StaticResource PhoneBorderThickness}"/>
+        <Setter Property="CaretBrush" Value="#ff00d9f3"/>
         <Setter Property="Padding" Value="2"/>
         <Setter Property="WatermarkStyle">
             <Setter.Value>

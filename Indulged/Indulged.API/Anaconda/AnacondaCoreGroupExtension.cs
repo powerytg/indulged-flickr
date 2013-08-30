@@ -456,6 +456,157 @@ namespace Indulged.API.Anaconda
                     exceptionArgs.SessionId = sessionId;
                     AddTopicReplyException.DispatchEvent(this, exceptionArgs);
                 });
+        }
+
+        public void JoinGroupAsync(string groupId, Dictionary<string, string> parameters = null)
+        {
+            string timestamp = DateTimeUtils.GetTimestamp();
+            string nonce = Guid.NewGuid().ToString().Replace("-", null);
+
+            Dictionary<string, string> paramDict = new Dictionary<string, string>();
+            paramDict["method"] = "flickr.groups.join";
+            paramDict["format"] = "json";
+            paramDict["nojsoncallback"] = "1";
+            paramDict["oauth_consumer_key"] = consumerKey;
+            paramDict["oauth_nonce"] = nonce;
+            paramDict["oauth_signature_method"] = "HMAC-SHA1";
+            paramDict["oauth_timestamp"] = timestamp;
+            paramDict["oauth_token"] = AccessToken;
+            paramDict["oauth_version"] = "1.0";
+            paramDict["group_id"] = groupId;
+
+            if (parameters != null)
+            {
+                foreach (var entry in parameters)
+                {
+                    paramDict[entry.Key] = entry.Value;
+                }
+            }
+
+            string signature = OAuthCalculateSignature("POST", "http://api.flickr.com/services/rest/", paramDict, AccessTokenSecret);
+            paramDict["oauth_signature"] = signature;
+
+            DispatchPostRequest("POST", "http://api.flickr.com/services/rest/", paramDict,
+                (response) =>
+                {
+                    bool success = true;
+                    string errorMessage = "";
+
+                    try
+                    {
+                        JObject json = JObject.Parse(response);
+                        string status = json["stat"].ToString();
+                        if (status != "ok")
+                        {
+                            success = false;
+                            errorMessage = json["message"].ToString();
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        Debug.WriteLine(e.Message);
+
+                        success = false;
+                    }
+
+                    if (!success)
+                    {
+                        var exceptionEvt = new JoinGroupExceptionEventArgs();
+                        exceptionEvt.GroupId = groupId;
+                        exceptionEvt.Message = errorMessage;
+                        JoinGroupException.DispatchEvent(this, exceptionEvt);
+                    }
+                    else
+                    {
+                        var evt = new JoinGroupEventArgs();
+                        evt.GroupId = groupId;
+                        GroupJoined.DispatchEvent(this, evt);
+                    }
+
+                }, (ex) =>
+                {
+                    var exceptionEvt = new JoinGroupExceptionEventArgs();
+                    exceptionEvt.GroupId = groupId;
+                    exceptionEvt.Message = "Unknown network error";
+                    JoinGroupException.DispatchEvent(this, exceptionEvt);
+                });
+
+
+        }
+
+        public void SendJoinGroupRequestAsync(string groupId, string message, Dictionary<string, string> parameters = null)
+        {
+            string timestamp = DateTimeUtils.GetTimestamp();
+            string nonce = Guid.NewGuid().ToString().Replace("-", null);
+
+            Dictionary<string, string> paramDict = new Dictionary<string, string>();
+            paramDict["method"] = "flickr.groups.joinRequest";
+            paramDict["format"] = "json";
+            paramDict["nojsoncallback"] = "1";
+            paramDict["oauth_consumer_key"] = consumerKey;
+            paramDict["oauth_nonce"] = nonce;
+            paramDict["oauth_signature_method"] = "HMAC-SHA1";
+            paramDict["oauth_timestamp"] = timestamp;
+            paramDict["oauth_token"] = AccessToken;
+            paramDict["oauth_version"] = "1.0";
+            paramDict["group_id"] = groupId;
+            paramDict["message"] = message;
+
+            if (parameters != null)
+            {
+                foreach (var entry in parameters)
+                {
+                    paramDict[entry.Key] = entry.Value;
+                }
+            }
+
+            string signature = OAuthCalculateSignature("POST", "http://api.flickr.com/services/rest/", paramDict, AccessTokenSecret);
+            paramDict["oauth_signature"] = signature;
+
+            DispatchPostRequest("POST", "http://api.flickr.com/services/rest/", paramDict,
+                (response) =>
+                {
+                    bool success = true;
+                    string errorMessage = "";
+
+                    try
+                    {
+                        JObject json = JObject.Parse(response);
+                        string status = json["stat"].ToString();
+                        if (status != "ok")
+                        {
+                            success = false;
+                            errorMessage = json["message"].ToString();
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        Debug.WriteLine(e.Message);
+
+                        success = false;
+                    }
+
+                    if (!success)
+                    {
+                        var exceptionEvt = new JoinGroupRequestExceptionEventArgs();
+                        exceptionEvt.GroupId = groupId;
+                        exceptionEvt.Message = errorMessage;
+                        JoinGroupRequestException.DispatchEvent(this, exceptionEvt);
+                    }
+                    else
+                    {
+                        var evt = new JoinGroupRequestEventArgs();
+                        evt.GroupId = groupId;
+                        JoinGroupRequestComplete.DispatchEvent(this, evt);
+                    }
+
+                }, (ex) =>
+                {
+                    var exceptionEvt = new JoinGroupRequestExceptionEventArgs();
+                    exceptionEvt.GroupId = groupId;
+                    exceptionEvt.Message = "Unknown network error";
+                    JoinGroupRequestException.DispatchEvent(this, exceptionEvt);
+                });
 
 
         }

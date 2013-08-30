@@ -32,9 +32,16 @@ namespace Indulged
             PolicyKit.RetrieveSettings();
         }
 
+        private bool hasExecutedOnce = false;
+
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
+
+            if (hasExecutedOnce)
+                return;
+
+            hasExecutedOnce = true;
 
             // Try to get credenticls
             bool tokenRetrieved = Anaconda.AnacondaCore.RetrieveAcessCredentials();

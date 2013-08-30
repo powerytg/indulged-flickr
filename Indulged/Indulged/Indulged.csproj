@@ -156,7 +156,16 @@
     <Compile Include="Plugins\Common\Renderers\TopicReplyRenderer.xaml.cs">
       <DependentUpon>TopicReplyRenderer.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Plugins\Group\GroupJoiningRequestStatusView.xaml.cs">
+      <DependentUpon>GroupJoiningRequestStatusView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Plugins\Group\GroupDiscussionPageComposerExtension.cs" />
+    <Compile Include="Plugins\Group\GroupJoiningStatusView.xaml.cs">
+      <DependentUpon>GroupJoiningStatusView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\Group\GroupJoinRequestView.xaml.cs">
+      <DependentUpon>GroupJoinRequestView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Plugins\Group\GroupRulesView.xaml.cs">
       <DependentUpon>GroupRulesView.xaml</DependentUpon>
     </Compile>
@@ -558,6 +567,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Plugins\Common\Renderers\TopicReplyRenderer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Plugins\Group\GroupJoiningRequestStatusView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Plugins\Group\GroupJoiningStatusView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Plugins\Group\GroupJoinRequestView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

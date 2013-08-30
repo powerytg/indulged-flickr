@@ -54,16 +54,28 @@ namespace Indulged.Plugins.Dashboard
             // Events
             Cinderella.CinderellaCore.PhotoSetListUpdated += OnPhotoSetListUpdated;
             Cinderella.CinderellaCore.GroupListUpdated += OnGroupListUpdated;
+            Cinderella.CinderellaCore.JoinGroupComplete += OnGroupJoined;
+        }
+
+        private void OnGroupJoined(object sender, GroupJoinedEventArgs e)
+        {
+            Dispatcher.BeginInvoke(() => {
+                FlickrGroup group = Cinderella.CinderellaCore.GroupCache[e.GroupId];
+                if (group == null || GroupList.Contains(group))
+                    return;
+
+                GroupList.Add(group);
+            });
         }
 
         // Stream updated
         private void OnPhotoSetListUpdated(object sender, PhotoSetListUpdatedEventArgs e)
         {
-            if (e.UserId != Cinderella.CinderellaCore.CurrentUser.ResourceId)
-                return;
-
             Dispatcher.BeginInvoke(() =>
             {
+                if (e.UserId != Cinderella.CinderellaCore.CurrentUser.ResourceId)
+                    return;
+                
                 PhotoSetList.Clear();
                 foreach (PhotoSet photoset in Cinderella.CinderellaCore.PhotoSetList)
                 {
@@ -75,11 +87,11 @@ namespace Indulged.Plugins.Dashboard
         // Group list updated
         private void OnGroupListUpdated(object sender, GroupListUpdatedEventArgs e)
         {
-            if (e.UserId != Cinderella.CinderellaCore.CurrentUser.ResourceId)
-                return;
-
             Dispatcher.BeginInvoke(() =>
             {
+                if (e.UserId != Cinderella.CinderellaCore.CurrentUser.ResourceId)
+                    return;
+                
                 GroupList.Clear();
                 foreach (FlickrGroup group in e.Groups)
                 {

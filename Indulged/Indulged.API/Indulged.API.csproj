@@ -119,6 +119,10 @@
     <Compile Include="Anaconda\Events\GetPopularTagListEventArgs.cs" />
     <Compile Include="Anaconda\Events\GetTopicRepliesEventArgs.cs" />
     <Compile Include="Anaconda\Events\GroupSearchEventArgs.cs" />
+    <Compile Include="Anaconda\Events\JoinGroupEventArgs.cs" />
+    <Compile Include="Anaconda\Events\JoinGroupExceptionEventArgs.cs" />
+    <Compile Include="Anaconda\Events\JoinGroupRequestEventArgs.cs" />
+    <Compile Include="Anaconda\Events\JoinGroupRequestExceptionEventArgs.cs" />
     <Compile Include="Anaconda\Events\PhotoSearchEventArgs.cs" />
     <Compile Include="Anaconda\Events\PhotoSetListEventArgs.cs" />
     <Compile Include="Anaconda\Events\RemovePhotoFromGroupEventArgs.cs" />
@@ -143,6 +147,7 @@
     <Compile Include="Cinderella\Events\DiscoveryStreamUpdatedEventArgs.cs" />
     <Compile Include="Cinderella\Events\EXIFUpdatedEventArgs.cs" />
     <Compile Include="Cinderella\Events\GroupInfoUpdatedEventArgs.cs" />
+    <Compile Include="Cinderella\Events\GroupJoinedEventArgs.cs" />
     <Compile Include="Cinderella\Events\GroupListUpdatedEventArgs.cs" />
     <Compile Include="Cinderella\Events\GroupPhotoListUpdatedEventArgs.cs" />
     <Compile Include="Cinderella\Events\GroupSearchResultEventArgs.cs" />
