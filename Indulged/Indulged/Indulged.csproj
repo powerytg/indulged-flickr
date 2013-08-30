@@ -156,6 +156,7 @@
     <Compile Include="Plugins\Common\Renderers\TopicReplyRenderer.xaml.cs">
       <DependentUpon>TopicReplyRenderer.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Plugins\Dashboard\PreludeItemModel.cs" />
     <Compile Include="Plugins\Group\GroupJoiningRequestStatusView.xaml.cs">
       <DependentUpon>GroupJoiningRequestStatusView.xaml</DependentUpon>
     </Compile>

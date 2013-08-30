@@ -26,7 +26,7 @@ namespace Indulged.Plugins.Dashboard
         }
 
         // "Special" streams
-        ObservableCollection<string> FeatureStreams;
+        ObservableCollection<PreludeItemModel> FeatureStreams;
 
         // Photo sets
         ObservableCollection<PhotoSet> PhotoSetList;
@@ -45,10 +45,10 @@ namespace Indulged.Plugins.Dashboard
             GroupList = new ObservableCollection<FlickrGroup>();
             GroupListView.ItemsSource = GroupList;
 
-            FeatureStreams = new ObservableCollection<string>();
-            FeatureStreams.Add("Prelude");
-            FeatureStreams.Add("Violet");
-            FeatureStreams.Add("Summersalt");
+            FeatureStreams = new ObservableCollection<PreludeItemModel>();
+            FeatureStreams.Add(new PreludeItemModel { Name = "Favourites" });
+            FeatureStreams.Add(new PreludeItemModel { Name = "Violet" });
+            FeatureStreams.Add(new PreludeItemModel { Name = "Summersalt" });
             FeatureListView.ItemsSource = FeatureStreams;
 
             // Events
@@ -114,16 +114,16 @@ namespace Indulged.Plugins.Dashboard
 
         private void OnFeatureListViewSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            string entry = (string)FeatureListView.SelectedItem;
-            if (entry == "Prelude")
+            PreludeItemModel entry = (PreludeItemModel)FeatureListView.SelectedItem;
+            if (entry.Name == "Prelude")
             {
                 // Ignore
             }
-            else if (entry == "Violet")
+            else if (entry.Name == "Violet")
             {
                 DashboardNavigator.RequestVioletPage(this, null);
             }
-            else if (entry == "Summersalt")
+            else if (entry.Name == "Summersalt")
             {
                 DashboardNavigator.RequestSummersaltPage(this, null);
             }

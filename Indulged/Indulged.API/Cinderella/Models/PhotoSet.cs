@@ -42,5 +42,13 @@ namespace Indulged.API.Cinderella.Models
         {
             return Title;
         }
+
+        public string Name
+        {
+            get
+            {
+                return Title;
+            }
+        }
     }
 }

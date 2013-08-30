@@ -52,7 +52,7 @@
             <Setter.Value>
                 <DataTemplate>
                     <StackPanel Margin="20,0,0,17">
-                        <TextBlock Text="{Binding}" TextWrapping="NoWrap" Foreground="#c5c5c5" FontSize="36" FontWeight="Light"/>
+                        <TextBlock Text="{Binding Name}" TextWrapping="NoWrap" Foreground="#c5c5c5" FontSize="36" FontWeight="Light"/>
                     </StackPanel>
                 </DataTemplate>
             </Setter.Value>
