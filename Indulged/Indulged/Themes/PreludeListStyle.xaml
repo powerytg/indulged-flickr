@@ -51,9 +51,14 @@
         <Setter Property="ItemTemplate">
             <Setter.Value>
                 <DataTemplate>
-                    <StackPanel Margin="20,0,0,17">
-                        <TextBlock Text="{Binding Name}" TextWrapping="NoWrap" Foreground="#c5c5c5" FontSize="36" FontWeight="Light"/>
-                    </StackPanel>
+                    <Grid Margin="20,0,0,17">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="{Binding Name}" TextWrapping="NoWrap" Foreground="#c5c5c5" FontSize="36" FontWeight="Light" VerticalAlignment="Center" Grid.Column="0"/>
+                        <Image Source="{Binding Icon}" VerticalAlignment="Center" Grid.Column="1" Width="36" Height="36" Margin="16, 0, 0, 0"/>
+                    </Grid>
                 </DataTemplate>
             </Setter.Value>
         </Setter>    

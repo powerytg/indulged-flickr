@@ -110,16 +110,16 @@ namespace Indulged.Plugins.Dashboard
 
             if (PhotoCollection.Count - index <= 2 && canLoad )
             {
-                int page = currentUser.Photos.Count / 100 + 1;
+                int page = currentUser.Photos.Count / PolicyKit.StreamItemsCountPerPage + 1;
                 System.Diagnostics.Debug.WriteLine("page=" + page.ToString());
 
                 if (PolicyKit.VioletPageSubscription == PolicyKit.MyStream)
                 {
-                    Anaconda.AnacondaCore.GetPhotoStreamAsync(currentUser.ResourceId, new Dictionary<string, string> { { "page", page.ToString() }, { "per_page", "100" } });
+                    Anaconda.AnacondaCore.GetPhotoStreamAsync(currentUser.ResourceId, new Dictionary<string, string> { { "page", page.ToString() }, { "per_page", PolicyKit.StreamItemsCountPerPage.ToString() } });
                 }
                 else if (PolicyKit.VioletPageSubscription == PolicyKit.DiscoveryStream)
                 {
-                    Anaconda.AnacondaCore.GetDiscoveryStreamAsync(new Dictionary<string, string> { { "page", page.ToString() }, { "per_page", "100" } });
+                    Anaconda.AnacondaCore.GetDiscoveryStreamAsync(new Dictionary<string, string> { { "page", page.ToString() }, { "per_page", PolicyKit.StreamItemsCountPerPage.ToString() } });
                 }
             }
         }
@@ -143,7 +143,7 @@ namespace Indulged.Plugins.Dashboard
                 }
                 else
                 {
-                    Anaconda.AnacondaCore.GetPhotoStreamAsync(currentUser.ResourceId, new Dictionary<string, string> { { "page", "1" }, { "per_page", "100" } });
+                    Anaconda.AnacondaCore.GetPhotoStreamAsync(currentUser.ResourceId, new Dictionary<string, string> { { "page", "1" }, { "per_page", PolicyKit.StreamItemsCountPerPage.ToString() } });
                 }
                 
             }
@@ -159,7 +159,7 @@ namespace Indulged.Plugins.Dashboard
                 }
                 else
                 {
-                    Anaconda.AnacondaCore.GetDiscoveryStreamAsync(new Dictionary<string, string> { { "page", "1" }, { "per_page", "100" } });
+                    Anaconda.AnacondaCore.GetDiscoveryStreamAsync(new Dictionary<string, string> { { "page", "1" }, { "per_page", PolicyKit.StreamItemsCountPerPage.ToString() } });
                 }
             }
         }

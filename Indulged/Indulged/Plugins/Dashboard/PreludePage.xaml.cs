@@ -46,9 +46,9 @@ namespace Indulged.Plugins.Dashboard
             GroupListView.ItemsSource = GroupList;
 
             FeatureStreams = new ObservableCollection<PreludeItemModel>();
-            FeatureStreams.Add(new PreludeItemModel { Name = "Favourites" });
             FeatureStreams.Add(new PreludeItemModel { Name = "Violet" });
             FeatureStreams.Add(new PreludeItemModel { Name = "Summersalt" });
+            FeatureStreams.Add(new PreludeItemModel { Name = "Favourites", Icon = new System.Windows.Media.Imaging.BitmapImage(new Uri("/Assets/Dashboard/Heart.png", UriKind.Relative)) });
             FeatureListView.ItemsSource = FeatureStreams;
 
             // Events

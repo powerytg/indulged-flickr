@@ -14,6 +14,8 @@ namespace Indulged.PolKit
 
         public const string MyStream = "MyStream";
         public const string DiscoveryStream = "DiscoveryStream";
+        public const string FavouriteStream = "FavouriteStream";
+        public const int StreamItemsCountPerPage = 100;
 
         public static string VioletPageSubscription { get; set; }
         

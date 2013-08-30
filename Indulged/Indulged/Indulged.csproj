@@ -1021,6 +1021,7 @@
     <Content Include="Assets\Common\SelectedIndicator.png" />
     <Content Include="Assets\Common\SliderThumb.png" />
     <Content Include="Assets\Common\View-Light.png" />
+    <Content Include="Assets\Dashboard\Heart.png" />
     <Content Include="Assets\Group\ComposerBottomShadow.png" />
     <Content Include="Assets\Group\SmallSelectionCircle.png" />
     <Content Include="Assets\ProCamera\WB-Cloudy-Selected.png" />

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media.Imaging;
 
 namespace Indulged.API.Cinderella.Models
 {
@@ -81,5 +82,6 @@ namespace Indulged.API.Cinderella.Models
             }
         }
 
+        public BitmapImage PreludeIcon {get;set;}
     }
 }

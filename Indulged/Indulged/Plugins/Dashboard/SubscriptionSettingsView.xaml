@@ -6,10 +6,11 @@
     mc:Ignorable="d"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
-    Foreground="{StaticResource PhoneForegroundBrush}" d:DesignWidth="480" Height="200">
+    Foreground="{StaticResource PhoneForegroundBrush}" d:DesignWidth="480" Height="265">
 
     <StackPanel x:Name="LayoutRoot" Orientation="Vertical">
-        <RadioButton x:Name="MyStreamButton" Content="My Photo Stream" GroupName="SubscriptionGroup" Margin="20, 20, 20, 8"/>
+        <RadioButton x:Name="MyStreamButton" Content="My Photo Stream" GroupName="SubscriptionGroup" Margin="20, 15, 20, 0"/>
+        <RadioButton x:Name="FavouriteStreamButton" Content="Favourite Stream" GroupName="SubscriptionGroup" Margin="20, 8, 20, 0"/>
         <RadioButton x:Name="DiscoveryStreamButton" Content="Discovery Stream" GroupName="SubscriptionGroup" Margin="20, 8, 20, 20"/>
     </StackPanel>
 </UserControl>

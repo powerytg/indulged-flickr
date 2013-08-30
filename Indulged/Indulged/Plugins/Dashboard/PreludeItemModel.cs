@@ -10,6 +10,6 @@ namespace Indulged.Plugins.Dashboard
     class PreludeItemModel
     {
         public string Name { get; set; }
-        public BitmapImage PreludeIcon {get;set;}
+        public BitmapImage Icon {get;set;}
     }
 }
