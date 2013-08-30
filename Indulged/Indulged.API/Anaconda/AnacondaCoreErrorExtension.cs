@@ -61,7 +61,7 @@ namespace Indulged.API.Anaconda
                     success = false;
                     string errorCode = json["code"].ToString();
                     errorTitle = "Flickr Issue";
-                    errorBody = "This operation cannot be completed at this time. \n Error Code: " + errorCode;
+                    errorBody = json["message"].ToString();
                 }
             }
             catch (Exception e)
