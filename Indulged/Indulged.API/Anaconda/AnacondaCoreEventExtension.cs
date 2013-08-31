@@ -76,5 +76,11 @@ namespace Indulged.API.Anaconda
         public EventHandler<UploadPhotoEventArgs> PhotoUploaded;
         public EventHandler<UploadProgressEventArgs> PhotoUploadProgress;
         public EventHandler<UploadPhotoErrorEventArgs> PhotoUploadError;
+
+        // Favourite
+        public EventHandler<AddFavouriteEventArgs> AddedPhotoAsFavourite;
+        public EventHandler<AddFavouriteExceptionEventArgs> AddPhotoAsFavouriteException;
+        public EventHandler<RemoveFavouriteEventArgs> RemovePhotoFromFavourite;
+        public EventHandler<RemoveFavouriteExceptionEventArgs> RemovePhotoFromFavouriteException;
     }
 }

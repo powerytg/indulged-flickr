@@ -1,7 +1,9 @@
 ﻿using Indulged.API.Anaconda.Events;
 using Indulged.API.Utils;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -63,6 +65,140 @@ namespace Indulged.API.Anaconda
                 args.Response = jsonString;
                 FavouriteStreamReturned.DispatchEvent(this, args);
             }
+        }
+
+        public void AddPhotoToFavouriteAsync(string photoId)
+        {
+            string timestamp = DateTimeUtils.GetTimestamp();
+            string nonce = Guid.NewGuid().ToString().Replace("-", null);
+
+            Dictionary<string, string> paramDict = new Dictionary<string, string>();
+            paramDict["method"] = "flickr.favorites.add";
+            paramDict["format"] = "json";
+            paramDict["nojsoncallback"] = "1";
+            paramDict["oauth_consumer_key"] = consumerKey;
+            paramDict["oauth_nonce"] = nonce;
+            paramDict["oauth_signature_method"] = "HMAC-SHA1";
+            paramDict["oauth_timestamp"] = timestamp;
+            paramDict["oauth_token"] = AccessToken;
+            paramDict["oauth_version"] = "1.0";
+            paramDict["photo_id"] = photoId;
+
+            string signature = OAuthCalculateSignature("POST", "http://api.flickr.com/services/rest/", paramDict, AccessTokenSecret);
+            paramDict["oauth_signature"] = signature;
+
+            DispatchPostRequest("POST", "http://api.flickr.com/services/rest/", paramDict,
+                (response) =>
+                {
+                     bool success = true;
+                    string errorMessage = "";
+
+                    try
+                    {
+                        JObject json = JObject.Parse(response);
+                        string status = json["stat"].ToString();
+                        if (status != "ok")
+                        {
+                            success = false;
+                            errorMessage = json["message"].ToString();
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        Debug.WriteLine(e.Message);
+
+                        success = false;
+                    }
+
+                    if (!success)
+                    {
+                        AddFavouriteExceptionEventArgs exceptionArgs = new AddFavouriteExceptionEventArgs();
+                        exceptionArgs.PhotoId = photoId;
+                        exceptionArgs.Message = errorMessage;
+                        AddPhotoAsFavouriteException.DispatchEvent(this, exceptionArgs);
+                    }
+                    else
+                    {
+                        AddFavouriteEventArgs args = new AddFavouriteEventArgs();
+                        args.PhotoId = photoId;
+                        AddedPhotoAsFavourite.DispatchEvent(this, args);
+                    }
+
+
+                }, (ex) =>
+                {
+                    AddFavouriteExceptionEventArgs exceptionArgs = new AddFavouriteExceptionEventArgs();
+                    exceptionArgs.PhotoId = photoId;
+                    exceptionArgs.Message = "Unknown network error";
+                    AddPhotoAsFavouriteException.DispatchEvent(this, exceptionArgs);
+                });
+        }
+
+        public void RemovePhotoFromFavouriteAsync(string photoId)
+        {
+            string timestamp = DateTimeUtils.GetTimestamp();
+            string nonce = Guid.NewGuid().ToString().Replace("-", null);
+
+            Dictionary<string, string> paramDict = new Dictionary<string, string>();
+            paramDict["method"] = "flickr.favorites.remove";
+            paramDict["format"] = "json";
+            paramDict["nojsoncallback"] = "1";
+            paramDict["oauth_consumer_key"] = consumerKey;
+            paramDict["oauth_nonce"] = nonce;
+            paramDict["oauth_signature_method"] = "HMAC-SHA1";
+            paramDict["oauth_timestamp"] = timestamp;
+            paramDict["oauth_token"] = AccessToken;
+            paramDict["oauth_version"] = "1.0";
+            paramDict["photo_id"] = photoId;
+
+            string signature = OAuthCalculateSignature("POST", "http://api.flickr.com/services/rest/", paramDict, AccessTokenSecret);
+            paramDict["oauth_signature"] = signature;
+
+            DispatchPostRequest("POST", "http://api.flickr.com/services/rest/", paramDict,
+                (response) =>
+                {
+                    bool success = true;
+                    string errorMessage = "";
+
+                    try
+                    {
+                        JObject json = JObject.Parse(response);
+                        string status = json["stat"].ToString();
+                        if (status != "ok")
+                        {
+                            success = false;
+                            errorMessage = json["message"].ToString();
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        Debug.WriteLine(e.Message);
+
+                        success = false;
+                    }
+
+                    if (!success)
+                    {
+                        RemoveFavouriteExceptionEventArgs exceptionArgs = new RemoveFavouriteExceptionEventArgs();
+                        exceptionArgs.PhotoId = photoId;
+                        exceptionArgs.Message = errorMessage;
+                        RemovePhotoFromFavouriteException.DispatchEvent(this, exceptionArgs);
+                    }
+                    else
+                    {
+                        RemoveFavouriteEventArgs args = new RemoveFavouriteEventArgs();
+                        args.PhotoId = photoId;
+                        RemovePhotoFromFavourite.DispatchEvent(this, args);
+                    }
+
+
+                }, (ex) =>
+                {
+                    RemoveFavouriteExceptionEventArgs exceptionArgs = new RemoveFavouriteExceptionEventArgs();
+                    exceptionArgs.PhotoId = photoId;
+                    exceptionArgs.Message = "Unknown network error";
+                    RemovePhotoFromFavouriteException.DispatchEvent(this, exceptionArgs);
+                });
         }
     }
 }

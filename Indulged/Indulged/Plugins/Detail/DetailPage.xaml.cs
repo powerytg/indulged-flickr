@@ -18,6 +18,7 @@ using Nokia.Graphics.Imaging;
 using Nokia.InteropServices.WindowsRuntime;
 using System.IO;
 using Windows.Storage.Streams;
+using Indulged.API.Avarice.Controls;
 
 namespace Indulged.Plugins.Detail
 {
@@ -90,6 +91,19 @@ namespace Indulged.Plugins.Detail
             else if (BackgroundImage.PhotoSource != null)
                 BackgroundImage.PhotoSource = null;
 
+        }
+
+        private void FavButton_Click(object sender, EventArgs e)
+        {
+            int selectedIndex = PhotoPivot.SelectedIndex;
+            Photo currentPhoto = CollectionContext[selectedIndex];
+
+            var statusView = new FavStatusView();
+            statusView.PhotoSource = currentPhoto;
+            var popupContainer = ModalPopup.ShowWithButtons(statusView, "Favourite", statusView.Buttons, false);
+            statusView.PopupContainer = popupContainer;
+
+            statusView.BeginFavRequest();
         }
 
     }

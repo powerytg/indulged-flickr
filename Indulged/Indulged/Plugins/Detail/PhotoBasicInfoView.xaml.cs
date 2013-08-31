@@ -60,6 +60,9 @@ namespace Indulged.Plugins.Detail
 
             // Events
             Cinderella.CinderellaCore.PhotoInfoUpdated += OnPhotoInfoUpdated;
+            Cinderella.CinderellaCore.PhotoAddedAsFavourite += OnAddedAsFavourite;
+            Cinderella.CinderellaCore.PhotoRemovedFromFavourite += OnRemovedFromFavourite;
+
         }
 
         private void OnPhotoInfoUpdated(object sender, PhotoInfoUpdatedEventArgs e)
@@ -89,6 +92,36 @@ namespace Indulged.Plugins.Detail
             WebBrowserTask wbTask = new WebBrowserTask();
             wbTask.Uri = new Uri(license.Url, UriKind.RelativeOrAbsolute);
             wbTask.Show();
+        }
+
+        private void OnAddedAsFavourite(object sender, PhotoAddedAsFavouriteEventArgs e)
+        {
+            Dispatcher.BeginInvoke(() =>
+            {
+                if (e.PhotoId != PhotoSource.ResourceId)
+                    return;
+
+                // Favourite icon
+                if (PhotoSource.IsFavourite)
+                    FavIconView.Visibility = Visibility.Visible;
+                else
+                    FavIconView.Visibility = Visibility.Collapsed;
+            });
+        }
+
+        private void OnRemovedFromFavourite(object sender, PhotoRemovedFromFavouriteEventArgs e)
+        {
+            Dispatcher.BeginInvoke(() =>
+            {
+                if (e.PhotoId != PhotoSource.ResourceId)
+                    return;
+
+                // Favourite icon
+                if (PhotoSource.IsFavourite)
+                    FavIconView.Visibility = Visibility.Visible;
+                else
+                    FavIconView.Visibility = Visibility.Collapsed;
+            });
         }
     }
 }

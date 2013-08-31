@@ -100,6 +100,8 @@
     <Compile Include="Anaconda\AnacondaCoreUploadExtension.cs" />
     <Compile Include="Anaconda\AnacondaCoreUserExtension.cs" />
     <Compile Include="Anaconda\AnacondaFavouriteExtension.cs" />
+    <Compile Include="Anaconda\Events\AddFavouriteEventArgs.cs" />
+    <Compile Include="Anaconda\Events\AddFavouriteExceptionEventArgs.cs" />
     <Compile Include="Anaconda\Events\AddPhotoToGroupExceptionEventArgs.cs" />
     <Compile Include="Anaconda\Events\AddTopicEventArgs.cs" />
     <Compile Include="Anaconda\Events\AddTopicExceptionEventArgs.cs" />
@@ -127,11 +129,13 @@
     <Compile Include="Anaconda\Events\JoinGroupRequestExceptionEventArgs.cs" />
     <Compile Include="Anaconda\Events\PhotoSearchEventArgs.cs" />
     <Compile Include="Anaconda\Events\PhotoSetListEventArgs.cs" />
+    <Compile Include="Anaconda\Events\RemoveFavouriteEventArgs.cs" />
     <Compile Include="Anaconda\Events\RemovePhotoFromGroupEventArgs.cs" />
     <Compile Include="Anaconda\Events\RemovePhotoFromGroupExceptionEventArgs.cs" />
     <Compile Include="Anaconda\Events\UploadPhotoErrorEventArgs.cs" />
     <Compile Include="Anaconda\Events\UploadPhotoEventArgs.cs" />
     <Compile Include="Anaconda\Events\UploadProgressEventArgs.cs" />
+    <Compile Include="Anaconda\RemoveFavouriteExceptionEventArgs.cs" />
     <Compile Include="Avarice\Controls\AvariceTextBox.cs" />
     <Compile Include="Cinderella\Cinderella.cs" />
     <Compile Include="Cinderella\CinderellaConstants.cs" />
@@ -156,7 +160,9 @@
     <Compile Include="Cinderella\Events\GroupPhotoListUpdatedEventArgs.cs" />
     <Compile Include="Cinderella\Events\GroupSearchResultEventArgs.cs" />
     <Compile Include="Cinderella\Events\GroupTopicsUpdatedEventArgs.cs" />
+    <Compile Include="Cinderella\Events\PhotoAddedAsFavouriteEventArgs.cs" />
     <Compile Include="Cinderella\Events\PhotoInfoUpdatedEventArgs.cs" />
+    <Compile Include="Cinderella\Events\PhotoRemovedFromFavouriteEventArgs.cs" />
     <Compile Include="Cinderella\Events\PhotoSetListUpdatedEventArgs.cs" />
     <Compile Include="Cinderella\Events\PhotoSetPhotosUpdatedEventArgs.cs" />
     <Compile Include="Cinderella\Events\PhotoStreamUpdatedEventArgs.cs" />

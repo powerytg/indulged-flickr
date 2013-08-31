@@ -98,10 +98,10 @@ namespace Indulged.Plugins.Group
         // Photo stream updated
         private void OnPhotoStreamUpdated(object sender, GroupPhotoListUpdatedEventArgs e)
         {
-            if (e.NewPhotos.Count == 0 || e.GroupId != Group.ResourceId)
-                return;
-
             Dispatcher.BeginInvoke(() => {
+                if (e.NewPhotos.Count == 0 || e.GroupId != Group.ResourceId)
+                    return;
+
                 if (e.Page == 1)
                     PhotoCollection.Clear();
 

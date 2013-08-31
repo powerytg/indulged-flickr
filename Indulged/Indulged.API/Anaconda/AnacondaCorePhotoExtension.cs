@@ -108,7 +108,8 @@ namespace Indulged.API.Anaconda
             HttpWebResponse response = await DispatchRequest("GET", requestUrl, null).ConfigureAwait(false);
             using (StreamReader reader = new StreamReader(response.GetResponseStream()))
             {
-                infoQueue.Remove(photoId);
+                if (infoQueue.Contains(photoId))
+                    infoQueue.Remove(photoId);
 
                 GetPhotoInfoExceptionEventArgs exceptionArgs = null;
                 if (response.StatusCode != HttpStatusCode.OK)

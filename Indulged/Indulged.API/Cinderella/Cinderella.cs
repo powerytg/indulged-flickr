@@ -48,6 +48,8 @@ namespace Indulged.API.Cinderella
 
         // Favourite events
         public EventHandler<FavouriteStreamUpdatedEventArgs> FavouriteStreamUpdated;
+        public EventHandler<PhotoAddedAsFavouriteEventArgs> PhotoAddedAsFavourite;
+        public EventHandler<PhotoRemovedFromFavouriteEventArgs> PhotoRemovedFromFavourite;
 
         // Singleton
         private static Cinderella instance;
@@ -145,6 +147,8 @@ namespace Indulged.API.Cinderella
 
             // Favourite
             Anaconda.Anaconda.AnacondaCore.FavouriteStreamReturned += OnFavouriteStreamReturned;
+            Anaconda.Anaconda.AnacondaCore.AddedPhotoAsFavourite += OnAddPhotoAsFavourite;
+            Anaconda.Anaconda.AnacondaCore.RemovePhotoFromFavourite += OnRemovePhotoFromFavourite;
         }
     }
 }

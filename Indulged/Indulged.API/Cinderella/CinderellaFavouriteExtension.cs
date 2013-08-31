@@ -45,5 +45,35 @@ namespace Indulged.API.Cinderella
             args.NewPhotos = newPhotos;
             FavouriteStreamUpdated.DispatchEvent(this, args);
         }
+
+        private void OnAddPhotoAsFavourite(object sender, AddFavouriteEventArgs e)
+        {
+            Photo photo = PhotoCache[e.PhotoId];
+            photo.IsFavourite = true;
+
+            if (FavouriteList.Contains(photo))
+                FavouriteList.Insert(0, photo);
+
+            TotalFavouritePhotosCount++;
+
+            var evt = new PhotoAddedAsFavouriteEventArgs();
+            evt.PhotoId = photo.ResourceId;
+            PhotoAddedAsFavourite.DispatchEvent(this, evt);
+        }
+
+        private void OnRemovePhotoFromFavourite(object sender, RemoveFavouriteEventArgs e)
+        {
+            Photo photo = PhotoCache[e.PhotoId];
+            photo.IsFavourite = false;
+
+            if (FavouriteList.Contains(photo))
+                FavouriteList.Remove(photo);
+
+            TotalFavouritePhotosCount--;
+
+            var evt = new PhotoRemovedFromFavouriteEventArgs();
+            evt.PhotoId = photo.ResourceId;
+            PhotoRemovedFromFavourite.DispatchEvent(this, evt);
+        }
     }
 }
