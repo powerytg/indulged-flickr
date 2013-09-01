@@ -24,27 +24,42 @@ namespace Indulged.Plugins.Detail
 {
     public partial class DetailPage : PhoneApplicationPage
     {        
+        // Events
+        public static EventHandler FullScreenRequest;
+
         // Constructor
         public DetailPage()
         {
             InitializeComponent();
+
+            // Events
+            FullScreenRequest += OnFullScreenRequest;
         }
 
         // Photo collection context
         public List<Photo> CollectionContext = new List<Photo>();
 
+        private bool executedOnce = false;
+        private string contextString = null;
+        private string contextTypeString = null;
+
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
 
+            if (executedOnce)
+                return;
+
+            executedOnce = true;
+
             string photoId = NavigationContext.QueryString["photo_id"];
             Photo currentPhoto = Cinderella.CinderellaCore.PhotoCache[photoId];
 
-            string contextString = null;
+            contextString = null;
             if(NavigationContext.QueryString.ContainsKey("context"))
                 contextString = NavigationContext.QueryString["context"];
 
-            string contextTypeString = null;
+            contextTypeString = null;
             if (NavigationContext.QueryString.ContainsKey("context_type"))
                 contextTypeString = NavigationContext.QueryString["context_type"];
 
@@ -91,6 +106,18 @@ namespace Indulged.Plugins.Detail
             else if (BackgroundImage.PhotoSource != null)
                 BackgroundImage.PhotoSource = null;
 
+        }
+
+        private void OnFullScreenRequest(object sender, EventArgs e)
+        {
+            int selectedIndex = PhotoPivot.SelectedIndex;
+            Photo currentPhoto = CollectionContext[selectedIndex];
+
+            string urlString = "/Plugins/Detail/FullScreenPage.xaml?photo_id=" + currentPhoto.ResourceId + "&context=" + contextString;
+            if (contextTypeString != null)
+                urlString += "&context_type=" + contextTypeString;
+
+            NavigationService.Navigate(new Uri(urlString, UriKind.Relative));
         }
 
         private void FavButton_Click(object sender, EventArgs e)

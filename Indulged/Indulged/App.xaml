@@ -13,6 +13,7 @@
                 <ResourceDictionary Source="Themes/NavigatorStyle.xaml"/>
                 <ResourceDictionary Source="Themes/PreludeListStyle.xaml"/>
                 <ResourceDictionary Source="Themes/PhotoNavigatorStyle.xaml"/>
+                <ResourceDictionary Source="Themes/FullScreenPhotoNavigatorStyle.xaml"/>
                 <ResourceDictionary Source="Themes/LicenseButtonStyle.xaml"/>
                 <ResourceDictionary Source="Themes/TagButtonStyle.xaml"/>
                 <ResourceDictionary Source="Themes/SearchBoxStyle.xaml"/>

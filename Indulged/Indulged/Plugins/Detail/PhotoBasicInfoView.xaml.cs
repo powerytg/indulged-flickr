@@ -125,5 +125,10 @@ namespace Indulged.Plugins.Detail
                     FavIconView.Visibility = Visibility.Collapsed;
             });
         }
+
+        private void Image_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            DetailPage.FullScreenRequest(this, null);
+        }
     }
 }
