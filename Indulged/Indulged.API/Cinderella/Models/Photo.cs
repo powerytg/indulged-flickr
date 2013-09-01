@@ -21,6 +21,8 @@ namespace Indulged.API.Cinderella.Models
         public List<string> Tags { get; set; }
         public bool IsFavourite { get; set; }
 
+        public int CommentCount { get; set; }
+
         // EXIF
         public Dictionary<string, string> EXIF { get; set; }
 

@@ -21,6 +21,10 @@
                                 <VisualState x:Name="MouseOver"/>
                                 <VisualState x:Name="Pressed">
                                     <Storyboard>
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity" Storyboard.TargetName="ButtonBackground">
+                                            <DiscreteDoubleKeyFrame KeyTime="0" Value="0.5">
+                                            </DiscreteDoubleKeyFrame>
+                                        </DoubleAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
                                 <VisualState x:Name="Disabled">

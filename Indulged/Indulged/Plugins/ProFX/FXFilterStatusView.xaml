@@ -17,20 +17,20 @@
         </Grid.ColumnDefinitions>
 
         <Button x:Name="BackButton" Grid.Column="0" Click="BackButton_Click"
-                BorderThickness="0" Padding="0" >
+                Style="{StaticResource BorderlessButtonStyle}" >
             <Button.Content>
-                <Image Source="/Assets/ProFX/FXBackward.png"/>
+                <Image Source="/Assets/ProFX/FXBackward.png" Width="16"/>
             </Button.Content>
         </Button>
 
         <Button x:Name="TitleButton" Foreground="#6d87f6" FontSize="34" FontFamily="/Assets/Fonts/BenchNine-Bold.ttf#BenchNine"
-                Content="Add Filter" BorderThickness="0" Padding="0" Margin="0" 
+                Content="Add Filter" Style="{StaticResource BorderlessButtonStyle}"
                 Grid.Column="1" Click="TitleButton_Click" />
 
         <Button x:Name="DeleteButton" Grid.Column="2" Click="DeleteButton_Click"
-                BorderThickness="0" Padding="0" >
+                Style="{StaticResource BorderlessButtonStyle}" >
             <Button.Content>
-                <Image Source="/Assets/ProFX/FXDelete.png"/>
+                <Image Source="/Assets/ProFX/FXDelete.png" Width="22"/>
             </Button.Content>
         </Button>
 

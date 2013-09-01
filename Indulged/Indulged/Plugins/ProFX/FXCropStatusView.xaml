@@ -17,14 +17,14 @@
         </Grid.ColumnDefinitions>
 
         <Button x:Name="BackButton" Grid.Column="0" Click="BackButton_Click"
-                BorderThickness="0" Padding="0" Content="Done" Foreground="#8e8e8e" FontSize="26" FontWeight="Light" />
+                Style="{StaticResource BorderlessButtonStyle}" Content="Done" Foreground="#8e8e8e" FontSize="26" FontWeight="Light" />
 
         <Button x:Name="TitleButton" Foreground="#f7941d" FontSize="34" FontFamily="/Assets/Fonts/BenchNine-Bold.ttf#BenchNine"
-                Content="Cropping" BorderThickness="0" Padding="0" Margin="0" 
+                Content="Cropping" Style="{StaticResource BorderlessButtonStyle}" 
                 Grid.Column="1" Click="TitleButton_Click" />
 
         <Button x:Name="ResetButton" Grid.Column="2" Click="ResetButton_Click"
-                BorderThickness="0" Padding="0" Content="Reset" Foreground="#8e8e8e" FontSize="26" FontWeight="Light" />
+                Style="{StaticResource BorderlessButtonStyle}" Content="Reset" Foreground="#8e8e8e" FontSize="26" FontWeight="Light" />
 
 
     </Grid>

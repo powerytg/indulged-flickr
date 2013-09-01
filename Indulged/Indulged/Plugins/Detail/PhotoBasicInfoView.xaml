@@ -43,6 +43,9 @@
         <Image x:Name="FavIconView" Source="/Assets/Dashboard/Heart.png" Grid.Row="0" VerticalAlignment="Bottom" HorizontalAlignment="Right"
                        Width="28" Height="28" Margin="0, 0, 2, 4" Visibility="Collapsed" />
 
+        <!--Stastic view-->
+        <renderer:DetailedPhotoStatView x:Name="StatView" Opacity="0.5" Grid.Row="0" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="8, 0, 0, 4"/>
+        
         <TextBlock Text="{Binding Title}" Foreground="#4a6e7b" FontSize="48" FontWeight="Light" TextWrapping="Wrap"
                    Margin="12, 0, 12, 12" 
                    Grid.Row="1" />

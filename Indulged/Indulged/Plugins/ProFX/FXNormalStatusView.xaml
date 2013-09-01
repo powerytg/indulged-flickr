@@ -25,10 +25,10 @@
         </Button>
 
         <Button x:Name="SettingsButton" Grid.Column="2"
-                BorderThickness="0" 
+                Style="{StaticResource BorderlessButtonStyle}"
                 Click="SettingsButton_Click">
             <Button.Content>
-                <Image Source="/Assets/ProFX/FXOptions.png"/>
+                <Image Source="/Assets/ProFX/FXOptions.png" Width="32"/>
             </Button.Content>
 
         </Button>

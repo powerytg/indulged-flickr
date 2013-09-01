@@ -45,7 +45,13 @@ namespace Indulged.API.Cinderella.Factories
             photo.Server = json["server"].ToString();
             photo.Farm = json["farm"].ToString();
             photo.ViewCount = int.Parse(json["views"].ToString());
-            
+
+            JToken commentCountValue;
+            if(json.TryGetValue("comments", out commentCountValue))
+            {
+                photo.CommentCount = int.Parse(json["comments"]["_content"].ToString());
+            }
+
             if(json["title"].GetType() == typeof(JValue))
                 photo.Title = json["title"].ToString();
             else

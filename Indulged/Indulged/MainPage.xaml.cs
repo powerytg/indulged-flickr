@@ -33,7 +33,6 @@ namespace Indulged
         }
 
         private bool hasExecutedOnce = false;
-        private int streamItemsPerPage = 100;
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {

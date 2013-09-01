@@ -143,6 +143,12 @@
     <Compile Include="Plugins\Common\PhotoGroupRenderers\CommonPhotoGroupRenderer5A.xaml.cs">
       <DependentUpon>CommonPhotoGroupRenderer5A.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Plugins\Common\Renderers\FavouritePhotoRenderer.xaml.cs">
+      <DependentUpon>FavouritePhotoRenderer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\Common\Renderers\DetailedPhotoStatView.xaml.cs">
+      <DependentUpon>DetailedPhotoStatView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Plugins\Common\Renderers\TopicReplyRendererSelector.cs" />
     <Compile Include="Plugins\Common\Renderers\ShortTimestampView.xaml.cs">
       <DependentUpon>ShortTimestampView.xaml</DependentUpon>
@@ -159,6 +165,9 @@
     <Compile Include="Plugins\Dashboard\PreludeItemModel.cs" />
     <Compile Include="Plugins\Detail\FavStatusView.xaml.cs">
       <DependentUpon>FavStatusView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\Favourite\FavouritePage.xaml.cs">
+      <DependentUpon>FavouritePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Plugins\Group\GroupJoiningRequestStatusView.xaml.cs">
       <DependentUpon>GroupJoiningRequestStatusView.xaml</DependentUpon>
@@ -558,6 +567,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Plugins\Common\Renderers\FavouritePhotoRenderer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Plugins\Common\Renderers\DetailedPhotoStatView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Plugins\Common\Renderers\ShortTimestampView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -577,6 +594,10 @@
     <Page Include="Plugins\Detail\FavStatusView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Plugins\Favourite\FavouritePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Plugins\Group\GroupJoiningRequestStatusView.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -1008,6 +1029,9 @@
     <ApplicationDefinition Include="Themes\FXHueSliderStyle.xaml">
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <ApplicationDefinition Include="Themes\BorderlessButtonStyle.xaml">
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
     <Page Include="Themes\PhotoNavigatorStyle.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -1028,6 +1052,7 @@
     <Content Include="Assets\Common\refresh.png" />
     <Content Include="Assets\Common\SelectedIndicator.png" />
     <Content Include="Assets\Common\SliderThumb.png" />
+    <Content Include="Assets\Common\UnFav.png" />
     <Content Include="Assets\Common\View-Light.png" />
     <Content Include="Assets\Dashboard\Heart.png" />
     <Content Include="Assets\Group\ComposerBottomShadow.png" />

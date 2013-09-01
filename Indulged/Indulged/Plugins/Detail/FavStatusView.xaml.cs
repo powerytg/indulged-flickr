@@ -26,13 +26,42 @@ namespace Indulged.Plugins.Detail
         private Indulged.API.Avarice.Controls.Button doneButton;
         public List<Indulged.API.Avarice.Controls.Button> Buttons { get; set; }
 
+        private bool _passInfoDetection = false;
+        public bool PassInfoDetection
+        {
+            get
+            {
+                return _passInfoDetection;
+            }
+
+            set
+            {
+                _passInfoDetection = value;
+            }
+        }
+
         public void BeginFavRequest()
         {
-            StatusLabel.Text = "Retrieving photo info";
             doneButton.IsEnabled = false;
 
-            // Refresh photo info
-            Anaconda.AnacondaCore.GetPhotoInfoAsync(PhotoSource.ResourceId, PhotoSource.UserId, false);
+            if (_passInfoDetection)
+            {
+                if (PhotoSource.IsFavourite)
+                {
+                    RemoveFavourite();
+                }
+                else
+                {
+                    AddToFavourite();
+                }
+            }
+            else
+            {
+                StatusLabel.Text = "Retrieving photo info";
+
+                // Refresh photo info
+                Anaconda.AnacondaCore.GetPhotoInfoAsync(PhotoSource.ResourceId, PhotoSource.UserId, false);
+            }
         }
 
         // Constructor

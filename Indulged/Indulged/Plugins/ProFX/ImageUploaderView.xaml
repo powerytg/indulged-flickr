@@ -25,18 +25,17 @@
             </Grid.RowDefinitions>
 
             <!-- Back button -->
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0, 0, 0, 0"
-                    Grid.Row="0" >
-                <Button x:Name="BackButton" BorderThickness="0" Background="Transparent" Padding="0" Margin="0, 0, 6, 0"
-                        VerticalAlignment="Center" HorizontalAlignment="Right" Click="BackButton_Click">
-                    <Button.Content>
-                        <Image Source="/Assets/ProFX/FXBackButton.png" Stretch="Uniform" Width="76"/>
-                    </Button.Content>
-                </Button>
+            <Button x:Name="BackButton" Style="{StaticResource BorderlessButtonStyle}" Margin="5, 5, 0, 0"
+                        HorizontalAlignment="Left" VerticalAlignment="Top" Click="BackButton_Click">
+                <Button.Content>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/Assets/ProFX/FXBackButton.png" Width="48" VerticalAlignment="Center"/>
+                        <TextBlock Text="back" FontWeight="Light" FontSize="36" Foreground="#2a80e1" VerticalAlignment="Center"
+                                   Margin="14, 0, 0, 0"/>
+                    </StackPanel>
 
-                <TextBlock Text="back" FontWeight="Light" FontSize="36" Foreground="#2a80e1"
-                           VerticalAlignment="Center" />
-            </StackPanel>
+                </Button.Content>
+            </Button>
 
             <StackPanel Orientation="Vertical" Grid.Row="1" Margin="20">
                 <TextBlock Foreground="#cccccc" FontWeight="Light" FontSize="24" Text="Essentials" HorizontalAlignment="Left"/>

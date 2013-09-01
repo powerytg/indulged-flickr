@@ -55,16 +55,19 @@
                 <Image Source="/Assets/ProFX/FXLogo.png" Width="185" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="24"/>
 
                 <!-- Next button -->
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0, 0, 0, 0">
-                    <TextBlock Text="NEXT" FontWeight="Light" FontSize="36" Foreground="#1c6579" FontFamily="/Assets/Fonts/BenchNine-Bold.ttf#BenchNine"
+                <Button x:Name="NextButton" Style="{StaticResource BorderlessButtonStyle}"
+                        VerticalAlignment="Top" HorizontalAlignment="Right" Click="NextButton_Click"
+                        Margin="0, 12, 5, 0">
+                    <Button.Content>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="NEXT" FontWeight="Light" FontSize="36" Foreground="#1c6579" FontFamily="/Assets/Fonts/BenchNine-Bold.ttf#BenchNine"
                            VerticalAlignment="Center" Margin="0, 0, 6, 0" />
-                    <Button x:Name="NextButton" BorderThickness="0" Background="Transparent" Padding="0" Margin="0"
-                        VerticalAlignment="Center" HorizontalAlignment="Right" Click="NextButton_Click">
-                        <Button.Content>
-                            <Image Source="/Assets/ProFX/FXNext.png" Width="50"/>
-                        </Button.Content>
-                    </Button>
-                </StackPanel>
+
+                            <Image Source="/Assets/ProFX/FXNext.png" Width="50" VerticalAlignment="Center"/>
+                        </StackPanel>
+
+                    </Button.Content>
+                </Button>
             </Grid>
 
             <!-- Bottom bar -->

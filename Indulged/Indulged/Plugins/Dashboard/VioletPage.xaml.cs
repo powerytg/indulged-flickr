@@ -150,27 +150,29 @@ namespace Indulged.Plugins.Dashboard
 
             bool canLoad = false;
             if (PolicyKit.VioletPageSubscription == PolicyKit.MyStream)
-                canLoad = (!currentUser.IsLoadingPhotoStream && currentUser.Photos.Count < currentUser.PhotoCount);
+                canLoad = (!currentUser.IsLoadingPhotoStream && currentUser.Photos.Count < currentUser.PhotoCount && currentUser.PhotoCount != 0);
             else if (PolicyKit.VioletPageSubscription == PolicyKit.DiscoveryStream)
-                canLoad = (!Anaconda.AnacondaCore.IsLoadingDiscoveryStream && Cinderella.CinderellaCore.DiscoveryList.Count < Cinderella.CinderellaCore.TotalDiscoveryPhotosCount);
+                canLoad = (!Anaconda.AnacondaCore.IsLoadingDiscoveryStream && Cinderella.CinderellaCore.DiscoveryList.Count < Cinderella.CinderellaCore.TotalDiscoveryPhotosCount && Cinderella.CinderellaCore.TotalDiscoveryPhotosCount != 0);
             else if (PolicyKit.VioletPageSubscription == PolicyKit.FavouriteStream)
-                canLoad = (!Anaconda.AnacondaCore.isLoadingFavStream && Cinderella.CinderellaCore.FavouriteList.Count < Cinderella.CinderellaCore.TotalFavouritePhotosCount);
+                canLoad = (!Anaconda.AnacondaCore.isLoadingFavStream && Cinderella.CinderellaCore.FavouriteList.Count < Cinderella.CinderellaCore.TotalFavouritePhotosCount && Cinderella.CinderellaCore.TotalFavouritePhotosCount != 0);
 
             if (PhotoCollection.Count - index <= 2 && canLoad )
             {
-                int page = currentUser.Photos.Count / PolicyKit.StreamItemsCountPerPage + 1;
-                System.Diagnostics.Debug.WriteLine("page=" + page.ToString());
+                int page = 1;
 
                 if (PolicyKit.VioletPageSubscription == PolicyKit.MyStream)
                 {
+                    page = currentUser.Photos.Count / PolicyKit.StreamItemsCountPerPage + 1;
                     Anaconda.AnacondaCore.GetPhotoStreamAsync(currentUser.ResourceId, new Dictionary<string, string> { { "page", page.ToString() }, { "per_page", PolicyKit.StreamItemsCountPerPage.ToString() } });
                 }
                 else if (PolicyKit.VioletPageSubscription == PolicyKit.DiscoveryStream)
                 {
+                    page = Cinderella.CinderellaCore.DiscoveryList.Count / PolicyKit.StreamItemsCountPerPage + 1;
                     Anaconda.AnacondaCore.GetDiscoveryStreamAsync(new Dictionary<string, string> { { "page", page.ToString() }, { "per_page", PolicyKit.StreamItemsCountPerPage.ToString() } });
                 }
                 else if (PolicyKit.VioletPageSubscription == PolicyKit.FavouriteStream)
                 {
+                    page = Cinderella.CinderellaCore.FavouriteList.Count / PolicyKit.StreamItemsCountPerPage + 1;
                     Anaconda.AnacondaCore.GetFavouritePhotoStreamAsync(currentUser.ResourceId, new Dictionary<string, string> { { "page", page.ToString() }, { "per_page", PolicyKit.StreamItemsCountPerPage.ToString() } });
                 }
             }

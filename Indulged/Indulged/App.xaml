@@ -29,6 +29,7 @@
                 <ResourceDictionary Source="Themes/FXRadioButtonStyle.xaml"/>
                 <ResourceDictionary Source="Themes/FXSliderStyle.xaml"/>
                 <ResourceDictionary Source="Themes/FXHueSliderStyle.xaml"/>
+                <ResourceDictionary Source="Themes/BorderlessButtonStyle.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
             <Style x:Key="TransitionPageStyle" TargetType="phone:PhoneApplicationPage">

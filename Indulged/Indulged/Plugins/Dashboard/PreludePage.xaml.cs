@@ -9,6 +9,8 @@ using System.Collections.ObjectModel;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 
+using Indulged.PolKit;
+using Indulged.API.Utils;
 using Indulged.API.Cinderella;
 using Indulged.API.Cinderella.Models;
 using Indulged.API.Cinderella.Events;
@@ -114,10 +116,21 @@ namespace Indulged.Plugins.Dashboard
 
         private void OnFeatureListViewSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            if (FeatureListView.SelectedItem == null)
+                return;
+
             PreludeItemModel entry = (PreludeItemModel)FeatureListView.SelectedItem;
-            if (entry.Name == "Prelude")
+            if (entry.Name == "Favourites")
             {
-                // Ignore
+                if (PolicyKit.VioletPageSubscription == PolicyKit.FavouriteStream)
+                    DashboardNavigator.RequestVioletPage(this, null);
+                else
+                {
+                    Frame rootVisual = System.Windows.Application.Current.RootVisual as Frame;
+                    PhoneApplicationPage currentPage = (PhoneApplicationPage)rootVisual.Content;
+                    currentPage.NavigationService.Navigate(new Uri("/Plugins/Favourite/FavouritePage.xaml", UriKind.Relative));
+                }
+
             }
             else if (entry.Name == "Violet")
             {
