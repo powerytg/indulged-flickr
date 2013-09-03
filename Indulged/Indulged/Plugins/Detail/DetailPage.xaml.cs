@@ -101,6 +101,9 @@ namespace Indulged.Plugins.Detail
                 Anaconda.AnacondaCore.GetPhotoInfoAsync(currentPhoto.ResourceId, Cinderella.CinderellaCore.CurrentUser.ResourceId, false);
             }
 
+            // Download comments
+            Anaconda.AnacondaCore.GetPhotoCommentsAsync(currentPhoto.ResourceId);
+
             if (PolicyKit.ShouldUseBlurredBackground)
                 BackgroundImage.PhotoSource = currentPhoto;
             else if (BackgroundImage.PhotoSource != null)

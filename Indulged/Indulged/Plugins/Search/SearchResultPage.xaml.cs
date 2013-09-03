@@ -15,6 +15,8 @@ namespace Indulged.Plugins.Search
 {
     public partial class SearchResultPage : PhoneApplicationPage
     {
+        private bool executedOnce = false;
+
         // Constructor
         public SearchResultPage()
         {
@@ -24,6 +26,11 @@ namespace Indulged.Plugins.Search
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
+
+            if (executedOnce)
+                return;
+
+            executedOnce = true;
 
             string tags = null;
             string query = null;

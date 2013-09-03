@@ -70,6 +70,16 @@ namespace Indulged.Plugins.Detail
 
             PhotoPivot.ItemsSource = CollectionContext;
             PhotoPivot.SelectedIndex = CollectionContext.IndexOf(currentPhoto);
+
+            // Total photo count label
+            TotalLabel.Text = "/ " + CollectionContext.Count.ToString();
+        }
+
+        private void PhotoPivot_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            int selectedIndex = PhotoPivot.SelectedIndex;
+            CurrentIndexLabel.Text = (selectedIndex + 1).ToString();
+
         }
 
 

@@ -43,6 +43,9 @@ namespace Indulged.API.Anaconda
         public EventHandler<GetPhotoInfoEventArgs> PhotoInfoReturned;
         public EventHandler<GetPhotoInfoExceptionEventArgs> PhotoInfoException;
 
+        // Photo comments
+        public EventHandler<GetPhotoCommentsEventArgs> PhotoCommentsReturned;
+        public EventHandler<GetPhotoCommentsExceptionEventArgs> GetPhotoCommentsException;
 
         // Popular tag list returned
         public EventHandler<GetPopularTagListEventArgs> PopularTagListReturned;

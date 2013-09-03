@@ -67,6 +67,35 @@ namespace Indulged.API.Cinderella
             PhotoUploadCompleted.DispatchEvent(this, evt);
              * */
         }
-        
+
+        private void OnPhotoCommentsReturned(object sender, GetPhotoCommentsEventArgs e)
+        {
+            if (!PhotoCache.ContainsKey(e.PhotoId))
+                return;
+
+            Photo photo = PhotoCache[e.PhotoId];
+
+            // Hack prevent evulation func timeout
+            if (e.Response.Contains("_content"))
+            {                
+                JObject rawJson = JObject.Parse(e.Response);
+                JObject rootJson = (JObject)rawJson["comments"];
+
+                photo.Comments.Clear();
+
+                foreach (var entry in rootJson["comment"])
+                {
+                    JObject commentJObject = (JObject)entry;
+                    PhotoComment comment = PhotoCommentFactory.PhotoCommentWithJObject(commentJObject, photo);
+                    photo.Comments.Add(comment);
+                }
+
+            }
+
+
+            PhotoCommentsUpdatedEventArgs evt = new PhotoCommentsUpdatedEventArgs();
+            evt.PhotoId = photo.ResourceId;
+            PhotoCommentsUpdated.DispatchEvent(this, evt);
+        }
     }
 }

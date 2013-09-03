@@ -54,7 +54,7 @@
 
         <renderer:SmallUserInfoRenderer x:Name="UserRenderer" Grid.Row="2" Margin="12, 0, 12, 12" />
         
-        <TextBlock Text="{Binding Description}" Foreground="#8b93a0" FontSize="24" FontWeight="Light" TextWrapping="Wrap"
+        <TextBlock x:Name="DescriptionLabel" Text="{Binding Description}" Foreground="#8b93a0" FontSize="24" FontWeight="Light" TextWrapping="Wrap"
                    Margin="12, 0, 12, 12" 
                    Grid.Row="3" />
 

@@ -149,6 +149,9 @@
     <Compile Include="Plugins\Common\Renderers\DetailedPhotoStatView.xaml.cs">
       <DependentUpon>DetailedPhotoStatView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Plugins\Common\Renderers\PhotoCommentDigestRenderer.xaml.cs">
+      <DependentUpon>PhotoCommentDigestRenderer.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Plugins\Common\Renderers\TopicReplyRendererSelector.cs" />
     <Compile Include="Plugins\Common\Renderers\ShortTimestampView.xaml.cs">
       <DependentUpon>ShortTimestampView.xaml</DependentUpon>
@@ -163,6 +166,9 @@
       <DependentUpon>TopicReplyRenderer.xaml</DependentUpon>
     </Compile>
     <Compile Include="Plugins\Dashboard\PreludeItemModel.cs" />
+    <Compile Include="Plugins\Detail\PhotoCommentsView.xaml.cs">
+      <DependentUpon>PhotoCommentsView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Plugins\Detail\FullScreenPhotoView.xaml.cs">
       <DependentUpon>FullScreenPhotoView.xaml</DependentUpon>
     </Compile>
@@ -581,6 +587,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Plugins\Common\Renderers\PhotoCommentDigestRenderer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Plugins\Common\Renderers\ShortTimestampView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -596,6 +606,10 @@
     <Page Include="Plugins\Common\Renderers\TopicReplyRenderer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Plugins\Detail\PhotoCommentsView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Plugins\Detail\FullScreenPhotoView.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -1065,6 +1079,7 @@
     <Content Include="Assets\Common\cancel.png" />
     <Content Include="Assets\Common\check.png" />
     <Content Include="Assets\Common\Comment.png" />
+    <Content Include="Assets\Common\FullBackButton.png" />
     <Content Include="Assets\Common\like.png" />
     <Content Include="Assets\Common\refresh.png" />
     <Content Include="Assets\Common\SelectedIndicator.png" />

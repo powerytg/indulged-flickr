@@ -1,0 +1,38 @@
+﻿<UserControl x:Class="Indulged.Plugins.Detail.PhotoCommentsView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:renderer="clr-namespace:Indulged.Plugins.Common.Renderers"
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    d:DesignHeight="480" d:DesignWidth="480"
+    MinHeight="36">
+    
+    <Grid x:Name="LayoutRoot">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Comments" Foreground="#4a6e7b" FontSize="48" FontWeight="Light" TextWrapping="Wrap"
+                   Margin="12, 0, 12, 12" 
+                   Grid.Row="0" />
+
+        <TextBlock x:Name="LoadingView" Text="Loading comments" Foreground="#8b93a0" FontSize="24" FontWeight="Light"
+                   Margin="12, 12, 12, 12" Grid.Row="1"/>
+
+        <renderer:PhotoCommentDigestRenderer x:Name="renderer1" Grid.Row="2"/>
+        <renderer:PhotoCommentDigestRenderer x:Name="renderer2" Grid.Row="3"/>
+        <renderer:PhotoCommentDigestRenderer x:Name="renderer3" Grid.Row="4"/>
+        <Button x:Name="ViewAllButton" Content="view all..." Style="{StaticResource BorderlessButtonStyle}" Grid.Row="5"
+                FontSize="21" Foreground="#7285ab" />
+    </Grid>
+</UserControl>

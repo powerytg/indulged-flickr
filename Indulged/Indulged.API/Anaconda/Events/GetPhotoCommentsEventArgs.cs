@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace Indulged.API.Anaconda.Events
 {
-    public class GetPhotoInfoExceptionEventArgs : EventArgs
+    public class GetPhotoCommentsEventArgs : EventArgs
     {
         public string PhotoId { get; set; }
+        public string Response { get; set; }
     }
 }

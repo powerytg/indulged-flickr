@@ -54,6 +54,12 @@ namespace Indulged.Plugins.Detail
                 FavIconView.Visibility = Visibility.Collapsed;
 
             StatView.PhotoSource = PhotoSource;
+
+            // Description
+            if (PhotoSource.Description.Length > 0)
+                DescriptionLabel.Visibility = Visibility.Visible;
+            else
+                DescriptionLabel.Visibility = Visibility.Collapsed;
         }
 
         public PhotoBasicInfoView()

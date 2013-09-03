@@ -116,6 +116,8 @@
     <Compile Include="Anaconda\Events\GetGroupListEventArgs.cs" />
     <Compile Include="Anaconda\Events\GetGroupPhotosEventArgs.cs" />
     <Compile Include="Anaconda\Events\GetGroupTopicsEventArgs.cs" />
+    <Compile Include="Anaconda\Events\GetPhotoCommentsEventArgs.cs" />
+    <Compile Include="Anaconda\Events\GetPhotoCommentsExceptionEventArgs.cs" />
     <Compile Include="Anaconda\Events\GetPhotoInfoEventArgs.cs" />
     <Compile Include="Anaconda\Events\GetPhotoInfoExceptionEventArgs.cs" />
     <Compile Include="Anaconda\Events\GetPhotoSetPhotosEventArgs.cs" />
@@ -161,6 +163,7 @@
     <Compile Include="Cinderella\Events\GroupSearchResultEventArgs.cs" />
     <Compile Include="Cinderella\Events\GroupTopicsUpdatedEventArgs.cs" />
     <Compile Include="Cinderella\Events\PhotoAddedAsFavouriteEventArgs.cs" />
+    <Compile Include="Cinderella\Events\PhotoCommentsUpdatedEventArgs.cs" />
     <Compile Include="Cinderella\Events\PhotoInfoUpdatedEventArgs.cs" />
     <Compile Include="Cinderella\Events\PhotoRemovedFromFavouriteEventArgs.cs" />
     <Compile Include="Cinderella\Events\PhotoSetListUpdatedEventArgs.cs" />
@@ -173,6 +176,7 @@
     <Compile Include="Cinderella\Events\TopicRepliesUpdatedEventArgs.cs" />
     <Compile Include="Cinderella\Events\UploadedPhotoInfoReturnedEventArgs.cs" />
     <Compile Include="Cinderella\Factories\FlickrGroupFactory.cs" />
+    <Compile Include="Cinderella\Factories\PhotoCommentFactory.cs" />
     <Compile Include="Cinderella\Factories\PhotoEXIFFactory.cs" />
     <Compile Include="Cinderella\Factories\PhotoFactory.cs" />
     <Compile Include="Cinderella\Factories\PhotoSetFactory.cs" />
@@ -182,6 +186,7 @@
     <Compile Include="Cinderella\Models\FlickrGroup.cs" />
     <Compile Include="Cinderella\Models\ModelBase.cs" />
     <Compile Include="Cinderella\Models\Photo.cs" />
+    <Compile Include="Cinderella\Models\PhotoComment.cs" />
     <Compile Include="Cinderella\Models\PhotoGroup.cs" />
     <Compile Include="Cinderella\Models\PhotoSet.cs" />
     <Compile Include="Cinderella\Models\PhotoTag.cs" />
