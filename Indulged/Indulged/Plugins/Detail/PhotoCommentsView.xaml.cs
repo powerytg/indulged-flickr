@@ -54,6 +54,7 @@ namespace Indulged.Plugins.Detail
             // Events
             Anaconda.AnacondaCore.GetPhotoCommentsException += OnGetCommentsException;
             Cinderella.CinderellaCore.PhotoCommentsUpdated += OnCommentsUpdated;
+            Cinderella.CinderellaCore.AddPhotoCommentCompleted += OnAddCommentComplete;
         }
 
         private void UpdateItemRenderers()
@@ -89,6 +90,16 @@ namespace Indulged.Plugins.Detail
 
         }
     
+        private void OnAddCommentComplete(object sender, AddPhotoCommentCompleteEventArgs e)
+        {
+            Dispatcher.BeginInvoke(() =>
+            {
+                if (e.PhotoId != PhotoSource.ResourceId)
+                    return;
+
+                UpdateItemRenderers();
+            });
+        }    
 
         private void OnGetCommentsException(object sender, GetPhotoCommentsExceptionEventArgs e)
         {
@@ -109,6 +120,14 @@ namespace Indulged.Plugins.Detail
 
                 UpdateItemRenderers();
             });
+        }
+
+        private void ViewAllButton_Click(object sender, RoutedEventArgs e)
+        {
+            Frame rootVisual = System.Windows.Application.Current.RootVisual as Frame;
+            PhoneApplicationPage currentPage = (PhoneApplicationPage)rootVisual.Content;
+            currentPage.NavigationService.Navigate(new Uri("/Plugins/Detail/DetailCommentsPage.xaml?photo_id=" + PhotoSource.ResourceId, UriKind.Relative));
+
         }
 
     }

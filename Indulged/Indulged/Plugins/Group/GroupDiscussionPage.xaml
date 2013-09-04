@@ -53,7 +53,7 @@
                                     Margin="0, 0, 0, 100" Grid.Row="1">
             <phone:LongListSelector.ItemTemplate>
                 <DataTemplate>
-                    <renderers:TopicReplyRendererSelector Content="{Binding}">
+                    <renderers:TopicReplyRendererSelector Content="{Binding}" HorizontalContentAlignment="Stretch">
                         <renderers:TopicReplyRendererSelector.TopicTemplate>
                             <DataTemplate>
                                 <renderers:TopicHeaderRenderer TopicSource="{Binding}"/>

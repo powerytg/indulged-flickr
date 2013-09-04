@@ -17,11 +17,18 @@
     shell:SystemTray.IsVisible="True" shell:SystemTray.Opacity="0" 
     Style="{StaticResource TransitionPageStyle}">
 
-    <phone:PhoneApplicationPage.ApplicationBar>
-        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="False" Mode="Default" Opacity="0.85">
+    <phone:PhoneApplicationPage.Resources>
+        <shell:ApplicationBar x:Key="PhotoPageAppBar" IsVisible="True" IsMenuEnabled="False" Mode="Default" Opacity="0.85" >
             <shell:ApplicationBarIconButton x:Name="FavButton" IconUri="/Assets/Common/like.png" Text="like/unlike" Click="FavButton_Click"/>
+            <shell:ApplicationBarIconButton x:Name="CommentButton" IconUri="/Assets/Common/AddComment.png" Text="comment" Click="CommentButton_Click"/>
         </shell:ApplicationBar>
-    </phone:PhoneApplicationPage.ApplicationBar>
+
+        <shell:ApplicationBar x:Key="ComposerAppBar" IsVisible="True" IsMenuEnabled="False" Mode="Default" Opacity="1" >
+            <shell:ApplicationBarIconButton x:Name="ComfirmAddCommentButton" IconUri="/Assets/Common/check.png" Text="Confirm" Click="ComfirmAddCommentButton_Click"/>
+            <shell:ApplicationBarIconButton x:Name="CancelAddCommentButton" IconUri="/Assets/Common/cancel.png" Text="Cancel" Click="CancelAddCommentButton_Click"/>
+        </shell:ApplicationBar>
+
+    </phone:PhoneApplicationPage.Resources>
     
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Black" Margin="0">

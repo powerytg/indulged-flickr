@@ -23,7 +23,7 @@
             <StackPanel Orientation="Horizontal">
                 <Image x:Name="AvatarView" Width="28" Height="28" VerticalAlignment="Center"/>
                 <TextBlock x:Name="StatusLabel" Foreground="#4a6466" FontSize="28" FontFamily="/Assets/Fonts/BenchNine-Regular.ttf#BenchNine" Margin="16, 0, 0, 0"
-                       VerticalAlignment="Center"/>
+                       VerticalAlignment="Center" TextTrimming="WordEllipsis" TextWrapping="Wrap"/>
             </StackPanel>
         </Border>
     </Grid>

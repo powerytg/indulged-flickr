@@ -34,6 +34,8 @@ namespace Indulged.Plugins.Detail
 
             // Events
             FullScreenRequest += OnFullScreenRequest;
+            Anaconda.AnacondaCore.AddPhotoCommentException += OnAddCommentException;
+            Cinderella.CinderellaCore.AddPhotoCommentCompleted += OnAddCommentComplete;
         }
 
         // Photo collection context
@@ -53,7 +55,7 @@ namespace Indulged.Plugins.Detail
             executedOnce = true;
 
             string photoId = NavigationContext.QueryString["photo_id"];
-            Photo currentPhoto = Cinderella.CinderellaCore.PhotoCache[photoId];
+            currentPhoto = Cinderella.CinderellaCore.PhotoCache[photoId];
 
             contextString = null;
             if(NavigationContext.QueryString.ContainsKey("context"))
@@ -84,12 +86,17 @@ namespace Indulged.Plugins.Detail
             
             PhotoPivot.ItemsSource = CollectionContext;
             PhotoPivot.SelectedIndex = CollectionContext.IndexOf(currentPhoto);
+
+            // App bar
+            ApplicationBar = Resources["PhotoPageAppBar"] as ApplicationBar;
         }
+
+        private Photo currentPhoto;
 
         private void OnCurrentPageChanged(object sender, SelectionChangedEventArgs e)
         {
             int selectedIndex = PhotoPivot.SelectedIndex;
-            Photo currentPhoto = CollectionContext[selectedIndex];
+            currentPhoto = CollectionContext[selectedIndex];
 
             // Download EXIF info
             if (currentPhoto.EXIF == null)
@@ -113,9 +120,6 @@ namespace Indulged.Plugins.Detail
 
         private void OnFullScreenRequest(object sender, EventArgs e)
         {
-            int selectedIndex = PhotoPivot.SelectedIndex;
-            Photo currentPhoto = CollectionContext[selectedIndex];
-
             string urlString = "/Plugins/Detail/FullScreenPage.xaml?photo_id=" + currentPhoto.ResourceId + "&context=" + contextString;
             if (contextTypeString != null)
                 urlString += "&context_type=" + contextTypeString;
@@ -125,15 +129,17 @@ namespace Indulged.Plugins.Detail
 
         private void FavButton_Click(object sender, EventArgs e)
         {
-            int selectedIndex = PhotoPivot.SelectedIndex;
-            Photo currentPhoto = CollectionContext[selectedIndex];
-
             var statusView = new FavStatusView();
             statusView.PhotoSource = currentPhoto;
             var popupContainer = ModalPopup.ShowWithButtons(statusView, "Favourite", statusView.Buttons, false);
             statusView.PopupContainer = popupContainer;
 
             statusView.BeginFavRequest();
+        }
+
+        private void CommentButton_Click(object sender, EventArgs e)
+        {
+            ShowComposerView();
         }
 
     }

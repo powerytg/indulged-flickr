@@ -30,6 +30,7 @@ namespace Indulged.API.Cinderella
         // Photo events
         public EventHandler<PhotoInfoUpdatedEventArgs> PhotoInfoUpdated;
         public EventHandler<PhotoCommentsUpdatedEventArgs> PhotoCommentsUpdated;
+        public EventHandler<AddPhotoCommentCompleteEventArgs> AddPhotoCommentCompleted;
 
         // Group events
         public EventHandler<GroupListUpdatedEventArgs> GroupListUpdated;
@@ -125,7 +126,8 @@ namespace Indulged.API.Cinderella
             Anaconda.Anaconda.AnacondaCore.DiscoveryStreamReturned += OnDiscoveryStreamReturned;
             Anaconda.Anaconda.AnacondaCore.EXIFReturned += OnEXIFReturned;
             Anaconda.Anaconda.AnacondaCore.PhotoCommentsReturned += OnPhotoCommentsReturned;
-            
+            Anaconda.Anaconda.AnacondaCore.PhotoCommentAdded += OnPhotoCommentAdded;
+
             // Search
             Anaconda.Anaconda.AnacondaCore.PhotoSearchReturned += OnPhotoSearchReturned;
             Anaconda.Anaconda.AnacondaCore.PopularTagListReturned += OnPopularTagListReturned;

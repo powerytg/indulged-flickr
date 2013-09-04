@@ -100,6 +100,7 @@
     <Compile Include="Anaconda\AnacondaCoreUploadExtension.cs" />
     <Compile Include="Anaconda\AnacondaCoreUserExtension.cs" />
     <Compile Include="Anaconda\AnacondaFavouriteExtension.cs" />
+    <Compile Include="Anaconda\Events\AddCommentEventArgs.cs" />
     <Compile Include="Anaconda\Events\AddFavouriteEventArgs.cs" />
     <Compile Include="Anaconda\Events\AddFavouriteExceptionEventArgs.cs" />
     <Compile Include="Anaconda\Events\AddPhotoToGroupExceptionEventArgs.cs" />
@@ -108,6 +109,7 @@
     <Compile Include="Anaconda\Events\AddPhotoToGroupEventArgs.cs" />
     <Compile Include="Anaconda\Events\AddTopicReplyEventArgs.cs" />
     <Compile Include="Anaconda\Events\AddTopicReplyExceptionEventArgs.cs" />
+    <Compile Include="Anaconda\Events\AddCommentExceptionEventArgs.cs" />
     <Compile Include="Anaconda\Events\GetDiscoveryStreamEventArgs.cs" />
     <Compile Include="Anaconda\Events\GetEXIFEventArgs.cs" />
     <Compile Include="Anaconda\Events\GetEXIFExceptionEventArgs.cs" />
@@ -150,6 +152,7 @@
     <Compile Include="Cinderella\CinderellaStorageExtension.cs" />
     <Compile Include="Cinderella\CinderellaTagExtension.cs" />
     <Compile Include="Cinderella\CinderellaUserExtension.cs" />
+    <Compile Include="Cinderella\Events\AddPhotoCommentCompleteEventArgs.cs" />
     <Compile Include="Cinderella\Events\AddPhotoToGroupCompleteEventArgs.cs" />
     <Compile Include="Cinderella\Events\AddTopicCompleteEventArgs.cs" />
     <Compile Include="Cinderella\Events\AddTopicReplyCompleteEventArgs.cs" />

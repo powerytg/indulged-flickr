@@ -97,5 +97,29 @@ namespace Indulged.API.Cinderella
             evt.PhotoId = photo.ResourceId;
             PhotoCommentsUpdated.DispatchEvent(this, evt);
         }
+
+        private void OnPhotoCommentAdded(object sender, AddCommentEventArgs e)
+        {
+            Photo photo = Cinderella.CinderellaCore.PhotoCache[e.PhotoId];
+
+            JObject rawJson = JObject.Parse(e.Response);
+            string newCommentId = rawJson["comment"]["id"].ToString();
+
+            PhotoComment newComment = new PhotoComment();
+            newComment.ResourceId = newCommentId;
+            newComment.Message = e.Message;
+            newComment.Author = CurrentUser;
+            newComment.CreationDate = DateTime.Now;
+
+            photo.CommentCache[newCommentId] = newComment;
+            photo.Comments.Insert(0, newComment);
+            photo.CommentCount++;
+
+            AddPhotoCommentCompleteEventArgs evt = new AddPhotoCommentCompleteEventArgs();
+            evt.SessionId = e.SessionId;
+            evt.PhotoId = photo.ResourceId;
+            evt.NewComment = newComment;
+            AddPhotoCommentCompleted.DispatchEvent(this, evt);
+        }
     }
 }

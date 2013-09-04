@@ -1,7 +1,9 @@
 ﻿using Indulged.API.Anaconda.Events;
 using Indulged.API.Utils;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -200,6 +202,76 @@ namespace Indulged.API.Anaconda
                 args.Response = jsonString;
                 PhotoCommentsReturned.DispatchEvent(this, args);
             }
+        }
+
+        public void AddCommentAsync(string sessionId, string photoId, string message)
+        {
+            string timestamp = DateTimeUtils.GetTimestamp();
+            string nonce = Guid.NewGuid().ToString().Replace("-", null);
+
+            Dictionary<string, string> paramDict = new Dictionary<string, string>();
+            paramDict["method"] = "flickr.photos.comments.addComment";
+            paramDict["format"] = "json";
+            paramDict["nojsoncallback"] = "1";
+            paramDict["oauth_consumer_key"] = consumerKey;
+            paramDict["oauth_nonce"] = nonce;
+            paramDict["oauth_signature_method"] = "HMAC-SHA1";
+            paramDict["oauth_timestamp"] = timestamp;
+            paramDict["oauth_token"] = AccessToken;
+            paramDict["oauth_version"] = "1.0";
+            paramDict["photo_id"] = photoId;
+            paramDict["comment_text"] = message;
+
+            string signature = OAuthCalculateSignature("POST", "http://api.flickr.com/services/rest/", paramDict, AccessTokenSecret);
+            paramDict["oauth_signature"] = signature;
+
+            DispatchPostRequest("POST", "http://api.flickr.com/services/rest/", paramDict,
+                (response) =>
+                {
+
+                    bool success = true;
+                    string errorMessage = "";
+
+                    try
+                    {
+                        JObject json = JObject.Parse(response);
+                        string status = json["stat"].ToString();
+                        if (status != "ok")
+                        {
+                            success = false;
+                            errorMessage = json["message"].ToString();
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        Debug.WriteLine(e.Message);
+
+                        success = false;
+                    }
+
+                    if (!success)
+                    {
+                        AddCommentExceptionEventArgs exceptionArgs = new AddCommentExceptionEventArgs();
+                        exceptionArgs.SessionId = sessionId;
+                        AddPhotoCommentException.DispatchEvent(this, exceptionArgs);
+                    }
+                    else
+                    {
+                        AddCommentEventArgs args = new AddCommentEventArgs();
+                        args.SessionId = sessionId;
+                        args.PhotoId = photoId;
+                        args.Response = response;
+                        args.Message = message;
+                        PhotoCommentAdded.DispatchEvent(this, args);
+                    }
+                }, (ex) =>
+                {
+                    AddCommentExceptionEventArgs exceptionArgs = new AddCommentExceptionEventArgs();
+                    exceptionArgs.SessionId = sessionId;
+                    AddPhotoCommentException.DispatchEvent(this, exceptionArgs);
+                });
+
+
         }
     }
 }

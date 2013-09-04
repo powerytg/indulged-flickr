@@ -202,14 +202,43 @@ namespace Indulged.API.Anaconda
 
             DispatchPostRequest("POST", "http://api.flickr.com/services/rest/", paramDict, 
                 (response) => {
-                    AddTopicEventArgs args = new AddTopicEventArgs();
-                    args.SessionId = sessionId;
-                    args.GroupId = groupId;
-                    args.Response = response;
-                    args.Subject = subject;
-                    args.Message = message;
-                    TopicAdded.DispatchEvent(this, args);
 
+                    bool success = true;
+                    string errorMessage = "";
+
+                    try
+                    {
+                        JObject json = JObject.Parse(response);
+                        string status = json["stat"].ToString();
+                        if (status != "ok")
+                        {
+                            success = false;
+                            errorMessage = json["message"].ToString();
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        Debug.WriteLine(e.Message);
+
+                        success = false;
+                    }
+
+                    if (!success)
+                    {
+                        AddTopicExceptionEventArgs exceptionArgs = new AddTopicExceptionEventArgs();
+                        exceptionArgs.SessionId = sessionId;
+                        AddTopicException.DispatchEvent(this, exceptionArgs);
+                    }
+                    else
+                    {
+                        AddTopicEventArgs args = new AddTopicEventArgs();
+                        args.SessionId = sessionId;
+                        args.GroupId = groupId;
+                        args.Response = response;
+                        args.Subject = subject;
+                        args.Message = message;
+                        TopicAdded.DispatchEvent(this, args);
+                    }
                 }, (ex) => {
                     AddTopicExceptionEventArgs exceptionArgs = new AddTopicExceptionEventArgs();
                     exceptionArgs.SessionId = sessionId;
@@ -442,14 +471,42 @@ namespace Indulged.API.Anaconda
             DispatchPostRequest("POST", "http://api.flickr.com/services/rest/", paramDict,
                 (response) =>
                 {
-                    AddTopicReplyEventArgs args = new AddTopicReplyEventArgs();
-                    args.SessionId = sessionId;
-                    args.GroupId = groupId;
-                    args.TopicId = topicId;
-                    args.Response = response;
-                    args.Message = message;
-                    TopicReplyAdded.DispatchEvent(this, args);
+                    bool success = true;
+                    string errorMessage = "";
 
+                    try
+                    {
+                        JObject json = JObject.Parse(response);
+                        string status = json["stat"].ToString();
+                        if (status != "ok")
+                        {
+                            success = false;
+                            errorMessage = json["message"].ToString();
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        Debug.WriteLine(e.Message);
+
+                        success = false;
+                    }
+
+                    if (!success)
+                    {
+                        AddTopicReplyExceptionEventArgs exceptionArgs = new AddTopicReplyExceptionEventArgs();
+                        exceptionArgs.SessionId = sessionId;
+                        AddTopicReplyException.DispatchEvent(this, exceptionArgs);
+                    }
+                    else
+                    {
+                        AddTopicReplyEventArgs args = new AddTopicReplyEventArgs();
+                        args.SessionId = sessionId;
+                        args.GroupId = groupId;
+                        args.TopicId = topicId;
+                        args.Response = response;
+                        args.Message = message;
+                        TopicReplyAdded.DispatchEvent(this, args);
+                    }
                 }, (ex) =>
                 {
                     AddTopicReplyExceptionEventArgs exceptionArgs = new AddTopicReplyExceptionEventArgs();

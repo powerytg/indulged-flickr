@@ -33,6 +33,6 @@
         <renderer:PhotoCommentDigestRenderer x:Name="renderer2" Grid.Row="3"/>
         <renderer:PhotoCommentDigestRenderer x:Name="renderer3" Grid.Row="4"/>
         <Button x:Name="ViewAllButton" Content="view all..." Style="{StaticResource BorderlessButtonStyle}" Grid.Row="5"
-                FontSize="21" Foreground="#7285ab" />
+                FontSize="21" Foreground="#7285ab" Click="ViewAllButton_Click"/>
     </Grid>
 </UserControl>

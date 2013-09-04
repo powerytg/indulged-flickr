@@ -143,6 +143,10 @@
     <Compile Include="Plugins\Common\PhotoGroupRenderers\CommonPhotoGroupRenderer5A.xaml.cs">
       <DependentUpon>CommonPhotoGroupRenderer5A.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Plugins\Common\Renderers\DetailPhotoCommentRenderer.xaml.cs">
+      <DependentUpon>DetailPhotoCommentRenderer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\Common\Renderers\DetailCommentRendererSelector.cs" />
     <Compile Include="Plugins\Common\Renderers\FavouritePhotoRenderer.xaml.cs">
       <DependentUpon>FavouritePhotoRenderer.xaml</DependentUpon>
     </Compile>
@@ -166,6 +170,11 @@
       <DependentUpon>TopicReplyRenderer.xaml</DependentUpon>
     </Compile>
     <Compile Include="Plugins\Dashboard\PreludeItemModel.cs" />
+    <Compile Include="Plugins\Detail\DetailCommentsPageComposerExtension.cs" />
+    <Compile Include="Plugins\Detail\DetailCommentsPage.xaml.cs">
+      <DependentUpon>DetailCommentsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\Detail\DetailPageComposerExtension.cs" />
     <Compile Include="Plugins\Detail\PhotoCommentsView.xaml.cs">
       <DependentUpon>PhotoCommentsView.xaml</DependentUpon>
     </Compile>
@@ -177,6 +186,9 @@
     </Compile>
     <Compile Include="Plugins\Detail\FullScreenPage.xaml.cs">
       <DependentUpon>FullScreenPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\Detail\PhotoCommentComposerView.xaml.cs">
+      <DependentUpon>PhotoCommentComposerView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Plugins\Favourite\FavouritePage.xaml.cs">
       <DependentUpon>FavouritePage.xaml</DependentUpon>
@@ -579,6 +591,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Plugins\Common\Renderers\DetailPhotoCommentRenderer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Plugins\Common\Renderers\FavouritePhotoRenderer.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -607,6 +623,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Plugins\Detail\DetailCommentsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Plugins\Detail\PhotoCommentsView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -622,6 +642,9 @@
     <Page Include="Plugins\Detail\FullScreenPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Plugins\Detail\PhotoCommentComposerView.xaml">
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Plugins\Favourite\FavouritePage.xaml">
       <SubType>Designer</SubType>
@@ -1076,6 +1099,7 @@
   <ItemGroup>
     <Content Include="Assets\Chrome\DarkTitleView2.png" />
     <Content Include="Assets\Common\add.png" />
+    <Content Include="Assets\Common\AddComment.png" />
     <Content Include="Assets\Common\cancel.png" />
     <Content Include="Assets\Common\check.png" />
     <Content Include="Assets\Common\Comment.png" />
@@ -1083,6 +1107,7 @@
     <Content Include="Assets\Common\like.png" />
     <Content Include="Assets\Common\refresh.png" />
     <Content Include="Assets\Common\SelectedIndicator.png" />
+    <Content Include="Assets\Common\Seperator.png" />
     <Content Include="Assets\Common\SliderThumb.png" />
     <Content Include="Assets\Common\UnFav.png" />
     <Content Include="Assets\Common\View-Light.png" />
