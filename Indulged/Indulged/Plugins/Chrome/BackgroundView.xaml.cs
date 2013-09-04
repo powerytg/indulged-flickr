@@ -12,6 +12,7 @@ using Indulged.Plugins.Dashboard;
 using Indulged.Plugins.Dashboard.Events;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
+using System.Windows.Media;
 
 namespace Indulged.Plugins.Chrome
 {
@@ -54,6 +55,12 @@ namespace Indulged.Plugins.Chrome
                 BackgroundImage.Source = new BitmapImage(new Uri(selectedDashboardPage.BackgroundImageUrl, UriKind.Relative));
             else
                 BackgroundImage.Source = null;
+
+            // Change background color
+            if (selectedDashboardPage.ShouldUseLightBackground)
+                LayoutRoot.Background = new SolidColorBrush(Colors.White);
+            else
+                LayoutRoot.Background = new SolidColorBrush(Colors.Black);
 
             // Fade in the new image
             Storyboard animation = new Storyboard();

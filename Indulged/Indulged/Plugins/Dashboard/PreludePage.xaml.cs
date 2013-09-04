@@ -27,6 +27,14 @@ namespace Indulged.Plugins.Dashboard
             }
         }
 
+        public bool ShouldUseLightBackground
+        {
+            get
+            {
+                return false;
+            }
+        }
+
         // "Special" streams
         ObservableCollection<PreludeItemModel> FeatureStreams;
 

@@ -16,7 +16,16 @@ namespace Indulged.Plugins.Dashboard
         {
             get
             {
-                return "/Assets/Chrome/PreludeBackground.png";
+                //return "/Assets/Chrome/PreludeBackground.png";
+                return null;
+            }
+        }
+
+        public bool ShouldUseLightBackground
+        {
+            get
+            {
+                return true;
             }
         }
 

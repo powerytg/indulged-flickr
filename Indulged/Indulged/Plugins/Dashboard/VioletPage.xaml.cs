@@ -29,6 +29,14 @@ namespace Indulged.Plugins.Dashboard
             }
         }
 
+        public bool ShouldUseLightBackground
+        {
+            get
+            {
+                return false;
+            }
+        }
+
         // Photo data source
         public ObservableCollection<PhotoGroup> PhotoCollection { get; set; }
 
