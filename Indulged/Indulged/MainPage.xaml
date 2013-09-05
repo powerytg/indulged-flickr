@@ -35,7 +35,7 @@
         <dashboard:DashboardNavigator x:Name="Dashboard" Margin="0, 95, 0, 0" />
 
         <!-- Title view -->
-        <chrome:TitleView x:Name="TitleView" VerticalAlignment="Top" IsHitTestVisible="False"/>
+        <dashboard:DashboardTitleView x:Name="TitleView" VerticalAlignment="Top" IsHitTestVisible="False"/>
 
     </Grid>
 

@@ -169,7 +169,23 @@
     <Compile Include="Plugins\Common\Renderers\TopicReplyRenderer.xaml.cs">
       <DependentUpon>TopicReplyRenderer.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Plugins\Dashboard\SummersaltContactPhotoFooterModel.cs" />
+    <Compile Include="Plugins\Dashboard\SummersaltContactPhotoHeaderModeal.cs" />
+    <Compile Include="Plugins\Dashboard\SummersaltRendererSelector.cs" />
+    <Compile Include="Plugins\Dashboard\DashboardTitleView.cs" />
     <Compile Include="Plugins\Dashboard\PreludeItemModel.cs" />
+    <Compile Include="Plugins\Dashboard\SummersaltRenderers\SummersaltContactPhotoFooterRenderer.xaml.cs">
+      <DependentUpon>SummersaltContactPhotoFooterRenderer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\Dashboard\SummersaltRenderers\SummersaltContactPhotoHeaderRenderer.xaml.cs">
+      <DependentUpon>SummersaltContactPhotoHeaderRenderer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\Dashboard\SummersaltRenderers\SummersaltContactPhotoRenderer.xaml.cs">
+      <DependentUpon>SummersaltContactPhotoRenderer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\Dashboard\SummersaltRenderers\SummersaltUserInfoRenderer.xaml.cs">
+      <DependentUpon>SummersaltUserInfoRenderer.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Plugins\Detail\DetailCommentsPageComposerExtension.cs" />
     <Compile Include="Plugins\Detail\DetailCommentsPage.xaml.cs">
       <DependentUpon>DetailCommentsPage.xaml</DependentUpon>
@@ -620,6 +636,22 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Plugins\Common\Renderers\TopicReplyRenderer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Plugins\Dashboard\SummersaltRenderers\SummersaltContactPhotoFooterRenderer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Plugins\Dashboard\SummersaltRenderers\SummersaltContactPhotoHeaderRenderer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Plugins\Dashboard\SummersaltRenderers\SummersaltContactPhotoRenderer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Plugins\Dashboard\SummersaltRenderers\SummersaltUserInfoRenderer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1098,6 +1130,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\Chrome\DarkTitleView2.png" />
+    <Content Include="Assets\Chrome\LightTitleView2.png" />
+    <Content Include="Assets\Chrome\SummersaltBackground.png" />
+    <Content Include="Assets\Common\ActionButton.png" />
     <Content Include="Assets\Common\add.png" />
     <Content Include="Assets\Common\AddComment.png" />
     <Content Include="Assets\Common\cancel.png" />

@@ -18,6 +18,15 @@ namespace Indulged.API.Cinderella.Models
         }
 
         public string Name { get; set; }
+        public string RealName { get; set; }
+        public string Description { get; set; }
+
+        public string Location { get; set; }
+        public bool IsProUser { get; set; }
+        public bool hasFirstDate { get; set; }
+        public DateTime FirstDate { get; set; }
+
+
         public string Server { get; set; }
         public string Farm { get; set; }
 

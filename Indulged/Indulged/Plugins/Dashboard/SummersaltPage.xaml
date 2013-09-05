@@ -3,13 +3,49 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:renderers="clr-namespace:Indulged.Plugins.Dashboard.SummersaltRenderers"
+    xmlns:local="clr-namespace:Indulged.Plugins.Dashboard"             
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"             
     mc:Ignorable="d"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     d:DesignHeight="480" d:DesignWidth="480">
     
-    <Grid x:Name="LayoutRoot">
+    <Grid x:Name="LayoutRoot" Margin="0, 100, 0, 0">
+        <phone:LongListSelector x:Name="SummersaltListView" ItemsSource="{Binding Items}"
+                                    Margin="0,0,-13,0" >
+            <phone:LongListSelector.ItemTemplate>
+                <DataTemplate>
+                    <local:SummersaltRendererSelector Content="{Binding}" HorizontalContentAlignment="Stretch">
+                        
+                        <local:SummersaltRendererSelector.CurrentUserTemplate>
+                            <DataTemplate>
+                                <renderers:SummersaltUserInfoRenderer />
+                            </DataTemplate>
+                        </local:SummersaltRendererSelector.CurrentUserTemplate>
 
+                        <local:SummersaltRendererSelector.ContactPhotoTemplate>
+                            <DataTemplate>
+                                <renderers:SummersaltContactPhotoRenderer PhotoSource="{Binding}"/>
+                            </DataTemplate>
+                        </local:SummersaltRendererSelector.ContactPhotoTemplate>
+
+                        <local:SummersaltRendererSelector.ContactPhotoHeaderTemplate>
+                            <DataTemplate>
+                                <renderers:SummersaltContactPhotoHeaderRenderer/>
+                            </DataTemplate>
+                        </local:SummersaltRendererSelector.ContactPhotoHeaderTemplate>
+
+                        <local:SummersaltRendererSelector.ContactPhotoFooterTemplate>
+                            <DataTemplate>
+                                <renderers:SummersaltContactPhotoFooterRenderer/>
+                            </DataTemplate>
+                        </local:SummersaltRendererSelector.ContactPhotoFooterTemplate>
+
+                    </local:SummersaltRendererSelector>
+                </DataTemplate>
+            </phone:LongListSelector.ItemTemplate>
+        </phone:LongListSelector>
     </Grid>
 </UserControl>

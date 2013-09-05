@@ -110,6 +110,9 @@
     <Compile Include="Anaconda\Events\AddTopicReplyEventArgs.cs" />
     <Compile Include="Anaconda\Events\AddTopicReplyExceptionEventArgs.cs" />
     <Compile Include="Anaconda\Events\AddCommentExceptionEventArgs.cs" />
+    <Compile Include="Anaconda\Events\GetContactListEventArgs.cs" />
+    <Compile Include="Anaconda\Events\GetContactListExceptionEventArgs.cs" />
+    <Compile Include="Anaconda\Events\GetContactPhotosEventArgs.cs" />
     <Compile Include="Anaconda\Events\GetDiscoveryStreamEventArgs.cs" />
     <Compile Include="Anaconda\Events\GetEXIFEventArgs.cs" />
     <Compile Include="Anaconda\Events\GetEXIFExceptionEventArgs.cs" />
@@ -126,6 +129,7 @@
     <Compile Include="Anaconda\Events\GetPhotoStreamEventArgs.cs" />
     <Compile Include="Anaconda\Events\GetPopularTagListEventArgs.cs" />
     <Compile Include="Anaconda\Events\GetTopicRepliesEventArgs.cs" />
+    <Compile Include="Anaconda\Events\GetUserInfoEventArgs.cs" />
     <Compile Include="Anaconda\Events\GroupSearchEventArgs.cs" />
     <Compile Include="Anaconda\Events\JoinGroupEventArgs.cs" />
     <Compile Include="Anaconda\Events\JoinGroupExceptionEventArgs.cs" />
@@ -156,6 +160,7 @@
     <Compile Include="Cinderella\Events\AddPhotoToGroupCompleteEventArgs.cs" />
     <Compile Include="Cinderella\Events\AddTopicCompleteEventArgs.cs" />
     <Compile Include="Cinderella\Events\AddTopicReplyCompleteEventArgs.cs" />
+    <Compile Include="Cinderella\Events\ContactListUpdatedEventArgs.cs" />
     <Compile Include="Cinderella\Events\FavouriteStreamUpdatedEventArgs.cs" />
     <Compile Include="Cinderella\Events\DiscoveryStreamUpdatedEventArgs.cs" />
     <Compile Include="Cinderella\Events\EXIFUpdatedEventArgs.cs" />
@@ -178,6 +183,7 @@
     <Compile Include="Cinderella\Events\SearchResultEventArgs.cs" />
     <Compile Include="Cinderella\Events\TopicRepliesUpdatedEventArgs.cs" />
     <Compile Include="Cinderella\Events\UploadedPhotoInfoReturnedEventArgs.cs" />
+    <Compile Include="Cinderella\Events\UserInfoUpdatedEventArgs.cs" />
     <Compile Include="Cinderella\Factories\FlickrGroupFactory.cs" />
     <Compile Include="Cinderella\Factories\PhotoCommentFactory.cs" />
     <Compile Include="Cinderella\Factories\PhotoEXIFFactory.cs" />

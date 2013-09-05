@@ -46,7 +46,7 @@ namespace Indulged.API.Anaconda
             return success;
         }
 
-        private bool TryHandleResponseException(string response, Action retryMethod = null)
+        private bool TryHandleResponseException(string response, Action retryMethod = null, Action cancelMethod = null)
         {
             bool success = true;
             string errorTitle = "";
@@ -94,6 +94,11 @@ namespace Indulged.API.Anaconda
                                 if (buttonIndex == 0)
                                 {
                                     retryMethod();
+                                }
+                                else
+                                {
+                                    if (cancelMethod != null)
+                                        cancelMethod();
                                 }
                             };
 

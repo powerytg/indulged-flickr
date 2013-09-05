@@ -93,6 +93,11 @@ namespace Indulged.API.Cinderella
             {
                 CurrentUser = _currentUser;
                 UserCache[CurrentUser.ResourceId] = CurrentUser;
+
+                // Dispatch event
+                if(CurrentUserReturned != null)
+                    CurrentUserReturned(this, null);
+
                 return CurrentUser;
             }
             else

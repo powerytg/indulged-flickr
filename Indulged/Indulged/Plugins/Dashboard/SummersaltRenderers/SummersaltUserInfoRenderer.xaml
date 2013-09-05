@@ -1,0 +1,52 @@
+﻿<UserControl x:Class="Indulged.Plugins.Dashboard.SummersaltRenderers.SummersaltUserInfoRenderer"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    d:DesignHeight="250" d:DesignWidth="480" MinHeight="250">
+
+    <Grid x:Name="LayoutRoot">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!--Title view-->
+        <TextBlock Foreground="#274551" FontSize="38" FontFamily="/Assets/Fonts/BenchNine-Regular.ttf#BenchNine"
+                   TextTrimming="WordEllipsis" MaxWidth="400" TextAlignment="Center"
+                   Text="your profile" Grid.Row="0" />
+
+        <!--Loading view-->
+        <TextBlock x:Name="LoadingView" Text="Retriving user info..." Foreground="#8b93a0" FontSize="24" FontWeight="Light"
+                   Margin="12, 12, 12, 12" Grid.Row="1"/>
+
+        <Grid x:Name="ContentView" Grid.Row="2">
+            <StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="20, 15, 10, 10">
+                    <TextBlock x:Name="NameLabel" Foreground="#32afe0" FontSize="38" FontFamily="/Assets/Fonts/BenchNine-Regular.ttf#BenchNine"
+                           TextTrimming="WordEllipsis" MaxWidth="400" Margin="0, 0, 15, 0" />
+                    <TextBlock x:Name="ProLabel" Text="PRO" Foreground="#f28422" FontSize="24" FontFamily="/Assets/Fonts/BenchNine-Regular.ttf#BenchNine"/>
+                </StackPanel>
+                <Border x:Name="DescView" Background="#f8f8f8">
+                    <TextBlock x:Name="DescLabel" Foreground="#274551"
+                       TextWrapping="Wrap" TextTrimming="None" Margin="20, 5, 100, 5" />
+                </Border>
+            </StackPanel>
+
+            <Rectangle Fill="#d6d6d6" Width="156" Height="1" 
+                  HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,57,84,0"/>
+
+            <Rectangle Fill="#d6d6d6" Width="1" 
+                  HorizontalAlignment="Right" Margin="0,109,40,62"/>
+
+            <Image x:Name="AvatarView" Width="64" Height="64" 
+                   HorizontalAlignment="Right" VerticalAlignment="Top" Margin="20, 40, 20, 20"/>
+
+        </Grid>
+    </Grid>
+</UserControl>

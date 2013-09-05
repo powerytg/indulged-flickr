@@ -40,7 +40,7 @@ namespace Indulged.API.Anaconda
                 }
             }
 
-            paramDict["user_id"] = Cinderella.Cinderella.CinderellaCore.CurrentUser.ResourceId;
+            paramDict["user_id"] = UrlHelper.Encode(Cinderella.Cinderella.CinderellaCore.CurrentUser.ResourceId);
             paramDict["extras"] = UrlHelper.Encode(commonExtraParameters);
 
             string paramString = GenerateParamString(paramDict);

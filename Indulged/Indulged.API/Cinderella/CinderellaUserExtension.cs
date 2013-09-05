@@ -84,5 +84,67 @@ namespace Indulged.API.Cinderella
             evt.Groups = result;
             GroupListUpdated.DispatchEvent(this, evt);
         }
+
+        // User info returned
+        private void OnUserInfoReturned(object sender, GetUserInfoEventArgs e)
+        {
+            JObject json = JObject.Parse(e.Response);
+            User user = UserFactory.UserWithUserInfoJObject(json);
+
+            // Dispatch event
+            UserInfoUpdatedEventArgs evt = new UserInfoUpdatedEventArgs();
+            evt.UserId = e.UserId;
+            UserInfoUpdated.DispatchEvent(this, evt);
+        }
+
+        // Contact list returned
+        private void OnContactListReturned(object sender, GetContactListEventArgs e)
+        {
+            JObject rawJson = JObject.Parse(e.Response);
+            JObject rootJson = (JObject)rawJson["contacts"];
+            ContactCount = int.Parse(rootJson["total"].ToString());
+            int page = int.Parse(rootJson["page"].ToString());
+            int numPages = int.Parse(rootJson["pages"].ToString());
+            int perPage = int.Parse(rootJson["perpage"].ToString());
+
+            List<User> newUsers = new List<User>();
+            foreach (var entry in rootJson["contact"])
+            {
+                JObject json = (JObject)entry;
+                User contact = UserFactory.UserWithJObject(json);
+
+                if (!ContactList.Contains(contact))
+                {
+                    ContactList.Add(contact);
+                    newUsers.Add(contact);
+                }
+            }
+
+            // Dispatch event
+            ContactListUpdatedEventArgs evt = new ContactListUpdatedEventArgs();
+            evt.Page = page;
+            evt.PageCount = numPages;
+            evt.PerPage = perPage;
+            evt.NewUsers = newUsers;
+            ContactListUpdated.DispatchEvent(this, evt);
+        }
+
+        private void OnContactPhotosReturned(object sender, GetContactPhotosEventArgs e)
+        {
+            JObject rawJson = JObject.Parse(e.Response);
+            JObject rootJson = (JObject)rawJson["photos"];
+
+            ContactPhotoList.Clear();
+            foreach (var entry in rootJson["photo"])
+            {
+                JObject json = (JObject)entry;
+                Photo photo = PhotoFactory.PhotoWithJObject(json);
+                ContactPhotoList.Add(photo);
+            }
+
+            // Dispatch event
+            if (ContactPhotosUpdated != null)
+                ContactPhotosUpdated(this, null);
+        }
     }
 }

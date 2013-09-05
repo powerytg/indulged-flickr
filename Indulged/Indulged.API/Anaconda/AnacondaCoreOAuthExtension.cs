@@ -176,7 +176,7 @@ namespace Indulged.API.Anaconda
 
                         // Construct current user object
                         User currentUser = new User();
-                        currentUser.ResourceId = dict["user_nsid"];
+                        currentUser.ResourceId = Uri.UnescapeDataString(dict["user_nsid"]);
                         currentUser.Name = dict["fullname"];
                         currentUser.UserName = dict["username"];
 

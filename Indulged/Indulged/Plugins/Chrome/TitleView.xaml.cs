@@ -17,6 +17,10 @@ namespace Indulged.Plugins.Chrome
     {
         public static readonly DependencyProperty TitlelessProperty = DependencyProperty.Register("Titleless", typeof(bool), typeof(TitleView), new PropertyMetadata(OnTitlelessPropertyChanged));
 
+        protected BitmapImage lightBackgroundImage = new BitmapImage(new Uri("/Assets/Chrome/LightTitleView2.png", UriKind.RelativeOrAbsolute));
+        protected BitmapImage darkBackgroundImage = new BitmapImage(new Uri("/Assets/Chrome/DarkTitleView2.png", UriKind.RelativeOrAbsolute));
+        protected BitmapImage blankBackgroundImage = new BitmapImage(new Uri("/Assets/Chrome/BlankTitleView.png", UriKind.RelativeOrAbsolute));
+
         public bool Titleless
         {
             get
@@ -35,8 +39,8 @@ namespace Indulged.Plugins.Chrome
         }
 
         protected virtual void OnTitlelessChanged()
-        {            
-            BackgroundImage.Source = new BitmapImage(new Uri("/Assets/Chrome/BlankTitleView.png", UriKind.RelativeOrAbsolute));
+        {
+            BackgroundImage.Source = blankBackgroundImage;
         }
 
         public static readonly DependencyProperty ThemeProperty = DependencyProperty.Register("Theme", typeof(Themes), typeof(TitleView), new PropertyMetadata(OnThemePropertyChanged));
@@ -62,15 +66,15 @@ namespace Indulged.Plugins.Chrome
         {
             if (Titleless)
             {
-                BackgroundImage.Source = new BitmapImage(new Uri("/Assets/Chrome/BlankTitleView.png", UriKind.RelativeOrAbsolute));
+                BackgroundImage.Source = blankBackgroundImage;
             }
             else if (Theme == Themes.Dark)
             {
-                BackgroundImage.Source = new BitmapImage(new Uri("/Assets/Chrome/DarkTitleView.png", UriKind.RelativeOrAbsolute));
+                BackgroundImage.Source = darkBackgroundImage;
             }
             else
             {
-                BackgroundImage.Source = new BitmapImage(new Uri("/Assets/Chrome/LightTitleView.png", UriKind.RelativeOrAbsolute));
+                BackgroundImage.Source = lightBackgroundImage;
             }
         }
 

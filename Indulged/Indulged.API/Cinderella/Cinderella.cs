@@ -53,6 +53,12 @@ namespace Indulged.API.Cinderella
         public EventHandler<PhotoAddedAsFavouriteEventArgs> PhotoAddedAsFavourite;
         public EventHandler<PhotoRemovedFromFavouriteEventArgs> PhotoRemovedFromFavourite;
 
+        // User info events
+        public EventHandler CurrentUserReturned;
+        public EventHandler<UserInfoUpdatedEventArgs> UserInfoUpdated;
+        public EventHandler<ContactListUpdatedEventArgs> ContactListUpdated;
+        public EventHandler ContactPhotosUpdated;
+
         // Singleton
         private static Cinderella instance;
 
@@ -95,6 +101,11 @@ namespace Indulged.API.Cinderella
         // Group cache
         public Dictionary<string, FlickrGroup> GroupCache { get; set; }
 
+        // Contact list
+        public int ContactCount { get; set; }
+        public List<User> ContactList { get; set; }
+        public List<Photo> ContactPhotoList { get; set; }
+
         // Constructor
         public Cinderella()
         {
@@ -116,6 +127,13 @@ namespace Indulged.API.Cinderella
 
             // Group cache
             GroupCache = new Dictionary<string, FlickrGroup>();
+
+            // Contact list
+            ContactList = new List<User>();
+            ContactPhotoList = new List<Photo>();
+
+            // Contact
+            Anaconda.Anaconda.AnacondaCore.ContactPhotosReturned += OnContactPhotosReturned;
 
             // Photo list
             Anaconda.Anaconda.AnacondaCore.PhotoSetListReturned += PhotoListReturned;
@@ -153,6 +171,10 @@ namespace Indulged.API.Cinderella
             Anaconda.Anaconda.AnacondaCore.FavouriteStreamReturned += OnFavouriteStreamReturned;
             Anaconda.Anaconda.AnacondaCore.AddedPhotoAsFavourite += OnAddPhotoAsFavourite;
             Anaconda.Anaconda.AnacondaCore.RemovePhotoFromFavourite += OnRemovePhotoFromFavourite;
+
+            // User info
+            Anaconda.Anaconda.AnacondaCore.UserInfoReturned += OnUserInfoReturned;
+            Anaconda.Anaconda.AnacondaCore.ContactListReturned += OnContactListReturned;
         }
     }
 }

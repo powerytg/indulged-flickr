@@ -87,5 +87,12 @@ namespace Indulged.API.Anaconda
         public EventHandler<AddFavouriteExceptionEventArgs> AddPhotoAsFavouriteException;
         public EventHandler<RemoveFavouriteEventArgs> RemovePhotoFromFavourite;
         public EventHandler<RemoveFavouriteExceptionEventArgs> RemovePhotoFromFavouriteException;
+
+        // User info
+        public EventHandler<GetUserInfoEventArgs> UserInfoReturned;
+        public EventHandler<GetContactListEventArgs> ContactListReturned;
+        public EventHandler<GetContactListExceptionEventArgs> GetContactListException;
+        public EventHandler<GetContactPhotosEventArgs> ContactPhotosReturned;
+        public EventHandler GetContactPhotosException;
     }
 }
