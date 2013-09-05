@@ -28,7 +28,7 @@ namespace Indulged.Plugins.Common.Renderers
             base.OnPhotoSourceChanged();
             ImageView.Source = new BitmapImage(new Uri(PhotoSource.GetImageUrl()));
 
-            if (PhotoSource.Description.Length > 0)
+            if (PhotoSource.Description != null && PhotoSource.Description.Length > 0)
             {
                 DescriptionView.PhotoSource = PhotoSource;
                 DescriptionView.Visibility = Visibility.Visible;

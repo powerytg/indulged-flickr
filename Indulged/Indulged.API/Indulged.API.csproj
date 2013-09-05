@@ -87,6 +87,7 @@
   <ItemGroup>
     <Compile Include="Anaconda\Anaconda.cs" />
     <Compile Include="Anaconda\AnacondaCore.cs" />
+    <Compile Include="Anaconda\AnacondaCoreActivityExtension.cs" />
     <Compile Include="Anaconda\AnacondaCoreDiscoveryExtension.cs" />
     <Compile Include="Anaconda\AnacondaCoreErrorExtension.cs" />
     <Compile Include="Anaconda\AnacondaCoreEventExtension.cs" />
@@ -110,6 +111,7 @@
     <Compile Include="Anaconda\Events\AddTopicReplyEventArgs.cs" />
     <Compile Include="Anaconda\Events\AddTopicReplyExceptionEventArgs.cs" />
     <Compile Include="Anaconda\Events\AddCommentExceptionEventArgs.cs" />
+    <Compile Include="Anaconda\Events\GetActivityStreamEventArgs.cs" />
     <Compile Include="Anaconda\Events\GetContactListEventArgs.cs" />
     <Compile Include="Anaconda\Events\GetContactListExceptionEventArgs.cs" />
     <Compile Include="Anaconda\Events\GetContactPhotosEventArgs.cs" />
@@ -156,6 +158,7 @@
     <Compile Include="Cinderella\CinderellaStorageExtension.cs" />
     <Compile Include="Cinderella\CinderellaTagExtension.cs" />
     <Compile Include="Cinderella\CinderellaUserExtension.cs" />
+    <Compile Include="Cinderella\CinderellaActivityExtension.cs" />
     <Compile Include="Cinderella\Events\AddPhotoCommentCompleteEventArgs.cs" />
     <Compile Include="Cinderella\Events\AddPhotoToGroupCompleteEventArgs.cs" />
     <Compile Include="Cinderella\Events\AddTopicCompleteEventArgs.cs" />
@@ -184,6 +187,7 @@
     <Compile Include="Cinderella\Events\TopicRepliesUpdatedEventArgs.cs" />
     <Compile Include="Cinderella\Events\UploadedPhotoInfoReturnedEventArgs.cs" />
     <Compile Include="Cinderella\Events\UserInfoUpdatedEventArgs.cs" />
+    <Compile Include="Cinderella\Factories\ActivityFactory.cs" />
     <Compile Include="Cinderella\Factories\FlickrGroupFactory.cs" />
     <Compile Include="Cinderella\Factories\PhotoCommentFactory.cs" />
     <Compile Include="Cinderella\Factories\PhotoEXIFFactory.cs" />
@@ -195,6 +199,10 @@
     <Compile Include="Cinderella\Models\FlickrGroup.cs" />
     <Compile Include="Cinderella\Models\ModelBase.cs" />
     <Compile Include="Cinderella\Models\Photo.cs" />
+    <Compile Include="Cinderella\Models\PhotoActivity.cs" />
+    <Compile Include="Cinderella\Models\PhotoActivityCommentEvent.cs" />
+    <Compile Include="Cinderella\Models\PhotoActivityEventBase.cs" />
+    <Compile Include="Cinderella\Models\PhotoActivityFaveEvent.cs" />
     <Compile Include="Cinderella\Models\PhotoComment.cs" />
     <Compile Include="Cinderella\Models\PhotoGroup.cs" />
     <Compile Include="Cinderella\Models\PhotoSet.cs" />

@@ -1,4 +1,5 @@
-﻿using Indulged.API.Cinderella.Models;
+﻿using Indulged.API.Utils;
+using Indulged.API.Cinderella.Models;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -33,6 +34,9 @@ namespace Indulged.API.Cinderella.Factories
             // Title
             activity.Title = json["title"]["_content"].ToString();
 
+            // Photo
+            activity.TargetPhoto = PhotoFactory.PhotoWithPhotoActivityJObject(json);
+
             // Events
             activity.Events.Clear();
             foreach (JObject eventJson in json["activity"]["event"])
@@ -42,18 +46,20 @@ namespace Indulged.API.Cinderella.Factories
                 if (eventType == "fave")
                 {
                     evt = new PhotoActivityFaveEvent();
-                    evt.EventUser = UserFactory.UserWithJObject(eventJson);
                 }
                 else if (eventType == "comment")
                 {
                     evt = new PhotoActivityCommentEvent();
                     PhotoActivityCommentEvent commentEvt = evt as PhotoActivityCommentEvent;
-                    evt.EventUser = UserFactory.UserWithJObject(eventJson);
                     commentEvt.Message = eventJson["_content"].ToString();
                 }
 
-                if(evt != null)
+                if (evt != null)
+                {
+                    evt.EventUser = UserFactory.UserWithActivityEventJObject(eventJson);
+                    evt.CreationDate = eventJson["dateadded"].ToString().ToDateTime();
                     activity.Events.Add(evt);
+                }
             }
             
 

@@ -47,6 +47,7 @@ namespace Indulged.Plugins.Dashboard
             // Events
             Cinderella.CinderellaCore.UserInfoUpdated += OnUserInfoUpdated;
             Cinderella.CinderellaCore.ContactPhotosUpdated += OnContactPhotosUpdated;
+            Cinderella.CinderellaCore.ActivityStreamUpdated += OnActivityStreamUpdated;
             DashboardNavigator.DashboardPageChanged += OnDashboardPageChanged;
 
         }
@@ -91,8 +92,28 @@ namespace Indulged.Plugins.Dashboard
                 }
 
                 dataSource.Add(new SummersaltContactPhotoFooterModel());
+
+                // Get activity stream
+                Anaconda.AnacondaCore.GetActivityStreamAsync();
             });
 
         }
+
+        private void OnActivityStreamUpdated(object sender, EventArgs e)
+        {
+            Dispatcher.BeginInvoke(() =>
+            {
+                if (Cinderella.CinderellaCore.ActivityList.Count > 0)
+                {
+                    dataSource.Add(new SummersaltActivityHeaderModel());
+                }
+
+                foreach (var activity in Cinderella.CinderellaCore.ActivityList)
+                {
+                    dataSource.Add(activity);
+                }
+            });
+        }
+
     }
 }

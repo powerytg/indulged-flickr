@@ -19,7 +19,7 @@
         <!--Title view-->
         <TextBlock Foreground="#274551" FontSize="38" FontFamily="/Assets/Fonts/BenchNine-Regular.ttf#BenchNine"
                    TextTrimming="WordEllipsis" MaxWidth="400" TextAlignment="Center"
-                   Text="your profile" Grid.Row="0" />
+                   Text="Your Profile" Grid.Row="0" />
 
         <!--Loading view-->
         <TextBlock x:Name="LoadingView" Text="Retriving user info..." Foreground="#8b93a0" FontSize="24" FontWeight="Light"

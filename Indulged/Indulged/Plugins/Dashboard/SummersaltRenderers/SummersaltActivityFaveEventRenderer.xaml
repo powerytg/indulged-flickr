@@ -1,0 +1,25 @@
+﻿<UserControl x:Class="Indulged.Plugins.Dashboard.SummersaltRenderers.SummersaltActivityFaveEventRenderer"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:renderers="clr-namespace:Indulged.Plugins.Common.Renderers"             
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    d:DesignHeight="250" d:DesignWidth="480">
+
+    <Grid x:Name="LayoutRoot">
+        <StackPanel Orientation="Horizontal">
+            <Image x:Name="AvatarView" Width="36" Height="36" VerticalAlignment="Center"
+                   Margin="15, 0, 0, 0" />
+
+            <TextBlock x:Name="TitleLabel" TextWrapping="Wrap"
+                       Foreground="#32afe0" FontSize="36" FontFamily="/Assets/Fonts/BenchNine-Regular.ttf#BenchNine"
+                       />
+
+        </StackPanel>
+        
+    </Grid>
+</UserControl>

@@ -31,7 +31,7 @@
         <TextBlock x:Name="DescriptionLabel" TextWrapping="Wrap" TextTrimming="WordEllipsis"
                        TextAlignment="Center" 
                        Foreground="#6b757b" FontSize="26" FontFamily="/Assets/Fonts/BenchNine-Regular.ttf#BenchNine"
-                       Grid.Row="2" MaxHeight="200"/>
+                       Grid.Row="2" MaxHeight="200" Margin="20, 0, 20, 0"/>
 
         <Image x:Name="ImageView" Stretch="UniformToFill" Grid.Row="3" Margin="0, 0, 0, 20"/>
     </Grid>

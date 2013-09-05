@@ -66,6 +66,7 @@ namespace Indulged.Plugins.Login
                 Anaconda.AnacondaCore.RequestTokenVerifier = parts[1].Split('=')[1];
 
                 // Exchange for access token
+                LayoutRoot.Visibility = Visibility.Collapsed;
                 progressView = new ProgressView();
                 progressView.Show();
 

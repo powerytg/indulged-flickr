@@ -18,6 +18,9 @@ namespace Indulged.Plugins.Dashboard
         public DataTemplate ContactPhotoTemplate { get; set; }
         public DataTemplate ContactPhotoHeaderTemplate { get; set; }
         public DataTemplate ContactPhotoFooterTemplate { get; set; }
+        public DataTemplate ActivityHeaderTemplate { get; set; }
+        public DataTemplate ActivityPhotoTemplate { get; set; }
+
 
         public override DataTemplate SelectTemplate(object item, DependencyObject container)
         {
@@ -30,6 +33,10 @@ namespace Indulged.Plugins.Dashboard
                 return ContactPhotoHeaderTemplate;
             else if (itemType == typeof(SummersaltContactPhotoFooterModel))
                 return ContactPhotoFooterTemplate;
+            else if (itemType == typeof(SummersaltActivityHeaderModel))
+                return ActivityHeaderTemplate;
+            else if (itemType == typeof(PhotoActivity))
+                return ActivityPhotoTemplate;
 
             // Default
             return null;

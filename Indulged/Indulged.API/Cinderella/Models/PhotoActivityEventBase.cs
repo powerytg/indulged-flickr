@@ -10,5 +10,6 @@ namespace Indulged.API.Cinderella.Models
     {
         public string EventType { get; set; }
         public User EventUser { get; set; }
+        public DateTime CreationDate { get; set; }
     }
 }

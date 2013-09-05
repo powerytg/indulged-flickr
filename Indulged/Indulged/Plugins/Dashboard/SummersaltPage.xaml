@@ -43,6 +43,18 @@
                             </DataTemplate>
                         </local:SummersaltRendererSelector.ContactPhotoFooterTemplate>
 
+                        <local:SummersaltRendererSelector.ActivityHeaderTemplate>
+                            <DataTemplate>
+                                <renderers:SummersaltActivityHeaderRenderer/>
+                            </DataTemplate>
+                        </local:SummersaltRendererSelector.ActivityHeaderTemplate>
+
+                        <local:SummersaltRendererSelector.ActivityPhotoTemplate>
+                            <DataTemplate>
+                                <renderers:SummersaltActivityPhotoRenderer PhotoSource="{Binding TargetPhoto}"/>
+                            </DataTemplate>
+                        </local:SummersaltRendererSelector.ActivityPhotoTemplate>
+
                     </local:SummersaltRendererSelector>
                 </DataTemplate>
             </phone:LongListSelector.ItemTemplate>
