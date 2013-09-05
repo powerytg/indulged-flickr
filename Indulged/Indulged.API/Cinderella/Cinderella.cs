@@ -59,6 +59,9 @@ namespace Indulged.API.Cinderella
         public EventHandler<ContactListUpdatedEventArgs> ContactListUpdated;
         public EventHandler ContactPhotosUpdated;
 
+        // Activity stream events
+        public EventHandler ActivityStreamUpdated;
+
         // Singleton
         private static Cinderella instance;
 
@@ -106,6 +109,11 @@ namespace Indulged.API.Cinderella
         public List<User> ContactList { get; set; }
         public List<Photo> ContactPhotoList { get; set; }
 
+        // Activity stream
+        public int ActivityItemsCount { get; set; }
+        public Dictionary<string, PhotoActivity> ActivityCache { get; set; }
+        public List<PhotoActivity> ActivityList { get; set; }
+
         // Constructor
         public Cinderella()
         {
@@ -131,6 +139,10 @@ namespace Indulged.API.Cinderella
             // Contact list
             ContactList = new List<User>();
             ContactPhotoList = new List<Photo>();
+
+            // Activity stream
+            ActivityCache = new Dictionary<string, PhotoActivity>();
+            ActivityList = new List<PhotoActivity>();
 
             // Contact
             Anaconda.Anaconda.AnacondaCore.ContactPhotosReturned += OnContactPhotosReturned;
@@ -175,6 +187,9 @@ namespace Indulged.API.Cinderella
             // User info
             Anaconda.Anaconda.AnacondaCore.UserInfoReturned += OnUserInfoReturned;
             Anaconda.Anaconda.AnacondaCore.ContactListReturned += OnContactListReturned;
+
+            // Activity stream
+            Anaconda.Anaconda.AnacondaCore.ActivityStreamReturned += OnActivityStreamReturned;
         }
     }
 }

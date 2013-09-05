@@ -94,5 +94,8 @@ namespace Indulged.API.Anaconda
         public EventHandler<GetContactListExceptionEventArgs> GetContactListException;
         public EventHandler<GetContactPhotosEventArgs> ContactPhotosReturned;
         public EventHandler GetContactPhotosException;
+
+        // Activity stream
+        public EventHandler<GetActivityStreamEventArgs> ActivityStreamReturned;
     }
 }
