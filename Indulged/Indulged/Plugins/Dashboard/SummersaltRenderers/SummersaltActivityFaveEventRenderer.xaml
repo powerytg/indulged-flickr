@@ -10,14 +10,14 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     d:DesignHeight="250" d:DesignWidth="480">
 
-    <Grid x:Name="LayoutRoot">
+    <Grid x:Name="LayoutRoot" Margin="20">
         <StackPanel Orientation="Horizontal">
             <Image Width="36" Height="36" VerticalAlignment="Center"
                    Source="/Assets/Dashboard/ActivityFave.png" 
                    Margin="15, 0, 0, 0" />
 
             <TextBlock x:Name="TitleLabel" TextWrapping="Wrap"
-                       Foreground="#32afe0" FontSize="36" FontFamily="/Assets/Fonts/BenchNine-Regular.ttf#BenchNine"
+                       Foreground="#32afe0" FontSize="18" FontFamily="/Assets/Fonts/BenchNine-Regular.ttf#BenchNine"
                        />
 
         </StackPanel>

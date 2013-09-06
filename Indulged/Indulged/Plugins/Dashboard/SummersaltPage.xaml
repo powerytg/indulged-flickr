@@ -51,7 +51,7 @@
 
                         <local:SummersaltRendererSelector.ActivityPhotoTemplate>
                             <DataTemplate>
-                                <renderers:SummersaltActivityPhotoRenderer PhotoSource="{Binding TargetPhoto}"/>
+                                <renderers:SummersaltActivityPhotoRenderer Activity="{Binding}"/>
                             </DataTemplate>
                         </local:SummersaltRendererSelector.ActivityPhotoTemplate>
 

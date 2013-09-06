@@ -11,11 +11,13 @@ namespace Indulged.API.Cinderella.Models
         public string Title { get; set; }
         public Photo TargetPhoto { get; set; }
         public List<PhotoActivityEventBase> Events { get; set; }
+        public List<User> FavUsers { get; set; }
 
         public PhotoActivity()
             : base()
         {
             Events = new List<PhotoActivityEventBase>();
+            FavUsers = new List<User>();
         }
     }
 }

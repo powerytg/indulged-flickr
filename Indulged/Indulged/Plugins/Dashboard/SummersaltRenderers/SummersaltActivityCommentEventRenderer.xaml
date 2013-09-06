@@ -8,18 +8,29 @@
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
-    d:DesignHeight="250" d:DesignWidth="480">
+    d:DesignHeight="250" d:DesignWidth="480" MaxHeight="420">
 
-    <Grid x:Name="LayoutRoot">
-        <StackPanel Orientation="Horizontal">
+    <StackPanel x:Name="LayoutRoot">
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0, 0, 16, 4">
             <Image x:Name="AvatarView" Width="36" Height="36" VerticalAlignment="Center"
-                   Margin="15, 0, 0, 0" />
+                   Margin="15, 0, 15, 0" />
 
             <TextBlock x:Name="TitleLabel" TextWrapping="Wrap"
-                       Foreground="#32afe0" FontSize="36" FontFamily="/Assets/Fonts/BenchNine-Regular.ttf#BenchNine"
+                       Foreground="#32afe0" FontSize="24" FontFamily="/Assets/Fonts/BenchNine-Regular.ttf#BenchNine"
                        />
 
         </StackPanel>
-        
-    </Grid>
+
+        <!--Comment body-->
+        <StackPanel Margin="12,0,16,20" Orientation="Horizontal"
+                    MaxWidth="420" HorizontalAlignment="Right" >
+            <Image Source="/Assets/Common/QuoteLeft.png" Width="26"/>
+
+            <TextBlock x:Name="CommentLabel" Foreground="#274551" TextAlignment="Right"
+                               FontSize="18" TextWrapping="Wrap" FontWeight="Light" TextTrimming="WordEllipsis"
+                               Margin="12, 24, 0, 0" />
+
+        </StackPanel>
+
+    </StackPanel>
 </UserControl>
