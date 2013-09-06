@@ -111,6 +111,12 @@ namespace Indulged.Plugins.Dashboard
                 foreach (var activity in Cinderella.CinderellaCore.ActivityList)
                 {
                     dataSource.Add(activity);
+
+                    int maxEventCount = Math.Min(3, activity.Events.Count);
+                    for (int i = 0; i < maxEventCount; i++ )
+                    {
+                        dataSource.Add(activity.Events[i]);
+                    }
                 }
             });
         }

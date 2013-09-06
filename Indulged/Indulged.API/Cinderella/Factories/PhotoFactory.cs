@@ -137,5 +137,51 @@ namespace Indulged.API.Cinderella.Factories
             return photo;
         }
 
+        public static Photo PhotoWithPhotoInfoJObject(JObject json)
+        {
+            string photoId = json["id"].ToString();
+            Photo photo = null;
+            if (Cinderella.CinderellaCore.PhotoCache.ContainsKey(photoId))
+            {
+                photo = Cinderella.CinderellaCore.PhotoCache[photoId];
+            }
+            else
+            {
+                photo = new Photo();
+                photo.ResourceId = photoId;
+                Cinderella.CinderellaCore.PhotoCache[photoId] = photo;
+            }
+
+            photo.Secret = json["secret"].ToString();
+            photo.Server = json["server"].ToString();
+            photo.Farm = json["farm"].ToString();
+            photo.ViewCount = int.Parse(json["views"].ToString());
+
+            JToken commentCountValue;
+            if (json.TryGetValue("comments", out commentCountValue))
+            {
+                photo.CommentCount = int.Parse(json["comments"]["_content"].ToString());
+            }
+
+            photo.Title = json["title"]["_content"].ToString();
+
+            if (photo.Title.Length > CinderellaConstants.MaxTitleLength)
+                photo.Title = photo.Title.Substring(0, CinderellaConstants.MaxTitleLength) + "...";
+
+            photo.Description = json["description"]["_content"].ToString();
+            if (photo.Description.Length > CinderellaConstants.MaxDescriptionLength)
+                photo.Description = photo.Description.Substring(0, CinderellaConstants.MaxDescriptionLength) + "...";
+
+            // Favourite
+            JToken favValue;
+            if (json.TryGetValue("isfavorite", out favValue))
+            {
+                photo.IsFavourite = (json["isfavorite"].ToString() == "1");
+            }
+
+            return photo;
+
+        }
+
     }
 }

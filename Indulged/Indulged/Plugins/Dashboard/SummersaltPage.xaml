@@ -55,6 +55,18 @@
                             </DataTemplate>
                         </local:SummersaltRendererSelector.ActivityPhotoTemplate>
 
+                        <local:SummersaltRendererSelector.ActivityPhotoCommentEventTemplate>
+                            <DataTemplate>
+                                <renderers:SummersaltActivityCommentEventRenderer Event="{Binding}"/>
+                            </DataTemplate>
+                        </local:SummersaltRendererSelector.ActivityPhotoCommentEventTemplate>
+
+                        <local:SummersaltRendererSelector.ActivityPhotoFaveEventTemplate>
+                            <DataTemplate>
+                                <renderers:SummersaltActivityFaveEventRenderer Event="{Binding}"/>
+                            </DataTemplate>
+                        </local:SummersaltRendererSelector.ActivityPhotoFaveEventTemplate>
+
                     </local:SummersaltRendererSelector>
                 </DataTemplate>
             </phone:LongListSelector.ItemTemplate>

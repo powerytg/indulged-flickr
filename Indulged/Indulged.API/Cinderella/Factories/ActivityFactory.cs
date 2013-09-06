@@ -39,25 +39,31 @@ namespace Indulged.API.Cinderella.Factories
 
             // Events
             activity.Events.Clear();
+            PhotoActivityFaveEvent favEvent = null;
             foreach (JObject eventJson in json["activity"]["event"])
             {
                 PhotoActivityEventBase evt = null;
                 string eventType = eventJson["type"].ToString();
                 if (eventType == "fave")
                 {
-                    evt = new PhotoActivityFaveEvent();
+                    if (favEvent == null)
+                    {
+                        favEvent = new PhotoActivityFaveEvent();
+                        User favUser = UserFactory.UserWithActivityEventJObject(eventJson);
+                        if(favUser != null)
+                            favEvent.FavUsers.Add(favUser);
+
+                        activity.Events.Insert(0, favEvent);
+                    }
                 }
                 else if (eventType == "comment")
                 {
                     evt = new PhotoActivityCommentEvent();
                     PhotoActivityCommentEvent commentEvt = evt as PhotoActivityCommentEvent;
                     commentEvt.Message = eventJson["_content"].ToString();
-                }
-
-                if (evt != null)
-                {
                     evt.EventUser = UserFactory.UserWithActivityEventJObject(eventJson);
                     evt.CreationDate = eventJson["dateadded"].ToString().ToDateTime();
+
                     activity.Events.Add(evt);
                 }
             }

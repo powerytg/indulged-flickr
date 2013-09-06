@@ -89,12 +89,19 @@ namespace Indulged.Plugins.Detail
 
             // App bar
             ApplicationBar = Resources["PhotoPageAppBar"] as ApplicationBar;
+
+            initialized = true;
+            OnCurrentPageChanged(this, null);
         }
 
         private Photo currentPhoto;
+        private bool initialized = false;
 
         private void OnCurrentPageChanged(object sender, SelectionChangedEventArgs e)
         {
+            if (!initialized)
+                return;
+
             int selectedIndex = PhotoPivot.SelectedIndex;
             currentPhoto = CollectionContext[selectedIndex];
 

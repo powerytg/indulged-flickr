@@ -175,6 +175,12 @@
     <Compile Include="Plugins\Dashboard\SummersaltRendererSelector.cs" />
     <Compile Include="Plugins\Dashboard\DashboardTitleView.cs" />
     <Compile Include="Plugins\Dashboard\PreludeItemModel.cs" />
+    <Compile Include="Plugins\Dashboard\SummersaltRenderers\SummersaltActivityCommentEventRenderer.xaml.cs">
+      <DependentUpon>SummersaltActivityCommentEventRenderer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\Dashboard\SummersaltRenderers\SummersaltActivityFaveEventRenderer.xaml.cs">
+      <DependentUpon>SummersaltActivityFaveEventRenderer.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Plugins\Dashboard\SummersaltRenderers\SummersaltActivityHeaderRenderer.xaml.cs">
       <DependentUpon>SummersaltActivityHeaderRenderer.xaml</DependentUpon>
     </Compile>
@@ -645,6 +651,12 @@
     <Page Include="Plugins\Common\Renderers\TopicReplyRenderer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Plugins\Dashboard\SummersaltRenderers\SummersaltActivityCommentEventRenderer.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Plugins\Dashboard\SummersaltRenderers\SummersaltActivityFaveEventRenderer.xaml">
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Plugins\Dashboard\SummersaltRenderers\SummersaltActivityHeaderRenderer.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -1160,6 +1172,7 @@
     <Content Include="Assets\Common\SliderThumb.png" />
     <Content Include="Assets\Common\UnFav.png" />
     <Content Include="Assets\Common\View-Light.png" />
+    <Content Include="Assets\Dashboard\ActivityFave.png" />
     <Content Include="Assets\Dashboard\Heart.png" />
     <Content Include="Assets\Group\ComposerBottomShadow.png" />
     <Content Include="Assets\Group\SmallSelectionCircle.png" />

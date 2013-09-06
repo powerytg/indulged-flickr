@@ -56,7 +56,7 @@ namespace Indulged.Plugins.Detail
             StatView.PhotoSource = PhotoSource;
 
             // Description
-            if (PhotoSource.Description.Length > 0)
+            if (PhotoSource.Description != null && PhotoSource.Description.Length > 0)
                 DescriptionLabel.Visibility = Visibility.Visible;
             else
                 DescriptionLabel.Visibility = Visibility.Collapsed;

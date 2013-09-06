@@ -20,6 +20,8 @@ namespace Indulged.Plugins.Dashboard
         public DataTemplate ContactPhotoFooterTemplate { get; set; }
         public DataTemplate ActivityHeaderTemplate { get; set; }
         public DataTemplate ActivityPhotoTemplate { get; set; }
+        public DataTemplate ActivityPhotoCommentEventTemplate { get; set; }
+        public DataTemplate ActivityPhotoFaveEventTemplate { get; set; }
 
 
         public override DataTemplate SelectTemplate(object item, DependencyObject container)
@@ -37,6 +39,10 @@ namespace Indulged.Plugins.Dashboard
                 return ActivityHeaderTemplate;
             else if (itemType == typeof(PhotoActivity))
                 return ActivityPhotoTemplate;
+            else if (itemType == typeof(PhotoActivityCommentEvent))
+                return ActivityPhotoCommentEventTemplate;
+            else if (itemType == typeof(PhotoActivityFaveEvent))
+                return ActivityPhotoFaveEventTemplate;
 
             // Default
             return null;

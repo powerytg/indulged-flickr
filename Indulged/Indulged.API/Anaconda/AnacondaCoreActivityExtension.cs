@@ -35,9 +35,9 @@ namespace Indulged.API.Anaconda
             paramDict["oauth_timestamp"] = timestamp;
             paramDict["oauth_token"] = AccessToken;
             paramDict["oauth_version"] = "1.0";
-            paramDict["timeframe"] = "14d";
+            paramDict["timeframe"] = "30d";
             paramDict["page"] = "1";
-            paramDict["per_page"] = "20";
+            paramDict["per_page"] = "25";
 
             string paramString = GenerateParamString(paramDict);
             string signature = GenerateSignature("GET", AccessTokenSecret, "http://api.flickr.com/services/rest", paramString);

@@ -20,13 +20,13 @@ namespace Indulged.Plugins.Dashboard.SummersaltRenderers
 {
     public partial class SummersaltActivityFaveEventRenderer : UserControl
     {
-        public static readonly DependencyProperty EventProperty = DependencyProperty.Register("Event", typeof(PhotoActivityCommentEvent), typeof(SummersaltActivityFaveEventRenderer), new PropertyMetadata(OnEventPropertyChanged));
+        public static readonly DependencyProperty EventProperty = DependencyProperty.Register("Event", typeof(PhotoActivityFaveEvent), typeof(SummersaltActivityFaveEventRenderer), new PropertyMetadata(OnEventPropertyChanged));
 
-        public PhotoActivityCommentEvent Event
+        public PhotoActivityFaveEvent Event
         {
             get
             {
-                return (PhotoActivityCommentEvent)GetValue(EventProperty);
+                return (PhotoActivityFaveEvent)GetValue(EventProperty);
             }
             set
             {
@@ -41,8 +41,32 @@ namespace Indulged.Plugins.Dashboard.SummersaltRenderers
 
         protected virtual void OnEventChanged()
         {
-            AvatarView.Source = new BitmapImage(new Uri(Event.EventUser.AvatarUrl));
-            TitleLabel.Text = Event.EventUser.Name + " commented on " + Event.CreationDate.ToShortDateString();
+            string userString = Event.FavUsers[0].Name;
+            string endString = " added this photo as favourite";
+            if (Event.FavUsers.Count == 1)
+            {
+                userString += endString;
+            }
+            else if (Event.FavUsers.Count == 2)
+            {
+                userString += " and " + Event.FavUsers[1].Name + endString;
+            }
+            else if (Event.FavUsers.Count == 3)
+            {
+                userString += " ," + Event.FavUsers[1].Name + " and " + Event.FavUsers[2].Name + endString;
+            }
+            else
+            {
+                int extCount = Event.FavUsers.Count - 3;
+                if (extCount == 1)
+                    endString = " and 1 other person added this photo as favourite";
+                else
+                    endString = " and " + extCount.ToString() + " other people added this photo as favourite";
+
+                userString += " ," + Event.FavUsers[1].Name + ", " + Event.FavUsers[2].Name + endString;
+            }
+
+            TitleLabel.Text = userString;
         }
 
         // Constructor

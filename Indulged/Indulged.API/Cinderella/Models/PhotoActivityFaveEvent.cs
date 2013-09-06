@@ -8,5 +8,12 @@ namespace Indulged.API.Cinderella.Models
 {
     public class PhotoActivityFaveEvent : PhotoActivityEventBase
     {
+        public PhotoActivityFaveEvent()
+            : base()
+        {
+            FavUsers = new List<User>();
+        }
+
+        public List<User> FavUsers {get;set;}
     }
 }

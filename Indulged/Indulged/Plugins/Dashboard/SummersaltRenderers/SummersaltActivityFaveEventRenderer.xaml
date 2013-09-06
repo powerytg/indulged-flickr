@@ -12,7 +12,8 @@
 
     <Grid x:Name="LayoutRoot">
         <StackPanel Orientation="Horizontal">
-            <Image x:Name="AvatarView" Width="36" Height="36" VerticalAlignment="Center"
+            <Image Width="36" Height="36" VerticalAlignment="Center"
+                   Source="/Assets/Dashboard/ActivityFave.png" 
                    Margin="15, 0, 0, 0" />
 
             <TextBlock x:Name="TitleLabel" TextWrapping="Wrap"

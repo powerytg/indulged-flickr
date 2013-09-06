@@ -34,7 +34,7 @@ namespace Indulged.API.Cinderella
         private void OnPhotoInfoReturned(object sender, GetPhotoInfoEventArgs e)
         {
             JObject json = JObject.Parse(e.Response);
-            Photo photo = PhotoFactory.PhotoWithJObject((JObject)json["photo"]);
+            Photo photo = PhotoFactory.PhotoWithPhotoInfoJObject((JObject)json["photo"]);
 
             // Should add this photo to stream?
             if (e.IsUploadedPhoto)
