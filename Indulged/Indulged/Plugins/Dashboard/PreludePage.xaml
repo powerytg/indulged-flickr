@@ -18,16 +18,18 @@
                 <Image Source="/Assets/Dashboard/Prelude/PreludeContentGuide.png" Height="142" HorizontalAlignment="Left"/>
 
                 <!-- Special section -->
-                <dashboard:NavigatorSection Title="impressionism"/>
+                <dashboard:NavigatorSection Title="featured"/>
                 <phone:LongListSelector x:Name="FeatureListView" Style="{StaticResource PreludeListStyle}" SelectionChanged="OnFeatureListViewSelectionChanged"/>
 
                 <!-- Photo set section -->
-                <dashboard:NavigatorSection Title="la plaza"/>
-                <phone:LongListSelector x:Name="StreamListView" Style="{StaticResource PreludeListStyle}" SelectionChanged="OnStreamListViewSelectionChanged"/>
+                <dashboard:NavigatorSection x:Name="StreamSectionView" Title="photo sets"/>
+                <TextBlock x:Name="StreamListStatusLabel" Text="Retrieving photo sets..." Margin="15" FontSize="24" FontWeight="Light" Foreground="#c5c5c5"/>
+                <phone:LongListSelector x:Name="StreamListView" Style="{StaticResource PreludeListStyle}" SelectionChanged="OnStreamListViewSelectionChanged" Visibility="Collapsed"/>
 
                 <!-- Group section -->
-                <dashboard:NavigatorSection Title="community"/>
-                <phone:LongListSelector x:Name="GroupListView" Style="{StaticResource PreludeListStyle}" SelectionChanged="OnGroupListViewSelectionChanged"/>
+                <dashboard:NavigatorSection x:Name="GroupSectionView" Title="community"/>
+                <TextBlock x:Name="GroupListStatusLabel" Text="Retrieving group list..." Margin="15" FontSize="24" FontWeight="Light" Foreground="#c5c5c5"/>
+                <phone:LongListSelector x:Name="GroupListView" Style="{StaticResource PreludeListStyle}" SelectionChanged="OnGroupListViewSelectionChanged" Visibility="Collapsed"/>
 
             </StackPanel>
         </ScrollViewer>

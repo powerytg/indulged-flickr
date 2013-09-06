@@ -278,8 +278,7 @@ namespace Indulged.API.Anaconda
             paramDict["oauth_timestamp"] = timestamp;
             paramDict["oauth_token"] = AccessToken;
             paramDict["oauth_version"] = "1.0";
-            paramDict["single_photo"] = "1";
-            paramDict["count"] = "5";
+            paramDict["count"] = "25";
             paramDict["extras"] = UrlHelper.Encode(commonExtraParameters);
 
             string paramString = GenerateParamString(paramDict);

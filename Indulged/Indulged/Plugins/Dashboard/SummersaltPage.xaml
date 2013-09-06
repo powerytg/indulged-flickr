@@ -4,6 +4,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:renderers="clr-namespace:Indulged.Plugins.Dashboard.SummersaltRenderers"
+    xmlns:photoRenderers="clr-namespace:Indulged.Plugins.Common.PhotoGroupRenderers"             
     xmlns:local="clr-namespace:Indulged.Plugins.Dashboard"             
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"             
     mc:Ignorable="d"
@@ -49,24 +50,82 @@
                             </DataTemplate>
                         </local:SummersaltRendererSelector.ActivityHeaderTemplate>
 
-                        <local:SummersaltRendererSelector.ActivityPhotoTemplate>
-                            <DataTemplate>
-                                <renderers:SummersaltActivityPhotoRenderer Activity="{Binding}"/>
-                            </DataTemplate>
-                        </local:SummersaltRendererSelector.ActivityPhotoTemplate>
-
                         <local:SummersaltRendererSelector.ActivityPhotoCommentEventTemplate>
                             <DataTemplate>
                                 <renderers:SummersaltActivityCommentEventRenderer Event="{Binding}"/>
                             </DataTemplate>
                         </local:SummersaltRendererSelector.ActivityPhotoCommentEventTemplate>
 
-                        <local:SummersaltRendererSelector.ActivityPhotoFaveEventTemplate>
+                        <local:SummersaltRendererSelector.ActivityContactHeaderTemplate>
                             <DataTemplate>
-                                <renderers:SummersaltActivityFaveEventRenderer Event="{Binding}"/>
+                                <renderers:SummersaltContactHeaderRenderer UserSource="{Binding Contact}"/>
                             </DataTemplate>
-                        </local:SummersaltRendererSelector.ActivityPhotoFaveEventTemplate>
+                        </local:SummersaltRendererSelector.ActivityContactHeaderTemplate>
 
+                        <local:SummersaltRendererSelector.ActivityPhotoTemplate>
+                            <DataTemplate>
+                                <renderers:SummersaltActivityPhotoRenderer Activity="{Binding}"/>
+                            </DataTemplate>
+                        </local:SummersaltRendererSelector.ActivityPhotoTemplate>
+
+                        <!--Photo group renderers-->
+                        <local:SummersaltRendererSelector.LayoutTemplate1>
+                            <DataTemplate>
+                                <photoRenderers:CommonPhotoGroupRenderer1 PhotoGroupSource="{Binding}"/>
+                            </DataTemplate>
+                        </local:SummersaltRendererSelector.LayoutTemplate1>
+
+                        <local:SummersaltRendererSelector.LayoutTemplate2>
+                            <DataTemplate>
+                                <photoRenderers:CommonPhotoGroupRenderer2 PhotoGroupSource="{Binding}"/>
+                            </DataTemplate>
+                        </local:SummersaltRendererSelector.LayoutTemplate2>
+
+                        <local:SummersaltRendererSelector.LayoutTemplate3>
+                            <DataTemplate>
+                                <photoRenderers:CommonPhotoGroupRenderer3 PhotoGroupSource="{Binding}"/>
+                            </DataTemplate>
+                        </local:SummersaltRendererSelector.LayoutTemplate3>
+
+
+                        <local:SummersaltRendererSelector.LayoutTemplate3A>
+                            <DataTemplate>
+                                <photoRenderers:CommonPhotoGroupRenderer3A PhotoGroupSource="{Binding}"/>
+                            </DataTemplate>
+                        </local:SummersaltRendererSelector.LayoutTemplate3A>
+
+
+                        <local:SummersaltRendererSelector.LayoutTemplate4>
+                            <DataTemplate>
+                                <photoRenderers:CommonPhotoGroupRenderer4 PhotoGroupSource="{Binding}"/>
+                            </DataTemplate>
+                        </local:SummersaltRendererSelector.LayoutTemplate4>
+
+                        <local:SummersaltRendererSelector.LayoutTemplate4A>
+                            <DataTemplate>
+                                <photoRenderers:CommonPhotoGroupRenderer4A PhotoGroupSource="{Binding}"/>
+                            </DataTemplate>
+                        </local:SummersaltRendererSelector.LayoutTemplate4A>
+
+                        <local:SummersaltRendererSelector.LayoutTemplate4B>
+                            <DataTemplate>
+                                <photoRenderers:CommonPhotoGroupRenderer4B PhotoGroupSource="{Binding}"/>
+                            </DataTemplate>
+                        </local:SummersaltRendererSelector.LayoutTemplate4B>
+
+                        <local:SummersaltRendererSelector.LayoutTemplate5>
+                            <DataTemplate>
+                                <photoRenderers:CommonPhotoGroupRenderer5 PhotoGroupSource="{Binding}"/>
+                            </DataTemplate>
+                        </local:SummersaltRendererSelector.LayoutTemplate5>
+
+                        <local:SummersaltRendererSelector.LayoutTemplate5A>
+                            <DataTemplate>
+                                <photoRenderers:CommonPhotoGroupRenderer5A PhotoGroupSource="{Binding}"/>
+                            </DataTemplate>
+                        </local:SummersaltRendererSelector.LayoutTemplate5A>
+                        
+                        
                     </local:SummersaltRendererSelector>
                 </DataTemplate>
             </phone:LongListSelector.ItemTemplate>

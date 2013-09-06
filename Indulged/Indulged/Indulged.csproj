@@ -170,11 +170,15 @@
       <DependentUpon>TopicReplyRenderer.xaml</DependentUpon>
     </Compile>
     <Compile Include="Plugins\Dashboard\SummersaltActivityHeaderModel.cs" />
+    <Compile Include="Plugins\Dashboard\SummersaltContactHeaderModel.cs" />
     <Compile Include="Plugins\Dashboard\SummersaltContactPhotoFooterModel.cs" />
     <Compile Include="Plugins\Dashboard\SummersaltContactPhotoHeaderModeal.cs" />
     <Compile Include="Plugins\Dashboard\SummersaltRendererSelector.cs" />
     <Compile Include="Plugins\Dashboard\DashboardTitleView.cs" />
     <Compile Include="Plugins\Dashboard\PreludeItemModel.cs" />
+    <Compile Include="Plugins\Dashboard\SummersaltRenderers\SummersaltContactHeaderRenderer.xaml.cs">
+      <DependentUpon>SummersaltContactHeaderRenderer.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Plugins\Dashboard\SummersaltRenderers\SummersaltActivityCommentEventRenderer.xaml.cs">
       <DependentUpon>SummersaltActivityCommentEventRenderer.xaml</DependentUpon>
     </Compile>
@@ -651,6 +655,10 @@
     <Page Include="Plugins\Common\Renderers\TopicReplyRenderer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Plugins\Dashboard\SummersaltRenderers\SummersaltContactHeaderRenderer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Plugins\Dashboard\SummersaltRenderers\SummersaltActivityCommentEventRenderer.xaml">
       <SubType>Designer</SubType>

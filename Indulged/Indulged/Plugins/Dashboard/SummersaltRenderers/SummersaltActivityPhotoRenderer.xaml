@@ -10,25 +10,33 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     d:DesignHeight="250" d:DesignWidth="480">
 
-    <Grid x:Name="LayoutRoot">
-        <Image x:Name="ImageView"/>
-        
-        <!--Fav section-->
-        <Border x:Name="FavView" VerticalAlignment="Bottom">
-            <Border.Background>
-                <SolidColorBrush Color="White" Opacity="0.75"/>
-            </Border.Background>
-            
-            <StackPanel Orientation="Horizontal" Margin="14, 8, 14, 8">
-                <Ellipse x:Name="SelectionIndicator" Width="15" Height="15" Fill="#0071f0" Margin="0, 0, 10, 0"/>
+    <StackPanel x:Name="LayoutRoot" Margin="0, 0, 0, 20">
+        <TextBlock x:Name="TitleLabel" TextWrapping="Wrap"
+                       TextAlignment="Center" 
+                       Foreground="#32afe0" FontSize="38" FontFamily="/Assets/Fonts/BenchNine-Regular.ttf#BenchNine"
+                       Margin="0, 0, 0, 15"/>
 
-                <TextBlock x:Name="FavLabel" TextWrapping="Wrap"
+        <Grid>
+            <Image x:Name="ImageView"/>
+
+            <!--Fav section-->
+            <Border x:Name="FavView" VerticalAlignment="Bottom">
+                <Border.Background>
+                    <SolidColorBrush Color="White" Opacity="0.75"/>
+                </Border.Background>
+
+                <StackPanel Orientation="Horizontal" Margin="14, 8, 14, 8">
+                    <Ellipse x:Name="SelectionIndicator" Width="15" Height="15" Fill="#0071f0" Margin="0, 0, 10, 0"/>
+
+                    <TextBlock x:Name="FavLabel" TextWrapping="Wrap"
                        Foreground="#274551" FontSize="24" FontFamily="/Assets/Fonts/BenchNine-Light.ttf#BenchNine"
                        />
 
-            </StackPanel>
+                </StackPanel>
 
-        </Border>
-            
-    </Grid>
+            </Border>
+
+        </Grid>
+
+    </StackPanel>
 </UserControl>

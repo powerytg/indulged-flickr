@@ -123,5 +123,17 @@ namespace Indulged
             NavigationService.Navigate(new Uri("/Plugins/Search/SearchPage.xaml", UriKind.Relative));
         }
 
+        private void OnLogoutClick(object sender, EventArgs e)
+        {
+            var logoutDialog = ModalPopup.Show("You will be taken back to login screen and your privacy will be cleared out on this device", "Sign Out", new List<string> { "Sign Out", "Cancel" });
+            logoutDialog.DismissWithButtonClick += (s, args) => {
+                int buttonIndex = (args as ModalPopupEventArgs).ButtonIndex;
+                if (buttonIndex == 0)
+                {
+                    NavigationService.Navigate(new Uri("/Plugins/Login/LoginPage.xaml", UriKind.Relative));
+                }
+            };
+            
+        }
     }
 }

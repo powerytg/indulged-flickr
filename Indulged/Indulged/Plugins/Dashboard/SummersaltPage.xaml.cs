@@ -13,6 +13,7 @@ using Indulged.API.Anaconda;
 using Indulged.API.Cinderella;
 using Indulged.API.Cinderella.Models;
 using Indulged.API.Cinderella.Events;
+using Indulged.Plugins.Common.PhotoGroupRenderers;
 
 namespace Indulged.Plugins.Dashboard
 {
@@ -86,9 +87,31 @@ namespace Indulged.Plugins.Dashboard
                 if (Cinderella.CinderellaCore.ContactPhotoList.Count > 0)
                     dataSource.Add(new SummersaltContactPhotoHeaderModeal());
 
+                // Slice the photos into groups
+                Dictionary<string, List<Photo>> photosByContactId = new Dictionary<string, List<Photo>>();
                 foreach (var photo in Cinderella.CinderellaCore.ContactPhotoList)
                 {
-                    dataSource.Add(photo);
+                    if (!photosByContactId.ContainsKey(photo.UserId))
+                    {
+                        photosByContactId[photo.UserId] = new List<Photo>();
+                    }
+
+                    photosByContactId[photo.UserId].Add(photo);
+                }
+
+                foreach (var userId in photosByContactId.Keys)
+                {
+                    User user = Cinderella.CinderellaCore.UserCache[userId];
+                    
+                    // Add a header
+                    dataSource.Add(new SummersaltContactHeaderModel { Contact = user });
+
+                    var item = photosByContactId[userId];
+                    List<PhotoGroup> photoGroups = CommonPhotoGroupFactory.GeneratePhotoGroup(item);
+                    foreach (var photoGroup in photoGroups)
+                    {
+                        dataSource.Add(photoGroup);
+                    }
                 }
 
                 dataSource.Add(new SummersaltContactPhotoFooterModel());

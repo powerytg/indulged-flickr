@@ -22,6 +22,7 @@
                 <shell:ApplicationBarMenuItem Text="take photo" Click="OnTakePhotoClick"/>
                 <shell:ApplicationBarMenuItem Text="subscription settings" Click="OnSubscriptionSettingsClick"/>
                 <shell:ApplicationBarMenuItem Text="search" Click="OnSearchClick"/>
+                <shell:ApplicationBarMenuItem Text="sign out" Click="OnLogoutClick"/>
             </shell:ApplicationBar.MenuItems>
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>

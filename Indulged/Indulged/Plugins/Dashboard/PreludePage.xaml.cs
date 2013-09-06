@@ -85,12 +85,25 @@ namespace Indulged.Plugins.Dashboard
             {
                 if (e.UserId != Cinderella.CinderellaCore.CurrentUser.ResourceId)
                     return;
-                
-                PhotoSetList.Clear();
-                foreach (PhotoSet photoset in Cinderella.CinderellaCore.PhotoSetList)
+
+                if (Cinderella.CinderellaCore.PhotoSetList.Count == 0)
                 {
-                    PhotoSetList.Add(photoset);
+                    StreamListStatusLabel.Text = "You don't have any photo sets";
+                    StreamListStatusLabel.Visibility = Visibility.Visible;
+                    StreamListView.Visibility = Visibility.Collapsed;
                 }
+                else
+                {
+                    StreamListStatusLabel.Visibility = Visibility.Collapsed;
+                    StreamListView.Visibility = Visibility.Visible;
+
+                    PhotoSetList.Clear();
+                    foreach (PhotoSet photoset in Cinderella.CinderellaCore.PhotoSetList)
+                    {
+                        PhotoSetList.Add(photoset);
+                    }
+                }
+
             });
         }
 
@@ -101,12 +114,25 @@ namespace Indulged.Plugins.Dashboard
             {
                 if (e.UserId != Cinderella.CinderellaCore.CurrentUser.ResourceId)
                     return;
-                
-                GroupList.Clear();
-                foreach (FlickrGroup group in e.Groups)
+
+                if (Cinderella.CinderellaCore.GroupCache.Count == 0)
                 {
-                    GroupList.Add(group);
+                    GroupListStatusLabel.Text = "You haven't joined any groups yet";
+                    GroupListStatusLabel.Visibility = Visibility.Visible;
+                    GroupListView.Visibility = Visibility.Collapsed;
                 }
+                else
+                {
+                    GroupListStatusLabel.Visibility = Visibility.Collapsed;
+                    GroupListView.Visibility = Visibility.Visible;
+
+                    GroupList.Clear();
+                    foreach (FlickrGroup group in e.Groups)
+                    {
+                        GroupList.Add(group);
+                    }
+                }
+
             });
         }
 
