@@ -22,6 +22,7 @@ namespace Indulged.Plugins.Dashboard
         public DataTemplate ActivityPhotoCommentEventTemplate { get; set; }
         public DataTemplate ActivityContactHeaderTemplate { get; set; }
         public DataTemplate ActivityPhotoTemplate { get; set; }
+        public DataTemplate SeperatorTemplate { get; set; }
 
         // Random generator
         private Random randomGenerator = new Random();
@@ -60,6 +61,8 @@ namespace Indulged.Plugins.Dashboard
                 return ActivityContactHeaderTemplate;
             else if (itemType == typeof(PhotoActivity))
                 return ActivityPhotoTemplate;
+            else if (itemType == typeof(SummersaltSeperatorModel))
+                return SeperatorTemplate;
             else if (itemType == typeof(PhotoGroup))
                 return SelectPhotoGroupTemplate(item, container);
 

@@ -68,6 +68,12 @@
                             </DataTemplate>
                         </local:SummersaltRendererSelector.ActivityPhotoTemplate>
 
+                        <local:SummersaltRendererSelector.SeperatorTemplate>
+                            <DataTemplate>
+                                <renderers:SummersaltSeperatorRenderer/>
+                            </DataTemplate>
+                        </local:SummersaltRendererSelector.SeperatorTemplate>
+
                         <!--Photo group renderers-->
                         <local:SummersaltRendererSelector.LayoutTemplate1>
                             <DataTemplate>

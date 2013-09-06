@@ -53,6 +53,8 @@ namespace Indulged.API.Cinderella.Models
         // Group ids
         public List<string> GroupIds { get; set; }
 
+        // Full user info
+        public bool IsFullInfoLoaded { get; set; }
 
         // Status
         public bool IsLoadingPhotoStream { get; set; }

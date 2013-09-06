@@ -27,6 +27,9 @@ namespace Indulged.Plugins.Dashboard.SummersaltRenderers
         {
             InitializeComponent();
 
+            if (Cinderella.CinderellaCore.CurrentUser.IsFullInfoLoaded)
+                UpdateInfoView();
+
             // Events
             Cinderella.CinderellaCore.UserInfoUpdated += OnUserInfoUpdated;
         }
@@ -37,29 +40,34 @@ namespace Indulged.Plugins.Dashboard.SummersaltRenderers
                 if (e.UserId != Cinderella.CinderellaCore.CurrentUser.ResourceId)
                     return;
 
-                LoadingView.Visibility = Visibility.Collapsed;
-                ContentView.Visibility = Visibility.Visible;
-
-                currentUser = Cinderella.CinderellaCore.CurrentUser;
-                AvatarView.Source = new BitmapImage(new Uri(currentUser.AvatarUrl));
-                NameLabel.Text = currentUser.UserName;
-                ProLabel.Visibility = currentUser.IsProUser ? Visibility.Visible : Visibility.Collapsed;
-
-                // Description label
-                if (currentUser.Description != null && currentUser.Description.Length > 0)
-                {
-                    formatUserInfoText(currentUser.Description);
-                }
-                else
-                {
-                    if (currentUser.hasFirstDate)
-                        formatUserInfoText("Member since " + currentUser.FirstDate.ToShortDateString());
-                    else if(currentUser.PhotoCount > 0)
-                        formatUserInfoText("Photo uploaded: " + currentUser.PhotoCount.ToString());
-                    else
-                        formatUserInfoText("No extra info available");
-                }
+                UpdateInfoView();
             });
+        }
+
+        private void UpdateInfoView()
+        {
+            LoadingView.Visibility = Visibility.Collapsed;
+            ContentView.Visibility = Visibility.Visible;
+
+            currentUser = Cinderella.CinderellaCore.CurrentUser;
+            AvatarView.Source = new BitmapImage(new Uri(currentUser.AvatarUrl));
+            NameLabel.Text = currentUser.UserName;
+            ProLabel.Visibility = currentUser.IsProUser ? Visibility.Visible : Visibility.Collapsed;
+
+            // Description label
+            if (currentUser.Description != null && currentUser.Description.Length > 0)
+            {
+                formatUserInfoText(currentUser.Description);
+            }
+            else
+            {
+                if (currentUser.hasFirstDate)
+                    formatUserInfoText("Member since " + currentUser.FirstDate.ToShortDateString());
+                else if (currentUser.PhotoCount > 0)
+                    formatUserInfoText("Photo uploaded: " + currentUser.PhotoCount.ToString());
+                else
+                    formatUserInfoText("No extra info available");
+            }
         }
 
         private void formatUserInfoText(string text)

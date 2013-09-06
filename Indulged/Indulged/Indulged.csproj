@@ -200,9 +200,13 @@
     <Compile Include="Plugins\Dashboard\SummersaltRenderers\SummersaltContactPhotoRenderer.xaml.cs">
       <DependentUpon>SummersaltContactPhotoRenderer.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Plugins\Dashboard\SummersaltRenderers\SummersaltSeperatorRenderer.xaml.cs">
+      <DependentUpon>SummersaltSeperatorRenderer.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Plugins\Dashboard\SummersaltRenderers\SummersaltUserInfoRenderer.xaml.cs">
       <DependentUpon>SummersaltUserInfoRenderer.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Plugins\Dashboard\SummersaltSeperatorModel.cs" />
     <Compile Include="Plugins\Detail\DetailCommentsPageComposerExtension.cs" />
     <Compile Include="Plugins\Detail\DetailCommentsPage.xaml.cs">
       <DependentUpon>DetailCommentsPage.xaml</DependentUpon>
@@ -684,6 +688,10 @@
     <Page Include="Plugins\Dashboard\SummersaltRenderers\SummersaltContactPhotoRenderer.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Plugins\Dashboard\SummersaltRenderers\SummersaltSeperatorRenderer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Plugins\Dashboard\SummersaltRenderers\SummersaltUserInfoRenderer.xaml">
       <SubType>Designer</SubType>

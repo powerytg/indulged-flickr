@@ -33,12 +33,13 @@ namespace Indulged
         }
 
         private bool hasExecutedOnce = false;
+        private bool hasLoggedIn = false;
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
 
-            if (hasExecutedOnce)
+            if (hasExecutedOnce && hasLoggedIn)
                 return;
 
             hasExecutedOnce = true;
@@ -52,6 +53,8 @@ namespace Indulged
 
             if (tokenRetrieved && currentUser != null)
             {
+                hasLoggedIn = true;
+
                 // Get the set list
                 Anaconda.AnacondaCore.GetPhotoSetListAsync(currentUser.ResourceId);
 

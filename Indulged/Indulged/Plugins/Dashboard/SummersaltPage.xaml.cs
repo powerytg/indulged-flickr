@@ -141,6 +141,8 @@ namespace Indulged.Plugins.Dashboard
                         dataSource.Add(activity.Events[i]);
                     }
                 }
+
+                dataSource.Add(new SummersaltSeperatorModel());
             });
         }
 
