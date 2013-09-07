@@ -23,7 +23,7 @@ namespace Indulged.Plugins.Dashboard
         {
             get
             {
-                return "/Assets/Chrome/SummersaltBackground.png";
+                return "/Assets/Chrome/SummersaltBackground.jpg";
             }
         }
 

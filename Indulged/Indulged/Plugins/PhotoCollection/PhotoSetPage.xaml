@@ -8,107 +8,57 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:chrome="clr-namespace:Indulged.Plugins.Chrome"
     xmlns:dashboard="clr-namespace:Indulged.Plugins.Dashboard"
-    xmlns:renderers="clr-namespace:Indulged.Plugins.Dashboard.VioletRenderers"
+    xmlns:renderers="clr-namespace:Indulged.Plugins.Common.Renderers"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d"
-    shell:SystemTray.IsVisible="False"
+    shell:SystemTray.IsVisible="True" shell:SystemTray.Opacity="0" shell:SystemTray.ForegroundColor="#536585"
     Style="{StaticResource TransitionPageStyle}">
 
+    <phone:PhoneApplicationPage.Resources>
+        <shell:ApplicationBar x:Key="PhotoPageAppBar" IsVisible="True" IsMenuEnabled="False" Mode="Default" Opacity="0.8" BackgroundColor="White" ForegroundColor="Black">
+            <shell:ApplicationBarIconButton x:Name="RefreshPhotoListButton" IconUri="/Assets/Common/refresh.png" Text="refresh" Click="RefreshPhotoListButton_Click"/>
+            <shell:ApplicationBarIconButton x:Name="AddPhotoButton" IconUri="/Assets/Common/add.png" Text="add photo" Click="AddPhotoButton_Click"/>
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.Resources>
+
+
     <!--LayoutRoot is the root grid where all page content is placed-->
-    <Grid x:Name="LayoutRoot" Background="Transparent">
+    <Grid x:Name="LayoutRoot" Background="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        
-        <TextBlock x:Name="TitleLabel" FontSize="42" FontWeight="Bold" Foreground="#536585" Grid.Row="0"
-                   Text="{Binding Title}" />
 
-        <Grid Grid.Row="1" >
-            <phone:LongListSelector x:Name="PhotoStreamListView" ItemsSource="{Binding Items}" ItemRealized="OnItemRealized">
+        <!-- Title view -->
+        <chrome:TitleView x:Name="TitleView" VerticalAlignment="Top" IsHitTestVisible="False" Titleless="True"/>
+
+        <!--TitlePanel contains the name of the application and page title-->
+        <StackPanel Grid.Row="0" Margin="12,17,0,28" Orientation="Horizontal">
+            <Image Source="/Assets/Common/Collection.png" Width="85"/>
+
+            <TextBlock x:Name="TitleLabel" Foreground="#f67056" Text="{Binding Title}"
+                               FontSize="64" TextWrapping="NoWrap" FontWeight="Bold" TextTrimming="WordEllipsis"
+                               Margin="12, 24, 0, 0"/>
+
+        </StackPanel>
+
+        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+            <!--Status label-->
+            <TextBlock x:Name="StatusLabel" HorizontalAlignment="Center" VerticalAlignment="Center" Text="Loading stream..."/>
+
+            <phone:LongListSelector x:Name="PhotoStreamListView" Margin="0,0,0,60" Grid.Row="1"
+                                ItemsSource="{Binding Items}" ItemRealized="OnItemRealized">
                 <phone:LongListSelector.ItemTemplate>
                     <DataTemplate>
-                        <dashboard:VioletRendererSelector Content="{Binding}">
-                            <dashboard:VioletRendererSelector.HeadlineLayoutTemplate>
-                                <DataTemplate>
-                                    <renderers:VioletHeadlineRenderer PhotoGroupSource="{Binding}"/>
-                                </DataTemplate>
-                            </dashboard:VioletRendererSelector.HeadlineLayoutTemplate>
-
-                            <dashboard:VioletRendererSelector.LayoutTemplate1>
-                                <DataTemplate>
-                                    <renderers:VioletRenderer1 PhotoGroupSource="{Binding}"/>
-                                </DataTemplate>
-                            </dashboard:VioletRendererSelector.LayoutTemplate1>
-
-                            <dashboard:VioletRendererSelector.LayoutTemplate2>
-                                <DataTemplate>
-                                    <renderers:VioletRenderer2 PhotoGroupSource="{Binding}"/>
-                                </DataTemplate>
-                            </dashboard:VioletRendererSelector.LayoutTemplate2>
-
-                            <dashboard:VioletRendererSelector.LayoutTemplate3>
-                                <DataTemplate>
-                                    <renderers:VioletRenderer3 PhotoGroupSource="{Binding}"/>
-                                </DataTemplate>
-                            </dashboard:VioletRendererSelector.LayoutTemplate3>
-
-                            <dashboard:VioletRendererSelector.LayoutTemplate3A>
-                                <DataTemplate>
-                                    <renderers:VioletRenderer3A PhotoGroupSource="{Binding}"/>
-                                </DataTemplate>
-                            </dashboard:VioletRendererSelector.LayoutTemplate3A>
-
-                            <dashboard:VioletRendererSelector.LayoutTemplate4>
-                                <DataTemplate>
-                                    <renderers:VioletRenderer4 PhotoGroupSource="{Binding}"/>
-                                </DataTemplate>
-                            </dashboard:VioletRendererSelector.LayoutTemplate4>
-
-                            <dashboard:VioletRendererSelector.LayoutTemplate4A>
-                                <DataTemplate>
-                                    <renderers:VioletRenderer4A PhotoGroupSource="{Binding}"/>
-                                </DataTemplate>
-                            </dashboard:VioletRendererSelector.LayoutTemplate4A>
-
-                            <dashboard:VioletRendererSelector.LayoutTemplate4B>
-                                <DataTemplate>
-                                    <renderers:VioletRenderer4B PhotoGroupSource="{Binding}"/>
-                                </DataTemplate>
-                            </dashboard:VioletRendererSelector.LayoutTemplate4B>
-
-                            <dashboard:VioletRendererSelector.LayoutTemplate5>
-                                <DataTemplate>
-                                    <renderers:VioletRenderer5 PhotoGroupSource="{Binding}"/>
-                                </DataTemplate>
-                            </dashboard:VioletRendererSelector.LayoutTemplate5>
-
-                            <dashboard:VioletRendererSelector.LayoutTemplate5A>
-                                <DataTemplate>
-                                    <renderers:VioletRenderer5A PhotoGroupSource="{Binding}"/>
-                                </DataTemplate>
-                            </dashboard:VioletRendererSelector.LayoutTemplate5A>
-
-                            <dashboard:VioletRendererSelector.LayoutTemplate5B>
-                                <DataTemplate>
-                                    <renderers:VioletRenderer5B PhotoGroupSource="{Binding}"/>
-                                </DataTemplate>
-                            </dashboard:VioletRendererSelector.LayoutTemplate5B>
-
-                        </dashboard:VioletRendererSelector>
-
+                        <renderers:PhotoSetPhotoRenderer SetPhoto="{Binding}"/>
                     </DataTemplate>
                 </phone:LongListSelector.ItemTemplate>
             </phone:LongListSelector>
 
         </Grid>
-
-        <!-- Title view -->
-        <chrome:TitleView x:Name="TitleView" VerticalAlignment="Top" IsHitTestVisible="False" Titleless="True"/>
-
     </Grid>
 
 </phone:PhoneApplicationPage>

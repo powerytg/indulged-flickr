@@ -59,9 +59,6 @@ namespace Indulged.Plugins.Common.Renderers
             Frame rootVisual = System.Windows.Application.Current.RootVisual as Frame;
             PhoneApplicationPage currentPage = (PhoneApplicationPage)rootVisual.Content;
 
-            // Get photo collection context
-            string collectionContext = PolicyKit.VioletPageSubscription;
-
             currentPage.NavigationService.Navigate(new Uri("/Plugins/Detail/DetailPage.xaml?photo_id=" + PhotoSource.ResourceId, UriKind.Relative));
         }
     }

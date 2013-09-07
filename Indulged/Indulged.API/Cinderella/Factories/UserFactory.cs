@@ -131,6 +131,8 @@ namespace Indulged.API.Cinderella.Factories
                 Cinderella.CinderellaCore.UserCache[user.ResourceId] = user;
             }
 
+            user.IsFullInfoLoaded = true;
+
             // Is pro user
             user.IsProUser = (json["ispro"].ToString() == "1");
 

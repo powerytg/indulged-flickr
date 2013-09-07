@@ -81,5 +81,43 @@ namespace Indulged.API.Cinderella
             PhotoSetPhotosUpdated.DispatchEvent(this, evt);
 
         }
+
+        private void OnPhotoAddedToSet(object sender, AddPhotoToSetEventArgs e)
+        {
+            PhotoSet photoSet = PhotoSetCache[e.SetId];
+            Photo photo = PhotoCache[e.PhotoId];
+
+            if (!photoSet.Photos.Contains(photo))
+            {
+                photoSet.Photos.Insert(0, photo);
+                photoSet.PhotoCount++;
+
+                // Dispatch event
+                AddPhotoToSetCompleteEventArgs ae = new AddPhotoToSetCompleteEventArgs();
+                ae.PhotoId = photo.ResourceId;
+                ae.SetId = photoSet.ResourceId;
+                AddPhotoToSetCompleted.DispatchEvent(this, ae);
+            }
+
+        }
+
+        private void OnPhotoRemovedFromSet(object sender, RemovePhotoFromSetEventArgs e)
+        {
+            PhotoSet photoSet = PhotoSetCache[e.SetId];
+            Photo photo = PhotoCache[e.PhotoId];
+
+            if (photoSet.Photos.Contains(photo))
+            {
+                photoSet.Photos.Remove(photo);
+                photoSet.PhotoCount--;
+
+                // Dispatch event
+                RemovePhotoFromSetCompleteEventArgs evt = new RemovePhotoFromSetCompleteEventArgs();
+                evt.PhotoId = photo.ResourceId;
+                evt.SetId = photoSet.ResourceId;
+                RemovePhotoFromSetCompleted.DispatchEvent(this, evt);
+            }
+
+        }
     }
 }

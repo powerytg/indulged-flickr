@@ -143,6 +143,9 @@
     <Compile Include="Plugins\Common\PhotoGroupRenderers\CommonPhotoGroupRenderer5A.xaml.cs">
       <DependentUpon>CommonPhotoGroupRenderer5A.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Plugins\Common\Renderers\PhotoSetPhotoRenderer.xaml.cs">
+      <DependentUpon>PhotoSetPhotoRenderer.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Plugins\Common\Renderers\DetailPhotoCommentRenderer.xaml.cs">
       <DependentUpon>DetailPhotoCommentRenderer.xaml</DependentUpon>
     </Compile>
@@ -394,9 +397,13 @@
     <Compile Include="Plugins\Login\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Plugins\PhotoCollection\PhotoSetAddPhotoView.xaml.cs">
+      <DependentUpon>PhotoSetAddPhotoView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Plugins\PhotoCollection\PhotoSetPage.xaml.cs">
       <DependentUpon>PhotoSetPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Plugins\PhotoCollection\PhotoSetPhoto.cs" />
     <Compile Include="Plugins\ProCamera\CameraSettingsButton.cs" />
     <Compile Include="Plugins\ProCamera\ProCameraWhiteBalanceSettingsView.xaml.cs">
       <DependentUpon>ProCameraWhiteBalanceSettingsView.xaml</DependentUpon>
@@ -627,6 +634,10 @@
     <Page Include="Plugins\Common\ProgressView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Plugins\Common\Renderers\PhotoSetPhotoRenderer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Plugins\Common\Renderers\DetailPhotoCommentRenderer.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -923,6 +934,10 @@
     <ApplicationDefinition Include="Themes\TagButtonStyle.xaml">
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Plugins\PhotoCollection\PhotoSetAddPhotoView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Plugins\PhotoCollection\PhotoSetPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -1171,9 +1186,10 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\Common\Collection.png" />
     <Content Include="Assets\Chrome\DarkTitleView2.png" />
     <Content Include="Assets\Chrome\LightTitleView2.png" />
-    <Content Include="Assets\Chrome\SummersaltBackground.png" />
+    <Content Include="Assets\Chrome\SummersaltBackground.jpg" />
     <Content Include="Assets\Common\ActionButton.png" />
     <Content Include="Assets\Common\add.png" />
     <Content Include="Assets\Common\AddComment.png" />
@@ -1342,7 +1358,9 @@
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Plugins\Profile\" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

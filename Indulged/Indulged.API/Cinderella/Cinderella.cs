@@ -47,6 +47,8 @@ namespace Indulged.API.Cinderella
         // Photo set events
         public EventHandler<PhotoSetListUpdatedEventArgs> PhotoSetListUpdated;
         public EventHandler<PhotoSetPhotosUpdatedEventArgs> PhotoSetPhotosUpdated;
+        public EventHandler<AddPhotoToSetCompleteEventArgs> AddPhotoToSetCompleted;
+        public EventHandler<RemovePhotoFromSetCompleteEventArgs> RemovePhotoFromSetCompleted;
 
         // Favourite events
         public EventHandler<FavouriteStreamUpdatedEventArgs> FavouriteStreamUpdated;
@@ -147,9 +149,11 @@ namespace Indulged.API.Cinderella
             // Contact
             Anaconda.Anaconda.AnacondaCore.ContactPhotosReturned += OnContactPhotosReturned;
 
-            // Photo list
+            // Photo set
             Anaconda.Anaconda.AnacondaCore.PhotoSetListReturned += PhotoListReturned;
             Anaconda.Anaconda.AnacondaCore.PhotoSetPhotosReturned += OnPhotoSetPhotosReturned;
+            Anaconda.Anaconda.AnacondaCore.PhotoAddedToSet += OnPhotoAddedToSet;
+            Anaconda.Anaconda.AnacondaCore.PhotoRemovedFromSet += OnPhotoRemovedFromSet;
 
             // Photo stream
             Anaconda.Anaconda.AnacondaCore.PhotoStreamReturned += PhotoStreamReturned;

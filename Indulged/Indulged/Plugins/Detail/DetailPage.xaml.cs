@@ -78,6 +78,10 @@ namespace Indulged.Plugins.Detail
                 {
                     CollectionContext = Cinderella.CinderellaCore.GroupCache[contextString].Photos.ToList();
                 }
+                else if (contextTypeString == "PhotoSet")
+                {
+                    CollectionContext = Cinderella.CinderellaCore.PhotoSetCache[contextString].Photos.ToList();
+                }
             }
             else
             {

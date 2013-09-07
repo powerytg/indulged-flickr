@@ -29,6 +29,9 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
+        <!-- Title view -->
+        <chrome:TitleView x:Name="TitleView" VerticalAlignment="Top" IsHitTestVisible="False" Titleless="True"/>
+
         <TextBlock x:Name="TitleLabel" Foreground="#f67056" Text="Favourites"
                                FontSize="96" TextWrapping="Wrap" FontWeight="Bold"
                                Margin="0, 24, 0, 0"/>
@@ -46,10 +49,6 @@
                 </phone:LongListSelector.ItemTemplate>
             </phone:LongListSelector>
         </Grid>
-
-        <!-- Title view -->
-        <chrome:TitleView x:Name="TitleView" VerticalAlignment="Top" IsHitTestVisible="False" Titleless="True"/>
-
     </Grid>
 
 </phone:PhoneApplicationPage>

@@ -111,6 +111,10 @@
     <Compile Include="Anaconda\Events\AddTopicReplyEventArgs.cs" />
     <Compile Include="Anaconda\Events\AddTopicReplyExceptionEventArgs.cs" />
     <Compile Include="Anaconda\Events\AddCommentExceptionEventArgs.cs" />
+    <Compile Include="Anaconda\Events\AddPhotoToSetEventArgs.cs" />
+    <Compile Include="Anaconda\Events\AddPhotoToSetExceptionEventArgs.cs" />
+    <Compile Include="Anaconda\Events\RemovePhotoFromSetEventArgs.cs" />
+    <Compile Include="Anaconda\Events\RemovePhotoFromSetExceptionEventArgs.cs" />
     <Compile Include="Anaconda\Events\GetActivityStreamEventArgs.cs" />
     <Compile Include="Anaconda\Events\GetContactListEventArgs.cs" />
     <Compile Include="Anaconda\Events\GetContactListExceptionEventArgs.cs" />
@@ -164,6 +168,8 @@
     <Compile Include="Cinderella\Events\AddTopicCompleteEventArgs.cs" />
     <Compile Include="Cinderella\Events\AddTopicReplyCompleteEventArgs.cs" />
     <Compile Include="Cinderella\Events\ContactListUpdatedEventArgs.cs" />
+    <Compile Include="Cinderella\Events\AddPhotoToSetCompleteEventArgs.cs" />
+    <Compile Include="Cinderella\Events\RemovePhotoFromSetCompleteEventArgs.cs" />
     <Compile Include="Cinderella\Events\FavouriteStreamUpdatedEventArgs.cs" />
     <Compile Include="Cinderella\Events\DiscoveryStreamUpdatedEventArgs.cs" />
     <Compile Include="Cinderella\Events\EXIFUpdatedEventArgs.cs" />
