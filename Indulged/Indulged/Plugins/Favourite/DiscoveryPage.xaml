@@ -1,0 +1,54 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="Indulged.Plugins.Favourite.DiscoveryPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:renderer="clr-namespace:Indulged.Plugins.Common.Renderers"
+    xmlns:chrome="clr-namespace:Indulged.Plugins.Chrome"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d"
+    shell:SystemTray.IsVisible="True" shell:SystemTray.Opacity="0" shell:SystemTray.ForegroundColor="#536585"
+    Style="{StaticResource TransitionPageStyle}">
+
+    <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="False" Mode="Default" BackgroundColor="White" Opacity="0.8" ForegroundColor="Black" >
+            <shell:ApplicationBarIconButton x:Name="RefreshPhotoListButton" IconUri="/Assets/Common/refresh.png" Text="refresh" Click="RefreshPhotoListButton_Click"/>
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot" Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Title view -->
+        <chrome:TitleView x:Name="TitleView" VerticalAlignment="Top" IsHitTestVisible="False" Titleless="True"/>
+
+        <TextBlock x:Name="TitleLabel" Foreground="#f67056" Text="Discovery"
+                               FontSize="96" TextWrapping="Wrap" FontWeight="Bold"
+                               Margin="0, 24, 0, 0"/>
+
+        <!--ContentPanel - place additional content here-->
+        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+            <!--Status label-->
+            <TextBlock x:Name="StatusLabel" HorizontalAlignment="Center" VerticalAlignment="Center" Text="Loading stream..."/>
+
+            <phone:LongListSelector x:Name="ResultListView" ItemRealized="ResultListView_ItemRealized" Padding="0, 0, 0, 60">
+                <phone:LongListSelector.ItemTemplate>
+                    <DataTemplate>
+                        <renderer:DiscoveryPhotoRenderer PhotoSource="{Binding}"/>
+                    </DataTemplate>
+                </phone:LongListSelector.ItemTemplate>
+            </phone:LongListSelector>
+        </Grid>
+    </Grid>
+
+</phone:PhoneApplicationPage>

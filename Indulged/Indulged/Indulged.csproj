@@ -143,6 +143,9 @@
     <Compile Include="Plugins\Common\PhotoGroupRenderers\CommonPhotoGroupRenderer5A.xaml.cs">
       <DependentUpon>CommonPhotoGroupRenderer5A.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Plugins\Common\Renderers\DiscoveryPhotoRenderer.xaml.cs">
+      <DependentUpon>DiscoveryPhotoRenderer.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Plugins\Common\Renderers\PhotoSetPhotoRenderer.xaml.cs">
       <DependentUpon>PhotoSetPhotoRenderer.xaml</DependentUpon>
     </Compile>
@@ -229,6 +232,9 @@
     </Compile>
     <Compile Include="Plugins\Detail\PhotoCommentComposerView.xaml.cs">
       <DependentUpon>PhotoCommentComposerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\Favourite\DiscoveryPage.xaml.cs">
+      <DependentUpon>DiscoveryPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Plugins\Favourite\FavouritePage.xaml.cs">
       <DependentUpon>FavouritePage.xaml</DependentUpon>
@@ -635,6 +641,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Plugins\Common\Renderers\DiscoveryPhotoRenderer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Plugins\Common\Renderers\PhotoSetPhotoRenderer.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -729,6 +739,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Plugins\Detail\PhotoCommentComposerView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Plugins\Favourite\DiscoveryPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Plugins\Favourite\FavouritePage.xaml">
