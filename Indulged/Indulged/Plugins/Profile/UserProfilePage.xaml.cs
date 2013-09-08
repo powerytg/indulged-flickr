@@ -43,7 +43,7 @@ namespace Indulged.Plugins.Profile
         protected virtual void OnUserSourceChanged()
         {
             PhotoPageView.UserSource = UserSource;
-            //TopicPageView.GroupSource = GroupSource;
+            InfoPageView.UserSource = UserSource;
 
             // Show loading progress indicator
             SystemTray.ProgressIndicator = new ProgressIndicator();
@@ -54,6 +54,7 @@ namespace Indulged.Plugins.Profile
             // Get first page of photos
             Anaconda.AnacondaCore.GetPhotoStreamAsync(UserSource.ResourceId, new Dictionary<string, string> { { "page", "1" }, { "per_page", Anaconda.DefaultItemsPerPage.ToString() } });
         }
+
         private bool executedOnce;
 
         protected override void OnNavigatedTo(NavigationEventArgs e)

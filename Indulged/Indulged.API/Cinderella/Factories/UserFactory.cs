@@ -175,6 +175,13 @@ namespace Indulged.API.Cinderella.Factories
                 user.Server = json["iconserver"].ToString();
             }
 
+            // Profile url
+            JToken profileUrlValue;
+            if (json.TryGetValue("profileurl", out profileUrlValue))
+            {
+                user.ProfileUrl = json["profileurl"]["_content"].ToString();
+            }
+
             // Photos section
             JObject photoJson = (JObject)json["photos"];
 

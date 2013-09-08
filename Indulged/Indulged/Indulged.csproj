@@ -417,6 +417,9 @@
     <Compile Include="Plugins\ProCamera\ProCameraWhiteBalanceSettingsView.xaml.cs">
       <DependentUpon>ProCameraWhiteBalanceSettingsView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Plugins\Profile\UserProfileInfoPage.xaml.cs">
+      <DependentUpon>UserProfileInfoPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Plugins\Profile\UserProfilePhotoPage.xaml.cs">
       <DependentUpon>UserProfilePhotoPage.xaml</DependentUpon>
     </Compile>
@@ -972,6 +975,10 @@
     <Page Include="Plugins\ProCamera\ProCameraWhiteBalanceSettingsView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Plugins\Profile\UserProfileInfoPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Plugins\Profile\UserProfilePhotoPage.xaml">
       <Generator>MSBuild:Compile</Generator>

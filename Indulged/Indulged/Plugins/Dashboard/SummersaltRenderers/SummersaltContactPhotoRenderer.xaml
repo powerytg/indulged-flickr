@@ -26,7 +26,7 @@
         <TextBlock x:Name="UserLabel" TextWrapping="NoWrap" TextTrimming="WordEllipsis" 
                        TextAlignment="Center" 
                        Foreground="#32afe0" FontSize="24" FontFamily="/Assets/Fonts/BenchNine-Regular.ttf#BenchNine"
-                       Grid.Row="1" MaxHeight="60"/>
+                       Grid.Row="1" MaxHeight="60" Tap="UserLabel_Tap"/>
 
         <TextBlock x:Name="DescriptionLabel" TextWrapping="Wrap" TextTrimming="WordEllipsis"
                        TextAlignment="Center" 

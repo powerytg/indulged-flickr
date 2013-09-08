@@ -56,6 +56,9 @@ namespace Indulged.API.Cinderella.Models
         // Full user info
         public bool IsFullInfoLoaded { get; set; }
 
+        // Profile url
+        public string ProfileUrl { get; set; }
+
         // Status
         public bool IsLoadingPhotoStream { get; set; }
     }

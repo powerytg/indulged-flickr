@@ -44,5 +44,13 @@ namespace Indulged.Plugins.Dashboard.SummersaltRenderers
             InitializeComponent();
         }
 
+        private void TitleLabel_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            Frame rootVisual = System.Windows.Application.Current.RootVisual as Frame;
+            PhoneApplicationPage currentPage = (PhoneApplicationPage)rootVisual.Content;
+            currentPage.NavigationService.Navigate(new Uri("/Plugins/Profile/UserProfilePage.xaml?user_id=" + UserSource.ResourceId, UriKind.Relative));
+
+        }
+
     }
 }

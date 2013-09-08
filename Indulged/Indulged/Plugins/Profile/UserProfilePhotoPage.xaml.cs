@@ -56,14 +56,19 @@ namespace Indulged.Plugins.Profile
             PhotoStreamListView.ItemsSource = PhotoCollection;
 
             // Events
-            Cinderella.CinderellaCore.PhotoStreamUpdated += OnPhotoStreamUpdated;
+            Cinderella.CinderellaCore.PhotoStreamUpdated += OnPhotoStreamUpdated;            
         }
 
         // Photo stream updated
         private void OnPhotoStreamUpdated(object sender, PhotoStreamUpdatedEventArgs e)
         {
             Dispatcher.BeginInvoke(() => {
-                if (e.NewPhotos.Count == 0 || e.UserId != UserSource.ResourceId)
+                if (e.UserId != UserSource.ResourceId)
+                    return;
+
+                SystemTray.ProgressIndicator.IsVisible = false;
+
+                if (e.NewPhotos.Count == 0)
                     return;
 
                 if (e.Page == 1)

@@ -55,7 +55,7 @@
 
             <!--Panorama item two-->
             <phone:PanoramaItem Header="profile" HeaderTemplate="{StaticResource ProfilePageHeaderTemplate}">
-                
+                <local:UserProfileInfoPage x:Name="InfoPageView"/>
             </phone:PanoramaItem>
         </phone:Panorama>
 

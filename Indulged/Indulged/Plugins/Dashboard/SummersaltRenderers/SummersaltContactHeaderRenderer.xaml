@@ -12,6 +12,6 @@
     <Grid x:Name="LayoutRoot" Margin="20, 20, 20, 5">
         <TextBlock x:Name="TitleLabel" TextWrapping="Wrap"
                    TextAlignment="Center" 
-                   Foreground="#32afe0" FontSize="38" FontFamily="/Assets/Fonts/BenchNine-Regular.ttf#BenchNine"/>
+                   Foreground="#32afe0" FontSize="38" FontFamily="/Assets/Fonts/BenchNine-Regular.ttf#BenchNine" Tap="TitleLabel_Tap"/>
     </Grid>
 </UserControl>

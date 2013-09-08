@@ -58,6 +58,7 @@ namespace Indulged.Plugins.Dashboard
             FeatureStreams = new ObservableCollection<PreludeItemModel>();
             FeatureStreams.Add(new PreludeItemModel { Name = "Violet" });
             FeatureStreams.Add(new PreludeItemModel { Name = "Summersalt" });
+            FeatureStreams.Add(new PreludeItemModel { Name = "My Photo Stream" });
             FeatureStreams.Add(new PreludeItemModel { Name = "Discovery" });
             FeatureStreams.Add(new PreludeItemModel { Name = "Favourites", Icon = new System.Windows.Media.Imaging.BitmapImage(new Uri("/Assets/Dashboard/Heart.png", UriKind.Relative)) });
             FeatureListView.ItemsSource = FeatureStreams;
@@ -176,6 +177,18 @@ namespace Indulged.Plugins.Dashboard
                     Frame rootVisual = System.Windows.Application.Current.RootVisual as Frame;
                     PhoneApplicationPage currentPage = (PhoneApplicationPage)rootVisual.Content;
                     currentPage.NavigationService.Navigate(new Uri("/Plugins/Favourite/DiscoveryPage.xaml", UriKind.Relative));
+                }
+
+            }
+            else if (entry.Name == "My Photo Stream")
+            {
+                if (PolicyKit.VioletPageSubscription == PolicyKit.MyStream)
+                    DashboardNavigator.RequestVioletPage(this, null);
+                else
+                {
+                    Frame rootVisual = System.Windows.Application.Current.RootVisual as Frame;
+                    PhoneApplicationPage currentPage = (PhoneApplicationPage)rootVisual.Content;
+                    currentPage.NavigationService.Navigate(new Uri("/Plugins/Profile/UserProfilePage.xaml?user_id=" + Cinderella.CinderellaCore.CurrentUser.ResourceId, UriKind.Relative));
                 }
 
             }
