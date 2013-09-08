@@ -39,11 +39,11 @@ namespace Indulged.Plugins.Favourite
             // Events
             Cinderella.CinderellaCore.DiscoveryStreamUpdated += OnDiscoveryStreamUpdated;
 
-            if (Cinderella.CinderellaCore.FavouriteList.Count > 0)
+            if (Cinderella.CinderellaCore.DiscoveryList.Count > 0)
             {
                 StatusLabel.Visibility = Visibility.Collapsed;
                 _photos.Clear();
-                foreach (var photo in Cinderella.CinderellaCore.FavouriteList)
+                foreach (var photo in Cinderella.CinderellaCore.DiscoveryList)
                 {
                     _photos.Add(photo);
                 }
@@ -60,7 +60,7 @@ namespace Indulged.Plugins.Favourite
             ResultListView.ItemsSource = _photos;
         }
 
-        // Favourite stream updated
+        // Discovery stream updated
         private void OnDiscoveryStreamUpdated(object sender, DiscoveryStreamUpdatedEventArgs e)
         {
             Dispatcher.BeginInvoke(() =>
