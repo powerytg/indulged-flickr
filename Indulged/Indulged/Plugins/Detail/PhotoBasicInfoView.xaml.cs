@@ -55,6 +55,12 @@ namespace Indulged.Plugins.Detail
 
             StatView.PhotoSource = PhotoSource;
 
+            // Title label
+            if (PhotoSource.Title.Length > 0)
+                TitleLabel.Text = PhotoSource.Title;
+            else
+                TitleLabel.Text = "Untitled";
+
             // Description
             if (PhotoSource.Description != null && PhotoSource.Description.Length > 0)
                 DescriptionLabel.Visibility = Visibility.Visible;

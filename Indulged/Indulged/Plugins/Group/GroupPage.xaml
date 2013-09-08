@@ -49,6 +49,9 @@
 
     <!--LayoutRoot contains the root grid where all other page content is placed-->
     <Grid x:Name="LayoutRoot" Background="White">
+        <!-- Title view -->
+        <chrome:TitleView x:Name="TitleView" VerticalAlignment="Top" IsHitTestVisible="False" Titleless="True"/>
+
         <phone:Panorama x:Name="PanoramaView" Margin="0, 20, 0, 0" SelectionChanged="Panorama_SelectionChanged">
             <!--  Title bar -->
             <phone:Panorama.Title>
@@ -69,9 +72,6 @@
                 <local:GroupViewTopicsPage x:Name="TopicPageView"/>
             </phone:PanoramaItem>
         </phone:Panorama>
-
-        <!-- Title view -->
-        <chrome:TitleView x:Name="TitleView" VerticalAlignment="Top" IsHitTestVisible="False" Titleless="True"/>
 
     </Grid>
 

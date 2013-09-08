@@ -42,7 +42,7 @@ namespace Indulged.API.Anaconda
             if (userId == Cinderella.Cinderella.CinderellaCore.CurrentUser.ResourceId)
                 paramDict["user_id"] = "me";
             else
-                paramDict["user_id"] = UrlHelper.Encode(Cinderella.Cinderella.CinderellaCore.CurrentUser.ResourceId);
+                paramDict["user_id"] = UrlHelper.Encode(userId);
 
             paramDict["extras"] = UrlHelper.Encode(commonExtraParameters);
 

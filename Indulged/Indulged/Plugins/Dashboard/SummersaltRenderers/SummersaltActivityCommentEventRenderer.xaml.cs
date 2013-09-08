@@ -41,7 +41,7 @@ namespace Indulged.Plugins.Dashboard.SummersaltRenderers
 
         protected virtual void OnEventChanged()
         {
-            AvatarView.Source = new BitmapImage(new Uri(Event.EventUser.AvatarUrl));
+            AvatarView.UserSource = Event.EventUser;
             TitleLabel.Text = Event.EventUser.Name + " commented on " + Event.CreationDate.ToShortDateString();
             CommentLabel.Text = Event.Message;
         }

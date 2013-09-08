@@ -50,7 +50,7 @@ namespace Indulged.Plugins.Dashboard.SummersaltRenderers
             ContentView.Visibility = Visibility.Visible;
 
             currentUser = Cinderella.CinderellaCore.CurrentUser;
-            AvatarView.Source = new BitmapImage(new Uri(currentUser.AvatarUrl));
+            AvatarView.UserSource = currentUser;
             NameLabel.Text = currentUser.UserName;
             ProLabel.Visibility = currentUser.IsProUser ? Visibility.Visible : Visibility.Collapsed;
 

@@ -175,6 +175,9 @@
     <Compile Include="Plugins\Common\Renderers\TopicReplyRenderer.xaml.cs">
       <DependentUpon>TopicReplyRenderer.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Plugins\Common\UserAvatarView.xaml.cs">
+      <DependentUpon>UserAvatarView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Plugins\Dashboard\SummersaltActivityHeaderModel.cs" />
     <Compile Include="Plugins\Dashboard\SummersaltContactHeaderModel.cs" />
     <Compile Include="Plugins\Dashboard\SummersaltContactPhotoFooterModel.cs" />
@@ -413,6 +416,12 @@
     <Compile Include="Plugins\ProCamera\CameraSettingsButton.cs" />
     <Compile Include="Plugins\ProCamera\ProCameraWhiteBalanceSettingsView.xaml.cs">
       <DependentUpon>ProCameraWhiteBalanceSettingsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\Profile\UserProfilePhotoPage.xaml.cs">
+      <DependentUpon>UserProfilePhotoPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\Profile\UserProfilePage.xaml.cs">
+      <DependentUpon>UserProfilePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Plugins\ProFX\ColorSelectorButton.cs" />
     <Compile Include="Plugins\ProFX\FilterBackground.xaml.cs">
@@ -678,6 +687,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Plugins\Common\Renderers\TopicReplyRenderer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Plugins\Common\UserAvatarView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -960,6 +973,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Plugins\Profile\UserProfilePhotoPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Plugins\Profile\UserProfilePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Plugins\ProFX\FilterBackground.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -1234,6 +1255,7 @@
     <Content Include="Assets\ProCamera\WB-Shade.png" />
     <Content Include="Assets\ProCamera\WB-Tungsten-Selected.png" />
     <Content Include="Assets\ProCamera\WB-Tungsten.png" />
+    <Content Include="Assets\Profile\ProfilePageIcon.png" />
     <Content Include="Assets\ProFX\FXAdd.png" />
     <Content Include="Assets\ProFX\FXArrowDown.png" />
     <Content Include="Assets\ProFX\FXArrowUp.png" />
@@ -1372,9 +1394,7 @@
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Plugins\Profile\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

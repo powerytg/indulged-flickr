@@ -48,7 +48,7 @@
         <!--Stastic view-->
         <renderer:DetailedPhotoStatView x:Name="StatView" Opacity="0.5" Grid.Row="0" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="8, 0, 0, 4"/>
         
-        <TextBlock Text="{Binding Title}" Foreground="#4a6e7b" FontSize="48" FontWeight="Light" TextWrapping="Wrap"
+        <TextBlock x:Name="TitleLabel" Foreground="#4a6e7b" FontSize="48" FontWeight="Light" TextWrapping="Wrap"
                    Margin="12, 0, 12, 12" 
                    Grid.Row="1" />
 
