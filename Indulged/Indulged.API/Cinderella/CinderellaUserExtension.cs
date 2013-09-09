@@ -108,15 +108,18 @@ namespace Indulged.API.Cinderella
             int perPage = int.Parse(rootJson["perpage"].ToString());
 
             List<User> newUsers = new List<User>();
-            foreach (var entry in rootJson["contact"])
+            if (ContactCount > 0)
             {
-                JObject json = (JObject)entry;
-                User contact = UserFactory.ContactWithJObject(json);
-
-                if (!ContactList.Contains(contact))
+                foreach (var entry in rootJson["contact"])
                 {
-                    ContactList.Add(contact);
-                    newUsers.Add(contact);
+                    JObject json = (JObject)entry;
+                    User contact = UserFactory.ContactWithJObject(json);
+
+                    if (!ContactList.Contains(contact))
+                    {
+                        ContactList.Add(contact);
+                        newUsers.Add(contact);
+                    }
                 }
             }
 

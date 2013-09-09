@@ -5,7 +5,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="clr-namespace:CS.Windows.Controls;assembly=CS.Windows.Controls"
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
-    xmlns:chrome="clr-namespace:Indulged.Plugins.Chrome"             
+    xmlns:chrome="clr-namespace:Indulged.Plugins.Chrome"
+    xmlns:avarice="clr-namespace:Indulged.API.Avarice.Controls;assembly=Indulged.API"             
     mc:Ignorable="d"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
@@ -26,13 +27,18 @@
 
             <!-- Back button -->
             <Grid Background="#99000000">
-                <Button x:Name="BackButton" Style="{StaticResource BorderlessButtonStyle}" Margin="10"
-                        HorizontalAlignment="Left" VerticalAlignment="Top" Click="BackButton_Click">
+                <Button x:Name="BrowserBackButton" Style="{StaticResource BorderlessButtonStyle}" 
+                    Grid.Row="0" Margin="4" HorizontalAlignment="Left" Click="BackButton_Click">
                     <Button.Content>
-                        <Image Source="/Assets/ProFX/FXBackButton2.png" VerticalAlignment="Center"/>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="/Assets/ProFX/FXBackButton2.png" Stretch="None" VerticalAlignment="Center" Margin="0, 0, 15, 0"/>
+                            <TextBlock FontSize="36" FontWeight="Light" Foreground="#32afe0" Text="Back"
+                                   VerticalAlignment="Center" />
+                        </StackPanel>
+
                     </Button.Content>
                 </Button>
-
+                
            </Grid>
 
             <StackPanel Orientation="Vertical" Grid.Row="1" Margin="20">
@@ -48,8 +54,8 @@
             </StackPanel>
             
             <!-- Upload button -->
-            <Button x:Name="UploadButton" Content="Upload Photo" Click="UploadButton_Click" Style="{StaticResource FXUploadButtonStyle}"
-                    Grid.Row="3" Margin="20" />
+            <avarice:Button x:Name="UploadButton" Content="Upload Photo" Click="UploadButton_Click"
+                    Grid.Row="3" Margin="20" Height="54" />
         </Grid>
         
         

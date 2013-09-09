@@ -119,6 +119,11 @@ namespace Indulged
             };
         }
 
+        private void OnRefreshClick(object sender, EventArgs e)
+        {
+            Dashboard.RefreshPreludeStreams();
+        }
+
         private void OnSearchClick(object sender, EventArgs e)
         {
             NavigationService.Navigate(new Uri("/Plugins/Search/SearchPage.xaml", UriKind.Relative));
@@ -131,6 +136,9 @@ namespace Indulged
                 int buttonIndex = (args as ModalPopupEventArgs).ButtonIndex;
                 if (buttonIndex == 0)
                 {
+                    // Clear caches
+                    Cinderella.CinderellaCore.SignOut();
+
                     NavigationService.Navigate(new Uri("/Plugins/Login/LoginPage.xaml", UriKind.Relative));
                     NavigationService.RemoveBackEntry();
                 }

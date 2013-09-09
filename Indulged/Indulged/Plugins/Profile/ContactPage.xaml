@@ -46,5 +46,11 @@
             </phone:LongListSelector.ItemTemplate>
         </phone:LongListSelector>
 
+        <!--No contact view-->
+        <TextBlock x:Name="StatusLabel" Foreground="#32afe0" FontSize="38" FontFamily="/Assets/Fonts/BenchNine-Regular.ttf#BenchNine"
+                   Text="You don't have any contacts" Visibility="Collapsed" HorizontalAlignment="Center" VerticalAlignment="Center"
+                    Grid.Row="1"/>
+
+
     </Grid>
 </phone:PhoneApplicationPage>

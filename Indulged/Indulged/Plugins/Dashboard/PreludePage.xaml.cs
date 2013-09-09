@@ -97,7 +97,7 @@ namespace Indulged.Plugins.Dashboard
 
                 if (Cinderella.CinderellaCore.PhotoSetList.Count == 0)
                 {
-                    StreamListStatusLabel.Text = "You don't have any photo sets";
+                    StreamListStatusLabel.Text = "No photo sets found";
                     StreamListStatusLabel.Visibility = Visibility.Visible;
                     StreamListView.Visibility = Visibility.Collapsed;
                 }
@@ -149,7 +149,7 @@ namespace Indulged.Plugins.Dashboard
 
                 if (Cinderella.CinderellaCore.GroupCache.Count == 0)
                 {
-                    GroupListStatusLabel.Text = "You haven't joined any groups yet";
+                    GroupListStatusLabel.Text = "No groups found";
                     GroupListStatusLabel.Visibility = Visibility.Visible;
                     GroupListView.Visibility = Visibility.Collapsed;
                 }
@@ -262,6 +262,18 @@ namespace Indulged.Plugins.Dashboard
             FeatureListView.SelectedItem = null;
             StreamListView.SelectedItem = null;
             GroupListView.SelectedItem = null;
+        }
+
+        public void RefreshStreams()
+        {
+            GroupListStatusLabel.IsHitTestVisible = false;
+            GroupListStatusLabel.Text = "Retrieving group list...";
+
+            StreamListStatusLabel.IsHitTestVisible = false;
+            StreamListStatusLabel.Text = "Retrieving photo sets...";
+
+            Anaconda.AnacondaCore.GetGroupListAsync(Cinderella.CinderellaCore.CurrentUser.ResourceId);
+            Anaconda.AnacondaCore.GetPhotoSetListAsync(Cinderella.CinderellaCore.CurrentUser.ResourceId);
         }
 
         private void GroupListStatusLabel_Tap(object sender, System.Windows.Input.GestureEventArgs e)

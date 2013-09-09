@@ -56,5 +56,10 @@ namespace Indulged.Plugins.Dashboard
             PreludeView.ResetListSelection();
         }
 
+        public void RefreshPreludeStreams()
+        {
+            PreludeView.RefreshStreams();
+        }
+
     }
 }

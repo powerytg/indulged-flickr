@@ -106,5 +106,10 @@ namespace Indulged.API.Cinderella
             }
         }
 
+        public void ClearCurrentUserInfo()
+        {
+            var settings = IsolatedStorageSettings.ApplicationSettings;
+            settings.Clear();
+        }
     }
 }

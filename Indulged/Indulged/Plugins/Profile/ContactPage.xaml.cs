@@ -63,6 +63,15 @@ namespace Indulged.Plugins.Profile
             Dispatcher.BeginInvoke(() => {
                 SystemTray.ProgressIndicator.IsVisible = false;
 
+                if (Cinderella.CinderellaCore.ContactList.Count == 0)
+                {
+                    StatusLabel.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    StatusLabel.Visibility = Visibility.Collapsed;
+                }
+
                 foreach (var contact in e.NewUsers)
                 {
                     if(!UserCollection.Contains(contact))

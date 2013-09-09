@@ -53,6 +53,7 @@ namespace Indulged.Plugins.ProCamera
 
             if (PolicyKit.ShouldUseProCamera)
             {
+                LayoutRoot.Visibility = Visibility.Visible;
                 LoadingView.Text = "Initializing Camera ...";
                 HideAllUIChrome();
 
@@ -73,6 +74,7 @@ namespace Indulged.Plugins.ProCamera
             }
             else
             {
+                LayoutRoot.Visibility = Visibility.Collapsed;
                 camTask = new CameraCaptureTask();
                 camTask.Completed += new EventHandler<PhotoResult>(cameraCaptureTask_Completed);
                 camTask.Show();
@@ -88,7 +90,12 @@ namespace Indulged.Plugins.ProCamera
                 ProCameraPage.CapturedImage.SetSource(e.ChosenPhoto);
 
                 NavigationService.Navigate(new Uri("/Plugins/ProFX/ImageProcessingPage.xaml", UriKind.Relative));
-                NavigationService.RemoveBackEntry(); 
+                NavigationService.RemoveBackEntry();
+            }
+            else
+            {
+                NavigationService.GoBack();
+                NavigationService.RemoveBackEntry();
             }
         }
 

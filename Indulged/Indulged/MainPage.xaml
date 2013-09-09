@@ -17,8 +17,9 @@
     Style="{StaticResource TransitionPageStyle}">
 
     <phone:PhoneApplicationPage.ApplicationBar>
-        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True" Mode="Minimized">
+        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True" Mode="Minimized" BackgroundColor="Black" Opacity="0.9">
             <shell:ApplicationBar.MenuItems>
+                <shell:ApplicationBarMenuItem Text="refresh" Click="OnRefreshClick"/>
                 <shell:ApplicationBarMenuItem Text="take photo" Click="OnTakePhotoClick"/>
                 <shell:ApplicationBarMenuItem Text="subscription settings" Click="OnSubscriptionSettingsClick"/>
                 <shell:ApplicationBarMenuItem Text="search" Click="OnSearchClick"/>

@@ -195,5 +195,39 @@ namespace Indulged.API.Cinderella
             // Activity stream
             Anaconda.Anaconda.AnacondaCore.ActivityStreamReturned += OnActivityStreamReturned;
         }
+
+        public void SignOut()
+        {
+            // Clear info in isolated storage
+            ClearCurrentUserInfo();
+
+            // User cache
+            UserCache.Clear();
+
+            // Photoset cache
+            PhotoSetCache.Clear();
+            PhotoSetList.Clear();
+
+            // Photo cache
+            PhotoCache.Clear();
+
+            // Discovery stream
+            DiscoveryList.Clear();
+
+            // Favourite stream
+            FavouriteList.Clear();
+
+            // Group cache
+            GroupCache.Clear();
+
+            // Contact list
+            ContactList.Clear();
+            ContactPhotoList.Clear();
+
+            // Activity stream
+            ActivityCache.Clear();
+            ActivityList.Clear();
+
+        }
     }
 }

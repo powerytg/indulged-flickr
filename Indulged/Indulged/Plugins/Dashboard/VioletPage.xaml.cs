@@ -97,7 +97,17 @@ namespace Indulged.Plugins.Dashboard
         private void OnPhotoStreamUpdated(object sender, PhotoStreamUpdatedEventArgs e)
         {
             Dispatcher.BeginInvoke(() => {
-                if (e.NewPhotos.Count == 0 || e.UserId != Cinderella.CinderellaCore.CurrentUser.ResourceId)
+                if (e.UserId != Cinderella.CinderellaCore.CurrentUser.ResourceId)
+                    return;
+
+                if (Cinderella.CinderellaCore.CurrentUser.Photos.Count == 0)
+                {
+                    StatusLabel.Text = "No photos available";
+                    StatusLabel.Visibility = Visibility.Visible;
+                    return;
+                }
+
+                if (e.NewPhotos.Count == 0)
                     return;
 
                 List<PhotoGroup> newGroups = VioletPhotoGroupFactory.GeneratePhotoGroup(e.NewPhotos, PolicyKit.MyStream);
@@ -115,6 +125,13 @@ namespace Indulged.Plugins.Dashboard
         {
             Dispatcher.BeginInvoke(() =>
             {
+                if (Cinderella.CinderellaCore.DiscoveryList.Count == 0)
+                {
+                    StatusLabel.Text = "No photos available";
+                    StatusLabel.Visibility = Visibility.Visible;
+                    return;
+                }
+
                 if (e.NewPhotos.Count == 0)
                     return;
                 
@@ -133,6 +150,13 @@ namespace Indulged.Plugins.Dashboard
         {
             Dispatcher.BeginInvoke(() =>
             {
+                if (Cinderella.CinderellaCore.FavouriteList.Count == 0)
+                {
+                    StatusLabel.Text = "No photos available";
+                    StatusLabel.Visibility = Visibility.Visible;
+                    return;
+                }
+
                 if (e.NewPhotos.Count == 0)
                     return;
 

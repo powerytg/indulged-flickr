@@ -65,16 +65,19 @@ namespace Indulged.Plugins.Favourite
         {
             Dispatcher.BeginInvoke(() =>
             {
-                SystemTray.ProgressIndicator.IsVisible = false;
+                if(SystemTray.ProgressIndicator != null)
+                    SystemTray.ProgressIndicator.IsVisible = false;
 
                 if (Cinderella.CinderellaCore.FavouriteList.Count == 0)
                 {
                     StatusLabel.Visibility = Visibility.Visible;
                     StatusLabel.Text = "You don't have any favourite photos";
+                    ResultListView.Visibility = Visibility.Collapsed;
                 }
                 else
                 {
                     StatusLabel.Visibility = Visibility.Collapsed;
+                    ResultListView.Visibility = Visibility.Visible;
                 }
 
                 if (e.NewPhotos.Count == 0)
