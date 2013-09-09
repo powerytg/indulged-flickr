@@ -18,12 +18,12 @@
     Style="{StaticResource TransitionPageStyle}">
 
     <phone:PhoneApplicationPage.Resources>
-        <shell:ApplicationBar x:Key="PhotoPageAppBar" IsVisible="True" IsMenuEnabled="False" Mode="Default" Opacity="0.85" >
+        <shell:ApplicationBar x:Key="PhotoPageAppBar" IsVisible="True" IsMenuEnabled="False" Mode="Default" Opacity="0.85" BackgroundColor="Black" >
             <shell:ApplicationBarIconButton x:Name="FavButton" IconUri="/Assets/Common/like.png" Text="like/unlike" Click="FavButton_Click"/>
             <shell:ApplicationBarIconButton x:Name="CommentButton" IconUri="/Assets/Common/AddComment.png" Text="comment" Click="CommentButton_Click"/>
         </shell:ApplicationBar>
 
-        <shell:ApplicationBar x:Key="ComposerAppBar" IsVisible="True" IsMenuEnabled="False" Mode="Default" Opacity="1" >
+        <shell:ApplicationBar x:Key="ComposerAppBar" IsVisible="True" IsMenuEnabled="False" Mode="Default" Opacity="1" BackgroundColor="Black">
             <shell:ApplicationBarIconButton x:Name="ComfirmAddCommentButton" IconUri="/Assets/Common/check.png" Text="Confirm" Click="ComfirmAddCommentButton_Click"/>
             <shell:ApplicationBarIconButton x:Name="CancelAddCommentButton" IconUri="/Assets/Common/cancel.png" Text="Cancel" Click="CancelAddCommentButton_Click"/>
         </shell:ApplicationBar>
