@@ -21,6 +21,14 @@ namespace Indulged.Plugins.Dashboard
 {
     public partial class PreludePage : UserControl, IDashboardPage
     {
+        public string PageName
+        {
+            get
+            {
+                return "PreludePage";
+            }
+        }
+
         public string BackgroundImageUrl
         {
             get

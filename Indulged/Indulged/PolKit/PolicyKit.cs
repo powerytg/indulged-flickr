@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Indulged.Plugins.Chrome;
+using System;
 using System.Collections.Generic;
 using System.IO.IsolatedStorage;
 using System.Linq;
@@ -52,6 +53,16 @@ namespace Indulged.PolKit
                 settings.Add("shouldUseProCamera", ShouldUseProCamera.ToString());
             }
 
+            // Theme
+            if (settings.Contains("theme"))
+            {
+                settings["theme"] = (ThemeManager.CurrentTheme == Themes.Dark) ? "dark" : "light";
+            }
+            else
+            {
+                settings.Add("theme", (ThemeManager.CurrentTheme == Themes.Dark) ? "dark" : "light");
+            }
+
             settings.Save();
         }
 
@@ -88,6 +99,17 @@ namespace Indulged.PolKit
             else
             {
                 ShouldUseProCamera = false;
+            }
+
+            // Theme
+            if (settings.Contains("theme"))
+            {
+                string themeValue = settings["theme"] as string;
+                ThemeManager.CurrentTheme = (themeValue == "dark") ? Themes.Dark : Themes.Light;
+            }
+            else
+            {
+                ThemeManager.CurrentTheme = Themes.Dark;
             }
 
         }

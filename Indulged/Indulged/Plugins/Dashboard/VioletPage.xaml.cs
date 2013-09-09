@@ -20,6 +20,14 @@ namespace Indulged.Plugins.Dashboard
 {
     public partial class VioletPage : UserControl, IDashboardPage
     {
+        public string PageName
+        {
+            get
+            {
+                return "VioletPage";
+            }
+        }
+
         public string BackgroundImageUrl
         {
             get

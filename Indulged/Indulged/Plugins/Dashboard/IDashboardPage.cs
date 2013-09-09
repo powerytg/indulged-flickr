@@ -8,6 +8,7 @@ namespace Indulged.Plugins.Dashboard
 {
     public interface IDashboardPage
     {
+        string PageName { get; }
         string BackgroundImageUrl { get; }
         bool ShouldUseLightBackground { get; }
     }

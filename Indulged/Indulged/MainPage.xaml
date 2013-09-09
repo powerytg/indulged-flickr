@@ -16,17 +16,33 @@
     shell:SystemTray.IsVisible="False"
     Style="{StaticResource TransitionPageStyle}">
 
-    <phone:PhoneApplicationPage.ApplicationBar>
-        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True" Mode="Minimized" BackgroundColor="Black" Opacity="0.9">
+    <phone:PhoneApplicationPage.Resources>
+        <shell:ApplicationBar x:Key="PreludeAppBar"  IsVisible="True" IsMenuEnabled="True" Mode="Minimized" BackgroundColor="Black" Opacity="0.9" ForegroundColor="White">
             <shell:ApplicationBar.MenuItems>
                 <shell:ApplicationBarMenuItem Text="refresh" Click="OnRefreshClick"/>
                 <shell:ApplicationBarMenuItem Text="take photo" Click="OnTakePhotoClick"/>
-                <shell:ApplicationBarMenuItem Text="subscription settings" Click="OnSubscriptionSettingsClick"/>
                 <shell:ApplicationBarMenuItem Text="search" Click="OnSearchClick"/>
+                <shell:ApplicationBarMenuItem Text="settings" Click="OnSettingsClick"/>
                 <shell:ApplicationBarMenuItem Text="sign out" Click="OnLogoutClick"/>
             </shell:ApplicationBar.MenuItems>
         </shell:ApplicationBar>
-    </phone:PhoneApplicationPage.ApplicationBar>
+
+        <shell:ApplicationBar x:Key="VioletAppBar"  IsVisible="True" IsMenuEnabled="True" Mode="Minimized" BackgroundColor="Black" Opacity="0.9" ForegroundColor="White">
+            <shell:ApplicationBar.MenuItems>
+                <shell:ApplicationBarMenuItem Text="take photo" Click="OnTakePhotoClick"/>
+                <shell:ApplicationBarMenuItem Text="subscription settings" Click="OnSubscriptionSettingsClick"/>
+            </shell:ApplicationBar.MenuItems>
+        </shell:ApplicationBar>
+
+        <shell:ApplicationBar x:Key="SummersaltAppBar"  IsVisible="True" IsMenuEnabled="True" Mode="Minimized" BackgroundColor="Black" Opacity="0.9" ForegroundColor="White">
+            <shell:ApplicationBar.MenuItems>
+                <shell:ApplicationBarMenuItem Text="my profile" Click="OnMyProfileClick"/>
+                <shell:ApplicationBarMenuItem Text="contacts" Click="OnContactsClick"/>
+            </shell:ApplicationBar.MenuItems>
+        </shell:ApplicationBar>
+
+    </phone:PhoneApplicationPage.Resources>
+   
 
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Black">

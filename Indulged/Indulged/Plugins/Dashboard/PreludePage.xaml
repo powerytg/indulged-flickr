@@ -28,8 +28,9 @@
 
                 <!-- Group section -->
                 <dashboard:NavigatorSection x:Name="GroupSectionView" Title="community"/>
-                <TextBlock x:Name="GroupListStatusLabel" Text="Retrieving group list..." Margin="15, 15, 15, 40" FontSize="36" FontWeight="Light" Foreground="#c5c5c5" IsHitTestVisible="False" Tap="GroupListStatusLabel_Tap"/>
-                <phone:LongListSelector x:Name="GroupListView" Style="{StaticResource PreludeListStyle}" SelectionChanged="OnGroupListViewSelectionChanged" Visibility="Collapsed"/>
+                <TextBlock x:Name="GroupListStatusLabel" Text="Retrieving group list..." Margin="15, 15, 15, 60" FontSize="36" FontWeight="Light" Foreground="#c5c5c5" IsHitTestVisible="False" Tap="GroupListStatusLabel_Tap"/>
+                <phone:LongListSelector x:Name="GroupListView" Style="{StaticResource PreludeListStyle}" SelectionChanged="OnGroupListViewSelectionChanged" Visibility="Collapsed"
+                                        Margin="0, 0, 0, 60" />
 
             </StackPanel>
         </ScrollViewer>

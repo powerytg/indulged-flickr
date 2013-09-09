@@ -18,6 +18,7 @@ using Indulged.API.Cinderella.Models;
 using Indulged.PolKit;
 using Indulged.Plugins.Dashboard;
 using Indulged.Plugins.Search;
+using Indulged.Plugins.Dashboard.Events;
 
 namespace Indulged
 {
@@ -27,6 +28,9 @@ namespace Indulged
         public MainPage()
         {
             InitializeComponent();
+
+            // Events
+            DashboardNavigator.DashboardPageChanged += DashboardPageChanged;
 
             // Retrieve policy settings
             PolicyKit.RetrieveSettings();
@@ -124,9 +128,24 @@ namespace Indulged
             Dashboard.RefreshPreludeStreams();
         }
 
+        private void OnSettingsClick(object sender, EventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/Plugins/Login/SettingsPage.xaml", UriKind.Relative));
+        }
+
         private void OnSearchClick(object sender, EventArgs e)
         {
             NavigationService.Navigate(new Uri("/Plugins/Search/SearchPage.xaml", UriKind.Relative));
+        }
+
+        private void OnMyProfileClick(object sender, EventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/Plugins/Profile/UserProfilePage.xaml?user_id=" + Cinderella.CinderellaCore.CurrentUser.ResourceId, UriKind.Relative));
+        }
+
+        private void OnContactsClick(object sender, EventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/Plugins/Profile/ContactPage.xaml", UriKind.Relative));
         }
 
         private void OnLogoutClick(object sender, EventArgs e)
@@ -144,6 +163,18 @@ namespace Indulged
                 }
             };
             
+        }
+
+        // Navigator changed event
+        private void DashboardPageChanged(object sender, DashboardPageEventArgs e)
+        {
+            if (e.SelectedPage.PageName == "PreludePage")
+                ApplicationBar = Resources["PreludeAppBar"] as ApplicationBar;
+            else if (e.SelectedPage.PageName == "VioletPage")
+                ApplicationBar = Resources["VioletAppBar"] as ApplicationBar;
+            else if (e.SelectedPage.PageName == "SummersaltPage")
+                ApplicationBar = Resources["SummersaltAppBar"] as ApplicationBar;
+
         }
     }
 }

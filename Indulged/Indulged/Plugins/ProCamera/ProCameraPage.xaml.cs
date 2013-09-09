@@ -43,8 +43,13 @@ namespace Indulged.Plugins.ProCamera
         {
             if (executedOnce)
             {
-                NavigationService.GoBack();
-                NavigationService.RemoveBackEntry(); 
+                Dispatcher.BeginInvoke(() => {
+                    if (NavigationService.CanGoBack)
+                    {
+                        NavigationService.GoBack();
+                        NavigationService.RemoveBackEntry();
+                    }
+                });
 
                 return;
             }
@@ -94,8 +99,14 @@ namespace Indulged.Plugins.ProCamera
             }
             else
             {
-                NavigationService.GoBack();
-                NavigationService.RemoveBackEntry();
+                Dispatcher.BeginInvoke(() => {
+                    if (NavigationService.CanGoBack)
+                    {
+                        NavigationService.GoBack();
+                        NavigationService.RemoveBackEntry();
+                    }
+
+                });
             }
         }
 

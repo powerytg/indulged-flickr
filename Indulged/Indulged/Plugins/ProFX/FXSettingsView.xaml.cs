@@ -76,6 +76,8 @@ namespace Indulged.Plugins.ProFX
                 ThemeManager.CurrentTheme = Themes.Dark;
             else
                 ThemeManager.CurrentTheme = Themes.Light;
+
+            PolKit.PolicyKit.SaveSettings();
         }
     }
 }

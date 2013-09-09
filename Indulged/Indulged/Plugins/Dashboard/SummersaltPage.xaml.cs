@@ -19,6 +19,14 @@ namespace Indulged.Plugins.Dashboard
 {
     public partial class SummersaltPage : UserControl, IDashboardPage
     {
+        public string PageName
+        {
+            get
+            {
+                return "SummersaltPage";
+            }
+        }
+
         public string BackgroundImageUrl
         {
             get

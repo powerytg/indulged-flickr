@@ -409,6 +409,9 @@
     <Compile Include="Plugins\Login\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Plugins\Login\SettingsPage.xaml.cs">
+      <DependentUpon>SettingsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Plugins\PhotoCollection\PhotoSetAddPhotoView.xaml.cs">
       <DependentUpon>PhotoSetAddPhotoView.xaml</DependentUpon>
     </Compile>
@@ -974,6 +977,10 @@
     <ApplicationDefinition Include="Themes\TagButtonStyle.xaml">
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Plugins\Login\SettingsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Plugins\PhotoCollection\PhotoSetAddPhotoView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

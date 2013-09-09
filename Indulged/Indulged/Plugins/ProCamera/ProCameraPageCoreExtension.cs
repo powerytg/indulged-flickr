@@ -102,9 +102,10 @@ namespace Indulged.Plugins.ProCamera
             ProCameraPage.CapturedImage.SetSource(ms);
             ms.Close();
 
-
-            NavigationService.Navigate(new Uri("/Plugins/ProFX/ImageProcessingPage.xaml", UriKind.Relative));
-            NavigationService.RemoveBackEntry(); 
+            Dispatcher.BeginInvoke(() => {
+                NavigationService.Navigate(new Uri("/Plugins/ProFX/ImageProcessingPage.xaml", UriKind.Relative));
+                NavigationService.RemoveBackEntry();
+            });
         }
 
 
