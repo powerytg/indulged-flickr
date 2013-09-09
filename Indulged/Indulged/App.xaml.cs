@@ -11,6 +11,7 @@ using Indulged.Resources;
 using Indulged.API.Anaconda;
 using Indulged.API.Cinderella;
 using Indulged.Plugins.Chrome;
+using System.Windows.Media;
 
 namespace Indulged
 {
@@ -122,7 +123,11 @@ namespace Indulged
 
             // Create the frame but don't set it as RootVisual yet; this allows the splash
             // screen to remain active until the application is ready to render.
-            RootFrame = new TransitionFrame();
+            RootFrame = new TransitionFrame()
+            {
+                Background = new SolidColorBrush(Colors.Transparent)
+            };
+
             RootFrame.Navigated += CompleteInitializePhoneApplication;
 
             // Handle navigation failures

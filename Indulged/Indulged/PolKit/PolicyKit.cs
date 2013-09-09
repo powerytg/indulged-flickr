@@ -32,6 +32,7 @@ namespace Indulged.PolKit
                 settings.Add("violetPageSubscription", VioletPageSubscription);
             }
 
+            // Background
             if (settings.Contains("shouldUseBlurredBackground"))
             {
                 settings["shouldUseBlurredBackground"] = ShouldUseBlurredBackground.ToString();
@@ -39,6 +40,16 @@ namespace Indulged.PolKit
             else
             {
                 settings.Add("shouldUseBlurredBackground", ShouldUseBlurredBackground.ToString());
+            }
+
+            // Camera
+            if (settings.Contains("shouldUseProCamera"))
+            {
+                settings["shouldUseProCamera"] = ShouldUseProCamera.ToString();
+            }
+            else
+            {
+                settings.Add("shouldUseProCamera", ShouldUseProCamera.ToString());
             }
 
             settings.Save();
@@ -57,6 +68,7 @@ namespace Indulged.PolKit
                 VioletPageSubscription = MyStream;
             }
 
+            // Background
             if (settings.Contains("shouldUseBlurredBackground"))
             {
                 string backgroundValue = settings["shouldUseBlurredBackground"] as string;
@@ -64,7 +76,18 @@ namespace Indulged.PolKit
             }
             else
             {
-                ShouldUseBlurredBackground = true;
+                ShouldUseBlurredBackground = false;
+            }
+
+            // Camera
+            if (settings.Contains("shouldUseProCamera"))
+            {
+                string camValue = settings["shouldUseProCamera"] as string;
+                ShouldUseProCamera = bool.Parse(camValue);
+            }
+            else
+            {
+                ShouldUseProCamera = false;
             }
 
         }
@@ -102,5 +125,10 @@ namespace Indulged.PolKit
 
         // Use blurred background
         public static bool ShouldUseBlurredBackground { get; set; }
+
+        // Camera
+        public static bool ShouldUseProCamera { get; set; }
+
+
     }
 }

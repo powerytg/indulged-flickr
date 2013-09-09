@@ -84,6 +84,9 @@ namespace Indulged.Plugins.Dashboard
         {
             Dispatcher.BeginInvoke(() =>
             {
+                if (dataSource == null)
+                    dataSource = new ObservableCollection<ModelBase>();
+
                 if (Cinderella.CinderellaCore.ContactPhotoList.Count > 0)
                     dataSource.Add(new SummersaltContactPhotoHeaderModeal());
 

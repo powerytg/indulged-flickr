@@ -25,17 +25,15 @@
             </Grid.RowDefinitions>
 
             <!-- Back button -->
-            <Button x:Name="BackButton" Style="{StaticResource BorderlessButtonStyle}" Margin="5, 5, 0, 0"
+            <Grid Background="#99000000">
+                <Button x:Name="BackButton" Style="{StaticResource BorderlessButtonStyle}" Margin="10"
                         HorizontalAlignment="Left" VerticalAlignment="Top" Click="BackButton_Click">
-                <Button.Content>
-                    <StackPanel Orientation="Horizontal">
-                        <Image Source="/Assets/ProFX/FXBackButton.png" Width="48" VerticalAlignment="Center"/>
-                        <TextBlock Text="back" FontWeight="Light" FontSize="36" Foreground="#2a80e1" VerticalAlignment="Center"
-                                   Margin="14, 0, 0, 0"/>
-                    </StackPanel>
+                    <Button.Content>
+                        <Image Source="/Assets/ProFX/FXBackButton2.png" VerticalAlignment="Center"/>
+                    </Button.Content>
+                </Button>
 
-                </Button.Content>
-            </Button>
+           </Grid>
 
             <StackPanel Orientation="Vertical" Grid.Row="1" Margin="20">
                 <TextBlock Foreground="#cccccc" FontWeight="Light" FontSize="24" Text="Essentials" HorizontalAlignment="Left"/>
@@ -50,7 +48,7 @@
             </StackPanel>
             
             <!-- Upload button -->
-            <Button x:Name="UploadButton" Content="Upload Photo" Click="UploadButton_Click"
+            <Button x:Name="UploadButton" Content="Upload Photo" Click="UploadButton_Click" Style="{StaticResource FXUploadButtonStyle}"
                     Grid.Row="3" Margin="20" />
         </Grid>
         

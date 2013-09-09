@@ -21,6 +21,7 @@ namespace Indulged.API.Anaconda
 
         // Photo set
         public EventHandler<PhotoSetListEventArgs> PhotoSetListReturned;
+        public EventHandler<GetPhotoSetListExceptionEventArgs> GetPhotoSetListException;
         public EventHandler<GetPhotoSetPhotosEventArgs> PhotoSetPhotosReturned;
 
         public EventHandler<AddPhotoToSetEventArgs> PhotoAddedToSet;
@@ -36,6 +37,7 @@ namespace Indulged.API.Anaconda
 
         // Retrieved group list for an user
         public EventHandler<GetGroupListEventArgs> GroupListReturned;
+        public EventHandler<GetGroupListExceptionEventArgs> GetGroupListException;
 
         // Retrieved discovery stream
         public EventHandler<GetDiscoveryStreamEventArgs> DiscoveryStreamReturned;

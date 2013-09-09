@@ -11,6 +11,8 @@ using System.Windows.Navigation;
 using Windows.Phone.Media.Capture;
 using System.Collections.Generic;
 using System.Linq;
+using Indulged.PolKit;
+using Microsoft.Phone.Tasks;
 
 namespace Indulged.Plugins.ProCamera
 {
@@ -32,25 +34,62 @@ namespace Indulged.Plugins.ProCamera
         // Media library
         private MediaLibrary library = new MediaLibrary();
 
+        // Capture task
+        private CameraCaptureTask camTask;
+
+        private bool executedOnce;
+
         protected override void OnNavigatedTo (NavigationEventArgs e)
         {
-            LoadingView.Text = "Initializing Camera ...";
-            HideAllUIChrome();
+            if (executedOnce)
+            {
+                NavigationService.GoBack();
+                NavigationService.RemoveBackEntry(); 
 
-            if (PhotoCaptureDevice.AvailableSensorLocations.Contains(CameraSensorLocation.Back))
-            {
-                CreateCam(CameraSensorLocation.Back);
-            }
-            else if (PhotoCaptureDevice.AvailableSensorLocations.Contains(CameraSensorLocation.Front))
-            {
-                CreateCam(CameraSensorLocation.Front);
+                return;
             }
 
-            // Can switch camera?
-            if (PhotoCamera.IsCameraTypeSupported(CameraType.Primary) && PhotoCamera.IsCameraTypeSupported(CameraType.FrontFacing))
-                FlipButton.Visibility = Visibility.Visible;
+            executedOnce = true;
+
+            if (PolicyKit.ShouldUseProCamera)
+            {
+                LoadingView.Text = "Initializing Camera ...";
+                HideAllUIChrome();
+
+                if (PhotoCaptureDevice.AvailableSensorLocations.Contains(CameraSensorLocation.Back))
+                {
+                    CreateCam(CameraSensorLocation.Back);
+                }
+                else if (PhotoCaptureDevice.AvailableSensorLocations.Contains(CameraSensorLocation.Front))
+                {
+                    CreateCam(CameraSensorLocation.Front);
+                }
+
+                // Can switch camera?
+                if (PhotoCamera.IsCameraTypeSupported(CameraType.Primary) && PhotoCamera.IsCameraTypeSupported(CameraType.FrontFacing))
+                    FlipButton.Visibility = Visibility.Visible;
+                else
+                    FlipButton.Visibility = Visibility.Collapsed;
+            }
             else
-                FlipButton.Visibility = Visibility.Collapsed;
+            {
+                camTask = new CameraCaptureTask();
+                camTask.Completed += new EventHandler<PhotoResult>(cameraCaptureTask_Completed);
+                camTask.Show();
+            }
+
+        }
+
+        private void cameraCaptureTask_Completed(object sender, PhotoResult e)
+        {
+            if (e.TaskResult == TaskResult.OK)
+            {
+                ProCameraPage.CapturedImage = new BitmapImage();
+                ProCameraPage.CapturedImage.SetSource(e.ChosenPhoto);
+
+                NavigationService.Navigate(new Uri("/Plugins/ProFX/ImageProcessingPage.xaml", UriKind.Relative));
+                NavigationService.RemoveBackEntry(); 
+            }
         }
 
         private void HideAllUIChrome()

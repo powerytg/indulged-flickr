@@ -48,9 +48,6 @@ namespace Indulged
             bool tokenRetrieved = Anaconda.AnacondaCore.RetrieveAcessCredentials();
             User currentUser = Cinderella.CinderellaCore.RetrieveCurrentUserInfo();
 
-            //NavigationService.Navigate(new Uri("/Plugins/ProFX/ImageProcessingPage.xaml", UriKind.Relative));
-            //return;
-
             if (tokenRetrieved && currentUser != null)
             {
                 hasLoggedIn = true;
@@ -74,6 +71,7 @@ namespace Indulged
             {
                 // Show the login page
                 NavigationService.Navigate(new Uri("/Plugins/Login/LoginPage.xaml", UriKind.Relative));
+                NavigationService.RemoveBackEntry();
             }
 
         }
@@ -134,6 +132,7 @@ namespace Indulged
                 if (buttonIndex == 0)
                 {
                     NavigationService.Navigate(new Uri("/Plugins/Login/LoginPage.xaml", UriKind.Relative));
+                    NavigationService.RemoveBackEntry();
                 }
             };
             

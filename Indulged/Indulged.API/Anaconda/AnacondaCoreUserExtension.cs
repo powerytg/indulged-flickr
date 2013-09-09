@@ -124,15 +124,29 @@ namespace Indulged.API.Anaconda
                 if(groupListFetchingQueue.Contains(userId))
                     groupListFetchingQueue.Remove(userId);
 
+                GetGroupListExceptionEventArgs exceptionEvt = null;
+
                 if (response.StatusCode != HttpStatusCode.OK)
                 {
                     HandleHTTPException(response);
+
+                    exceptionEvt = new GetGroupListExceptionEventArgs();
+                    exceptionEvt.Message = "Unknown network error";
+                    exceptionEvt.UserId = userId;
+                    GetGroupListException.DispatchEvent(this, exceptionEvt);
                     return;
                 }
 
                 string jsonString = await reader.ReadToEndAsync().ConfigureAwait(false);
                 if (!TryHandleResponseException(jsonString, () => { GetGroupListAsync(userId, parameters); }))
+                {
+                    exceptionEvt = new GetGroupListExceptionEventArgs();
+                    exceptionEvt.Message = "Unknown network error";
+                    exceptionEvt.UserId = userId;
+                    GetGroupListException.DispatchEvent(this, exceptionEvt);
+
                     return;
+                }
 
                 GetGroupListEventArgs args = new GetGroupListEventArgs();
                 args.UserId = userId;

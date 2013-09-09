@@ -241,5 +241,40 @@ namespace Indulged.API.Cinderella.Factories
 
             return user;
         }
+
+        public static User ContactWithJObject(JObject json)
+        {
+            User user = null;
+            string userId = json["nsid"].ToString();
+            if (Cinderella.CinderellaCore.UserCache.ContainsKey(userId))
+                user = Cinderella.CinderellaCore.UserCache[userId];
+            else
+            {
+                user = new User();
+                user.ResourceId = userId;
+                Cinderella.CinderellaCore.UserCache[user.ResourceId] = user;
+            }
+
+            JToken nameValue;
+            if (json.TryGetValue("username", out nameValue))
+            {
+                user.Name = json["username"].ToString();
+            }
+
+            JToken farmValue;
+            if (json.TryGetValue("iconfarm", out farmValue))
+            {
+                user.Farm = json["iconfarm"].ToString();
+            }
+
+            JToken serverValue;
+            if (json.TryGetValue("iconserver", out serverValue))
+            {
+                user.Server = json["iconserver"].ToString();
+            }
+
+
+            return user;
+        }
     }
 }

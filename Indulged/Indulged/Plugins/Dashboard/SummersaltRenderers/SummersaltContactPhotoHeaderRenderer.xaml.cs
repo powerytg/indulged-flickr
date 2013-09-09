@@ -19,6 +19,9 @@ namespace Indulged.Plugins.Dashboard.SummersaltRenderers
 
         private void ContactButton_Click(object sender, RoutedEventArgs e)
         {
+            Frame rootVisual = System.Windows.Application.Current.RootVisual as Frame;
+            PhoneApplicationPage currentPage = (PhoneApplicationPage)rootVisual.Content;
+            currentPage.NavigationService.Navigate(new Uri("/Plugins/Profile/ContactPage.xaml", UriKind.Relative));
 
         }
     }

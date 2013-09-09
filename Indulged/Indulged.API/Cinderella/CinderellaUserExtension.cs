@@ -111,7 +111,7 @@ namespace Indulged.API.Cinderella
             foreach (var entry in rootJson["contact"])
             {
                 JObject json = (JObject)entry;
-                User contact = UserFactory.UserWithJObject(json);
+                User contact = UserFactory.ContactWithJObject(json);
 
                 if (!ContactList.Contains(contact))
                 {

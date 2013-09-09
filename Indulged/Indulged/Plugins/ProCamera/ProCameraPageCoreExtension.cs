@@ -99,12 +99,9 @@ namespace Indulged.Plugins.ProCamera
                 ms = (MemoryStream)RotateStream(capturedStream, angle);
 
             ProCameraPage.CapturedImage = new BitmapImage();
-            CapturedImage.SetSource(ms);
+            ProCameraPage.CapturedImage.SetSource(ms);
+            ms.Close();
 
-            ImageBrush staticBrush = new ImageBrush();
-            staticBrush.ImageSource = ProCameraPage.CapturedImage;
-            Viewfinder.Background = staticBrush;
-            Viewfinder.Opacity = 1;
 
             NavigationService.Navigate(new Uri("/Plugins/ProFX/ImageProcessingPage.xaml", UriKind.Relative));
             NavigationService.RemoveBackEntry(); 

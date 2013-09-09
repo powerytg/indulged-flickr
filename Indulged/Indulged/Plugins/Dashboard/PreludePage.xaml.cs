@@ -14,6 +14,8 @@ using Indulged.API.Utils;
 using Indulged.API.Cinderella;
 using Indulged.API.Cinderella.Models;
 using Indulged.API.Cinderella.Events;
+using Indulged.API.Anaconda;
+using Indulged.API.Anaconda.Events;
 
 namespace Indulged.Plugins.Dashboard
 {
@@ -60,13 +62,18 @@ namespace Indulged.Plugins.Dashboard
             FeatureStreams.Add(new PreludeItemModel { Name = "Summersalt" });
             FeatureStreams.Add(new PreludeItemModel { Name = "My Photo Stream" });
             FeatureStreams.Add(new PreludeItemModel { Name = "Discovery" });
+            FeatureStreams.Add(new PreludeItemModel { Name = "Contacts" });
             FeatureStreams.Add(new PreludeItemModel { Name = "Favourites", Icon = new System.Windows.Media.Imaging.BitmapImage(new Uri("/Assets/Dashboard/Heart.png", UriKind.Relative)) });
+            FeatureStreams.Add(new PreludeItemModel { Name = "Search" });
             FeatureListView.ItemsSource = FeatureStreams;
 
             // Events
             Cinderella.CinderellaCore.PhotoSetListUpdated += OnPhotoSetListUpdated;
             Cinderella.CinderellaCore.GroupListUpdated += OnGroupListUpdated;
             Cinderella.CinderellaCore.JoinGroupComplete += OnGroupJoined;
+
+            Anaconda.AnacondaCore.GetGroupListException += OnGetGroupListException;
+            Anaconda.AnacondaCore.GetPhotoSetListException += OnGetPhotoSetListException;
         }
 
         private void OnGroupJoined(object sender, GroupJoinedEventArgs e)
@@ -106,6 +113,29 @@ namespace Indulged.Plugins.Dashboard
                     }
                 }
 
+            });
+        }
+
+        private void OnGetPhotoSetListException(object sender, GetPhotoSetListExceptionEventArgs e)
+        {
+            Dispatcher.BeginInvoke(() =>
+            {
+                if (e.UserId != Cinderella.CinderellaCore.CurrentUser.ResourceId)
+                    return;
+
+                StreamListStatusLabel.IsHitTestVisible = true;
+                StreamListStatusLabel.Text = "Tap to retry";
+            });
+        }
+
+        private void OnGetGroupListException(object sender, GetGroupListExceptionEventArgs e)
+        {
+            Dispatcher.BeginInvoke(() => {
+                if (e.UserId != Cinderella.CinderellaCore.CurrentUser.ResourceId)
+                    return;
+
+                GroupListStatusLabel.IsHitTestVisible = true;
+                GroupListStatusLabel.Text = "Tap to retry";
             });
         }
 
@@ -200,6 +230,18 @@ namespace Indulged.Plugins.Dashboard
             {
                 DashboardNavigator.RequestSummersaltPage(this, null);
             }
+            else if (entry.Name == "Contacts")
+            {
+                Frame rootVisual = System.Windows.Application.Current.RootVisual as Frame;
+                PhoneApplicationPage currentPage = (PhoneApplicationPage)rootVisual.Content;
+                currentPage.NavigationService.Navigate(new Uri("/Plugins/Profile/ContactPage.xaml", UriKind.Relative));
+            }
+            else if (entry.Name == "Search")
+            {
+                Frame rootVisual = System.Windows.Application.Current.RootVisual as Frame;
+                PhoneApplicationPage currentPage = (PhoneApplicationPage)rootVisual.Content;
+                currentPage.NavigationService.Navigate(new Uri("/Plugins/Search/SearchPage.xaml", UriKind.Relative));
+            }
         }
 
         private void OnStreamListViewSelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -220,6 +262,23 @@ namespace Indulged.Plugins.Dashboard
             FeatureListView.SelectedItem = null;
             StreamListView.SelectedItem = null;
             GroupListView.SelectedItem = null;
+        }
+
+        private void GroupListStatusLabel_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            GroupListStatusLabel.IsHitTestVisible = false;
+            GroupListStatusLabel.Text = "Retrieving group list...";
+
+            Anaconda.AnacondaCore.GetGroupListAsync(Cinderella.CinderellaCore.CurrentUser.ResourceId);
+        }
+
+        private void StreamListStatusLabel_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            StreamListStatusLabel.IsHitTestVisible = false;
+            StreamListStatusLabel.Text = "Retrieving photo sets...";
+
+            Anaconda.AnacondaCore.GetPhotoSetListAsync(Cinderella.CinderellaCore.CurrentUser.ResourceId);
+
         }
     }
 }

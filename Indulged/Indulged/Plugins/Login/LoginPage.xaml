@@ -15,22 +15,73 @@
     Style="{StaticResource TransitionPageStyle}">
 
     <!--LayoutRoot is the root grid where all page content is placed-->
-    <Grid x:Name="LayoutRoot" Background="Transparent">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+    <Grid x:Name="LayoutRoot" Background="Black">
+        <!--Background-->
+        <Image Source="/Assets/Login/LoginScreen.png" VerticalAlignment="Center"/>
+        
+        <!--Title-->
+        <Image Source="/Assets/Login/LoginTitle.png" HorizontalAlignment="left" VerticalAlignment="Top" 
+               Margin="25, 25, 0, 0" Width="320"/>
+        
+        <!--Sign in button-->
+        <Button x:Name="SignInButton" Height="91" HorizontalAlignment="Center" VerticalAlignment="Center"
+                Margin="0,150,0,0" Style="{StaticResource BorderlessButtonStyle}" Click="SignInButton_Click" >
+            <Button.Content>
+                <Image Source="/Assets/Login/LoginButton.png"/>
+            </Button.Content>
+        </Button>
+        
+        <!--Bottom bar-->
+        <Grid VerticalAlignment="Bottom" Margin="15">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Foreground="White" FontSize="18" FontWeight="Light" Text="Indulged 1.0, 2013 Tiangong You"
+                       VerticalAlignment="Center" Grid.Column="0" />
+            
+            <Button x:Name="AboutButton" Content="ABOUT" FontSize="18" Grid.Column="2"
+                    Style="{StaticResource BorderlessButtonStyle}" Margin="0, 0, 20, 0" Click="AboutButton_Click"/>
 
-        <!--TitlePanel contains the name of the application and page title-->
-        <StackPanel Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock Text="Indulged" Style="{StaticResource PhoneTextNormalStyle}"/>
-            <TextBlock Text="Sign In" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
-        </StackPanel>
+            <Button x:Name="SignInBottomButton" Content="SIGN IN" FontSize="18" Grid.Column="3"
+                    Style="{StaticResource BorderlessButtonStyle}" Click="SignInButton_Click"/>
 
-        <!--ContentPanel - place additional content here-->
-        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-            <phone:WebBrowser x:Name="Browser" IsScriptEnabled="True" Navigating="OnBrowserBeginNavigating" />
         </Grid>
+        
+        <!--Browser-->
+        <Grid x:Name="BrowserView" Visibility="Collapsed" Background="White">
+            <Grid.RenderTransform>
+                <CompositeTransform/>
+            </Grid.RenderTransform>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            
+            <Button x:Name="BrowserBackButton" Style="{StaticResource BorderlessButtonStyle}" 
+                    Grid.Row="0" Margin="12" HorizontalAlignment="Left" Click="BrowserBackButton_Click">
+                <Button.Content>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/Assets/ProFX/FXBackButton2.png" Stretch="None" VerticalAlignment="Center" Margin="0, 0, 15, 0"/>
+                        <TextBlock FontSize="36" FontWeight="Light" Foreground="#32afe0" Text="Sign In"
+                                   VerticalAlignment="Center" />
+                    </StackPanel>
+                    
+                </Button.Content>    
+            </Button>
+            
+            <!--Loading label-->
+            <phone:WebBrowser x:Name="Browser" IsScriptEnabled="True" Navigating="OnBrowserBeginNavigating"
+                              Grid.Row="1" />
+
+            <TextBlock x:Name="LoadingText" Foreground="#32afe0" Text="Loading ..." Grid.Row="1"
+                       HorizontalAlignment="Center" VerticalAlignment="Center" />
+
+
+        </Grid>
+        
     </Grid>
 
 </phone:PhoneApplicationPage>

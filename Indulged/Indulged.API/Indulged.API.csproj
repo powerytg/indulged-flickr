@@ -113,6 +113,8 @@
     <Compile Include="Anaconda\Events\AddCommentExceptionEventArgs.cs" />
     <Compile Include="Anaconda\Events\AddPhotoToSetEventArgs.cs" />
     <Compile Include="Anaconda\Events\AddPhotoToSetExceptionEventArgs.cs" />
+    <Compile Include="Anaconda\Events\GetGroupListExceptionEventArgs.cs" />
+    <Compile Include="Anaconda\Events\GetPhotoSetListExceptionEventArgs.cs" />
     <Compile Include="Anaconda\Events\RemovePhotoFromSetEventArgs.cs" />
     <Compile Include="Anaconda\Events\RemovePhotoFromSetExceptionEventArgs.cs" />
     <Compile Include="Anaconda\Events\GetActivityStreamEventArgs.cs" />

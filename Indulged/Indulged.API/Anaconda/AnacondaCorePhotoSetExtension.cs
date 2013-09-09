@@ -38,15 +38,27 @@ namespace Indulged.API.Anaconda
             HttpWebResponse response = await DispatchRequest("GET", requestUrl, null).ConfigureAwait(false);
             using (StreamReader reader = new StreamReader(response.GetResponseStream()))
             {
+                GetPhotoSetListExceptionEventArgs exceptionEvt = null;
+
                 if (response.StatusCode != HttpStatusCode.OK)
                 {
                     HandleHTTPException(response);
+
+                    exceptionEvt = new GetPhotoSetListExceptionEventArgs();
+                    exceptionEvt.UserId = userId;
+                    GetPhotoSetListException.DispatchEvent(this, exceptionEvt);
                     return;
                 }
 
                 string jsonString = await reader.ReadToEndAsync().ConfigureAwait(false);
                 if (!TryHandleResponseException(jsonString, () => { GetPhotoSetListAsync(userId); }))
+                {
+                    exceptionEvt = new GetPhotoSetListExceptionEventArgs();
+                    exceptionEvt.UserId = userId;
+                    GetPhotoSetListException.DispatchEvent(this, exceptionEvt);
+
                     return;
+                }
 
                 PhotoSetListEventArgs evt = new PhotoSetListEventArgs();
                 evt.UserId = userId;

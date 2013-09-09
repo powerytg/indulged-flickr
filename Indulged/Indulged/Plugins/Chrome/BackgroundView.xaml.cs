@@ -34,6 +34,13 @@ namespace Indulged.Plugins.Chrome
         {
             selectedDashboardPage = e.SelectedPage;
 
+            // Change background color
+            if (selectedDashboardPage.ShouldUseLightBackground)
+                LayoutRoot.Background = new SolidColorBrush(Colors.White);
+            else
+                LayoutRoot.Background = new SolidColorBrush(Colors.Black);
+
+
             // Fade out the old image
             Storyboard animation = new Storyboard();
             animation.Duration = new Duration(TimeSpan.FromSeconds(0.3));
@@ -55,12 +62,6 @@ namespace Indulged.Plugins.Chrome
                 BackgroundImage.Source = new BitmapImage(new Uri(selectedDashboardPage.BackgroundImageUrl, UriKind.Relative));
             else
                 BackgroundImage.Source = null;
-
-            // Change background color
-            if (selectedDashboardPage.ShouldUseLightBackground)
-                LayoutRoot.Background = new SolidColorBrush(Colors.White);
-            else
-                LayoutRoot.Background = new SolidColorBrush(Colors.Black);
 
             // Fade in the new image
             Storyboard animation = new Storyboard();

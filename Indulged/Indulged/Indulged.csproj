@@ -143,6 +143,9 @@
     <Compile Include="Plugins\Common\PhotoGroupRenderers\CommonPhotoGroupRenderer5A.xaml.cs">
       <DependentUpon>CommonPhotoGroupRenderer5A.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Plugins\Common\Renderers\ContactRenderer.xaml.cs">
+      <DependentUpon>ContactRenderer.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Plugins\Common\Renderers\DiscoveryPhotoRenderer.xaml.cs">
       <DependentUpon>DiscoveryPhotoRenderer.xaml</DependentUpon>
     </Compile>
@@ -417,6 +420,9 @@
     <Compile Include="Plugins\ProCamera\ProCameraWhiteBalanceSettingsView.xaml.cs">
       <DependentUpon>ProCameraWhiteBalanceSettingsView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Plugins\Profile\ContactPage.xaml.cs">
+      <DependentUpon>ContactPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Plugins\Profile\UserProfileInfoPage.xaml.cs">
       <DependentUpon>UserProfileInfoPage.xaml</DependentUpon>
     </Compile>
@@ -650,6 +656,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Plugins\Common\ProgressView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Plugins\Common\Renderers\ContactRenderer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -976,6 +986,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Plugins\Profile\ContactPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Plugins\Profile\UserProfileInfoPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -1214,6 +1228,9 @@
     <ApplicationDefinition Include="Themes\BorderlessButtonStyle.xaml">
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <ApplicationDefinition Include="Themes\FXUploadButtonStyle.xaml">
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
     <Page Include="Themes\FullScreenPhotoNavigatorStyle.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -1228,7 +1245,6 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\Common\Collection.png" />
     <Content Include="Assets\Chrome\DarkTitleView2.png" />
     <Content Include="Assets\Chrome\LightTitleView2.png" />
     <Content Include="Assets\Chrome\SummersaltBackground.jpg" />
@@ -1237,6 +1253,7 @@
     <Content Include="Assets\Common\AddComment.png" />
     <Content Include="Assets\Common\cancel.png" />
     <Content Include="Assets\Common\check.png" />
+    <Content Include="Assets\Common\Collection.png" />
     <Content Include="Assets\Common\Comment.png" />
     <Content Include="Assets\Common\FullBackButton.png" />
     <Content Include="Assets\Common\like.png" />
@@ -1250,6 +1267,10 @@
     <Content Include="Assets\Dashboard\Heart.png" />
     <Content Include="Assets\Group\ComposerBottomShadow.png" />
     <Content Include="Assets\Group\SmallSelectionCircle.png" />
+    <Content Include="Assets\Login\LoginButton.png" />
+    <Content Include="Assets\Login\LoginScreen.png" />
+    <Content Include="Assets\Login\LoginTitle.png" />
+    <Content Include="Assets\Login\LoginVersionBar.png" />
     <Content Include="Assets\ProCamera\WB-Cloudy-Selected.png" />
     <Content Include="Assets\ProCamera\WB-Cloudy.png" />
     <Content Include="Assets\ProCamera\WB-Daylight-Selected.png" />
@@ -1262,6 +1283,7 @@
     <Content Include="Assets\ProCamera\WB-Shade.png" />
     <Content Include="Assets\ProCamera\WB-Tungsten-Selected.png" />
     <Content Include="Assets\ProCamera\WB-Tungsten.png" />
+    <Content Include="Assets\Profile\ContactPageIcon.png" />
     <Content Include="Assets\Profile\ProfilePageIcon.png" />
     <Content Include="Assets\ProFX\FXAdd.png" />
     <Content Include="Assets\ProFX\FXArrowDown.png" />

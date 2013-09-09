@@ -23,12 +23,12 @@
 
                 <!-- Photo set section -->
                 <dashboard:NavigatorSection x:Name="StreamSectionView" Title="photo sets"/>
-                <TextBlock x:Name="StreamListStatusLabel" Text="Retrieving photo sets..." Margin="15" FontSize="24" FontWeight="Light" Foreground="#c5c5c5"/>
+                <TextBlock x:Name="StreamListStatusLabel" Text="Retrieving photo sets..." Margin="15" FontSize="36" FontWeight="Light" Foreground="#c5c5c5" Tap="StreamListStatusLabel_Tap"/>
                 <phone:LongListSelector x:Name="StreamListView" Style="{StaticResource PreludeListStyle}" SelectionChanged="OnStreamListViewSelectionChanged" Visibility="Collapsed"/>
 
                 <!-- Group section -->
                 <dashboard:NavigatorSection x:Name="GroupSectionView" Title="community"/>
-                <TextBlock x:Name="GroupListStatusLabel" Text="Retrieving group list..." Margin="15" FontSize="24" FontWeight="Light" Foreground="#c5c5c5"/>
+                <TextBlock x:Name="GroupListStatusLabel" Text="Retrieving group list..." Margin="15" FontSize="36" FontWeight="Light" Foreground="#c5c5c5" IsHitTestVisible="False" Tap="GroupListStatusLabel_Tap"/>
                 <phone:LongListSelector x:Name="GroupListView" Style="{StaticResource PreludeListStyle}" SelectionChanged="OnGroupListViewSelectionChanged" Visibility="Collapsed"/>
 
             </StackPanel>

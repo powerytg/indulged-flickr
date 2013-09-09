@@ -28,6 +28,7 @@
                 <ResourceDictionary Source="Themes/FXPanelButtonStyle.xaml"/>
                 <ResourceDictionary Source="Themes/FXSectionTextStyle.xaml"/>
                 <ResourceDictionary Source="Themes/FXRadioButtonStyle.xaml"/>
+                <ResourceDictionary Source="Themes/FXUploadButtonStyle.xaml"/>
                 <ResourceDictionary Source="Themes/FXSliderStyle.xaml"/>
                 <ResourceDictionary Source="Themes/FXHueSliderStyle.xaml"/>
                 <ResourceDictionary Source="Themes/BorderlessButtonStyle.xaml"/>

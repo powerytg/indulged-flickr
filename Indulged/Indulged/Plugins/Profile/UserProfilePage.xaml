@@ -39,7 +39,7 @@
             <!--  Title bar -->
             <phone:Panorama.Title>
                 <StackPanel Grid.Row="0" Margin="12,17,0,28" Orientation="Horizontal">
-                    <Image Source="/Assets/Profile/ProfilePageIcon.png" Width="72"/>
+                    <Image Source="/Assets/Profile/ProfilePageIcon.png" />
 
                     <TextBlock Foreground="#f67056" Text="{Binding Name}"
                                FontSize="64" TextWrapping="NoWrap" TextTrimming="WordEllipsis" FontWeight="Bold"
