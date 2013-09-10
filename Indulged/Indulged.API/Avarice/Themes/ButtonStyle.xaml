@@ -51,7 +51,7 @@
                             </Border.BorderBrush>
                             
                             <Border.Background>
-                                <SolidColorBrush Color="#5982b5" Opacity="0.42"/>
+                                <SolidColorBrush Color="#293544" Opacity="0.9"/>
                             </Border.Background>
 
                             <ContentControl x:Name="ContentContainer" ContentTemplate="{TemplateBinding ContentTemplate}" 

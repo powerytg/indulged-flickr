@@ -34,6 +34,14 @@
 
             </StackPanel>
         </ScrollViewer>
+        
+        <!-- Camera button -->
+        <Button x:Name="CameraButton" Style="{StaticResource BorderlessButtonStyle}"
+                HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="20, 20, 10, 40" Click="CameraButton_Click" >
+            <Button.Content>
+                <Image Source="/Assets/Dashboard/Camera.png" Width="54"/>
+            </Button.Content>
+        </Button>
     </Grid>
     
 </UserControl>

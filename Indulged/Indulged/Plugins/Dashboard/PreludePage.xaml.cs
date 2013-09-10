@@ -73,6 +73,7 @@ namespace Indulged.Plugins.Dashboard
             FeatureStreams.Add(new PreludeItemModel { Name = "Contacts" });
             FeatureStreams.Add(new PreludeItemModel { Name = "Favourites", Icon = new System.Windows.Media.Imaging.BitmapImage(new Uri("/Assets/Dashboard/Heart.png", UriKind.Relative)) });
             FeatureStreams.Add(new PreludeItemModel { Name = "Search" });
+            FeatureStreams.Add(new PreludeItemModel { Name = "Take Photo" });
             FeatureListView.ItemsSource = FeatureStreams;
 
             // Events
@@ -250,6 +251,13 @@ namespace Indulged.Plugins.Dashboard
                 PhoneApplicationPage currentPage = (PhoneApplicationPage)rootVisual.Content;
                 currentPage.NavigationService.Navigate(new Uri("/Plugins/Search/SearchPage.xaml", UriKind.Relative));
             }
+            else if (entry.Name == "Take Photo")
+            {
+                Frame rootVisual = System.Windows.Application.Current.RootVisual as Frame;
+                PhoneApplicationPage currentPage = (PhoneApplicationPage)rootVisual.Content;
+                currentPage.NavigationService.Navigate(new Uri("/Plugins/ProCamera/ProCameraPage.xaml", UriKind.Relative));
+
+            }
         }
 
         private void OnStreamListViewSelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -299,6 +307,13 @@ namespace Indulged.Plugins.Dashboard
 
             Anaconda.AnacondaCore.GetPhotoSetListAsync(Cinderella.CinderellaCore.CurrentUser.ResourceId);
 
+        }
+
+        private void CameraButton_Click(object sender, RoutedEventArgs e)
+        {
+            Frame rootVisual = System.Windows.Application.Current.RootVisual as Frame;
+            PhoneApplicationPage currentPage = (PhoneApplicationPage)rootVisual.Content;
+            currentPage.NavigationService.Navigate(new Uri("/Plugins/ProCamera/ProCameraPage.xaml", UriKind.Relative));
         }
     }
 }

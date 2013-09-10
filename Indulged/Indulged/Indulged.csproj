@@ -1252,6 +1252,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AppIcon.png" />
     <Content Include="Assets\Chrome\DarkTitleView2.png" />
     <Content Include="Assets\Chrome\LightTitleView2.png" />
     <Content Include="Assets\Chrome\SummersaltBackground.jpg" />
@@ -1271,6 +1272,7 @@
     <Content Include="Assets\Common\UnFav.png" />
     <Content Include="Assets\Common\View-Light.png" />
     <Content Include="Assets\Dashboard\ActivityFave.png" />
+    <Content Include="Assets\Dashboard\Camera.png" />
     <Content Include="Assets\Dashboard\Heart.png" />
     <Content Include="Assets\Group\ComposerBottomShadow.png" />
     <Content Include="Assets\Group\SmallSelectionCircle.png" />
@@ -1315,6 +1317,8 @@
     </Page>
     <Content Include="Assets\SamplePhoto2.jpg" />
     <Content Include="Assets\SamplePhoto3.jpg" />
+    <Content Include="IconicTileMedium.png" />
+    <Content Include="IconicTileSmall.png" />
     <Content Include="Vendor\ExifLib.dll" />
     <None Include="Assets\Chrome\Thumbs.db" />
     <Content Include="Assets\Chrome\BlankTitleView.png" />

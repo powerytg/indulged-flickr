@@ -1,4 +1,5 @@
 ﻿using Indulged.API.Anaconda;
+using Indulged.API.Cinderella;
 using Indulged.Plugins.Chrome;
 using Indulged.Plugins.Chrome.Events;
 using Indulged.Plugins.ProCamera;
@@ -131,6 +132,7 @@ namespace Indulged.Plugins.ProFX
             base.OnNavigatedTo(e);
 
             originalImage = ProCameraPage.CapturedImage;
+            //originalImage = new BitmapImage(new Uri(Cinderella.CinderellaCore.CurrentUser.Photos[0].GetImageUrl()));
             originalImage.CreateOptions = BitmapCreateOptions.None;
 
             // Sampling
