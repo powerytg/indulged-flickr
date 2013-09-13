@@ -41,7 +41,7 @@ namespace Indulged.Plugins.Dashboard.SummersaltRenderers
 
         protected virtual void OnPhotoSourceChanged()
         {
-            ImageView.Source = new BitmapImage(new Uri(PhotoSource.GetImageUrl()));
+            ImageView.Source = new BitmapImage { UriSource = new Uri(PhotoSource.GetImageUrl()), DecodePixelWidth = 400 };
 
             if (PhotoSource.Title != null && PhotoSource.Title.Length > 0)
             {
@@ -65,9 +65,6 @@ namespace Indulged.Plugins.Dashboard.SummersaltRenderers
             }
             else
                 DescriptionLabel.Visibility = Visibility.Collapsed;
-
-            BitmapImage src = new BitmapImage(new Uri(PhotoSource.GetImageUrl()));
-            ImageView.Source = src;
         }
 
         // Constructor

@@ -83,5 +83,14 @@ namespace Indulged.API.Cinderella.Models
         }
 
         public BitmapImage PreludeIcon {get;set;}
+
+        public BitmapImage Icon
+        {
+            get
+            {
+                return null;
+            }
+        }
+
     }
 }

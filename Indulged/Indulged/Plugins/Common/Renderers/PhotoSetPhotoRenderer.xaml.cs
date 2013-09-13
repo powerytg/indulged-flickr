@@ -42,7 +42,7 @@ namespace Indulged.Plugins.Common.Renderers
 
         protected void OnSetPhotoChanged()
         {
-            ImageView.Source = new BitmapImage(new Uri(SetPhoto.PhotoSource.GetImageUrl()));
+            ImageView.Source = new BitmapImage { UriSource = new Uri(SetPhoto.PhotoSource.GetImageUrl()), DecodePixelWidth = 500 };
 
             if (SetPhoto.PhotoSource.Title != null && SetPhoto.PhotoSource.Title.Length > 0)
             {
@@ -63,9 +63,6 @@ namespace Indulged.Plugins.Common.Renderers
             }
             else
                 DescriptionLabel.Visibility = Visibility.Collapsed;
-
-            BitmapImage src = new BitmapImage(new Uri(SetPhoto.PhotoSource.GetImageUrl()));
-            ImageView.Source = src;
         }
 
         protected override void OnTap(System.Windows.Input.GestureEventArgs e)

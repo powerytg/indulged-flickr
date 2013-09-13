@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ProfilerSession Type="ExecutionPerformanceAnalysis" Name="Indulged2439917684">
+  <TargetApplication Name="Indulged_Release_ARM" SourceProject="Indulged.csproj" Type="WindowsPhoneHybrid">
+    <ApplicationBinary Path="Bin\ARM\Release\Indulged_Release_ARM.xap" Timestamp="9/9/2013 7:22:56 PM" />
+    <ApplicationIconPath Path="" />
+    <SymbolPaths>
+      <Path Value="Bin\ARM\Release\" />
+    </SymbolPaths>
+  </TargetApplication>
+  <Settings>
+    <Probe Name="Visual">
+      <CollectElementLevelCosting Enabled="True" />
+      <CollectSnapshots Enabled="True" Interval="1000" Resampling="2" />
+      <CollectMediaEvents Enabled="False" />
+      <CollectCacheDetails Enabled="False" />
+    </Probe>
+    <Probe Name="Code">
+      <SampleCallStack Enabled="True" Depth="4294967295" Interval="10" />
+      <CollectPerformanceCounters Enabled="False" />
+    </Probe>
+    <Probe Name="Memory">
+      <MemoryCallStack Enabled="True" Depth="8" />
+      <ObjectTree Enabled="True" Interval="5" />
+    </Probe>
+  </Settings>
+  <Data>
+    <Logs>
+      <File Type="NativeFormat" Path="PerfLogs\Indulged2439917684\Indulged_2013_09_12_19_51_26.vspx" />
+    </Logs>
+  </Data>
+  <TargetDeviceSettings OSVersion="8.0.10327" AvailablePhysicalMemoryAtStartup="0" ProcessorArchitectureType="Arm" ProcessorInformation="Unknown" IsEmulator="False" />
+</ProfilerSession>

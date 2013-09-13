@@ -26,7 +26,7 @@ namespace Indulged.Plugins.Common.Renderers
         protected override void OnPhotoSourceChanged()
         {
             base.OnPhotoSourceChanged();
-            ImageView.Source = new BitmapImage(new Uri(PhotoSource.GetImageUrl()));
+            ImageView.Source = new BitmapImage { UriSource = new Uri(PhotoSource.GetImageUrl()), DecodePixelWidth = 500 };
 
             string lowerCaseTitle = PhotoSource.Title.ToLower();
             if (lowerCaseTitle.Contains(".jpg") || lowerCaseTitle.Contains(".jpeg") || lowerCaseTitle.Contains(".png"))

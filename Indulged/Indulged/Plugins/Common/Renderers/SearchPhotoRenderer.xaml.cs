@@ -27,7 +27,7 @@ namespace Indulged.Plugins.Common.Renderers
         protected override void OnPhotoSourceChanged()
         {
             base.OnPhotoSourceChanged();
-            ImageView.Source = new BitmapImage(new Uri(PhotoSource.GetImageUrl()));
+            ImageView.Source = new BitmapImage { UriSource = new Uri(PhotoSource.GetImageUrl()), DecodePixelWidth = 400 };
 
             if (PhotoSource.Title != null && PhotoSource.Title.Length > 0)
             {
@@ -48,10 +48,6 @@ namespace Indulged.Plugins.Common.Renderers
             }
             else
                 DescriptionLabel.Visibility = Visibility.Collapsed;
-
-            BitmapImage src = new BitmapImage(new Uri(PhotoSource.GetImageUrl()));
-            src.DecodePixelWidth = 400;
-            ImageView.Source = src;
         }
 
         protected override void OnTap(System.Windows.Input.GestureEventArgs e)
