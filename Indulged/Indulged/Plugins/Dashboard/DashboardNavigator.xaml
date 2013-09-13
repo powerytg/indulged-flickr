@@ -17,10 +17,10 @@
                 <dashboard:PreludePage x:Name="PreludeView" />
             </phone:PivotItem>
             <phone:PivotItem x:Name="VioletPageItem" Header="violet">
-                <dashboard:VioletPage />
+                <dashboard:VioletPage x:Name="VioletView" />
             </phone:PivotItem>
             <phone:PivotItem x:Name="SummersaltPageItem" Header="summersalt">
-                <dashboard:SummersaltPage />
+                <dashboard:SummersaltPage x:Name="SummersaltView" />
             </phone:PivotItem>
                              
         </phone:Pivot>

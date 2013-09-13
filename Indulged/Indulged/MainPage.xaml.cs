@@ -43,6 +43,9 @@ namespace Indulged
         {
             base.OnNavigatedTo(e);
 
+            if(hasExecutedOnce)
+                Dashboard.OnNavigatedToPage();
+
             if (hasExecutedOnce && hasLoggedIn)
                 return;
 
@@ -83,7 +86,8 @@ namespace Indulged
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
             // Reset dashboard selections
-            Dashboard.ResetListSelections();
+            Dashboard.OnNavigatedFromPage();
+            
 
             base.OnNavigatedFrom(e);
         }

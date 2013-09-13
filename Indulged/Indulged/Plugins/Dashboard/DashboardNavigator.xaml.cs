@@ -61,5 +61,23 @@ namespace Indulged.Plugins.Dashboard
             PreludeView.RefreshStreams();
         }
 
+        public void OnNavigatedFromPage()
+        {
+            ResetListSelections();
+
+            VioletView.Visibility = Visibility.Collapsed;
+            SummersaltView.Visibility = Visibility.Collapsed;
+            VioletView.OnNavigatedFromPage();
+        }
+
+        public void OnNavigatedToPage()
+        {
+            VioletView.Visibility = Visibility.Visible;
+            SummersaltView.Visibility = Visibility.Visible;
+
+            
+            VioletView.OnNavigatedToPage();
+        }
+
     }
 }

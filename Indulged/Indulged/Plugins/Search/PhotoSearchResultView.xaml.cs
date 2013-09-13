@@ -79,6 +79,16 @@ namespace Indulged.Plugins.Search
                 TotalCount = e.TotalCount;
             });
         }
-       
+
+        public void OnNavigatedToPage()
+        {
+            ResultListView.ItemsSource = _photos;
+        }
+
+        public void OnNavigatedFromPage()
+        {
+            ResultListView.ItemsSource = null;
+        }
+
     }
 }

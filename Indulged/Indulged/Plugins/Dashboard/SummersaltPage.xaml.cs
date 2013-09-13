@@ -47,6 +47,13 @@ namespace Indulged.Plugins.Dashboard
 
         // Data source
         private ObservableCollection<ModelBase> dataSource;
+        public ObservableCollection<ModelBase> DataSource
+        {
+            get
+            {
+                return dataSource;
+            }
+        }
 
         // Constructor
         public SummersaltPage()

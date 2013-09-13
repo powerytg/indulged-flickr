@@ -28,7 +28,12 @@ namespace Indulged.Plugins.Search
             base.OnNavigatedTo(e);
 
             if (executedOnce)
+            {
+                PhotoResultView.OnNavigatedToPage();
+                GroupResultView.OnNavigatedToPage();
+
                 return;
+            }
 
             executedOnce = true;
 
@@ -58,6 +63,14 @@ namespace Indulged.Plugins.Search
             // Perform a search
             PhotoResultView.PerformSearch();
             GroupResultView.PerformSearch();
+        }
+
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            base.OnNavigatedFrom(e);
+
+            PhotoResultView.OnNavigatedFromPage();
+            GroupResultView.OnNavigatedFromPage();
         }
 
     }

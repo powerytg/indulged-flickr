@@ -80,5 +80,15 @@ namespace Indulged.Plugins.Search
             });
         }
 
+
+        public void OnNavigatedToPage()
+        {
+            ResultListView.ItemsSource = _groups;
+        }
+
+        public void OnNavigatedFromPage()
+        {
+            ResultListView.ItemsSource = null;
+        }
     }
 }

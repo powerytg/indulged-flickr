@@ -21,7 +21,7 @@
 
         <StackPanel x:Name="LoadingView" Orientation="Horizontal" Margin="12, 12, 12, 12"
                     Grid.Row="1" >
-            <TextBlock Text="Loading EXIF Info"/>
+            <TextBlock Text="Loading EXIF Info" Foreground="White"/>
             <ProgressBar IsIndeterminate="True" Width="200"/>
         </StackPanel>
 

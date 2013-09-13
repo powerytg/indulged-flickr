@@ -65,6 +65,19 @@ namespace Indulged.Plugins.Dashboard
             Cinderella.CinderellaCore.FavouriteStreamUpdated += OnFavouriteStreamUpdated;
         }
 
+        public void OnNavigatedFromPage()
+        {
+            PhotoStreamListView.ItemsSource = null;
+        }
+
+        public void OnNavigatedToPage()
+        {
+            if (PhotoCollection == null)
+                return;
+            
+            PhotoStreamListView.ItemsSource = PhotoCollection;
+        }
+
         // Photo uploaded
         private void OnPhotoUploaded(object sender, UploadedPhotoInfoReturnedEventArgs e)
         {
