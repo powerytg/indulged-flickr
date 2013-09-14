@@ -1255,6 +1255,7 @@
     <Content Include="AppIcon.png" />
     <Content Include="Assets\Chrome\DarkTitleView2.png" />
     <Content Include="Assets\Chrome\LightTitleView2.png" />
+    <Content Include="Assets\Chrome\PreludeBackground.jpg" />
     <Content Include="Assets\Chrome\SummersaltBackground.jpg" />
     <Content Include="Assets\Common\ActionButton.png" />
     <Content Include="Assets\Common\add.png" />
@@ -1360,7 +1361,6 @@
     <Content Include="Assets\Chrome\LightPageBackground.png" />
     <Content Include="Assets\Chrome\LightTitleView.png" />
     <Content Include="Assets\Chrome\LightUserBar.png" />
-    <Content Include="Assets\Chrome\PreludeBackground.png" />
     <Content Include="Assets\Chrome\SearchButton.png" />
     <Content Include="Assets\Chrome\VioletBackground.png" />
     <Content Include="Assets\Dashboard\Prelude\PreludeContentGuide.png" />

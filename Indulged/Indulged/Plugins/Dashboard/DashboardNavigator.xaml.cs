@@ -10,6 +10,8 @@ using Microsoft.Phone.Shell;
 
 using Indulged.API.Utils;
 using Indulged.Plugins.Dashboard.Events;
+using System.Windows.Media.Animation;
+using System.Windows.Media;
 
 namespace Indulged.Plugins.Dashboard
 {
@@ -63,20 +65,13 @@ namespace Indulged.Plugins.Dashboard
 
         public void OnNavigatedFromPage()
         {
-            ResetListSelections();
-
-            //VioletView.Visibility = Visibility.Collapsed;
-            //SummersaltView.Visibility = Visibility.Collapsed;
-            //VioletView.OnNavigatedFromPage();
+            LayoutRoot.Visibility = Visibility.Collapsed; 
+            ResetListSelections();            
         }
 
         public void OnNavigatedToPage()
         {
-            //VioletView.Visibility = Visibility.Visible;
-            //SummersaltView.Visibility = Visibility.Visible;
-
-            
-            //VioletView.OnNavigatedToPage();
+            LayoutRoot.Visibility = Visibility.Visible;
         }
 
     }

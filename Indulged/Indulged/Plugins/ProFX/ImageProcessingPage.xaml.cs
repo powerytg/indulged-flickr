@@ -148,7 +148,7 @@ namespace Indulged.Plugins.ProFX
 
         }
 
-        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        protected override void OnRemovedFromJournal(JournalEntryRemovedEventArgs e)
         {
             // Clean up
             if (previewStream != null)
@@ -157,7 +157,9 @@ namespace Indulged.Plugins.ProFX
                 previewStream = null;
             }
 
-            base.OnNavigatedFrom(e);
+            ProCameraPage.CapturedImage = null;
+            
+            base.OnRemovedFromJournal(e);
         }
 
         private void OnPhotoViewSizeChanged(object sender, SizeChangedEventArgs e)

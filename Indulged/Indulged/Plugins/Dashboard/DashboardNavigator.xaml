@@ -12,6 +12,10 @@
     d:DesignHeight="480" d:DesignWidth="480">
 
     <Grid x:Name="LayoutRoot">
+        <Grid.RenderTransform>
+            <CompositeTransform/>
+        </Grid.RenderTransform>
+        
         <phone:Pivot x:Name="MainPivot" Style="{StaticResource NavigatorStyle}" SelectionChanged="OnSelectionChanged">
             <phone:PivotItem x:Name="PreludePageItem" Header="prelude">
                 <dashboard:PreludePage x:Name="PreludeView" />

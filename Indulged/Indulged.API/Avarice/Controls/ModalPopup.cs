@@ -104,7 +104,7 @@ namespace Indulged.API.Avarice.Controls
                 }
             }
 
-            popup.HostView.Opacity = 0.2;
+            //popup.HostView.Opacity = 0.2;
             popup.HostView.IsHitTestVisible = false;
             popupContainer.IsOpen = true;
 
@@ -134,7 +134,7 @@ namespace Indulged.API.Avarice.Controls
                 }
             }
 
-            popup.HostView.Opacity = 0.2;
+            //popup.HostView.Opacity = 0.2;
             popup.HostView.IsHitTestVisible = false;
             popupContainer.IsOpen = true;
             return popup;
@@ -297,7 +297,7 @@ namespace Indulged.API.Avarice.Controls
                         SystemTray.IsVisible = true;
 
                     HostView.IsHitTestVisible = true;
-                    HostView.Opacity = 1;
+                    //HostView.Opacity = 1;
 
                     // Perform afterburn action
                     if(action != null)
@@ -573,7 +573,7 @@ namespace Indulged.API.Avarice.Controls
                         SystemTray.IsVisible = true;
 
                     HostView.IsHitTestVisible = true;
-                    HostView.Opacity = 1;
+                    //HostView.Opacity = 1;
                 });
 
             };

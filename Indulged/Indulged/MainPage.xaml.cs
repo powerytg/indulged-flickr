@@ -87,12 +87,10 @@ namespace Indulged
         {
             // Reset dashboard selections
             Dashboard.OnNavigatedFromPage();
-            
-
             base.OnNavigatedFrom(e);
         }
 
-        private void OnTakePhotoClick(object sender, EventArgs e)
+         private void OnTakePhotoClick(object sender, EventArgs e)
         {
             NavigationService.Navigate(new Uri("/Plugins/ProCamera/ProCameraPage.xaml", UriKind.Relative));
         }

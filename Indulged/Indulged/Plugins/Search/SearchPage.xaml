@@ -17,7 +17,11 @@
     Style="{StaticResource TransitionPageStyle}">
 
     <!--LayoutRoot is the root grid where all page content is placed-->
-    <Grid x:Name="LayoutRoot" Background="Transparent">
+    <Grid x:Name="LayoutRoot" Background="Transparent" Visibility="Collapsed">
+        <Grid.RenderTransform>
+            <CompositeTransform/>
+        </Grid.RenderTransform>
+        
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="1"/>
@@ -27,7 +31,7 @@
         <controls:WatermarkTextBox x:Name="SearchBox" Height="45" Grid.Row="0" 
                                    BorderThickness="0" Background="Transparent" Style="{StaticResource SearchBoxStyle}"
                                    Foreground="#448ccb" Margin="4" Padding="0" 
-                                   WatermarkText="type to search..." Loaded="OnSearchBox" 
+                                   WatermarkText="type to search..."
                                    InputScope="Search" AcceptsReturn="False" KeyUp="OnSearchBoxKeyUp"/>
         <Rectangle Fill="#448ccb" Grid.Row="1"/>
         

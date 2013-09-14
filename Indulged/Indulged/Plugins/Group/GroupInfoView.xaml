@@ -43,7 +43,7 @@
                 <!-- throttle view -->
                 <StackPanel Orientation="Horizontal" Grid.Row="1" Height="36" HorizontalAlignment="Center">
                     <Image x:Name="ThrottleIconView" Margin="0, 0, 10, 0"/>
-                    <TextBlock x:Name="ThrottleDescriptionView"/>
+                    <TextBlock x:Name="ThrottleDescriptionView" Foreground="White"/>
                 </StackPanel>
                 
             </Grid>
