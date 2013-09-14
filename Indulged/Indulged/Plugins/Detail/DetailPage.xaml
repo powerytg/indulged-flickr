@@ -12,9 +12,10 @@
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d"
-    shell:SystemTray.IsVisible="True" shell:SystemTray.Opacity="0" 
+    shell:SystemTray.IsVisible="True" shell:SystemTray.Opacity="0" shell:SystemTray.ForegroundColor="#ffffff" 
     Style="{StaticResource TransitionPageStyle}">
 
     <phone:PhoneApplicationPage.Resources>
@@ -31,25 +32,22 @@
     </phone:PhoneApplicationPage.Resources>
     
     <!--LayoutRoot is the root grid where all page content is placed-->
-    <Grid x:Name="LayoutRoot" Background="Black" Margin="0">
+    <Grid x:Name="LayoutRoot" Background="Black" Margin="0" Visibility="Collapsed">
+        <Grid.RenderTransform>
+            <CompositeTransform/>
+        </Grid.RenderTransform>
+        
         <!-- Background image -->
         <chrome:PhotoBackgroundView x:Name="BackgroundImage"/>
-        
-        <!-- Content -->
-        <phone:Pivot x:Name="PhotoPivot" Style="{StaticResource PhotoNavigatorStyle}"
-                     Margin="0, 95, 0, 0" SelectionChanged="OnCurrentPageChanged" >
-            <phone:Pivot.ItemTemplate>
-                <DataTemplate>
-                    <local:PhotoInfoView x:Name="InfoView" PhotoSource="{Binding}"/>
-                </DataTemplate>
-            </phone:Pivot.ItemTemplate>
-        </phone:Pivot>
 
+        <local:PhotoInfoView x:Name="InfoView" Margin="0, 95, 0, 0" Visibility="Collapsed"/>
+        
+        <!-- Loading view-->
+        <TextBlock x:Name="LoadingView" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"
+                   Text="Loading photo..." />
+        
         <!-- Title view -->
         <chrome:TitleView x:Name="TitleView" VerticalAlignment="Top" IsHitTestVisible="False"/>
-
-
-        
     </Grid>
 
     

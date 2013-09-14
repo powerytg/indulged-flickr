@@ -33,7 +33,7 @@ namespace Indulged.Plugins.Dashboard
         {
             get
             {
-                return "/Assets/Chrome/PreludeBackground.png";
+                return "/Assets/Chrome/PreludeBackground.jpg";
             }
         }
 

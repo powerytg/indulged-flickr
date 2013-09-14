@@ -80,15 +80,11 @@ namespace Indulged.Plugins.Search
             });
         }
 
-        public void OnNavigatedToPage()
-        {
-            ResultListView.ItemsSource = _photos;
-        }
-
-        public void OnNavigatedFromPage()
+        public void OnRemovedFromJournal()
         {
             ResultListView.ItemsSource = null;
+            _photos.Clear();
+            Cinderella.CinderellaCore.PhotoSearchCompleted -= OnPhotoSearchResult;
         }
-
     }
 }

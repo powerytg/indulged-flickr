@@ -13,6 +13,7 @@ using Indulged.PolKit;
 using Microsoft.Phone.Tasks;
 using Indulged.API.Cinderella;
 using Indulged.API.Cinderella.Events;
+using System.Windows.Media.Imaging;
 
 namespace Indulged.Plugins.Detail
 {
@@ -39,6 +40,10 @@ namespace Indulged.Plugins.Detail
 
         protected virtual void OnPhotoSourceChanged()
         {
+            // Image view
+            ImageView.Source = new BitmapImage { UriSource = new Uri(PhotoSource.GetImageUrl()), DecodePixelWidth = 480 };
+
+            // User
             if (PhotoSource.UserId == null || !Cinderella.CinderellaCore.UserCache.ContainsKey(PhotoSource.UserId))
                 UserRenderer.UserSource = null;
             else
@@ -63,9 +68,23 @@ namespace Indulged.Plugins.Detail
 
             // Description
             if (PhotoSource.Description != null && PhotoSource.Description.Length > 0)
+            {
+                DescriptionLabel.Text = PhotoSource.Description;
                 DescriptionLabel.Visibility = Visibility.Visible;
+            }
             else
                 DescriptionLabel.Visibility = Visibility.Collapsed;
+
+            // License
+            if (PhotoSource.LicenseId == null)
+                LicenseButton.Content = "Unknown License";
+            else
+            {
+                License license = PolicyKit.CurrentPolicy.Licenses[PhotoSource.LicenseId];
+                LicenseButton.Content = license.Name;
+            }
+
+            
         }
 
         public PhotoBasicInfoView()
@@ -78,6 +97,15 @@ namespace Indulged.Plugins.Detail
             Cinderella.CinderellaCore.PhotoRemovedFromFavourite += OnRemovedFromFavourite;
 
         }
+
+        public void RemoveEventListeners()
+        {
+            Cinderella.CinderellaCore.PhotoInfoUpdated -= OnPhotoInfoUpdated;
+            Cinderella.CinderellaCore.PhotoAddedAsFavourite -= OnAddedAsFavourite;
+            Cinderella.CinderellaCore.PhotoRemovedFromFavourite -= OnRemovedFromFavourite;
+
+        }
+
 
         private void OnPhotoInfoUpdated(object sender, PhotoInfoUpdatedEventArgs e)
         {

@@ -10,13 +10,7 @@
     d:DesignHeight="480" d:DesignWidth="480">
     
     <Grid x:Name="LayoutRoot" Margin="2">
-        <Image x:Name="ImageView" Stretch="UniformToFill">
-            <Image.Source>
-
-                <BitmapImage UriSource="{Binding ImageUrl}" DecodePixelHeight="64" DecodePixelWidth="64"/>
-
-            </Image.Source>
-        </Image>
+        <Image x:Name="ImageView" Stretch="UniformToFill"/>
 
         <Border x:Name="BorderView" BorderThickness="2" IsHitTestVisible="False">
             <Border.BorderBrush>

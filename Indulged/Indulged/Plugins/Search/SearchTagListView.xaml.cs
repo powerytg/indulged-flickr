@@ -49,9 +49,10 @@ namespace Indulged.Plugins.Search
 
         }
 
-        private void TextBlock_Loaded(object sender, RoutedEventArgs e)
+        public void OnRemovedFromJournal()
         {
-
+            Cinderella.CinderellaCore.PopularTagsUpdated -= OnPopularTagsReturned;
         }
+
     }
 }

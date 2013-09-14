@@ -1,24 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Navigation;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Microsoft.Phone.Controls;
-using Microsoft.Phone.Shell;
-
-using Indulged.API.Anaconda;
+﻿using Indulged.API.Anaconda;
+using Indulged.API.Avarice.Controls;
 using Indulged.API.Cinderella;
 using Indulged.API.Cinderella.Models;
 using Indulged.PolKit;
-using System.Windows.Media.Imaging;
-using Nokia.Graphics.Imaging;
-using Nokia.InteropServices.WindowsRuntime;
-using System.IO;
-using Windows.Storage.Streams;
-using Indulged.API.Avarice.Controls;
+using Microsoft.Phone.Controls;
+using Microsoft.Phone.Shell;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Media;
+using System.Windows.Media.Animation;
+using System.Windows.Navigation;
 
 namespace Indulged.Plugins.Detail
 {
@@ -38,12 +32,22 @@ namespace Indulged.Plugins.Detail
             Cinderella.CinderellaCore.AddPhotoCommentCompleted += OnAddCommentComplete;
         }
 
-        // Photo collection context
-        public List<Photo> CollectionContext = new List<Photo>();
-
         private bool executedOnce = false;
         private string contextString = null;
         private string contextTypeString = null;
+
+        private Photo currentPhoto;
+
+        protected override void OnRemovedFromJournal(JournalEntryRemovedEventArgs e)
+        {
+            FullScreenRequest -= OnFullScreenRequest;
+            Anaconda.AnacondaCore.AddPhotoCommentException -= OnAddCommentException;
+            Cinderella.CinderellaCore.AddPhotoCommentCompleted -= OnAddCommentComplete;
+
+            InfoView.RemoveEventListeners();
+
+            base.OnRemovedFromJournal(e);
+        }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
@@ -65,7 +69,7 @@ namespace Indulged.Plugins.Detail
             if (NavigationContext.QueryString.ContainsKey("context_type"))
                 contextTypeString = NavigationContext.QueryString["context_type"];
 
-
+            List<Photo> CollectionContext = null;
             if (contextString == PolicyKit.MyStream)
                 CollectionContext = Cinderella.CinderellaCore.CurrentUser.Photos.ToList();
             else if (contextString == PolicyKit.DiscoveryStream)
@@ -89,30 +93,15 @@ namespace Indulged.Plugins.Detail
             }
             else
             {
+                CollectionContext = new List<Photo>();
                 CollectionContext.Add(currentPhoto);
             }
-            
-            PhotoPivot.ItemsSource = CollectionContext;
-            PhotoPivot.SelectedIndex = CollectionContext.IndexOf(currentPhoto);
 
-            // App bar
-            ApplicationBar = Resources["PhotoPageAppBar"] as ApplicationBar;
-
-            initialized = true;
-            OnCurrentPageChanged(this, null);
+            PerformAppearanceAnimation();
         }
-
-        private Photo currentPhoto;
-        private bool initialized = false;
-
-        private void OnCurrentPageChanged(object sender, SelectionChangedEventArgs e)
+       
+        private void OnCurrentIndexChanged()
         {
-            if (!initialized)
-                return;
-
-            int selectedIndex = PhotoPivot.SelectedIndex;
-            currentPhoto = CollectionContext[selectedIndex];
-
             // Download EXIF info
             if (currentPhoto.EXIF == null)
             {
@@ -155,6 +144,39 @@ namespace Indulged.Plugins.Detail
         private void CommentButton_Click(object sender, EventArgs e)
         {
             ShowComposerView();
+        }
+
+        private void PerformAppearanceAnimation()
+        {
+            double h = System.Windows.Application.Current.Host.Content.ActualHeight;
+
+            CompositeTransform ct = (CompositeTransform)LayoutRoot.RenderTransform;
+            ct.TranslateY = h;
+
+            LayoutRoot.Visibility = Visibility.Visible;
+
+            Storyboard animation = new Storyboard();
+            animation.Duration = new Duration(TimeSpan.FromSeconds(0.3));
+
+            // Y animation
+            DoubleAnimation galleryAnimation = new DoubleAnimation();
+            galleryAnimation.Duration = new Duration(TimeSpan.FromSeconds(0.3));
+            galleryAnimation.To = 0.0;
+            //galleryAnimation.EasingFunction = new CubicEase() { EasingMode = EasingMode.EaseOut };
+            Storyboard.SetTarget(galleryAnimation, LayoutRoot);
+            Storyboard.SetTargetProperty(galleryAnimation, new PropertyPath("(UIElement.RenderTransform).(CompositeTransform.TranslateY)"));
+            animation.Children.Add(galleryAnimation);
+            animation.Begin();
+            animation.Completed += (sender, e) => {
+                InfoView.PhotoSource = currentPhoto;
+                InfoView.Visibility = Visibility.Visible;
+                OnCurrentIndexChanged();
+
+                LoadingView.Visibility = Visibility.Collapsed;
+
+                // App bar
+                ApplicationBar = Resources["PhotoPageAppBar"] as ApplicationBar;
+            };
         }
 
     }

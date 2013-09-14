@@ -48,7 +48,7 @@ namespace Indulged
             if (Debugger.IsAttached)
             {
                 // Display the current frame rate counters.
-                Application.Current.Host.Settings.EnableFrameRateCounter = true;
+                Application.Current.Host.Settings.EnableFrameRateCounter = false;
 
                 // Show the areas of the app that are being redrawn in each frame.
                 //Application.Current.Host.Settings.EnableRedrawRegions = true;
@@ -123,10 +123,13 @@ namespace Indulged
 
             // Create the frame but don't set it as RootVisual yet; this allows the splash
             // screen to remain active until the application is ready to render.
+            /*
             RootFrame = new TransitionFrame()
             {
                 Background = new SolidColorBrush(Colors.Transparent)
             };
+             */
+            RootFrame = new PhoneApplicationFrame();
 
             RootFrame.Navigated += CompleteInitializePhoneApplication;
 

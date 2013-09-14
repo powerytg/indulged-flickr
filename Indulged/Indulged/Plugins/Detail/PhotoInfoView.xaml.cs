@@ -34,6 +34,18 @@ namespace Indulged.Plugins.Detail
 
         protected virtual void OnPhotoSourceChanged()
         {
+            BasicInfoView.PhotoSource = PhotoSource;
+            EXIFView.PhotoSource = PhotoSource;
+            TagsView.PhotoSource = PhotoSource;
+            CommentsView.PhotoSource = PhotoSource;
+        }
+
+        public void RemoveEventListeners()
+        {
+            BasicInfoView.RemoveEventListeners();
+            EXIFView.RemoveEventListeners();
+            CommentsView.RemoveEventListeners();
+
         }
 
         // Constructor

@@ -27,7 +27,7 @@ namespace Indulged.Plugins.Common.Renderers
         protected override void OnPhotoSourceChanged()
         {
             base.OnPhotoSourceChanged();
-            ImageView.Source = new BitmapImage { UriSource = new Uri(PhotoSource.GetImageUrl()), DecodePixelWidth = 400 };
+            ImageView.Source = new BitmapImage { UriSource = new Uri(PhotoSource.GetImageUrl()), DecodePixelWidth = 300 };
 
             if (PhotoSource.Title != null && PhotoSource.Title.Length > 0)
             {

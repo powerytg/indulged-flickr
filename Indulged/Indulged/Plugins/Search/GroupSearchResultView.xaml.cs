@@ -81,14 +81,12 @@ namespace Indulged.Plugins.Search
         }
 
 
-        public void OnNavigatedToPage()
-        {
-            ResultListView.ItemsSource = _groups;
-        }
-
-        public void OnNavigatedFromPage()
+        public void OnRemovedFromJournal()
         {
             ResultListView.ItemsSource = null;
+            _groups.Clear();
+            Cinderella.CinderellaCore.GroupSearchCompleted -= OnGroupSearchResult;
         }
+
     }
 }

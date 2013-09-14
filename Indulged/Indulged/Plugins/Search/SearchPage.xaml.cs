@@ -38,5 +38,12 @@ namespace Indulged.Plugins.Search
                 NavigationService.RemoveBackEntry();
             }
         }
+
+        protected override void OnRemovedFromJournal(JournalEntryRemovedEventArgs e)
+        {
+            TagListView.OnRemovedFromJournal();
+            base.OnRemovedFromJournal(e);
+        }
+
     }
 }

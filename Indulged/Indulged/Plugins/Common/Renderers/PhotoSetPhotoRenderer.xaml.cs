@@ -42,7 +42,7 @@ namespace Indulged.Plugins.Common.Renderers
 
         protected void OnSetPhotoChanged()
         {
-            ImageView.Source = new BitmapImage { UriSource = new Uri(SetPhoto.PhotoSource.GetImageUrl()), DecodePixelWidth = 500 };
+            ImageView.Source = new BitmapImage { UriSource = new Uri(SetPhoto.PhotoSource.GetImageUrl()), DecodePixelWidth = 300 };
 
             if (SetPhoto.PhotoSource.Title != null && SetPhoto.PhotoSource.Title.Length > 0)
             {

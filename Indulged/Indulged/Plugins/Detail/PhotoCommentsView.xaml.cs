@@ -57,6 +57,13 @@ namespace Indulged.Plugins.Detail
             Cinderella.CinderellaCore.AddPhotoCommentCompleted += OnAddCommentComplete;
         }
 
+        public void RemoveEventListeners()
+        {
+            Anaconda.AnacondaCore.GetPhotoCommentsException -= OnGetCommentsException;
+            Cinderella.CinderellaCore.PhotoCommentsUpdated -= OnCommentsUpdated;
+            Cinderella.CinderellaCore.AddPhotoCommentCompleted -= OnAddCommentComplete;
+        }
+
         private void UpdateItemRenderers()
         {
             if (PhotoSource.Comments.Count == 0)

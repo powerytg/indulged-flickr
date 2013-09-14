@@ -28,12 +28,7 @@ namespace Indulged.Plugins.Search
             base.OnNavigatedTo(e);
 
             if (executedOnce)
-            {
-                PhotoResultView.OnNavigatedToPage();
-                GroupResultView.OnNavigatedToPage();
-
                 return;
-            }
 
             executedOnce = true;
 
@@ -65,12 +60,12 @@ namespace Indulged.Plugins.Search
             GroupResultView.PerformSearch();
         }
 
-        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        protected override void OnRemovedFromJournal(JournalEntryRemovedEventArgs e)
         {
-            base.OnNavigatedFrom(e);
+            base.OnRemovedFromJournal(e);
 
-            PhotoResultView.OnNavigatedFromPage();
-            GroupResultView.OnNavigatedFromPage();
+            PhotoResultView.OnRemovedFromJournal();
+            GroupResultView.OnRemovedFromJournal();
         }
 
     }

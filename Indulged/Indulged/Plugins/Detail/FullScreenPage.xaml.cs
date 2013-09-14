@@ -24,8 +24,6 @@ namespace Indulged.Plugins.Detail
             InitializeComponent();
         }
 
-        // Photo collection context
-        public List<Photo> CollectionContext = new List<Photo>();
 
         private bool executedOnce = false;
 
@@ -38,6 +36,7 @@ namespace Indulged.Plugins.Detail
 
             executedOnce = true;
 
+
             string photoId = NavigationContext.QueryString["photo_id"];
             Photo currentPhoto = Cinderella.CinderellaCore.PhotoCache[photoId];
 
@@ -49,7 +48,7 @@ namespace Indulged.Plugins.Detail
             if (NavigationContext.QueryString.ContainsKey("context_type"))
                 contextTypeString = NavigationContext.QueryString["context_type"];
 
-
+            List<Photo> CollectionContext = null;
             if (contextString == PolicyKit.MyStream)
                 CollectionContext = Cinderella.CinderellaCore.CurrentUser.Photos.ToList();
             else if (contextString == PolicyKit.DiscoveryStream)
@@ -73,24 +72,12 @@ namespace Indulged.Plugins.Detail
             }
             else
             {
+                CollectionContext = new List<Photo>();
                 CollectionContext.Add(currentPhoto);
             }
 
-            PhotoPivot.ItemsSource = CollectionContext;
-            PhotoPivot.SelectedIndex = CollectionContext.IndexOf(currentPhoto);
-
-            // Total photo count label
-            TotalLabel.Text = "/ " + CollectionContext.Count.ToString();
+            PhotoView.PhotoSource = currentPhoto;
         }
-
-        private void PhotoPivot_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            int selectedIndex = PhotoPivot.SelectedIndex;
-            CurrentIndexLabel.Text = (selectedIndex + 1).ToString();
-
-        }
-
-
         
     }
 }

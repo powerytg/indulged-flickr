@@ -62,6 +62,12 @@ namespace Indulged.Plugins.Detail
             Anaconda.AnacondaCore.EXIFException += OnEXIFException;
         }
 
+        public void RemoveEventListeners()
+        {
+            Cinderella.CinderellaCore.EXIFUpdated -= OnEXIFUpdated;
+            Anaconda.AnacondaCore.EXIFException -= OnEXIFException;
+        }
+
         private void OnEXIFUpdated(object sender, EXIFUpdatedEventArgs e)
         {
             Dispatcher.BeginInvoke(() => {

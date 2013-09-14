@@ -65,18 +65,18 @@ namespace Indulged.Plugins.Dashboard
         {
             ResetListSelections();
 
-            VioletView.Visibility = Visibility.Collapsed;
-            SummersaltView.Visibility = Visibility.Collapsed;
-            VioletView.OnNavigatedFromPage();
+            //VioletView.Visibility = Visibility.Collapsed;
+            //SummersaltView.Visibility = Visibility.Collapsed;
+            //VioletView.OnNavigatedFromPage();
         }
 
         public void OnNavigatedToPage()
         {
-            VioletView.Visibility = Visibility.Visible;
-            SummersaltView.Visibility = Visibility.Visible;
+            //VioletView.Visibility = Visibility.Visible;
+            //SummersaltView.Visibility = Visibility.Visible;
 
             
-            VioletView.OnNavigatedToPage();
+            //VioletView.OnNavigatedToPage();
         }
 
     }

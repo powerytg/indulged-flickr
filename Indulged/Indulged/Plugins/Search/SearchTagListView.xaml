@@ -22,8 +22,9 @@
                    Margin="12, 0, 12, 12"
                    Grid.Row="0" />
 
-                <StackPanel x:Name="LoadingView" Orientation="Horizontal" Margin="12, 12, 12, 12"
-                    Grid.Row="1" >
+                <StackPanel x:Name="LoadingView" Orientation="Horizontal" Margin="12, 70, 12, 12"
+                    Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Top" >
+                    
                     <TextBlock Text="Retrieving Popular Tags" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                     <ProgressBar IsIndeterminate="True" Width="200"/>
                 </StackPanel>

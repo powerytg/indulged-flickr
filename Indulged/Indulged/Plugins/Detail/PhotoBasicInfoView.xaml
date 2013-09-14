@@ -26,9 +26,7 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <Image Source="{Binding Converter={StaticResource PhotoSourceConverter}}"  Stretch="Uniform" Grid.Row="0"
-               Tap="Image_Tap" >
-
+        <Image x:Name="ImageView"  Stretch="Uniform" Grid.Row="0" Tap="Image_Tap" >
             <Image.OpacityMask>
                 <LinearGradientBrush StartPoint="0, 0" EndPoint="0, 1">
                     <GradientStop Color="#00000000" Offset="0"/>
@@ -54,11 +52,11 @@
 
         <renderer:SmallUserInfoRenderer x:Name="UserRenderer" Grid.Row="2" Margin="12, 0, 12, 12" />
         
-        <TextBlock x:Name="DescriptionLabel" Text="{Binding Description}" Foreground="#8b93a0" FontSize="24" FontWeight="Light" TextWrapping="Wrap"
+        <TextBlock x:Name="DescriptionLabel" Foreground="#8b93a0" FontSize="24" FontWeight="Light" TextWrapping="Wrap"
                    Margin="12, 0, 12, 12" 
                    Grid.Row="3" />
 
-        <Button Content="{Binding Converter={StaticResource PhotoLicenseConverter}}" Style="{StaticResource LicenseButtonStyle}"
+        <Button x:Name="LicenseButton" Style="{StaticResource LicenseButtonStyle}"
                             Click="OnLicenseButtonClick" 
                             Margin="12, 0, 12, 12" Grid.Row="4"/>
 

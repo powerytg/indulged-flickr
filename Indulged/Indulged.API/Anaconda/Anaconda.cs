@@ -12,7 +12,7 @@ namespace Indulged.API.Anaconda
         private static AnacondaCore anacondaCore;
 
         // "per_page" parameter
-        public const int DefaultItemsPerPage = 50;
+        public const int DefaultItemsPerPage = 20;
 
         public static AnacondaCore AnacondaCore
         {
