@@ -95,10 +95,26 @@ namespace Indulged
             NavigationService.Navigate(new Uri("/Plugins/ProCamera/ProCameraPage.xaml", UriKind.Relative));
         }
 
+         protected override void OnBackKeyPress(System.ComponentModel.CancelEventArgs e)
+         {
+             if (ModalPopup.HasPopupHistory())
+             {
+                 e.Cancel = true;
+                 ModalPopup.RemoveLastPopup();
+             }
+             else
+             {
+                 base.OnBackKeyPress(e);
+             }
+         }
+
+        // Subscription settings view
+         private ModalPopup settingsDialog = null;
+
         private void OnSubscriptionSettingsClick(object sender, EventArgs e)
         {
-            SubscriptionSettingsView settingsView = new SubscriptionSettingsView();            
-            var settingsDialog = ModalPopup.Show(settingsView, "Subscription", new List<string> {"Confirm", "Cancel" });
+            var settingsView = new SubscriptionSettingsView();            
+            settingsDialog = ModalPopup.Show(settingsView, "Subscription", new List<string> {"Confirm", "Cancel" });
             settingsDialog.DismissWithButtonClick += (s, args) =>
             {
                 int buttonIndex = (args as ModalPopupEventArgs).ButtonIndex;
@@ -120,8 +136,9 @@ namespace Indulged
                         PolicyKit.SaveSettings();
                         PolicyKit.PolicyChanged.DispatchEvent(this, policyArgs);
                     }
-
                 }
+
+                settingsDialog = null;
             };
         }
 
@@ -150,13 +167,18 @@ namespace Indulged
             NavigationService.Navigate(new Uri("/Plugins/Profile/ContactPage.xaml", UriKind.Relative));
         }
 
+        // Log out popup
+        private ModalPopup logoutDialog = null;
+
         private void OnLogoutClick(object sender, EventArgs e)
         {
-            var logoutDialog = ModalPopup.Show("You will be taken back to login screen and your privacy will be cleared out on this device", "Sign Out", new List<string> { "Sign Out", "Cancel" });
+            logoutDialog = ModalPopup.Show("You will be taken back to login screen and your privacy will be cleared out on this device", "Sign Out", new List<string> { "Sign Out", "Cancel" });
             logoutDialog.DismissWithButtonClick += (s, args) => {
                 int buttonIndex = (args as ModalPopupEventArgs).ButtonIndex;
                 if (buttonIndex == 0)
                 {
+                    logoutDialog = null;
+
                     // Clear caches
                     Cinderella.CinderellaCore.SignOut();
 

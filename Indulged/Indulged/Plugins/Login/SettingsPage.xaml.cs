@@ -11,6 +11,7 @@ using Microsoft.Phone.Shell;
 using Indulged.API.Utils;
 using Indulged.PolKit;
 using Indulged.Plugins.Chrome;
+using Indulged.API.Avarice.Controls;
 
 namespace Indulged.Plugins.Login
 {
@@ -41,6 +42,20 @@ namespace Indulged.Plugins.Login
             else if (PolicyKit.VioletPageSubscription == PolicyKit.DiscoveryStream)
                 VioletPicker.SelectedIndex = 2;
         }
+
+        protected override void OnBackKeyPress(System.ComponentModel.CancelEventArgs e)
+        {
+            if (ModalPopup.HasPopupHistory())
+            {
+                e.Cancel = true;
+                ModalPopup.RemoveLastPopup();
+            }
+            else
+            {
+                base.OnBackKeyPress(e);
+            }
+        }
+
 
         private void ProCamSwitch_Checked(object sender, RoutedEventArgs e)
         {

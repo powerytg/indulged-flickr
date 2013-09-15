@@ -17,7 +17,7 @@
                        Margin="0, 0, 0, 15"/>
 
         <Grid>
-            <Image x:Name="ImageView"/>
+            <Image x:Name="ImageView" Tap="ImageView_Tap"/>
 
             <!--Fav section-->
             <Border x:Name="FavView" VerticalAlignment="Bottom">

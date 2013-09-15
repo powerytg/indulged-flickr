@@ -10,6 +10,7 @@ using Microsoft.Phone.Shell;
 using Indulged.API.Cinderella.Models;
 using Indulged.API.Cinderella;
 using Indulged.API.Anaconda;
+using Indulged.API.Avarice.Controls;
 
 namespace Indulged.Plugins.Profile
 {
@@ -76,6 +77,20 @@ namespace Indulged.Plugins.Profile
             this.DataContext = UserSource;
 
         }
+
+        protected override void OnBackKeyPress(System.ComponentModel.CancelEventArgs e)
+        {
+            if (ModalPopup.HasPopupHistory())
+            {
+                e.Cancel = true;
+                ModalPopup.RemoveLastPopup();
+            }
+            else
+            {
+                base.OnBackKeyPress(e);
+            }
+        }
+
 
     }
 }

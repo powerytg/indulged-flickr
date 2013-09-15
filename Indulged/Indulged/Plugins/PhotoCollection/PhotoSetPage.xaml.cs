@@ -82,6 +82,20 @@ namespace Indulged.Plugins.PhotoCollection
 
         }
 
+        protected override void OnBackKeyPress(System.ComponentModel.CancelEventArgs e)
+        {
+            if (ModalPopup.HasPopupHistory())
+            {
+                e.Cancel = true;
+                ModalPopup.RemoveLastPopup();
+            }
+            else
+            {
+                base.OnBackKeyPress(e);
+            }
+        }
+
+
         // Photo stream updated
         private void OnPhotoStreamUpdated(object sender, PhotoSetPhotosUpdatedEventArgs e)
         {

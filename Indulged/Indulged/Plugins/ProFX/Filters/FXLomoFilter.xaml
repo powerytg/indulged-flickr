@@ -22,6 +22,7 @@
             <StackPanel Margin="14, 40, 14, 14">
             <TextBlock Style="{StaticResource FXSectionTextStyle}" Text="Tint" HorizontalAlignment="Left"/>
                 <toolkit:ListPicker x:Name="TintPicker" Style="{StaticResource TransparentListPickerStyle}" SelectionChanged="TintPicker_SelectionChanged"
+                                    Foreground="#7781aa" Background="#bdccfc"
                                     Margin="0, 0, 0, 20">
                     <toolkit:ListPickerItem Content="Neutral"/>
                     <toolkit:ListPickerItem Content="Red"/>
@@ -32,6 +33,7 @@
 
             <TextBlock Style="{StaticResource FXSectionTextStyle}" Text="Vignetting" HorizontalAlignment="Left"/>
                 <toolkit:ListPicker x:Name="StrengthPicker" Style="{StaticResource TransparentListPickerStyle}" SelectedIndex="1" SelectionChanged="StrengthPicker_SelectionChanged"
+                                    Foreground="#7781aa" Background="#bdccfc"
                                     Margin="0, 0, 0, 30">
                     <toolkit:ListPickerItem Content="Low"/>
                     <toolkit:ListPickerItem Content="Medium"/>

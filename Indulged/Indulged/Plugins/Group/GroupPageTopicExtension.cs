@@ -1,5 +1,6 @@
 ﻿using Indulged.API.Anaconda;
 using Indulged.API.Anaconda.Events;
+using Indulged.API.Avarice.Controls;
 using Indulged.API.Cinderella.Events;
 using Microsoft.Phone.Shell;
 using System;
@@ -176,7 +177,12 @@ namespace Indulged.Plugins.Group
         // Capture back button
         protected override void OnBackKeyPress(System.ComponentModel.CancelEventArgs e)
         {
-            if (composerPopup != null)
+            if (ModalPopup.HasPopupHistory())
+            {
+                e.Cancel = true;
+                ModalPopup.RemoveLastPopup();
+            }
+            else if (composerPopup != null)
             {
                 e.Cancel = true;
                 DismissComposerView();

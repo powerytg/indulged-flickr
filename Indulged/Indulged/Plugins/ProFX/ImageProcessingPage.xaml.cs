@@ -1,4 +1,5 @@
 ﻿using Indulged.API.Anaconda;
+using Indulged.API.Avarice.Controls;
 using Indulged.API.Cinderella;
 using Indulged.Plugins.Chrome;
 using Indulged.Plugins.Chrome.Events;
@@ -148,6 +149,42 @@ namespace Indulged.Plugins.ProFX
 
         }
 
+        protected override void OnBackKeyPress(System.ComponentModel.CancelEventArgs e)
+        {
+            if (ModalPopup.HasPopupHistory())
+            {
+                e.Cancel = true;
+                ModalPopup.RemoveLastPopup();
+            }
+            else if (UploaderPage != null && UploaderPage.Visibility == Visibility.Visible)
+            {
+                e.Cancel = true;
+                DismissUploaderView();
+            }
+            else if (settingsView != null && settingsView.Visibility == Visibility.Visible)
+            {
+                e.Cancel = true;
+                RequestDismissSettingsView(this, null);
+            }
+            else if (galleryView != null && galleryView.Visibility == Visibility.Visible)
+            {
+                e.Cancel = true;
+                RequestDismissFilterListView(this, null);
+            }
+            else if (BottomPanel.CurrentFilter != null)
+            {
+                e.Cancel = true;
+
+                var evt = new DismissFilterEventArgs();
+                evt.Filter = BottomPanel.CurrentFilter;
+                RequestDismissFilterView(this, evt);
+            }
+            else
+            {
+                base.OnBackKeyPress(e);
+            }
+        }
+
         protected override void OnRemovedFromJournal(JournalEntryRemovedEventArgs e)
         {
             // Clean up
@@ -207,16 +244,6 @@ namespace Indulged.Plugins.ProFX
         private void NextButton_Click(object sender, RoutedEventArgs e)
         {
             ShowUploaderView();
-
-            /*
-            string sessionId = Guid.NewGuid().ToString().Replace("-", null);
-
-            MemoryStream photoStream = new MemoryStream();
-            WriteableBitmap originalBitmap = new WriteableBitmap(originalImage);
-            originalBitmap.SaveJpeg(photoStream, originalBitmap.PixelWidth, originalBitmap.PixelHeight, 0, 85);
-            photoStream.Seek(0, SeekOrigin.Begin);
-            Anaconda.AnacondaCore.UploadPhoto(sessionId, "test.jpg", photoStream, null);
-             * */
         }
 
         private void OnRequestCropView(object sender, EventArgs e)

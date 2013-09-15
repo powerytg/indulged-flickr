@@ -10,6 +10,7 @@ using Microsoft.Phone.Shell;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
+using Indulged.API.Avarice.Controls;
 
 namespace Indulged.Plugins.Search
 {
@@ -42,6 +43,20 @@ namespace Indulged.Plugins.Search
                 NavigationService.RemoveBackEntry();
             }
         }
+
+        protected override void OnBackKeyPress(System.ComponentModel.CancelEventArgs e)
+        {
+            if (ModalPopup.HasPopupHistory())
+            {
+                e.Cancel = true;
+                ModalPopup.RemoveLastPopup();
+            }
+            else
+            {
+                base.OnBackKeyPress(e);
+            }
+        }
+
 
         protected override void OnRemovedFromJournal(JournalEntryRemovedEventArgs e)
         {

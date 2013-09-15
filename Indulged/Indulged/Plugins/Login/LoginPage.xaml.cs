@@ -56,7 +56,7 @@ namespace Indulged.Plugins.Login
             DoubleAnimation galleryAnimation = new DoubleAnimation();
             galleryAnimation.Duration = new Duration(TimeSpan.FromSeconds(0.3));
             galleryAnimation.To = 0.0;
-            galleryAnimation.EasingFunction = new QuadraticEase() { EasingMode = EasingMode.EaseOut };
+            galleryAnimation.EasingFunction = new CubicEase() { EasingMode = EasingMode.EaseOut };
             Storyboard.SetTarget(galleryAnimation, BrowserView);
             Storyboard.SetTargetProperty(galleryAnimation, new PropertyPath("(UIElement.RenderTransform).(CompositeTransform.TranslateY)"));
             animation.Children.Add(galleryAnimation);
@@ -80,7 +80,7 @@ namespace Indulged.Plugins.Login
             DoubleAnimation galleryAnimation = new DoubleAnimation();
             galleryAnimation.Duration = new Duration(TimeSpan.FromSeconds(0.3));
             galleryAnimation.To = h;
-            galleryAnimation.EasingFunction = new QuadraticEase() { EasingMode = EasingMode.EaseOut };
+            galleryAnimation.EasingFunction = new CubicEase() { EasingMode = EasingMode.EaseOut };
             Storyboard.SetTarget(galleryAnimation, BrowserView);
             Storyboard.SetTargetProperty(galleryAnimation, new PropertyPath("(UIElement.RenderTransform).(CompositeTransform.TranslateY)"));
             animation.Children.Add(galleryAnimation);
@@ -94,7 +94,12 @@ namespace Indulged.Plugins.Login
 
         protected override void OnBackKeyPress(System.ComponentModel.CancelEventArgs e)
         {
-            if (Browser.Visibility == Visibility.Visible)
+            if (ModalPopup.HasPopupHistory())
+            {
+                e.Cancel = true;
+                ModalPopup.RemoveLastPopup();
+            }
+            else if (Browser.Visibility == Visibility.Visible)
             {
                 e.Cancel = true;
                 HideBrowserView();                

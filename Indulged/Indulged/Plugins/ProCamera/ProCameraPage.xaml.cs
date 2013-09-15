@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Indulged.PolKit;
 using Microsoft.Phone.Tasks;
+using Indulged.API.Avarice.Controls;
 
 namespace Indulged.Plugins.ProCamera
 {
@@ -86,6 +87,20 @@ namespace Indulged.Plugins.ProCamera
             }
 
         }
+
+        protected override void OnBackKeyPress(System.ComponentModel.CancelEventArgs e)
+        {
+            if (ModalPopup.HasPopupHistory())
+            {
+                e.Cancel = true;
+                ModalPopup.RemoveLastPopup();
+            }
+            else
+            {
+                base.OnBackKeyPress(e);
+            }
+        }
+
 
         private void cameraCaptureTask_Completed(object sender, PhotoResult e)
         {

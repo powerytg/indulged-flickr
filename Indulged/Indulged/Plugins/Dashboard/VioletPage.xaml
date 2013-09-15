@@ -14,7 +14,8 @@
     
     <Grid x:Name="LayoutRoot">
         <!--Status label-->
-        <TextBlock x:Name="StatusLabel" HorizontalAlignment="Center" VerticalAlignment="Center" Text="Loading stream..."/>
+        <TextBlock x:Name="StatusLabel" HorizontalAlignment="Center" VerticalAlignment="Center" Text="Loading stream..."
+                   Foreground="White"/>
         
         <phone:LongListSelector x:Name="PhotoStreamListView" Margin="0,0,-13,0" ItemsSource="{Binding Items}" ItemRealized="OnItemRealized" Visibility="Collapsed">
             <phone:LongListSelector.ItemTemplate>

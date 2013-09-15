@@ -39,7 +39,8 @@
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
             <!--Status label-->
-            <TextBlock x:Name="StatusLabel" HorizontalAlignment="Center" VerticalAlignment="Center" Text="Loading stream..."/>
+            <TextBlock x:Name="StatusLabel" HorizontalAlignment="Center" VerticalAlignment="Center" 
+                       Text="Loading stream..." Foreground="Black"/>
 
             <phone:LongListSelector x:Name="ResultListView" ItemRealized="ResultListView_ItemRealized" Padding="0, 0, 0, 60">
                 <phone:LongListSelector.ItemTemplate>

@@ -46,7 +46,7 @@
             </Grid.RenderTransform>
 
             <!-- Preview section -->
-            <local:PhotoPreviewer x:Name="PhotoView" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+            <local:PhotoPreviewer x:Name="PhotoView"/>
 
             <!-- Logo-->
             <Grid x:Name="TitlePanel" VerticalAlignment="Top">

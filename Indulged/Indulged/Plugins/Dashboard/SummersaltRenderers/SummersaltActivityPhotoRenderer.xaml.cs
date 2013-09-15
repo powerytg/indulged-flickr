@@ -90,6 +90,15 @@ namespace Indulged.Plugins.Dashboard.SummersaltRenderers
             InitializeComponent();
         }
 
+        private void ImageView_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            Frame rootVisual = System.Windows.Application.Current.RootVisual as Frame;
+            PhoneApplicationPage currentPage = (PhoneApplicationPage)rootVisual.Content;
+
+            string urlString = "/Plugins/Detail/DetailPage.xaml?photo_id=" + Activity.TargetPhoto.ResourceId;
+            currentPage.NavigationService.Navigate(new Uri(urlString, UriKind.Relative));
+        }
+
 
     }
 }

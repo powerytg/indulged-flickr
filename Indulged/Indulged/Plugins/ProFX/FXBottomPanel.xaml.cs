@@ -19,6 +19,9 @@ namespace Indulged.Plugins.ProFX
 {
     public partial class FXBottomPanel : UserControl
     {
+        // Active filter controller view
+        public FilterBase CurrentFilter { get; set; }
+
         // Constructor
         public FXBottomPanel()
         {
@@ -79,6 +82,8 @@ namespace Indulged.Plugins.ProFX
 
         private void OnRequestAddFilter(object sender, AddFilterEventArgs e)
         {
+            CurrentFilter = e.Filter;
+
             if (e.Filter.GetType() == typeof(FXCropFilter))
             {
                 CropStatusView.SelectedFilter = e.Filter;
@@ -93,6 +98,8 @@ namespace Indulged.Plugins.ProFX
 
         private void OnRequestFilterView(object sender, RequestFilterViewEventArgs e)
         {
+            CurrentFilter = e.Filter;
+
             if (e.Filter.GetType() == typeof(FXCropFilter))
             {
                 CropStatusView.SelectedFilter = e.Filter;
@@ -108,6 +115,8 @@ namespace Indulged.Plugins.ProFX
 
         private void OnRequestDismissFilterView(object sender, DismissFilterEventArgs e)
         {
+            CurrentFilter = null;
+
             if (e.Filter.GetType() == typeof(FXCropFilter))
             {
                 SwitchToView(CropStatusView, NormalStatusView);
@@ -121,6 +130,8 @@ namespace Indulged.Plugins.ProFX
 
         private void OnRequestDeleteFilter(object sender, DeleteFilterEventArgs e)
         {
+            CurrentFilter = null;
+
             if (e.Filter.GetType() == typeof(FXCropFilter))
             {
                 SwitchToView(CropStatusView, NormalStatusView);

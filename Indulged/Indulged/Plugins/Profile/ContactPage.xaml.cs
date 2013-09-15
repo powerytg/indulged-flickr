@@ -12,6 +12,7 @@ using System.Collections.ObjectModel;
 using Indulged.API.Cinderella;
 using Indulged.API.Anaconda;
 using Indulged.API.Cinderella.Events;
+using Indulged.API.Avarice.Controls;
 
 namespace Indulged.Plugins.Profile
 {
@@ -57,6 +58,20 @@ namespace Indulged.Plugins.Profile
             // Refresh reply list
             Anaconda.AnacondaCore.GetContactListAsync(1, Anaconda.DefaultItemsPerPage);
         }
+
+        protected override void OnBackKeyPress(System.ComponentModel.CancelEventArgs e)
+        {
+            if (ModalPopup.HasPopupHistory())
+            {
+                e.Cancel = true;
+                ModalPopup.RemoveLastPopup();
+            }
+            else
+            {
+                base.OnBackKeyPress(e);
+            }
+        }
+
 
         private void OnContactListUpdated(object sender, ContactListUpdatedEventArgs e)
         {

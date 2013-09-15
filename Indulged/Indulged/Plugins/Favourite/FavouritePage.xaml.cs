@@ -13,6 +13,7 @@ using Indulged.API.Cinderella.Models;
 using Indulged.API.Anaconda;
 using Indulged.PolKit;
 using Indulged.API.Cinderella.Events;
+using Indulged.API.Avarice.Controls;
 
 namespace Indulged.Plugins.Favourite
 {
@@ -58,6 +59,29 @@ namespace Indulged.Plugins.Favourite
             }
 
             ResultListView.ItemsSource = _photos;
+        }
+
+        protected override void OnRemovedFromJournal(JournalEntryRemovedEventArgs e)
+        {
+            Cinderella.CinderellaCore.FavouriteStreamUpdated -= OnFavouriteStreamUpdated;
+            ResultListView.ItemsSource = null;
+            _photos.Clear();
+            _photos = null;
+
+            base.OnRemovedFromJournal(e);
+        }
+
+        protected override void OnBackKeyPress(System.ComponentModel.CancelEventArgs e)
+        {
+            if (ModalPopup.HasPopupHistory())
+            {
+                e.Cancel = true;
+                ModalPopup.RemoveLastPopup();
+            }
+            else
+            {
+                base.OnBackKeyPress(e);
+            }
         }
 
         // Favourite stream updated

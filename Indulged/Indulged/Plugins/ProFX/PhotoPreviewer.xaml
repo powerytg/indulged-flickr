@@ -10,7 +10,7 @@
     d:DesignHeight="480" d:DesignWidth="480">
     
     <Grid x:Name="LayoutRoot">
-        <Image x:Name="PhotoView" MaxHeight="800" />
+        <Image x:Name="PhotoView"/>
 
         <!-- Curtain -->
         <Grid x:Name="Curtain" Visibility="Collapsed">

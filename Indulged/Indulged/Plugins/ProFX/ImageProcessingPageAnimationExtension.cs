@@ -31,7 +31,7 @@ namespace Indulged.Plugins.ProFX
             DoubleAnimation galleryAnimation = new DoubleAnimation();
             galleryAnimation.Duration = new Duration(TimeSpan.FromSeconds(0.3));
             galleryAnimation.To = 0.0;
-            galleryAnimation.EasingFunction = new QuadraticEase() { EasingMode = EasingMode.EaseOut };
+            galleryAnimation.EasingFunction = new CubicEase() { EasingMode = EasingMode.EaseOut };
             Storyboard.SetTarget(galleryAnimation, galleryView);
             Storyboard.SetTargetProperty(galleryAnimation, new PropertyPath("(UIElement.RenderTransform).(CompositeTransform.TranslateY)"));
             animation.Children.Add(galleryAnimation);
@@ -40,7 +40,7 @@ namespace Indulged.Plugins.ProFX
             DoubleAnimation alphaAnimation = new DoubleAnimation();
             alphaAnimation.Duration = new Duration(TimeSpan.FromSeconds(0.3));
             alphaAnimation.To = 1.0;
-            alphaAnimation.EasingFunction = new QuadraticEase() { EasingMode = EasingMode.EaseOut };
+            alphaAnimation.EasingFunction = new CubicEase() { EasingMode = EasingMode.EaseOut };
             Storyboard.SetTarget(alphaAnimation, galleryView);
             Storyboard.SetTargetProperty(alphaAnimation, new PropertyPath("Opacity"));
             animation.Children.Add(alphaAnimation);
@@ -61,7 +61,7 @@ namespace Indulged.Plugins.ProFX
             DoubleAnimation galleryAnimation = new DoubleAnimation();
             galleryAnimation.Duration = new Duration(TimeSpan.FromSeconds(0.3));
             galleryAnimation.To = galleryView.Height;
-            galleryAnimation.EasingFunction = new QuadraticEase() { EasingMode = EasingMode.EaseOut };
+            galleryAnimation.EasingFunction = new CubicEase() { EasingMode = EasingMode.EaseOut };
             Storyboard.SetTarget(galleryAnimation, galleryView);
             Storyboard.SetTargetProperty(galleryAnimation, new PropertyPath("(UIElement.RenderTransform).(CompositeTransform.TranslateY)"));
             animation.Children.Add(galleryAnimation);
@@ -70,7 +70,7 @@ namespace Indulged.Plugins.ProFX
             DoubleAnimation alphaAnimation = new DoubleAnimation();
             alphaAnimation.Duration = new Duration(TimeSpan.FromSeconds(0.3));
             alphaAnimation.To = 0.0;
-            alphaAnimation.EasingFunction = new QuadraticEase() { EasingMode = EasingMode.EaseOut };
+            alphaAnimation.EasingFunction = new CubicEase() { EasingMode = EasingMode.EaseOut };
             Storyboard.SetTarget(alphaAnimation, galleryView);
             Storyboard.SetTargetProperty(alphaAnimation, new PropertyPath("Opacity"));
             animation.Children.Add(alphaAnimation);
@@ -119,7 +119,7 @@ namespace Indulged.Plugins.ProFX
             DoubleAnimation galleryAnimation = new DoubleAnimation();
             galleryAnimation.Duration = new Duration(TimeSpan.FromSeconds(0.3));
             galleryAnimation.To = galleryView.Height;
-            galleryAnimation.EasingFunction = new QuadraticEase() { EasingMode = EasingMode.EaseOut };
+            galleryAnimation.EasingFunction = new CubicEase() { EasingMode = EasingMode.EaseOut };
             Storyboard.SetTarget(galleryAnimation, galleryView);
             Storyboard.SetTargetProperty(galleryAnimation, new PropertyPath("(UIElement.RenderTransform).(CompositeTransform.TranslateY)"));
             animation.Children.Add(galleryAnimation);
@@ -128,7 +128,7 @@ namespace Indulged.Plugins.ProFX
             DoubleAnimation alphaAnimation = new DoubleAnimation();
             alphaAnimation.Duration = new Duration(TimeSpan.FromSeconds(0.3));
             alphaAnimation.To = 0.0;
-            alphaAnimation.EasingFunction = new QuadraticEase() { EasingMode = EasingMode.EaseOut };
+            alphaAnimation.EasingFunction = new CubicEase() { EasingMode = EasingMode.EaseOut };
             Storyboard.SetTarget(alphaAnimation, galleryView);
             Storyboard.SetTargetProperty(alphaAnimation, new PropertyPath("Opacity"));
             animation.Children.Add(alphaAnimation);
@@ -181,7 +181,7 @@ namespace Indulged.Plugins.ProFX
             DoubleAnimation filterYAnimation = new DoubleAnimation();
             filterYAnimation.Duration = new Duration(TimeSpan.FromSeconds(0.3));
             filterYAnimation.To = galleryView.Height;
-            filterYAnimation.EasingFunction = new QuadraticEase() { EasingMode = EasingMode.EaseOut };
+            filterYAnimation.EasingFunction = new CubicEase() { EasingMode = EasingMode.EaseOut };
             Storyboard.SetTarget(filterYAnimation, filter);
             Storyboard.SetTargetProperty(filterYAnimation, new PropertyPath("(UIElement.RenderTransform).(CompositeTransform.TranslateY)"));
             animation.Children.Add(filterYAnimation);
@@ -190,7 +190,7 @@ namespace Indulged.Plugins.ProFX
             DoubleAnimation alphaAnimation = new DoubleAnimation();
             alphaAnimation.Duration = new Duration(TimeSpan.FromSeconds(0.3));
             alphaAnimation.To = 0.0;
-            alphaAnimation.EasingFunction = new QuadraticEase() { EasingMode = EasingMode.EaseOut };
+            alphaAnimation.EasingFunction = new CubicEase() { EasingMode = EasingMode.EaseOut };
             Storyboard.SetTarget(alphaAnimation, filter);
             Storyboard.SetTargetProperty(alphaAnimation, new PropertyPath("Opacity"));
             animation.Children.Add(alphaAnimation);
@@ -222,7 +222,7 @@ namespace Indulged.Plugins.ProFX
             DoubleAnimation yAnimation = new DoubleAnimation();
             yAnimation.Duration = new Duration(TimeSpan.FromSeconds(0.3));
             yAnimation.To = 0.0;
-            yAnimation.EasingFunction = new QuadraticEase() { EasingMode = EasingMode.EaseOut };
+            yAnimation.EasingFunction = new CubicEase() { EasingMode = EasingMode.EaseOut };
             Storyboard.SetTarget(yAnimation, settingsView);
             Storyboard.SetTargetProperty(yAnimation, new PropertyPath("(UIElement.RenderTransform).(CompositeTransform.TranslateY)"));
             animation.Children.Add(yAnimation);
@@ -231,7 +231,7 @@ namespace Indulged.Plugins.ProFX
             DoubleAnimation alphaAnimation = new DoubleAnimation();
             alphaAnimation.Duration = new Duration(TimeSpan.FromSeconds(0.3));
             alphaAnimation.To = 1.0;
-            alphaAnimation.EasingFunction = new QuadraticEase() { EasingMode = EasingMode.EaseOut };
+            alphaAnimation.EasingFunction = new CubicEase() { EasingMode = EasingMode.EaseOut };
             Storyboard.SetTarget(alphaAnimation, settingsView);
             Storyboard.SetTargetProperty(alphaAnimation, new PropertyPath("Opacity"));
             animation.Children.Add(alphaAnimation);
@@ -252,7 +252,7 @@ namespace Indulged.Plugins.ProFX
             DoubleAnimation yAnimation = new DoubleAnimation();
             yAnimation.Duration = new Duration(TimeSpan.FromSeconds(0.3));
             yAnimation.To = settingsView.Height;
-            yAnimation.EasingFunction = new QuadraticEase() { EasingMode = EasingMode.EaseOut };
+            yAnimation.EasingFunction = new CubicEase() { EasingMode = EasingMode.EaseOut };
             Storyboard.SetTarget(yAnimation, settingsView);
             Storyboard.SetTargetProperty(yAnimation, new PropertyPath("(UIElement.RenderTransform).(CompositeTransform.TranslateY)"));
             animation.Children.Add(yAnimation);
@@ -261,7 +261,7 @@ namespace Indulged.Plugins.ProFX
             DoubleAnimation alphaAnimation = new DoubleAnimation();
             alphaAnimation.Duration = new Duration(TimeSpan.FromSeconds(0.3));
             alphaAnimation.To = 0.0;
-            alphaAnimation.EasingFunction = new QuadraticEase() { EasingMode = EasingMode.EaseOut };
+            alphaAnimation.EasingFunction = new CubicEase() { EasingMode = EasingMode.EaseOut };
             Storyboard.SetTarget(alphaAnimation, settingsView);
             Storyboard.SetTargetProperty(alphaAnimation, new PropertyPath("Opacity"));
             animation.Children.Add(alphaAnimation);
@@ -292,7 +292,7 @@ namespace Indulged.Plugins.ProFX
             DoubleAnimation processorXAnimation = new DoubleAnimation();
             processorXAnimation.Duration = new Duration(TimeSpan.FromSeconds(0.3));
             processorXAnimation.To = -w;
-            processorXAnimation.EasingFunction = new QuadraticEase() { EasingMode = EasingMode.EaseOut };
+            processorXAnimation.EasingFunction = new CubicEase() { EasingMode = EasingMode.EaseOut };
             Storyboard.SetTarget(processorXAnimation, ProcessorPage);
             Storyboard.SetTargetProperty(processorXAnimation, new PropertyPath("(UIElement.RenderTransform).(CompositeTransform.TranslateX)"));
             animation.Children.Add(processorXAnimation);
@@ -301,7 +301,7 @@ namespace Indulged.Plugins.ProFX
             DoubleAnimation processorAlphaAnimation = new DoubleAnimation();
             processorAlphaAnimation.Duration = new Duration(TimeSpan.FromSeconds(0.3));
             processorAlphaAnimation.To = 0.0;
-            processorAlphaAnimation.EasingFunction = new QuadraticEase() { EasingMode = EasingMode.EaseOut };
+            processorAlphaAnimation.EasingFunction = new CubicEase() { EasingMode = EasingMode.EaseOut };
             Storyboard.SetTarget(processorAlphaAnimation, ProcessorPage);
             Storyboard.SetTargetProperty(processorAlphaAnimation, new PropertyPath("Opacity"));
             animation.Children.Add(processorAlphaAnimation);
@@ -310,7 +310,7 @@ namespace Indulged.Plugins.ProFX
             DoubleAnimation uploaderXAnimation = new DoubleAnimation();
             uploaderXAnimation.Duration = new Duration(TimeSpan.FromSeconds(0.3));
             uploaderXAnimation.To = 0.0;
-            uploaderXAnimation.EasingFunction = new QuadraticEase() { EasingMode = EasingMode.EaseOut };
+            uploaderXAnimation.EasingFunction = new CubicEase() { EasingMode = EasingMode.EaseOut };
             Storyboard.SetTarget(uploaderXAnimation, UploaderPage);
             Storyboard.SetTargetProperty(uploaderXAnimation, new PropertyPath("(UIElement.RenderTransform).(CompositeTransform.TranslateX)"));
             animation.Children.Add(uploaderXAnimation);
@@ -319,7 +319,7 @@ namespace Indulged.Plugins.ProFX
             DoubleAnimation uploaderAlphaAnimation = new DoubleAnimation();
             uploaderAlphaAnimation.Duration = new Duration(TimeSpan.FromSeconds(0.3));
             uploaderAlphaAnimation.To = 1.0;
-            uploaderAlphaAnimation.EasingFunction = new QuadraticEase() { EasingMode = EasingMode.EaseOut };
+            uploaderAlphaAnimation.EasingFunction = new CubicEase() { EasingMode = EasingMode.EaseOut };
             Storyboard.SetTarget(uploaderAlphaAnimation, UploaderPage);
             Storyboard.SetTargetProperty(uploaderAlphaAnimation, new PropertyPath("Opacity"));
             animation.Children.Add(uploaderAlphaAnimation);
@@ -353,7 +353,7 @@ namespace Indulged.Plugins.ProFX
             DoubleAnimation processorXAnimation = new DoubleAnimation();
             processorXAnimation.Duration = new Duration(TimeSpan.FromSeconds(0.3));
             processorXAnimation.To = 0;
-            processorXAnimation.EasingFunction = new QuadraticEase() { EasingMode = EasingMode.EaseOut };
+            processorXAnimation.EasingFunction = new CubicEase() { EasingMode = EasingMode.EaseOut };
             Storyboard.SetTarget(processorXAnimation, ProcessorPage);
             Storyboard.SetTargetProperty(processorXAnimation, new PropertyPath("(UIElement.RenderTransform).(CompositeTransform.TranslateX)"));
             animation.Children.Add(processorXAnimation);
@@ -362,7 +362,7 @@ namespace Indulged.Plugins.ProFX
             DoubleAnimation processorAlphaAnimation = new DoubleAnimation();
             processorAlphaAnimation.Duration = new Duration(TimeSpan.FromSeconds(0.3));
             processorAlphaAnimation.To = 1.0;
-            processorAlphaAnimation.EasingFunction = new QuadraticEase() { EasingMode = EasingMode.EaseOut };
+            processorAlphaAnimation.EasingFunction = new CubicEase() { EasingMode = EasingMode.EaseOut };
             Storyboard.SetTarget(processorAlphaAnimation, ProcessorPage);
             Storyboard.SetTargetProperty(processorAlphaAnimation, new PropertyPath("Opacity"));
             animation.Children.Add(processorAlphaAnimation);
@@ -371,7 +371,7 @@ namespace Indulged.Plugins.ProFX
             DoubleAnimation uploaderXAnimation = new DoubleAnimation();
             uploaderXAnimation.Duration = new Duration(TimeSpan.FromSeconds(0.3));
             uploaderXAnimation.To = w;
-            uploaderXAnimation.EasingFunction = new QuadraticEase() { EasingMode = EasingMode.EaseOut };
+            uploaderXAnimation.EasingFunction = new CubicEase() { EasingMode = EasingMode.EaseOut };
             Storyboard.SetTarget(uploaderXAnimation, UploaderPage);
             Storyboard.SetTargetProperty(uploaderXAnimation, new PropertyPath("(UIElement.RenderTransform).(CompositeTransform.TranslateX)"));
             animation.Children.Add(uploaderXAnimation);
@@ -380,7 +380,7 @@ namespace Indulged.Plugins.ProFX
             DoubleAnimation uploaderAlphaAnimation = new DoubleAnimation();
             uploaderAlphaAnimation.Duration = new Duration(TimeSpan.FromSeconds(0.3));
             uploaderAlphaAnimation.To = 0.0;
-            uploaderAlphaAnimation.EasingFunction = new QuadraticEase() { EasingMode = EasingMode.EaseOut };
+            uploaderAlphaAnimation.EasingFunction = new CubicEase() { EasingMode = EasingMode.EaseOut };
             Storyboard.SetTarget(uploaderAlphaAnimation, UploaderPage);
             Storyboard.SetTargetProperty(uploaderAlphaAnimation, new PropertyPath("Opacity"));
             animation.Children.Add(uploaderAlphaAnimation);

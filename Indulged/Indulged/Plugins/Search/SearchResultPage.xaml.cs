@@ -10,6 +10,7 @@ using Microsoft.Phone.Shell;
 using Indulged.API.Anaconda;
 using Indulged.API.Cinderella;
 using Indulged.API.Cinderella.Events;
+using Indulged.API.Avarice.Controls;
 
 namespace Indulged.Plugins.Search
 {
@@ -66,6 +67,19 @@ namespace Indulged.Plugins.Search
 
             PhotoResultView.OnRemovedFromJournal();
             GroupResultView.OnRemovedFromJournal();
+        }
+
+        protected override void OnBackKeyPress(System.ComponentModel.CancelEventArgs e)
+        {
+            if (ModalPopup.HasPopupHistory())
+            {
+                e.Cancel = true;
+                ModalPopup.RemoveLastPopup();
+            }
+            else
+            {
+                base.OnBackKeyPress(e);
+            }
         }
 
     }

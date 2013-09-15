@@ -129,7 +129,7 @@ namespace Indulged
                 Background = new SolidColorBrush(Colors.Transparent)
             };
              */
-            RootFrame = new PhoneApplicationFrame();
+            RootFrame = new PhoneApplicationFrame() { Background = new SolidColorBrush(Colors.Black) };
 
             RootFrame.Navigated += CompleteInitializePhoneApplication;
 

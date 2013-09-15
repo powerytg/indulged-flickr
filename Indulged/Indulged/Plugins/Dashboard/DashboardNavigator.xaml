@@ -11,7 +11,7 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     d:DesignHeight="480" d:DesignWidth="480">
 
-    <Grid x:Name="LayoutRoot">
+    <Grid x:Name="LayoutRoot" Loaded="LayoutRoot_Loaded">
         <Grid.RenderTransform>
             <CompositeTransform/>
         </Grid.RenderTransform>

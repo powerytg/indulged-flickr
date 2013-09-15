@@ -24,6 +24,25 @@ namespace Indulged.API.Avarice.Controls
         public event EventHandler<ModalPopupEventArgs> DismissWithButtonClick;
         public event EventHandler<ModalPopupEventArgs> ButtonClick;
 
+        // Popup journal
+        private static List<ModalPopup> popupHistory = new List<ModalPopup>();
+
+        public static bool HasPopupHistory()
+        {
+            return (popupHistory.Count > 0);
+        }
+
+        public static void RemoveLastPopup()
+        {
+            if (popupHistory.Count == 0)
+                return;
+
+            var lastPopup = popupHistory[popupHistory.Count - 1];
+            popupHistory.Remove(lastPopup);
+            lastPopup.Dismiss();
+        }
+
+        // Constructor
         public ModalPopup()
         {
             DefaultStyleKey = typeof(ModalPopup);
@@ -108,6 +127,9 @@ namespace Indulged.API.Avarice.Controls
             popup.HostView.IsHitTestVisible = false;
             popupContainer.IsOpen = true;
 
+            // Add to history
+            popupHistory.Add(popup);
+
             return popup;
 
         }
@@ -137,6 +159,11 @@ namespace Indulged.API.Avarice.Controls
             //popup.HostView.Opacity = 0.2;
             popup.HostView.IsHitTestVisible = false;
             popupContainer.IsOpen = true;
+
+            // Add to history
+            popupHistory.Add(popup);
+
+
             return popup;
         }
 

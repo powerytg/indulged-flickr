@@ -70,6 +70,20 @@ namespace Indulged.Plugins.Detail
 
         }
 
+        protected override void OnRemovedFromJournal(JournalEntryRemovedEventArgs e)
+        {
+            Anaconda.AnacondaCore.AddPhotoCommentException -= OnAddCommentException;
+            Cinderella.CinderellaCore.AddPhotoCommentCompleted -= OnAddCommentComplete;
+
+            CommentsListView.ItemsSource = null;
+            BackgroundImage.PhotoSource = null;
+
+            dataSource.Clear();
+            dataSource = null;
+
+            base.OnRemovedFromJournal(e);
+        }
+
         private void CommentButton_Click(object sender, EventArgs e)
         {
             ShowComposerView();

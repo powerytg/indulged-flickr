@@ -89,11 +89,30 @@ namespace Indulged.Plugins.Detail
             Cinderella.CinderellaCore.PhotoRemovedFromFavourite += OnRemovedFromFavourite;
         }
 
+        private bool eventsRemoved = false;
+        public void RemoveEventListeners()
+        {
+            if (eventsRemoved)
+                return;
+
+            eventsRemoved = true;
+
+            Anaconda.AnacondaCore.PhotoInfoException -= OnPhotoInfoException;
+            Anaconda.AnacondaCore.AddPhotoAsFavouriteException -= OnAddFavouriteException;
+            Anaconda.AnacondaCore.RemovePhotoFromFavouriteException -= OnRemoveFavouriteException;
+
+            Cinderella.CinderellaCore.PhotoInfoUpdated -= OnPhotoInfoUpdated;
+            Cinderella.CinderellaCore.PhotoAddedAsFavourite -= OnAddedAsFavourite;
+            Cinderella.CinderellaCore.PhotoRemovedFromFavourite -= OnRemovedFromFavourite;
+        }
+
         private void OnPhotoInfoException(object sender, GetPhotoInfoExceptionEventArgs e)
         {
             Dispatcher.BeginInvoke(() => {
                 if (e.PhotoId != PhotoSource.ResourceId)
                     return;
+
+                RemoveEventListeners();
 
                 ProgressView.Visibility = Visibility.Collapsed;
                 StatusLabel.Text = "Cannot get photo info";
@@ -143,6 +162,8 @@ namespace Indulged.Plugins.Detail
                 if (e.PhotoId != PhotoSource.ResourceId)
                     return;
 
+                RemoveEventListeners();
+
                 ProgressView.Visibility = Visibility.Collapsed;
                 StatusLabel.Text = e.Message;
                 doneButton.IsEnabled = true;
@@ -155,6 +176,8 @@ namespace Indulged.Plugins.Detail
             {
                 if (e.PhotoId != PhotoSource.ResourceId)
                     return;
+
+                RemoveEventListeners();
 
                 ProgressView.Visibility = Visibility.Collapsed;
                 StatusLabel.Text = e.Message;
@@ -169,6 +192,8 @@ namespace Indulged.Plugins.Detail
                 if (e.PhotoId != PhotoSource.ResourceId)
                     return;
 
+                RemoveEventListeners();
+
                 ProgressView.Visibility = Visibility.Collapsed;
                 StatusLabel.Text = "Photo has been added as favourite";
                 doneButton.IsEnabled = true;
@@ -181,6 +206,8 @@ namespace Indulged.Plugins.Detail
             {
                 if (e.PhotoId != PhotoSource.ResourceId)
                     return;
+
+                RemoveEventListeners();
 
                 ProgressView.Visibility = Visibility.Collapsed;
                 StatusLabel.Text = "Photo has been removed from favourite list";
