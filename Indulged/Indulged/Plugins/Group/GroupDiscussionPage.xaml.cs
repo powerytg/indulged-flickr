@@ -66,6 +66,19 @@ namespace Indulged.Plugins.Group
             Anaconda.AnacondaCore.GetTopicRepliesAsync(topicId, groupId, new Dictionary<string, string> { { "page", "1" }, { "per_page", Anaconda.DefaultItemsPerPage.ToString() } });
         }
 
+        protected override void OnRemovedFromJournal(JournalEntryRemovedEventArgs e)
+        {
+            Cinderella.CinderellaCore.TopicRepliesUpdated -= OnRepliesUpdated;
+            Anaconda.AnacondaCore.AddTopicReplyException -= OnAddReplyException;
+            Cinderella.CinderellaCore.AddTopicReplyCompleted -= OnAddReplyComplete;
+
+            group = null;
+            ReplyListView.ItemsSource = null;
+            ReplyCollection.Clear();
+
+            base.OnRemovedFromJournal(e);
+        }
+
         private void OnRepliesUpdated(object sender, TopicRepliesUpdatedEventArgs e)
         {
             Dispatcher.BeginInvoke(() =>

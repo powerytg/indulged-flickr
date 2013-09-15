@@ -13,10 +13,11 @@ using Indulged.API.Anaconda;
 using Indulged.API.Anaconda.Events;
 using Indulged.API.Cinderella;
 using Indulged.API.Cinderella.Events;
+using Indulged.API.Avarice.Controls.SupportClasses;
 
 namespace Indulged.Plugins.Group
 {
-    public partial class GroupJoiningStatusView : UserControl
+    public partial class GroupJoiningStatusView : UserControl, IModalPopupContent
     {
         public FlickrGroup Group { get; set; }
 
@@ -55,6 +56,15 @@ namespace Indulged.Plugins.Group
             // Events
             Anaconda.AnacondaCore.JoinGroupException += OnJoinGroupException;
             Cinderella.CinderellaCore.JoinGroupComplete += OnGroupJoined;
+        }
+
+        public void OnPopupRemoved()
+        {
+            Anaconda.AnacondaCore.JoinGroupException -= OnJoinGroupException;
+            Cinderella.CinderellaCore.JoinGroupComplete -= OnGroupJoined;
+
+            PopupContainer = null;
+            Group = null;
         }
 
         private void OnJoinGroupException(object sender, JoinGroupExceptionEventArgs e)

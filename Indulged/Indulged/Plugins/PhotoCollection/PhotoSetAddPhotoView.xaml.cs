@@ -1,6 +1,7 @@
 ﻿using Indulged.API.Anaconda;
 using Indulged.API.Anaconda.Events;
 using Indulged.API.Avarice.Controls;
+using Indulged.API.Avarice.Controls.SupportClasses;
 using Indulged.API.Cinderella;
 using Indulged.API.Cinderella.Events;
 using Indulged.API.Cinderella.Models;
@@ -17,7 +18,7 @@ using System.Windows.Media.Animation;
 
 namespace Indulged.Plugins.PhotoCollection
 {
-    public partial class PhotoSetAddPhotoView : UserControl
+    public partial class PhotoSetAddPhotoView : UserControl, IModalPopupContent
     {
         public PhotoSet PhotoSetSource;
         private ObservableCollection<SelectablePhoto> PhotoCollection;
@@ -60,17 +61,40 @@ namespace Indulged.Plugins.PhotoCollection
             Anaconda.AnacondaCore.GetPhotoStreamAsync(Cinderella.CinderellaCore.CurrentUser.ResourceId, new Dictionary<string, string> { { "page", "1" }, { "per_page", "40" } });
         }
 
+        public void OnPopupRemoved()
+        {
+            Cinderella.CinderellaCore.PhotoStreamUpdated -= OnPhotoStreamUpdated;
+
+            Cinderella.CinderellaCore.AddPhotoToSetCompleted -= OnAddPhotoCompleted;
+            Anaconda.AnacondaCore.AddPhotoToSetException -= OnAddPhotoException;
+
+            Cinderella.CinderellaCore.RemovePhotoFromSetCompleted -= OnRemovePhotoCompleted;
+            Anaconda.AnacondaCore.RemovePhotoFromSetException -= OnRemovePhotoException;
+
+            PhotoPickerRenderer.SelectionChanged -= OnPhotoPickerToggled;
+
+            PhotoListView.ItemsSource = null;
+
+            PhotoCollection.Clear();
+            PhotoCollection = null;
+
+            SelectedPhotos.Clear();
+            SelectedPhotos = null;
+
+            PhotoSetSource = null;
+        }
+
         // Photo stream updated
         private void OnPhotoStreamUpdated(object sender, PhotoStreamUpdatedEventArgs e)
         {
-            if(e.UserId != Cinderella.CinderellaCore.CurrentUser.ResourceId)
-                return;
-
-            if (e.NewPhotos.Count == 0 && PhotoCollection.Count != 0)
-                return;
-
             Dispatcher.BeginInvoke(() =>
             {
+                if (e.UserId != Cinderella.CinderellaCore.CurrentUser.ResourceId)
+                    return;
+
+                if (e.NewPhotos.Count == 0 && PhotoCollection.Count != 0)
+                    return;
+                
                 // Always fill in first page
                 List<Photo> photos = null;
                 if (PhotoCollection.Count == 0)

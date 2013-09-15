@@ -11,6 +11,7 @@ using Indulged.API.Cinderella.Models;
 using System.Collections.ObjectModel;
 using Indulged.API.Cinderella;
 using Indulged.API.Anaconda;
+using Indulged.API.Anaconda.Events;
 using Indulged.API.Cinderella.Events;
 using Indulged.API.Avarice.Controls;
 
@@ -49,6 +50,7 @@ namespace Indulged.Plugins.Profile
 
             // Events
             Cinderella.CinderellaCore.ContactListUpdated += OnContactListUpdated;
+            Anaconda.AnacondaCore.GetContactListException += OnContactListException;
 
             SystemTray.ProgressIndicator = new ProgressIndicator();
             SystemTray.ProgressIndicator.IsIndeterminate = true;
@@ -57,6 +59,19 @@ namespace Indulged.Plugins.Profile
 
             // Refresh reply list
             Anaconda.AnacondaCore.GetContactListAsync(1, Anaconda.DefaultItemsPerPage);
+        }
+
+        protected override void OnRemovedFromJournal(JournalEntryRemovedEventArgs e)
+        {
+            Cinderella.CinderellaCore.ContactListUpdated -= OnContactListUpdated;
+            Anaconda.AnacondaCore.GetContactListException -= OnContactListException;
+
+            ContactListView.ItemsSource = null;
+
+            UserCollection.Clear();
+            UserCollection = null;
+
+            base.OnRemovedFromJournal(e);
         }
 
         protected override void OnBackKeyPress(System.ComponentModel.CancelEventArgs e)
@@ -72,14 +87,30 @@ namespace Indulged.Plugins.Profile
             }
         }
 
+        private void OnContactListException(object sender, GetContactListExceptionEventArgs e)
+        {
+            Dispatcher.BeginInvoke(() => {
+                if(SystemTray.ProgressIndicator != null)
+                    SystemTray.ProgressIndicator.IsVisible = false;
+
+                if (Cinderella.CinderellaCore.ContactList.Count == 0)
+                {
+                    StatusLabel.Text = "Cannot load contact list";
+                    StatusLabel.Visibility = Visibility.Visible;
+                }
+
+            });
+        }
 
         private void OnContactListUpdated(object sender, ContactListUpdatedEventArgs e)
         {
             Dispatcher.BeginInvoke(() => {
-                SystemTray.ProgressIndicator.IsVisible = false;
+                if (SystemTray.ProgressIndicator != null)
+                    SystemTray.ProgressIndicator.IsVisible = false;
 
                 if (Cinderella.CinderellaCore.ContactList.Count == 0)
                 {
+                    StatusLabel.Text = "You don't have any contacts";
                     StatusLabel.Visibility = Visibility.Visible;
                 }
                 else

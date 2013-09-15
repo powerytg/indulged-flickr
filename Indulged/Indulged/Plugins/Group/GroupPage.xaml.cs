@@ -1,23 +1,14 @@
-﻿using System;
+﻿using Indulged.API.Anaconda;
+using Indulged.API.Anaconda.Events;
+using Indulged.API.Cinderella;
+using Indulged.API.Cinderella.Events;
+using Indulged.API.Cinderella.Models;
+using Microsoft.Phone.Controls;
+using Microsoft.Phone.Shell;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
-using Microsoft.Phone.Controls;
-using Microsoft.Phone.Shell;
-using Indulged.API.Cinderella.Events;
-using Indulged.API.Cinderella.Models;
-using Indulged.API.Cinderella;
-using Indulged.API.Anaconda;
-using Indulged.API.Anaconda.Events;
-using Indulged.API.Avarice.Controls;
-using Indulged.API.Avarice.Events;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
-using System.Windows.Controls.Primitives;
-using Indulged.Plugins.Common;
 
 namespace Indulged.Plugins.Group
 {
@@ -44,6 +35,9 @@ namespace Indulged.Plugins.Group
 
         protected virtual void OnGroupSourceChanged()
         {
+            if (GroupSource == null)
+                return;
+
             PhotoPageView.Group = GroupSource;
             TopicPageView.GroupSource = GroupSource;
 
@@ -66,24 +60,13 @@ namespace Indulged.Plugins.Group
             InitializeComponent();
 
             // Events
-            Cinderella.CinderellaCore.GroupPhotoListUpdated += (sender, e) =>
-            {
-                Dispatcher.BeginInvoke(() =>
-                {
-                    if (e.GroupId == GroupSource.ResourceId)
-                        SystemTray.ProgressIndicator.IsVisible = false;
-                });
-            };
+            Cinderella.CinderellaCore.GroupPhotoListUpdated += OnPhotoListUpdated;
+            Anaconda.AnacondaCore.GroupPhotoException += OnPhotoListException;
 
-            Cinderella.CinderellaCore.GroupTopicsUpdated += (sender, e) =>
-            {
-                Dispatcher.BeginInvoke(() =>
-                {
-                    if (e.GroupId == GroupSource.ResourceId)
-                        SystemTray.ProgressIndicator.IsVisible = false;
-                });
-            };
+            Cinderella.CinderellaCore.GroupTopicsUpdated += OnTopicListUpdated;
+            Anaconda.AnacondaCore.GroupTopicsException += OnTopicListException;
 
+            // Events
             Anaconda.AnacondaCore.AddTopicException += OnAddTopicException;
             Cinderella.CinderellaCore.AddTopicCompleted += OnAddTopicComplete;
 
@@ -105,6 +88,24 @@ namespace Indulged.Plugins.Group
 
         }
 
+        protected override void OnRemovedFromJournal(JournalEntryRemovedEventArgs e)
+        {
+            Anaconda.AnacondaCore.AddTopicException -= OnAddTopicException;
+            Cinderella.CinderellaCore.AddTopicCompleted -= OnAddTopicComplete;
+
+            Cinderella.CinderellaCore.GroupPhotoListUpdated -= OnPhotoListUpdated;
+
+            Cinderella.CinderellaCore.GroupTopicsUpdated -= OnTopicListUpdated;
+
+            PhotoPageView.RemoveEventListeners();
+            TopicPageView.RemoveEventListeners();
+
+
+            GroupSource = null;
+
+            base.OnRemovedFromJournal(e);
+        }
+
         private void Panorama_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (PanoramaView.SelectedIndex == 0)
@@ -117,6 +118,41 @@ namespace Indulged.Plugins.Group
             }
         }
 
-       
+        private void OnPhotoListUpdated(object sender, GroupPhotoListUpdatedEventArgs e)
+        {
+            Dispatcher.BeginInvoke(() =>
+            {
+                if (e.GroupId == GroupSource.ResourceId)
+                    SystemTray.ProgressIndicator.IsVisible = false;
+            });
+        }
+
+        private void OnPhotoListException(object sender, GetGroupPhotosExceptionEventArgs e)
+        {
+            Dispatcher.BeginInvoke(() =>
+            {
+                if (e.GroupId == GroupSource.ResourceId)
+                    SystemTray.ProgressIndicator.IsVisible = false;
+
+            });
+        }
+
+        private void OnTopicListUpdated(object sender, GroupTopicsUpdatedEventArgs e)
+        {
+            Dispatcher.BeginInvoke(() =>
+            {
+                if (e.GroupId == GroupSource.ResourceId)
+                    SystemTray.ProgressIndicator.IsVisible = false;
+            });
+        }
+
+        private void OnTopicListException(object sender, GetGroupTopicsExceptionEventArgs e)
+        {
+            Dispatcher.BeginInvoke(() =>
+            {
+                if (e.GroupId == GroupSource.ResourceId)
+                    SystemTray.ProgressIndicator.IsVisible = false;
+            });
+        }
     }
 }

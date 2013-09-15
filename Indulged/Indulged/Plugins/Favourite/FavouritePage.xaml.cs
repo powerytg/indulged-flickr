@@ -39,10 +39,12 @@ namespace Indulged.Plugins.Favourite
 
             // Events
             Cinderella.CinderellaCore.FavouriteStreamUpdated += OnFavouriteStreamUpdated;
+            Anaconda.AnacondaCore.FavouriteStreamException += OnFavouriteStreamException;
 
             if (Cinderella.CinderellaCore.FavouriteList.Count > 0)
             {
                 StatusLabel.Visibility = Visibility.Collapsed;
+                ResultListView.Visibility = Visibility.Visible;
                 _photos.Clear();
                 foreach (var photo in Cinderella.CinderellaCore.FavouriteList)
                 {
@@ -64,6 +66,8 @@ namespace Indulged.Plugins.Favourite
         protected override void OnRemovedFromJournal(JournalEntryRemovedEventArgs e)
         {
             Cinderella.CinderellaCore.FavouriteStreamUpdated -= OnFavouriteStreamUpdated;
+            Anaconda.AnacondaCore.FavouriteStreamException -= OnFavouriteStreamException;
+
             ResultListView.ItemsSource = null;
             _photos.Clear();
             _photos = null;
@@ -82,6 +86,21 @@ namespace Indulged.Plugins.Favourite
             {
                 base.OnBackKeyPress(e);
             }
+        }
+
+        // Cannot load favourite stream
+        private void OnFavouriteStreamException(object sender, EventArgs e)
+        {
+            Dispatcher.BeginInvoke(() => {
+                if (_photos.Count == 0)
+                {
+                    StatusLabel.Text = "Cannot load favourite photos";
+                    StatusLabel.Visibility = Visibility.Visible;
+                    ResultListView.Visibility = Visibility.Collapsed;
+                    if (SystemTray.ProgressIndicator != null)
+                        SystemTray.ProgressIndicator.IsVisible = false;
+                }
+            });
         }
 
         // Favourite stream updated

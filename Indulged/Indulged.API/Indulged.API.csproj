@@ -113,6 +113,10 @@
     <Compile Include="Anaconda\Events\AddCommentExceptionEventArgs.cs" />
     <Compile Include="Anaconda\Events\AddPhotoToSetEventArgs.cs" />
     <Compile Include="Anaconda\Events\AddPhotoToSetExceptionEventArgs.cs" />
+    <Compile Include="Anaconda\Events\GetPhotoSetPhotosExceptionEventArgs.cs" />
+    <Compile Include="Anaconda\Events\GetGroupTopicsExceptionEventArgs.cs" />
+    <Compile Include="Anaconda\Events\GetGroupPhotosExceptionEventArgs.cs" />
+    <Compile Include="Anaconda\Events\GetPhotoStreamExceptionEventArgs.cs" />
     <Compile Include="Anaconda\Events\GetGroupListExceptionEventArgs.cs" />
     <Compile Include="Anaconda\Events\GetPhotoSetListExceptionEventArgs.cs" />
     <Compile Include="Anaconda\Events\RemovePhotoFromSetEventArgs.cs" />
@@ -153,6 +157,7 @@
     <Compile Include="Anaconda\Events\UploadProgressEventArgs.cs" />
     <Compile Include="Anaconda\RemoveFavouriteExceptionEventArgs.cs" />
     <Compile Include="Avarice\Controls\AvariceTextBox.cs" />
+    <Compile Include="Avarice\Controls\SupportClasses\IModalPopupContent.cs" />
     <Compile Include="Cinderella\Cinderella.cs" />
     <Compile Include="Cinderella\CinderellaConstants.cs" />
     <Compile Include="Cinderella\CinderellaDiscoveryExtension.cs" />

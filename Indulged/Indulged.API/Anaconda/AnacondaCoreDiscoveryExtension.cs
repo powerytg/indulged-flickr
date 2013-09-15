@@ -53,12 +53,16 @@ namespace Indulged.API.Anaconda
                 if (response.StatusCode != HttpStatusCode.OK)
                 {
                     HandleHTTPException(response);
+                    DiscoveryStreamException(this, null);
                     return;
                 }
 
                 string jsonString = await reader.ReadToEndAsync().ConfigureAwait(false);
                 if (!TryHandleResponseException(jsonString, () => { GetDiscoveryStreamAsync(parameters); }))
+                {
+                    DiscoveryStreamException(this, null);
                     return;
+                }
 
 
                 GetDiscoveryStreamEventArgs args = new GetDiscoveryStreamEventArgs();

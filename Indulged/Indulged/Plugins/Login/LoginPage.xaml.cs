@@ -39,6 +39,15 @@ namespace Indulged.Plugins.Login
             base.OnNavigatedTo(e);
         }
 
+        protected override void OnRemovedFromJournal(JournalEntryRemovedEventArgs e)
+        {
+            Anaconda.AnacondaCore.RequestTokenGranted -= requestTokenGranted;
+            Anaconda.AnacondaCore.AccessTokenGranted -= accessTokenGranted;
+            Anaconda.AnacondaCore.AccessTokenFailed -= accessTokenFailed;
+
+            base.OnRemovedFromJournal(e);
+        }
+
         private void ShowBrowserView()
         {
             double w = LayoutRoot.ActualWidth;
@@ -130,6 +139,7 @@ namespace Indulged.Plugins.Login
             Debug.WriteLine(url);
 
             LoadingText.Visibility = Visibility.Collapsed;
+            LoadingProgressView.Visibility = Visibility.Visible;
 
             if (url.StartsWith("indulged://auth/?oauth_token="))
             {
@@ -189,6 +199,11 @@ namespace Indulged.Plugins.Login
         {
             string aboutText = "Indulged for Windows Phone \nVersion 1.0\n\nFrom photographer, for photographer!\n\n2013 Tiangong You, all rights reserved";
             ModalPopup.Show(aboutText, "About Indulged", new List<string> { "Done" });
+        }
+
+        private void Browser_LoadCompleted(object sender, NavigationEventArgs e)
+        {
+            LoadingProgressView.Visibility = Visibility.Collapsed;
         }
 
     }

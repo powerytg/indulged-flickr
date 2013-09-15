@@ -10,10 +10,11 @@ using Microsoft.Phone.Shell;
 using Indulged.API.Cinderella.Models;
 using Indulged.API.Avarice.Controls;
 using System.Windows.Input;
+using Indulged.API.Avarice.Controls.SupportClasses;
 
 namespace Indulged.Plugins.Group
 {
-    public partial class GroupJoinRequestView : UserControl
+    public partial class GroupJoinRequestView : UserControl, IModalPopupContent
     {
         public FlickrGroup Group { get; set; }
 
@@ -46,6 +47,12 @@ namespace Indulged.Plugins.Group
             };
 
             Buttons.Add(confirmButton);
+        }
+
+        public void OnPopupRemoved()
+        {
+            PopupContainer = null;
+            Group = null;
         }
 
         private void JoinGroup()

@@ -13,6 +13,7 @@ using Indulged.API.Cinderella;
 using Indulged.API.Cinderella.Events;
 using Indulged.Plugins.Dashboard;
 using Indulged.API.Anaconda;
+using Indulged.API.Anaconda.Events;
 
 namespace Indulged.Plugins.Group
 {
@@ -39,10 +40,26 @@ namespace Indulged.Plugins.Group
 
         protected virtual void OnGroupSourceChanged()
         {
+            if (GroupSource == null)
+                return;
+
             TopicCollection.Clear();
-            foreach (var topic in GroupSource.Topics)
+
+            if (GroupSource.Topics.Count == 0)
             {
-                TopicCollection.Add(topic);
+                StatusLabel.Text = "No active topics";
+                StatusLabel.Visibility = Visibility.Visible;
+                TopicListView.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                foreach (var topic in GroupSource.Topics)
+                {
+                    TopicCollection.Add(topic);
+                }
+
+                StatusLabel.Visibility = Visibility.Collapsed;
+                TopicListView.Visibility = Visibility.Visible;
             }
         }
 
@@ -60,15 +77,68 @@ namespace Indulged.Plugins.Group
 
             // Events
             Cinderella.CinderellaCore.GroupTopicsUpdated += OnTopicsUpdated;
+            Anaconda.AnacondaCore.GroupTopicsException += OnTopicsException;
+
             Cinderella.CinderellaCore.AddTopicCompleted += OnAddTopicComplete;
         }
 
-        // Photo stream updated
+        private bool eventListenersRemoved = false;
+        public void RemoveEventListeners()
+        {
+            if (eventListenersRemoved)
+                return;
+
+            eventListenersRemoved = true;
+
+            Cinderella.CinderellaCore.GroupTopicsUpdated -= OnTopicsUpdated;
+            Anaconda.AnacondaCore.GroupTopicsException -= OnTopicsException;
+
+            Cinderella.CinderellaCore.AddTopicCompleted -= OnAddTopicComplete;
+
+            TopicListView.ItemsSource = null;
+            TopicCollection.Clear();
+            TopicCollection = null;
+
+            GroupSource = null;
+        }
+
+        // Topic list cannot be loaded
+        private void OnTopicsException(object sender, GetGroupTopicsExceptionEventArgs e)
+        {
+            Dispatcher.BeginInvoke(() =>
+            {
+                if ( e.GroupId != GroupSource.ResourceId)
+                    return;
+
+                if (TopicCollection.Count == 0)
+                {
+                    StatusLabel.Text = "Cannot load topics";
+                    StatusLabel.Visibility = Visibility.Visible;
+                    TopicListView.Visibility = Visibility.Collapsed;
+                }
+            });
+        }
+
+        // Topic list updated
         private void OnTopicsUpdated(object sender, GroupTopicsUpdatedEventArgs e)
         {
             Dispatcher.BeginInvoke(() => {
-                if (e.NewTopics.Count == 0 || e.GroupId != GroupSource.ResourceId)
+                if (e.GroupId != GroupSource.ResourceId)
                     return;
+
+                if (e.NewTopics.Count == 0 && TopicCollection.Count == 0)
+                {
+                    StatusLabel.Text = "No active topics";
+                    StatusLabel.Visibility = Visibility.Visible;
+                    TopicListView.Visibility = Visibility.Collapsed;
+                    return;
+                }
+
+                if (e.NewTopics.Count == 0)
+                    return;
+
+                StatusLabel.Visibility = Visibility.Collapsed;
+                TopicListView.Visibility = Visibility.Visible;
 
                 foreach (var topic in e.NewTopics)
                 {
@@ -84,7 +154,10 @@ namespace Indulged.Plugins.Group
             {
                 if (GroupSource.ResourceId != e.GroupId)
                     return;
-                
+
+                StatusLabel.Visibility = Visibility.Collapsed;
+                TopicListView.Visibility = Visibility.Visible;
+
                 TopicCollection.Insert(0, e.newTopic);
             });
         }

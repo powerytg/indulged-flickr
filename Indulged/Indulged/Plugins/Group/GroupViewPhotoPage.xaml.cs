@@ -14,6 +14,7 @@ using Indulged.API.Cinderella.Events;
 using Indulged.Plugins.Dashboard;
 using Indulged.API.Anaconda;
 using Indulged.Plugins.Common.PhotoGroupRenderers;
+using Indulged.API.Anaconda.Events;
 
 namespace Indulged.Plugins.Group
 {
@@ -30,6 +31,9 @@ namespace Indulged.Plugins.Group
             set
             {
                 _group = value;
+
+                if (_group == null)
+                    return;
 
                 if (_group.Photos.Count > 0)
                 {
@@ -57,8 +61,29 @@ namespace Indulged.Plugins.Group
 
             // Events
             Cinderella.CinderellaCore.GroupPhotoListUpdated += OnPhotoStreamUpdated;
+            Anaconda.AnacondaCore.GroupPhotoException += OnPhotoStreamException;
+
             Cinderella.CinderellaCore.AddPhotoToGroupCompleted += OnPhotoAddedToGroup;
             Cinderella.CinderellaCore.RemovePhotoFromGroupCompleted += OnPhotoRemovedFromGroup;
+        }
+
+        private bool eventListenersRemoved = false;
+        public void RemoveEventListeners()
+        {
+            if (eventListenersRemoved)
+                return;
+
+            eventListenersRemoved = true;
+
+            Cinderella.CinderellaCore.GroupPhotoListUpdated -= OnPhotoStreamUpdated;
+            Anaconda.AnacondaCore.GroupPhotoException -= OnPhotoStreamException;
+
+            Cinderella.CinderellaCore.AddPhotoToGroupCompleted -= OnPhotoAddedToGroup;
+            Cinderella.CinderellaCore.RemovePhotoFromGroupCompleted -= OnPhotoRemovedFromGroup;
+
+            PhotoStreamListView.ItemsSource = null;
+            PhotoCollection.Clear();
+            PhotoCollection = null;
         }
 
         private void OnPhotoAddedToGroup(object sender, AddPhotoToGroupCompleteEventArgs e)
@@ -67,6 +92,9 @@ namespace Indulged.Plugins.Group
             {
                 if (e.GroupId != Group.ResourceId)
                     return;
+
+                StatusLabel.Visibility = Visibility.Collapsed;
+                PhotoStreamListView.Visibility = Visibility.Visible;
 
                 Photo newPhoto = Cinderella.CinderellaCore.PhotoCache[e.PhotoId];
                 List<PhotoGroup> photoGroups = CommonPhotoGroupFactory.GeneratePhotoGroup(new List<Photo> { newPhoto }, Group.ResourceId, "Group");
@@ -82,24 +110,60 @@ namespace Indulged.Plugins.Group
 
             Dispatcher.BeginInvoke(() =>
             {
-                if (e.GroupId != Group.ResourceId || Group.Photos.Count == 0)
+                if (e.GroupId != Group.ResourceId)
                     return;
 
-                PhotoCollection.Clear();
-                List<PhotoGroup> photoGroups = CommonPhotoGroupFactory.GeneratePhotoGroup(Group.Photos, Group.ResourceId, "Group");
-                foreach (var group in photoGroups)
+                if (Group.Photos.Count == 0)
                 {
-                    PhotoCollection.Add(group);
+                    StatusLabel.Text = "No photos available";
+                    StatusLabel.Visibility = Visibility.Visible;
+                    PhotoStreamListView.Visibility = Visibility.Collapsed;
                 }
+                else
+                {
+                    PhotoCollection.Clear();
+                    List<PhotoGroup> photoGroups = CommonPhotoGroupFactory.GeneratePhotoGroup(Group.Photos, Group.ResourceId, "Group");
+                    foreach (var group in photoGroups)
+                    {
+                        PhotoCollection.Add(group);
+                    }
+
+                    StatusLabel.Visibility = Visibility.Collapsed;
+                    PhotoStreamListView.Visibility = Visibility.Visible;
+                }
+
             });
             
+        }
+
+        // Photo stream exception
+        private void OnPhotoStreamException(object sender, GetGroupPhotosExceptionEventArgs e)
+        {
+            Dispatcher.BeginInvoke(() =>
+            {
+                if (e.GroupId != Group.ResourceId)
+                    return;
+
+                if (PhotoCollection.Count == 0)
+                {
+                    StatusLabel.Text = "Cannot load photos";
+                    StatusLabel.Visibility = Visibility.Visible;
+                    PhotoStreamListView.Visibility = Visibility.Collapsed;
+                }
+            });
         }
 
         // Photo stream updated
         private void OnPhotoStreamUpdated(object sender, GroupPhotoListUpdatedEventArgs e)
         {
             Dispatcher.BeginInvoke(() => {
-                if (e.NewPhotos.Count == 0 || e.GroupId != Group.ResourceId)
+                if (e.GroupId != Group.ResourceId)
+                    return;
+
+                StatusLabel.Visibility = Visibility.Collapsed;
+                PhotoStreamListView.Visibility = Visibility.Visible;
+
+                if (e.NewPhotos.Count == 0)
                     return;
 
                 if (e.Page == 1)
@@ -110,6 +174,14 @@ namespace Indulged.Plugins.Group
                 {
                     PhotoCollection.Add(group);
                 }
+
+                if (PhotoCollection.Count == 0)
+                {
+                    StatusLabel.Text = "No photos available";
+                    StatusLabel.Visibility = Visibility.Collapsed;
+                    PhotoStreamListView.Visibility = Visibility.Visible;
+                }
+
             });
         }
 

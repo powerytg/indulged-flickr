@@ -23,7 +23,7 @@
         <!-- Loading view -->
         <StackPanel x:Name="LoadingView" Orientation="Horizontal" Margin="12, 12, 12, 12"
                         VerticalAlignment="Center" HorizontalAlignment="Center">
-            <TextBlock Text="Retriving group Info"/>
+            <TextBlock Text="Retriving group Info" Foreground="White"/>
             <ProgressBar IsIndeterminate="True" Width="200"/>
         </StackPanel>
 

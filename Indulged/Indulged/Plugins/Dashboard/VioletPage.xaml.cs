@@ -15,6 +15,7 @@ using Indulged.API.Cinderella.Models;
 using Indulged.API.Cinderella.Events;
 using Indulged.PolKit;
 using Indulged.Plugins.Dashboard.Events;
+using Indulged.API.Anaconda.Events;
 
 namespace Indulged.Plugins.Dashboard
 {
@@ -63,6 +64,10 @@ namespace Indulged.Plugins.Dashboard
             Cinderella.CinderellaCore.UploadedPhotoInfoReturned += OnPhotoUploaded;
             Cinderella.CinderellaCore.DiscoveryStreamUpdated += OnDiscoveryStreamUpdated;
             Cinderella.CinderellaCore.FavouriteStreamUpdated += OnFavouriteStreamUpdated;
+
+            Anaconda.AnacondaCore.FavouriteStreamException += OnFavouriteStreamException;
+            Anaconda.AnacondaCore.DiscoveryStreamException += OnDiscoveryStreamException;
+            Anaconda.AnacondaCore.PhotoStreamException += OnPhotoStreamException;
         }
 
         public void OnNavigatedFromPage()
@@ -114,6 +119,22 @@ namespace Indulged.Plugins.Dashboard
             PhotoStreamListView.Visibility = Visibility.Collapsed;
         }
 
+        // Photo stream exception
+        private void OnPhotoStreamException(object sender, GetPhotoStreamExceptionEventArgs e)
+        {
+            Dispatcher.BeginInvoke(() => {
+                if (e.UserId != Cinderella.CinderellaCore.CurrentUser.ResourceId)
+                    return;
+
+                if (Cinderella.CinderellaCore.CurrentUser.Photos.Count == 0)
+                {
+                    StatusLabel.Text = "Cannot load your photo stream";
+                    StatusLabel.Visibility = Visibility.Visible;
+                    PhotoStreamListView.Visibility = Visibility.Collapsed;
+                }
+            });
+        }
+
         // Photo stream updated
         private void OnPhotoStreamUpdated(object sender, PhotoStreamUpdatedEventArgs e)
         {
@@ -125,8 +146,12 @@ namespace Indulged.Plugins.Dashboard
                 {
                     StatusLabel.Text = "No photos available";
                     StatusLabel.Visibility = Visibility.Visible;
+                    PhotoStreamListView.Visibility = Visibility.Collapsed;
                     return;
                 }
+
+                StatusLabel.Visibility = Visibility.Collapsed;
+                PhotoStreamListView.Visibility = Visibility.Visible;
 
                 if (e.NewPhotos.Count == 0)
                     return;
@@ -141,6 +166,21 @@ namespace Indulged.Plugins.Dashboard
             });
         }
 
+        // Discovery stream exception
+        private void OnDiscoveryStreamException(object sender, EventArgs e)
+        {
+            Dispatcher.BeginInvoke(() =>
+            {
+                if (Cinderella.CinderellaCore.DiscoveryList.Count == 0)
+                {
+                    StatusLabel.Text = "Cannot load discovery stream";
+                    StatusLabel.Visibility = Visibility.Visible;
+                    PhotoStreamListView.Visibility = Visibility.Collapsed;
+                }
+
+            });
+        }
+
         // Discovery stream updated
         private void OnDiscoveryStreamUpdated(object sender, DiscoveryStreamUpdatedEventArgs e)
         {
@@ -150,8 +190,12 @@ namespace Indulged.Plugins.Dashboard
                 {
                     StatusLabel.Text = "No photos available";
                     StatusLabel.Visibility = Visibility.Visible;
+                    PhotoStreamListView.Visibility = Visibility.Collapsed;
                     return;
                 }
+
+                StatusLabel.Visibility = Visibility.Collapsed;
+                PhotoStreamListView.Visibility = Visibility.Visible;
 
                 if (e.NewPhotos.Count == 0)
                     return;
@@ -166,6 +210,21 @@ namespace Indulged.Plugins.Dashboard
             });
         }
 
+        // Favourite stream exception
+        private void OnFavouriteStreamException(object sender, EventArgs e)
+        {
+            Dispatcher.BeginInvoke(() =>
+            {
+                if (Cinderella.CinderellaCore.FavouriteList.Count == 0)
+                {
+                    StatusLabel.Text = "Cannot load favourite photos";
+                    StatusLabel.Visibility = Visibility.Visible;
+                    PhotoStreamListView.Visibility = Visibility.Collapsed;
+                }
+
+            });
+        }
+
         // Favourite stream updated
         private void OnFavouriteStreamUpdated(object sender, FavouriteStreamUpdatedEventArgs e)
         {
@@ -175,8 +234,13 @@ namespace Indulged.Plugins.Dashboard
                 {
                     StatusLabel.Text = "No photos available";
                     StatusLabel.Visibility = Visibility.Visible;
+                    PhotoStreamListView.Visibility = Visibility.Collapsed;
+
                     return;
                 }
+
+                StatusLabel.Visibility = Visibility.Collapsed;
+                PhotoStreamListView.Visibility = Visibility.Visible;
 
                 if (e.NewPhotos.Count == 0)
                     return;
@@ -236,6 +300,11 @@ namespace Indulged.Plugins.Dashboard
             if (e.PolicyName != "VioletPageSubscription")
                 return;
 
+            ReloadStreams();
+        }
+
+        public void ReloadStreams()
+        {
             PhotoCollection.Clear();
 
             User currentUser = Cinderella.CinderellaCore.CurrentUser;
@@ -248,13 +317,16 @@ namespace Indulged.Plugins.Dashboard
                     {
                         PhotoCollection.Add(group);
                     }
+
+                    StatusLabel.Visibility = Visibility.Collapsed;
+                    PhotoStreamListView.Visibility = Visibility.Visible;
                 }
                 else
                 {
                     ShowLoadingScreen();
                     Anaconda.AnacondaCore.GetPhotoStreamAsync(currentUser.ResourceId, new Dictionary<string, string> { { "page", "1" }, { "per_page", PolicyKit.StreamItemsCountPerPage.ToString() } });
                 }
-                
+
             }
             else if (PolicyKit.VioletPageSubscription == PolicyKit.DiscoveryStream)
             {
@@ -265,6 +337,9 @@ namespace Indulged.Plugins.Dashboard
                     {
                         PhotoCollection.Add(group);
                     }
+
+                    StatusLabel.Visibility = Visibility.Collapsed;
+                    PhotoStreamListView.Visibility = Visibility.Visible;
                 }
                 else
                 {
@@ -281,6 +356,9 @@ namespace Indulged.Plugins.Dashboard
                     {
                         PhotoCollection.Add(group);
                     }
+
+                    StatusLabel.Visibility = Visibility.Collapsed;
+                    PhotoStreamListView.Visibility = Visibility.Visible;
                 }
                 else
                 {
@@ -289,7 +367,5 @@ namespace Indulged.Plugins.Dashboard
                 }
             }
         }
-
-        
     }
 }

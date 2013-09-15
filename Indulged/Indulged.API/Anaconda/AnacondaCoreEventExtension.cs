@@ -23,6 +23,7 @@ namespace Indulged.API.Anaconda
         public EventHandler<PhotoSetListEventArgs> PhotoSetListReturned;
         public EventHandler<GetPhotoSetListExceptionEventArgs> GetPhotoSetListException;
         public EventHandler<GetPhotoSetPhotosEventArgs> PhotoSetPhotosReturned;
+        public EventHandler<GetPhotoSetPhotosExceptionEventArgs> PhotoSetPhotosException;
 
         public EventHandler<AddPhotoToSetEventArgs> PhotoAddedToSet;
         public EventHandler<AddPhotoToSetExceptionEventArgs> AddPhotoToSetException;
@@ -31,9 +32,11 @@ namespace Indulged.API.Anaconda
 
         // Retrieved photo stream for an user
         public EventHandler<GetPhotoStreamEventArgs> PhotoStreamReturned;
+        public EventHandler<GetPhotoStreamExceptionEventArgs> PhotoStreamException;
 
         // Retrieved favourite stream for an user
         public EventHandler<GetFavouriteStreamEventArgs> FavouriteStreamReturned;
+        public EventHandler FavouriteStreamException;
 
         // Retrieved group list for an user
         public EventHandler<GetGroupListEventArgs> GroupListReturned;
@@ -41,6 +44,7 @@ namespace Indulged.API.Anaconda
 
         // Retrieved discovery stream
         public EventHandler<GetDiscoveryStreamEventArgs> DiscoveryStreamReturned;
+        public EventHandler DiscoveryStreamException;
 
         // Retrieved EXIF info
         public EventHandler<GetEXIFEventArgs> EXIFReturned;
@@ -66,7 +70,9 @@ namespace Indulged.API.Anaconda
         // Group 
         public EventHandler<GetGroupInfoEventArgs> GroupInfoReturned;
         public EventHandler<GetGroupPhotosEventArgs> GroupPhotoReturned;
+        public EventHandler<GetGroupPhotosExceptionEventArgs> GroupPhotoException;
         public EventHandler<GetGroupTopicsEventArgs> GroupTopicsReturned;
+        public EventHandler<GetGroupTopicsExceptionEventArgs> GroupTopicsException;
         public EventHandler<AddTopicExceptionEventArgs> AddTopicException;
         public EventHandler<AddTopicEventArgs> TopicAdded;
 

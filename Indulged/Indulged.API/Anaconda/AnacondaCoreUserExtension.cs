@@ -59,6 +59,8 @@ namespace Indulged.API.Anaconda
             HttpWebResponse response = await DispatchRequest("GET", requestUrl, null).ConfigureAwait(false);
             using (StreamReader reader = new StreamReader(response.GetResponseStream()))
             {
+                GetPhotoStreamExceptionEventArgs exceptionEvt = null;
+
                 if (user != null)
                 {
                     user.IsLoadingPhotoStream = false;
@@ -67,12 +69,23 @@ namespace Indulged.API.Anaconda
                 if (response.StatusCode != HttpStatusCode.OK)
                 {
                     HandleHTTPException(response);
+
+                    exceptionEvt = new GetPhotoStreamExceptionEventArgs();
+                    exceptionEvt.UserId = userId;
+                    PhotoStreamException(this, exceptionEvt);
+
                     return;
                 }
 
                 string jsonString = await reader.ReadToEndAsync().ConfigureAwait(false);
                 if (!TryHandleResponseException(jsonString, () => { GetPhotoStreamAsync(userId, parameters); }))
+                {
+                    exceptionEvt = new GetPhotoStreamExceptionEventArgs();
+                    exceptionEvt.UserId = userId;
+                    PhotoStreamException(this, exceptionEvt);
+
                     return;
+                }
 
                 GetPhotoStreamEventArgs args = new GetPhotoStreamEventArgs();
                 args.UserId = userId;
@@ -246,6 +259,11 @@ namespace Indulged.API.Anaconda
 
                 if (response.StatusCode != HttpStatusCode.OK)
                 {
+                    var exceptionEvt = new GetContactListExceptionEventArgs();
+                    exceptionEvt.Page = page;
+                    exceptionEvt.PerPage = perPage;
+                    GetContactListException.DispatchEvent(this, exceptionEvt);
+
                     HandleHTTPException(response);
                     return;
                 }

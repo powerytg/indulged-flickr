@@ -26,9 +26,6 @@
     </UserControl.Resources>
     
     <Grid x:Name="LayoutRoot">
-        <!--Loading view-->
-        <TextBlock x:Name="StatusLabel" HorizontalAlignment="Center" VerticalAlignment="Center" Text="Loading profile..."/>
-        
         <!--Content view-->
         <ScrollViewer x:Name="ContentView" Visibility="Collapsed">
             <StackPanel>
@@ -83,5 +80,10 @@
 
             </StackPanel>
         </ScrollViewer>
+
+        <!--Loading view-->
+        <TextBlock x:Name="StatusLabel" HorizontalAlignment="Center" VerticalAlignment="Center" Text="Loading profile..."
+                       Foreground="#32afe0" FontSize="38" FontFamily="/Assets/Fonts/BenchNine-Regular.ttf#BenchNine"/>
+
     </Grid>
 </UserControl>

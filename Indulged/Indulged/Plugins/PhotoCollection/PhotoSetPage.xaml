@@ -47,7 +47,8 @@
 
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
             <!--Status label-->
-            <TextBlock x:Name="StatusLabel" HorizontalAlignment="Center" VerticalAlignment="Center" Text="Loading stream..."/>
+            <TextBlock x:Name="StatusLabel" HorizontalAlignment="Center" VerticalAlignment="Center" Text="Loading stream..."
+                       Foreground="#32afe0" FontSize="38" FontFamily="/Assets/Fonts/BenchNine-Regular.ttf#BenchNine"/>
 
             <phone:LongListSelector x:Name="PhotoStreamListView" Margin="0,0,0,60" Grid.Row="1"
                                 ItemsSource="{Binding Items}" ItemRealized="OnItemRealized">

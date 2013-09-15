@@ -15,10 +15,11 @@ using Indulged.API.Cinderella.Events;
 using Indulged.API.Avarice.Controls;
 using System.Windows.Media.Imaging;
 using Indulged.API.Avarice.Events;
+using Indulged.API.Avarice.Controls.SupportClasses;
 
 namespace Indulged.Plugins.Group
 {
-    public partial class GroupInfoView : UserControl
+    public partial class GroupInfoView : UserControl, IModalPopupContent
     {
         private Indulged.API.Avarice.Controls.Button joinButton;
         private Indulged.API.Avarice.Controls.Button browseButton;
@@ -78,6 +79,11 @@ namespace Indulged.Plugins.Group
 
             // Events
             Cinderella.CinderellaCore.GroupInfoUpdated += OnGroupInfoUpdated;
+        }
+
+        public void OnPopupRemoved()
+        {
+            Cinderella.CinderellaCore.GroupInfoUpdated -= OnGroupInfoUpdated;
         }
 
         private void OnGroupInfoUpdated(object sender, GroupInfoUpdatedEventArgs e)

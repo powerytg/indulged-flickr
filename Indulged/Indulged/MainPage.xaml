@@ -30,6 +30,7 @@
 
         <shell:ApplicationBar x:Key="VioletAppBar"  IsVisible="True" IsMenuEnabled="True" Mode="Minimized" BackgroundColor="Black" Opacity="0.9" ForegroundColor="White">
             <shell:ApplicationBar.MenuItems>
+                <shell:ApplicationBarMenuItem Text="refresh" Click="OnRefrehVioletClick"/>
                 <shell:ApplicationBarMenuItem Text="take photo" Click="OnTakePhotoClick"/>
                 <shell:ApplicationBarMenuItem Text="subscription settings" Click="OnSubscriptionSettingsClick"/>
             </shell:ApplicationBar.MenuItems>

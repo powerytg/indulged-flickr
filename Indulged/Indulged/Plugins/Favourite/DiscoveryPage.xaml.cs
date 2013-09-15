@@ -39,10 +39,12 @@ namespace Indulged.Plugins.Favourite
 
             // Events
             Cinderella.CinderellaCore.DiscoveryStreamUpdated += OnDiscoveryStreamUpdated;
+            Anaconda.AnacondaCore.DiscoveryStreamException += OnDiscoveryStreamException;
 
             if (Cinderella.CinderellaCore.DiscoveryList.Count > 0)
             {
                 StatusLabel.Visibility = Visibility.Collapsed;
+                ResultListView.Visibility = Visibility.Visible;
                 _photos.Clear();
                 foreach (var photo in Cinderella.CinderellaCore.DiscoveryList)
                 {
@@ -63,7 +65,9 @@ namespace Indulged.Plugins.Favourite
 
         protected override void OnRemovedFromJournal(JournalEntryRemovedEventArgs e)
         {
+            Anaconda.AnacondaCore.DiscoveryStreamException -= OnDiscoveryStreamException;
             Cinderella.CinderellaCore.DiscoveryStreamUpdated -= OnDiscoveryStreamUpdated;
+
             ResultListView.ItemsSource = null;
             _photos.Clear();
             _photos = null;
@@ -84,22 +88,40 @@ namespace Indulged.Plugins.Favourite
             }
         }
 
+        // Can't load discovery stream
+        private void OnDiscoveryStreamException(object sender, EventArgs e)
+        {
+            Dispatcher.BeginInvoke(() => {
+                if (_photos.Count == 0)
+                {
+                    StatusLabel.Visibility = Visibility.Visible;
+                    StatusLabel.Text = "Cannot load discovery stream";
+                    ResultListView.Visibility = Visibility.Collapsed;
+
+                    if (SystemTray.ProgressIndicator != null)
+                        SystemTray.ProgressIndicator.IsVisible = false;
+                }
+            });
+        }
 
         // Discovery stream updated
         private void OnDiscoveryStreamUpdated(object sender, DiscoveryStreamUpdatedEventArgs e)
         {
             Dispatcher.BeginInvoke(() =>
             {
-                SystemTray.ProgressIndicator.IsVisible = false;
+                if (SystemTray.ProgressIndicator != null)
+                    SystemTray.ProgressIndicator.IsVisible = false;
 
                 if (Cinderella.CinderellaCore.DiscoveryList.Count == 0)
                 {
                     StatusLabel.Visibility = Visibility.Visible;
                     StatusLabel.Text = "No content found";
+                    ResultListView.Visibility = Visibility.Collapsed;
                 }
                 else
                 {
                     StatusLabel.Visibility = Visibility.Collapsed;
+                    ResultListView.Visibility = Visibility.Visible;
                 }
 
                 if (e.NewPhotos.Count == 0)

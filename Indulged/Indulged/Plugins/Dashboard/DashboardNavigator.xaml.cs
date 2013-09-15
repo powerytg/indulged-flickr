@@ -63,6 +63,11 @@ namespace Indulged.Plugins.Dashboard
             PreludeView.RefreshStreams();
         }
 
+        public void RefreshVioletStreams()
+        {
+            VioletView.ReloadStreams();
+        }
+
         public void OnNavigatedFromPage()
         {
             //LayoutRoot.Visibility = Visibility.Collapsed; 

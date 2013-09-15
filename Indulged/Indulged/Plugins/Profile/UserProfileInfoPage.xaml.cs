@@ -39,12 +39,16 @@ namespace Indulged.Plugins.Profile
 
         protected virtual void OnUserSourceChanged()
         {
+            if (UserSource == null)
+                return;
+
             if (UserSource.IsFullInfoLoaded)
             {
                 UpdateInfoView();
             }
             else
             {
+                ContentView.Visibility = Visibility.Collapsed;
                 StatusLabel.Visibility = Visibility.Visible;
                 Anaconda.AnacondaCore.GetUserInfoAsync(UserSource.ResourceId);
             }
@@ -56,7 +60,11 @@ namespace Indulged.Plugins.Profile
             ContentView.Visibility = Visibility.Visible;
 
             AvatarView.Source = new BitmapImage(new Uri(UserSource.AvatarUrl));
-            NameLabel.Text = UserSource.Name;
+
+            if (UserSource == Cinderella.CinderellaCore.CurrentUser)
+                NameLabel.Text = "You";
+            else
+                NameLabel.Text = UserSource.Name;
 
             if (UserSource.IsProUser)
                 ProLabel.Visibility = Visibility.Visible;
@@ -116,6 +124,18 @@ namespace Indulged.Plugins.Profile
 
             // Events
             Cinderella.CinderellaCore.UserInfoUpdated += OnUserProfileUpdated;
+        }
+
+        private bool eventListenersRemoved = false;
+        public void RemoveEventListeners()
+        {
+            if (eventListenersRemoved)
+                return;
+
+            eventListenersRemoved = true;
+
+            Cinderella.CinderellaCore.UserInfoUpdated -= OnUserProfileUpdated;
+            UserSource = null;
         }
 
         private void OnUserProfileUpdated(object sender, UserInfoUpdatedEventArgs e)

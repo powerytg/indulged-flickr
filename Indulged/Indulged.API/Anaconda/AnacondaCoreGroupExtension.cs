@@ -102,18 +102,30 @@ namespace Indulged.API.Anaconda
             string requestUrl = "http://api.flickr.com/services/rest?" + paramString + "&oauth_signature=" + signature;
             HttpWebResponse response = await DispatchRequest("GET", requestUrl, null).ConfigureAwait(false);
             using (StreamReader reader = new StreamReader(response.GetResponseStream()))
-            {
+            {                
                 groupPhotoFetchingQueue.Remove(groupId);
+
+                GetGroupPhotosExceptionEventArgs exceptionEvt = null;
 
                 if (response.StatusCode != HttpStatusCode.OK)
                 {
                     HandleHTTPException(response);
+
+                    exceptionEvt = new GetGroupPhotosExceptionEventArgs();
+                    exceptionEvt.GroupId = groupId;
+                    GroupPhotoException(this, exceptionEvt);
                     return;
                 }
 
                 string jsonString = await reader.ReadToEndAsync().ConfigureAwait(false);
                 if (!TryHandleResponseException(jsonString, () => { GetGroupPhotosAsync(groupId, parameters); }))
+                {
+                    exceptionEvt = new GetGroupPhotosExceptionEventArgs();
+                    exceptionEvt.GroupId = groupId;
+                    GroupPhotoException(this, exceptionEvt);
+
                     return;
+                }
 
                 GetGroupPhotosEventArgs args = new GetGroupPhotosEventArgs();
                 args.GroupId = groupId;
@@ -161,15 +173,26 @@ namespace Indulged.API.Anaconda
             {
                 groupTopicsFetchingQueue.Remove(groupId);
 
+                GetGroupTopicsExceptionEventArgs exceptionEvt = null;
+
                 if (response.StatusCode != HttpStatusCode.OK)
                 {
                     HandleHTTPException(response);
+
+                    exceptionEvt = new GetGroupTopicsExceptionEventArgs();
+                    exceptionEvt.GroupId = groupId;
+                    GroupTopicsException(this, exceptionEvt);
                     return;
                 }
 
                 string jsonString = await reader.ReadToEndAsync().ConfigureAwait(false);
                 if (!TryHandleResponseException(jsonString, () => { GetGroupTopicsAsync(groupId, parameters); }))
+                {
+                    exceptionEvt = new GetGroupTopicsExceptionEventArgs();
+                    exceptionEvt.GroupId = groupId;
+                    GroupTopicsException(this, exceptionEvt);
                     return;
+                }
 
                 GetGroupTopicsEventArgs args = new GetGroupTopicsEventArgs();
                 args.GroupId = groupId;

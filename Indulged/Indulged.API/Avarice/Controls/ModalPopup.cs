@@ -15,6 +15,7 @@ using Indulged.API.Utils;
 using Indulged.API.Avarice.Events;
 using System.Windows.Shapes;
 using System.Windows.Controls.Primitives;
+using Indulged.API.Avarice.Controls.SupportClasses;
 
 namespace Indulged.API.Avarice.Controls
 {
@@ -38,7 +39,9 @@ namespace Indulged.API.Avarice.Controls
                 return;
 
             var lastPopup = popupHistory[popupHistory.Count - 1];
-            popupHistory.Remove(lastPopup);
+            if(popupHistory.Contains(lastPopup))
+                popupHistory.Remove(lastPopup);
+
             lastPopup.Dismiss();
         }
 
@@ -282,6 +285,10 @@ namespace Indulged.API.Avarice.Controls
 
         public void DismissWithAction(Action action)
         {
+            // Remove from history
+            if(popupHistory.Contains(this))
+                popupHistory.Remove(this);
+
             this.Projection = new PlaneProjection { CenterOfRotationX = 0, RotationX = 0 };
 
             Storyboard animation = new Storyboard();
@@ -325,6 +332,13 @@ namespace Indulged.API.Avarice.Controls
 
                     HostView.IsHitTestVisible = true;
                     //HostView.Opacity = 1;
+
+                    // Perform cleanup
+                    if (typeof(IModalPopupContent).IsAssignableFrom(contentElement.GetType()))
+                    {
+                        var modalContent = contentElement as IModalPopupContent;
+                        modalContent.OnPopupRemoved();
+                    }
 
                     // Perform afterburn action
                     if(action != null)
@@ -375,6 +389,13 @@ namespace Indulged.API.Avarice.Controls
             Storyboard.SetTargetProperty(newContentXAnimation, new PropertyPath("(UIElement.RenderTransform).(CompositeTransform.TranslateX)"));
 
             animation.Completed += (sender, e) => {
+                // Perform cleanup for old element
+                if (typeof(IModalPopupContent).IsAssignableFrom(contentElement.GetType()))
+                {
+                    var modalContent = contentElement as IModalPopupContent;
+                    modalContent.OnPopupRemoved();
+                }
+
                 contentView.Children.Remove(contentElement);
                 contentElement = newElement;
 
@@ -555,6 +576,10 @@ namespace Indulged.API.Avarice.Controls
 
         public void DismissWithButtonIndex(int buttonIndex)
         {
+            // Remove from history
+            if (popupHistory.Contains(this))
+                popupHistory.Remove(this);
+
             this.Projection = new PlaneProjection { CenterOfRotationX = 0, RotationX = 0 };
 
             Storyboard animation = new Storyboard();
@@ -581,6 +606,13 @@ namespace Indulged.API.Avarice.Controls
             animation.Begin();
             animation.Completed += (sender, args) =>
             {
+                // Perform cleanup
+                if (typeof(IModalPopupContent).IsAssignableFrom(contentElement.GetType()))
+                {
+                    var modalContent = contentElement as IModalPopupContent;
+                    modalContent.OnPopupRemoved();
+                }
+
                 if (popupContainer != null)
                 {
                     popupContainer.IsOpen = false;

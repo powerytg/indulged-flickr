@@ -13,10 +13,11 @@ using Indulged.API.Anaconda;
 using Indulged.API.Anaconda.Events;
 using Indulged.API.Cinderella;
 using Indulged.API.Cinderella.Events;
+using Indulged.API.Avarice.Controls.SupportClasses;
 
 namespace Indulged.Plugins.Group
 {
-    public partial class GroupJoiningRequestStatusView : UserControl
+    public partial class GroupJoiningRequestStatusView : UserControl, IModalPopupContent
     {
         public FlickrGroup Group { get; set; }
         public string Message { get; set; }
@@ -36,6 +37,16 @@ namespace Indulged.Plugins.Group
                 Anaconda.AnacondaCore.SendJoinGroupRequestAsync(Group.ResourceId, Message, new Dictionary<string, string> { {"accept_rules", "1" }});
             else
                 Anaconda.AnacondaCore.SendJoinGroupRequestAsync(Group.ResourceId, Message);
+        }
+
+        public void OnPopupRemoved()
+        {
+            Anaconda.AnacondaCore.JoinGroupRequestException -= OnJoinGroupException;
+            Anaconda.AnacondaCore.JoinGroupRequestComplete -= OnJoinGroupComplete;
+
+            Group = null;
+            Message = null;
+            PopupContainer = null;
         }
 
         // Constructor

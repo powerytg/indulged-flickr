@@ -66,11 +66,11 @@
                         </VisualStateManager.VisualStateGroups>
                         <Border x:Name="MainBorder" 
 								BorderThickness="{TemplateBinding BorderThickness}" 
-								Margin="{StaticResource PhoneTouchTargetOverhang}" CornerRadius="2" BorderBrush="#000000" Background="#99000000"/>
+								Margin="{StaticResource PhoneTouchTargetOverhang}" CornerRadius="2" BorderBrush="#000000" Background="#576578"/>
                         <Border x:Name="ReadonlyBorder" BorderBrush="{StaticResource PhoneDisabledBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="Transparent" Margin="{StaticResource PhoneTouchTargetOverhang}" Visibility="Collapsed"/>
                         <Border BorderBrush="Transparent" BorderThickness="{TemplateBinding BorderThickness}" Background="Transparent" Margin="{StaticResource PhoneTouchTargetOverhang}">
                             <ContentControl x:Name="ContentElement" BorderThickness="0" HorizontalContentAlignment="Stretch" Margin="{StaticResource PhoneTextBoxInnerMargin}" Padding="{TemplateBinding Padding}" VerticalContentAlignment="Stretch"
-                                            Foreground="#63767d"/>
+                                            Foreground="#cde6f2"/>
                         </Border>
                     </Grid>
                 </ControlTemplate>

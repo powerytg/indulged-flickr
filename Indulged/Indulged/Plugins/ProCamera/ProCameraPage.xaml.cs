@@ -27,6 +27,7 @@ namespace Indulged.Plugins.ProCamera
         {
             InitializeComponent();
 
+            // Events
             ProCameraFlashSettingsView.FlashModeChanged += OnFlashModeChanged;
             ProCameraISOSettingsView.ISOChanged += OnISOChanged;
             ProCameraWhiteBalanceSettingsView.WhiteBalanceModeChanged += OnWhiteBalanceChanged;
@@ -86,6 +87,17 @@ namespace Indulged.Plugins.ProCamera
                 camTask.Show();
             }
 
+        }
+
+        protected override void OnRemovedFromJournal(JournalEntryRemovedEventArgs e)
+        {
+            ProCameraFlashSettingsView.FlashModeChanged -= OnFlashModeChanged;
+            ProCameraISOSettingsView.ISOChanged -= OnISOChanged;
+            ProCameraWhiteBalanceSettingsView.WhiteBalanceModeChanged -= OnWhiteBalanceChanged;
+
+            camTask = null;
+
+            base.OnRemovedFromJournal(e);
         }
 
         protected override void OnBackKeyPress(System.ComponentModel.CancelEventArgs e)

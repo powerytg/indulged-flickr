@@ -108,7 +108,7 @@
         </Button>
         
         <!-- Waiting view -->
-        <TextBlock x:Name="LoadingView" Foreground="#448ccb" FontFamily="/Assets/Fonts/BenchNine-Bold.ttf#BenchNine" FontSize="24" FontWeight="Bold"
+        <TextBlock x:Name="LoadingView" Foreground="#448ccb"
                    Text="Initializing Camera ..." 
                    HorizontalAlignment="Center"  VerticalAlignment="Center"/>
         

@@ -60,20 +60,28 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             
-            <Button x:Name="BrowserBackButton" Style="{StaticResource BorderlessButtonStyle}" 
-                    Grid.Row="0" Margin="12" HorizontalAlignment="Left" Click="BrowserBackButton_Click">
-                <Button.Content>
-                    <StackPanel Orientation="Horizontal">
-                        <Image Source="/Assets/ProFX/FXBackButton2.png" Stretch="None" VerticalAlignment="Center" Margin="0, 0, 15, 0"/>
-                        <TextBlock FontSize="36" FontWeight="Light" Foreground="#32afe0" Text="Sign In"
+            <StackPanel Orientation="Horizontal" Grid.Row="0" Margin="12">
+                <!--Back button-->                    
+                <Button x:Name="BrowserBackButton" Style="{StaticResource BorderlessButtonStyle}" 
+                    HorizontalAlignment="Left" Click="BrowserBackButton_Click">
+                    <Button.Content>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="/Assets/ProFX/FXBackButton2.png" Stretch="None" VerticalAlignment="Center" Margin="0, 0, 15, 0"/>
+                            <TextBlock FontSize="36" FontWeight="Light" Foreground="#32afe0" Text="Sign In"
                                    VerticalAlignment="Center" />
-                    </StackPanel>
-                    
-                </Button.Content>    
-            </Button>
+                        </StackPanel>
+
+                    </Button.Content>
+                </Button>
+
+                <!-- Progress view-->
+                <ProgressBar x:Name="LoadingProgressView" Width="300" HorizontalAlignment="Right" Visibility="Collapsed"
+                             IsIndeterminate="True" Foreground="#32afe0"/>
+            </StackPanel>
             
             <!--Loading label-->
             <phone:WebBrowser x:Name="Browser" IsScriptEnabled="True" Navigating="OnBrowserBeginNavigating"
+                              LoadCompleted="Browser_LoadCompleted" 
                               Grid.Row="1" />
 
             <TextBlock x:Name="LoadingText" Foreground="#32afe0" Text="Loading ..." Grid.Row="1"

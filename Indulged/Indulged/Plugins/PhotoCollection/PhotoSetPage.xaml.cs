@@ -13,6 +13,7 @@ using Indulged.API.Cinderella;
 using Indulged.API.Cinderella.Events;
 using Indulged.Plugins.Dashboard;
 using Indulged.API.Anaconda;
+using Indulged.API.Anaconda.Events;
 using Indulged.PolKit;
 using Indulged.API.Avarice.Controls;
 
@@ -36,6 +37,8 @@ namespace Indulged.Plugins.PhotoCollection
 
             // Events
             Cinderella.CinderellaCore.PhotoSetPhotosUpdated += OnPhotoStreamUpdated;
+            Anaconda.AnacondaCore.PhotoSetPhotosException += OnPhotoStreamException;
+
             Cinderella.CinderellaCore.AddPhotoToSetCompleted += OnPhotoAddedToSet;
             Cinderella.CinderellaCore.RemovePhotoFromSetCompleted += OnPhotoRemovedFromSet;
 
@@ -66,6 +69,12 @@ namespace Indulged.Plugins.PhotoCollection
                 }
 
             }
+            else
+            {
+                StatusLabel.Text = "This set has no photos";
+                StatusLabel.Visibility = Visibility.Visible;
+                PhotoStreamListView.Visibility = Visibility.Collapsed;
+            }
 
             // App bar
             ApplicationBar = Resources["PhotoPageAppBar"] as ApplicationBar;
@@ -79,7 +88,6 @@ namespace Indulged.Plugins.PhotoCollection
 
             // Get first page of photo stream in the set
             Anaconda.AnacondaCore.GetPhotoSetPhotosAsync(PhotoSetSource.ResourceId, new Dictionary<string, string> { { "page", "1" }, { "per_page", Anaconda.DefaultItemsPerPage.ToString() } });
-
         }
 
         protected override void OnBackKeyPress(System.ComponentModel.CancelEventArgs e)
@@ -95,6 +103,34 @@ namespace Indulged.Plugins.PhotoCollection
             }
         }
 
+        protected override void OnRemovedFromJournal(JournalEntryRemovedEventArgs e)
+        {
+            Cinderella.CinderellaCore.PhotoSetPhotosUpdated -= OnPhotoStreamUpdated;
+            Cinderella.CinderellaCore.AddPhotoToSetCompleted -= OnPhotoAddedToSet;
+            Cinderella.CinderellaCore.RemovePhotoFromSetCompleted -= OnPhotoRemovedFromSet;
+            Anaconda.AnacondaCore.PhotoSetPhotosException -= OnPhotoStreamException;
+
+            base.OnRemovedFromJournal(e);
+        }
+
+        // Cannot load photo set photos
+        private void OnPhotoStreamException(object sender, GetPhotoSetPhotosExceptionEventArgs e)
+        {
+            Dispatcher.BeginInvoke(() =>
+            {
+                if (e.PhotoSetId != PhotoSetSource.ResourceId)
+                    return;
+
+                SystemTray.ProgressIndicator.IsVisible = false;
+
+                if (PhotoSetSource.Photos.Count == 0)
+                {
+                    StatusLabel.Text = "Cannot load photos";
+                    StatusLabel.Visibility = Visibility.Visible;
+                    PhotoStreamListView.Visibility = Visibility.Collapsed;
+                }
+            });
+        }
 
         // Photo stream updated
         private void OnPhotoStreamUpdated(object sender, PhotoSetPhotosUpdatedEventArgs e)

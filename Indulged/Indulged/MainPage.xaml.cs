@@ -147,6 +147,11 @@ namespace Indulged
             Dashboard.RefreshPreludeStreams();
         }
 
+        private void OnRefrehVioletClick(object sender, EventArgs e)
+        {
+            Dashboard.RefreshVioletStreams();
+        }
+
         private void OnSettingsClick(object sender, EventArgs e)
         {
             NavigationService.Navigate(new Uri("/Plugins/Login/SettingsPage.xaml", UriKind.Relative));

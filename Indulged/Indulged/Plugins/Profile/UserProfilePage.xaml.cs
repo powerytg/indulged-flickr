@@ -43,6 +43,9 @@ namespace Indulged.Plugins.Profile
 
         protected virtual void OnUserSourceChanged()
         {
+            if (UserSource == null)
+                return;
+
             PhotoPageView.UserSource = UserSource;
             InfoPageView.UserSource = UserSource;
 
@@ -76,6 +79,17 @@ namespace Indulged.Plugins.Profile
             // Title
             this.DataContext = UserSource;
 
+        }
+
+        protected override void OnRemovedFromJournal(JournalEntryRemovedEventArgs e)
+        {
+            PhotoPageView.RemoveEventListeners();
+            InfoPageView.RemoveEventListeners();
+
+            UserSource = null;
+            this.DataContext = null;
+
+            base.OnRemovedFromJournal(e);
         }
 
         protected override void OnBackKeyPress(System.ComponentModel.CancelEventArgs e)

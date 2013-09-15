@@ -53,12 +53,16 @@ namespace Indulged.API.Anaconda
                 if (response.StatusCode != HttpStatusCode.OK)
                 {
                     HandleHTTPException(response);
+                    FavouriteStreamException(this, null);
                     return;
                 }
 
                 string jsonString = await reader.ReadToEndAsync().ConfigureAwait(false);
                 if (!TryHandleResponseException(jsonString, () => { GetFavouritePhotoStreamAsync(userId, parameters); }))
+                {
+                    FavouriteStreamException(this, null);
                     return;
+                }
 
                 GetFavouriteStreamEventArgs args = new GetFavouriteStreamEventArgs();
                 args.UserId = userId;

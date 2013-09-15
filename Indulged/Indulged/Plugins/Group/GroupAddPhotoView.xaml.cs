@@ -1,4 +1,5 @@
-﻿using Indulged.API.Anaconda;
+﻿using Indulged.API.Avarice.Controls.SupportClasses;
+using Indulged.API.Anaconda;
 using Indulged.API.Anaconda.Events;
 using Indulged.API.Avarice.Controls;
 using Indulged.API.Cinderella;
@@ -16,7 +17,7 @@ using System.Windows.Media.Animation;
 
 namespace Indulged.Plugins.Group
 {
-    public partial class GroupAddPhotoView : UserControl
+    public partial class GroupAddPhotoView : UserControl, IModalPopupContent
     {
         public FlickrGroup Group;
         private ObservableCollection<SelectablePhoto> PhotoCollection;
@@ -61,6 +62,34 @@ namespace Indulged.Plugins.Group
             StatusLabel.Text = "Retrieving group info";
             StatusProgressBar.Visibility = Visibility.Visible;
             Anaconda.AnacondaCore.GetGroupInfoAsync(groupSource.ResourceId);
+        }
+
+        private bool eventListenersRemoved = false;
+        public void OnPopupRemoved()
+        {
+            if (eventListenersRemoved)
+                return;
+
+            eventListenersRemoved = true;
+
+            Cinderella.CinderellaCore.GroupInfoUpdated -= OnGroupInfoReturned;
+            Cinderella.CinderellaCore.PhotoStreamUpdated -= OnPhotoStreamUpdated;
+
+            Cinderella.CinderellaCore.AddPhotoToGroupCompleted -= OnAddPhotoCompleted;
+            Anaconda.AnacondaCore.AddPhotoToGroupException -= OnAddPhotoException;
+
+            Cinderella.CinderellaCore.RemovePhotoFromGroupCompleted -= OnRemovePhotoCompleted;
+            Anaconda.AnacondaCore.RemovePhotoFromGroupException -= OnRemovePhotoException;
+
+            PhotoPickerRenderer.SelectionChanged -= OnPhotoPickerToggled;
+
+            PhotoListView.ItemsSource = null;
+            PhotoCollection.Clear();
+            PhotoCollection = null;
+
+            Group = null;
+            SelectedPhotos.Clear();
+            SelectedPhotos = null;
         }
 
         private void OnGroupInfoReturned(object sender, GroupInfoUpdatedEventArgs e)
@@ -129,14 +158,14 @@ namespace Indulged.Plugins.Group
         // Photo stream updated
         private void OnPhotoStreamUpdated(object sender, PhotoStreamUpdatedEventArgs e)
         {
-            if(e.UserId != Cinderella.CinderellaCore.CurrentUser.ResourceId)
-                return;
-
-            if (e.NewPhotos.Count == 0 && PhotoCollection.Count != 0)
-                return;
-
             Dispatcher.BeginInvoke(() =>
             {
+                if (e.UserId != Cinderella.CinderellaCore.CurrentUser.ResourceId)
+                    return;
+
+                if (e.NewPhotos.Count == 0 && PhotoCollection.Count != 0)
+                    return;
+                
                 // Always fill in first page
                 List<Photo> photos = null;
                 if (PhotoCollection.Count == 0)

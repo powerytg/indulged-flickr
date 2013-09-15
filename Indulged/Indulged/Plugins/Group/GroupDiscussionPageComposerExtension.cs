@@ -187,11 +187,11 @@ namespace Indulged.Plugins.Group
         // Events
         private void OnAddReplyException(object sender, AddTopicReplyExceptionEventArgs e)
         {
-            if (composer == null || e.SessionId != addReplySessionId)
-                return;
-
             Dispatcher.BeginInvoke(() =>
             {
+                if (composer == null || e.SessionId != addReplySessionId)
+                    return;
+
                 ApplicationBar.IsVisible = true;
                 composer.MessageTextBox.IsEnabled = true;
                 composer.ComposerView.Opacity = 1;

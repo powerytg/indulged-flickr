@@ -13,6 +13,7 @@ using Indulged.API.Cinderella;
 using Indulged.API.Cinderella.Events;
 using Indulged.Plugins.Dashboard;
 using Indulged.API.Anaconda;
+using Indulged.API.Anaconda.Events;
 using Indulged.Plugins.Common.PhotoGroupRenderers;
 
 namespace Indulged.Plugins.Profile
@@ -30,6 +31,9 @@ namespace Indulged.Plugins.Profile
             set
             {
                 _user = value;
+
+                if (_user == null)
+                    return;
 
                 if (_user.Photos.Count > 0)
                 {
@@ -56,7 +60,37 @@ namespace Indulged.Plugins.Profile
             PhotoStreamListView.ItemsSource = PhotoCollection;
 
             // Events
-            Cinderella.CinderellaCore.PhotoStreamUpdated += OnPhotoStreamUpdated;            
+            Cinderella.CinderellaCore.PhotoStreamUpdated += OnPhotoStreamUpdated;
+            Anaconda.AnacondaCore.PhotoStreamException += OnPhotoStreamException;
+        }
+
+        private bool eventListenersRemoved = false;
+        public void RemoveEventListeners()
+        {
+            if (eventListenersRemoved)
+                return;
+
+            eventListenersRemoved = true;
+
+            Cinderella.CinderellaCore.PhotoStreamUpdated -= OnPhotoStreamUpdated;
+            Anaconda.AnacondaCore.PhotoStreamException -= OnPhotoStreamException;
+            UserSource = null;
+        }
+
+        // Cannot load photo stream
+        private void OnPhotoStreamException(object sender, GetPhotoStreamExceptionEventArgs e)
+        {
+            Dispatcher.BeginInvoke(() =>
+            {
+                if (e.UserId != UserSource.ResourceId)
+                    return;
+
+                SystemTray.ProgressIndicator.IsVisible = false;
+
+                StatusLabel.Text = "Cannot load photo stream";
+                StatusLabel.Visibility = Visibility.Visible;
+                PhotoStreamListView.Visibility = Visibility.Collapsed;
+            });
         }
 
         // Photo stream updated
@@ -67,6 +101,17 @@ namespace Indulged.Plugins.Profile
                     return;
 
                 SystemTray.ProgressIndicator.IsVisible = false;
+
+                if (e.NewPhotos.Count == 0 && PhotoCollection.Count == 0)
+                {
+                    StatusLabel.Text = "No photos available";
+                    StatusLabel.Visibility = Visibility.Visible;
+                    PhotoStreamListView.Visibility = Visibility.Collapsed;
+                    return;
+                }
+
+                StatusLabel.Visibility = Visibility.Collapsed;
+                PhotoStreamListView.Visibility = Visibility.Visible;
 
                 if (e.NewPhotos.Count == 0)
                     return;
