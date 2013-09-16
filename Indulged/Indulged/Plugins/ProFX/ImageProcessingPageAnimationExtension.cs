@@ -328,8 +328,6 @@ namespace Indulged.Plugins.ProFX
                 ProcessorPage.Visibility = Visibility.Collapsed;
 
                 UploaderPage.OriginalImage = originalImage;
-                UploaderPage.SampledBackgroundBitmap = currentPreviewBitmap;
-                UploaderPage.PrepareBackgroundImage();
             };
 
             animation.Begin();

@@ -85,7 +85,8 @@ namespace Indulged.Plugins.Profile
                 if (e.UserId != UserSource.ResourceId)
                     return;
 
-                SystemTray.ProgressIndicator.IsVisible = false;
+                if(SystemTray.ProgressIndicator != null)
+                    SystemTray.ProgressIndicator.IsVisible = false;
 
                 StatusLabel.Text = "Cannot load photo stream";
                 StatusLabel.Visibility = Visibility.Visible;
@@ -100,7 +101,8 @@ namespace Indulged.Plugins.Profile
                 if (e.UserId != UserSource.ResourceId)
                     return;
 
-                SystemTray.ProgressIndicator.IsVisible = false;
+                if (SystemTray.ProgressIndicator != null)
+                    SystemTray.ProgressIndicator.IsVisible = false;
 
                 if (e.NewPhotos.Count == 0 && PhotoCollection.Count == 0)
                 {
@@ -139,7 +141,8 @@ namespace Indulged.Plugins.Profile
             if (PhotoCollection.Count - index <= 2 && canLoad)
             {
                 // Show progress indicator
-                SystemTray.ProgressIndicator.IsVisible = true;
+                if (SystemTray.ProgressIndicator != null)
+                    SystemTray.ProgressIndicator.IsVisible = true;
 
                 int page = UserSource.Photos.Count / Anaconda.DefaultItemsPerPage + 1;
                 Anaconda.AnacondaCore.GetPhotoStreamAsync(UserSource.ResourceId, new Dictionary<string, string> { { "page", page.ToString() }, { "per_page", Anaconda.DefaultItemsPerPage.ToString() } });

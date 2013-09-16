@@ -139,6 +139,7 @@ namespace Indulged.Plugins.ProCamera
 
         private void HideAllUIChrome()
         {
+            LayoutRoot.IsHitTestVisible = false;
             TopToolbar.Opacity = 0;
             BottomShadowImage.Opacity = 0;
             ShutterButton.Opacity = 0;

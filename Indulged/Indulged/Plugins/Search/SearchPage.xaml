@@ -17,7 +17,7 @@
     Style="{StaticResource TransitionPageStyle}">
 
     <!--LayoutRoot is the root grid where all page content is placed-->
-    <Grid x:Name="LayoutRoot" Background="Transparent" Visibility="Collapsed">
+    <Grid x:Name="LayoutRoot" Background="Black" Visibility="Collapsed">
         <Grid.RenderTransform>
             <CompositeTransform/>
         </Grid.RenderTransform>

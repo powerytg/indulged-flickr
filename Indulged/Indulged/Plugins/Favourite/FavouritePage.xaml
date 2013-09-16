@@ -16,14 +16,18 @@
     shell:SystemTray.IsVisible="True" shell:SystemTray.Opacity="0" shell:SystemTray.ForegroundColor="#536585"
     Style="{StaticResource TransitionPageStyle}">
 
-    <phone:PhoneApplicationPage.ApplicationBar>
-        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="False" Mode="Default" BackgroundColor="White" Opacity="0.8" ForegroundColor="Black" >
+    <phone:PhoneApplicationPage.Resources>
+        <shell:ApplicationBar x:Key="AppBar" IsVisible="True" IsMenuEnabled="False" Mode="Default" BackgroundColor="White" Opacity="0.8" ForegroundColor="Black" >
             <shell:ApplicationBarIconButton x:Name="RefreshPhotoListButton" IconUri="/Assets/Common/refresh.png" Text="refresh" Click="RefreshPhotoListButton_Click"/>
         </shell:ApplicationBar>
-    </phone:PhoneApplicationPage.ApplicationBar>
+    </phone:PhoneApplicationPage.Resources>
 
     <!--LayoutRoot is the root grid where all page content is placed-->
-    <Grid x:Name="LayoutRoot" Background="White">
+    <Grid x:Name="LayoutRoot" Background="White" Visibility="Collapsed">
+        <Grid.RenderTransform>
+            <CompositeTransform/>
+        </Grid.RenderTransform>
+
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
@@ -38,6 +42,10 @@
 
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+            <Grid.RenderTransform>
+                <CompositeTransform/>
+            </Grid.RenderTransform>
+
             <!--Status label-->
             <TextBlock x:Name="StatusLabel" HorizontalAlignment="Center" VerticalAlignment="Center" Text="Loading stream..."
                        Foreground="#32afe0" FontSize="38" FontFamily="/Assets/Fonts/BenchNine-Regular.ttf#BenchNine"/>

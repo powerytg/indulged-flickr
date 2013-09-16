@@ -172,7 +172,7 @@ namespace Indulged.Plugins.Detail
             DoubleAnimation galleryAnimation = new DoubleAnimation();
             galleryAnimation.Duration = new Duration(TimeSpan.FromSeconds(0.3));
             galleryAnimation.To = 0.0;
-            //galleryAnimation.EasingFunction = new CubicEase() { EasingMode = EasingMode.EaseOut };
+            galleryAnimation.EasingFunction = new CubicEase() { EasingMode = EasingMode.EaseOut };
             Storyboard.SetTarget(galleryAnimation, LayoutRoot);
             Storyboard.SetTargetProperty(galleryAnimation, new PropertyPath("(UIElement.RenderTransform).(CompositeTransform.TranslateY)"));
             animation.Children.Add(galleryAnimation);
@@ -200,7 +200,7 @@ namespace Indulged.Plugins.Detail
             DoubleAnimation galleryAnimation = new DoubleAnimation();
             galleryAnimation.Duration = new Duration(TimeSpan.FromSeconds(0.3));
             galleryAnimation.To = h;
-            galleryAnimation.EasingFunction = new CubicEase() { EasingMode = EasingMode.EaseOut };
+            galleryAnimation.EasingFunction = new CubicEase() { EasingMode = EasingMode.EaseInOut };
             Storyboard.SetTarget(galleryAnimation, LayoutRoot);
             Storyboard.SetTargetProperty(galleryAnimation, new PropertyPath("(UIElement.RenderTransform).(CompositeTransform.TranslateY)"));
             animation.Children.Add(galleryAnimation);

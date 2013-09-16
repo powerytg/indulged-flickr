@@ -34,6 +34,17 @@ namespace Indulged.Plugins.ProFX
 
         }
 
+        private bool eventListenersRemoved = false;
+        public void RemoveEventListeners()
+        {
+            if (eventListenersRemoved)
+                return;
+
+            eventListenersRemoved = true;
+
+            ThemeManager.ThemeChanged -= OnThemeChanged;            
+        }
+
         private void ApplyTheme()
         {
             if (ThemeManager.CurrentTheme == Themes.Dark)

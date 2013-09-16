@@ -14,6 +14,8 @@ using Indulged.API.Anaconda;
 using Indulged.PolKit;
 using Indulged.API.Cinderella.Events;
 using Indulged.API.Avarice.Controls;
+using System.Windows.Media;
+using System.Windows.Media.Animation;
 
 namespace Indulged.Plugins.Favourite
 {
@@ -27,40 +29,31 @@ namespace Indulged.Plugins.Favourite
             InitializeComponent();
         }
 
+        private bool executedOnce = false;
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
 
-            // Show loading progress indicator
-            SystemTray.ProgressIndicator = new ProgressIndicator();
-            SystemTray.ProgressIndicator.IsIndeterminate = true;
-            SystemTray.ProgressIndicator.IsVisible = false;
-            SystemTray.ProgressIndicator.Text = "retrieving photos";
+            if (executedOnce)
+                return;
+
+            executedOnce = true;
 
             // Events
             Cinderella.CinderellaCore.FavouriteStreamUpdated += OnFavouriteStreamUpdated;
             Anaconda.AnacondaCore.FavouriteStreamException += OnFavouriteStreamException;
 
-            if (Cinderella.CinderellaCore.FavouriteList.Count > 0)
-            {
-                StatusLabel.Visibility = Visibility.Collapsed;
-                ResultListView.Visibility = Visibility.Visible;
-                _photos.Clear();
-                foreach (var photo in Cinderella.CinderellaCore.FavouriteList)
-                {
-                    _photos.Add(photo);
-                }
-            }
-            else
-            {
-                StatusLabel.Visibility = Visibility.Visible;
+            PerformAppearanceAnimation();
+        }
 
-                SystemTray.ProgressIndicator.IsVisible = true;
-                var currentUser = Cinderella.CinderellaCore.CurrentUser;
-                Anaconda.AnacondaCore.GetFavouritePhotoStreamAsync(currentUser.ResourceId, new Dictionary<string, string> { { "page", "1" }, { "per_page", PolicyKit.StreamItemsCountPerPage.ToString() } });
-            }
+        protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
+        {
+            base.OnNavigatingFrom(e);
 
-            ResultListView.ItemsSource = _photos;
+            if (e.NavigationMode == NavigationMode.Back)
+            {
+                PerformDisappearanceAnimation();
+            }
         }
 
         protected override void OnRemovedFromJournal(JournalEntryRemovedEventArgs e)
@@ -149,18 +142,125 @@ namespace Indulged.Plugins.Favourite
                 var currentUser = Cinderella.CinderellaCore.CurrentUser;
                 int page = page = Cinderella.CinderellaCore.FavouriteList.Count / PolicyKit.StreamItemsCountPerPage + 1;
 
-                SystemTray.ProgressIndicator.IsVisible = true;
+                if(SystemTray.ProgressIndicator != null)
+                    SystemTray.ProgressIndicator.IsVisible =  true;
+
                 Anaconda.AnacondaCore.GetFavouritePhotoStreamAsync(currentUser.ResourceId, new Dictionary<string, string> { { "page", page.ToString() }, { "per_page", PolicyKit.StreamItemsCountPerPage.ToString() } });
             }
         }
 
         private void RefreshPhotoListButton_Click(object sender, EventArgs e)
         {
-            SystemTray.ProgressIndicator.IsVisible = true;
+            if (SystemTray.ProgressIndicator != null)
+                SystemTray.ProgressIndicator.IsVisible = true;
 
             var currentUser = Cinderella.CinderellaCore.CurrentUser; 
             Anaconda.AnacondaCore.GetFavouritePhotoStreamAsync(currentUser.ResourceId, new Dictionary<string, string> { { "page", "1" }, { "per_page", PolicyKit.StreamItemsCountPerPage.ToString() } });
+        }
 
+        private void PerformAppearanceAnimation()
+        {
+            double w = System.Windows.Application.Current.Host.Content.ActualWidth;
+            double h = System.Windows.Application.Current.Host.Content.ActualHeight;
+
+            CompositeTransform ct = (CompositeTransform)LayoutRoot.RenderTransform;
+            ct.TranslateY = h;
+
+            ct = (CompositeTransform)ContentPanel.RenderTransform;
+            ct.TranslateX = w;
+
+            LayoutRoot.Visibility = Visibility.Visible;
+
+            Storyboard animation = new Storyboard();
+            animation.Duration = new Duration(TimeSpan.FromSeconds(0.3));
+
+            // Y animation
+            DoubleAnimation galleryAnimation = new DoubleAnimation();
+            galleryAnimation.Duration = new Duration(TimeSpan.FromSeconds(0.3));
+            galleryAnimation.To = 0.0;
+            galleryAnimation.EasingFunction = new CubicEase() { EasingMode = EasingMode.EaseOut };
+            Storyboard.SetTarget(galleryAnimation, LayoutRoot);
+            Storyboard.SetTargetProperty(galleryAnimation, new PropertyPath("(UIElement.RenderTransform).(CompositeTransform.TranslateY)"));
+            animation.Children.Add(galleryAnimation);
+            animation.Begin();
+            animation.Completed += (sender, e) =>
+            {
+                // Show loading progress indicator
+                SystemTray.ProgressIndicator = new ProgressIndicator();
+                SystemTray.ProgressIndicator.IsIndeterminate = true;
+
+                if (SystemTray.ProgressIndicator != null)
+                    SystemTray.ProgressIndicator.IsVisible = false;
+
+                SystemTray.ProgressIndicator.Text = "retrieving photos";
+
+                if (Cinderella.CinderellaCore.FavouriteList.Count > 0)
+                {
+                    StatusLabel.Visibility = Visibility.Collapsed;
+                    ResultListView.Visibility = Visibility.Visible;
+                    _photos.Clear();
+                    foreach (var photo in Cinderella.CinderellaCore.FavouriteList)
+                    {
+                        _photos.Add(photo);
+                    }
+                }
+                else
+                {
+                    StatusLabel.Visibility = Visibility.Visible;
+
+                    if(SystemTray.ProgressIndicator != null)
+                        SystemTray.ProgressIndicator.IsVisible = true;
+
+                    var currentUser = Cinderella.CinderellaCore.CurrentUser;
+                    Anaconda.AnacondaCore.GetFavouritePhotoStreamAsync(currentUser.ResourceId, new Dictionary<string, string> { { "page", "1" }, { "per_page", PolicyKit.StreamItemsCountPerPage.ToString() } });
+                }
+
+                ResultListView.ItemsSource = _photos;
+                PerformContentFlyInAnimation();
+
+                // App bar
+                ApplicationBar = Resources["AppBar"] as ApplicationBar;
+
+            };
+        }
+
+        private void PerformContentFlyInAnimation()
+        {
+            double w = System.Windows.Application.Current.Host.Content.ActualWidth;
+
+            LayoutRoot.Visibility = Visibility.Visible;
+
+            Storyboard animation = new Storyboard();
+            animation.Duration = new Duration(TimeSpan.FromSeconds(0.3));
+
+            // Content animation
+            DoubleAnimation galleryAnimation = new DoubleAnimation();
+            galleryAnimation.Duration = new Duration(TimeSpan.FromSeconds(0.3));
+            galleryAnimation.To = 0.0;
+            galleryAnimation.EasingFunction = new CubicEase() { EasingMode = EasingMode.EaseOut };
+            Storyboard.SetTarget(galleryAnimation, ContentPanel);
+            Storyboard.SetTargetProperty(galleryAnimation, new PropertyPath("(UIElement.RenderTransform).(CompositeTransform.TranslateX)"));
+            animation.Children.Add(galleryAnimation);
+            animation.Begin();
+        }
+
+        private void PerformDisappearanceAnimation()
+        {
+            double w = System.Windows.Application.Current.Host.Content.ActualWidth;
+            double h = System.Windows.Application.Current.Host.Content.ActualHeight;
+
+            Storyboard animation = new Storyboard();
+            animation.Duration = new Duration(TimeSpan.FromSeconds(0.3));
+
+            // Y animation
+            DoubleAnimation yAnimation = new DoubleAnimation();
+            yAnimation.Duration = new Duration(TimeSpan.FromSeconds(0.3));
+            yAnimation.To = h;
+            yAnimation.EasingFunction = new CubicEase() { EasingMode = EasingMode.EaseInOut };
+            Storyboard.SetTarget(yAnimation, LayoutRoot);
+            Storyboard.SetTargetProperty(yAnimation, new PropertyPath("(UIElement.RenderTransform).(CompositeTransform.TranslateY)"));
+            animation.Children.Add(yAnimation);
+            animation.Begin();
         }
     }
 }

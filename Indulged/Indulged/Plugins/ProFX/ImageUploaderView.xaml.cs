@@ -24,7 +24,6 @@ namespace Indulged.Plugins.ProFX
 {
     public partial class ImageUploaderView : UserControl
     {
-        public WriteableBitmap SampledBackgroundBitmap { get; set; }
         public BitmapImage OriginalImage { get; set; }
 
         private WriteableBitmap bitmapForUpload;
@@ -50,6 +49,22 @@ namespace Indulged.Plugins.ProFX
             Anaconda.AnacondaCore.PhotoInfoException += OnPhotoInfoException;
         }
 
+        private bool eventListenersRemoved = false;
+        public void RemoveEventListeners()
+        {
+            if (eventListenersRemoved)
+                return;
+
+            Anaconda.AnacondaCore.PhotoUploadProgress -= OnUploadProgress;
+            Anaconda.AnacondaCore.PhotoUploaded -= OnUploadComplete;
+            Anaconda.AnacondaCore.PhotoUploadError -= OnUploadFailed;
+
+            Anaconda.AnacondaCore.PhotoInfoReturned -= OnPhotoInfoReturned;
+            Anaconda.AnacondaCore.PhotoInfoException -= OnPhotoInfoException;
+
+        }
+             
+
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
             if (bitmapStream != null)
@@ -65,15 +80,6 @@ namespace Indulged.Plugins.ProFX
             }
 
             ImageProcessingPage.RequestDismissUploaderView(this, null);
-        }
-
-        public void PrepareBackgroundImage()
-        {
-            double w = Application.Current.RootVisual.RenderSize.Width;
-            double h = Application.Current.RootVisual.RenderSize.Height;
-
-            WriteableBitmap backgroundBlurredImage = SampledBackgroundBitmap.Resize((int)w, (int)h, System.Windows.Media.Imaging.WriteableBitmapExtensions.Interpolation.Bilinear);
-            BackgroundView.Source = backgroundBlurredImage;
         }
 
         public async void PrepareImageForUploadAsync()

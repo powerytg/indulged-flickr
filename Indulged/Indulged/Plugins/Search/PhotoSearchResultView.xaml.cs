@@ -23,7 +23,7 @@ namespace Indulged.Plugins.Search
         public string Tags { get; set; }
 
         public int Page { get; set; }
-        private int perPage = 50;
+        private int perPage = 20;
         public int TotalCount { get; set; }
 
         private ObservableCollection<Photo> _photos = new ObservableCollection<Photo>();
@@ -84,6 +84,8 @@ namespace Indulged.Plugins.Search
         {
             ResultListView.ItemsSource = null;
             _photos.Clear();
+            _photos = null;
+
             Cinderella.CinderellaCore.PhotoSearchCompleted -= OnPhotoSearchResult;
         }
     }

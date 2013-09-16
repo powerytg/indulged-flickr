@@ -5,9 +5,12 @@ using Indulged.API.Cinderella.Events;
 using Indulged.API.Cinderella.Models;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
+using System;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Navigation;
 
 namespace Indulged.Plugins.Group
@@ -72,20 +75,27 @@ namespace Indulged.Plugins.Group
 
         }
 
+        private bool executedOnce = false;
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            string groupId = NavigationContext.QueryString["group_id"];
 
-            if (Cinderella.CinderellaCore.GroupCache.ContainsKey(groupId))
+            if (executedOnce)
+                return;
+
+            executedOnce = true;
+
+            PerformAppearanceAnimation();
+        }
+
+        protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
+        {
+            base.OnNavigatingFrom(e);
+
+            if (e.NavigationMode == NavigationMode.Back)
             {
-                this.GroupSource = Cinderella.CinderellaCore.GroupCache[groupId];
-                this.DataContext = GroupSource;
-
-                // Config app bar
-                ApplicationBar = Resources["PhotoPageAppBar"] as ApplicationBar;
+                PerformDisappearanceAnimation();
             }
-
         }
 
         protected override void OnRemovedFromJournal(JournalEntryRemovedEventArgs e)
@@ -123,7 +133,8 @@ namespace Indulged.Plugins.Group
             Dispatcher.BeginInvoke(() =>
             {
                 if (e.GroupId == GroupSource.ResourceId)
-                    SystemTray.ProgressIndicator.IsVisible = false;
+                    if (SystemTray.ProgressIndicator != null)
+                        SystemTray.ProgressIndicator.IsVisible = false;
             });
         }
 
@@ -132,7 +143,8 @@ namespace Indulged.Plugins.Group
             Dispatcher.BeginInvoke(() =>
             {
                 if (e.GroupId == GroupSource.ResourceId)
-                    SystemTray.ProgressIndicator.IsVisible = false;
+                    if (SystemTray.ProgressIndicator != null)
+                        SystemTray.ProgressIndicator.IsVisible = false;
 
             });
         }
@@ -142,7 +154,10 @@ namespace Indulged.Plugins.Group
             Dispatcher.BeginInvoke(() =>
             {
                 if (e.GroupId == GroupSource.ResourceId)
-                    SystemTray.ProgressIndicator.IsVisible = false;
+                {
+                    if(SystemTray.ProgressIndicator != null)
+                        SystemTray.ProgressIndicator.IsVisible = false;
+                }
             });
         }
 
@@ -151,8 +166,65 @@ namespace Indulged.Plugins.Group
             Dispatcher.BeginInvoke(() =>
             {
                 if (e.GroupId == GroupSource.ResourceId)
-                    SystemTray.ProgressIndicator.IsVisible = false;
+                    if (SystemTray.ProgressIndicator != null)
+                        SystemTray.ProgressIndicator.IsVisible = false;
             });
+        }
+
+        private void PerformAppearanceAnimation()
+        {
+            double h = System.Windows.Application.Current.Host.Content.ActualHeight;
+
+            CompositeTransform ct = (CompositeTransform)LayoutRoot.RenderTransform;
+            ct.TranslateY = h;
+
+            LayoutRoot.Visibility = Visibility.Visible;
+
+            Storyboard animation = new Storyboard();
+            animation.Duration = new Duration(TimeSpan.FromSeconds(0.3));
+
+            // Y animation
+            DoubleAnimation galleryAnimation = new DoubleAnimation();
+            galleryAnimation.Duration = new Duration(TimeSpan.FromSeconds(0.3));
+            galleryAnimation.To = 0.0;
+            galleryAnimation.EasingFunction = new CubicEase() { EasingMode = EasingMode.EaseOut };
+            Storyboard.SetTarget(galleryAnimation, LayoutRoot);
+            Storyboard.SetTargetProperty(galleryAnimation, new PropertyPath("(UIElement.RenderTransform).(CompositeTransform.TranslateY)"));
+            animation.Children.Add(galleryAnimation);
+            animation.Begin();
+            animation.Completed += (sender, e) =>
+            {
+                string groupId = NavigationContext.QueryString["group_id"];
+
+                if (Cinderella.CinderellaCore.GroupCache.ContainsKey(groupId))
+                {
+                    this.GroupSource = Cinderella.CinderellaCore.GroupCache[groupId];
+                    this.DataContext = GroupSource;
+
+                    // Config app bar
+                    ApplicationBar = Resources["PhotoPageAppBar"] as ApplicationBar;
+                }
+            };
+        }
+
+ 
+        private void PerformDisappearanceAnimation()
+        {
+            double w = System.Windows.Application.Current.Host.Content.ActualWidth;
+            double h = System.Windows.Application.Current.Host.Content.ActualHeight;
+
+            Storyboard animation = new Storyboard();
+            animation.Duration = new Duration(TimeSpan.FromSeconds(0.3));
+
+            // Y animation
+            DoubleAnimation yAnimation = new DoubleAnimation();
+            yAnimation.Duration = new Duration(TimeSpan.FromSeconds(0.3));
+            yAnimation.To = h;
+            yAnimation.EasingFunction = new CubicEase() { EasingMode = EasingMode.EaseInOut };
+            Storyboard.SetTarget(yAnimation, LayoutRoot);
+            Storyboard.SetTargetProperty(yAnimation, new PropertyPath("(UIElement.RenderTransform).(CompositeTransform.TranslateY)"));
+            animation.Children.Add(yAnimation);
+            animation.Begin();
         }
     }
 }

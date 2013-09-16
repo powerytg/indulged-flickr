@@ -16,6 +16,8 @@ using Indulged.API.Anaconda;
 using Indulged.API.Anaconda.Events;
 using Indulged.PolKit;
 using Indulged.API.Avarice.Controls;
+using System.Windows.Media.Animation;
+using System.Windows.Media;
 
 namespace Indulged.Plugins.PhotoCollection
 {
@@ -57,37 +59,8 @@ namespace Indulged.Plugins.PhotoCollection
 
             string setId = NavigationContext.QueryString["photoset_id"];
             PhotoSetSource = Cinderella.CinderellaCore.PhotoSetCache[setId];
-            this.DataContext = PhotoSetSource;
 
-            // Initial items
-            if (PhotoSetSource.Photos.Count > 0)
-            {
-                foreach (var photo in PhotoSetSource.Photos)
-                {
-                    var setPhoto = new PhotoSetPhoto { PhotoSource = photo, PhotoSetId = PhotoSetSource.ResourceId };
-                    PhotoCollection.Add(setPhoto);
-                }
-
-            }
-            else
-            {
-                StatusLabel.Text = "This set has no photos";
-                StatusLabel.Visibility = Visibility.Visible;
-                PhotoStreamListView.Visibility = Visibility.Collapsed;
-            }
-
-            // App bar
-            ApplicationBar = Resources["PhotoPageAppBar"] as ApplicationBar;
-
-            // Show loading progress indicator
-            SystemTray.ProgressIndicator = new ProgressIndicator();
-            SystemTray.ProgressIndicator.IsIndeterminate = true;
-            SystemTray.ProgressIndicator.IsVisible = true;
-            SystemTray.ProgressIndicator.Text = "loading photos";
-
-
-            // Get first page of photo stream in the set
-            Anaconda.AnacondaCore.GetPhotoSetPhotosAsync(PhotoSetSource.ResourceId, new Dictionary<string, string> { { "page", "1" }, { "per_page", Anaconda.DefaultItemsPerPage.ToString() } });
+            PerformAppearanceAnimation();
         }
 
         protected override void OnBackKeyPress(System.ComponentModel.CancelEventArgs e)
@@ -100,6 +73,16 @@ namespace Indulged.Plugins.PhotoCollection
             else
             {
                 base.OnBackKeyPress(e);
+            }
+        }
+
+        protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
+        {
+            base.OnNavigatingFrom(e);
+
+            if (e.NavigationMode == NavigationMode.Back)
+            {
+                PerformDisappearanceAnimation();
             }
         }
 
@@ -246,6 +229,106 @@ namespace Indulged.Plugins.PhotoCollection
                 }
             });
 
+        }
+
+        private void PerformAppearanceAnimation()
+        {
+            double w = System.Windows.Application.Current.Host.Content.ActualWidth;
+            double h = System.Windows.Application.Current.Host.Content.ActualHeight;
+
+            CompositeTransform ct = (CompositeTransform)LayoutRoot.RenderTransform;
+            ct.TranslateY = h;
+
+            ct = (CompositeTransform)ContentPanel.RenderTransform;
+            ct.TranslateX = w;
+
+            LayoutRoot.Visibility = Visibility.Visible;
+
+            Storyboard animation = new Storyboard();
+            animation.Duration = new Duration(TimeSpan.FromSeconds(0.3));
+
+            // Y animation
+            DoubleAnimation galleryAnimation = new DoubleAnimation();
+            galleryAnimation.Duration = new Duration(TimeSpan.FromSeconds(0.3));
+            galleryAnimation.To = 0.0;
+            galleryAnimation.EasingFunction = new CubicEase() { EasingMode = EasingMode.EaseOut };
+            Storyboard.SetTarget(galleryAnimation, LayoutRoot);
+            Storyboard.SetTargetProperty(galleryAnimation, new PropertyPath("(UIElement.RenderTransform).(CompositeTransform.TranslateY)"));
+            animation.Children.Add(galleryAnimation);
+            animation.Begin();
+            animation.Completed += (sender, e) =>
+            {
+                this.DataContext = PhotoSetSource;
+
+                // Initial items
+                if (PhotoSetSource.Photos.Count > 0)
+                {
+                    foreach (var photo in PhotoSetSource.Photos)
+                    {
+                        var setPhoto = new PhotoSetPhoto { PhotoSource = photo, PhotoSetId = PhotoSetSource.ResourceId };
+                        PhotoCollection.Add(setPhoto);
+                    }
+
+                }
+                else
+                {
+                    StatusLabel.Visibility = Visibility.Visible;
+                    PhotoStreamListView.Visibility = Visibility.Collapsed;
+                }
+
+                // Show loading progress indicator
+                SystemTray.ProgressIndicator = new ProgressIndicator();
+                SystemTray.ProgressIndicator.IsIndeterminate = true;
+                SystemTray.ProgressIndicator.IsVisible = true;
+                SystemTray.ProgressIndicator.Text = "loading photos";
+
+                // Get first page of photo stream in the set
+                Anaconda.AnacondaCore.GetPhotoSetPhotosAsync(PhotoSetSource.ResourceId, new Dictionary<string, string> { { "page", "1" }, { "per_page", Anaconda.DefaultItemsPerPage.ToString() } });
+
+                // App bar
+                ApplicationBar = Resources["PhotoPageAppBar"] as ApplicationBar;
+
+                PerformContentFlyInAnimation();
+            };
+        }
+
+        private void PerformContentFlyInAnimation()
+        {
+            double w = System.Windows.Application.Current.Host.Content.ActualWidth;
+
+            LayoutRoot.Visibility = Visibility.Visible;
+
+            Storyboard animation = new Storyboard();
+            animation.Duration = new Duration(TimeSpan.FromSeconds(0.3));
+
+            // Content animation
+            DoubleAnimation galleryAnimation = new DoubleAnimation();
+            galleryAnimation.Duration = new Duration(TimeSpan.FromSeconds(0.3));
+            galleryAnimation.To = 0.0;
+            galleryAnimation.EasingFunction = new CubicEase() { EasingMode = EasingMode.EaseOut };
+            Storyboard.SetTarget(galleryAnimation, ContentPanel);
+            Storyboard.SetTargetProperty(galleryAnimation, new PropertyPath("(UIElement.RenderTransform).(CompositeTransform.TranslateX)"));
+            animation.Children.Add(galleryAnimation);
+            animation.Begin();
+        }
+
+        private void PerformDisappearanceAnimation()
+        {
+            double w = System.Windows.Application.Current.Host.Content.ActualWidth;
+            double h = System.Windows.Application.Current.Host.Content.ActualHeight;
+
+            Storyboard animation = new Storyboard();
+            animation.Duration = new Duration(TimeSpan.FromSeconds(0.3));
+
+            // Y animation
+            DoubleAnimation yAnimation = new DoubleAnimation();
+            yAnimation.Duration = new Duration(TimeSpan.FromSeconds(0.3));
+            yAnimation.To = h;
+            yAnimation.EasingFunction = new CubicEase() { EasingMode = EasingMode.EaseInOut };
+            Storyboard.SetTarget(yAnimation, LayoutRoot);
+            Storyboard.SetTargetProperty(yAnimation, new PropertyPath("(UIElement.RenderTransform).(CompositeTransform.TranslateY)"));
+            animation.Children.Add(yAnimation);
+            animation.Begin();
         }
     }
 }

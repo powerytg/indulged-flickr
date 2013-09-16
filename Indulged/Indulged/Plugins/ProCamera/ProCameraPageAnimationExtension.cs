@@ -41,6 +41,9 @@ namespace Indulged.Plugins.ProCamera
             Storyboard.SetTargetProperty(toolbarAnimation, new PropertyPath("Opacity"));
 
             animation.Begin();
+            animation.Completed += (sender, e) => {
+                LayoutRoot.IsHitTestVisible = true;
+            };
         }
 
         private Rectangle curtain;

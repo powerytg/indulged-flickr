@@ -43,8 +43,7 @@ namespace Indulged
         {
             base.OnNavigatedTo(e);
 
-            if(hasExecutedOnce)
-                Dashboard.OnNavigatedToPage();
+            Dashboard.OnNavigatedToPage();
 
             if (hasExecutedOnce && hasLoggedIn)
                 return;
@@ -88,6 +87,16 @@ namespace Indulged
             // Reset dashboard selections
             Dashboard.OnNavigatedFromPage();
             base.OnNavigatedFrom(e);
+        }
+
+        protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
+        {
+            if (e.NavigationMode == NavigationMode.Forward || e.NavigationMode == NavigationMode.New)
+            {
+                Dashboard.OnNavigatingFromPage();
+            }
+
+            base.OnNavigatingFrom(e);
         }
 
          private void OnTakePhotoClick(object sender, EventArgs e)

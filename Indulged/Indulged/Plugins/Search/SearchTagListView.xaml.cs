@@ -25,8 +25,6 @@ namespace Indulged.Plugins.Search
             LoadingView.Visibility = Visibility.Visible;
             TagListView.Visibility = Visibility.Collapsed;
 
-            Anaconda.AnacondaCore.GetPopularTagListAsync();
-
             // Events
             Cinderella.CinderellaCore.PopularTagsUpdated += OnPopularTagsReturned;
         }

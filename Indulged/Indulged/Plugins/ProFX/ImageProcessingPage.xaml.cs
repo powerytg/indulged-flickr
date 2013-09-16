@@ -187,6 +187,27 @@ namespace Indulged.Plugins.ProFX
 
         protected override void OnRemovedFromJournal(JournalEntryRemovedEventArgs e)
         {
+            ThemeManager.ThemeChanged -= OnThemeChanged;
+
+            RequestFilterListView -= OnRequestFilterListView;
+            RequestDismissFilterListView -= OnRequestDismissFilterListView;
+
+            RequestSettingsView -= OnRequestSettingsView;
+            RequestDismissSettingsView -= OnRequestDismissSettingsView;
+
+            RequestAddFilter -= OnRequestAddFilter;
+            RequestFilterView -= OnRequestFilterView;
+            RequestDeleteFilter -= OnRequestDeleteFilter;
+            RequestProcessorPage -= OnRequestProcessorPage;
+            RequestDismissFilterView -= OnRequestDismissFilterView;
+
+            RequestCropView -= OnRequestCropView;
+            RequestDismissCropView -= OnRequestDismissCropView;
+            RequestResetCrop -= OnRequestResetCrop;
+
+            RequestDismissUploaderView -= OnRequestDismissUploaderView;
+            RequestDismiss -= OnRequestDismiss;
+
             // Clean up
             if (previewStream != null)
             {
@@ -194,8 +215,28 @@ namespace Indulged.Plugins.ProFX
                 previewStream = null;
             }
 
+            previewBuffer = null;
+
+            AppliedFilters.Clear();
+
             ProCameraPage.CapturedImage = null;
-            
+            originalBitmap = null;
+            originalImage = null;
+            originalPreviewBitmap = null;
+
+            if (UploaderPage != null)
+            {
+                UploaderPage.RemoveEventListeners();
+            }
+
+            BottomPanel.RemoveEventListeners();
+
+            if(galleryView != null)
+                galleryView.RemoveEventListeners();
+
+            if (settingsView != null)
+                settingsView.RemoveEventListeners();
+
             base.OnRemovedFromJournal(e);
         }
 

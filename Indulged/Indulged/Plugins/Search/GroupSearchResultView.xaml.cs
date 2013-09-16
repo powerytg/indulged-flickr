@@ -22,7 +22,7 @@ namespace Indulged.Plugins.Search
         public string Query { get; set; }
 
         public int Page { get; set; }
-        private int perPage = 50;
+        private int perPage = 20;
         public int TotalCount { get; set; }
 
         private ObservableCollection<FlickrGroup> _groups = new ObservableCollection<FlickrGroup>();
@@ -85,6 +85,8 @@ namespace Indulged.Plugins.Search
         {
             ResultListView.ItemsSource = null;
             _groups.Clear();
+            _groups = null;
+
             Cinderella.CinderellaCore.GroupSearchCompleted -= OnGroupSearchResult;
         }
 

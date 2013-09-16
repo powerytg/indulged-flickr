@@ -39,6 +39,29 @@ namespace Indulged.Plugins.ProFX
             ImageProcessingPage.RequestDeleteFilter += OnRequestDeleteFilter;
             ImageProcessingPage.RequestSettingsView += OnRequestSettingsView;
             ImageProcessingPage.RequestDismissSettingsView += OnRequestDismissSettingsView;
+
+            CurrentFilter = null;
+        }
+
+        private bool eventListenersRemoved = false;
+        public void RemoveEventListeners()
+        {
+            if (eventListenersRemoved)
+                return;
+
+            eventListenersRemoved = true;
+
+            ThemeManager.ThemeChanged -= OnThemeChanged;
+            ImageProcessingPage.RequestFilterListView -= OnRequestGalleryView;
+            ImageProcessingPage.RequestDismissFilterListView -= OnRequestDismissGalleryView;
+            ImageProcessingPage.RequestFilterView -= OnRequestFilterView;
+            ImageProcessingPage.RequestAddFilter -= OnRequestAddFilter;
+            ImageProcessingPage.RequestDismissFilterView -= OnRequestDismissFilterView;
+            ImageProcessingPage.RequestDeleteFilter -= OnRequestDeleteFilter;
+            ImageProcessingPage.RequestSettingsView -= OnRequestSettingsView;
+            ImageProcessingPage.RequestDismissSettingsView -= OnRequestDismissSettingsView;
+
+            NormalStatusView.RemoveEventListeners();
         }
 
         private void ApplyTheme()

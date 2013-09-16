@@ -70,15 +70,19 @@ namespace Indulged.Plugins.Dashboard
 
         public void OnNavigatedFromPage()
         {
-            //LayoutRoot.Visibility = Visibility.Collapsed; 
-            ResetListSelections();            
+            ResetListSelections();
+            LayoutRoot.Visibility = Visibility.Collapsed;
+        }
+
+        public void OnNavigatingFromPage()
+        {
+            PerformDisappearanceAnimation();
         }
 
         public void OnNavigatedToPage()
         {
-            //LayoutRoot.Visibility = Visibility.Visible;
             Dispatcher.BeginInvoke(() => {
-                //PerformAppearanceAnimation();
+                PerformAppearanceAnimation();
             });
         }
 
@@ -86,22 +90,48 @@ namespace Indulged.Plugins.Dashboard
         {
             double h = System.Windows.Application.Current.Host.Content.ActualHeight;
 
-            CompositeTransform ct = (CompositeTransform)LayoutRoot.RenderTransform;
-            ct.TranslateY = -h;
-
             LayoutRoot.Visibility = Visibility.Visible;
+            LayoutRoot.Opacity = 1;
             
             Storyboard animation = new Storyboard();
-            animation.Duration = new Duration(TimeSpan.FromSeconds(0.6));
+            animation.Duration = new Duration(TimeSpan.FromSeconds(0.3));
 
             // Y animation
             DoubleAnimation galleryAnimation = new DoubleAnimation();
             galleryAnimation.Duration = animation.Duration;
             galleryAnimation.To = 0;
-            galleryAnimation.EasingFunction = new BounceEase() { EasingMode = EasingMode.EaseInOut };
             Storyboard.SetTarget(galleryAnimation, LayoutRoot);
             Storyboard.SetTargetProperty(galleryAnimation, new PropertyPath("(UIElement.RenderTransform).(CompositeTransform.TranslateY)"));
             animation.Children.Add(galleryAnimation);
+
+            animation.Begin();
+        }
+
+        private void PerformDisappearanceAnimation()
+        {
+            double h = System.Windows.Application.Current.Host.Content.ActualHeight;
+
+            Storyboard animation = new Storyboard();
+            animation.Duration = new Duration(TimeSpan.FromSeconds(0.3));
+
+            // Y animation
+            DoubleAnimation galleryAnimation = new DoubleAnimation();
+            galleryAnimation.Duration = animation.Duration;
+            galleryAnimation.To = -h;
+            galleryAnimation.EasingFunction = new CubicEase() { EasingMode = EasingMode.EaseOut };
+            Storyboard.SetTarget(galleryAnimation, LayoutRoot);
+            Storyboard.SetTargetProperty(galleryAnimation, new PropertyPath("(UIElement.RenderTransform).(CompositeTransform.TranslateY)"));
+            animation.Children.Add(galleryAnimation);
+
+            // Alpha animation
+            DoubleAnimation alphaAnimation = new DoubleAnimation();
+            alphaAnimation.Duration = animation.Duration;
+            alphaAnimation.To = 0;
+            alphaAnimation.EasingFunction = new CubicEase() { EasingMode = EasingMode.EaseOut };
+            Storyboard.SetTarget(alphaAnimation, LayoutRoot);
+            Storyboard.SetTargetProperty(alphaAnimation, new PropertyPath("Opacity"));
+            animation.Children.Add(alphaAnimation);
+
 
             animation.Begin();
         }

@@ -36,6 +36,21 @@ namespace Indulged.Plugins.ProFX
             ImageProcessingPage.RequestDeleteFilter += OnRequestDeleteFilter;
         }
 
+        private bool eventListenersRemoved = false;
+        public void RemoveEventListeners()
+        {
+            if (eventListenersRemoved)
+                return;
+
+            eventListenersRemoved = true;
+
+            ThemeManager.ThemeChanged -= OnThemeChanged;
+            ImageProcessingPage.RequestDeleteFilter -= OnRequestDeleteFilter;
+
+            filterButtonTable.Clear();
+            filterButtonTable = null;
+        }
+
         private void ApplyTheme()
         {
             if (ThemeManager.CurrentTheme == Themes.Dark)

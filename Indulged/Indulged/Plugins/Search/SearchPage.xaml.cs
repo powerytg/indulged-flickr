@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using Indulged.API.Avarice.Controls;
+using Indulged.API.Anaconda;
 
 namespace Indulged.Plugins.Search
 {
@@ -87,6 +88,10 @@ namespace Indulged.Plugins.Search
             animation.Begin();
             animation.Completed += (sender, e) =>
             {
+                // Get popular tags
+                Anaconda.AnacondaCore.GetPopularTagListAsync();
+
+                // Focus the keyboard
                 SearchBox.Focus();
             };
         }

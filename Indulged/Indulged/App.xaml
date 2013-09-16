@@ -17,6 +17,7 @@
                 <ResourceDictionary Source="Themes/LicenseButtonStyle.xaml"/>
                 <ResourceDictionary Source="Themes/TagButtonStyle.xaml"/>
                 <ResourceDictionary Source="Themes/SearchBoxStyle.xaml"/>
+                <ResourceDictionary Source="Themes/WatermarkBoxStyle.xaml"/>
                 <ResourceDictionary Source="Themes/CameraSettingsButtonStyle.xaml"/>
                 <ResourceDictionary Source="Themes/CameraSubsettingsButtonStyle.xaml"/>
                 <ResourceDictionary Source="Themes/CameraShutterButtonStyle.xaml"/>

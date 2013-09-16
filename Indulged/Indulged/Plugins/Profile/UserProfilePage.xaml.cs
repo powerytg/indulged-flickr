@@ -11,6 +11,8 @@ using Indulged.API.Cinderella.Models;
 using Indulged.API.Cinderella;
 using Indulged.API.Anaconda;
 using Indulged.API.Avarice.Controls;
+using System.Windows.Media.Animation;
+using System.Windows.Media;
 
 namespace Indulged.Plugins.Profile
 {
@@ -70,15 +72,17 @@ namespace Indulged.Plugins.Profile
 
             executedOnce = true;
 
-            string userId = NavigationContext.QueryString["user_id"];
-            if (!Cinderella.CinderellaCore.UserCache.ContainsKey(userId))
-                return;
+            PerformAppearanceAnimation();
+        }
 
-            UserSource = Cinderella.CinderellaCore.UserCache[userId];
+        protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
+        {
+            base.OnNavigatingFrom(e);
 
-            // Title
-            this.DataContext = UserSource;
-
+            if (e.NavigationMode == NavigationMode.Back)
+            {
+                PerformDisappearanceAnimation();
+            }
         }
 
         protected override void OnRemovedFromJournal(JournalEntryRemovedEventArgs e)
@@ -105,6 +109,59 @@ namespace Indulged.Plugins.Profile
             }
         }
 
+        private void PerformAppearanceAnimation()
+        {
+            double h = System.Windows.Application.Current.Host.Content.ActualHeight;
 
+            CompositeTransform ct = (CompositeTransform)LayoutRoot.RenderTransform;
+            ct.TranslateY = h;
+
+            LayoutRoot.Visibility = Visibility.Visible;
+
+            Storyboard animation = new Storyboard();
+            animation.Duration = new Duration(TimeSpan.FromSeconds(0.3));
+
+            // Y animation
+            DoubleAnimation galleryAnimation = new DoubleAnimation();
+            galleryAnimation.Duration = new Duration(TimeSpan.FromSeconds(0.3));
+            galleryAnimation.To = 0.0;
+            galleryAnimation.EasingFunction = new CubicEase() { EasingMode = EasingMode.EaseOut };
+            Storyboard.SetTarget(galleryAnimation, LayoutRoot);
+            Storyboard.SetTargetProperty(galleryAnimation, new PropertyPath("(UIElement.RenderTransform).(CompositeTransform.TranslateY)"));
+            animation.Children.Add(galleryAnimation);
+            animation.Begin();
+            animation.Completed += (sender, e) =>
+            {
+
+                string userId = NavigationContext.QueryString["user_id"];
+                if (!Cinderella.CinderellaCore.UserCache.ContainsKey(userId))
+                    return;
+
+                UserSource = Cinderella.CinderellaCore.UserCache[userId];
+
+                // Title
+                this.DataContext = UserSource;
+            };
+        }
+
+
+        private void PerformDisappearanceAnimation()
+        {
+            double w = System.Windows.Application.Current.Host.Content.ActualWidth;
+            double h = System.Windows.Application.Current.Host.Content.ActualHeight;
+
+            Storyboard animation = new Storyboard();
+            animation.Duration = new Duration(TimeSpan.FromSeconds(0.3));
+
+            // Y animation
+            DoubleAnimation yAnimation = new DoubleAnimation();
+            yAnimation.Duration = new Duration(TimeSpan.FromSeconds(0.3));
+            yAnimation.To = h;
+            yAnimation.EasingFunction = new CubicEase() { EasingMode = EasingMode.EaseInOut };
+            Storyboard.SetTarget(yAnimation, LayoutRoot);
+            Storyboard.SetTargetProperty(yAnimation, new PropertyPath("(UIElement.RenderTransform).(CompositeTransform.TranslateY)"));
+            animation.Children.Add(yAnimation);
+            animation.Begin();
+        }
     }
 }
