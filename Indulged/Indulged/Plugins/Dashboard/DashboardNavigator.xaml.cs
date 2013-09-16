@@ -91,7 +91,6 @@ namespace Indulged.Plugins.Dashboard
             double h = System.Windows.Application.Current.Host.Content.ActualHeight;
 
             LayoutRoot.Visibility = Visibility.Visible;
-            LayoutRoot.Opacity = 1;
             
             Storyboard animation = new Storyboard();
             animation.Duration = new Duration(TimeSpan.FromSeconds(0.3));
@@ -122,16 +121,6 @@ namespace Indulged.Plugins.Dashboard
             Storyboard.SetTarget(galleryAnimation, LayoutRoot);
             Storyboard.SetTargetProperty(galleryAnimation, new PropertyPath("(UIElement.RenderTransform).(CompositeTransform.TranslateY)"));
             animation.Children.Add(galleryAnimation);
-
-            // Alpha animation
-            DoubleAnimation alphaAnimation = new DoubleAnimation();
-            alphaAnimation.Duration = animation.Duration;
-            alphaAnimation.To = 0;
-            alphaAnimation.EasingFunction = new CubicEase() { EasingMode = EasingMode.EaseOut };
-            Storyboard.SetTarget(alphaAnimation, LayoutRoot);
-            Storyboard.SetTargetProperty(alphaAnimation, new PropertyPath("Opacity"));
-            animation.Children.Add(alphaAnimation);
-
 
             animation.Begin();
         }
