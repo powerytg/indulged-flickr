@@ -13,17 +13,6 @@ http://www.windowsphone.com/en-us/store/app/indulged/849c0ebb-59d2-4930-817e-42a
 
 http://www.flickr.com/services/apps/72157634408977937/
 
-# Screenshots
-
-![Alt text](/Artworks/Prelude.png "Screenshot")
-![Alt text](/Artworks/Violet.png "Screenshot")
-![Alt text](/Artworks/Detail.png "Screenshot")
-![Alt text](/Artworks/UserStream.png "Screenshot")
-![Alt text](/Artworks/ProFX.png "Screenshot")
-![Alt text](/Artworks/AddPhotos.png "Screenshot")
-![Alt text](/Artworks/Search.png "Screenshot")
-![Alt text](/Artworks/Tags.png "Screenshot")
-
 
 # Features
 
@@ -54,3 +43,15 @@ Designed by photographer for photographers, Indulged brings a beautifully crafte
 	
 * Avarice
 	** UI widgets library
+	
+# Screenshots
+
+![Alt text](/Artworks/Prelude.png "Screenshot")
+![Alt text](/Artworks/Violet.png "Screenshot")
+![Alt text](/Artworks/Detail.png "Screenshot")
+![Alt text](/Artworks/UserStream.png "Screenshot")
+![Alt text](/Artworks/ProFX.png "Screenshot")
+![Alt text](/Artworks/AddPhotos.png "Screenshot")
+![Alt text](/Artworks/Search.png "Screenshot")
+![Alt text](/Artworks/Tags.png "Screenshot")
+	
