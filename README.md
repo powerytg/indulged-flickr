@@ -5,6 +5,14 @@ Indulged is a Flickr app for Windows Phone 8.
 
 ![Alt text](/Artworks/TileIcon.png "Icon")
 
+# Windows Phone Store Link
+
+http://www.windowsphone.com/en-us/store/app/indulged/849c0ebb-59d2-4930-817e-42a327bb5b3a
+
+# Flickr App Garden Link
+
+http://www.flickr.com/services/apps/72157634408977937/
+
 # Screenshots
 
 ![Alt text](/Artworks/Prelude.png "Screenshot")
@@ -16,9 +24,6 @@ Indulged is a Flickr app for Windows Phone 8.
 ![Alt text](/Artworks/Search.png "Screenshot")
 ![Alt text](/Artworks/Tags.png "Screenshot")
 
-# Windows Phone Store Link
-
-http://www.windowsphone.com/en-us/store/app/indulged/849c0ebb-59d2-4930-817e-42a327bb5b3a
 
 # Features
 
