@@ -17,25 +17,31 @@
     </Tasks>
     <Tokens>
       <PrimaryToken TokenID="IndulgedToken" TaskName="_default">
-        <TemplateIconic>
-          <SmallImageURI IsRelative="true" IsResource="false">IconicTileSmall.png</SmallImageURI>
-          <Count>0</Count>
-          <IconImageURI IsRelative="true" IsResource="false">IconicTileMedium.png</IconImageURI>
+        <TemplateCycle>
+          <SmallImageURI IsRelative="true" IsResource="false">CycleTileSmall.png</SmallImageURI>
           <Title>Indulged</Title>
-          <Message>
-          </Message>
-          <BackgroundColor>
-          </BackgroundColor>
-          <HasLarge>false</HasLarge>
-          <LargeContent1>
-          </LargeContent1>
-          <LargeContent2>
-          </LargeContent2>
-          <LargeContent3>
-          </LargeContent3>
+          <Photo01ImageURI IsRelative="true" IsResource="false">CycleTileLarge.png</Photo01ImageURI>
+          <Photo02ImageURI IsRelative="true" IsResource="false">
+          </Photo02ImageURI>
+          <Photo03ImageURI IsRelative="true" IsResource="false">
+          </Photo03ImageURI>
+          <Photo04ImageURI IsRelative="true" IsResource="false">
+          </Photo04ImageURI>
+          <Photo05ImageURI IsRelative="true" IsResource="false">
+          </Photo05ImageURI>
+          <Photo06ImageURI IsRelative="true" IsResource="false">
+          </Photo06ImageURI>
+          <Photo07ImageURI IsRelative="true" IsResource="false">
+          </Photo07ImageURI>
+          <Photo08ImageURI IsRelative="true" IsResource="false">
+          </Photo08ImageURI>
+          <Photo09ImageURI IsRelative="true" IsResource="false">
+          </Photo09ImageURI>
+          <Count>0</Count>
+          <HasLarge>True</HasLarge>
           <DeviceLockImageURI IsRelative="true" IsResource="false">
           </DeviceLockImageURI>
-        </TemplateIconic>
+        </TemplateCycle>
       </PrimaryToken>
     </Tokens>
     <ScreenResolutions>

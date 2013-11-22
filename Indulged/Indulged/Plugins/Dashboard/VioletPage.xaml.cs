@@ -16,6 +16,7 @@ using Indulged.API.Cinderella.Events;
 using Indulged.PolKit;
 using Indulged.Plugins.Dashboard.Events;
 using Indulged.API.Anaconda.Events;
+using Indulged.Plugins.Chrome.Services;
 
 namespace Indulged.Plugins.Dashboard
 {
@@ -163,6 +164,16 @@ namespace Indulged.Plugins.Dashboard
                 }
 
                 UpdateStreamVisibility();
+
+                // Update live tiles
+                var tilePhotos = new List<Photo>();
+                for (int i = 0; i < Math.Min(LiveTileUpdateService.MAX_TILE_IMAGE_COUNT, e.NewPhotos.Count); i++)
+                {
+                    var photo = e.NewPhotos[i];
+                    tilePhotos.Add(photo);
+                }
+
+                LiveTileUpdateService.Instance.StartNewRequests(tilePhotos);
             });
         }
 
@@ -207,6 +218,16 @@ namespace Indulged.Plugins.Dashboard
                 }
 
                 UpdateStreamVisibility();
+
+                // Update live tiles
+                var tilePhotos = new List<Photo>();
+                for (int i = 0; i < Math.Min(LiveTileUpdateService.MAX_TILE_IMAGE_COUNT, e.NewPhotos.Count); i++)
+                {
+                    var photo = e.NewPhotos[i];
+                    tilePhotos.Add(photo);
+                }
+
+                LiveTileUpdateService.Instance.StartNewRequests(tilePhotos);
             });
         }
 

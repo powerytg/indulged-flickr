@@ -109,6 +109,7 @@
       <DependentUpon>PhotoBackgroundView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Plugins\Chrome\Events\ThemeChangedEventArgs.cs" />
+    <Compile Include="Plugins\Chrome\Services\LiveTileImageDownloadService.cs" />
     <Compile Include="Plugins\Chrome\ThemeManager.cs" />
     <Compile Include="Plugins\Chrome\TitleView.xaml.cs">
       <DependentUpon>TitleView.xaml</DependentUpon>
@@ -1321,6 +1322,8 @@
     </Page>
     <Content Include="Assets\SamplePhoto2.jpg" />
     <Content Include="Assets\SamplePhoto3.jpg" />
+    <Content Include="CycleTileLarge.png" />
+    <Content Include="CycleTileSmall.png" />
     <Content Include="IconicTileMedium.png" />
     <Content Include="IconicTileSmall.png" />
     <Content Include="Vendor\ExifLib.dll" />
