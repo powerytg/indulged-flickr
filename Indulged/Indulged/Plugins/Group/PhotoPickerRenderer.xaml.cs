@@ -75,7 +75,7 @@ namespace Indulged.Plugins.Group
 
         protected void OnPhotoSourceChanged()
         {
-            ImageView.Source = new BitmapImage {UriSource = new Uri(PhotoSource.PhotoSource.GetImageUrl()), DecodePixelWidth = 120};
+            ImageView.Source = new BitmapImage {UriSource = new Uri(PhotoSource.PhotoSource.GetImageUrl()), DecodePixelWidth = 240};
             UpdateSelectionState();
         }
 

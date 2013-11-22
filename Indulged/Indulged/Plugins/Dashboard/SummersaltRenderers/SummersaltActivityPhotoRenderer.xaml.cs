@@ -42,7 +42,7 @@ namespace Indulged.Plugins.Dashboard.SummersaltRenderers
         protected virtual void OnActivityChanged()
         {
             TitleLabel.Text = Activity.Title;
-            ImageView.Source = new BitmapImage { UriSource = new Uri(Activity.TargetPhoto.GetImageUrl()), DecodePixelWidth = 400 };
+            ImageView.Source = new BitmapImage { UriSource = new Uri(Activity.TargetPhoto.GetImageUrl()), DecodePixelWidth = 480 };
             UpdateFavView();
         }
 

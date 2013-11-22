@@ -20,10 +20,10 @@
             <phone:PivotItem x:Name="PreludePageItem" Header="prelude">
                 <dashboard:PreludePage x:Name="PreludeView" />
             </phone:PivotItem>
-            <phone:PivotItem x:Name="VioletPageItem" Header="violet">
+            <phone:PivotItem x:Name="VioletPageItem" Header="photos">
                 <dashboard:VioletPage x:Name="VioletView" />
             </phone:PivotItem>
-            <phone:PivotItem x:Name="SummersaltPageItem" Header="summersalt">
+            <phone:PivotItem x:Name="SummersaltPageItem" Header="profile">
                 <dashboard:SummersaltPage x:Name="SummersaltView" />
             </phone:PivotItem>
                              

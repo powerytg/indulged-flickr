@@ -87,7 +87,7 @@ namespace Indulged.PolKit
             }
             else
             {
-                ShouldUseBlurredBackground = false;
+                ShouldUseBlurredBackground = true;
             }
 
             // Camera
@@ -98,7 +98,7 @@ namespace Indulged.PolKit
             }
             else
             {
-                ShouldUseProCamera = false;
+                ShouldUseProCamera = true;
             }
 
             // Theme

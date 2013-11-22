@@ -51,15 +51,14 @@ namespace Indulged.Plugins.Chrome.Services
             }
         }
 
-        private void AddDownloadRequest(Photo photo)
+        private void AddDownloadRequest(Photo photo, int index)
         {
             if (BackgroundTransferService.Requests.Count() >= MAX_TILE_IMAGE_COUNT)
             {
                 return;
             }
 
-            string nextId = tileImages.Count.ToString();
-            string filename = "tile" + nextId + ".jpg";
+            string filename = "tile" + index.ToString() + ".jpg";
 
             Uri transferUri = new Uri(photo.GetImageUrl(), UriKind.Absolute);
 
@@ -95,9 +94,11 @@ namespace Indulged.Plugins.Chrome.Services
         {
             ClearAll();
 
+            int i = 0;
             foreach (var photo in photos)
             {
-                AddDownloadRequest(photo);
+                AddDownloadRequest(photo, i);
+                i++;
             }
         }
 
@@ -188,8 +189,9 @@ namespace Indulged.Plugins.Chrome.Services
         public void UpdateLiveTiles()
         {
             var uriList = new List<Uri>();
-            foreach (var filename in tileImages)
+            for (int i = 0; i < Math.Min(MAX_TILE_IMAGE_COUNT, tileImages.Count); i++)
             {
+                string filename = tileImages[i];
                 uriList.Add(new Uri("isostore:/Shared/ShellContent/" + filename, UriKind.Absolute));
             }
 
