@@ -16,6 +16,7 @@ using Indulged.API.Cinderella.Events;
 using Indulged.API.Avarice.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
+using Indulged.Resources;
 
 namespace Indulged.Plugins.Favourite
 {
@@ -87,7 +88,7 @@ namespace Indulged.Plugins.Favourite
             Dispatcher.BeginInvoke(() => {
                 if (_photos.Count == 0)
                 {
-                    StatusLabel.Text = "Cannot load favourite photos";
+                    StatusLabel.Text = AppResources.FavPageLoadingErrorText;
                     StatusLabel.Visibility = Visibility.Visible;
                     ResultListView.Visibility = Visibility.Collapsed;
                     if (SystemTray.ProgressIndicator != null)
@@ -107,7 +108,7 @@ namespace Indulged.Plugins.Favourite
                 if (Cinderella.CinderellaCore.FavouriteList.Count == 0)
                 {
                     StatusLabel.Visibility = Visibility.Visible;
-                    StatusLabel.Text = "You don't have any favourite photos";
+                    StatusLabel.Text = AppResources.GenericNoContentFound;
                     ResultListView.Visibility = Visibility.Collapsed;
                 }
                 else

@@ -14,6 +14,7 @@ using Indulged.API.Anaconda.Events;
 using Indulged.API.Cinderella;
 using Indulged.API.Cinderella.Events;
 using Indulged.API.Avarice.Controls.SupportClasses;
+using Indulged.Resources;
 
 namespace Indulged.Plugins.Group
 {
@@ -29,7 +30,7 @@ namespace Indulged.Plugins.Group
 
         public void BeginJoinGroup()
         {
-            StatusLabel.Text = "Sending request";
+            StatusLabel.Text = AppResources.GroupSendingRequestText;
             doneButton.IsEnabled = false;
 
             if(Group.Rules != null && Group.Rules.Length > 0)
@@ -45,7 +46,7 @@ namespace Indulged.Plugins.Group
 
             Buttons = new List<API.Avarice.Controls.Button>();
             doneButton = new API.Avarice.Controls.Button();
-            doneButton.Content = "Done";
+            doneButton.Content = AppResources.GenericDoneText;
             doneButton.Click += (sender, e) =>
             {
                 PopupContainer.Dismiss();

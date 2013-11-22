@@ -15,6 +15,7 @@ using Indulged.API.Cinderella.Events;
 using System.Windows.Media.Imaging;
 using Indulged.API.Cinderella.Models;
 using System.Windows.Documents;
+using Indulged.Resources;
 
 namespace Indulged.Plugins.Dashboard.SummersaltRenderers
 {
@@ -42,7 +43,7 @@ namespace Indulged.Plugins.Dashboard.SummersaltRenderers
         protected virtual void OnEventChanged()
         {
             AvatarView.UserSource = Event.EventUser;
-            TitleLabel.Text = Event.EventUser.Name + " commented on " + Event.CreationDate.ToShortDateString();
+            TitleLabel.Text = Event.EventUser.Name + AppResources.SummersaltCommentedOnText + Event.CreationDate.ToShortDateString();
             CommentLabel.Text = Event.Message;
         }
 

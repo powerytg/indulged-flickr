@@ -1,0 +1,586 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd">
+  <file datatype="xml" source-language="en-US" target-language="qps-ploc" original="AppResources.resx" tool-id="MultilingualAppToolkit" product-name="Indulged" product-version="1.0.0.0" build-num="0">
+    <header>
+      <tool tool-id="MultilingualAppToolkit" tool-name="Multilingual App Toolkit" tool-version="2.1.1100.0" tool-company="Microsoft" />
+    </header>
+    <body>
+      <group id="Resx">
+        <trans-unit translate="yes" id="Resx/ResourceFlowDirection" xml:space="preserve">
+          <source>LeftToRight</source>
+          <target state="translated">LeftToRight</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Controls the FlowDirection for all elements in the RootFrame. Set to the traditional direction of this resource file's language</note>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/ResourceLanguage" xml:space="preserve">
+          <source>en-US</source>
+          <target state="translated">qps-ploc</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Controls the Language and ensures that the font for all elements in the RootFrame aligns with the app's language. Set to the language code of this resource file's language.</note>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/ApplicationTitle" xml:space="preserve">
+          <source>MY APPLICATION</source>
+          <target state="new">MY APPLICATION</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/AppBarButtonText" xml:space="preserve">
+          <source>add</source>
+          <target state="new">add</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/AppBarMenuItemText" xml:space="preserve">
+          <source>Menu Item</source>
+          <target state="new">Menu Item</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/DashboardPreludeText" xml:space="preserve">
+          <source>prelude</source>
+          <target state="new">prelude</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/DashboardSummersaltText" xml:space="preserve">
+          <source>profile</source>
+          <target state="new">profile</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/DashboardVioletText" xml:space="preserve">
+          <source>photos</source>
+          <target state="new">photos</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/DetailPageLoadingPhotoText" xml:space="preserve">
+          <source>Loading photo ...</source>
+          <target state="new">Loading photo ...</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/DetailPageViewAllCommentsText" xml:space="preserve">
+          <source>view all ...</source>
+          <target state="new">view all ...</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/FavPageTitleText" xml:space="preserve">
+          <source>Favourites</source>
+          <target state="new">Favourites</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/GenericAgreeText" xml:space="preserve">
+          <source>I Agree</source>
+          <target state="new">I Agree</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/FavPageLoadingErrorText" xml:space="preserve">
+          <source>Cannot load favourite photos</source>
+          <target state="new">Cannot load favourite photos</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/DiscoveryPageTitleText" xml:space="preserve">
+          <source>Discovery</source>
+          <target state="new">Discovery</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/DiscussionRetrievingRepliesText" xml:space="preserve">
+          <source>retrieving replies</source>
+          <target state="new">retrieving replies</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/DiscussionPostingText" xml:space="preserve">
+          <source>Posting to discussion board</source>
+          <target state="new">Posting to discussion board</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/DiscussionPostingErrorText" xml:space="preserve">
+          <source>An error occured while replying message</source>
+          <target state="new">An error occured while replying message</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/DiscoveryPageLoadingErrorText" xml:space="preserve">
+          <source>Cannot load discovery stream</source>
+          <target state="new">Cannot load discovery stream</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/DetailPageTagsTitleText" xml:space="preserve">
+          <source>Tags</source>
+          <target state="new">Tags</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/DetailPageRetrievingPhotoInfoText" xml:space="preserve">
+          <source>Retrieving photo info</source>
+          <target state="new">Retrieving photo info</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/DetailPageRetrievePhotoInfoErrorText" xml:space="preserve">
+          <source>Cannot get photo info</source>
+          <target state="new">Cannot get photo info</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/DetailPageRemovingFavText" xml:space="preserve">
+          <source>Removing photo from favourite</source>
+          <target state="new">Removing photo from favourite</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/DetailPageRemovedFavText" xml:space="preserve">
+          <source>Photo has been removed from favourite list</source>
+          <target state="new">Photo has been removed from favourite list</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/DetailPageNoTagsText" xml:space="preserve">
+          <source>This photo does not have any tags</source>
+          <target state="new">This photo does not have any tags</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/DetailPageNoCommentsText" xml:space="preserve">
+          <source>This photo does not have any comments</source>
+          <target state="new">This photo does not have any comments</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/DetailPageMarkingAsFavText" xml:space="preserve">
+          <source>Marking photo as favourite</source>
+          <target state="new">Marking photo as favourite</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/CommentPostingText" xml:space="preserve">
+          <source>Posting comment</source>
+          <target state="new">Posting comment</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/ContactsPageTitleText" xml:space="preserve">
+          <source>Contacts</source>
+          <target state="new">Contacts</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/ContactsLoadingText" xml:space="preserve">
+          <source>retrieving contacts</source>
+          <target state="new">retrieving contacts</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/ContactsLoadingErrorText" xml:space="preserve">
+          <source>Cannot load contact list</source>
+          <target state="new">Cannot load contact list</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/DetailPageLoadingEXIFText" xml:space="preserve">
+          <source>Loading EXIF Info</source>
+          <target state="new">Loading EXIF Info</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/DetailPageLoadingCommentsText" xml:space="preserve">
+          <source>Loading comments</source>
+          <target state="new">Loading comments</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/DetailPageLoadEXIFErrorText" xml:space="preserve">
+          <source>Cannot retrieve EXIF Info</source>
+          <target state="new">Cannot retrieve EXIF Info</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/DetailPageLoadCommentsErrorText" xml:space="preserve">
+          <source>Cannot load comments</source>
+          <target state="new">Cannot load comments</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/DetailPageEXIFTitleText" xml:space="preserve">
+          <source>EXIF Info</source>
+          <target state="new">EXIF Info</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/DetailPageEXIFNotAvailableText" xml:space="preserve">
+          <source>EXIF data is not available</source>
+          <target state="new">EXIF data is not available</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/DetailPageCommentsText" xml:space="preserve">
+          <source>Comments</source>
+          <target state="new">Comments</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/DetailPageAddedFavText" xml:space="preserve">
+          <source>Photo has been added as fvourite</source>
+          <target state="new">Photo has been added as fvourite</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/CommentPostErrorText" xml:space="preserve">
+          <source>An error occured while adding comment</source>
+          <target state="new">An error occured while adding comment</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/CommentCannotBeNullText" xml:space="preserve">
+          <source>Comment cannot be empty</source>
+          <target state="new">Comment cannot be empty</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/CommentComposerTitleText" xml:space="preserve">
+          <source>Comment</source>
+          <target state="new">Comment</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/GenericCancelText" xml:space="preserve">
+          <source>Cancel</source>
+          <target state="new">Cancel</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/LoginSignInText" xml:space="preserve">
+          <source>SIGN IN</source>
+          <target state="new">SIGN IN</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/MainPageAppBarUploadPhotoText" xml:space="preserve">
+          <source>upload photo</source>
+          <target state="new">upload photo</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/MainPageSubscriptionTitleText" xml:space="preserve">
+          <source>Subscription</source>
+          <target state="new">Subscription</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/NoContactsText" xml:space="preserve">
+          <source>You don't have any contacts</source>
+          <target state="new">You don't have any contacts</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/PhotoCollectionRemovingPhotoText" xml:space="preserve">
+          <source>Removing photo</source>
+          <target state="new">Removing photo</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/PhotoCollectionPhotoRemovedText" xml:space="preserve">
+          <source>Photo has been removed from set</source>
+          <target state="new">Photo has been removed from set</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/PhotoCollectionPhotoAddedText" xml:space="preserve">
+          <source>Photo has been added to set</source>
+          <target state="new">Photo has been added to set</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/PhotoCollectionLoadingText" xml:space="preserve">
+          <source>Loading photo collection</source>
+          <target state="new">Loading photo collection</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/PhotoCollectionAddToSetText" xml:space="preserve">
+          <source>Add To Photo Set</source>
+          <target state="new">Add To Photo Set</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/PhotoCollectionAddingPhotoText" xml:space="preserve">
+          <source>Adding photo</source>
+          <target state="new">Adding photo</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/PreludeVioletItemText" xml:space="preserve">
+          <source>Photo Stream</source>
+          <target state="new">Photo Stream</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/ProfilePageUrlText" xml:space="preserve">
+          <source>Profile link</source>
+          <target state="new">Profile link</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/ProfilePageRealNameText" xml:space="preserve">
+          <source>Real name</source>
+          <target state="new">Real name</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/ProfilePageProfileHeaderText" xml:space="preserve">
+          <source>profile</source>
+          <target state="new">profile</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/ProfilePagePhotoHeaderText" xml:space="preserve">
+          <source>photos</source>
+          <target state="new">photos</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/ProfilePagePhotoCountText" xml:space="preserve">
+          <source>Photo uploaded</source>
+          <target state="new">Photo uploaded</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/ProfilePageNoPhotoText" xml:space="preserve">
+          <source>No photo yet</source>
+          <target state="new">No photo yet</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/ProfilePageLocationText" xml:space="preserve">
+          <source>Location</source>
+          <target state="new">Location</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/ProfilePageLoadingText" xml:space="preserve">
+          <source>Loading profile ...</source>
+          <target state="new">Loading profile ...</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/ProfilePageDescText" xml:space="preserve">
+          <source>Description</source>
+          <target state="new">Description</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/ProCamInitText" xml:space="preserve">
+          <source>Initializing Camera ...</source>
+          <target state="new">Initializing Camera ...</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/ReplyCannotBeEmptyText" xml:space="preserve">
+          <source>Reply cannot be empty</source>
+          <target state="new">Reply cannot be empty</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/SubscriptionMyPhotoStreamText" xml:space="preserve">
+          <source>My Photo Stream</source>
+          <target state="new">My Photo Stream</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/SummersaltUserInfoPhotoUploadedText" xml:space="preserve">
+          <source>Photo uploaded: </source>
+          <target state="new">Photo uploaded: </target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/TopicComposerSubjectText" xml:space="preserve">
+          <source>Subject</source>
+          <target state="new">Subject</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/TopicComposerBodyText" xml:space="preserve">
+          <source>Message Body</source>
+          <target state="new">Message Body</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/ThrottleReachedErrorText" xml:space="preserve">
+          <source>You have reached limitation</source>
+          <target state="new">You have reached limitation</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/SummersaltUserInfoMemberSinceText" xml:space="preserve">
+          <source>Member since </source>
+          <target state="new">Member since </target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/SummersaltSingleFavText" xml:space="preserve">
+          <source>and 1 other person added this photo as favourite</source>
+          <target state="new">and 1 other person added this photo as favourite</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/SummersaltShowAllContactsText" xml:space="preserve">
+          <source>Show All Contacts</source>
+          <target state="new">Show All Contacts</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/SummersaltRetrievingUserInfoText" xml:space="preserve">
+          <source>Retrieving user info ...</source>
+          <target state="new">Retrieving user info ...</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/SummersaltRecentActivityText" xml:space="preserve">
+          <source>Recent Activities</source>
+          <target state="new">Recent Activities</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/SummersaltNoInfoFoundText" xml:space="preserve">
+          <source>No extra info available</source>
+          <target state="new">No extra info available</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/SummersaltMultiFavText" xml:space="preserve">
+          <source>other people added this photo as favourite</source>
+          <target state="new">other people added this photo as favourite</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/SummersaltCommentedOnText" xml:space="preserve">
+          <source> commented on </source>
+          <target state="new"> commented on </target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/SummersaltAndText" xml:space="preserve">
+          <source> and </source>
+          <target state="new"> and </target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/SummersaltAddedFavText" xml:space="preserve">
+          <source>added this photo as favourite</source>
+          <target state="new">added this photo as favourite</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/SubscriptionFavText" xml:space="preserve">
+          <source>Favourite Stream</source>
+          <target state="new">Favourite Stream</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/SubscriptionDiscoveryText" xml:space="preserve">
+          <source>Discovery Stream</source>
+          <target state="new">Discovery Stream</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/PreludeUploadPhotoItemText" xml:space="preserve">
+          <source>Upload Photo</source>
+          <target state="new">Upload Photo</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/PreludeSummersaltItemText" xml:space="preserve">
+          <source>Profile</source>
+          <target state="new">Profile</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/PreludeSearchItemText" xml:space="preserve">
+          <source>Search</source>
+          <target state="new">Search</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/PreludeRetryText" xml:space="preserve">
+          <source>Tap to retry</source>
+          <target state="new">Tap to retry</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/PreludeRetrievingPhotoSetsText" xml:space="preserve">
+          <source>Retrieving photo sets ...</source>
+          <target state="new">Retrieving photo sets ...</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/PreludeRetrievingGroupsText" xml:space="preserve">
+          <source>Retrieving group list ...</source>
+          <target state="new">Retrieving group list ...</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/PreludePhotoSetSectionText" xml:space="preserve">
+          <source>photo sets</source>
+          <target state="new">photo sets</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/PreludeNoPhotoSetFoundText" xml:space="preserve">
+          <source>No photo sets found</source>
+          <target state="new">No photo sets found</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/PreludeNoGroupFoundText" xml:space="preserve">
+          <source>No groups found</source>
+          <target state="new">No groups found</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/PreludeMyPhotoStreamItemText" xml:space="preserve">
+          <source>My Photo Stream</source>
+          <target state="new">My Photo Stream</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/PreludeFeaturedSectionText" xml:space="preserve">
+          <source>featured</source>
+          <target state="new">featured</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/PreludeFavItemText" xml:space="preserve">
+          <source>Favourites</source>
+          <target state="new">Favourites</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/PreludeDiscoveryItemText" xml:space="preserve">
+          <source>Discovery</source>
+          <target state="new">Discovery</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/PreludeContactsItemText" xml:space="preserve">
+          <source>Contacts</source>
+          <target state="new">Contacts</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/PreludeCommunitySectionText" xml:space="preserve">
+          <source>community</source>
+          <target state="new">community</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/MainPageLogoutTitleText" xml:space="preserve">
+          <source>Sign Out</source>
+          <target state="new">Sign Out</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/MainPageLogoutContentText" xml:space="preserve">
+          <source>You will be taken back to login screen and your privacy will be cleared out on this device</source>
+          <target state="new">You will be taken back to login screen and your privacy will be cleared out on this device</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/MainPageLogoutButtonText" xml:space="preserve">
+          <source>Sign Out</source>
+          <target state="new">Sign Out</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/MainPageAppBarSubscriptionText" xml:space="preserve">
+          <source>subscription settings</source>
+          <target state="new">subscription settings</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/MainPageAppBarSettingsText" xml:space="preserve">
+          <source>settings</source>
+          <target state="new">settings</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/MainPageAppBarSearchText" xml:space="preserve">
+          <source>search</source>
+          <target state="new">search</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/MainPageAppBarRefreshText" xml:space="preserve">
+          <source>refresh</source>
+          <target state="new">refresh</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/MainPageAppBarMyProfileText" xml:space="preserve">
+          <source>my profile</source>
+          <target state="new">my profile</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/MainPageAppBarLogoutText" xml:space="preserve">
+          <source>sign out</source>
+          <target state="new">sign out</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/MainPageAppBarFeedbackText" xml:space="preserve">
+          <source>give feedback</source>
+          <target state="new">give feedback</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/MainPageAppBarContactsText" xml:space="preserve">
+          <source>contacts</source>
+          <target state="new">contacts</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/LoginLoadingText" xml:space="preserve">
+          <source>Loading ...</source>
+          <target state="new">Loading ...</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/LoginBackText" xml:space="preserve">
+          <source>Sign In</source>
+          <target state="new">Sign In</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/LoginAuthErrorText" xml:space="preserve">
+          <source>Cannot authenticate with Flickr at this time</source>
+          <target state="new">Cannot authenticate with Flickr at this time</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/LoginAboutText" xml:space="preserve">
+          <source>ABOUT</source>
+          <target state="new">ABOUT</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/LoginAboutAppTitleText" xml:space="preserve">
+          <source>About Indulged</source>
+          <target state="new">About Indulged</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/GenericErrorTitleText" xml:space="preserve">
+          <source>Error</source>
+          <target state="new">Error</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/GenericNoContentFound" xml:space="preserve">
+          <source>No content found</source>
+          <target state="new">No content found</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/GenericPhotoLoadingErrorText" xml:space="preserve">
+          <source>Cannot load photos</source>
+          <target state="new">Cannot load photos</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/GenericLoadingStreamText" xml:space="preserve">
+          <source>Loading stream ...</source>
+          <target state="new">Loading stream ...</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/GenericUntitledText" xml:space="preserve">
+          <source>Untitled</source>
+          <target state="new">Untitled</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/GenericSendingRequestText" xml:space="preserve">
+          <source>Sending request</source>
+          <target state="new">Sending request</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/GenericWaitingText" xml:space="preserve">
+          <source>Waiting ...</source>
+          <target state="new">Waiting ...</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/GroupSubjectContentCannotBeEmptyText" xml:space="preserve">
+          <source>Subject and content cannot be empty</source>
+          <target state="new">Subject and content cannot be empty</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/GroupSendRequestText" xml:space="preserve">
+          <source>Send Request</source>
+          <target state="new">Send Request</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/GroupSendingRequestText" xml:space="preserve">
+          <source>Sending request</source>
+          <target state="new">Sending request</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/GroupRulesText" xml:space="preserve">
+          <source>Group Rules</source>
+          <target state="new">Group Rules</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/GroupRetrievingInfoText" xml:space="preserve">
+          <source>Retrieving group info</source>
+          <target state="new">Retrieving group info</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/GroupRequestSentText" xml:space="preserve">
+          <source>Your request has been sent to group admin</source>
+          <target state="new">Your request has been sent to group admin</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/GroupRemovingPhotoText" xml:space="preserve">
+          <source>Removing photo</source>
+          <target state="new">Removing photo</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/GroupPhotoHeaderText" xml:space="preserve">
+          <source>photos</source>
+          <target state="new">photos</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/GroupNoActiveTopicsText" xml:space="preserve">
+          <source>No active topics</source>
+          <target state="new">No active topics</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/GroupMembershipText" xml:space="preserve">
+          <source>Group Membership Request</source>
+          <target state="new">Group Membership Request</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/GroupLoadingTopicsText" xml:space="preserve">
+          <source>loading topics</source>
+          <target state="new">loading topics</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/GroupLoadingPhotosText" xml:space="preserve">
+          <source>loading photos</source>
+          <target state="new">loading photos</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/GroupLoadingPhotoCollectionText" xml:space="preserve">
+          <source>Loading photo collection</source>
+          <target state="new">Loading photo collection</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/GroupJoinText" xml:space="preserve">
+          <source>Join Group</source>
+          <target state="new">Join Group</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/GroupJoiningText" xml:space="preserve">
+          <source>Joining Group</source>
+          <target state="new">Joining Group</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/GroupInvitationRequestText" xml:space="preserve">
+          <source>Invitation Request</source>
+          <target state="new">Invitation Request</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/GroupDiscussionTitleText" xml:space="preserve">
+          <source>Discussion</source>
+          <target state="new">Discussion</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/GroupDiscussionHeaderText" xml:space="preserve">
+          <source>discussions</source>
+          <target state="new">discussions</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/GroupBrowseText" xml:space="preserve">
+          <source>Browse</source>
+          <target state="new">Browse</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/GroupAddTopicErrorText" xml:space="preserve">
+          <source>An error occured while adding topic</source>
+          <target state="new">An error occured while adding topic</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/GroupAddToGroupTitleText" xml:space="preserve">
+          <source>Add To Group</source>
+          <target state="new">Add To Group</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/GroupAddToGroupDoneText" xml:space="preserve">
+          <source>Done Adding Photos</source>
+          <target state="new">Done Adding Photos</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/GenericDoneText" xml:space="preserve">
+          <source>Done</source>
+          <target state="new">Done</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/GenericConfirmText" xml:space="preserve">
+          <source>Confirm</source>
+          <target state="new">Confirm</target>
+        </trans-unit>
+      </group>
+    </body>
+  </file>
+</xliff>

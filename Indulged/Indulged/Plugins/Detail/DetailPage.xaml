@@ -44,7 +44,7 @@
         
         <!-- Loading view-->
         <TextBlock x:Name="LoadingView" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"
-                   Text="Loading photo..." />
+                   Text="{Binding Path=LocalizedResources.DetailPageLoadingPhotoText, Source={StaticResource LocalizedStrings}}" />
         
         <!-- Title view -->
         <chrome:TitleView x:Name="TitleView" VerticalAlignment="Top" IsHitTestVisible="False"/>

@@ -36,7 +36,7 @@
         <!-- Title view -->
         <chrome:TitleView x:Name="TitleView" VerticalAlignment="Top" IsHitTestVisible="False" Titleless="True"/>
 
-        <TextBlock x:Name="TitleLabel" Foreground="#f67056" Text="Favourites"
+        <TextBlock x:Name="TitleLabel" Foreground="#f67056" Text="{Binding Path=LocalizedResources.FavPageTitleText, Source={StaticResource LocalizedStrings}}"
                                FontSize="96" TextWrapping="Wrap" FontWeight="Bold"
                                Margin="0, 24, 0, 0"/>
 
@@ -47,7 +47,7 @@
             </Grid.RenderTransform>
 
             <!--Status label-->
-            <TextBlock x:Name="StatusLabel" HorizontalAlignment="Center" VerticalAlignment="Center" Text="Loading stream..."
+            <TextBlock x:Name="StatusLabel" HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding Path=LocalizedResources.GenericLoadingStreamText, Source={StaticResource LocalizedStrings}}"
                        Foreground="#32afe0" FontSize="38" FontFamily="/Assets/Fonts/BenchNine-Regular.ttf#BenchNine"/>
 
             <phone:LongListSelector x:Name="ResultListView" ItemRealized="ResultListView_ItemRealized" Padding="0, 0, 0, 60">

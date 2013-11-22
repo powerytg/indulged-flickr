@@ -18,8 +18,8 @@
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        
-        <TextBlock x:Name="StatusLabel" Grid.Column="0" Text="Sending request" TextAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
+
+        <TextBlock x:Name="StatusLabel" Grid.Column="0" Text="{Binding Path=LocalizedResources.GenericSendingRequestText, Source={StaticResource LocalizedStrings}}" TextAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
         <ProgressBar x:Name="ProgressView" Grid.Column="1" VerticalAlignment="Center" Margin="20, 0, 20, 0" IsIndeterminate="True"/>
         
     </Grid>

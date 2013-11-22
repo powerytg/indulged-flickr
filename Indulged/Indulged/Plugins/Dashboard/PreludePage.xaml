@@ -18,17 +18,17 @@
                 <Image Source="/Assets/Dashboard/Prelude/PreludeContentGuide.png" Height="142" HorizontalAlignment="Left"/>
 
                 <!-- Special section -->
-                <dashboard:NavigatorSection Title="featured"/>
+                <dashboard:NavigatorSection x:Name="FeaturedSectionView"/>
                 <phone:LongListSelector x:Name="FeatureListView" Style="{StaticResource PreludeListStyle}" SelectionChanged="OnFeatureListViewSelectionChanged"/>
 
                 <!-- Photo set section -->
-                <dashboard:NavigatorSection x:Name="StreamSectionView" Title="photo sets"/>
-                <TextBlock x:Name="StreamListStatusLabel" Text="Retrieving photo sets..." Margin="15" FontSize="36" FontWeight="Light" Foreground="#c5c5c5" Tap="StreamListStatusLabel_Tap"/>
+                <dashboard:NavigatorSection x:Name="StreamSectionView"/>
+                <TextBlock x:Name="StreamListStatusLabel" Text="{Binding Path=LocalizedResources.PreludeRetrievingPhotoSetsText, Source={StaticResource LocalizedStrings}}" Margin="15" FontSize="36" FontWeight="Light" Foreground="#c5c5c5" Tap="StreamListStatusLabel_Tap"/>
                 <phone:LongListSelector x:Name="StreamListView" Style="{StaticResource PreludeListStyle}" SelectionChanged="OnStreamListViewSelectionChanged" Visibility="Collapsed"/>
 
                 <!-- Group section -->
-                <dashboard:NavigatorSection x:Name="GroupSectionView" Title="community"/>
-                <TextBlock x:Name="GroupListStatusLabel" Text="Retrieving group list..." Margin="15, 15, 15, 60" FontSize="36" FontWeight="Light" Foreground="#c5c5c5" IsHitTestVisible="False" Tap="GroupListStatusLabel_Tap"/>
+                <dashboard:NavigatorSection x:Name="GroupSectionView"/>
+                <TextBlock x:Name="GroupListStatusLabel" Text="{Binding Path=LocalizedResources.PreludeRetrievingGroupsText, Source={StaticResource LocalizedStrings}}" Margin="15, 15, 15, 60" FontSize="36" FontWeight="Light" Foreground="#c5c5c5" IsHitTestVisible="False" Tap="GroupListStatusLabel_Tap"/>
                 <phone:LongListSelector x:Name="GroupListView" Style="{StaticResource PreludeListStyle}" SelectionChanged="OnGroupListViewSelectionChanged" Visibility="Collapsed"
                                         Margin="0, 0, 0, 60" />
 

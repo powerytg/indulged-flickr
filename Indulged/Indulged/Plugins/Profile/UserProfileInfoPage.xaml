@@ -40,7 +40,7 @@
 
                 <StackPanel x:Name="RealNameSection" Margin="0, 0, 0, 20">
                     <TextBlock Style="{StaticResource ProfilePropertyStyle}"
-                           Text="Real name" Margin="0, 0, 0, 8" />
+                           Text="{Binding Path=LocalizedResources.ProfilePageRealNameText, Source={StaticResource LocalizedStrings}}" Margin="0, 0, 0, 8" />
 
                     <TextBlock x:Name="RealNameLabel" Style="{StaticResource ProfileValueStyle}"/>
 
@@ -48,21 +48,21 @@
 
                 <StackPanel x:Name="LocationSection" Margin="0, 0, 0, 20">
                     <TextBlock Style="{StaticResource ProfilePropertyStyle}"
-                           Text="Location" Margin="0, 0, 0, 8" />
+                           Text="{Binding Path=LocalizedResources.ProfilePageLocationText, Source={StaticResource LocalizedStrings}}" Margin="0, 0, 0, 8" />
 
                     <TextBlock x:Name="LocationLabel" Style="{StaticResource ProfileValueStyle}"/>
                 </StackPanel>
 
                 <StackPanel x:Name="DescSection" Margin="0, 0, 0, 20">
                     <TextBlock Style="{StaticResource ProfilePropertyStyle}"
-                           Text="Description" Margin="0, 0, 0, 8" />
+                           Text="{Binding Path=LocalizedResources.ProfilePageDescText, Source={StaticResource LocalizedStrings}}" Margin="0, 0, 0, 8" />
 
                     <TextBlock x:Name="DescLabel" Style="{StaticResource ProfileValueStyle}"/>
                 </StackPanel>
 
                 <StackPanel x:Name="ProfileUrlSection" Margin="0, 0, 0, 20">
                     <TextBlock Style="{StaticResource ProfilePropertyStyle}"
-                           Text="Profile url" Margin="0, 0, 0, 8" />
+                           Text="{Binding Path=LocalizedResources.ProfilePageUrlText, Source={StaticResource LocalizedStrings}}" Margin="0, 0, 0, 8" />
 
                     <TextBlock x:Name="ProfileUrlLabel" Style="{StaticResource ProfileValueStyle}" Foreground="#f28422" TextDecorations="Underline" 
                            Tap="ProfileUrlLabel_Tap" />
@@ -70,7 +70,7 @@
 
                 <StackPanel x:Name="PhotoCountSection" Margin="0, 0, 0, 20">
                     <TextBlock Style="{StaticResource ProfilePropertyStyle}"
-                           Text="Photo uploaded" Margin="0, 0, 0, 8" />
+                           Text="{Binding Path=LocalizedResources.ProfilePagePhotoCountText, Source={StaticResource LocalizedStrings}}" Margin="0, 0, 0, 8" />
 
                     <TextBlock x:Name="PhotoCountLabel" Style="{StaticResource ProfileValueStyle}"/>
                 </StackPanel>
@@ -82,7 +82,7 @@
         </ScrollViewer>
 
         <!--Loading view-->
-        <TextBlock x:Name="StatusLabel" HorizontalAlignment="Center" VerticalAlignment="Center" Text="Loading profile..."
+        <TextBlock x:Name="StatusLabel" HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding Path=LocalizedResources.ProfilePageLoadingText, Source={StaticResource LocalizedStrings}}"
                        Foreground="#32afe0" FontSize="38" FontFamily="/Assets/Fonts/BenchNine-Regular.ttf#BenchNine"/>
 
     </Grid>

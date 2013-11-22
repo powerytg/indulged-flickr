@@ -7,6 +7,7 @@ using Indulged.API.Cinderella.Events;
 using Indulged.API.Cinderella.Models;
 using Indulged.Plugins.Group;
 using Indulged.Plugins.Group.events;
+using Indulged.Resources;
 using Microsoft.Phone.Controls;
 using System;
 using System.Collections.Generic;
@@ -56,7 +57,7 @@ namespace Indulged.Plugins.PhotoCollection
             PhotoPickerRenderer.SelectionChanged += OnPhotoPickerToggled;
 
             // Get group info
-            StatusLabel.Text = "Loading photo collection";
+            StatusLabel.Text = AppResources.PhotoCollectionLoadingText;
             StatusProgressBar.Visibility = Visibility.Visible;
             Anaconda.AnacondaCore.GetPhotoStreamAsync(Cinderella.CinderellaCore.CurrentUser.ResourceId, new Dictionary<string, string> { { "page", "1" }, { "per_page", "40" } });
         }
@@ -160,7 +161,7 @@ namespace Indulged.Plugins.PhotoCollection
             PhotoListView.IsEnabled = false;
 
             ThrottleProgressBar.Visibility = Visibility.Visible;
-            ThrottleLabel.Text = "Adding photo";
+            ThrottleLabel.Text = AppResources.PhotoCollectionAddingPhotoText;
 
             Storyboard animation = new Storyboard();
             Duration duration = new Duration(TimeSpan.FromSeconds(0.3));
@@ -188,7 +189,7 @@ namespace Indulged.Plugins.PhotoCollection
             PhotoListView.IsEnabled = false;
 
             ThrottleProgressBar.Visibility = Visibility.Visible;
-            ThrottleLabel.Text = "Removing photo";
+            ThrottleLabel.Text = AppResources.PhotoCollectionRemovingPhotoText;
 
             Storyboard animation = new Storyboard();
             Duration duration = new Duration(TimeSpan.FromSeconds(0.3));
@@ -221,7 +222,7 @@ namespace Indulged.Plugins.PhotoCollection
 
                 ThrottleProgressBar.Visibility = Visibility.Collapsed;
                 ThrottleLabel.Foreground = normalMessageBrush;
-                ThrottleLabel.Text = "Photo has been added to set";
+                ThrottleLabel.Text = AppResources.PhotoCollectionPhotoAddedText;
 
                 SelectedPhotos.Add(e.PhotoId);
             });
@@ -261,7 +262,7 @@ namespace Indulged.Plugins.PhotoCollection
 
                 ThrottleProgressBar.Visibility = Visibility.Collapsed;
                 ThrottleLabel.Foreground = normalMessageBrush;
-                ThrottleLabel.Text = "Photo has been removed from set";
+                ThrottleLabel.Text = AppResources.PhotoCollectionPhotoRemovedText;
 
                 if (SelectedPhotos.Contains(e.PhotoId))
                     SelectedPhotos.Remove(e.PhotoId);

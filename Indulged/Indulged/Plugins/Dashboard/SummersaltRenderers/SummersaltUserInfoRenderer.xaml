@@ -23,7 +23,7 @@
                    Text="Your Profile" Grid.Row="0" />
 
         <!--Loading view-->
-        <TextBlock x:Name="LoadingView" Text="Retriving user info..." Foreground="#8b93a0" FontSize="24" FontWeight="Light"
+        <TextBlock x:Name="LoadingView" Text="{Binding Path=LocalizedResources.SummersaltRetrievingUserInfoText, Source={StaticResource LocalizedStrings}}" Foreground="#8b93a0" FontSize="24" FontWeight="Light"
                    Margin="12, 12, 12, 12" Grid.Row="1"/>
 
         <Grid x:Name="ContentView" Grid.Row="2" Visibility="Collapsed">

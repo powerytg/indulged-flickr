@@ -16,6 +16,7 @@ using Indulged.API.Avarice.Controls;
 using System.Windows.Media.Imaging;
 using Indulged.API.Avarice.Events;
 using Indulged.API.Avarice.Controls.SupportClasses;
+using Indulged.Resources;
 
 namespace Indulged.Plugins.Group
 {
@@ -29,19 +30,19 @@ namespace Indulged.Plugins.Group
         public void ShowAsModal()
         {
             joinButton = new API.Avarice.Controls.Button();
-            joinButton.Content = "Join Group";
+            joinButton.Content = AppResources.GroupJoinText;
             joinButton.Click += (sender, e) => {
                 JoinGroup();
             };
 
             browseButton = new API.Avarice.Controls.Button();
-            browseButton.Content = "Browse";
+            browseButton.Content = AppResources.GroupBrowseText;
             browseButton.Click += (sender, e) => {
                 BrowseGroup();
             };
 
             doneButton = new API.Avarice.Controls.Button();
-            doneButton.Content = "Done";
+            doneButton.Content = AppResources.GenericDoneText;
             doneButton.Click += (sender, e) => {
                 _popupContainer.Dismiss();
             };
@@ -158,7 +159,7 @@ namespace Indulged.Plugins.Group
                 rulesView.GroupSource = Group;
                 rulesView.PopupContainer = _popupContainer;
 
-                _popupContainer.ReplaceContentWith("Group Rules", rulesView, rulesView.Buttons);
+                _popupContainer.ReplaceContentWith(AppResources.GroupRulesText, rulesView, rulesView.Buttons);
             }
             else
             {
@@ -168,7 +169,7 @@ namespace Indulged.Plugins.Group
                     requestView.Group = Group;
                     requestView.PopupContainer = _popupContainer;
 
-                    _popupContainer.ReplaceContentWith("Invitation Request", requestView, requestView.Buttons);
+                    _popupContainer.ReplaceContentWith(AppResources.GroupInvitationRequestText, requestView, requestView.Buttons);
                 }
                 else
                 {
@@ -176,7 +177,7 @@ namespace Indulged.Plugins.Group
                     statusView.Group = Group;
                     statusView.PopupContainer = _popupContainer;
 
-                    _popupContainer.ReplaceContentWith("Joinning Group", statusView, statusView.Buttons, () =>
+                    _popupContainer.ReplaceContentWith(AppResources.GroupJoiningText, statusView, statusView.Buttons, () =>
                     {
                         statusView.BeginJoinGroup();
                     });

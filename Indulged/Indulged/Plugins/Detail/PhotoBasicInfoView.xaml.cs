@@ -14,6 +14,7 @@ using Microsoft.Phone.Tasks;
 using Indulged.API.Cinderella;
 using Indulged.API.Cinderella.Events;
 using System.Windows.Media.Imaging;
+using Indulged.Resources;
 
 namespace Indulged.Plugins.Detail
 {
@@ -64,7 +65,7 @@ namespace Indulged.Plugins.Detail
             if (PhotoSource.Title.Length > 0)
                 TitleLabel.Text = PhotoSource.Title;
             else
-                TitleLabel.Text = "Untitled";
+                TitleLabel.Text = AppResources.GenericUntitledText;
 
             // Description
             if (PhotoSource.Description != null && PhotoSource.Description.Length > 0)

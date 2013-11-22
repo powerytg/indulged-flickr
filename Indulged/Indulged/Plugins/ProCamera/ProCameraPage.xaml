@@ -109,7 +109,7 @@
         
         <!-- Waiting view -->
         <TextBlock x:Name="LoadingView" Foreground="#448ccb"
-                   Text="Initializing Camera ..." 
+                   Text="{Binding Path=LocalizedResources.ProCamInitText, Source={StaticResource LocalizedStrings}}" 
                    HorizontalAlignment="Center"  VerticalAlignment="Center"/>
         
         <!-- Focus region -->

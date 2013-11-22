@@ -13,6 +13,7 @@ using Indulged.API.Cinderella.Events;
 using Indulged.API.Cinderella.Models;
 using Indulged.API.Anaconda.Events;
 using Indulged.API.Anaconda;
+using Indulged.Resources;
 
 namespace Indulged.Plugins.Detail
 {
@@ -68,7 +69,7 @@ namespace Indulged.Plugins.Detail
         {
             if (PhotoSource.Comments.Count == 0)
             {
-                LoadingView.Text = "This photo don't have any comments";
+                LoadingView.Text = AppResources.DetailPageNoCommentsText;
             }
             else
             {
@@ -115,7 +116,7 @@ namespace Indulged.Plugins.Detail
                 if (e.PhotoId != PhotoSource.ResourceId)
                     return;
 
-                LoadingView.Text = "Cannot load comments";
+                LoadingView.Text = AppResources.DetailPageLoadCommentsErrorText;
             });
         }
 

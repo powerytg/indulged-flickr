@@ -30,7 +30,7 @@
         <StackPanel Grid.Row="0" Margin="12,17,0,28" Orientation="Horizontal">
             <Image Source="/Assets/Profile/ContactPageIcon.png" />
 
-            <TextBlock x:Name="TitleLabel" Foreground="#f67056" Text="Contacts"
+            <TextBlock x:Name="TitleLabel" Foreground="#f67056" Text="{Binding Path=LocalizedResources.ContactsPageTitleText, Source={StaticResource LocalizedStrings}}"
                                FontSize="64" TextWrapping="Wrap" FontWeight="Bold"
                                Margin="12, 24, 0, 0"/>
 
@@ -48,7 +48,7 @@
 
         <!--No contact view-->
         <TextBlock x:Name="StatusLabel" Foreground="#32afe0" FontSize="38" FontFamily="/Assets/Fonts/BenchNine-Regular.ttf#BenchNine"
-                   Text="You don't have any contacts" Visibility="Collapsed" HorizontalAlignment="Center" VerticalAlignment="Center"
+                   Text="{Binding Path=LocalizedResources.NoContactsText, Source={StaticResource LocalizedStrings}}" Visibility="Collapsed" HorizontalAlignment="Center" VerticalAlignment="Center"
                     Grid.Row="1"/>
 
 

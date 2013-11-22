@@ -1,17 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <!--
-    Microsoft ResX Schema
-
+  <!-- 
+    Microsoft ResX Schema 
+    
     Version 2.0
-
-    The primary goals of this format is to allow a simple XML format
-    that is mostly human readable. The generation and parsing of the
-    various data types are done through the TypeConverter classes
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
     associated with the data types.
-
+    
     Example:
-
+    
     ... ado.net/XML headers & schema ...
     <resheader name="resmimetype">text/microsoft-resx</resheader>
     <resheader name="version">2.0</resheader>
@@ -26,36 +26,36 @@
         <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
         <comment>This is a comment</comment>
     </data>
-
-    There are any number of "resheader" rows that contain simple
+                
+    There are any number of "resheader" rows that contain simple 
     name/value pairs.
-
-    Each data row contains a name, and value. The row also contains a
-    type or mimetype. Type corresponds to a .NET class that support
-    text/value conversion through the TypeConverter architecture.
-    Classes that don't support this are serialized and stored with the
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
     mimetype set.
-
-    The mimetype is used for serialized objects, and tells the
-    ResXResourceReader how to depersist the object. This is currently not
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
     extensible. For a given mimetype the value must be set accordingly:
-
-    Note - application/x-microsoft.net.object.binary.base64 is the format
-    that the ResXResourceWriter will generate, however the reader can
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
     read any of the formats listed below.
-
+    
     mimetype: application/x-microsoft.net.object.binary.base64
-    value   : The object must be serialized with
+    value   : The object must be serialized with 
             : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
             : and then encoded with base64 encoding.
-
+    
     mimetype: application/x-microsoft.net.object.soap.base64
-    value   : The object must be serialized with
+    value   : The object must be serialized with 
             : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
             : and then encoded with base64 encoding.
 
     mimetype: application/x-microsoft.net.object.bytearray.base64
-    value   : The object must be serialized into a byte array
+    value   : The object must be serialized into a byte array 
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
@@ -133,5 +133,419 @@
   </data>
   <data name="AppBarMenuItemText" xml:space="preserve">
     <value>Menu Item</value>
+  </data>
+  <data name="DashboardPreludeText" xml:space="preserve">
+    <value>prelude</value>
+  </data>
+  <data name="DashboardSummersaltText" xml:space="preserve">
+    <value>profile</value>
+  </data>
+  <data name="DashboardVioletText" xml:space="preserve">
+    <value>photos</value>
+  </data>
+  <data name="CommentCannotBeNullText" xml:space="preserve">
+    <value>Comment cannot be empty</value>
+  </data>
+  <data name="CommentComposerTitleText" xml:space="preserve">
+    <value>Comment</value>
+  </data>
+  <data name="CommentPostErrorText" xml:space="preserve">
+    <value>An error occured while adding comment</value>
+  </data>
+  <data name="CommentPostingText" xml:space="preserve">
+    <value>Posting comment</value>
+  </data>
+  <data name="ContactsLoadingErrorText" xml:space="preserve">
+    <value>Cannot load contact list</value>
+  </data>
+  <data name="ContactsLoadingText" xml:space="preserve">
+    <value>retrieving contacts</value>
+  </data>
+  <data name="ContactsPageTitleText" xml:space="preserve">
+    <value>Contacts</value>
+  </data>
+  <data name="DetailPageAddedFavText" xml:space="preserve">
+    <value>Photo has been added as fvourite</value>
+  </data>
+  <data name="DetailPageCommentsText" xml:space="preserve">
+    <value>Comments</value>
+  </data>
+  <data name="DetailPageEXIFNotAvailableText" xml:space="preserve">
+    <value>EXIF data is not available</value>
+  </data>
+  <data name="DetailPageEXIFTitleText" xml:space="preserve">
+    <value>EXIF Info</value>
+  </data>
+  <data name="DetailPageLoadCommentsErrorText" xml:space="preserve">
+    <value>Cannot load comments</value>
+  </data>
+  <data name="DetailPageLoadEXIFErrorText" xml:space="preserve">
+    <value>Cannot retrieve EXIF Info</value>
+  </data>
+  <data name="DetailPageLoadingCommentsText" xml:space="preserve">
+    <value>Loading comments</value>
+  </data>
+  <data name="DetailPageLoadingEXIFText" xml:space="preserve">
+    <value>Loading EXIF Info</value>
+  </data>
+  <data name="DetailPageLoadingPhotoText" xml:space="preserve">
+    <value>Loading photo ...</value>
+  </data>
+  <data name="DetailPageMarkingAsFavText" xml:space="preserve">
+    <value>Marking photo as favourite</value>
+  </data>
+  <data name="DetailPageNoCommentsText" xml:space="preserve">
+    <value>This photo does not have any comments</value>
+  </data>
+  <data name="DetailPageNoTagsText" xml:space="preserve">
+    <value>This photo does not have any tags</value>
+  </data>
+  <data name="DetailPageRemovedFavText" xml:space="preserve">
+    <value>Photo has been removed from favourite list</value>
+  </data>
+  <data name="DetailPageRemovingFavText" xml:space="preserve">
+    <value>Removing photo from favourite</value>
+  </data>
+  <data name="DetailPageRetrievePhotoInfoErrorText" xml:space="preserve">
+    <value>Cannot get photo info</value>
+  </data>
+  <data name="DetailPageRetrievingPhotoInfoText" xml:space="preserve">
+    <value>Retrieving photo info</value>
+  </data>
+  <data name="DetailPageTagsTitleText" xml:space="preserve">
+    <value>Tags</value>
+  </data>
+  <data name="DetailPageViewAllCommentsText" xml:space="preserve">
+    <value>view all ...</value>
+  </data>
+  <data name="DiscoveryPageLoadingErrorText" xml:space="preserve">
+    <value>Cannot load discovery stream</value>
+  </data>
+  <data name="DiscoveryPageTitleText" xml:space="preserve">
+    <value>Discovery</value>
+  </data>
+  <data name="DiscussionPostingErrorText" xml:space="preserve">
+    <value>An error occured while replying message</value>
+  </data>
+  <data name="DiscussionPostingText" xml:space="preserve">
+    <value>Posting to discussion board</value>
+  </data>
+  <data name="DiscussionRetrievingRepliesText" xml:space="preserve">
+    <value>retrieving replies</value>
+  </data>
+  <data name="FavPageLoadingErrorText" xml:space="preserve">
+    <value>Cannot load favourite photos</value>
+  </data>
+  <data name="FavPageTitleText" xml:space="preserve">
+    <value>Favourites</value>
+  </data>
+  <data name="GenericAgreeText" xml:space="preserve">
+    <value>I Agree</value>
+  </data>
+  <data name="GenericCancelText" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="GenericConfirmText" xml:space="preserve">
+    <value>Confirm</value>
+  </data>
+  <data name="GenericDoneText" xml:space="preserve">
+    <value>Done</value>
+  </data>
+  <data name="GenericErrorTitleText" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="GenericLoadingStreamText" xml:space="preserve">
+    <value>Loading stream ...</value>
+  </data>
+  <data name="GenericNoContentFound" xml:space="preserve">
+    <value>No content found</value>
+  </data>
+  <data name="GenericPhotoLoadingErrorText" xml:space="preserve">
+    <value>Cannot load photos</value>
+  </data>
+  <data name="GenericSendingRequestText" xml:space="preserve">
+    <value>Sending request</value>
+  </data>
+  <data name="GenericUntitledText" xml:space="preserve">
+    <value>Untitled</value>
+  </data>
+  <data name="GenericWaitingText" xml:space="preserve">
+    <value>Waiting ...</value>
+  </data>
+  <data name="GroupAddToGroupDoneText" xml:space="preserve">
+    <value>Done Adding Photos</value>
+  </data>
+  <data name="GroupAddToGroupTitleText" xml:space="preserve">
+    <value>Add To Group</value>
+  </data>
+  <data name="GroupAddTopicErrorText" xml:space="preserve">
+    <value>An error occured while adding topic</value>
+  </data>
+  <data name="GroupBrowseText" xml:space="preserve">
+    <value>Browse</value>
+  </data>
+  <data name="GroupDiscussionHeaderText" xml:space="preserve">
+    <value>discussions</value>
+  </data>
+  <data name="GroupDiscussionTitleText" xml:space="preserve">
+    <value>Discussion</value>
+  </data>
+  <data name="GroupInvitationRequestText" xml:space="preserve">
+    <value>Invitation Request</value>
+  </data>
+  <data name="GroupJoiningText" xml:space="preserve">
+    <value>Joining Group</value>
+  </data>
+  <data name="GroupJoinText" xml:space="preserve">
+    <value>Join Group</value>
+  </data>
+  <data name="GroupLoadingPhotoCollectionText" xml:space="preserve">
+    <value>Loading photo collection</value>
+  </data>
+  <data name="GroupLoadingPhotosText" xml:space="preserve">
+    <value>loading photos</value>
+  </data>
+  <data name="GroupLoadingTopicsText" xml:space="preserve">
+    <value>loading topics</value>
+  </data>
+  <data name="GroupMembershipText" xml:space="preserve">
+    <value>Group Membership Request</value>
+  </data>
+  <data name="GroupNoActiveTopicsText" xml:space="preserve">
+    <value>No active topics</value>
+  </data>
+  <data name="GroupPhotoHeaderText" xml:space="preserve">
+    <value>photos</value>
+  </data>
+  <data name="GroupRemovingPhotoText" xml:space="preserve">
+    <value>Removing photo</value>
+  </data>
+  <data name="GroupRequestSentText" xml:space="preserve">
+    <value>Your request has been sent to group admin</value>
+  </data>
+  <data name="GroupRetrievingInfoText" xml:space="preserve">
+    <value>Retrieving group info</value>
+  </data>
+  <data name="GroupRulesText" xml:space="preserve">
+    <value>Group Rules</value>
+  </data>
+  <data name="GroupSendingRequestText" xml:space="preserve">
+    <value>Sending request</value>
+  </data>
+  <data name="GroupSendRequestText" xml:space="preserve">
+    <value>Send Request</value>
+  </data>
+  <data name="GroupSubjectContentCannotBeEmptyText" xml:space="preserve">
+    <value>Subject and content cannot be empty</value>
+  </data>
+  <data name="LoginAboutAppTitleText" xml:space="preserve">
+    <value>About Indulged</value>
+  </data>
+  <data name="LoginAboutText" xml:space="preserve">
+    <value>ABOUT</value>
+  </data>
+  <data name="LoginAuthErrorText" xml:space="preserve">
+    <value>Cannot authenticate with Flickr at this time</value>
+  </data>
+  <data name="LoginBackText" xml:space="preserve">
+    <value>Sign In</value>
+  </data>
+  <data name="LoginLoadingText" xml:space="preserve">
+    <value>Loading ...</value>
+  </data>
+  <data name="LoginSignInText" xml:space="preserve">
+    <value>SIGN IN</value>
+  </data>
+  <data name="MainPageAppBarContactsText" xml:space="preserve">
+    <value>contacts</value>
+  </data>
+  <data name="MainPageAppBarFeedbackText" xml:space="preserve">
+    <value>give feedback</value>
+  </data>
+  <data name="MainPageAppBarLogoutText" xml:space="preserve">
+    <value>sign out</value>
+  </data>
+  <data name="MainPageAppBarMyProfileText" xml:space="preserve">
+    <value>my profile</value>
+  </data>
+  <data name="MainPageAppBarRefreshText" xml:space="preserve">
+    <value>refresh</value>
+  </data>
+  <data name="MainPageAppBarSearchText" xml:space="preserve">
+    <value>search</value>
+  </data>
+  <data name="MainPageAppBarSettingsText" xml:space="preserve">
+    <value>settings</value>
+  </data>
+  <data name="MainPageAppBarSubscriptionText" xml:space="preserve">
+    <value>subscription settings</value>
+  </data>
+  <data name="MainPageAppBarUploadPhotoText" xml:space="preserve">
+    <value>upload photo</value>
+  </data>
+  <data name="MainPageLogoutButtonText" xml:space="preserve">
+    <value>Sign Out</value>
+  </data>
+  <data name="MainPageLogoutContentText" xml:space="preserve">
+    <value>You will be taken back to login screen and your privacy will be cleared out on this device</value>
+  </data>
+  <data name="MainPageLogoutTitleText" xml:space="preserve">
+    <value>Sign Out</value>
+  </data>
+  <data name="MainPageSubscriptionTitleText" xml:space="preserve">
+    <value>Subscription</value>
+  </data>
+  <data name="NoContactsText" xml:space="preserve">
+    <value>You don't have any contacts</value>
+  </data>
+  <data name="PhotoCollectionAddingPhotoText" xml:space="preserve">
+    <value>Adding photo</value>
+  </data>
+  <data name="PhotoCollectionAddToSetText" xml:space="preserve">
+    <value>Add To Photo Set</value>
+  </data>
+  <data name="PhotoCollectionLoadingText" xml:space="preserve">
+    <value>Loading photo collection</value>
+  </data>
+  <data name="PhotoCollectionPhotoAddedText" xml:space="preserve">
+    <value>Photo has been added to set</value>
+  </data>
+  <data name="PhotoCollectionPhotoRemovedText" xml:space="preserve">
+    <value>Photo has been removed from set</value>
+  </data>
+  <data name="PhotoCollectionRemovingPhotoText" xml:space="preserve">
+    <value>Removing photo</value>
+  </data>
+  <data name="PreludeCommunitySectionText" xml:space="preserve">
+    <value>community</value>
+  </data>
+  <data name="PreludeContactsItemText" xml:space="preserve">
+    <value>Contacts</value>
+  </data>
+  <data name="PreludeDiscoveryItemText" xml:space="preserve">
+    <value>Discovery</value>
+  </data>
+  <data name="PreludeFavItemText" xml:space="preserve">
+    <value>Favourites</value>
+  </data>
+  <data name="PreludeFeaturedSectionText" xml:space="preserve">
+    <value>featured</value>
+  </data>
+  <data name="PreludeMyPhotoStreamItemText" xml:space="preserve">
+    <value>My Photo Stream</value>
+  </data>
+  <data name="PreludeNoGroupFoundText" xml:space="preserve">
+    <value>No groups found</value>
+  </data>
+  <data name="PreludeNoPhotoSetFoundText" xml:space="preserve">
+    <value>No photo sets found</value>
+  </data>
+  <data name="PreludePhotoSetSectionText" xml:space="preserve">
+    <value>photo sets</value>
+  </data>
+  <data name="PreludeRetrievingGroupsText" xml:space="preserve">
+    <value>Retrieving group list ...</value>
+  </data>
+  <data name="PreludeRetrievingPhotoSetsText" xml:space="preserve">
+    <value>Retrieving photo sets ...</value>
+  </data>
+  <data name="PreludeRetryText" xml:space="preserve">
+    <value>Tap to retry</value>
+  </data>
+  <data name="PreludeSearchItemText" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="PreludeSummersaltItemText" xml:space="preserve">
+    <value>Profile</value>
+  </data>
+  <data name="PreludeUploadPhotoItemText" xml:space="preserve">
+    <value>Upload Photo</value>
+  </data>
+  <data name="PreludeVioletItemText" xml:space="preserve">
+    <value>Photo Stream</value>
+  </data>
+  <data name="ProCamInitText" xml:space="preserve">
+    <value>Initializing Camera ...</value>
+  </data>
+  <data name="ProfilePageDescText" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="ProfilePageLoadingText" xml:space="preserve">
+    <value>Loading profile ...</value>
+  </data>
+  <data name="ProfilePageLocationText" xml:space="preserve">
+    <value>Location</value>
+  </data>
+  <data name="ProfilePageNoPhotoText" xml:space="preserve">
+    <value>No photo yet</value>
+  </data>
+  <data name="ProfilePagePhotoCountText" xml:space="preserve">
+    <value>Photo uploaded</value>
+  </data>
+  <data name="ProfilePagePhotoHeaderText" xml:space="preserve">
+    <value>photos</value>
+  </data>
+  <data name="ProfilePageProfileHeaderText" xml:space="preserve">
+    <value>profile</value>
+  </data>
+  <data name="ProfilePageRealNameText" xml:space="preserve">
+    <value>Real name</value>
+  </data>
+  <data name="ProfilePageUrlText" xml:space="preserve">
+    <value>Profile link</value>
+  </data>
+  <data name="ReplyCannotBeEmptyText" xml:space="preserve">
+    <value>Reply cannot be empty</value>
+  </data>
+  <data name="SubscriptionDiscoveryText" xml:space="preserve">
+    <value>Discovery Stream</value>
+  </data>
+  <data name="SubscriptionFavText" xml:space="preserve">
+    <value>Favourite Stream</value>
+  </data>
+  <data name="SubscriptionMyPhotoStreamText" xml:space="preserve">
+    <value>My Photo Stream</value>
+  </data>
+  <data name="SummersaltAddedFavText" xml:space="preserve">
+    <value>added this photo as favourite</value>
+  </data>
+  <data name="SummersaltAndText" xml:space="preserve">
+    <value> and </value>
+  </data>
+  <data name="SummersaltCommentedOnText" xml:space="preserve">
+    <value> commented on </value>
+  </data>
+  <data name="SummersaltMultiFavText" xml:space="preserve">
+    <value>other people added this photo as favourite</value>
+  </data>
+  <data name="SummersaltNoInfoFoundText" xml:space="preserve">
+    <value>No extra info available</value>
+  </data>
+  <data name="SummersaltRecentActivityText" xml:space="preserve">
+    <value>Recent Activities</value>
+  </data>
+  <data name="SummersaltRetrievingUserInfoText" xml:space="preserve">
+    <value>Retrieving user info ...</value>
+  </data>
+  <data name="SummersaltShowAllContactsText" xml:space="preserve">
+    <value>Show All Contacts</value>
+  </data>
+  <data name="SummersaltSingleFavText" xml:space="preserve">
+    <value>and 1 other person added this photo as favourite</value>
+  </data>
+  <data name="SummersaltUserInfoMemberSinceText" xml:space="preserve">
+    <value>Member since </value>
+  </data>
+  <data name="SummersaltUserInfoPhotoUploadedText" xml:space="preserve">
+    <value>Photo uploaded: </value>
+  </data>
+  <data name="ThrottleReachedErrorText" xml:space="preserve">
+    <value>You have reached limitation</value>
+  </data>
+  <data name="TopicComposerBodyText" xml:space="preserve">
+    <value>Message Body</value>
+  </data>
+  <data name="TopicComposerSubjectText" xml:space="preserve">
+    <value>Subject</value>
   </data>
 </root>

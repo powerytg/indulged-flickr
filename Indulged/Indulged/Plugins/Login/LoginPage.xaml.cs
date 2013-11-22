@@ -15,6 +15,7 @@ using Indulged.API.Avarice.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
+using Indulged.Resources;
 
 
 namespace Indulged.Plugins.Login
@@ -181,7 +182,7 @@ namespace Indulged.Plugins.Login
                 if (progressView != null)
                     progressView.Close();
 
-                ModalPopup.Show("Cannot authenticate with Flickr at this time", "Error", new List<string> { "Confirm" });
+                ModalPopup.Show(AppResources.LoginAuthErrorText, AppResources.GenericErrorTitleText, new List<string> { AppResources.GenericConfirmText });
             });
         }
 
@@ -197,8 +198,8 @@ namespace Indulged.Plugins.Login
 
         private void AboutButton_Click(object sender, RoutedEventArgs e)
         {
-            string aboutText = "Indulged for Windows Phone \nVersion 1.0\n\nFrom photographer, for photographer!\n\n2013 Tiangong You, all rights reserved";
-            ModalPopup.Show(aboutText, "About Indulged", new List<string> { "Done" });
+            string aboutText = "Indulged for Windows Phone\n\nVersion 1.1\n\nFrom photographer, for photographer!\n\n2013 - 2014 Tiangong You, all rights reserved";
+            ModalPopup.Show(aboutText, AppResources.LoginAboutAppTitleText, new List<string> { AppResources.GenericDoneText });
         }
 
         private void Browser_LoadCompleted(object sender, NavigationEventArgs e)

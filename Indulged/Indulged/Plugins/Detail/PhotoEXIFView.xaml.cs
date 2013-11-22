@@ -13,6 +13,7 @@ using Indulged.API.Cinderella.Events;
 using Indulged.API.Cinderella.Models;
 using Indulged.API.Anaconda;
 using Indulged.API.Anaconda.Events;
+using Indulged.Resources;
 
 namespace Indulged.Plugins.Detail
 {
@@ -89,7 +90,7 @@ namespace Indulged.Plugins.Detail
 
                 LoadingView.Visibility = Visibility.Collapsed;
                 DescriptionLabel.Visibility = Visibility.Visible;
-                DescriptionLabel.Text = "Cannot retrieve EXIF Info";
+                DescriptionLabel.Text = AppResources.DetailPageLoadEXIFErrorText;
             });
         }
 
@@ -97,7 +98,7 @@ namespace Indulged.Plugins.Detail
         {
             if (PhotoSource.EXIF.Count == 0)
             {
-                return "EXIF data is not available";
+                return AppResources.DetailPageEXIFNotAvailableText;
             }
 
             string result = "";

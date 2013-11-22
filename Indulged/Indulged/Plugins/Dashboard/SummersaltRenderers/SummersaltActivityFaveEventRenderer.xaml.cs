@@ -15,6 +15,7 @@ using Indulged.API.Cinderella.Events;
 using System.Windows.Media.Imaging;
 using Indulged.API.Cinderella.Models;
 using System.Windows.Documents;
+using Indulged.Resources;
 
 namespace Indulged.Plugins.Dashboard.SummersaltRenderers
 {
@@ -42,26 +43,26 @@ namespace Indulged.Plugins.Dashboard.SummersaltRenderers
         protected virtual void OnEventChanged()
         {
             string userString = Event.FavUsers[0].Name;
-            string endString = " added this photo as favourite";
+            string endString = AppResources.SummersaltAddedFavText;
             if (Event.FavUsers.Count == 1)
             {
                 userString += endString;
             }
             else if (Event.FavUsers.Count == 2)
             {
-                userString += " and " + Event.FavUsers[1].Name + endString;
+                userString += AppResources.SummersaltAndText + Event.FavUsers[1].Name + endString;
             }
             else if (Event.FavUsers.Count == 3)
             {
-                userString += " ," + Event.FavUsers[1].Name + " and " + Event.FavUsers[2].Name + endString;
+                userString += " ," + Event.FavUsers[1].Name + AppResources.SummersaltAndText + Event.FavUsers[2].Name + endString;
             }
             else
             {
                 int extCount = Event.FavUsers.Count - 3;
                 if (extCount == 1)
-                    endString = " and 1 other person added this photo as favourite";
+                    endString = AppResources.SummersaltSingleFavText;
                 else
-                    endString = " and " + extCount.ToString() + " other people added this photo as favourite";
+                    endString = AppResources.SummersaltAndText + extCount.ToString() + AppResources.SummersaltMultiFavText;
 
                 userString += " ," + Event.FavUsers[1].Name + ", " + Event.FavUsers[2].Name + endString;
             }

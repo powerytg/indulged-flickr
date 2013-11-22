@@ -14,6 +14,7 @@ using Indulged.API.Cinderella.Events;
 using Indulged.Plugins.Dashboard;
 using Indulged.API.Anaconda;
 using Indulged.API.Anaconda.Events;
+using Indulged.Resources;
 
 namespace Indulged.Plugins.Group
 {
@@ -47,7 +48,7 @@ namespace Indulged.Plugins.Group
 
             if (GroupSource.Topics.Count == 0)
             {
-                StatusLabel.Text = "No active topics";
+                StatusLabel.Text = AppResources.GroupNoActiveTopicsText;
                 StatusLabel.Visibility = Visibility.Visible;
                 TopicListView.Visibility = Visibility.Collapsed;
             }
@@ -128,7 +129,7 @@ namespace Indulged.Plugins.Group
 
                 if (e.NewTopics.Count == 0 && TopicCollection.Count == 0)
                 {
-                    StatusLabel.Text = "No active topics";
+                    StatusLabel.Text = AppResources.GroupNoActiveTopicsText;
                     StatusLabel.Visibility = Visibility.Visible;
                     TopicListView.Visibility = Visibility.Collapsed;
                     return;
@@ -173,7 +174,7 @@ namespace Indulged.Plugins.Group
             bool canLoad = (GroupSource.Topics.Count < GroupSource.TopicCount);
             if (TopicCollection.Count - index <= 2 && canLoad)
             {
-                SystemTray.ProgressIndicator.Text = "loading topics";
+                SystemTray.ProgressIndicator.Text = AppResources.GroupLoadingTopicsText;
                 SystemTray.ProgressIndicator.IsVisible = true;
 
                 int page = GroupSource.Topics.Count / Anaconda.DefaultItemsPerPage + 1;

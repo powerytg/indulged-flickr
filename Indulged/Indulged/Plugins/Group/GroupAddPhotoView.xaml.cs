@@ -14,6 +14,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
+using Indulged.Resources;
 
 namespace Indulged.Plugins.Group
 {
@@ -59,7 +60,7 @@ namespace Indulged.Plugins.Group
             PhotoPickerRenderer.SelectionChanged += OnPhotoPickerToggled;
 
             // Get group info
-            StatusLabel.Text = "Retrieving group info";
+            StatusLabel.Text = AppResources.GroupRetrievingInfoText;
             StatusProgressBar.Visibility = Visibility.Visible;
             Anaconda.AnacondaCore.GetGroupInfoAsync(groupSource.ResourceId);
         }
@@ -98,14 +99,14 @@ namespace Indulged.Plugins.Group
                 if (e.GroupId != Group.ResourceId)
                     return;
 
-                StatusLabel.Text = "Loading photo collection";
+                StatusLabel.Text = AppResources.GroupLoadingPhotoCollectionText;
 
                 if (Group.ThrottleMode != "none")
                 {
                     if (Group.ThrottleRemainingCount == 0)
                     {
                         CanAddPhotosToGroup = false;
-                        StatusLabel.Text = "You have reached limitation";
+                        StatusLabel.Text = AppResources.ThrottleReachedErrorText;
                         StatusProgressBar.Visibility = Visibility.Collapsed;
                         return;
                     }
@@ -131,7 +132,7 @@ namespace Indulged.Plugins.Group
                 }
                 else
                 {
-                    StatusLabel.Text = "You have reached limitation";
+                    StatusLabel.Text = AppResources.ThrottleReachedErrorText;
                     StatusProgressBar.Visibility = Visibility.Collapsed;
                 }
             }
@@ -260,7 +261,7 @@ namespace Indulged.Plugins.Group
             PhotoListView.IsEnabled = false;
 
             ThrottleProgressBar.Visibility = Visibility.Visible;
-            ThrottleLabel.Text = "Removing photo";
+            ThrottleLabel.Text = AppResources.GroupRemovingPhotoText;
 
             Storyboard animation = new Storyboard();
             Duration duration = new Duration(TimeSpan.FromSeconds(0.3));

@@ -14,6 +14,7 @@ using System.Linq;
 using Indulged.PolKit;
 using Microsoft.Phone.Tasks;
 using Indulged.API.Avarice.Controls;
+using Indulged.Resources;
 
 namespace Indulged.Plugins.ProCamera
 {
@@ -61,7 +62,7 @@ namespace Indulged.Plugins.ProCamera
             if (PolicyKit.ShouldUseProCamera)
             {
                 LayoutRoot.Visibility = Visibility.Visible;
-                LoadingView.Text = "Initializing Camera ...";
+                LoadingView.Text = AppResources.ProCamInitText;
                 HideAllUIChrome();
 
                 if (PhotoCaptureDevice.AvailableSensorLocations.Contains(CameraSensorLocation.Back))

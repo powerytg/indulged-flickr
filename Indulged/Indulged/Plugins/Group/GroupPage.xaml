@@ -67,12 +67,12 @@
             </phone:Panorama.Title>
 
             <!-- Photo results -->
-            <phone:PanoramaItem Header="photos" HeaderTemplate="{StaticResource GroupPageHeaderTemplate}">
+            <phone:PanoramaItem Header="{Binding Path=LocalizedResources.GroupPhotoHeaderText, Source={StaticResource LocalizedStrings}}" HeaderTemplate="{StaticResource GroupPageHeaderTemplate}">
                 <local:GroupViewPhotoPage x:Name="PhotoPageView"/>
             </phone:PanoramaItem>
 
             <!--Panorama item two-->
-            <phone:PanoramaItem Header="discussions" HeaderTemplate="{StaticResource GroupPageHeaderTemplate}">
+            <phone:PanoramaItem Header="{Binding Path=LocalizedResources.GroupDiscussionHeaderText, Source={StaticResource LocalizedStrings}}" HeaderTemplate="{StaticResource GroupPageHeaderTemplate}">
                 <local:GroupViewTopicsPage x:Name="TopicPageView"/>
             </phone:PanoramaItem>
         </phone:Panorama>

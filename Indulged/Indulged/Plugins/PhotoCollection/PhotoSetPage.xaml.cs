@@ -18,6 +18,7 @@ using Indulged.PolKit;
 using Indulged.API.Avarice.Controls;
 using System.Windows.Media.Animation;
 using System.Windows.Media;
+using Indulged.Resources;
 
 namespace Indulged.Plugins.PhotoCollection
 {
@@ -108,7 +109,7 @@ namespace Indulged.Plugins.PhotoCollection
 
                 if (PhotoSetSource.Photos.Count == 0)
                 {
-                    StatusLabel.Text = "Cannot load photos";
+                    StatusLabel.Text = AppResources.GenericPhotoLoadingErrorText;
                     StatusLabel.Visibility = Visibility.Visible;
                     PhotoStreamListView.Visibility = Visibility.Collapsed;
                 }
@@ -126,7 +127,7 @@ namespace Indulged.Plugins.PhotoCollection
 
                 if (PhotoSetSource.Photos.Count == 0)
                 {
-                    StatusLabel.Text = "This set has no photos";
+                    StatusLabel.Text = AppResources.GenericNoContentFound;
                     StatusLabel.Visibility = Visibility.Visible;
                     PhotoStreamListView.Visibility = Visibility.Collapsed;
                 }
@@ -166,7 +167,7 @@ namespace Indulged.Plugins.PhotoCollection
         private void RefreshPhotoListButton_Click(object sender, EventArgs e)
         {
             SystemTray.ProgressIndicator.IsVisible = true;
-            SystemTray.ProgressIndicator.Text = "loading photos";
+            SystemTray.ProgressIndicator.Text = AppResources.GroupLoadingPhotosText;
 
             Anaconda.AnacondaCore.GetPhotoSetPhotosAsync(PhotoSetSource.ResourceId, new Dictionary<string, string> { { "page", "1" }, { "per_page", Anaconda.DefaultItemsPerPage.ToString() } });
         }
@@ -175,7 +176,7 @@ namespace Indulged.Plugins.PhotoCollection
         private void AddPhotoButton_Click(object sender, EventArgs e)
         {
             addPhotoView = new PhotoSetAddPhotoView(PhotoSetSource);
-            var addPhotoDialog = ModalPopup.Show(addPhotoView, "Add To Photo Set", new List<string> { "Done Adding Photos" });
+            var addPhotoDialog = ModalPopup.Show(addPhotoView, AppResources.PhotoCollectionAddToSetText, new List<string> { "Done Adding Photos" });
         }
 
         private void OnPhotoAddedToSet(object sender, AddPhotoToSetCompleteEventArgs e)
@@ -222,7 +223,7 @@ namespace Indulged.Plugins.PhotoCollection
 
                 if (PhotoSetSource.Photos.Count == 0)
                 {
-                    StatusLabel.Text = "This set has no photos";
+                    StatusLabel.Text = AppResources.GenericNoContentFound;
                     StatusLabel.Visibility = Visibility.Visible;
                     PhotoStreamListView.Visibility = Visibility.Collapsed;
 
@@ -280,7 +281,7 @@ namespace Indulged.Plugins.PhotoCollection
                 SystemTray.ProgressIndicator = new ProgressIndicator();
                 SystemTray.ProgressIndicator.IsIndeterminate = true;
                 SystemTray.ProgressIndicator.IsVisible = true;
-                SystemTray.ProgressIndicator.Text = "loading photos";
+                SystemTray.ProgressIndicator.Text = AppResources.GroupLoadingPhotosText;
 
                 // Get first page of photo stream in the set
                 Anaconda.AnacondaCore.GetPhotoSetPhotosAsync(PhotoSetSource.ResourceId, new Dictionary<string, string> { { "page", "1" }, { "per_page", Anaconda.DefaultItemsPerPage.ToString() } });

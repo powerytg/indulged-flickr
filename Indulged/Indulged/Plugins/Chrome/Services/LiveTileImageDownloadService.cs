@@ -13,7 +13,7 @@ namespace Indulged.Plugins.Chrome.Services
 {
     public class LiveTileUpdateService
     {
-        public static int MAX_TILE_IMAGE_COUNT = 5;
+        public static int MAX_TILE_IMAGE_COUNT = 7;
 
         private static volatile LiveTileUpdateService instance;
         private static object syncRoot = new Object();

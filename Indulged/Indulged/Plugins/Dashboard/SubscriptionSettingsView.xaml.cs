@@ -16,15 +16,5 @@ namespace Indulged.Plugins.Dashboard
         {
             InitializeComponent();
         }
-
-        private void MyStreamButton_Checked(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void DiscoveryStreamButton_Checked(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
 }

@@ -16,6 +16,7 @@ using Indulged.API.Cinderella.Events;
 using Indulged.API.Avarice.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
+using Indulged.Resources;
 
 namespace Indulged.Plugins.Favourite
 {
@@ -87,7 +88,7 @@ namespace Indulged.Plugins.Favourite
                 if (_photos.Count == 0)
                 {
                     StatusLabel.Visibility = Visibility.Visible;
-                    StatusLabel.Text = "Cannot load discovery stream";
+                    StatusLabel.Text = AppResources.DiscoveryPageLoadingErrorText;
                     ResultListView.Visibility = Visibility.Collapsed;
 
                     if (SystemTray.ProgressIndicator != null)
@@ -107,7 +108,7 @@ namespace Indulged.Plugins.Favourite
                 if (Cinderella.CinderellaCore.DiscoveryList.Count == 0)
                 {
                     StatusLabel.Visibility = Visibility.Visible;
-                    StatusLabel.Text = "No content found";
+                    StatusLabel.Text = AppResources.GenericNoContentFound;
                     ResultListView.Visibility = Visibility.Collapsed;
                 }
                 else

@@ -3,6 +3,7 @@ using Indulged.API.Anaconda.Events;
 using Indulged.API.Avarice.Controls;
 using Indulged.API.Cinderella.Events;
 using Indulged.API.Cinderella.Models;
+using Indulged.Resources;
 using Microsoft.Phone.Shell;
 using System;
 using System.Collections.Generic;
@@ -27,7 +28,7 @@ namespace Indulged.Plugins.Group
         {
             if (composer.MessageTextBox.Text.Length == 0)
             {
-                composer.StatusTextView.Text = "Reply cannot be empty";
+                composer.StatusTextView.Text = AppResources.ReplyCannotBeEmptyText;
             }
             else
             {
@@ -38,7 +39,7 @@ namespace Indulged.Plugins.Group
                 composer.MessageTextBox.IsEnabled = false;
                 composer.ComposerView.Opacity = 0.4;
 
-                composer.StatusTextView.Text = "Posting to discussion board";
+                composer.StatusTextView.Text = AppResources.DiscussionPostingText;
                 composer.ProgressView.Visibility = Visibility.Visible;
 
                 addReplySessionId = Guid.NewGuid().ToString().Replace("-", null);
@@ -196,7 +197,7 @@ namespace Indulged.Plugins.Group
                 composer.MessageTextBox.IsEnabled = true;
                 composer.ComposerView.Opacity = 1;
 
-                composer.StatusTextView.Text = "An error occured while replying message.";
+                composer.StatusTextView.Text = AppResources.DiscussionPostingErrorText;
                 composer.ProgressView.Visibility = Visibility.Collapsed;
             });
 

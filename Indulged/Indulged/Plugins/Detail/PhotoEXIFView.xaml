@@ -15,13 +15,13 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <TextBlock Text="EXIF Info" Foreground="#4a6e7b" FontSize="48" FontWeight="Light" TextWrapping="Wrap"
+        <TextBlock Text="{Binding Path=LocalizedResources.DetailPageEXIFTitleText, Source={StaticResource LocalizedStrings}}" Foreground="#4a6e7b" FontSize="48" FontWeight="Light" TextWrapping="Wrap"
                    Margin="12, 0, 12, 12" 
                    Grid.Row="0" />
 
         <StackPanel x:Name="LoadingView" Orientation="Horizontal" Margin="12, 12, 12, 12"
                     Grid.Row="1" >
-            <TextBlock Text="Loading EXIF Info" Foreground="White"/>
+            <TextBlock Text="{Binding Path=LocalizedResources.DetailPageLoadingEXIFText, Source={StaticResource LocalizedStrings}}" Foreground="White"/>
             <ProgressBar IsIndeterminate="True" Width="200"/>
         </StackPanel>
 

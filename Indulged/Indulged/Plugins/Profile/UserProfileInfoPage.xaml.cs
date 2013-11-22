@@ -13,6 +13,7 @@ using Indulged.API.Cinderella;
 using Indulged.API.Cinderella.Events;
 using System.Windows.Media.Imaging;
 using Microsoft.Phone.Tasks;
+using Indulged.Resources;
 
 namespace Indulged.Plugins.Profile
 {
@@ -112,7 +113,7 @@ namespace Indulged.Plugins.Profile
             }
 
             if (UserSource.PhotoCount == 0)
-                PhotoCountLabel.Text = "No photo yet";
+                PhotoCountLabel.Text = AppResources.ProfilePageNoPhotoText;
             else
                 PhotoCountLabel.Text = UserSource.PhotoCount.ToString();
         }

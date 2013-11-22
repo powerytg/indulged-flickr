@@ -17,13 +17,13 @@
         </Grid.RenderTransform>
         
         <phone:Pivot x:Name="MainPivot" Style="{StaticResource NavigatorStyle}" SelectionChanged="OnSelectionChanged">
-            <phone:PivotItem x:Name="PreludePageItem" Header="prelude">
+            <phone:PivotItem x:Name="PreludePageItem" Header="{Binding Path=LocalizedResources.DashboardPreludeText, Source={StaticResource LocalizedStrings}}">
                 <dashboard:PreludePage x:Name="PreludeView" />
             </phone:PivotItem>
-            <phone:PivotItem x:Name="VioletPageItem" Header="photos">
+            <phone:PivotItem x:Name="VioletPageItem" Header="{Binding Path=LocalizedResources.DashboardVioletText, Source={StaticResource LocalizedStrings}}">
                 <dashboard:VioletPage x:Name="VioletView" />
             </phone:PivotItem>
-            <phone:PivotItem x:Name="SummersaltPageItem" Header="profile">
+            <phone:PivotItem x:Name="SummersaltPageItem" Header="{Binding Path=LocalizedResources.DashboardSummersaltText, Source={StaticResource LocalizedStrings}}">
                 <dashboard:SummersaltPage x:Name="SummersaltView" />
             </phone:PivotItem>
                              

@@ -9,6 +9,7 @@ using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using Indulged.API.Cinderella.Models;
 using Indulged.API.Avarice.Controls;
+using Indulged.Resources;
 
 namespace Indulged.Plugins.Group
 {
@@ -51,7 +52,7 @@ namespace Indulged.Plugins.Group
             InitializeComponent();
 
             joinButton = new API.Avarice.Controls.Button();
-            joinButton.Content = "I Agree";
+            joinButton.Content = AppResources.GenericAgreeText;
             joinButton.Click += (sender, e) => {
                 if (GroupSource.IsInvitationOnly)
                 {
@@ -59,7 +60,7 @@ namespace Indulged.Plugins.Group
                     requestView.Group = GroupSource;
                     requestView.PopupContainer = PopupContainer;
 
-                    PopupContainer.ReplaceContentWith("Invitation Request", requestView, requestView.Buttons);
+                    PopupContainer.ReplaceContentWith(AppResources.GroupInvitationRequestText, requestView, requestView.Buttons);
                 }
                 else
                 {
@@ -67,7 +68,7 @@ namespace Indulged.Plugins.Group
                     statusView.Group = GroupSource;
                     statusView.PopupContainer = PopupContainer;
 
-                    PopupContainer.ReplaceContentWith("Joinning Group", statusView, statusView.Buttons, () =>
+                    PopupContainer.ReplaceContentWith(AppResources.GroupJoiningText, statusView, statusView.Buttons, () =>
                     {
                         statusView.BeginJoinGroup();
                     });
@@ -76,7 +77,7 @@ namespace Indulged.Plugins.Group
             };
 
             cancelButton = new API.Avarice.Controls.Button();
-            cancelButton.Content = "Cancel";
+            cancelButton.Content = AppResources.GenericCancelText;
             cancelButton.Click += (sender, e) =>
             {
                 PopupContainer.Dismiss();

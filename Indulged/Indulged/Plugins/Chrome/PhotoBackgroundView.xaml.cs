@@ -98,6 +98,9 @@ namespace Indulged.Plugins.Chrome
 
         private void FadeOutAnimationCompleted(object sender, EventArgs e)
         {
+            if (PhotoSource == null)
+                return;
+
             // Download new background image
             Uri uri = new Uri(PhotoSource.GetImageUrl());
             BitmapImage imageLoader = new BitmapImage();

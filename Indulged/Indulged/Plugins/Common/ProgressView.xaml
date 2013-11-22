@@ -18,7 +18,7 @@
             <ProgressBar IsIndeterminate="True" Foreground="{StaticResource PhoneAccentBrush}"
                          />
 
-            <TextBlock HorizontalAlignment="Center" Text="Waiting ..." Margin="0, 20, 0, 0" />
+            <TextBlock HorizontalAlignment="Center" Text="{Binding Path=LocalizedResources.GenericWaitingText, Source={StaticResource LocalizedStrings}}" Margin="0, 20, 0, 0" />
 
 
         </StackPanel>

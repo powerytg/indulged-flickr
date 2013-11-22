@@ -15,6 +15,7 @@ using Indulged.Plugins.Dashboard;
 using Indulged.API.Anaconda;
 using Indulged.API.Anaconda.Events;
 using Indulged.Plugins.Common.PhotoGroupRenderers;
+using Indulged.Resources;
 
 namespace Indulged.Plugins.Profile
 {
@@ -88,7 +89,7 @@ namespace Indulged.Plugins.Profile
                 if(SystemTray.ProgressIndicator != null)
                     SystemTray.ProgressIndicator.IsVisible = false;
 
-                StatusLabel.Text = "Cannot load photo stream";
+                StatusLabel.Text = AppResources.GenericPhotoLoadingErrorText;
                 StatusLabel.Visibility = Visibility.Visible;
                 PhotoStreamListView.Visibility = Visibility.Collapsed;
             });
@@ -106,7 +107,7 @@ namespace Indulged.Plugins.Profile
 
                 if (e.NewPhotos.Count == 0 && PhotoCollection.Count == 0)
                 {
-                    StatusLabel.Text = "No photos available";
+                    StatusLabel.Text = AppResources.GenericNoContentFound;
                     StatusLabel.Visibility = Visibility.Visible;
                     PhotoStreamListView.Visibility = Visibility.Collapsed;
                     return;

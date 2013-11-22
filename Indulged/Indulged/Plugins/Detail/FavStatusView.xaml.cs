@@ -14,6 +14,7 @@ using Indulged.API.Anaconda.Events;
 using Indulged.API.Cinderella;
 using Indulged.API.Cinderella.Events;
 using Indulged.API.Avarice.Controls.SupportClasses;
+using Indulged.Resources;
 
 namespace Indulged.Plugins.Detail
 {
@@ -58,7 +59,7 @@ namespace Indulged.Plugins.Detail
             }
             else
             {
-                StatusLabel.Text = "Retrieving photo info";
+                StatusLabel.Text = AppResources.DetailPageRetrievingPhotoInfoText;
 
                 // Refresh photo info
                 Anaconda.AnacondaCore.GetPhotoInfoAsync(PhotoSource.ResourceId, PhotoSource.UserId, false);
@@ -72,7 +73,7 @@ namespace Indulged.Plugins.Detail
 
             Buttons = new List<API.Avarice.Controls.Button>();
             doneButton = new API.Avarice.Controls.Button();
-            doneButton.Content = "Done";
+            doneButton.Content = AppResources.GenericDoneText;
             doneButton.Click += (sender, e) =>
             {
                 PopupContainer.Dismiss();
@@ -114,7 +115,7 @@ namespace Indulged.Plugins.Detail
                     return;
 
                 ProgressView.Visibility = Visibility.Collapsed;
-                StatusLabel.Text = "Cannot get photo info";
+                StatusLabel.Text = AppResources.DetailPageRetrievePhotoInfoErrorText;
                 doneButton.IsEnabled = true;
             });
         }
@@ -140,7 +141,7 @@ namespace Indulged.Plugins.Detail
         {
             Dispatcher.BeginInvoke(() =>
             {
-                StatusLabel.Text = "Marking photo as favourite";
+                StatusLabel.Text = AppResources.DetailPageMarkingAsFavText;
                 Anaconda.AnacondaCore.AddPhotoToFavouriteAsync(PhotoSource.ResourceId);
             });
         }
@@ -149,7 +150,7 @@ namespace Indulged.Plugins.Detail
         {
             Dispatcher.BeginInvoke(() =>
             {
-                StatusLabel.Text = "Removing photo from favourite";
+                StatusLabel.Text = AppResources.DetailPageRemovingFavText;
                 Anaconda.AnacondaCore.RemovePhotoFromFavouriteAsync(PhotoSource.ResourceId);
             });
         }
@@ -188,7 +189,7 @@ namespace Indulged.Plugins.Detail
                     return;
 
                 ProgressView.Visibility = Visibility.Collapsed;
-                StatusLabel.Text = "Photo has been added as favourite";
+                StatusLabel.Text = AppResources.DetailPageAddedFavText;
                 doneButton.IsEnabled = true;
             });
         }
@@ -201,7 +202,7 @@ namespace Indulged.Plugins.Detail
                     return;
 
                 ProgressView.Visibility = Visibility.Collapsed;
-                StatusLabel.Text = "Photo has been removed from favourite list";
+                StatusLabel.Text = AppResources.DetailPageRemovedFavText;
                 doneButton.IsEnabled = true;
             });
         }

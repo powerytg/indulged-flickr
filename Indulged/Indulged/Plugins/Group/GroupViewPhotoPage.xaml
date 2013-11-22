@@ -13,7 +13,7 @@
     
     <Grid x:Name="LayoutRoot">
         <!--Status label-->
-        <TextBlock x:Name="StatusLabel" HorizontalAlignment="Center" VerticalAlignment="Center" Text="Loading stream..."
+        <TextBlock x:Name="StatusLabel" HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding Path=LocalizedResources.GenericLoadingStreamText, Source={StaticResource LocalizedStrings}}"
                        Foreground="#32afe0" FontSize="38" FontFamily="/Assets/Fonts/BenchNine-Regular.ttf#BenchNine"/>
 
         <phone:LongListSelector x:Name="PhotoStreamListView" Margin="0,0,-12,0" ItemsSource="{Binding Items}" ItemRealized="OnItemRealized">

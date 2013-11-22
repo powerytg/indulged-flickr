@@ -53,12 +53,12 @@
             </phone:Panorama.Title>
 
             <!-- Photo results -->
-            <phone:PanoramaItem Header="photos" HeaderTemplate="{StaticResource ProfilePageHeaderTemplate}">
+            <phone:PanoramaItem Header="{Binding Path=LocalizedResources.ProfilePagePhotoHeaderText, Source={StaticResource LocalizedStrings}}" HeaderTemplate="{StaticResource ProfilePageHeaderTemplate}">
                 <local:UserProfilePhotoPage x:Name="PhotoPageView"/>
             </phone:PanoramaItem>
 
             <!--Panorama item two-->
-            <phone:PanoramaItem Header="profile" HeaderTemplate="{StaticResource ProfilePageHeaderTemplate}">
+            <phone:PanoramaItem Header="{Binding Path=LocalizedResources.ProfilePageProfileHeaderText, Source={StaticResource LocalizedStrings}}" HeaderTemplate="{StaticResource ProfilePageHeaderTemplate}">
                 <local:UserProfileInfoPage x:Name="InfoPageView"/>
             </phone:PanoramaItem>
         </phone:Panorama>

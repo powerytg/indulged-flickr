@@ -45,7 +45,7 @@
         <StackPanel Grid.Row="0" Margin="12,17,0,28" Orientation="Horizontal">
             <Image Source="/Assets/Common/QuoteLeft.png"/>
 
-            <TextBlock x:Name="TitleLabel" Foreground="#f67056" Text="Discussion"
+            <TextBlock x:Name="TitleLabel" Foreground="#f67056" Text="{Binding Path=LocalizedResources.GroupDiscussionTitleText, Source={StaticResource LocalizedStrings}}"
                                FontSize="64" TextWrapping="Wrap" FontWeight="Bold"
                                Margin="12, 24, 0, 0"/>
 

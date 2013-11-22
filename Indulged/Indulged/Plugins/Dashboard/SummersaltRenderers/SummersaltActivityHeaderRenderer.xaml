@@ -14,7 +14,8 @@
                Width="118" />
 
         <TextBlock Foreground="#274551" FontSize="38" FontFamily="/Assets/Fonts/BenchNine-Regular.ttf#BenchNine"
-                   Text="Recent Activities" TextAlignment="Center" Margin="0, 0, 15, 0" />
+                   Text="{Binding Path=LocalizedResources.SummersaltRecentActivityText, Source={StaticResource LocalizedStrings}}" 
+                   TextAlignment="Center" Margin="0, 0, 15, 0" />
         
     </StackPanel>
 </UserControl>

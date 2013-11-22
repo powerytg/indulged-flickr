@@ -49,7 +49,7 @@
                 </Grid.RowDefinitions>
                 <StackPanel Orientation="Horizontal" Grid.Row="0">
                     <Image Source="/Assets/Group/SmallSelectionCircle.png" Margin="0, 0, 12, 0"/>
-                    <TextBlock Text="Subject" Foreground="#cccccc" VerticalAlignment="Center"  FontSize="24"/>
+                    <TextBlock Text="{Binding Path=LocalizedResources.TopicComposerSubjectText, Source={StaticResource LocalizedStrings}}" Foreground="#cccccc" VerticalAlignment="Center"  FontSize="24"/>
                 </StackPanel>
 
                 <avarice:AvariceTextBox x:Name="SubjectTextBox" Grid.Row="1"/>
@@ -63,7 +63,7 @@
 
                 <StackPanel Orientation="Horizontal" Grid.Row="0">
                     <Image Source="/Assets/Group/SmallSelectionCircle.png" Margin="0, 0, 12, 0"/>
-                    <TextBlock Text="Message Body" Foreground="#cccccc" VerticalAlignment="Center"  FontSize="24"/>
+                    <TextBlock Text="{Binding Path=LocalizedResources.TopicComposerBodyText, Source={StaticResource LocalizedStrings}}" Foreground="#cccccc" VerticalAlignment="Center"  FontSize="24"/>
                 </StackPanel>
 
                 <avarice:AvariceTextBox x:Name="MessageTextBox" Grid.Row="1" AcceptsReturn="True"/>

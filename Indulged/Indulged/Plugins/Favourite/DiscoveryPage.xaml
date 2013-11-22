@@ -36,7 +36,7 @@
         <!-- Title view -->
         <chrome:TitleView x:Name="TitleView" VerticalAlignment="Top" IsHitTestVisible="False" Titleless="True"/>
 
-        <TextBlock x:Name="TitleLabel" Foreground="#f67056" Text="Discovery"
+        <TextBlock x:Name="TitleLabel" Foreground="#f67056" Text="{Binding Path=LocalizedResources.DiscoveryPageTitleText, Source={StaticResource LocalizedStrings}}"
                                FontSize="96" TextWrapping="Wrap" FontWeight="Bold"
                                Margin="0, 24, 0, 0"/>
 
@@ -48,7 +48,7 @@
 
             <!--Status label-->
             <TextBlock x:Name="StatusLabel" HorizontalAlignment="Center" VerticalAlignment="Center" 
-                       Text="Loading stream..." Foreground="#32afe0"/>
+                       Text="{Binding Path=LocalizedResources.GenericLoadingStreamText, Source={StaticResource LocalizedStrings}}" Foreground="#32afe0"/>
 
             <phone:LongListSelector x:Name="ResultListView" ItemRealized="ResultListView_ItemRealized" Padding="0, 0, 0, 60">
                 <phone:LongListSelector.ItemTemplate>

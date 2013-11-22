@@ -39,13 +39,13 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <TextBlock Foreground="White" FontSize="18" FontWeight="Light" Text="Indulged 1.0, 2013 Tiangong You"
+            <TextBlock Foreground="White" FontSize="18" FontWeight="Light" Text="Indulged 1.1, 2013 - 2014 Tiangong You"
                        VerticalAlignment="Center" Grid.Column="0" />
-            
-            <Button x:Name="AboutButton" Content="ABOUT" FontSize="18" Grid.Column="2"
+
+            <Button x:Name="AboutButton" Content="{Binding Path=LocalizedResources.LoginAboutText, Source={StaticResource LocalizedStrings}}" FontSize="18" Grid.Column="2"
                     Style="{StaticResource BorderlessButtonStyle}" Margin="0, 0, 20, 0" Click="AboutButton_Click"/>
 
-            <Button x:Name="SignInBottomButton" Content="SIGN IN" FontSize="18" Grid.Column="3"
+            <Button x:Name="SignInBottomButton" Content="{Binding Path=LocalizedResources.LoginSignInText, Source={StaticResource LocalizedStrings}}" FontSize="18" Grid.Column="3"
                     Style="{StaticResource BorderlessButtonStyle}" Click="SignInButton_Click"/>
 
         </Grid>
@@ -67,7 +67,7 @@
                     <Button.Content>
                         <StackPanel Orientation="Horizontal">
                             <Image Source="/Assets/ProFX/FXBackButton2.png" Stretch="None" VerticalAlignment="Center" Margin="0, 0, 15, 0"/>
-                            <TextBlock FontSize="36" FontWeight="Light" Foreground="#32afe0" Text="Sign In"
+                            <TextBlock FontSize="36" FontWeight="Light" Foreground="#32afe0" Text="{Binding Path=LocalizedResources.LoginBackText, Source={StaticResource LocalizedStrings}}"
                                    VerticalAlignment="Center" />
                         </StackPanel>
 
@@ -84,7 +84,7 @@
                               LoadCompleted="Browser_LoadCompleted" 
                               Grid.Row="1" />
 
-            <TextBlock x:Name="LoadingText" Foreground="#32afe0" Text="Loading ..." Grid.Row="1"
+            <TextBlock x:Name="LoadingText" Foreground="#32afe0" Text="{Binding Path=LocalizedResources.LoginLoadingText, Source={StaticResource LocalizedStrings}}" Grid.Row="1"
                        HorizontalAlignment="Center" VerticalAlignment="Center" />
 
 

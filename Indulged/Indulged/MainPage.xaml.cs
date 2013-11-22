@@ -19,6 +19,8 @@ using Indulged.PolKit;
 using Indulged.Plugins.Dashboard;
 using Indulged.Plugins.Search;
 using Indulged.Plugins.Dashboard.Events;
+using Microsoft.Phone.Tasks;
+using System.Windows.Media;
 
 namespace Indulged
 {
@@ -34,6 +36,9 @@ namespace Indulged
 
             // Retrieve policy settings
             PolicyKit.RetrieveSettings();
+
+            // App bar
+            ApplicationBar = GetPreludeAppBar();
         }
 
         private bool hasExecutedOnce = false;
@@ -123,7 +128,7 @@ namespace Indulged
         private void OnSubscriptionSettingsClick(object sender, EventArgs e)
         {
             var settingsView = new SubscriptionSettingsView();            
-            settingsDialog = ModalPopup.Show(settingsView, "Subscription", new List<string> {"Confirm", "Cancel" });
+            settingsDialog = ModalPopup.Show(settingsView, AppResources.MainPageSubscriptionTitleText, new List<string> {AppResources.GenericConfirmText, AppResources.GenericCancelText });
             settingsDialog.DismissWithButtonClick += (s, args) =>
             {
                 int buttonIndex = (args as ModalPopupEventArgs).ButtonIndex;
@@ -166,6 +171,12 @@ namespace Indulged
             NavigationService.Navigate(new Uri("/Plugins/Login/SettingsPage.xaml", UriKind.Relative));
         }
 
+        private void OnFeedbackClick(object sender, EventArgs e)
+        {
+            MarketplaceReviewTask marketplaceReviewTask = new MarketplaceReviewTask();
+            marketplaceReviewTask.Show();
+        }
+
         private void OnSearchClick(object sender, EventArgs e)
         {
             NavigationService.Navigate(new Uri("/Plugins/Search/SearchPage.xaml", UriKind.Relative));
@@ -186,7 +197,7 @@ namespace Indulged
 
         private void OnLogoutClick(object sender, EventArgs e)
         {
-            logoutDialog = ModalPopup.Show("You will be taken back to login screen and your privacy will be cleared out on this device", "Sign Out", new List<string> { "Sign Out", "Cancel" });
+            logoutDialog = ModalPopup.Show(AppResources.MainPageLogoutContentText, AppResources.MainPageLogoutTitleText, new List<string> { AppResources.MainPageLogoutButtonText, AppResources.GenericCancelText });
             logoutDialog.DismissWithButtonClick += (s, args) => {
                 int buttonIndex = (args as ModalPopupEventArgs).ButtonIndex;
                 if (buttonIndex == 0)
@@ -207,12 +218,94 @@ namespace Indulged
         private void DashboardPageChanged(object sender, DashboardPageEventArgs e)
         {
             if (e.SelectedPage.PageName == "PreludePage")
-                ApplicationBar = Resources["PreludeAppBar"] as ApplicationBar;
+            {
+                ApplicationBar = GetPreludeAppBar();
+            }
             else if (e.SelectedPage.PageName == "VioletPage")
-                ApplicationBar = Resources["VioletAppBar"] as ApplicationBar;
+            {
+                ApplicationBar = GetVioletAppBar();
+            }
             else if (e.SelectedPage.PageName == "SummersaltPage")
-                ApplicationBar = Resources["SummersaltAppBar"] as ApplicationBar;
+                ApplicationBar = GetSummersaltAppBar();
+        }
 
+        private ApplicationBar GetPreludeAppBar()
+        {
+            ApplicationBar appBar = new ApplicationBar();
+            appBar.IsMenuEnabled = true;
+            appBar.Mode = ApplicationBarMode.Minimized;
+            appBar.BackgroundColor = Colors.Black;
+            appBar.ForegroundColor = Colors.White;
+            appBar.Opacity = 0.9;
+
+            ApplicationBarMenuItem appBarMenuItem = new ApplicationBarMenuItem(AppResources.MainPageAppBarRefreshText);
+            appBarMenuItem.Click += OnRefreshClick;
+            appBar.MenuItems.Add(appBarMenuItem);
+
+            appBarMenuItem = new ApplicationBarMenuItem(AppResources.MainPageAppBarUploadPhotoText);
+            appBarMenuItem.Click += OnTakePhotoClick;
+            appBar.MenuItems.Add(appBarMenuItem);
+
+            appBarMenuItem = new ApplicationBarMenuItem(AppResources.MainPageAppBarSearchText);
+            appBarMenuItem.Click += OnSearchClick;
+            appBar.MenuItems.Add(appBarMenuItem);
+
+            appBarMenuItem = new ApplicationBarMenuItem(AppResources.MainPageAppBarSettingsText);
+            appBarMenuItem.Click += OnSettingsClick;
+            appBar.MenuItems.Add(appBarMenuItem);
+
+            appBarMenuItem = new ApplicationBarMenuItem(AppResources.MainPageAppBarFeedbackText);
+            appBarMenuItem.Click += OnFeedbackClick;
+            appBar.MenuItems.Add(appBarMenuItem);
+
+            appBarMenuItem = new ApplicationBarMenuItem(AppResources.MainPageAppBarLogoutText);
+            appBarMenuItem.Click += OnLogoutClick;
+            appBar.MenuItems.Add(appBarMenuItem);
+
+            return appBar;
+        }
+
+        private ApplicationBar GetVioletAppBar()
+        {
+            ApplicationBar appBar = new ApplicationBar();
+            appBar.IsMenuEnabled = true;
+            appBar.Mode = ApplicationBarMode.Minimized;
+            appBar.BackgroundColor = Colors.Black;
+            appBar.ForegroundColor = Colors.White;
+            appBar.Opacity = 0.9;
+
+            ApplicationBarMenuItem appBarMenuItem = new ApplicationBarMenuItem(AppResources.MainPageAppBarRefreshText);
+            appBarMenuItem.Click += OnRefreshClick;
+            appBar.MenuItems.Add(appBarMenuItem);
+
+            appBarMenuItem = new ApplicationBarMenuItem(AppResources.MainPageAppBarUploadPhotoText);
+            appBarMenuItem.Click += OnTakePhotoClick;
+            appBar.MenuItems.Add(appBarMenuItem);
+
+            appBarMenuItem = new ApplicationBarMenuItem(AppResources.MainPageAppBarSubscriptionText);
+            appBarMenuItem.Click += OnSubscriptionSettingsClick;
+            appBar.MenuItems.Add(appBarMenuItem);
+            return appBar;
+        }
+
+        private ApplicationBar GetSummersaltAppBar()
+        {
+            ApplicationBar appBar = new ApplicationBar();
+            appBar.IsMenuEnabled = true;
+            appBar.Mode = ApplicationBarMode.Minimized;
+            appBar.BackgroundColor = Colors.Black;
+            appBar.ForegroundColor = Colors.White;
+            appBar.Opacity = 0.9;
+
+            var appBarMenuItem = new ApplicationBarMenuItem(AppResources.MainPageAppBarMyProfileText);
+            appBarMenuItem.Click += OnMyProfileClick;
+            appBar.MenuItems.Add(appBarMenuItem);
+
+            appBarMenuItem = new ApplicationBarMenuItem(AppResources.MainPageAppBarContactsText);
+            appBarMenuItem.Click += OnContactsClick;
+            appBar.MenuItems.Add(appBarMenuItem);
+
+            return appBar;
         }
     }
 }

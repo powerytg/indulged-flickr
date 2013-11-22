@@ -2,6 +2,7 @@
 using Indulged.API.Anaconda.Events;
 using Indulged.API.Avarice.Controls;
 using Indulged.API.Cinderella.Events;
+using Indulged.Resources;
 using Microsoft.Phone.Shell;
 using System;
 using System.Collections.Generic;
@@ -21,7 +22,7 @@ namespace Indulged.Plugins.Group
         {
             // Show progress bar
             SystemTray.ProgressIndicator.IsVisible = true;
-            SystemTray.ProgressIndicator.Text = "loading topics";
+            SystemTray.ProgressIndicator.Text = AppResources.GroupLoadingTopicsText;
 
             // Refresh group photos
             Anaconda.AnacondaCore.GetGroupTopicsAsync(GroupSource.ResourceId, new Dictionary<string, string> { { "page", "1" }, { "per_page", Anaconda.DefaultItemsPerPage.ToString() } });
@@ -149,7 +150,7 @@ namespace Indulged.Plugins.Group
         {
             if (composer.SubjectTextBox.Text.Length == 0 || composer.MessageTextBox.Text.Length == 0)
             {
-                composer.StatusTextView.Text = "Subject and content cannot be empty";
+                composer.StatusTextView.Text = AppResources.GroupSubjectContentCannotBeEmptyText;
             }
             else
             {
@@ -161,7 +162,7 @@ namespace Indulged.Plugins.Group
                 composer.MessageTextBox.IsEnabled = false;
                 composer.ComposerView.Opacity = 0.4;
 
-                composer.StatusTextView.Text = "Posting to discussion board";
+                composer.StatusTextView.Text = AppResources.DiscussionPostingText;
                 composer.ProgressView.Visibility = Visibility.Visible;
 
                 addTopicSessionId = Guid.NewGuid().ToString().Replace("-", null);
@@ -206,7 +207,7 @@ namespace Indulged.Plugins.Group
                 composer.MessageTextBox.IsEnabled = true;
                 composer.ComposerView.Opacity = 1;
 
-                composer.StatusTextView.Text = "An error occured while adding topic.";
+                composer.StatusTextView.Text = AppResources.GroupAddTopicErrorText;
                 composer.ProgressView.Visibility = Visibility.Collapsed;
             });
 

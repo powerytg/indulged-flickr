@@ -15,6 +15,7 @@ using Indulged.Plugins.Dashboard;
 using Indulged.API.Anaconda;
 using Indulged.Plugins.Common.PhotoGroupRenderers;
 using Indulged.API.Anaconda.Events;
+using Indulged.Resources;
 
 namespace Indulged.Plugins.Group
 {
@@ -115,7 +116,7 @@ namespace Indulged.Plugins.Group
 
                 if (Group.Photos.Count == 0)
                 {
-                    StatusLabel.Text = "No photos available";
+                    StatusLabel.Text = AppResources.GenericNoContentFound;
                     StatusLabel.Visibility = Visibility.Visible;
                     PhotoStreamListView.Visibility = Visibility.Collapsed;
                 }
@@ -146,7 +147,7 @@ namespace Indulged.Plugins.Group
 
                 if (PhotoCollection.Count == 0)
                 {
-                    StatusLabel.Text = "Cannot load photos";
+                    StatusLabel.Text = AppResources.GenericPhotoLoadingErrorText;
                     StatusLabel.Visibility = Visibility.Visible;
                     PhotoStreamListView.Visibility = Visibility.Collapsed;
                 }
@@ -177,7 +178,7 @@ namespace Indulged.Plugins.Group
 
                 if (PhotoCollection.Count == 0)
                 {
-                    StatusLabel.Text = "No photos available";
+                    StatusLabel.Text = AppResources.GenericNoContentFound;
                     StatusLabel.Visibility = Visibility.Collapsed;
                     PhotoStreamListView.Visibility = Visibility.Visible;
                 }

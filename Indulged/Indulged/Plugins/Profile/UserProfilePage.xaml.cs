@@ -13,6 +13,7 @@ using Indulged.API.Anaconda;
 using Indulged.API.Avarice.Controls;
 using System.Windows.Media.Animation;
 using System.Windows.Media;
+using Indulged.Resources;
 
 namespace Indulged.Plugins.Profile
 {
@@ -55,7 +56,7 @@ namespace Indulged.Plugins.Profile
             SystemTray.ProgressIndicator = new ProgressIndicator();
             SystemTray.ProgressIndicator.IsIndeterminate = true;
             SystemTray.ProgressIndicator.IsVisible = true;
-            SystemTray.ProgressIndicator.Text = "loading photos";
+            SystemTray.ProgressIndicator.Text = AppResources.GroupLoadingPhotosText;
 
             // Get first page of photos
             Anaconda.AnacondaCore.GetPhotoStreamAsync(UserSource.ResourceId, new Dictionary<string, string> { { "page", "1" }, { "per_page", Anaconda.DefaultItemsPerPage.ToString() } });

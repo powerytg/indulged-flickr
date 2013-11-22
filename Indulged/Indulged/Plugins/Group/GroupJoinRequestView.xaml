@@ -19,7 +19,7 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
-        <avarice:AvariceTextBox x:Name="MessageBox" AcceptsReturn="False" Grid.Column="0" VerticalAlignment="Center" KeyUp="MessageBox_KeyUp" Text="I'd like to join this group."/>
-        <avarice:Button Content="Send Request" Margin="20, 0, 0, 0" Grid.Column="1" VerticalAlignment="Center" Click="Button_Click"/>
+        <avarice:AvariceTextBox x:Name="MessageBox" AcceptsReturn="False" Grid.Column="0" VerticalAlignment="Center" KeyUp="MessageBox_KeyUp" Text="Please add me to the group."/>
+        <avarice:Button Content="{Binding Path=LocalizedResources.GroupSendRequestText, Source={StaticResource LocalizedStrings}}" Margin="20, 0, 0, 0" Grid.Column="1" VerticalAlignment="Center" Click="Button_Click"/>
     </Grid>
 </UserControl>

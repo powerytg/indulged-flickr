@@ -3,6 +3,7 @@ using Indulged.API.Avarice.Controls;
 using Indulged.API.Cinderella;
 using Indulged.API.Cinderella.Events;
 using Indulged.API.Cinderella.Models;
+using Indulged.Resources;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using System;
@@ -59,7 +60,7 @@ namespace Indulged.Plugins.Group
 
             SystemTray.ProgressIndicator = new ProgressIndicator();
             SystemTray.ProgressIndicator.IsIndeterminate = true;
-            SystemTray.ProgressIndicator.Text = "retrieving replies";
+            SystemTray.ProgressIndicator.Text = AppResources.DiscussionRetrievingRepliesText;
             SystemTray.ProgressIndicator.IsVisible = true;
 
             // Refresh reply list
@@ -108,7 +109,7 @@ namespace Indulged.Plugins.Group
             bool canLoad = (topic.Replies.Count < topic.ReplyCount);
             if (ReplyCollection.Count - index <= 2 && canLoad)
             {
-                SystemTray.ProgressIndicator.Text = "retrieving replies";
+                SystemTray.ProgressIndicator.Text = AppResources.DiscussionRetrievingRepliesText;
                 SystemTray.ProgressIndicator.IsVisible = true;
 
                 int page = topic.Replies.Count / Anaconda.DefaultItemsPerPage + 1;
@@ -118,7 +119,7 @@ namespace Indulged.Plugins.Group
 
         private void RefreshReplyListButton_Click(object sender, EventArgs e)
         {
-            SystemTray.ProgressIndicator.Text = "retrieving replies";
+            SystemTray.ProgressIndicator.Text = AppResources.DiscussionRetrievingRepliesText;
             SystemTray.ProgressIndicator.IsVisible = true;
 
             Anaconda.AnacondaCore.GetTopicRepliesAsync(topic.ResourceId, group.ResourceId, new Dictionary<string, string> { { "page", "1" }, { "per_page", Anaconda.DefaultItemsPerPage.ToString() } });

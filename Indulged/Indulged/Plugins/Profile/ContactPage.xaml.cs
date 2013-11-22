@@ -14,6 +14,7 @@ using Indulged.API.Anaconda;
 using Indulged.API.Anaconda.Events;
 using Indulged.API.Cinderella.Events;
 using Indulged.API.Avarice.Controls;
+using Indulged.Resources;
 
 namespace Indulged.Plugins.Profile
 {
@@ -54,7 +55,7 @@ namespace Indulged.Plugins.Profile
 
             SystemTray.ProgressIndicator = new ProgressIndicator();
             SystemTray.ProgressIndicator.IsIndeterminate = true;
-            SystemTray.ProgressIndicator.Text = "retrieving contacts";
+            SystemTray.ProgressIndicator.Text = AppResources.ContactsLoadingText;
             SystemTray.ProgressIndicator.IsVisible = true;
 
             // Refresh reply list
@@ -95,7 +96,7 @@ namespace Indulged.Plugins.Profile
 
                 if (Cinderella.CinderellaCore.ContactList.Count == 0)
                 {
-                    StatusLabel.Text = "Cannot load contact list";
+                    StatusLabel.Text = AppResources.ContactsLoadingErrorText;
                     StatusLabel.Visibility = Visibility.Visible;
                 }
 
@@ -110,7 +111,7 @@ namespace Indulged.Plugins.Profile
 
                 if (Cinderella.CinderellaCore.ContactList.Count == 0)
                 {
-                    StatusLabel.Text = "You don't have any contacts";
+                    StatusLabel.Text = AppResources.NoContactsText;
                     StatusLabel.Visibility = Visibility.Visible;
                 }
                 else
@@ -137,7 +138,7 @@ namespace Indulged.Plugins.Profile
             bool canLoad = (Cinderella.CinderellaCore.ContactList.Count < Cinderella.CinderellaCore.ContactCount);
             if (UserCollection.Count - index <= 2 && canLoad)
             {
-                SystemTray.ProgressIndicator.Text = "retrieving contacts";
+                SystemTray.ProgressIndicator.Text = AppResources.ContactsLoadingText;
                 SystemTray.ProgressIndicator.IsVisible = true;
 
                 int page = Cinderella.CinderellaCore.ContactList.Count / Anaconda.DefaultItemsPerPage + 1;

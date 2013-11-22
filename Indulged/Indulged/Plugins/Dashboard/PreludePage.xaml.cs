@@ -16,6 +16,7 @@ using Indulged.API.Cinderella.Models;
 using Indulged.API.Cinderella.Events;
 using Indulged.API.Anaconda;
 using Indulged.API.Anaconda.Events;
+using Indulged.Resources;
 
 namespace Indulged.Plugins.Dashboard
 {
@@ -66,15 +67,20 @@ namespace Indulged.Plugins.Dashboard
             GroupListView.ItemsSource = GroupList;
 
             FeatureStreams = new ObservableCollection<PreludeItemModel>();
-            FeatureStreams.Add(new PreludeItemModel { Name = "Violet" });
-            FeatureStreams.Add(new PreludeItemModel { Name = "Summersalt" });
-            FeatureStreams.Add(new PreludeItemModel { Name = "My Photo Stream" });
-            FeatureStreams.Add(new PreludeItemModel { Name = "Discovery" });
-            FeatureStreams.Add(new PreludeItemModel { Name = "Contacts" });
-            FeatureStreams.Add(new PreludeItemModel { Name = "Favourites", Icon = new System.Windows.Media.Imaging.BitmapImage(new Uri("/Assets/Dashboard/Heart.png", UriKind.Relative)) });
-            FeatureStreams.Add(new PreludeItemModel { Name = "Search" });
-            FeatureStreams.Add(new PreludeItemModel { Name = "Take Photo" });
+            FeatureStreams.Add(new PreludeItemModel { Name = AppResources.PreludeVioletItemText });
+            FeatureStreams.Add(new PreludeItemModel { Name = AppResources.PreludeSummersaltItemText });
+            FeatureStreams.Add(new PreludeItemModel { Name = AppResources.PreludeMyPhotoStreamItemText });
+            FeatureStreams.Add(new PreludeItemModel { Name = AppResources.PreludeDiscoveryItemText });
+            FeatureStreams.Add(new PreludeItemModel { Name = AppResources.PreludeContactsItemText });
+            FeatureStreams.Add(new PreludeItemModel { Name = AppResources.PreludeFavItemText, Icon = new System.Windows.Media.Imaging.BitmapImage(new Uri("/Assets/Dashboard/Heart.png", UriKind.Relative)) });
+            FeatureStreams.Add(new PreludeItemModel { Name = AppResources.PreludeSearchItemText });
+            FeatureStreams.Add(new PreludeItemModel { Name = AppResources.PreludeUploadPhotoItemText });
             FeatureListView.ItemsSource = FeatureStreams;
+
+            // Section titles
+            FeaturedSectionView.Title = AppResources.PreludeFeaturedSectionText;
+            StreamSectionView.Title = AppResources.PreludePhotoSetSectionText;
+            GroupSectionView.Title = AppResources.PreludeCommunitySectionText;
 
             // Events
             Cinderella.CinderellaCore.PhotoSetListUpdated += OnPhotoSetListUpdated;
@@ -106,7 +112,7 @@ namespace Indulged.Plugins.Dashboard
 
                 if (Cinderella.CinderellaCore.PhotoSetList.Count == 0)
                 {
-                    StreamListStatusLabel.Text = "No photo sets found";
+                    StreamListStatusLabel.Text = AppResources.PreludeNoPhotoSetFoundText;
                     StreamListStatusLabel.Visibility = Visibility.Visible;
                     StreamListView.Visibility = Visibility.Collapsed;
                 }
@@ -133,7 +139,7 @@ namespace Indulged.Plugins.Dashboard
                     return;
 
                 StreamListStatusLabel.IsHitTestVisible = true;
-                StreamListStatusLabel.Text = "Tap to retry";
+                StreamListStatusLabel.Text = AppResources.PreludeRetryText;
             });
         }
 
@@ -144,7 +150,7 @@ namespace Indulged.Plugins.Dashboard
                     return;
 
                 GroupListStatusLabel.IsHitTestVisible = true;
-                GroupListStatusLabel.Text = "Tap to retry";
+                GroupListStatusLabel.Text = AppResources.PreludeRetryText;
             });
         }
 
@@ -158,7 +164,7 @@ namespace Indulged.Plugins.Dashboard
 
                 if (Cinderella.CinderellaCore.GroupCache.Count == 0)
                 {
-                    GroupListStatusLabel.Text = "No groups found";
+                    GroupListStatusLabel.Text = AppResources.PreludeNoGroupFoundText;
                     GroupListStatusLabel.Visibility = Visibility.Visible;
                     GroupListView.Visibility = Visibility.Collapsed;
                 }
@@ -195,7 +201,7 @@ namespace Indulged.Plugins.Dashboard
                 return;
 
             PreludeItemModel entry = (PreludeItemModel)FeatureListView.SelectedItem;
-            if (entry.Name == "Favourites")
+            if (entry.Name == AppResources.PreludeFavItemText)
             {
                 if (PolicyKit.VioletPageSubscription == PolicyKit.FavouriteStream)
                     DashboardNavigator.RequestVioletPage(this, null);
@@ -207,7 +213,7 @@ namespace Indulged.Plugins.Dashboard
                 }
 
             }
-            else if (entry.Name == "Discovery")
+            else if (entry.Name == AppResources.PreludeDiscoveryItemText)
             {
                 if (PolicyKit.VioletPageSubscription == PolicyKit.DiscoveryStream)
                     DashboardNavigator.RequestVioletPage(this, null);
@@ -219,7 +225,7 @@ namespace Indulged.Plugins.Dashboard
                 }
 
             }
-            else if (entry.Name == "My Photo Stream")
+            else if (entry.Name == AppResources.PreludeMyPhotoStreamItemText)
             {
                 if (PolicyKit.VioletPageSubscription == PolicyKit.MyStream)
                     DashboardNavigator.RequestVioletPage(this, null);
@@ -231,27 +237,27 @@ namespace Indulged.Plugins.Dashboard
                 }
 
             }
-            else if (entry.Name == "Violet")
+            else if (entry.Name == AppResources.PreludeVioletItemText)
             {
                 DashboardNavigator.RequestVioletPage(this, null);
             }
-            else if (entry.Name == "Summersalt")
+            else if (entry.Name == AppResources.PreludeSummersaltItemText)
             {
                 DashboardNavigator.RequestSummersaltPage(this, null);
             }
-            else if (entry.Name == "Contacts")
+            else if (entry.Name == AppResources.PreludeContactsItemText)
             {
                 Frame rootVisual = System.Windows.Application.Current.RootVisual as Frame;
                 PhoneApplicationPage currentPage = (PhoneApplicationPage)rootVisual.Content;
                 currentPage.NavigationService.Navigate(new Uri("/Plugins/Profile/ContactPage.xaml", UriKind.Relative));
             }
-            else if (entry.Name == "Search")
+            else if (entry.Name == AppResources.PreludeSearchItemText)
             {
                 Frame rootVisual = System.Windows.Application.Current.RootVisual as Frame;
                 PhoneApplicationPage currentPage = (PhoneApplicationPage)rootVisual.Content;
                 currentPage.NavigationService.Navigate(new Uri("/Plugins/Search/SearchPage.xaml", UriKind.Relative));
             }
-            else if (entry.Name == "Take Photo")
+            else if (entry.Name == AppResources.PreludeUploadPhotoItemText)
             {
                 Frame rootVisual = System.Windows.Application.Current.RootVisual as Frame;
                 PhoneApplicationPage currentPage = (PhoneApplicationPage)rootVisual.Content;
@@ -283,10 +289,10 @@ namespace Indulged.Plugins.Dashboard
         public void RefreshStreams()
         {
             GroupListStatusLabel.IsHitTestVisible = false;
-            GroupListStatusLabel.Text = "Retrieving group list...";
+            GroupListStatusLabel.Text = AppResources.PreludeRetrievingGroupsText;
 
             StreamListStatusLabel.IsHitTestVisible = false;
-            StreamListStatusLabel.Text = "Retrieving photo sets...";
+            StreamListStatusLabel.Text = AppResources.PreludeRetrievingPhotoSetsText;
 
             Anaconda.AnacondaCore.GetGroupListAsync(Cinderella.CinderellaCore.CurrentUser.ResourceId);
             Anaconda.AnacondaCore.GetPhotoSetListAsync(Cinderella.CinderellaCore.CurrentUser.ResourceId);
@@ -295,7 +301,7 @@ namespace Indulged.Plugins.Dashboard
         private void GroupListStatusLabel_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
             GroupListStatusLabel.IsHitTestVisible = false;
-            GroupListStatusLabel.Text = "Retrieving group list...";
+            GroupListStatusLabel.Text = AppResources.PreludeRetrievingGroupsText;
 
             Anaconda.AnacondaCore.GetGroupListAsync(Cinderella.CinderellaCore.CurrentUser.ResourceId);
         }
@@ -303,7 +309,7 @@ namespace Indulged.Plugins.Dashboard
         private void StreamListStatusLabel_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
             StreamListStatusLabel.IsHitTestVisible = false;
-            StreamListStatusLabel.Text = "Retrieving photo sets...";
+            StreamListStatusLabel.Text = AppResources.PreludeRetrievingPhotoSetsText;
 
             Anaconda.AnacondaCore.GetPhotoSetListAsync(Cinderella.CinderellaCore.CurrentUser.ResourceId);
 

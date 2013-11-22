@@ -1,5 +1,6 @@
 ﻿using Indulged.API.Anaconda;
 using Indulged.API.Avarice.Controls;
+using Indulged.Resources;
 using Microsoft.Phone.Shell;
 using System;
 using System.Collections.Generic;
@@ -15,7 +16,7 @@ namespace Indulged.Plugins.Group
         {
             // Show progress bar
             SystemTray.ProgressIndicator.IsVisible = true;
-            SystemTray.ProgressIndicator.Text = "loading photos";
+            SystemTray.ProgressIndicator.Text = AppResources.GroupLoadingPhotosText;
 
             // Refresh group photos
             Anaconda.AnacondaCore.GetGroupPhotosAsync(GroupSource.ResourceId, new Dictionary<string, string> { { "page", "1" }, { "per_page", Anaconda.DefaultItemsPerPage.ToString() } });
@@ -26,7 +27,7 @@ namespace Indulged.Plugins.Group
         private void AddPhotoButton_Click(object sender, EventArgs e)
         {
             addPhotoView = new GroupAddPhotoView(GroupSource);
-            var addPhotoDialog = ModalPopup.Show(addPhotoView, "Add To Group", new List<string> { "Done Adding Photos" });
+            var addPhotoDialog = ModalPopup.Show(addPhotoView, AppResources.GroupAddToGroupTitleText, new List<string> { AppResources.GroupAddToGroupDoneText });
         }
     }
 }

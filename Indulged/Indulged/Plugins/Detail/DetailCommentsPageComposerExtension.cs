@@ -3,6 +3,7 @@ using Indulged.API.Anaconda.Events;
 using Indulged.API.Avarice.Controls;
 using Indulged.API.Cinderella.Events;
 using Indulged.API.Cinderella.Models;
+using Indulged.Resources;
 using Microsoft.Phone.Shell;
 using System;
 using System.Collections.Generic;
@@ -27,7 +28,7 @@ namespace Indulged.Plugins.Detail
         {
             if (composer.MessageTextBox.Text.Length == 0)
             {
-                composer.StatusTextView.Text = "Comment cannot be empty";
+                composer.StatusTextView.Text = AppResources.CommentCannotBeNullText;
             }
             else
             {
@@ -38,7 +39,7 @@ namespace Indulged.Plugins.Detail
                 composer.MessageTextBox.IsEnabled = false;
                 composer.ComposerView.Opacity = 0.4;
 
-                composer.StatusTextView.Text = "Posting comment";
+                composer.StatusTextView.Text = AppResources.CommentPostingText;
                 composer.ProgressView.Visibility = Visibility.Visible;
 
                 addCommentSessionId = Guid.NewGuid().ToString().Replace("-", null);
@@ -196,7 +197,7 @@ namespace Indulged.Plugins.Detail
                 composer.MessageTextBox.IsEnabled = true;
                 composer.ComposerView.Opacity = 1;
 
-                composer.StatusTextView.Text = "An error occured while adding comment.";
+                composer.StatusTextView.Text = AppResources.CommentPostErrorText;
                 composer.ProgressView.Visibility = Visibility.Collapsed;
             });
 

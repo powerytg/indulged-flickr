@@ -11,6 +11,7 @@ using Indulged.API.Cinderella.Models;
 using Indulged.API.Avarice.Controls;
 using System.Windows.Input;
 using Indulged.API.Avarice.Controls.SupportClasses;
+using Indulged.Resources;
 
 namespace Indulged.Plugins.Group
 {
@@ -32,7 +33,7 @@ namespace Indulged.Plugins.Group
 
             Buttons = new List<API.Avarice.Controls.Button>();
             confirmButton = new API.Avarice.Controls.Button();
-            confirmButton.Content = "Confirm";
+            confirmButton.Content = AppResources.GenericConfirmText;
             confirmButton.Click += (sender, e) =>
             {
                 JoinGroup();
@@ -40,7 +41,7 @@ namespace Indulged.Plugins.Group
 
 
             cancelButton = new API.Avarice.Controls.Button();
-            cancelButton.Content = "Cancel";
+            cancelButton.Content = AppResources.GenericCancelText;
             cancelButton.Click += (sender, e) =>
             {
                 PopupContainer.Dismiss();
@@ -66,7 +67,7 @@ namespace Indulged.Plugins.Group
             statusView.Message = trimmedQueryString;
             statusView.PopupContainer = PopupContainer;
 
-            PopupContainer.ReplaceContentWith("Group Membership Request", statusView, statusView.Buttons, () =>
+            PopupContainer.ReplaceContentWith(AppResources.GroupMembershipText, statusView, statusView.Buttons, () =>
             {
                 statusView.BeginJoinGroupRequest();
             });

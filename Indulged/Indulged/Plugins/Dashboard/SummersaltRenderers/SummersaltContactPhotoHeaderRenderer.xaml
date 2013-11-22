@@ -18,7 +18,7 @@
             <Button.Content>
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Foreground="#274551" FontSize="38" FontFamily="/Assets/Fonts/BenchNine-Regular.ttf#BenchNine"
-                   Text="Show All Contacts" TextAlignment="Center"
+                   Text="{Binding Path=LocalizedResources.SummersaltShowAllContactsText, Source={StaticResource LocalizedStrings}}" TextAlignment="Center"
                    TextTrimming="WordEllipsis" MaxWidth="400" Margin="0, 0, 15, 0" />
 
                     <Image Source="/Assets/Common/ActionButton.png" Width="24" VerticalAlignment="Center"/>

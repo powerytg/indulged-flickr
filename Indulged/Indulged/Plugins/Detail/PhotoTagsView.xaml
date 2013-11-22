@@ -18,11 +18,11 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <TextBlock Text="Tags" Foreground="#4a6e7b" FontSize="48" FontWeight="Light" TextWrapping="Wrap"
+        <TextBlock Text="{Binding Path=LocalizedResources.DetailPageTagsTitleText, Source={StaticResource LocalizedStrings}}" Foreground="#4a6e7b" FontSize="48" FontWeight="Light" TextWrapping="Wrap"
                    Margin="12, 0, 12, 12" 
                    Grid.Row="0" />
 
-        <TextBlock x:Name="NoTagLabel" Text="This photo does not have any tags" Margin="12, 12, 12, 12"
+        <TextBlock x:Name="NoTagLabel" Text="{Binding Path=LocalizedResources.DetailPageNoTagsText, Source={StaticResource LocalizedStrings}}" Margin="12, 12, 12, 12"
                     Foreground="#8b93a0" FontSize="24" FontWeight="Light" Grid.Row="1" />
 
         <ListBox x:Name="TagsListView" Grid.Row="2" ScrollViewer.VerticalScrollBarVisibility="Disabled">

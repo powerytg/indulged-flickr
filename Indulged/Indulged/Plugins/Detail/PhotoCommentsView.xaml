@@ -22,17 +22,17 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Text="Comments" Foreground="#4a6e7b" FontSize="48" FontWeight="Light" TextWrapping="Wrap"
+        <TextBlock Text="{Binding Path=LocalizedResources.DetailPageCommentsText, Source={StaticResource LocalizedStrings}}" Foreground="#4a6e7b" FontSize="48" FontWeight="Light" TextWrapping="Wrap"
                    Margin="12, 0, 12, 12" 
                    Grid.Row="0" />
 
-        <TextBlock x:Name="LoadingView" Text="Loading comments" Foreground="#8b93a0" FontSize="24" FontWeight="Light"
+        <TextBlock x:Name="LoadingView" Text="{Binding Path=LocalizedResources.DetailPageLoadingCommentsText, Source={StaticResource LocalizedStrings}}" Foreground="#8b93a0" FontSize="24" FontWeight="Light"
                    Margin="12, 12, 12, 12" Grid.Row="1"/>
 
         <renderer:PhotoCommentDigestRenderer x:Name="renderer1" Grid.Row="2"/>
         <renderer:PhotoCommentDigestRenderer x:Name="renderer2" Grid.Row="3"/>
         <renderer:PhotoCommentDigestRenderer x:Name="renderer3" Grid.Row="4"/>
-        <Button x:Name="ViewAllButton" Content="view all..." Style="{StaticResource BorderlessButtonStyle}" Grid.Row="5"
+        <Button x:Name="ViewAllButton" Content="{Binding Path=LocalizedResources.DetailPageViewAllCommentsText, Source={StaticResource LocalizedStrings}}" Style="{StaticResource BorderlessButtonStyle}" Grid.Row="5"
                 FontSize="21" Foreground="#7285ab" Click="ViewAllButton_Click"/>
     </Grid>
 </UserControl>

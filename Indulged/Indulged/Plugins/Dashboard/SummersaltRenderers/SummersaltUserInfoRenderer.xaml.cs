@@ -15,6 +15,7 @@ using Indulged.API.Cinderella.Events;
 using System.Windows.Media.Imaging;
 using Indulged.API.Cinderella.Models;
 using System.Windows.Documents;
+using Indulged.Resources;
 
 namespace Indulged.Plugins.Dashboard.SummersaltRenderers
 {
@@ -62,11 +63,11 @@ namespace Indulged.Plugins.Dashboard.SummersaltRenderers
             else
             {
                 if (currentUser.hasFirstDate)
-                    formatUserInfoText("Member since " + currentUser.FirstDate.ToShortDateString());
+                    formatUserInfoText(AppResources.SummersaltUserInfoMemberSinceText + currentUser.FirstDate.ToShortDateString());
                 else if (currentUser.PhotoCount > 0)
-                    formatUserInfoText("Photo uploaded: " + currentUser.PhotoCount.ToString());
+                    formatUserInfoText(AppResources.SummersaltUserInfoPhotoUploadedText + currentUser.PhotoCount.ToString());
                 else
-                    formatUserInfoText("No extra info available");
+                    formatUserInfoText(AppResources.SummersaltNoInfoFoundText);
             }
         }
 

@@ -44,7 +44,7 @@
 
             <StackPanel Orientation="Horizontal" Grid.Row="0">
                 <Image Source="/Assets/Group/SmallSelectionCircle.png" Margin="0, 0, 12, 0"/>
-                <TextBlock Text="Comment" Foreground="#cccccc" VerticalAlignment="Center"  FontSize="24"/>
+                <TextBlock Text="{Binding Path=LocalizedResources.CommentComposerTitleText, Source={StaticResource LocalizedStrings}}" Foreground="#cccccc" VerticalAlignment="Center"  FontSize="24"/>
             </StackPanel>
 
             <avarice:AvariceTextBox x:Name="MessageTextBox" Grid.Row="1" AcceptsReturn="True"/>
