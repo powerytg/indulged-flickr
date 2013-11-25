@@ -1,0 +1,587 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ResourceFlowDirection" xml:space="preserve">
+    <value>LeftToRight</value>
+    <comment>Controls the FlowDirection for all elements in the RootFrame. Set to the traditional direction of this resource file's language</comment>
+  </data>
+  <data name="ResourceLanguage" xml:space="preserve">
+    <value>zh-Hans</value>
+    <comment>Controls the Language and ensures that the font for all elements in the RootFrame aligns with the app's language. Set to the language code of this resource file's language.</comment>
+  </data>
+  <data name="DashboardPreludeText" xml:space="preserve">
+    <value>目录</value>
+  </data>
+  <data name="DashboardSummersaltText" xml:space="preserve">
+    <value>社区</value>
+  </data>
+  <data name="DashboardVioletText" xml:space="preserve">
+    <value>照片流</value>
+  </data>
+  <data name="SettingsSubscriptionHeaderText" xml:space="preserve">
+    <value>订阅</value>
+  </data>
+  <data name="SettingsSubscriptionDescText" xml:space="preserve">
+    <value>您可以订阅以下的照片流，以便在主页上浏览</value>
+  </data>
+  <data name="SettingsRenderingHeaderText" xml:space="preserve">
+    <value>渲染</value>
+  </data>
+  <data name="SettingsProFXLightText" xml:space="preserve">
+    <value>亮色主题</value>
+  </data>
+  <data name="SettingsProFXDescText" xml:space="preserve">
+    <value>ProFX 提供强大的照片处理功能。这个选项决定了该模块的背景颜色</value>
+  </data>
+  <data name="SettingsProFXDarkText" xml:space="preserve">
+    <value>暗色主题</value>
+  </data>
+  <data name="SettingsProCamText" xml:space="preserve">
+    <value>启用ProCam</value>
+  </data>
+  <data name="SettingsCameraHeaderText" xml:space="preserve">
+    <value>照相</value>
+  </data>
+  <data name="SettingsCameraDescText" xml:space="preserve">
+    <value>内置的ProCam照相机模块提供诸如手动对焦、感光度以及白平衡等额外功能。该模块仍在测试中</value>
+  </data>
+  <data name="SettingsBlurBackgroundText" xml:space="preserve">
+    <value>使用模糊背景</value>
+  </data>
+  <data name="SettingsBlurBackgroundDescText" xml:space="preserve">
+    <value>Indulged 可以将照片渲染成模糊背景，然而这个功能会降低系统性能</value>
+  </data>
+  <data name="SearchResultPhotoHeaderText" xml:space="preserve">
+    <value>照片</value>
+  </data>
+  <data name="SearchResultGroupHeaderText" xml:space="preserve">
+    <value>照片组</value>
+  </data>
+  <data name="SearchingPhotosText" xml:space="preserve">
+    <value>正在搜索照片</value>
+  </data>
+  <data name="SearchingGroupsText" xml:space="preserve">
+    <value>正在搜索组</value>
+  </data>
+  <data name="TopicComposerSubjectText" xml:space="preserve">
+    <value>主题</value>
+  </data>
+  <data name="TopicComposerBodyText" xml:space="preserve">
+    <value>内容</value>
+  </data>
+  <data name="ThrottleReachedErrorText" xml:space="preserve">
+    <value>已达到规定的上限</value>
+  </data>
+  <data name="SummersaltUserInfoPhotoUploadedText" xml:space="preserve">
+    <value>上传照片：</value>
+  </data>
+  <data name="SummersaltUserInfoMemberSinceText" xml:space="preserve">
+    <value>会员起始于</value>
+  </data>
+  <data name="SummersaltSingleFavText" xml:space="preserve">
+    <value>以及另一人将此加入收藏</value>
+  </data>
+  <data name="SummersaltShowAllContactsText" xml:space="preserve">
+    <value>显示所有联系人</value>
+  </data>
+  <data name="SummersaltRetrievingUserInfoText" xml:space="preserve">
+    <value>下载用户信息 ...</value>
+  </data>
+  <data name="SummersaltRecentActivityText" xml:space="preserve">
+    <value>最近活动</value>
+  </data>
+  <data name="SummersaltNoInfoFoundText" xml:space="preserve">
+    <value>没有更多信息</value>
+  </data>
+  <data name="SummersaltMultiFavText" xml:space="preserve">
+    <value>个用户将此加入收藏</value>
+  </data>
+  <data name="SummersaltCommentedOnText" xml:space="preserve">
+    <value>发表于</value>
+  </data>
+  <data name="SummersaltAndText" xml:space="preserve">
+    <value> 以及 </value>
+  </data>
+  <data name="SummersaltAddedFavText" xml:space="preserve">
+    <value>将此加入收藏</value>
+  </data>
+  <data name="SubscriptionMyPhotoStreamText" xml:space="preserve">
+    <value>我的照片流</value>
+  </data>
+  <data name="SubscriptionFavText" xml:space="preserve">
+    <value>收藏</value>
+  </data>
+  <data name="SubscriptionDiscoveryText" xml:space="preserve">
+    <value>推荐内容</value>
+  </data>
+  <data name="ReplyCannotBeEmptyText" xml:space="preserve">
+    <value>回复不可为空白</value>
+  </data>
+  <data name="ProfilePageUrlText" xml:space="preserve">
+    <value>档案链接</value>
+  </data>
+  <data name="ProfilePageRealNameText" xml:space="preserve">
+    <value>真实姓名</value>
+  </data>
+  <data name="ProfilePageProfileHeaderText" xml:space="preserve">
+    <value>档案</value>
+  </data>
+  <data name="ProfilePagePhotoHeaderText" xml:space="preserve">
+    <value>照片</value>
+  </data>
+  <data name="ProfilePagePhotoCountText" xml:space="preserve">
+    <value>上传照片</value>
+  </data>
+  <data name="ProfilePageNoPhotoText" xml:space="preserve">
+    <value>目前没有上传照片</value>
+  </data>
+  <data name="ProfilePageLocationText" xml:space="preserve">
+    <value>地点</value>
+  </data>
+  <data name="ProfilePageLoadingText" xml:space="preserve">
+    <value>正在载入档案 ...</value>
+  </data>
+  <data name="ProfilePageDescText" xml:space="preserve">
+    <value>备注</value>
+  </data>
+  <data name="ProCamInitText" xml:space="preserve">
+    <value>正在载入照相机 ...</value>
+  </data>
+  <data name="PreludeVioletItemText" xml:space="preserve">
+    <value>照片流</value>
+  </data>
+  <data name="PreludeUploadPhotoItemText" xml:space="preserve">
+    <value>上传照片</value>
+  </data>
+  <data name="PreludeSummersaltItemText" xml:space="preserve">
+    <value>档案</value>
+  </data>
+  <data name="PreludeSearchItemText" xml:space="preserve">
+    <value>搜索</value>
+  </data>
+  <data name="PreludeRetryText" xml:space="preserve">
+    <value>重试</value>
+  </data>
+  <data name="PreludeRetrievingPhotoSetsText" xml:space="preserve">
+    <value>正在加载相册 ...</value>
+  </data>
+  <data name="PreludeRetrievingGroupsText" xml:space="preserve">
+    <value>正在加载组列表 ...</value>
+  </data>
+  <data name="PreludePhotoSetSectionText" xml:space="preserve">
+    <value>相册</value>
+  </data>
+  <data name="PreludeNoPhotoSetFoundText" xml:space="preserve">
+    <value>没有相册</value>
+  </data>
+  <data name="PreludeNoGroupFoundText" xml:space="preserve">
+    <value>没有照片组</value>
+  </data>
+  <data name="PreludeMyPhotoStreamItemText" xml:space="preserve">
+    <value>我的照片流</value>
+  </data>
+  <data name="PreludeFeaturedSectionText" xml:space="preserve">
+    <value>常用</value>
+  </data>
+  <data name="PreludeFavItemText" xml:space="preserve">
+    <value>收藏</value>
+  </data>
+  <data name="PreludeDiscoveryItemText" xml:space="preserve">
+    <value>推荐内容</value>
+  </data>
+  <data name="PreludeContactsItemText" xml:space="preserve">
+    <value>联系人</value>
+  </data>
+  <data name="PreludeCommunitySectionText" xml:space="preserve">
+    <value>社区</value>
+  </data>
+  <data name="PhotoCollectionRemovingPhotoText" xml:space="preserve">
+    <value>正在移除照片</value>
+  </data>
+  <data name="PhotoCollectionPhotoRemovedText" xml:space="preserve">
+    <value>照片已从相册中移除</value>
+  </data>
+  <data name="PhotoCollectionPhotoAddedText" xml:space="preserve">
+    <value>照片已加入到相册中</value>
+  </data>
+  <data name="PhotoCollectionLoadingText" xml:space="preserve">
+    <value>正在加载相册</value>
+  </data>
+  <data name="PhotoCollectionAddToSetText" xml:space="preserve">
+    <value>加入到相册</value>
+  </data>
+  <data name="PhotoCollectionAddingPhotoText" xml:space="preserve">
+    <value>正在加入照片</value>
+  </data>
+  <data name="NoContactsText" xml:space="preserve">
+    <value>没有联系人</value>
+  </data>
+  <data name="MainPageSubscriptionTitleText" xml:space="preserve">
+    <value>订阅</value>
+  </data>
+  <data name="MainPageLogoutTitleText" xml:space="preserve">
+    <value>登出</value>
+  </data>
+  <data name="MainPageLogoutContentText" xml:space="preserve">
+    <value>您将回到登陆界面，所有登陆信息将会删除</value>
+  </data>
+  <data name="MainPageLogoutButtonText" xml:space="preserve">
+    <value>登出</value>
+  </data>
+  <data name="MainPageAppBarUploadPhotoText" xml:space="preserve">
+    <value>上传照片</value>
+  </data>
+  <data name="MainPageAppBarSubscriptionText" xml:space="preserve">
+    <value>订阅设置</value>
+  </data>
+  <data name="MainPageAppBarSettingsText" xml:space="preserve">
+    <value>设置</value>
+  </data>
+  <data name="MainPageAppBarSearchText" xml:space="preserve">
+    <value>搜索</value>
+  </data>
+  <data name="MainPageAppBarRefreshText" xml:space="preserve">
+    <value>刷新</value>
+  </data>
+  <data name="MainPageAppBarMyProfileText" xml:space="preserve">
+    <value>我的档案</value>
+  </data>
+  <data name="MainPageAppBarLogoutText" xml:space="preserve">
+    <value>登出</value>
+  </data>
+  <data name="MainPageAppBarFeedbackText" xml:space="preserve">
+    <value>意见回馈</value>
+  </data>
+  <data name="MainPageAppBarContactsText" xml:space="preserve">
+    <value>联系人</value>
+  </data>
+  <data name="LoginSignInText" xml:space="preserve">
+    <value>登陆</value>
+  </data>
+  <data name="LoginLoadingText" xml:space="preserve">
+    <value>正在载入 ...</value>
+  </data>
+  <data name="LoginBackText" xml:space="preserve">
+    <value>返回</value>
+  </data>
+  <data name="LoginAuthErrorText" xml:space="preserve">
+    <value>无法通过认证</value>
+  </data>
+  <data name="LoginAboutText" xml:space="preserve">
+    <value>关于</value>
+  </data>
+  <data name="LoginAboutAppTitleText" xml:space="preserve">
+    <value>关于Indulged</value>
+  </data>
+  <data name="GroupSubjectContentCannotBeEmptyText" xml:space="preserve">
+    <value>主题和内容不可为空</value>
+  </data>
+  <data name="GroupSendRequestText" xml:space="preserve">
+    <value>发送请求</value>
+  </data>
+  <data name="GroupSendingRequestText" xml:space="preserve">
+    <value>正在发送请求</value>
+  </data>
+  <data name="GroupRulesText" xml:space="preserve">
+    <value>规则</value>
+  </data>
+  <data name="GroupRetrievingInfoText" xml:space="preserve">
+    <value>正在载入组信息</value>
+  </data>
+  <data name="GroupRequestSentText" xml:space="preserve">
+    <value>您的请求已发送给管理员</value>
+  </data>
+  <data name="GroupRemovingPhotoText" xml:space="preserve">
+    <value>正在移除照片</value>
+  </data>
+  <data name="GroupPhotoHeaderText" xml:space="preserve">
+    <value>照片</value>
+  </data>
+  <data name="GroupNoActiveTopicsText" xml:space="preserve">
+    <value>目前没有主题</value>
+  </data>
+  <data name="GroupMembershipText" xml:space="preserve">
+    <value>会员申请</value>
+  </data>
+  <data name="GroupLoadingTopicsText" xml:space="preserve">
+    <value>正在载入主题列表</value>
+  </data>
+  <data name="GroupLoadingPhotosText" xml:space="preserve">
+    <value>正在载入照片</value>
+  </data>
+  <data name="GroupLoadingPhotoCollectionText" xml:space="preserve">
+    <value>正在载入相册</value>
+  </data>
+  <data name="GroupJoinText" xml:space="preserve">
+    <value>加入这个组</value>
+  </data>
+  <data name="GroupJoiningText" xml:space="preserve">
+    <value>正在加入</value>
+  </data>
+  <data name="GroupInvitationRequestText" xml:space="preserve">
+    <value>申请加入</value>
+  </data>
+  <data name="GroupDiscussionTitleText" xml:space="preserve">
+    <value>讨论</value>
+  </data>
+  <data name="GroupDiscussionHeaderText" xml:space="preserve">
+    <value>讨论</value>
+  </data>
+  <data name="GroupBrowseText" xml:space="preserve">
+    <value>浏览</value>
+  </data>
+  <data name="GroupAddTopicErrorText" xml:space="preserve">
+    <value>创建主题时发生错误</value>
+  </data>
+  <data name="GroupAddToGroupTitleText" xml:space="preserve">
+    <value>加入照片</value>
+  </data>
+  <data name="GroupAddToGroupDoneText" xml:space="preserve">
+    <value>完成</value>
+  </data>
+  <data name="GenericWaitingText" xml:space="preserve">
+    <value>请等待 ...</value>
+  </data>
+  <data name="GenericUntitledText" xml:space="preserve">
+    <value>无题</value>
+  </data>
+  <data name="GenericSendingRequestText" xml:space="preserve">
+    <value>正在发送申请</value>
+  </data>
+  <data name="GenericPhotoLoadingErrorText" xml:space="preserve">
+    <value>无法下载照片</value>
+  </data>
+  <data name="GenericNoContentFound" xml:space="preserve">
+    <value>没有内容</value>
+  </data>
+  <data name="GenericLoadingStreamText" xml:space="preserve">
+    <value>正在下载流 ...</value>
+  </data>
+  <data name="GenericErrorTitleText" xml:space="preserve">
+    <value>错误</value>
+  </data>
+  <data name="GenericDoneText" xml:space="preserve">
+    <value>完成</value>
+  </data>
+  <data name="GenericConfirmText" xml:space="preserve">
+    <value>确认</value>
+  </data>
+  <data name="GenericCancelText" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="GenericAgreeText" xml:space="preserve">
+    <value>我同意</value>
+  </data>
+  <data name="FavPageTitleText" xml:space="preserve">
+    <value>收藏</value>
+  </data>
+  <data name="FavPageLoadingErrorText" xml:space="preserve">
+    <value>无法载入收藏照片</value>
+  </data>
+  <data name="DiscussionRetrievingRepliesText" xml:space="preserve">
+    <value>正在载入回复</value>
+  </data>
+  <data name="DiscussionPostingText" xml:space="preserve">
+    <value>发表</value>
+  </data>
+  <data name="DiscussionPostingErrorText" xml:space="preserve">
+    <value>回复时发生错误</value>
+  </data>
+  <data name="DiscoveryPageTitleText" xml:space="preserve">
+    <value>推荐内容</value>
+  </data>
+  <data name="DiscoveryPageLoadingErrorText" xml:space="preserve">
+    <value>无法加载推荐内容</value>
+  </data>
+  <data name="DetailPageViewAllCommentsText" xml:space="preserve">
+    <value>显示全部 ...</value>
+  </data>
+  <data name="DetailPageTagsTitleText" xml:space="preserve">
+    <value>标签</value>
+  </data>
+  <data name="DetailPageRetrievingPhotoInfoText" xml:space="preserve">
+    <value>正在加载照片</value>
+  </data>
+  <data name="DetailPageRetrievePhotoInfoErrorText" xml:space="preserve">
+    <value>无法加载照片</value>
+  </data>
+  <data name="DetailPageRemovingFavText" xml:space="preserve">
+    <value>正在从收藏中移除</value>
+  </data>
+  <data name="DetailPageRemovedFavText" xml:space="preserve">
+    <value>照片已从收藏中移除</value>
+  </data>
+  <data name="DetailPageNoTagsText" xml:space="preserve">
+    <value>该照片没有标签</value>
+  </data>
+  <data name="DetailPageNoCommentsText" xml:space="preserve">
+    <value>该照片没有评论内容</value>
+  </data>
+  <data name="DetailPageMarkingAsFavText" xml:space="preserve">
+    <value>加入收藏</value>
+  </data>
+  <data name="DetailPageLoadingPhotoText" xml:space="preserve">
+    <value>正在加载照片 ...</value>
+  </data>
+  <data name="DetailPageLoadingEXIFText" xml:space="preserve">
+    <value>正在下载EXIF信息</value>
+  </data>
+  <data name="DetailPageLoadingCommentsText" xml:space="preserve">
+    <value>正在下载评论</value>
+  </data>
+  <data name="DetailPageLoadEXIFErrorText" xml:space="preserve">
+    <value>无法取得EXIF信息</value>
+  </data>
+  <data name="DetailPageLoadCommentsErrorText" xml:space="preserve">
+    <value>无法下载评论</value>
+  </data>
+  <data name="DetailPageEXIFTitleText" xml:space="preserve">
+    <value>EXIF信息</value>
+  </data>
+  <data name="DetailPageEXIFNotAvailableText" xml:space="preserve">
+    <value>没有EXIF信息</value>
+  </data>
+  <data name="DetailPageCommentsText" xml:space="preserve">
+    <value>评论</value>
+  </data>
+  <data name="DetailPageAddedFavText" xml:space="preserve">
+    <value>已加入收藏</value>
+  </data>
+  <data name="ContactsPageTitleText" xml:space="preserve">
+    <value>联系人</value>
+  </data>
+  <data name="ContactsLoadingText" xml:space="preserve">
+    <value>正在下载联系人列表</value>
+  </data>
+  <data name="ContactsLoadingErrorText" xml:space="preserve">
+    <value>无法取得联系人列表</value>
+  </data>
+  <data name="CommentPostingText" xml:space="preserve">
+    <value>正在发表评论</value>
+  </data>
+  <data name="CommentPostErrorText" xml:space="preserve">
+    <value>发表评论时发生错误</value>
+  </data>
+  <data name="CommentComposerTitleText" xml:space="preserve">
+    <value>品论</value>
+  </data>
+  <data name="CommentCannotBeNullText" xml:space="preserve">
+    <value>评论内容不可为空</value>
+  </data>
+</root>

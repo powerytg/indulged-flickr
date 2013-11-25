@@ -29,40 +29,40 @@
         <ScrollViewer Margin="20, 150, 20, 20">
             <StackPanel Margin="0, 0, 0, 120">
                 <!--Camera settings-->
-                <TextBlock Style="{StaticResource PhoneTextTitle2Style}" Text="Camera" HorizontalAlignment="Left"/>
+                <TextBlock Style="{StaticResource PhoneTextTitle2Style}" Text="{Binding Path=LocalizedResources.SettingsCameraHeaderText, Source={StaticResource LocalizedStrings}}" HorizontalAlignment="Left"/>
                 <TextBlock Style="{StaticResource PhoneTextSubtleStyle}"
-                    Text="The built-in ProCam camera provides manual focusing, ISO and aperture support, but is still considered experimental at this version thus is not enabled by default" 
+                    Text="{Binding Path=LocalizedResources.SettingsCameraDescText, Source={StaticResource LocalizedStrings}}" 
                        HorizontalAlignment="Left" TextWrapping="Wrap"/>
-                <toolkit:ToggleSwitch x:Name="ProCamSwitch" Content="Use ProCam" Checked="ProCamSwitch_Checked" Unchecked="ProCamSwitch_Unchecked"/>
+                <toolkit:ToggleSwitch x:Name="ProCamSwitch" Content="{Binding Path=LocalizedResources.SettingsProCamText, Source={StaticResource LocalizedStrings}}" Checked="ProCamSwitch_Checked" Unchecked="ProCamSwitch_Unchecked"/>
 
 
                 <!--Background settings-->
-                <TextBlock Style="{StaticResource PhoneTextTitle2Style}" Text="Rendering" HorizontalAlignment="Left" Margin="0, 20, 0, 0"/>
+                <TextBlock Style="{StaticResource PhoneTextTitle2Style}" Text="{Binding Path=LocalizedResources.SettingsRenderingHeaderText, Source={StaticResource LocalizedStrings}}" HorizontalAlignment="Left" Margin="0, 20, 0, 0"/>
                 <TextBlock Style="{StaticResource PhoneTextSubtleStyle}" 
-                           Text="Indulged is able to render a blurred background when viewing photos. This however may cause rendering glithes and is turned off by default" 
+                           Text="{Binding Path=LocalizedResources.SettingsBlurBackgroundDescText, Source={StaticResource LocalizedStrings}}" 
                        HorizontalAlignment="Left" TextWrapping="Wrap"/>
-                <toolkit:ToggleSwitch x:Name="BlurBackgroundSwitch" Content="Use Blurred Background" Checked="BlurBackgroundSwitch_Checked" Unchecked="BlurBackgroundSwitch_Unchecked"/>
+                <toolkit:ToggleSwitch x:Name="BlurBackgroundSwitch" Content="{Binding Path=LocalizedResources.SettingsBlurBackgroundText, Source={StaticResource LocalizedStrings}}" Checked="BlurBackgroundSwitch_Checked" Unchecked="BlurBackgroundSwitch_Unchecked"/>
 
                 <!--ProFX settings-->
-                <TextBlock Style="{StaticResource PhoneTextTitle2Style}" Text="ProFX" HorizontalAlignment="Left" Margin="0, 20, 0, 0"/>
+                <TextBlock Style="{StaticResource PhoneTextTitle2Style}" Text="{Binding Path=LocalizedResources.SettingsProFXHeaderText, Source={StaticResource LocalizedStrings}}" HorizontalAlignment="Left" Margin="0, 20, 0, 0"/>
                 <TextBlock Style="{StaticResource PhoneTextSubtleStyle}" 
-                           Text="ProFX is the image processing module for Indulged. This settings decides whether to use a light or a dark background when editing images" 
+                           Text="{Binding Path=LocalizedResources.SettingsProFXDescText, Source={StaticResource LocalizedStrings}}" 
                        HorizontalAlignment="Left" TextWrapping="Wrap"/>
                 <toolkit:ListPicker x:Name="FXBackgroundPicker" SelectionChanged="FXBackgroundPicker_SelectionChanged">
-                    <toolkit:ListPickerItem Content="Dark"/>
-                    <toolkit:ListPickerItem Content="Light"/>
+                    <toolkit:ListPickerItem Content="{Binding Path=LocalizedResources.SettingsProFXDarkText, Source={StaticResource LocalizedStrings}}"/>
+                    <toolkit:ListPickerItem Content="{Binding Path=LocalizedResources.SettingsProFXLightText, Source={StaticResource LocalizedStrings}}"/>
                 </toolkit:ListPicker>
 
                 <!--Violet settings-->
-                <TextBlock Style="{StaticResource PhoneTextTitle2Style}" Text="Subscription" HorizontalAlignment="Left" Margin="0, 20, 0, 0"/>
+                <TextBlock Style="{StaticResource PhoneTextTitle2Style}" Text="{Binding Path=LocalizedResources.SettingsSubscriptionHeaderText, Source={StaticResource LocalizedStrings}}" HorizontalAlignment="Left" Margin="0, 20, 0, 0"/>
                 <TextBlock Style="{StaticResource PhoneTextSubtleStyle}" 
-                           Text="You can choose to subscribe one of these streams and the photos will appear in the 'violet' section of the app" 
+                           Text="{Binding Path=LocalizedResources.SettingsSubscriptionDescText, Source={StaticResource LocalizedStrings}}" 
                        HorizontalAlignment="Left" TextWrapping="Wrap"/>
 
                 <toolkit:ListPicker x:Name="VioletPicker" SelectionChanged="VioletPicker_SelectionChanged">
-                    <toolkit:ListPickerItem Content="My Photo Stream"/>
-                    <toolkit:ListPickerItem Content="Favourite Stream"/>
-                    <toolkit:ListPickerItem Content="Discovery Stream"/>
+                    <toolkit:ListPickerItem Content="{Binding Path=LocalizedResources.SubscriptionMyPhotoStreamText, Source={StaticResource LocalizedStrings}}"/>
+                    <toolkit:ListPickerItem Content="{Binding Path=LocalizedResources.SubscriptionFavText, Source={StaticResource LocalizedStrings}}"/>
+                    <toolkit:ListPickerItem Content="{Binding Path=LocalizedResources.SubscriptionDiscoveryText, Source={StaticResource LocalizedStrings}}"/>
                 </toolkit:ListPicker>
 
             </StackPanel>

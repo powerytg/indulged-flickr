@@ -52,12 +52,12 @@
             </phone:Panorama.Title>
 
             <!-- Photo results -->
-            <phone:PanoramaItem Header="photos" HeaderTemplate="{StaticResource SearchItemHeaderTemplate}">
+            <phone:PanoramaItem Header="{Binding Path=LocalizedResources.SearchResultPhotoHeaderText, Source={StaticResource LocalizedStrings}}" HeaderTemplate="{StaticResource SearchItemHeaderTemplate}">
                 <local:PhotoSearchResultView x:Name="PhotoResultView"/>
             </phone:PanoramaItem>
 
             <!--Panorama item two-->
-            <phone:PanoramaItem Header="groups" HeaderTemplate="{StaticResource SearchItemHeaderTemplate}">
+            <phone:PanoramaItem Header="{Binding Path=LocalizedResources.SearchResultGroupHeaderText, Source={StaticResource LocalizedStrings}}" HeaderTemplate="{StaticResource SearchItemHeaderTemplate}">
                 <local:GroupSearchResultView x:Name="GroupResultView"/>
             </phone:PanoramaItem>
         </phone:Panorama>

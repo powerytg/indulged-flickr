@@ -1195,6 +1195,150 @@ namespace Indulged.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Searching groups.
+        /// </summary>
+        public static string SearchingGroupsText {
+            get {
+                return ResourceManager.GetString("SearchingGroupsText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Searching photos.
+        /// </summary>
+        public static string SearchingPhotosText {
+            get {
+                return ResourceManager.GetString("SearchingPhotosText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to groups.
+        /// </summary>
+        public static string SearchResultGroupHeaderText {
+            get {
+                return ResourceManager.GetString("SearchResultGroupHeaderText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to photos.
+        /// </summary>
+        public static string SearchResultPhotoHeaderText {
+            get {
+                return ResourceManager.GetString("SearchResultPhotoHeaderText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Indulged is able to render a blurred background when viewing photos. This however may cause rendering glithes and is turned off by default.
+        /// </summary>
+        public static string SettingsBlurBackgroundDescText {
+            get {
+                return ResourceManager.GetString("SettingsBlurBackgroundDescText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Use Blurred Background.
+        /// </summary>
+        public static string SettingsBlurBackgroundText {
+            get {
+                return ResourceManager.GetString("SettingsBlurBackgroundText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The built-in ProCam camera provides manual focusing, ISO and aperture support, but is still considered experimental at this version thus is not enabled by default.
+        /// </summary>
+        public static string SettingsCameraDescText {
+            get {
+                return ResourceManager.GetString("SettingsCameraDescText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Camera.
+        /// </summary>
+        public static string SettingsCameraHeaderText {
+            get {
+                return ResourceManager.GetString("SettingsCameraHeaderText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User ProCam.
+        /// </summary>
+        public static string SettingsProCamText {
+            get {
+                return ResourceManager.GetString("SettingsProCamText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dark.
+        /// </summary>
+        public static string SettingsProFXDarkText {
+            get {
+                return ResourceManager.GetString("SettingsProFXDarkText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ProFX is the image processing module for Indulged. This settings decides whether to use a light or a dark background when editing images.
+        /// </summary>
+        public static string SettingsProFXDescText {
+            get {
+                return ResourceManager.GetString("SettingsProFXDescText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ProFX.
+        /// </summary>
+        public static string SettingsProFXHeaderText {
+            get {
+                return ResourceManager.GetString("SettingsProFXHeaderText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Light.
+        /// </summary>
+        public static string SettingsProFXLightText {
+            get {
+                return ResourceManager.GetString("SettingsProFXLightText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rendering.
+        /// </summary>
+        public static string SettingsRenderingHeaderText {
+            get {
+                return ResourceManager.GetString("SettingsRenderingHeaderText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You can choose to subscribe one of these streams and the photos will appear in the &apos;violet&apos; section of the app.
+        /// </summary>
+        public static string SettingsSubscriptionDescText {
+            get {
+                return ResourceManager.GetString("SettingsSubscriptionDescText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Subscription.
+        /// </summary>
+        public static string SettingsSubscriptionHeaderText {
+            get {
+                return ResourceManager.GetString("SettingsSubscriptionHeaderText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Discovery Stream.
         /// </summary>
         public static string SubscriptionDiscoveryText {

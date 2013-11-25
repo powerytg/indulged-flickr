@@ -17,11 +17,11 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                
-                <TextBlock x:Name="NoResultLabel" Text="No result found" Foreground="Gray"  Margin="12, 12, 12, 12"/>
+
+                <TextBlock x:Name="NoResultLabel" Text="{Binding Path=LocalizedResources.GenericNoContentFound, Source={StaticResource LocalizedStrings}}" Foreground="Gray"  Margin="12, 12, 12, 12"/>
 
                 <StackPanel x:Name="LoadingView" Orientation="Horizontal" Margin="12, 12, 12, 12">
-                    <TextBlock Text="Searching photos" Foreground="Gray"/>
+                    <TextBlock Text="{Binding Path=LocalizedResources.SearchingPhotosText, Source={StaticResource LocalizedStrings}}" Foreground="Gray"/>
                     <ProgressBar IsIndeterminate="True" Width="200"/>
                 </StackPanel>
 

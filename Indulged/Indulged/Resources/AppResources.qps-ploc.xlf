@@ -9,13 +9,13 @@
         <trans-unit translate="yes" id="Resx/ResourceFlowDirection" xml:space="preserve">
           <source>LeftToRight</source>
           <target state="translated">LeftToRight</target>
-          <note from="MultilingualBuild" annotates="source" priority="2">Controls the FlowDirection for all elements in the RootFrame. Set to the traditional direction of this resource file's language</note>
-        </trans-unit>
+          
+        <note from="MultilingualBuild" annotates="source" priority="2">Controls the FlowDirection for all elements in the RootFrame. Set to the traditional direction of this resource file's language</note></trans-unit>
         <trans-unit translate="yes" id="Resx/ResourceLanguage" xml:space="preserve">
           <source>en-US</source>
           <target state="translated">qps-ploc</target>
-          <note from="MultilingualBuild" annotates="source" priority="2">Controls the Language and ensures that the font for all elements in the RootFrame aligns with the app's language. Set to the language code of this resource file's language.</note>
-        </trans-unit>
+          
+        <note from="MultilingualBuild" annotates="source" priority="2">Controls the Language and ensures that the font for all elements in the RootFrame aligns with the app's language. Set to the language code of this resource file's language.</note></trans-unit>
         <trans-unit translate="yes" id="Resx/ApplicationTitle" xml:space="preserve">
           <source>MY APPLICATION</source>
           <target state="new">MY APPLICATION</target>
@@ -30,7 +30,7 @@
         </trans-unit>
         <trans-unit translate="yes" id="Resx/DashboardPreludeText" xml:space="preserve">
           <source>prelude</source>
-          <target state="new">prelude</target>
+          <target state="translated">prelude</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/DashboardSummersaltText" xml:space="preserve">
           <source>profile</source>
@@ -275,6 +275,70 @@
         <trans-unit translate="yes" id="Resx/TopicComposerSubjectText" xml:space="preserve">
           <source>Subject</source>
           <target state="new">Subject</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/SettingsSubscriptionHeaderText" xml:space="preserve">
+          <source>Subscription</source>
+          <target state="new">Subscription</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/SettingsSubscriptionDescText" xml:space="preserve">
+          <source>You can choose to subscribe one of these streams and the photos will appear in the 'violet' section of the app</source>
+          <target state="new">You can choose to subscribe one of these streams and the photos will appear in the 'violet' section of the app</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/SettingsRenderingHeaderText" xml:space="preserve">
+          <source>Rendering</source>
+          <target state="new">Rendering</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/SettingsProFXLightText" xml:space="preserve">
+          <source>Light</source>
+          <target state="new">Light</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/SettingsProFXHeaderText" xml:space="preserve">
+          <source>ProFX</source>
+          <target state="new">ProFX</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/SettingsProFXDescText" xml:space="preserve">
+          <source>ProFX is the image processing module for Indulged. This settings decides whether to use a light or a dark background when editing images</source>
+          <target state="new">ProFX is the image processing module for Indulged. This settings decides whether to use a light or a dark background when editing images</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/SettingsProFXDarkText" xml:space="preserve">
+          <source>Dark</source>
+          <target state="new">Dark</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/SettingsProCamText" xml:space="preserve">
+          <source>User ProCam</source>
+          <target state="new">User ProCam</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/SettingsCameraHeaderText" xml:space="preserve">
+          <source>Camera</source>
+          <target state="new">Camera</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/SettingsCameraDescText" xml:space="preserve">
+          <source>The built-in ProCam camera provides manual focusing, ISO and aperture support, but is still considered experimental at this version thus is not enabled by default</source>
+          <target state="new">The built-in ProCam camera provides manual focusing, ISO and aperture support, but is still considered experimental at this version thus is not enabled by default</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/SettingsBlurBackgroundText" xml:space="preserve">
+          <source>Use Blurred Background</source>
+          <target state="new">Use Blurred Background</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/SettingsBlurBackgroundDescText" xml:space="preserve">
+          <source>Indulged is able to render a blurred background when viewing photos. This however may cause rendering glithes and is turned off by default</source>
+          <target state="new">Indulged is able to render a blurred background when viewing photos. This however may cause rendering glithes and is turned off by default</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/SearchResultPhotoHeaderText" xml:space="preserve">
+          <source>photos</source>
+          <target state="new">photos</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/SearchResultGroupHeaderText" xml:space="preserve">
+          <source>groups</source>
+          <target state="new">groups</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/SearchingPhotosText" xml:space="preserve">
+          <source>Searching photos</source>
+          <target state="new">Searching photos</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/SearchingGroupsText" xml:space="preserve">
+          <source>Searching groups</source>
+          <target state="new">Searching groups</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/TopicComposerBodyText" xml:space="preserve">
           <source>Message Body</source>

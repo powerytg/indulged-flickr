@@ -1,0 +1,650 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd">
+  <file datatype="xml" source-language="en-US" target-language="zh-Hans" original="AppResources.resx" tool-id="MultilingualAppToolkit" product-name="Indulged" product-version="1.0.0.0" build-num="0">
+    <header>
+      <tool tool-id="MultilingualAppToolkit" tool-name="Multilingual App Toolkit" tool-version="2.1.1100.0" tool-company="Microsoft" />
+    </header>
+    <body>
+      <group id="Resx">
+        <trans-unit id="Resx/ResourceFlowDirection" translate="yes" xml:space="preserve">
+          <source>LeftToRight</source>
+          <target state="translated">LeftToRight</target>
+          
+        <note from="MultilingualBuild" annotates="source" priority="2">Controls the FlowDirection for all elements in the RootFrame. Set to the traditional direction of this resource file's language</note></trans-unit>
+        <trans-unit id="Resx/ResourceLanguage" translate="yes" xml:space="preserve">
+          <source>en-US</source>
+          <target state="translated">zh-Hans</target>
+          
+        <note from="MultilingualBuild" annotates="source" priority="2">Controls the Language and ensures that the font for all elements in the RootFrame aligns with the app's language. Set to the language code of this resource file's language.</note></trans-unit>
+        <trans-unit id="Resx/ApplicationTitle" translate="yes" xml:space="preserve">
+          <source>MY APPLICATION</source>
+          <target state="new">MY APPLICATION</target>
+        </trans-unit>
+        <trans-unit id="Resx/AppBarButtonText" translate="yes" xml:space="preserve">
+          <source>add</source>
+          <target state="new">add</target>
+        </trans-unit>
+        <trans-unit id="Resx/AppBarMenuItemText" translate="yes" xml:space="preserve">
+          <source>Menu Item</source>
+          <target state="new">Menu Item</target>
+        </trans-unit>
+        <trans-unit id="Resx/DashboardPreludeText" translate="yes" xml:space="preserve">
+          <source>prelude</source>
+          <target state="translated">目录</target>
+        </trans-unit>
+        <trans-unit id="Resx/DashboardSummersaltText" translate="yes" xml:space="preserve">
+          <source>profile</source>
+          <target state="translated">社区</target>
+        </trans-unit>
+        <trans-unit id="Resx/DashboardVioletText" translate="yes" xml:space="preserve">
+          <source>photos</source>
+          <target state="translated">照片流</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/SettingsSubscriptionHeaderText" xml:space="preserve">
+          <source>Subscription</source>
+          <target state="translated">订阅</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/SettingsSubscriptionDescText" xml:space="preserve">
+          <source>You can choose to subscribe one of these streams and the photos will appear in the 'violet' section of the app</source>
+          <target state="translated">您可以订阅以下的照片流，以便在主页上浏览</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/SettingsRenderingHeaderText" xml:space="preserve">
+          <source>Rendering</source>
+          <target state="translated">渲染</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/SettingsProFXLightText" xml:space="preserve">
+          <source>Light</source>
+          <target state="translated">亮色主题</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/SettingsProFXHeaderText" xml:space="preserve">
+          <source>ProFX</source>
+          <target state="new">ProFX</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/SettingsProFXDescText" xml:space="preserve">
+          <source>ProFX is the image processing module for Indulged. This settings decides whether to use a light or a dark background when editing images</source>
+          <target state="translated">ProFX 提供强大的照片处理功能。这个选项决定了该模块的背景颜色</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/SettingsProFXDarkText" xml:space="preserve">
+          <source>Dark</source>
+          <target state="translated">暗色主题</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/SettingsProCamText" xml:space="preserve">
+          <source>User ProCam</source>
+          <target state="translated">启用ProCam</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/SettingsCameraHeaderText" xml:space="preserve">
+          <source>Camera</source>
+          <target state="translated">照相</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/SettingsCameraDescText" xml:space="preserve">
+          <source>The built-in ProCam camera provides manual focusing, ISO and aperture support, but is still considered experimental at this version thus is not enabled by default</source>
+          <target state="translated">内置的ProCam照相机模块提供诸如手动对焦、感光度以及白平衡等额外功能。该模块仍在测试中</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/SettingsBlurBackgroundText" xml:space="preserve">
+          <source>Use Blurred Background</source>
+          <target state="translated">使用模糊背景</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/SettingsBlurBackgroundDescText" xml:space="preserve">
+          <source>Indulged is able to render a blurred background when viewing photos. This however may cause rendering glithes and is turned off by default</source>
+          <target state="translated">Indulged 可以将照片渲染成模糊背景，然而这个功能会降低系统性能</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/SearchResultPhotoHeaderText" xml:space="preserve">
+          <source>photos</source>
+          <target state="translated">照片</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/SearchResultGroupHeaderText" xml:space="preserve">
+          <source>groups</source>
+          <target state="translated">照片组</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/SearchingPhotosText" xml:space="preserve">
+          <source>Searching photos</source>
+          <target state="translated">正在搜索照片</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/SearchingGroupsText" xml:space="preserve">
+          <source>Searching groups</source>
+          <target state="translated">正在搜索组</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/TopicComposerSubjectText" xml:space="preserve">
+          <source>Subject</source>
+          <target state="translated">主题</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/TopicComposerBodyText" xml:space="preserve">
+          <source>Message Body</source>
+          <target state="translated">内容</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/ThrottleReachedErrorText" xml:space="preserve">
+          <source>You have reached limitation</source>
+          <target state="translated">已达到规定的上限</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/SummersaltUserInfoPhotoUploadedText" xml:space="preserve">
+          <source>Photo uploaded: </source>
+          <target state="translated">上传照片：</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/SummersaltUserInfoMemberSinceText" xml:space="preserve">
+          <source>Member since </source>
+          <target state="translated">会员起始于</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/SummersaltSingleFavText" xml:space="preserve">
+          <source>and 1 other person added this photo as favourite</source>
+          <target state="translated">以及另一人将此加入收藏</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/SummersaltShowAllContactsText" xml:space="preserve">
+          <source>Show All Contacts</source>
+          <target state="translated">显示所有联系人</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/SummersaltRetrievingUserInfoText" xml:space="preserve">
+          <source>Retrieving user info ...</source>
+          <target state="translated">下载用户信息 ...</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/SummersaltRecentActivityText" xml:space="preserve">
+          <source>Recent Activities</source>
+          <target state="translated">最近活动</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/SummersaltNoInfoFoundText" xml:space="preserve">
+          <source>No extra info available</source>
+          <target state="translated">没有更多信息</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/SummersaltMultiFavText" xml:space="preserve">
+          <source>other people added this photo as favourite</source>
+          <target state="translated">个用户将此加入收藏</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/SummersaltCommentedOnText" xml:space="preserve">
+          <source> commented on </source>
+          <target state="translated">发表于</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/SummersaltAndText" xml:space="preserve">
+          <source> and </source>
+          <target state="translated"> 以及 </target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/SummersaltAddedFavText" xml:space="preserve">
+          <source>added this photo as favourite</source>
+          <target state="translated">将此加入收藏</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/SubscriptionMyPhotoStreamText" xml:space="preserve">
+          <source>My Photo Stream</source>
+          <target state="translated">我的照片流</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/SubscriptionFavText" xml:space="preserve">
+          <source>Favourite Stream</source>
+          <target state="translated">收藏</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/SubscriptionDiscoveryText" xml:space="preserve">
+          <source>Discovery Stream</source>
+          <target state="translated">推荐内容</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/ReplyCannotBeEmptyText" xml:space="preserve">
+          <source>Reply cannot be empty</source>
+          <target state="translated">回复不可为空白</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/ProfilePageUrlText" xml:space="preserve">
+          <source>Profile link</source>
+          <target state="translated">档案链接</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/ProfilePageRealNameText" xml:space="preserve">
+          <source>Real name</source>
+          <target state="translated">真实姓名</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/ProfilePageProfileHeaderText" xml:space="preserve">
+          <source>profile</source>
+          <target state="translated">档案</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/ProfilePagePhotoHeaderText" xml:space="preserve">
+          <source>photos</source>
+          <target state="translated">照片</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/ProfilePagePhotoCountText" xml:space="preserve">
+          <source>Photo uploaded</source>
+          <target state="translated">上传照片</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/ProfilePageNoPhotoText" xml:space="preserve">
+          <source>No photo yet</source>
+          <target state="translated">目前没有上传照片</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/ProfilePageLocationText" xml:space="preserve">
+          <source>Location</source>
+          <target state="translated">地点</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/ProfilePageLoadingText" xml:space="preserve">
+          <source>Loading profile ...</source>
+          <target state="translated">正在载入档案 ...</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/ProfilePageDescText" xml:space="preserve">
+          <source>Description</source>
+          <target state="translated">备注</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/ProCamInitText" xml:space="preserve">
+          <source>Initializing Camera ...</source>
+          <target state="translated">正在载入照相机 ...</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/PreludeVioletItemText" xml:space="preserve">
+          <source>Photo Stream</source>
+          <target state="translated">照片流</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/PreludeUploadPhotoItemText" xml:space="preserve">
+          <source>Upload Photo</source>
+          <target state="translated">上传照片</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/PreludeSummersaltItemText" xml:space="preserve">
+          <source>Profile</source>
+          <target state="translated">档案</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/PreludeSearchItemText" xml:space="preserve">
+          <source>Search</source>
+          <target state="translated">搜索</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/PreludeRetryText" xml:space="preserve">
+          <source>Tap to retry</source>
+          <target state="translated">重试</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/PreludeRetrievingPhotoSetsText" xml:space="preserve">
+          <source>Retrieving photo sets ...</source>
+          <target state="translated">正在加载相册 ...</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/PreludeRetrievingGroupsText" xml:space="preserve">
+          <source>Retrieving group list ...</source>
+          <target state="translated">正在加载组列表 ...</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/PreludePhotoSetSectionText" xml:space="preserve">
+          <source>photo sets</source>
+          <target state="translated">相册</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/PreludeNoPhotoSetFoundText" xml:space="preserve">
+          <source>No photo sets found</source>
+          <target state="translated">没有相册</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/PreludeNoGroupFoundText" xml:space="preserve">
+          <source>No groups found</source>
+          <target state="translated">没有照片组</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/PreludeMyPhotoStreamItemText" xml:space="preserve">
+          <source>My Photo Stream</source>
+          <target state="translated">我的照片流</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/PreludeFeaturedSectionText" xml:space="preserve">
+          <source>featured</source>
+          <target state="translated">常用</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/PreludeFavItemText" xml:space="preserve">
+          <source>Favourites</source>
+          <target state="translated">收藏</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/PreludeDiscoveryItemText" xml:space="preserve">
+          <source>Discovery</source>
+          <target state="translated">推荐内容</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/PreludeContactsItemText" xml:space="preserve">
+          <source>Contacts</source>
+          <target state="translated">联系人</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/PreludeCommunitySectionText" xml:space="preserve">
+          <source>community</source>
+          <target state="translated">社区</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/PhotoCollectionRemovingPhotoText" xml:space="preserve">
+          <source>Removing photo</source>
+          <target state="translated">正在移除照片</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/PhotoCollectionPhotoRemovedText" xml:space="preserve">
+          <source>Photo has been removed from set</source>
+          <target state="translated">照片已从相册中移除</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/PhotoCollectionPhotoAddedText" xml:space="preserve">
+          <source>Photo has been added to set</source>
+          <target state="translated">照片已加入到相册中</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/PhotoCollectionLoadingText" xml:space="preserve">
+          <source>Loading photo collection</source>
+          <target state="translated">正在加载相册</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/PhotoCollectionAddToSetText" xml:space="preserve">
+          <source>Add To Photo Set</source>
+          <target state="translated">加入到相册</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/PhotoCollectionAddingPhotoText" xml:space="preserve">
+          <source>Adding photo</source>
+          <target state="translated">正在加入照片</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/NoContactsText" xml:space="preserve">
+          <source>You don't have any contacts</source>
+          <target state="translated">没有联系人</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/MainPageSubscriptionTitleText" xml:space="preserve">
+          <source>Subscription</source>
+          <target state="translated">订阅</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/MainPageLogoutTitleText" xml:space="preserve">
+          <source>Sign Out</source>
+          <target state="translated">登出</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/MainPageLogoutContentText" xml:space="preserve">
+          <source>You will be taken back to login screen and your privacy will be cleared out on this device</source>
+          <target state="translated">您将回到登陆界面，所有登陆信息将会删除</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/MainPageLogoutButtonText" xml:space="preserve">
+          <source>Sign Out</source>
+          <target state="translated">登出</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/MainPageAppBarUploadPhotoText" xml:space="preserve">
+          <source>upload photo</source>
+          <target state="translated">上传照片</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/MainPageAppBarSubscriptionText" xml:space="preserve">
+          <source>subscription settings</source>
+          <target state="translated">订阅设置</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/MainPageAppBarSettingsText" xml:space="preserve">
+          <source>settings</source>
+          <target state="translated">设置</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/MainPageAppBarSearchText" xml:space="preserve">
+          <source>search</source>
+          <target state="translated">搜索</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/MainPageAppBarRefreshText" xml:space="preserve">
+          <source>refresh</source>
+          <target state="translated">刷新</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/MainPageAppBarMyProfileText" xml:space="preserve">
+          <source>my profile</source>
+          <target state="translated">我的档案</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/MainPageAppBarLogoutText" xml:space="preserve">
+          <source>sign out</source>
+          <target state="translated">登出</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/MainPageAppBarFeedbackText" xml:space="preserve">
+          <source>give feedback</source>
+          <target state="translated">意见回馈</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/MainPageAppBarContactsText" xml:space="preserve">
+          <source>contacts</source>
+          <target state="translated">联系人</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/LoginSignInText" xml:space="preserve">
+          <source>SIGN IN</source>
+          <target state="translated">登陆</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/LoginLoadingText" xml:space="preserve">
+          <source>Loading ...</source>
+          <target state="translated">正在载入 ...</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/LoginBackText" xml:space="preserve">
+          <source>Sign In</source>
+          <target state="translated">返回</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/LoginAuthErrorText" xml:space="preserve">
+          <source>Cannot authenticate with Flickr at this time</source>
+          <target state="translated">无法通过认证</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/LoginAboutText" xml:space="preserve">
+          <source>ABOUT</source>
+          <target state="translated">关于</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/LoginAboutAppTitleText" xml:space="preserve">
+          <source>About Indulged</source>
+          <target state="translated">关于Indulged</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/GroupSubjectContentCannotBeEmptyText" xml:space="preserve">
+          <source>Subject and content cannot be empty</source>
+          <target state="translated">主题和内容不可为空</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/GroupSendRequestText" xml:space="preserve">
+          <source>Send Request</source>
+          <target state="translated">发送请求</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/GroupSendingRequestText" xml:space="preserve">
+          <source>Sending request</source>
+          <target state="translated">正在发送请求</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/GroupRulesText" xml:space="preserve">
+          <source>Group Rules</source>
+          <target state="translated">规则</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/GroupRetrievingInfoText" xml:space="preserve">
+          <source>Retrieving group info</source>
+          <target state="translated">正在载入组信息</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/GroupRequestSentText" xml:space="preserve">
+          <source>Your request has been sent to group admin</source>
+          <target state="translated">您的请求已发送给管理员</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/GroupRemovingPhotoText" xml:space="preserve">
+          <source>Removing photo</source>
+          <target state="translated">正在移除照片</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/GroupPhotoHeaderText" xml:space="preserve">
+          <source>photos</source>
+          <target state="translated">照片</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/GroupNoActiveTopicsText" xml:space="preserve">
+          <source>No active topics</source>
+          <target state="translated">目前没有主题</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/GroupMembershipText" xml:space="preserve">
+          <source>Group Membership Request</source>
+          <target state="translated">会员申请</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/GroupLoadingTopicsText" xml:space="preserve">
+          <source>loading topics</source>
+          <target state="translated">正在载入主题列表</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/GroupLoadingPhotosText" xml:space="preserve">
+          <source>loading photos</source>
+          <target state="translated">正在载入照片</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/GroupLoadingPhotoCollectionText" xml:space="preserve">
+          <source>Loading photo collection</source>
+          <target state="translated">正在载入相册</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/GroupJoinText" xml:space="preserve">
+          <source>Join Group</source>
+          <target state="translated">加入这个组</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/GroupJoiningText" xml:space="preserve">
+          <source>Joining Group</source>
+          <target state="translated">正在加入</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/GroupInvitationRequestText" xml:space="preserve">
+          <source>Invitation Request</source>
+          <target state="translated">申请加入</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/GroupDiscussionTitleText" xml:space="preserve">
+          <source>Discussion</source>
+          <target state="translated">讨论</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/GroupDiscussionHeaderText" xml:space="preserve">
+          <source>discussions</source>
+          <target state="translated">讨论</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/GroupBrowseText" xml:space="preserve">
+          <source>Browse</source>
+          <target state="translated">浏览</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/GroupAddTopicErrorText" xml:space="preserve">
+          <source>An error occured while adding topic</source>
+          <target state="translated">创建主题时发生错误</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/GroupAddToGroupTitleText" xml:space="preserve">
+          <source>Add To Group</source>
+          <target state="translated">加入照片</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/GroupAddToGroupDoneText" xml:space="preserve">
+          <source>Done Adding Photos</source>
+          <target state="translated">完成</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/GenericWaitingText" xml:space="preserve">
+          <source>Waiting ...</source>
+          <target state="translated">请等待 ...</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/GenericUntitledText" xml:space="preserve">
+          <source>Untitled</source>
+          <target state="translated">无题</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/GenericSendingRequestText" xml:space="preserve">
+          <source>Sending request</source>
+          <target state="translated">正在发送申请</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/GenericPhotoLoadingErrorText" xml:space="preserve">
+          <source>Cannot load photos</source>
+          <target state="translated">无法下载照片</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/GenericNoContentFound" xml:space="preserve">
+          <source>No content found</source>
+          <target state="translated">没有内容</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/GenericLoadingStreamText" xml:space="preserve">
+          <source>Loading stream ...</source>
+          <target state="translated">正在下载流 ...</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/GenericErrorTitleText" xml:space="preserve">
+          <source>Error</source>
+          <target state="translated">错误</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/GenericDoneText" xml:space="preserve">
+          <source>Done</source>
+          <target state="translated">完成</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/GenericConfirmText" xml:space="preserve">
+          <source>Confirm</source>
+          <target state="translated">确认</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/GenericCancelText" xml:space="preserve">
+          <source>Cancel</source>
+          <target state="translated">取消</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/GenericAgreeText" xml:space="preserve">
+          <source>I Agree</source>
+          <target state="translated">我同意</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/FavPageTitleText" xml:space="preserve">
+          <source>Favourites</source>
+          <target state="translated">收藏</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/FavPageLoadingErrorText" xml:space="preserve">
+          <source>Cannot load favourite photos</source>
+          <target state="translated">无法载入收藏照片</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/DiscussionRetrievingRepliesText" xml:space="preserve">
+          <source>retrieving replies</source>
+          <target state="translated">正在载入回复</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/DiscussionPostingText" xml:space="preserve">
+          <source>Posting to discussion board</source>
+          <target state="translated">发表</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/DiscussionPostingErrorText" xml:space="preserve">
+          <source>An error occured while replying message</source>
+          <target state="translated">回复时发生错误</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/DiscoveryPageTitleText" xml:space="preserve">
+          <source>Discovery</source>
+          <target state="translated">推荐内容</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/DiscoveryPageLoadingErrorText" xml:space="preserve">
+          <source>Cannot load discovery stream</source>
+          <target state="translated">无法加载推荐内容</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/DetailPageViewAllCommentsText" xml:space="preserve">
+          <source>view all ...</source>
+          <target state="translated">显示全部 ...</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/DetailPageTagsTitleText" xml:space="preserve">
+          <source>Tags</source>
+          <target state="translated">标签</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/DetailPageRetrievingPhotoInfoText" xml:space="preserve">
+          <source>Retrieving photo info</source>
+          <target state="translated">正在加载照片</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/DetailPageRetrievePhotoInfoErrorText" xml:space="preserve">
+          <source>Cannot get photo info</source>
+          <target state="translated">无法加载照片</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/DetailPageRemovingFavText" xml:space="preserve">
+          <source>Removing photo from favourite</source>
+          <target state="translated">正在从收藏中移除</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/DetailPageRemovedFavText" xml:space="preserve">
+          <source>Photo has been removed from favourite list</source>
+          <target state="translated">照片已从收藏中移除</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/DetailPageNoTagsText" xml:space="preserve">
+          <source>This photo does not have any tags</source>
+          <target state="translated">该照片没有标签</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/DetailPageNoCommentsText" xml:space="preserve">
+          <source>This photo does not have any comments</source>
+          <target state="translated">该照片没有评论内容</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/DetailPageMarkingAsFavText" xml:space="preserve">
+          <source>Marking photo as favourite</source>
+          <target state="translated">加入收藏</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/DetailPageLoadingPhotoText" xml:space="preserve">
+          <source>Loading photo ...</source>
+          <target state="translated">正在加载照片 ...</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/DetailPageLoadingEXIFText" xml:space="preserve">
+          <source>Loading EXIF Info</source>
+          <target state="translated">正在下载EXIF信息</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/DetailPageLoadingCommentsText" xml:space="preserve">
+          <source>Loading comments</source>
+          <target state="translated">正在下载评论</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/DetailPageLoadEXIFErrorText" xml:space="preserve">
+          <source>Cannot retrieve EXIF Info</source>
+          <target state="translated">无法取得EXIF信息</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/DetailPageLoadCommentsErrorText" xml:space="preserve">
+          <source>Cannot load comments</source>
+          <target state="translated">无法下载评论</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/DetailPageEXIFTitleText" xml:space="preserve">
+          <source>EXIF Info</source>
+          <target state="translated">EXIF信息</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/DetailPageEXIFNotAvailableText" xml:space="preserve">
+          <source>EXIF data is not available</source>
+          <target state="translated">没有EXIF信息</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/DetailPageCommentsText" xml:space="preserve">
+          <source>Comments</source>
+          <target state="translated">评论</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/DetailPageAddedFavText" xml:space="preserve">
+          <source>Photo has been added as fvourite</source>
+          <target state="translated">已加入收藏</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/ContactsPageTitleText" xml:space="preserve">
+          <source>Contacts</source>
+          <target state="translated">联系人</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/ContactsLoadingText" xml:space="preserve">
+          <source>retrieving contacts</source>
+          <target state="translated">正在下载联系人列表</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/ContactsLoadingErrorText" xml:space="preserve">
+          <source>Cannot load contact list</source>
+          <target state="translated">无法取得联系人列表</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/CommentPostingText" xml:space="preserve">
+          <source>Posting comment</source>
+          <target state="translated">正在发表评论</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/CommentPostErrorText" xml:space="preserve">
+          <source>An error occured while adding comment</source>
+          <target state="translated">发表评论时发生错误</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/CommentComposerTitleText" xml:space="preserve">
+          <source>Comment</source>
+          <target state="translated">品论</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/CommentCannotBeNullText" xml:space="preserve">
+          <source>Comment cannot be empty</source>
+          <target state="translated">评论内容不可为空</target>
+        </trans-unit>
+      </group>
+    </body>
+  </file>
+</xliff>

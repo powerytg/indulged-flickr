@@ -548,4 +548,52 @@
   <data name="TopicComposerSubjectText" xml:space="preserve">
     <value>Subject</value>
   </data>
+  <data name="SearchingGroupsText" xml:space="preserve">
+    <value>Searching groups</value>
+  </data>
+  <data name="SearchingPhotosText" xml:space="preserve">
+    <value>Searching photos</value>
+  </data>
+  <data name="SearchResultGroupHeaderText" xml:space="preserve">
+    <value>groups</value>
+  </data>
+  <data name="SearchResultPhotoHeaderText" xml:space="preserve">
+    <value>photos</value>
+  </data>
+  <data name="SettingsBlurBackgroundDescText" xml:space="preserve">
+    <value>Indulged is able to render a blurred background when viewing photos. This however may cause rendering glithes and is turned off by default</value>
+  </data>
+  <data name="SettingsBlurBackgroundText" xml:space="preserve">
+    <value>Use Blurred Background</value>
+  </data>
+  <data name="SettingsCameraDescText" xml:space="preserve">
+    <value>The built-in ProCam camera provides manual focusing, ISO and aperture support, but is still considered experimental at this version thus is not enabled by default</value>
+  </data>
+  <data name="SettingsCameraHeaderText" xml:space="preserve">
+    <value>Camera</value>
+  </data>
+  <data name="SettingsProCamText" xml:space="preserve">
+    <value>User ProCam</value>
+  </data>
+  <data name="SettingsProFXDarkText" xml:space="preserve">
+    <value>Dark</value>
+  </data>
+  <data name="SettingsProFXDescText" xml:space="preserve">
+    <value>ProFX is the image processing module for Indulged. This settings decides whether to use a light or a dark background when editing images</value>
+  </data>
+  <data name="SettingsProFXHeaderText" xml:space="preserve">
+    <value>ProFX</value>
+  </data>
+  <data name="SettingsProFXLightText" xml:space="preserve">
+    <value>Light</value>
+  </data>
+  <data name="SettingsRenderingHeaderText" xml:space="preserve">
+    <value>Rendering</value>
+  </data>
+  <data name="SettingsSubscriptionDescText" xml:space="preserve">
+    <value>You can choose to subscribe one of these streams and the photos will appear in the 'violet' section of the app</value>
+  </data>
+  <data name="SettingsSubscriptionHeaderText" xml:space="preserve">
+    <value>Subscription</value>
+  </data>
 </root>

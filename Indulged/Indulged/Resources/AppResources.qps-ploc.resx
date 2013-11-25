@@ -125,4 +125,7 @@
     <value>qps-ploc</value>
     <comment>Controls the Language and ensures that the font for all elements in the RootFrame aligns with the app's language. Set to the language code of this resource file's language.</comment>
   </data>
+  <data name="DashboardPreludeText" xml:space="preserve">
+    <value>prelude</value>
+  </data>
 </root>
