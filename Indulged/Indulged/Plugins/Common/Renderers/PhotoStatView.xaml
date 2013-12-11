@@ -12,7 +12,7 @@
     <StackPanel x:Name="LayoutRoot" Orientation="Horizontal">
         <Image x:Name="ViewIcon" Source="/Assets/Common/View-Light.png" VerticalAlignment="Center" Stretch="None" Grid.Column="1"
                Margin="4,4,4,4"/>
-        <TextBlock x:Name="ViewLabel" Foreground="#ffffff" FontSize="24" VerticalAlignment="Center" Margin="12, 4, 4, 4" Grid.Column="2"/>
+        <TextBlock x:Name="ViewLabel" Foreground="#ffffff" FontSize="24" FontWeight="Bold" VerticalAlignment="Center" Margin="12, 4, 4, 4" Grid.Column="2"/>
 
     </StackPanel>
 

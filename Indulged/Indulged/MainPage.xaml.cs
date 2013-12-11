@@ -106,20 +106,32 @@ namespace Indulged
 
          private void OnTakePhotoClick(object sender, EventArgs e)
         {
-            NavigationService.Navigate(new Uri("/Plugins/ProCamera/ProCameraPage.xaml", UriKind.Relative));
+            ShowUploadOptions();
         }
 
-         protected override void OnBackKeyPress(System.ComponentModel.CancelEventArgs e)
+         private void ShowUploadOptions()
          {
-             if (ModalPopup.HasPopupHistory())
+             var optionsView = new UploadOptionsView();
+             var dialog = ModalPopup.Show(optionsView, "Upload From", new List<string> { AppResources.GenericConfirmText, AppResources.GenericCancelText });
+             dialog.DismissWithButtonClick += (s, args) =>
              {
-                 e.Cancel = true;
-                 ModalPopup.RemoveLastPopup();
-             }
-             else
-             {
-                 base.OnBackKeyPress(e);
-             }
+                 int buttonIndex = (args as ModalPopupEventArgs).ButtonIndex;
+                 if (buttonIndex == 0)
+                 {
+                     Frame rootVisual = System.Windows.Application.Current.RootVisual as Frame;
+                     PhoneApplicationPage currentPage = (PhoneApplicationPage)rootVisual.Content;
+
+                     if (optionsView.CameraButton.IsChecked == true)
+                     {
+                         currentPage.NavigationService.Navigate(new Uri("/Plugins/ProCamera/ProCameraPage.xaml", UriKind.Relative));
+                     }
+                     else
+                     {
+                         currentPage.NavigationService.Navigate(new Uri("/Plugins/ProCamera/ProCameraPage.xaml?is_from_library=true", UriKind.Relative));
+                     }
+                 }
+             };
+
          }
 
         // Subscription settings view

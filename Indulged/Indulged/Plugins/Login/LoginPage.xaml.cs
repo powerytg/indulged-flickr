@@ -16,6 +16,7 @@ using System.Windows.Controls.Primitives;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using Indulged.Resources;
+using Indulged.Plugins.Chrome.Services;
 
 
 namespace Indulged.Plugins.Login
@@ -28,6 +29,9 @@ namespace Indulged.Plugins.Login
         public LoginPage()
         {
             InitializeComponent();
+
+            // Version
+            LoginAboutLabel.Text = "Indulged " + GlobalService.AppVersion + ", 2013 - 2014 Tiangong You";
 
             // Events
             Anaconda.AnacondaCore.RequestTokenGranted += requestTokenGranted;
@@ -104,12 +108,7 @@ namespace Indulged.Plugins.Login
 
         protected override void OnBackKeyPress(System.ComponentModel.CancelEventArgs e)
         {
-            if (ModalPopup.HasPopupHistory())
-            {
-                e.Cancel = true;
-                ModalPopup.RemoveLastPopup();
-            }
-            else if (BrowserView.Visibility == Visibility.Visible)
+            if (BrowserView.Visibility == Visibility.Visible)
             {
                 e.Cancel = true;
                 HideBrowserView();                
@@ -198,7 +197,7 @@ namespace Indulged.Plugins.Login
 
         private void AboutButton_Click(object sender, RoutedEventArgs e)
         {
-            string aboutText = "Indulged for Windows Phone\n\nVersion 1.1\n\nFrom photographer, for photographer!\n\n2013 - 2014 Tiangong You, all rights reserved";
+            string aboutText = "Indulged for Windows Phone\n\nVersion " + GlobalService.AppVersion + "\n\nFrom photographer, for photographer!\n\n2013 - 2014 Tiangong You, all rights reserved";
             ModalPopup.Show(aboutText, AppResources.LoginAboutAppTitleText, new List<string> { AppResources.GenericDoneText });
         }
 

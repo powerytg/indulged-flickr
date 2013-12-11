@@ -64,19 +64,6 @@ namespace Indulged.Plugins.PhotoCollection
             PerformAppearanceAnimation();
         }
 
-        protected override void OnBackKeyPress(System.ComponentModel.CancelEventArgs e)
-        {
-            if (ModalPopup.HasPopupHistory())
-            {
-                e.Cancel = true;
-                ModalPopup.RemoveLastPopup();
-            }
-            else
-            {
-                base.OnBackKeyPress(e);
-            }
-        }
-
         protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
         {
             base.OnNavigatingFrom(e);

@@ -33,7 +33,7 @@
                        Grid.Row="0"/>
 
                 <!-- Stat view -->
-                <renderer:PhotoStatView x:Name="StatView" HorizontalAlignment="Left" Opacity="0.85" 
+                <renderer:PhotoStatView x:Name="StatView" HorizontalAlignment="Left" Opacity="0.65" 
                                         Grid.Row="1"/>
             </Grid>
             

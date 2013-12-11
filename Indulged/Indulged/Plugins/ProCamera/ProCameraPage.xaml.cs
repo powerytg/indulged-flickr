@@ -40,6 +40,9 @@ namespace Indulged.Plugins.ProCamera
         // Capture task
         private CameraCaptureTask camTask;
 
+        // Media chooser task
+        private PhotoChooserTask photoChooserTask;
+
         private bool executedOnce;
 
         protected override void OnNavigatedTo (NavigationEventArgs e)
@@ -59,7 +62,14 @@ namespace Indulged.Plugins.ProCamera
 
             executedOnce = true;
 
-            if (PolicyKit.ShouldUseProCamera)
+            if (NavigationContext.QueryString.ContainsKey("is_from_library"))
+            {
+                // Choose from media library
+                photoChooserTask = new PhotoChooserTask();
+                photoChooserTask.Completed += OnCaptureTaskCompleted;
+                photoChooserTask.Show();
+            }
+            else if (PolicyKit.ShouldUseProCamera)
             {
                 LayoutRoot.Visibility = Visibility.Visible;
                 LoadingView.Text = AppResources.ProCamInitText;
@@ -84,7 +94,7 @@ namespace Indulged.Plugins.ProCamera
             {
                 LayoutRoot.Visibility = Visibility.Collapsed;
                 camTask = new CameraCaptureTask();
-                camTask.Completed += new EventHandler<PhotoResult>(cameraCaptureTask_Completed);
+                camTask.Completed += new EventHandler<PhotoResult>(OnCaptureTaskCompleted);
                 camTask.Show();
             }
 
@@ -101,21 +111,7 @@ namespace Indulged.Plugins.ProCamera
             base.OnRemovedFromJournal(e);
         }
 
-        protected override void OnBackKeyPress(System.ComponentModel.CancelEventArgs e)
-        {
-            if (ModalPopup.HasPopupHistory())
-            {
-                e.Cancel = true;
-                ModalPopup.RemoveLastPopup();
-            }
-            else
-            {
-                base.OnBackKeyPress(e);
-            }
-        }
-
-
-        private void cameraCaptureTask_Completed(object sender, PhotoResult e)
+        private void OnCaptureTaskCompleted(object sender, PhotoResult e)
         {
             if (e.TaskResult == TaskResult.OK)
             {

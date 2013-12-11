@@ -111,6 +111,7 @@
       <DependentUpon>PhotoBackgroundView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Plugins\Chrome\Events\ThemeChangedEventArgs.cs" />
+    <Compile Include="Plugins\Chrome\Services\GlobalService.cs" />
     <Compile Include="Plugins\Chrome\Services\LiveTileImageDownloadService.cs" />
     <Compile Include="Plugins\Chrome\ThemeManager.cs" />
     <Compile Include="Plugins\Chrome\TitleView.xaml.cs">
@@ -183,6 +184,9 @@
     </Compile>
     <Compile Include="Plugins\Common\UserAvatarView.xaml.cs">
       <DependentUpon>UserAvatarView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\Dashboard\UploadOptionsView.xaml.cs">
+      <DependentUpon>UploadOptionsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Plugins\Dashboard\SummersaltActivityHeaderModel.cs" />
     <Compile Include="Plugins\Dashboard\SummersaltContactHeaderModel.cs" />
@@ -712,6 +716,10 @@
     <Page Include="Plugins\Common\UserAvatarView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Plugins\Dashboard\UploadOptionsView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Plugins\Dashboard\SummersaltRenderers\SummersaltContactHeaderRenderer.xaml">
       <Generator>MSBuild:Compile</Generator>

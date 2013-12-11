@@ -39,7 +39,7 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <TextBlock Foreground="White" FontSize="18" FontWeight="Light" Text="Indulged 1.1, 2013 - 2014 Tiangong You"
+            <TextBlock x:Name="LoginAboutLabel" Foreground="White" FontSize="18" FontWeight="Light"
                        VerticalAlignment="Center" Grid.Column="0" />
 
             <Button x:Name="AboutButton" Content="{Binding Path=LocalizedResources.LoginAboutText, Source={StaticResource LocalizedStrings}}" FontSize="18" Grid.Column="2"

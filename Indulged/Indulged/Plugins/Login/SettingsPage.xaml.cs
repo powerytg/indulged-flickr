@@ -43,20 +43,6 @@ namespace Indulged.Plugins.Login
                 VioletPicker.SelectedIndex = 2;
         }
 
-        protected override void OnBackKeyPress(System.ComponentModel.CancelEventArgs e)
-        {
-            if (ModalPopup.HasPopupHistory())
-            {
-                e.Cancel = true;
-                ModalPopup.RemoveLastPopup();
-            }
-            else
-            {
-                base.OnBackKeyPress(e);
-            }
-        }
-
-
         private void ProCamSwitch_Checked(object sender, RoutedEventArgs e)
         {
             PolicyKit.ShouldUseProCamera = true;

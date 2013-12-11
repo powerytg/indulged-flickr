@@ -17,6 +17,8 @@ using Indulged.API.Cinderella.Events;
 using Indulged.API.Anaconda;
 using Indulged.API.Anaconda.Events;
 using Indulged.Resources;
+using Indulged.API.Avarice.Controls;
+using Indulged.API.Avarice.Events;
 
 namespace Indulged.Plugins.Dashboard
 {
@@ -259,10 +261,7 @@ namespace Indulged.Plugins.Dashboard
             }
             else if (entry.Name == AppResources.PreludeUploadPhotoItemText)
             {
-                Frame rootVisual = System.Windows.Application.Current.RootVisual as Frame;
-                PhoneApplicationPage currentPage = (PhoneApplicationPage)rootVisual.Content;
-                currentPage.NavigationService.Navigate(new Uri("/Plugins/ProCamera/ProCameraPage.xaml", UriKind.Relative));
-
+                ShowUploadOptions();
             }
         }
 
@@ -284,6 +283,33 @@ namespace Indulged.Plugins.Dashboard
             FeatureListView.SelectedItem = null;
             StreamListView.SelectedItem = null;
             GroupListView.SelectedItem = null;
+        }
+
+        private void ShowUploadOptions()
+        {
+            var optionsView = new UploadOptionsView();
+            var dialog = ModalPopup.Show(optionsView, "Upload From", new List<string> { AppResources.GenericConfirmText, AppResources.GenericCancelText });
+            dialog.DismissWithButtonClick += (s, args) =>
+            {
+                ResetListSelection();
+
+                int buttonIndex = (args as ModalPopupEventArgs).ButtonIndex;
+                if (buttonIndex == 0)
+                {
+                    Frame rootVisual = System.Windows.Application.Current.RootVisual as Frame;
+                    PhoneApplicationPage currentPage = (PhoneApplicationPage)rootVisual.Content;
+
+                    if (optionsView.CameraButton.IsChecked == true)
+                    {
+                        currentPage.NavigationService.Navigate(new Uri("/Plugins/ProCamera/ProCameraPage.xaml", UriKind.Relative));
+                    }
+                    else
+                    {
+                        currentPage.NavigationService.Navigate(new Uri("/Plugins/ProCamera/ProCameraPage.xaml?is_from_library=true", UriKind.Relative));
+                    }
+                }
+            };
+
         }
 
         public void RefreshStreams()

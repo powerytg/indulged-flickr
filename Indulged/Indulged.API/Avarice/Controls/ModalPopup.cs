@@ -16,6 +16,8 @@ using Indulged.API.Avarice.Events;
 using System.Windows.Shapes;
 using System.Windows.Controls.Primitives;
 using Indulged.API.Avarice.Controls.SupportClasses;
+using System.ComponentModel;
+using System.Windows.Navigation;
 
 namespace Indulged.API.Avarice.Controls
 {
@@ -289,6 +291,9 @@ namespace Indulged.API.Avarice.Controls
             if(popupHistory.Contains(this))
                 popupHistory.Remove(this);
 
+            CurrentPage.NavigationService.Navigated -= OnPageNavigated;
+            CurrentPage.BackKeyPress -= OnBackKeyPress;
+
             this.Projection = new PlaneProjection { CenterOfRotationX = 0, RotationX = 0 };
 
             Storyboard animation = new Storyboard();
@@ -482,6 +487,10 @@ namespace Indulged.API.Avarice.Controls
                 CurrentPage.ApplicationBar.IsVisible = false;
             }
 
+            // Override the current page's back button
+            CurrentPage.NavigationService.Navigated += OnPageNavigated;
+            CurrentPage.BackKeyPress += OnBackKeyPress;
+
             double w = System.Windows.Application.Current.Host.Content.ActualWidth;
             double h = System.Windows.Application.Current.Host.Content.ActualHeight;
 
@@ -580,6 +589,9 @@ namespace Indulged.API.Avarice.Controls
             if (popupHistory.Contains(this))
                 popupHistory.Remove(this);
 
+            CurrentPage.NavigationService.Navigated -= OnPageNavigated;
+            CurrentPage.BackKeyPress -= OnBackKeyPress;
+
             this.Projection = new PlaneProjection { CenterOfRotationX = 0, RotationX = 0 };
 
             Storyboard animation = new Storyboard();
@@ -655,6 +667,17 @@ namespace Indulged.API.Avarice.Controls
                 evt.ButtonIndex = buttonIndex;
                 ButtonClick.DispatchEvent(this, evt);
             }
+        }
+
+        protected void OnBackKeyPress(Object sender, CancelEventArgs e)
+        {
+            e.Cancel = true;
+            Dismiss();
+        }
+
+        protected void OnPageNavigated(Object sender, NavigationEventArgs e)
+        {
+            Dismiss();
         }
     }
 }

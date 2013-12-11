@@ -151,12 +151,7 @@ namespace Indulged.Plugins.ProFX
 
         protected override void OnBackKeyPress(System.ComponentModel.CancelEventArgs e)
         {
-            if (ModalPopup.HasPopupHistory())
-            {
-                e.Cancel = true;
-                ModalPopup.RemoveLastPopup();
-            }
-            else if (UploaderPage != null && UploaderPage.Visibility == Visibility.Visible)
+            if (UploaderPage != null && UploaderPage.Visibility == Visibility.Visible)
             {
                 e.Cancel = true;
                 DismissUploaderView();

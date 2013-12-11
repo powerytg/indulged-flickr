@@ -97,19 +97,6 @@ namespace Indulged.Plugins.Profile
             base.OnRemovedFromJournal(e);
         }
 
-        protected override void OnBackKeyPress(System.ComponentModel.CancelEventArgs e)
-        {
-            if (ModalPopup.HasPopupHistory())
-            {
-                e.Cancel = true;
-                ModalPopup.RemoveLastPopup();
-            }
-            else
-            {
-                base.OnBackKeyPress(e);
-            }
-        }
-
         private void PerformAppearanceAnimation()
         {
             double h = System.Windows.Application.Current.Host.Content.ActualHeight;

@@ -68,19 +68,6 @@ namespace Indulged.Plugins.Favourite
             base.OnRemovedFromJournal(e);
         }
 
-        protected override void OnBackKeyPress(System.ComponentModel.CancelEventArgs e)
-        {
-            if (ModalPopup.HasPopupHistory())
-            {
-                e.Cancel = true;
-                ModalPopup.RemoveLastPopup();
-            }
-            else
-            {
-                base.OnBackKeyPress(e);
-            }
-        }
-
         // Can't load discovery stream
         private void OnDiscoveryStreamException(object sender, EventArgs e)
         {
