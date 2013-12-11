@@ -109,7 +109,7 @@ namespace Indulged.Plugins.Login
                 e.Cancel = true;
                 ModalPopup.RemoveLastPopup();
             }
-            else if (Browser.Visibility == Visibility.Visible)
+            else if (BrowserView.Visibility == Visibility.Visible)
             {
                 e.Cancel = true;
                 HideBrowserView();                
