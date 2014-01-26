@@ -9,10 +9,10 @@
     Foreground="{StaticResource PhoneForegroundBrush}" d:DesignWidth="480" Height="265">
 
     <StackPanel x:Name="LayoutRoot" Orientation="Vertical">
-        <RadioButton x:Name="CameraButton" Content="Photo from camera" 
+        <RadioButton x:Name="CameraButton" Content="{Binding Path=LocalizedResources.UploadOptionsCameraText, Source={StaticResource LocalizedStrings}}" 
                      GroupName="UploadGroup" Margin="20, 15, 20, 0" Style="{StaticResource FXRadioButtonStyle}"/>
-        
-        <RadioButton x:Name="LibraryButton" Content="Photo from media library" 
+
+        <RadioButton x:Name="LibraryButton" Content="{Binding Path=LocalizedResources.UploadOptionsLibraryText, Source={StaticResource LocalizedStrings}}" 
                      GroupName="UploadGroup" Margin="20, 8, 20, 0" Style="{StaticResource FXRadioButtonStyle}"/>
     </StackPanel>
 </UserControl>

@@ -69,14 +69,12 @@ namespace Indulged.Plugins.Dashboard
             GroupListView.ItemsSource = GroupList;
 
             FeatureStreams = new ObservableCollection<PreludeItemModel>();
-            FeatureStreams.Add(new PreludeItemModel { Name = AppResources.PreludeVioletItemText });
-            FeatureStreams.Add(new PreludeItemModel { Name = AppResources.PreludeSummersaltItemText });
             FeatureStreams.Add(new PreludeItemModel { Name = AppResources.PreludeMyPhotoStreamItemText });
             FeatureStreams.Add(new PreludeItemModel { Name = AppResources.PreludeDiscoveryItemText });
-            FeatureStreams.Add(new PreludeItemModel { Name = AppResources.PreludeContactsItemText });
-            FeatureStreams.Add(new PreludeItemModel { Name = AppResources.PreludeFavItemText, Icon = new System.Windows.Media.Imaging.BitmapImage(new Uri("/Assets/Dashboard/Heart.png", UriKind.Relative)) });
-            FeatureStreams.Add(new PreludeItemModel { Name = AppResources.PreludeSearchItemText });
             FeatureStreams.Add(new PreludeItemModel { Name = AppResources.PreludeUploadPhotoItemText });
+            FeatureStreams.Add(new PreludeItemModel { Name = AppResources.PreludeFavItemText, Icon = new System.Windows.Media.Imaging.BitmapImage(new Uri("/Assets/Dashboard/Heart.png", UriKind.Relative)) });
+            FeatureStreams.Add(new PreludeItemModel { Name = AppResources.PreludeContactsItemText });
+            FeatureStreams.Add(new PreludeItemModel { Name = AppResources.PreludeSearchItemText });
             FeatureListView.ItemsSource = FeatureStreams;
 
             // Section titles
@@ -288,7 +286,7 @@ namespace Indulged.Plugins.Dashboard
         private void ShowUploadOptions()
         {
             var optionsView = new UploadOptionsView();
-            var dialog = ModalPopup.Show(optionsView, "Upload From", new List<string> { AppResources.GenericConfirmText, AppResources.GenericCancelText });
+            var dialog = ModalPopup.Show(optionsView, AppResources.PreludeUploadSource, new List<string> { AppResources.GenericConfirmText, AppResources.GenericCancelText });
             dialog.DismissWithButtonClick += (s, args) =>
             {
                 ResetListSelection();

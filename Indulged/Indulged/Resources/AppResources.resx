@@ -596,4 +596,13 @@
   <data name="SettingsSubscriptionHeaderText" xml:space="preserve">
     <value>Subscription</value>
   </data>
+  <data name="PreludeUploadSource" xml:space="preserve">
+    <value>Upload From</value>
+  </data>
+  <data name="UploadOptionsCameraText" xml:space="preserve">
+    <value>Camera</value>
+  </data>
+  <data name="UploadOptionsLibraryText" xml:space="preserve">
+    <value>Photo library</value>
+  </data>
 </root>

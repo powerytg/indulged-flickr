@@ -112,7 +112,7 @@ namespace Indulged
          private void ShowUploadOptions()
          {
              var optionsView = new UploadOptionsView();
-             var dialog = ModalPopup.Show(optionsView, "Upload From", new List<string> { AppResources.GenericConfirmText, AppResources.GenericCancelText });
+             var dialog = ModalPopup.Show(optionsView, AppResources.PreludeUploadSource, new List<string> { AppResources.GenericConfirmText, AppResources.GenericCancelText });
              dialog.DismissWithButtonClick += (s, args) =>
              {
                  int buttonIndex = (args as ModalPopupEventArgs).ButtonIndex;

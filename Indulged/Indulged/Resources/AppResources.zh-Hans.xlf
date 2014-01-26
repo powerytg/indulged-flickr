@@ -2,7 +2,7 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd">
   <file datatype="xml" source-language="en-US" target-language="zh-Hans" original="AppResources.resx" tool-id="MultilingualAppToolkit" product-name="Indulged" product-version="1.0.0.0" build-num="0">
     <header>
-      <tool tool-id="MultilingualAppToolkit" tool-name="Multilingual App Toolkit" tool-version="2.1.1100.0" tool-company="Microsoft" />
+      <tool tool-id="MultilingualAppToolkit" tool-name="Multilingual App Toolkit" tool-version="2.1.2010.0" tool-company="Microsoft" />
     </header>
     <body>
       <group id="Resx">
@@ -43,6 +43,18 @@
         <trans-unit translate="yes" id="Resx/SettingsSubscriptionHeaderText" xml:space="preserve">
           <source>Subscription</source>
           <target state="translated">订阅</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/UploadOptionsLibraryText" xml:space="preserve">
+          <source>Photo library</source>
+          <target state="translated">本地照片</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/UploadOptionsCameraText" xml:space="preserve">
+          <source>Camera</source>
+          <target state="translated">照相机</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/PreludeUploadSource" xml:space="preserve">
+          <source>Upload From</source>
+          <target state="translated">上传来源</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/SettingsSubscriptionDescText" xml:space="preserve">
           <source>You can choose to subscribe one of these streams and the photos will appear in the 'violet' section of the app</source>
