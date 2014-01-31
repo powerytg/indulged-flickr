@@ -29,6 +29,10 @@ namespace Indulged.API.Anaconda
         public EventHandler<AddPhotoToSetExceptionEventArgs> AddPhotoToSetException;
         public EventHandler<RemovePhotoFromSetEventArgs> PhotoRemovedFromSet;
         public EventHandler<RemovePhotoFromSetExceptionEventArgs> RemovePhotoFromSetException;
+        public EventHandler<ChangePhotoSetPrimaryEventArgs> PhotoSetChangedPrimary;
+        public EventHandler<ChangePhotoSetPrimaryExceptionEventArgs> PhotoSetChangePrimaryException;
+        public EventHandler<EditPhotoSetEventArgs> PhotoSetEdited;
+        public EventHandler<EditPhotoSetExceptionEventArgs> PhotoSetEditException;
 
         // Retrieved photo stream for an user
         public EventHandler<GetPhotoStreamEventArgs> PhotoStreamReturned;
