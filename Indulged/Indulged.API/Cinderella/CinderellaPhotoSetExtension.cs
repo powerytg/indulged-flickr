@@ -131,7 +131,7 @@ namespace Indulged.API.Cinderella
             PhotoSetUpdated.DispatchEvent(this, evt);
         }
 
-        private void OnPhotoPrimaryUpdated(object sender, ChangePhotoSetPrimaryEventArgs e)
+        private void OnPhotoSetPrimaryUpdated(object sender, ChangePhotoSetPrimaryEventArgs e)
         {
             PhotoSet photoSet = PhotoSetCache[e.SetId];
             photoSet.Primary = e.PhotoId;

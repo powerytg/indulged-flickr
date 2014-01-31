@@ -8,66 +8,102 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:chrome="clr-namespace:Indulged.Plugins.Chrome"
     xmlns:dashboard="clr-namespace:Indulged.Plugins.Dashboard"
-    xmlns:renderers="clr-namespace:Indulged.Plugins.Common.Renderers"
+    xmlns:renderers="clr-namespace:Indulged.Plugins.Common.PhotoGroupRenderers"
+    xmlns:localRenderers="clr-namespace:Indulged.Plugins.PhotoCollection.Renderers"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
+    Background="Black" 
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d"
     shell:SystemTray.IsVisible="True" shell:SystemTray.Opacity="0" shell:SystemTray.ForegroundColor="#536585"
     Style="{StaticResource TransitionPageStyle}">
 
     <phone:PhoneApplicationPage.Resources>
-        <shell:ApplicationBar x:Key="PhotoPageAppBar" IsVisible="True" IsMenuEnabled="False" Mode="Default" Opacity="0.8" BackgroundColor="White" ForegroundColor="Black">
-            <shell:ApplicationBarIconButton x:Name="RefreshPhotoListButton" IconUri="/Assets/Common/refresh.png" Text="refresh" Click="RefreshPhotoListButton_Click"/>
-            <shell:ApplicationBarIconButton x:Name="AddPhotoButton" IconUri="/Assets/Common/add.png" Text="add photo" Click="AddPhotoButton_Click"/>
+        <shell:ApplicationBar x:Key="PhotoPageAppBar" IsVisible="True" IsMenuEnabled="True" Mode="Default" BackgroundColor="Black" ForegroundColor="White">
+            <shell:ApplicationBar.MenuItems>
+                <shell:ApplicationBarMenuItem Text="refresh" Click="RefreshPhotoListButton_Click"/>
+                <shell:ApplicationBarMenuItem Text="add photo" Click="AddPhotoButton_Click"/>
+            </shell:ApplicationBar.MenuItems>
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.Resources>
 
 
     <!--LayoutRoot is the root grid where all page content is placed-->
-    <Grid x:Name="LayoutRoot" Background="White" Visibility="Collapsed">
+    <Grid x:Name="LayoutRoot" Background="Black" Visibility="Collapsed">
         <Grid.RenderTransform>
             <CompositeTransform/>
         </Grid.RenderTransform>
 
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+        <!--Status label-->
+        <TextBlock x:Name="StatusLabel" HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding Path=LocalizedResources.GenericLoadingStreamText, Source={StaticResource LocalizedStrings}}"
+                       Foreground="#ffffff" FontSize="28"/>
 
-        <!-- Title view -->
-        <chrome:TitleView x:Name="TitleView" VerticalAlignment="Top" IsHitTestVisible="False" Titleless="True"/>
-
-        <!--TitlePanel contains the name of the application and page title-->
-        <StackPanel Grid.Row="0" Margin="12,17,0,28" Orientation="Horizontal">
-            <Image Source="/Assets/Common/Collection.png" Width="85"/>
-
-            <TextBlock x:Name="TitleLabel" Foreground="#f67056" Text="{Binding Title}"
-                               FontSize="64" TextWrapping="NoWrap" FontWeight="Bold" TextTrimming="WordEllipsis"
-                               Margin="12, 24, 0, 0"/>
-
-        </StackPanel>
-
-        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-            <Grid.RenderTransform>
-                <CompositeTransform/>
-            </Grid.RenderTransform>
-
-            <!--Status label-->
-            <TextBlock x:Name="StatusLabel" HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding Path=LocalizedResources.GenericLoadingStreamText, Source={StaticResource LocalizedStrings}}"
-                       Foreground="#32afe0" FontSize="38" FontFamily="/Assets/Fonts/BenchNine-Regular.ttf#BenchNine"/>
-
-            <phone:LongListSelector x:Name="PhotoStreamListView" Margin="0,0,0,60" Grid.Row="1"
+        <phone:LongListSelector x:Name="PhotoStreamListView"
                                 ItemsSource="{Binding Items}" ItemRealized="OnItemRealized">
-                <phone:LongListSelector.ItemTemplate>
-                    <DataTemplate>
-                        <renderers:PhotoSetPhotoRenderer SetPhoto="{Binding}"/>
-                    </DataTemplate>
-                </phone:LongListSelector.ItemTemplate>
-            </phone:LongListSelector>
+            <phone:LongListSelector.ItemTemplate>
+                <DataTemplate>
+                    <renderers:CommonPhotoGroupRendererSelector Content="{Binding}">
+                        <renderers:CommonPhotoGroupRendererSelector.LayoutTemplate1>
+                            <DataTemplate>
+                                <localRenderers:PrimaryRenderer PhotoGroupSource="{Binding}"/>
+                            </DataTemplate>
+                        </renderers:CommonPhotoGroupRendererSelector.LayoutTemplate1>
 
-        </Grid>
+                        <renderers:CommonPhotoGroupRendererSelector.LayoutTemplate2>
+                            <DataTemplate>
+                                <renderers:CommonPhotoGroupRenderer2 PhotoGroupSource="{Binding}"/>
+                            </DataTemplate>
+                        </renderers:CommonPhotoGroupRendererSelector.LayoutTemplate2>
+
+                        <renderers:CommonPhotoGroupRendererSelector.LayoutTemplate3>
+                            <DataTemplate>
+                                <renderers:CommonPhotoGroupRenderer3 PhotoGroupSource="{Binding}"/>
+                            </DataTemplate>
+                        </renderers:CommonPhotoGroupRendererSelector.LayoutTemplate3>
+
+
+                        <renderers:CommonPhotoGroupRendererSelector.LayoutTemplate3A>
+                            <DataTemplate>
+                                <renderers:CommonPhotoGroupRenderer3A PhotoGroupSource="{Binding}"/>
+                            </DataTemplate>
+                        </renderers:CommonPhotoGroupRendererSelector.LayoutTemplate3A>
+
+
+                        <renderers:CommonPhotoGroupRendererSelector.LayoutTemplate4>
+                            <DataTemplate>
+                                <renderers:CommonPhotoGroupRenderer4 PhotoGroupSource="{Binding}"/>
+                            </DataTemplate>
+                        </renderers:CommonPhotoGroupRendererSelector.LayoutTemplate4>
+
+                        <renderers:CommonPhotoGroupRendererSelector.LayoutTemplate4A>
+                            <DataTemplate>
+                                <renderers:CommonPhotoGroupRenderer4A PhotoGroupSource="{Binding}"/>
+                            </DataTemplate>
+                        </renderers:CommonPhotoGroupRendererSelector.LayoutTemplate4A>
+
+                        <renderers:CommonPhotoGroupRendererSelector.LayoutTemplate4B>
+                            <DataTemplate>
+                                <renderers:CommonPhotoGroupRenderer4B PhotoGroupSource="{Binding}"/>
+                            </DataTemplate>
+                        </renderers:CommonPhotoGroupRendererSelector.LayoutTemplate4B>
+
+                        <renderers:CommonPhotoGroupRendererSelector.LayoutTemplate5>
+                            <DataTemplate>
+                                <renderers:CommonPhotoGroupRenderer5 PhotoGroupSource="{Binding}"/>
+                            </DataTemplate>
+                        </renderers:CommonPhotoGroupRendererSelector.LayoutTemplate5>
+
+                        <renderers:CommonPhotoGroupRendererSelector.LayoutTemplate5A>
+                            <DataTemplate>
+                                <renderers:CommonPhotoGroupRenderer5A PhotoGroupSource="{Binding}"/>
+                            </DataTemplate>
+                        </renderers:CommonPhotoGroupRendererSelector.LayoutTemplate5A>
+                    </renderers:CommonPhotoGroupRendererSelector>
+
+                </DataTemplate>
+            </phone:LongListSelector.ItemTemplate>
+        </phone:LongListSelector>
     </Grid>
 
 </phone:PhoneApplicationPage>

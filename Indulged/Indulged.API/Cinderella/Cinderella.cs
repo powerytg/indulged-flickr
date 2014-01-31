@@ -156,6 +156,8 @@ namespace Indulged.API.Cinderella
             Anaconda.Anaconda.AnacondaCore.PhotoSetPhotosReturned += OnPhotoSetPhotosReturned;
             Anaconda.Anaconda.AnacondaCore.PhotoAddedToSet += OnPhotoAddedToSet;
             Anaconda.Anaconda.AnacondaCore.PhotoRemovedFromSet += OnPhotoRemovedFromSet;
+            Anaconda.Anaconda.AnacondaCore.PhotoSetEdited += OnPhotoSetUpdated;
+            Anaconda.Anaconda.AnacondaCore.PhotoSetChangedPrimary += OnPhotoSetPrimaryUpdated;
 
             // Photo stream
             Anaconda.Anaconda.AnacondaCore.PhotoStreamReturned += PhotoStreamReturned;

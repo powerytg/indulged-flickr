@@ -24,6 +24,8 @@ namespace Indulged.API.Cinderella.Models
         public DateTime CreationDate { get; set; }
         public DateTime UpdatedDate { get; set; }
 
+        public Photo PrimaryPhoto { get; set; }
+
         private List<Photo> _photos = new List<Photo>();
         public List<Photo> Photos
         {
