@@ -584,4 +584,4 @@
   <data name="CommentCannotBeNullText" xml:space="preserve">
     <value>评论内容不可为空</value>
   </data>
-<data name="UploadOptionsLibraryText" xml:space="preserve"><value>照片集</value></data><data name="UploadOptionsCameraText" xml:space="preserve"><value>照相机</value></data><data name="PreludeUploadSource" xml:space="preserve"><value>上传来源</value></data></root>
+<data name="UploadOptionsLibraryText" xml:space="preserve"><value>本地照片</value></data><data name="UploadOptionsCameraText" xml:space="preserve"><value>照相机</value></data><data name="PreludeUploadSource" xml:space="preserve"><value>上传来源</value></data></root>
