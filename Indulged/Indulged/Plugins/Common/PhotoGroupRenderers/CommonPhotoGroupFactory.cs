@@ -9,10 +9,24 @@ namespace Indulged.Plugins.Common.PhotoGroupRenderers
 {
     public class CommonPhotoGroupFactory
     {
-        // Random generator
-        private static Random randomGenerator = new Random();
+        public string Context { get; set; }
+        public string ContextType { get; set; }
 
-        public static List<PhotoGroup> GeneratePhotoGroup(List<Photo> photos, string context = null, string contextType = null)
+        // Random generator
+        private Random randomGenerator = new Random();
+
+        public PhotoGroup GenerateHeadlinePhotoGroup(Photo photo)
+        {
+            PhotoGroup group = new PhotoGroup();
+            group.IsHeadline = true;
+            group.Photos = new List<Photo> { photo };
+            group.context = Context;
+            group.contextType = ContextType;
+
+            return group;
+        }
+
+        public List<PhotoGroup> GeneratePhotoGroups(List<Photo> photos)
         {
             List<PhotoGroup> result = new List<PhotoGroup>();
 
@@ -23,7 +37,8 @@ namespace Indulged.Plugins.Common.PhotoGroupRenderers
 
             while (position < photos.Count)
             {
-                int ranNum = randomGenerator.Next(min, max);
+                //int ranNum = randomGenerator.Next(min, max);
+                int ranNum = 1;
                 List<Photo> group = new List<Photo>();
 
                 if (position + ranNum >= photos.Count)
@@ -33,7 +48,7 @@ namespace Indulged.Plugins.Common.PhotoGroupRenderers
                         group.Add(photos[i]);
                     }
 
-                    result.Add(new PhotoGroup(group, context, contextType));
+                    result.Add(new PhotoGroup(group, Context, ContextType));
                     break;
                 }
 
@@ -42,11 +57,35 @@ namespace Indulged.Plugins.Common.PhotoGroupRenderers
                     group.Add(photos[i]);
                 }
 
-                result.Add(new PhotoGroup(group, context, contextType));
+                result.Add(new PhotoGroup(group, Context, ContextType));
                 position += ranNum;
             }
 
             return result;
+        }
+
+        public List<PhotoGroup> GeneratePhotoGroupsWithHeadline(List<Photo> photos)
+        {
+            if (photos.Count == 0)
+            {
+                return new List<PhotoGroup>();
+            }
+
+            List<PhotoGroup> results = new List<PhotoGroup>();
+            PhotoGroup headlineGroup = GenerateHeadlinePhotoGroup(photos[0]);
+            results.Add(headlineGroup);
+
+            if (photos.Count > 1)
+            {
+                List<Photo> otherPhotos = new List<Photo>();
+                otherPhotos.AddRange(photos);
+                otherPhotos.RemoveAt(0);
+
+                List<PhotoGroup> groups = GeneratePhotoGroups(otherPhotos);
+                results.AddRange(groups);
+            }
+
+            return results;            
         }
     }
 }

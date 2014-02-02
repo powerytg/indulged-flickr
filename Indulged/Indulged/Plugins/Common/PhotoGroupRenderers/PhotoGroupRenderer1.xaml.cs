@@ -11,12 +11,13 @@ using System.Windows.Media.Imaging;
 
 using Indulged.API.Cinderella.Models;
 
-namespace Indulged.Plugins.Dashboard.VioletRenderers
+namespace Indulged.Plugins.Common.PhotoGroupRenderers
 {
-    public partial class VioletRenderer1 : VioletRendererBase
+    public partial class PhotoGroupRenderer1 : CommonPhotoGroupRendererBase
     {
         // Constructor
-        public VioletRenderer1() : base()
+        public PhotoGroupRenderer1()
+            : base()
         {
             InitializeComponent();
         }
@@ -24,10 +25,9 @@ namespace Indulged.Plugins.Dashboard.VioletRenderers
         protected override void OnPhotoGroupSourceChanged()
         {
             base.OnPhotoGroupSourceChanged();
-            ImageView.PhotoSource = PhotoGroupSource.Photos[0];
-
-            ImageView.context = PhotoGroupSource.context;
-            ImageView.contextType = PhotoGroupSource.contextType;
+            Renderer.PhotoSource = PhotoGroupSource.Photos[0];
+            Renderer.context = PhotoGroupSource.context;
+            Renderer.contextType = PhotoGroupSource.contextType;
 
         }
     }

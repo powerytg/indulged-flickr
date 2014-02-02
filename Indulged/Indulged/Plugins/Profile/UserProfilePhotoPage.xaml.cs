@@ -21,6 +21,8 @@ namespace Indulged.Plugins.Profile
 {
     public partial class UserProfilePhotoPage : UserControl
     {
+        private CommonPhotoGroupFactory rendererFactory;
+
         private User _user;
         public User UserSource
         {
@@ -36,9 +38,12 @@ namespace Indulged.Plugins.Profile
                 if (_user == null)
                     return;
 
+                rendererFactory.Context = _user.ResourceId;
+                rendererFactory.ContextType = "UserPhotoStream";
+
                 if (_user.Photos.Count > 0)
                 {
-                    List<PhotoGroup> photoGroups = CommonPhotoGroupFactory.GeneratePhotoGroup(_user.Photos, _user.ResourceId, "UserPhotoStream");
+                    List<PhotoGroup> photoGroups = rendererFactory.GeneratePhotoGroups(_user.Photos);
                     foreach (var group in photoGroups)
                     {
                         PhotoCollection.Add(group);
@@ -57,6 +62,7 @@ namespace Indulged.Plugins.Profile
             InitializeComponent();
 
             // Initialize data providers
+            rendererFactory = new CommonPhotoGroupFactory();
             PhotoCollection = new ObservableCollection<PhotoGroup>();
             PhotoStreamListView.ItemsSource = PhotoCollection;
 
@@ -122,7 +128,7 @@ namespace Indulged.Plugins.Profile
                 if (e.Page == 1)
                     PhotoCollection.Clear();
 
-                List<PhotoGroup> newGroups = CommonPhotoGroupFactory.GeneratePhotoGroup(e.NewPhotos, UserSource.ResourceId, "UserPhotoStream");
+                List<PhotoGroup> newGroups = rendererFactory.GeneratePhotoGroups(e.NewPhotos);
                 foreach (var group in newGroups)
                 {
                     PhotoCollection.Add(group);

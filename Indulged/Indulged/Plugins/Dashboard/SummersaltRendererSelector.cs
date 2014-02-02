@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using Indulged.Plugins.Dashboard.SummersaltRenderers;
+﻿using Indulged.API.Avarice.Controls;
 using Indulged.API.Cinderella.Models;
-using Indulged.API.Avarice.Controls;
+using Indulged.Plugins.Common.PhotoGroupRenderers;
+using System;
+using System.Collections.Generic;
 using System.Windows;
 
 namespace Indulged.Plugins.Dashboard

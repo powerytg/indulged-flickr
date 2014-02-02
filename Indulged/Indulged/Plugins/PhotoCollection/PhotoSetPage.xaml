@@ -44,9 +44,15 @@
             <phone:LongListSelector.ItemTemplate>
                 <DataTemplate>
                     <renderers:CommonPhotoGroupRendererSelector Content="{Binding}">
-                        <renderers:CommonPhotoGroupRendererSelector.LayoutTemplate1>
+                        <renderers:CommonPhotoGroupRendererSelector.HeadlineLayoutTemplate>
                             <DataTemplate>
                                 <localRenderers:PrimaryRenderer PhotoGroupSource="{Binding}"/>
+                            </DataTemplate>
+                        </renderers:CommonPhotoGroupRendererSelector.HeadlineLayoutTemplate>
+
+                        <renderers:CommonPhotoGroupRendererSelector.LayoutTemplate1>
+                            <DataTemplate>
+                                <renderers:CommonPhotoGroupRenderer1 PhotoGroupSource="{Binding}"/>
                             </DataTemplate>
                         </renderers:CommonPhotoGroupRendererSelector.LayoutTemplate1>
 

@@ -3,6 +3,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:common="clr-namespace:Indulged.Plugins.Common"                                       
     xmlns:renderer="clr-namespace:Indulged.Plugins.Common.PhotoGroupRenderers"
     xmlns:photoRenderer="clr-namespace:Indulged.Plugins.Common.Renderers"                         
     mc:Ignorable="d"
@@ -53,11 +54,61 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
-                <TextBlock x:Name="DateView" Foreground="#9a9a9a" FontSize="24"
-                           Grid.Column="0" />
+                <TextBlock x:Name="DateView" Foreground="#444444" FontSize="24"
+                           Grid.Column="0" Margin="20, 5, 18, 0" />
 
-                <Image Source="/Assets/PhotoCollection/PhotosetDots.png" Grid.Column="1"/>
+                <Image Source="/Assets/PhotoCollection/PhotosetDots.png" Opacity="0.3"
+                       Grid.Column="1" Stretch="None"/>
             </Grid>
+            
+            <!--Description-->
+            <Grid Grid.Row="1" Margin="0, 20, 0, 20">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Rectangle Width="2" Margin="30, 0, 18, 0" Grid.Column="0">
+                    <Rectangle.Fill>
+                        <LinearGradientBrush StartPoint="0, 0" EndPoint="0, 1">
+                            <GradientStop Color="#605ca8"/>
+                            <GradientStop Color="#2dc0ba"/>
+                        </LinearGradientBrush>
+                    </Rectangle.Fill>
+                </Rectangle>
+
+                <TextBlock x:Name="DescView" Foreground="#8e8e8e" FontSize="24" FontWeight="Light"
+                           TextWrapping="Wrap" 
+                           Grid.Column="1" Margin="20, 12, 18, 12" />
+
+            </Grid>
+            
+            <!--Upper toolbar-->
+            <StackPanel Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Right">
+                <Button x:Name="ChangePrimaryButton"  Margin="0, 0, 20, 0" 
+                                      Background="#3d3b6b" Style="{StaticResource RoundedButtonStyle}">
+                    <Button.Content>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="/Assets/PhotoCollection/PhotoSetCoverButton.png" Margin="0, 0, 12, 0"
+                                   VerticalAlignment="Center"/>
+                            <TextBlock Text="cover photo" Foreground="#4f4f4f"
+                                       VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button.Content>
+                </Button>
+
+                <Button x:Name="EditDescriptionButton" Margin="0, 0, 20, 0">
+                    <Button.Content>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="/Assets/PhotoCollection/PhotoSetDescButton.png" Margin="0, 0, 12, 0"
+                                   VerticalAlignment="Center" />
+                            <TextBlock Text="edit set" Foreground="#4f4f4f"
+                                       VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button.Content>
+                </Button>
+
+            </StackPanel>
         </Grid>
         
     </Grid>

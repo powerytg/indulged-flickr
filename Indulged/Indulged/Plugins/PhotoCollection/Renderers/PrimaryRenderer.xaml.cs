@@ -29,8 +29,18 @@ namespace Indulged.Plugins.PhotoCollection.Renderers
             base.OnPhotoGroupSourceChanged();
 
             PhotoSet photoset = Cinderella.CinderellaCore.PhotoSetCache[PhotoGroupSource.context];
-            TitleView.Text = photoset.Name;
+            TitleView.Text = photoset.Name;            
             DateView.Text = "Created at " + photoset.CreationDate.ToString("MMM dd, yyyy");
+
+            if (photoset.Description.Length > 0)
+            {
+                DescView.Text = photoset.Description;
+            }
+            else
+            {
+                DescView.Text = "No description available. You can tap on the edit description button to add content.";
+            }
+
             ImageView.Source = new BitmapImage { UriSource = new Uri(photoset.Photos[0].GetImageUrl()), DecodePixelWidth = 640 };
         }
     }

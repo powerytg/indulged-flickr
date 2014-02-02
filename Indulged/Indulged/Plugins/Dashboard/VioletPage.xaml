@@ -5,7 +5,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
     xmlns:local="clr-namespace:Indulged.Plugins.Dashboard"
-    xmlns:renderers="clr-namespace:Indulged.Plugins.Dashboard.VioletRenderers"
+    xmlns:renderers="clr-namespace:Indulged.Plugins.Common.PhotoGroupRenderers"
+    xmlns:violetRenderers="clr-namespace:Indulged.Plugins.Dashboard.VioletRenderers"
     mc:Ignorable="d"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
@@ -20,75 +21,76 @@
         <phone:LongListSelector x:Name="PhotoStreamListView" Margin="0,0,-13,0" ItemsSource="{Binding Items}" ItemRealized="OnItemRealized" Visibility="Collapsed">
             <phone:LongListSelector.ItemTemplate>
                 <DataTemplate>
-                    <local:VioletRendererSelector Content="{Binding}">
-                        <local:VioletRendererSelector.HeadlineLayoutTemplate>
+                    <renderers:CommonPhotoGroupRendererSelector Content="{Binding}">
+                        <renderers:CommonPhotoGroupRendererSelector.HeadlineLayoutTemplate>
                             <DataTemplate>
-                                <renderers:VioletHeadlineRenderer PhotoGroupSource="{Binding}"/>
+                                <violetRenderers:VioletHeadlineRenderer PhotoGroupSource="{Binding}"/>
                             </DataTemplate>
-                        </local:VioletRendererSelector.HeadlineLayoutTemplate>
+                        </renderers:CommonPhotoGroupRendererSelector.HeadlineLayoutTemplate>
 
-                        <local:VioletRendererSelector.LayoutTemplate1>
+                        <renderers:CommonPhotoGroupRendererSelector.Renderer1>
                             <DataTemplate>
-                                <renderers:VioletRenderer1 PhotoGroupSource="{Binding}"/>
+                                <renderers:PhotoGroupRenderer1 PhotoGroupSource="{Binding}"/>
                             </DataTemplate>
-                        </local:VioletRendererSelector.LayoutTemplate1>
+                        </renderers:CommonPhotoGroupRendererSelector.Renderer1>
 
-                        <local:VioletRendererSelector.LayoutTemplate2>
+                        <renderers:CommonPhotoGroupRendererSelector.LayoutTemplate1>
                             <DataTemplate>
-                                <renderers:VioletRenderer2 PhotoGroupSource="{Binding}"/>
+                                <renderers:CommonPhotoGroupRenderer1 PhotoGroupSource="{Binding}"/>
                             </DataTemplate>
-                        </local:VioletRendererSelector.LayoutTemplate2>
+                        </renderers:CommonPhotoGroupRendererSelector.LayoutTemplate1>
 
-                        <local:VioletRendererSelector.LayoutTemplate3>
+                        <renderers:CommonPhotoGroupRendererSelector.LayoutTemplate2>
                             <DataTemplate>
-                                <renderers:VioletRenderer3 PhotoGroupSource="{Binding}"/>
+                                <renderers:CommonPhotoGroupRenderer2 PhotoGroupSource="{Binding}"/>
                             </DataTemplate>
-                        </local:VioletRendererSelector.LayoutTemplate3>
+                        </renderers:CommonPhotoGroupRendererSelector.LayoutTemplate2>
 
-                        <local:VioletRendererSelector.LayoutTemplate3A>
+                        <renderers:CommonPhotoGroupRendererSelector.LayoutTemplate3>
                             <DataTemplate>
-                                <renderers:VioletRenderer3A PhotoGroupSource="{Binding}"/>
+                                <renderers:CommonPhotoGroupRenderer3 PhotoGroupSource="{Binding}"/>
                             </DataTemplate>
-                        </local:VioletRendererSelector.LayoutTemplate3A>
+                        </renderers:CommonPhotoGroupRendererSelector.LayoutTemplate3>
 
-                        <local:VioletRendererSelector.LayoutTemplate4>
+
+                        <renderers:CommonPhotoGroupRendererSelector.LayoutTemplate3A>
                             <DataTemplate>
-                                <renderers:VioletRenderer4 PhotoGroupSource="{Binding}"/>
+                                <renderers:CommonPhotoGroupRenderer3A PhotoGroupSource="{Binding}"/>
                             </DataTemplate>
-                        </local:VioletRendererSelector.LayoutTemplate4>
+                        </renderers:CommonPhotoGroupRendererSelector.LayoutTemplate3A>
 
-                        <local:VioletRendererSelector.LayoutTemplate4A>
+
+                        <renderers:CommonPhotoGroupRendererSelector.LayoutTemplate4>
                             <DataTemplate>
-                                <renderers:VioletRenderer4A PhotoGroupSource="{Binding}"/>
+                                <renderers:CommonPhotoGroupRenderer4 PhotoGroupSource="{Binding}"/>
                             </DataTemplate>
-                        </local:VioletRendererSelector.LayoutTemplate4A>
+                        </renderers:CommonPhotoGroupRendererSelector.LayoutTemplate4>
 
-                        <local:VioletRendererSelector.LayoutTemplate4B>
+                        <renderers:CommonPhotoGroupRendererSelector.LayoutTemplate4A>
                             <DataTemplate>
-                                <renderers:VioletRenderer4B PhotoGroupSource="{Binding}"/>
+                                <renderers:CommonPhotoGroupRenderer4A PhotoGroupSource="{Binding}"/>
                             </DataTemplate>
-                        </local:VioletRendererSelector.LayoutTemplate4B>
+                        </renderers:CommonPhotoGroupRendererSelector.LayoutTemplate4A>
 
-                        <local:VioletRendererSelector.LayoutTemplate5>
+                        <renderers:CommonPhotoGroupRendererSelector.LayoutTemplate4B>
                             <DataTemplate>
-                                <renderers:VioletRenderer5 PhotoGroupSource="{Binding}"/>
+                                <renderers:CommonPhotoGroupRenderer4B PhotoGroupSource="{Binding}"/>
                             </DataTemplate>
-                        </local:VioletRendererSelector.LayoutTemplate5>
+                        </renderers:CommonPhotoGroupRendererSelector.LayoutTemplate4B>
 
-                        <local:VioletRendererSelector.LayoutTemplate5A>
+                        <renderers:CommonPhotoGroupRendererSelector.LayoutTemplate5>
                             <DataTemplate>
-                                <renderers:VioletRenderer5A PhotoGroupSource="{Binding}"/>
+                                <renderers:CommonPhotoGroupRenderer5 PhotoGroupSource="{Binding}"/>
                             </DataTemplate>
-                        </local:VioletRendererSelector.LayoutTemplate5A>
+                        </renderers:CommonPhotoGroupRendererSelector.LayoutTemplate5>
 
-                        <local:VioletRendererSelector.LayoutTemplate5B>
+                        <renderers:CommonPhotoGroupRendererSelector.LayoutTemplate5A>
                             <DataTemplate>
-                                <renderers:VioletRenderer5B PhotoGroupSource="{Binding}"/>
+                                <renderers:CommonPhotoGroupRenderer5A PhotoGroupSource="{Binding}"/>
                             </DataTemplate>
-                        </local:VioletRendererSelector.LayoutTemplate5B>
-
-                    </local:VioletRendererSelector>
-
+                        </renderers:CommonPhotoGroupRendererSelector.LayoutTemplate5A>
+                    </renderers:CommonPhotoGroupRendererSelector>
+                    
                 </DataTemplate>
             </phone:LongListSelector.ItemTemplate>
         </phone:LongListSelector>

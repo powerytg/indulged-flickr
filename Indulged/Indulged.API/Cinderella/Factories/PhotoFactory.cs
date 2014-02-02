@@ -57,17 +57,24 @@ namespace Indulged.API.Cinderella.Factories
             else
                 photo.Title = json["title"]["_content"].ToString();                
             
-            if (photo.Title.Length > CinderellaConstants.MaxTitleLength)
-                photo.Title = photo.Title.Substring(0, CinderellaConstants.MaxTitleLength) + "...";
-
             photo.Description = json["description"]["_content"].ToString();
-            if (photo.Description.Length > CinderellaConstants.MaxDescriptionLength)
-                photo.Description = photo.Description.Substring(0, CinderellaConstants.MaxDescriptionLength) + "...";
 
             JToken licenseValue;
             if (json.TryGetValue("license", out licenseValue))
             {
                 photo.LicenseId = json["license"].ToString();
+            }
+
+            JToken widthValue;
+            if (json.TryGetValue("o_width", out widthValue))
+            {
+                photo.Width = int.Parse(json["o_width"].ToString());
+            }
+
+            JToken heightValue;
+            if (json.TryGetValue("o_height", out heightValue))
+            {
+                photo.Height = int.Parse(json["o_height"].ToString());
             }
 
             // Tags
@@ -131,9 +138,6 @@ namespace Indulged.API.Cinderella.Factories
             else
                 photo.Title = json["title"]["_content"].ToString();
 
-            if (photo.Title.Length > CinderellaConstants.MaxTitleLength)
-                photo.Title = photo.Title.Substring(0, CinderellaConstants.MaxTitleLength) + "...";
-
             return photo;
         }
 
@@ -164,13 +168,7 @@ namespace Indulged.API.Cinderella.Factories
             }
 
             photo.Title = json["title"]["_content"].ToString();
-
-            if (photo.Title.Length > CinderellaConstants.MaxTitleLength)
-                photo.Title = photo.Title.Substring(0, CinderellaConstants.MaxTitleLength) + "...";
-
             photo.Description = json["description"]["_content"].ToString();
-            if (photo.Description.Length > CinderellaConstants.MaxDescriptionLength)
-                photo.Description = photo.Description.Substring(0, CinderellaConstants.MaxDescriptionLength) + "...";
 
             // Favourite
             JToken favValue;

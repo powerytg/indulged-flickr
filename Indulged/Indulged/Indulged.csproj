@@ -147,6 +147,18 @@
     <Compile Include="Plugins\Common\PhotoGroupRenderers\CommonPhotoGroupRenderer5A.xaml.cs">
       <DependentUpon>CommonPhotoGroupRenderer5A.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Plugins\Common\PhotoGroupRenderers\PhotoGroupRenderer1.xaml.cs">
+      <DependentUpon>PhotoGroupRenderer1.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\Common\PhotoGroupRenderers\PhotoGroup.cs" />
+    <Compile Include="Plugins\Common\PhotoRenderers\FullPhotoRenderer.xaml.cs">
+      <DependentUpon>FullPhotoRenderer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\Common\PhotoRenderers\PhotoRendererBase.cs" />
+    <Compile Include="Plugins\Common\PhotoRenderers\PhotoRendererDecoder.cs" />
+    <Compile Include="Plugins\Common\PhotoRenderers\PhotoRendererStatView.xaml.cs">
+      <DependentUpon>PhotoRendererStatView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Plugins\Common\Renderers\ContactRenderer.xaml.cs">
       <DependentUpon>ContactRenderer.xaml</DependentUpon>
     </Compile>
@@ -339,42 +351,9 @@
     <Compile Include="Plugins\Dashboard\VioletPage.xaml.cs">
       <DependentUpon>VioletPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Plugins\Dashboard\VioletRendererSelector.cs" />
-    <Compile Include="Plugins\Dashboard\VioletPhotoGroupFactory.cs" />
     <Compile Include="Plugins\Dashboard\VioletRenderers\VioletHeadlineRenderer.xaml.cs">
       <DependentUpon>VioletHeadlineRenderer.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Plugins\Dashboard\VioletRenderers\VioletRenderer5B.xaml.cs">
-      <DependentUpon>VioletRenderer5B.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Plugins\Dashboard\VioletRenderers\VioletRenderer5A.xaml.cs">
-      <DependentUpon>VioletRenderer5A.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Plugins\Dashboard\VioletRenderers\VioletRenderer5.xaml.cs">
-      <DependentUpon>VioletRenderer5.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Plugins\Dashboard\VioletRenderers\VioletRenderer4B.xaml.cs">
-      <DependentUpon>VioletRenderer4B.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Plugins\Dashboard\VioletRenderers\VioletRenderer4A.xaml.cs">
-      <DependentUpon>VioletRenderer4A.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Plugins\Dashboard\VioletRenderers\VioletRenderer4.xaml.cs">
-      <DependentUpon>VioletRenderer4.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Plugins\Dashboard\VioletRenderers\VioletRenderer3A.xaml.cs">
-      <DependentUpon>VioletRenderer3A.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Plugins\Dashboard\VioletRenderers\VioletRenderer3.xaml.cs">
-      <DependentUpon>VioletRenderer3.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Plugins\Dashboard\VioletRenderers\VioletRenderer2.xaml.cs">
-      <DependentUpon>VioletRenderer2.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Plugins\Dashboard\VioletRenderers\VioletRenderer1.xaml.cs">
-      <DependentUpon>VioletRenderer1.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Plugins\Dashboard\VioletRenderers\VioletRendererBase.cs" />
     <Compile Include="Plugins\Detail\PhotoTagsView.xaml.cs">
       <DependentUpon>PhotoTagsView.xaml</DependentUpon>
     </Compile>
@@ -425,8 +404,8 @@
     <Compile Include="Plugins\PhotoCollection\PhotoSetPage.xaml.cs">
       <DependentUpon>PhotoSetPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Plugins\PhotoCollection\PhotoSetPageAnimationExtension.cs" />
     <Compile Include="Plugins\PhotoCollection\PhotoSetPhoto.cs" />
-    <Compile Include="Plugins\PhotoCollection\Renderers\PhotoCollectionFactory.cs" />
     <Compile Include="Plugins\PhotoCollection\Renderers\PrimaryRenderer.xaml.cs">
       <DependentUpon>PrimaryRenderer.xaml</DependentUpon>
     </Compile>
@@ -669,6 +648,18 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Plugins\Common\PhotoGroupRenderers\PhotoGroupRenderer1.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Plugins\Common\PhotoRenderers\FullPhotoRenderer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Plugins\Common\PhotoRenderers\PhotoRendererStatView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Plugins\Common\ProgressView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -898,46 +889,6 @@
     <Page Include="Plugins\Dashboard\VioletRenderers\VioletHeadlineRenderer.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Plugins\Dashboard\VioletRenderers\VioletRenderer5B.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Plugins\Dashboard\VioletRenderers\VioletRenderer5A.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Plugins\Dashboard\VioletRenderers\VioletRenderer5.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Plugins\Dashboard\VioletRenderers\VioletRenderer4B.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Plugins\Dashboard\VioletRenderers\VioletRenderer4A.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Plugins\Dashboard\VioletRenderers\VioletRenderer4.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Plugins\Dashboard\VioletRenderers\VioletRenderer3A.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Plugins\Dashboard\VioletRenderers\VioletRenderer3.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Plugins\Dashboard\VioletRenderers\VioletRenderer2.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Plugins\Dashboard\VioletRenderers\VioletRenderer1.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Plugins\Detail\PhotoTagsView.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -1258,6 +1209,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <ApplicationDefinition Include="Themes\WatermarkBoxStyle.xaml">
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <ApplicationDefinition Include="Themes\RoundedButtonStyle.xaml">
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Page Include="Themes\FullScreenPhotoNavigatorStyle.xaml">

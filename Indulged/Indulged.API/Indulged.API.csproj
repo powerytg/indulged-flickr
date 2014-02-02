@@ -163,7 +163,6 @@
     <Compile Include="Avarice\Controls\AvariceTextBox.cs" />
     <Compile Include="Avarice\Controls\SupportClasses\IModalPopupContent.cs" />
     <Compile Include="Cinderella\Cinderella.cs" />
-    <Compile Include="Cinderella\CinderellaConstants.cs" />
     <Compile Include="Cinderella\CinderellaDiscoveryExtension.cs" />
     <Compile Include="Cinderella\CinderellaFavouriteExtension.cs" />
     <Compile Include="Cinderella\CinderellaGroupExtension.cs" />
@@ -223,7 +222,6 @@
     <Compile Include="Cinderella\Models\PhotoActivityEventBase.cs" />
     <Compile Include="Cinderella\Models\PhotoActivityFaveEvent.cs" />
     <Compile Include="Cinderella\Models\PhotoComment.cs" />
-    <Compile Include="Cinderella\Models\PhotoGroup.cs" />
     <Compile Include="Cinderella\Models\PhotoSet.cs" />
     <Compile Include="Cinderella\Models\PhotoTag.cs" />
     <Compile Include="Cinderella\Models\Topic.cs" />

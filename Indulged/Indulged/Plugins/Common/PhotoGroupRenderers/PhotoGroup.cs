@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Indulged.API.Cinderella.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Indulged.API.Cinderella.Models
+namespace Indulged.Plugins.Common.PhotoGroupRenderers
 {
     public class PhotoGroup : ModelBase
     {
@@ -12,6 +13,7 @@ namespace Indulged.API.Cinderella.Models
         public PhotoGroup()
             : base()
         {
+            IsHeadline = false;
             Photos = new List<Photo>();
             this.ResourceId = Guid.NewGuid().ToString().Replace("-", null);
         }
@@ -19,6 +21,7 @@ namespace Indulged.API.Cinderella.Models
         // Constructor
         public PhotoGroup(List<Photo> _photos, string _context, string _contextType) : base()
         {
+            IsHeadline = false;
             Photos = _photos;
             this.ResourceId = Guid.NewGuid().ToString().Replace("-", null);
             this.context = _context;
@@ -30,5 +33,7 @@ namespace Indulged.API.Cinderella.Models
 
         public string context { get; set; }
         public string contextType { get; set; }
+
+        public VirtualLayoutRules VirtualLayout { get; set; }
     }
 }

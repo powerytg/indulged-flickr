@@ -9,6 +9,12 @@ using System.Windows;
 
 namespace Indulged.Plugins.Common.PhotoGroupRenderers
 {
+    public enum VirtualLayoutRules
+    {
+        Rule1,
+        Rule2
+    };
+
     public class CommonPhotoGroupRendererSelector : DataTemplateSelector
     {
         // Random generator
@@ -29,6 +35,9 @@ namespace Indulged.Plugins.Common.PhotoGroupRenderers
         public DataTemplate LayoutTemplate5 { get; set; }
         public DataTemplate LayoutTemplate5A { get; set; }
 
+        public DataTemplate Renderer1 { get; set; }
+        public DataTemplate Renderer2 { get; set; }
+
         private DataTemplate LayoutTemplateByIdentifier(int index)
         {
             switch (index)
@@ -36,7 +45,7 @@ namespace Indulged.Plugins.Common.PhotoGroupRenderers
                 case 0:
                     return HeadlineLayoutTemplate;
                 case 1:
-                    return LayoutTemplate1;
+                    return Renderer1;
                 case 2:
                     return LayoutTemplate2;
                 case 3:
@@ -61,17 +70,26 @@ namespace Indulged.Plugins.Common.PhotoGroupRenderers
         public override DataTemplate SelectTemplate(object item, DependencyObject container)
         {
             PhotoGroup photoGroup = item as PhotoGroup;
+            if (photoGroup.IsHeadline)
+            {
+                return HeadlineLayoutTemplate;
+            }
+
             if (templateCache.ContainsKey(photoGroup.ResourceId))
+            {
                 return LayoutTemplateByIdentifier(templateCache[photoGroup.ResourceId]);
+            }
 
             if (photoGroup.Photos.Count == 1)
             {
                 templateCache[photoGroup.ResourceId] = 1;
-                return LayoutTemplate1;
+                photoGroup.VirtualLayout = VirtualLayoutRules.Rule1;
+                return Renderer1;
             }
             else if (photoGroup.Photos.Count == 2)
             {
                 templateCache[photoGroup.ResourceId] = 2;
+                photoGroup.VirtualLayout = VirtualLayoutRules.Rule2;
                 return LayoutTemplate2;
             }
             else if (photoGroup.Photos.Count == 3)

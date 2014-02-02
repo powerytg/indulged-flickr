@@ -29,6 +29,7 @@ namespace Indulged.Plugins.PhotoCollection
         // Data source
         public PhotoSet PhotoSetSource { get; set; }
         private ObservableCollection<PhotoGroup> PhotoCollection;
+        private CommonPhotoGroupFactory rendererFactory;
 
         // Constructor
         public PhotoSetPage()
@@ -60,6 +61,9 @@ namespace Indulged.Plugins.PhotoCollection
 
             string setId = NavigationContext.QueryString["photoset_id"];
             PhotoSetSource = Cinderella.CinderellaCore.PhotoSetCache[setId];
+            rendererFactory = new CommonPhotoGroupFactory();
+            rendererFactory.Context = PhotoSetSource.ResourceId;
+            rendererFactory.ContextType = "PhotoSet";
 
             PerformAppearanceAnimation();
         }
@@ -84,7 +88,26 @@ namespace Indulged.Plugins.PhotoCollection
 
             base.OnRemovedFromJournal(e);
         }
-       
+
+        private void OnPageAppeared()
+        {
+            this.DataContext = PhotoSetSource;
+
+            // Show loading progress indicator
+            StatusLabel.Visibility = Visibility.Visible;
+            PhotoStreamListView.Visibility = Visibility.Collapsed;
+            SystemTray.ProgressIndicator = new ProgressIndicator();
+            SystemTray.ProgressIndicator.IsIndeterminate = true;
+            SystemTray.ProgressIndicator.IsVisible = true;
+            SystemTray.ProgressIndicator.Text = AppResources.GroupLoadingPhotosText;
+
+            // Refresh first page
+            Anaconda.AnacondaCore.GetPhotoSetPhotosAsync(PhotoSetSource.ResourceId, new Dictionary<string, string> { { "page", "1" }, { "per_page", Anaconda.DefaultItemsPerPage.ToString() } });
+
+            // App bar
+            ApplicationBar = Resources["PhotoPageAppBar"] as ApplicationBar;
+        }
+
         // Cannot load photo set photos
         private void OnPhotoStreamException(object sender, GetPhotoSetPhotosExceptionEventArgs e)
         {
@@ -123,13 +146,20 @@ namespace Indulged.Plugins.PhotoCollection
                 {
                     StatusLabel.Visibility = Visibility.Collapsed;
                     PhotoStreamListView.Visibility = Visibility.Visible;
-                    foreach (var photo in e.NewPhotos)
+
+                    List<PhotoGroup> newGroups = null;
+                    if (PhotoCollection.Count >= 1 && PhotoCollection[0].IsHeadline)
                     {
-                        List<PhotoGroup> newGroups = PhotoCollectionFactory.GeneratePhotoGroup(PhotoSetSource, e.NewPhotos);
-                        foreach (var group in newGroups)
-                        {
-                            PhotoCollection.Add(group);
-                        }
+                        newGroups = rendererFactory.GeneratePhotoGroups(e.NewPhotos);
+                    }
+                    else
+                    {
+                        newGroups = rendererFactory.GeneratePhotoGroupsWithHeadline(e.NewPhotos);
+                    }
+
+                    foreach (var group in newGroups)
+                    {
+                        PhotoCollection.Add(group);
                     }
                 }
             });
@@ -178,7 +208,7 @@ namespace Indulged.Plugins.PhotoCollection
                     return;
 
                 Photo newPhoto = Cinderella.CinderellaCore.PhotoCache[e.PhotoId];
-                List<PhotoGroup> newGroups = PhotoCollectionFactory.GeneratePhotoGroup(PhotoSetSource, new List<Photo> { newPhoto });
+                List<PhotoGroup> newGroups = rendererFactory.GeneratePhotoGroups(new List<Photo> { newPhoto });
                 PhotoCollection.Insert(0, newGroups[0]);
 
                 if (PhotoSetSource.Photos.Count > 0)
@@ -241,78 +271,6 @@ namespace Indulged.Plugins.PhotoCollection
 
         }
 
-        private void PerformAppearanceAnimation()
-        {
-            double w = System.Windows.Application.Current.Host.Content.ActualWidth;
-            double h = System.Windows.Application.Current.Host.Content.ActualHeight;
-
-            CompositeTransform ct = (CompositeTransform)LayoutRoot.RenderTransform;
-            ct.TranslateY = h;
-
-            LayoutRoot.Visibility = Visibility.Visible;
-
-            Storyboard animation = new Storyboard();
-            animation.Duration = new Duration(TimeSpan.FromSeconds(0.3));
-
-            // Y animation
-            DoubleAnimation galleryAnimation = new DoubleAnimation();
-            galleryAnimation.Duration = new Duration(TimeSpan.FromSeconds(0.3));
-            galleryAnimation.To = 0.0;
-            galleryAnimation.EasingFunction = new CubicEase() { EasingMode = EasingMode.EaseOut };
-            Storyboard.SetTarget(galleryAnimation, LayoutRoot);
-            Storyboard.SetTargetProperty(galleryAnimation, new PropertyPath("(UIElement.RenderTransform).(CompositeTransform.TranslateY)"));
-            animation.Children.Add(galleryAnimation);
-            animation.Begin();
-            animation.Completed += (sender, e) =>
-            {
-                this.DataContext = PhotoSetSource;
-
-                // Initial items
-                if (PhotoSetSource.Photos.Count > 0)
-                {
-                    List<PhotoGroup> photoGroups = PhotoCollectionFactory.GeneratePhotoGroup(PhotoSetSource, PhotoSetSource.Photos);
-                    foreach (var group in photoGroups)
-                    {
-                        PhotoCollection.Add(group);
-                    }
-                }
-                else
-                {
-                    StatusLabel.Visibility = Visibility.Visible;
-                    PhotoStreamListView.Visibility = Visibility.Collapsed;
-                }
-
-                // Show loading progress indicator
-                SystemTray.ProgressIndicator = new ProgressIndicator();
-                SystemTray.ProgressIndicator.IsIndeterminate = true;
-                SystemTray.ProgressIndicator.IsVisible = true;
-                SystemTray.ProgressIndicator.Text = AppResources.GroupLoadingPhotosText;
-
-                // Refresh first page
-                Anaconda.AnacondaCore.GetPhotoSetPhotosAsync(PhotoSetSource.ResourceId, new Dictionary<string, string> { { "page", "1" }, { "per_page", Anaconda.DefaultItemsPerPage.ToString() } });
-
-                // App bar
-                ApplicationBar = Resources["PhotoPageAppBar"] as ApplicationBar;
-            };
-        }
-
-        private void PerformDisappearanceAnimation()
-        {
-            double w = System.Windows.Application.Current.Host.Content.ActualWidth;
-            double h = System.Windows.Application.Current.Host.Content.ActualHeight;
-
-            Storyboard animation = new Storyboard();
-            animation.Duration = new Duration(TimeSpan.FromSeconds(0.3));
-
-            // Y animation
-            DoubleAnimation yAnimation = new DoubleAnimation();
-            yAnimation.Duration = new Duration(TimeSpan.FromSeconds(0.3));
-            yAnimation.To = h;
-            yAnimation.EasingFunction = new CubicEase() { EasingMode = EasingMode.EaseInOut };
-            Storyboard.SetTarget(yAnimation, LayoutRoot);
-            Storyboard.SetTargetProperty(yAnimation, new PropertyPath("(UIElement.RenderTransform).(CompositeTransform.TranslateY)"));
-            animation.Children.Add(yAnimation);
-            animation.Begin();
-        }
+        
     }
 }

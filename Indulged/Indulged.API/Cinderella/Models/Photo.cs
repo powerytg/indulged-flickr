@@ -21,6 +21,9 @@ namespace Indulged.API.Cinderella.Models
         public List<string> Tags { get; set; }
         public bool IsFavourite { get; set; }
 
+        public int Width { get; set; }
+        public int Height { get; set; }
+
         // Comments
         public int CommentCount { get; set; }
         private Dictionary<string, PhotoComment> _commentCache = new Dictionary<string, PhotoComment>();

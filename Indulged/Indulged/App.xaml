@@ -33,6 +33,7 @@
                 <ResourceDictionary Source="Themes/FXSliderStyle.xaml"/>
                 <ResourceDictionary Source="Themes/FXHueSliderStyle.xaml"/>
                 <ResourceDictionary Source="Themes/BorderlessButtonStyle.xaml"/>
+                <ResourceDictionary Source="Themes/RoundedButtonStyle.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
             <Style x:Key="TransitionPageStyle" TargetType="phone:PhoneApplicationPage">

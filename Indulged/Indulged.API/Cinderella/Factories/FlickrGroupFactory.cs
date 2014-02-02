@@ -1,10 +1,5 @@
 ﻿using Indulged.API.Cinderella.Models;
 using Newtonsoft.Json.Linq;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Indulged.API.Cinderella.Factories
 {
@@ -51,9 +46,6 @@ namespace Indulged.API.Cinderella.Factories
                     group.Name = json["name"]["_content"].ToString();
                 }
 
-                if (group.Name.Length > CinderellaConstants.MaxTitleLength)
-                    group.Name = group.Name.Substring(0, CinderellaConstants.MaxTitleLength) + "...";
-
             }
 
             JToken descValue;
@@ -67,9 +59,6 @@ namespace Indulged.API.Cinderella.Factories
                 {
                     group.Description = json["description"]["_content"].ToString();
                 }
-
-                if (group.Description.Length > CinderellaConstants.MaxDescriptionLength)
-                    group.Description = group.Description.Substring(0, CinderellaConstants.MaxDescriptionLength) + "...";
 
             }
 
