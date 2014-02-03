@@ -8,9 +8,12 @@ namespace Indulged.Plugins.Common.PhotoRenderers
 {
     public partial class FullPhotoRenderer : PhotoRendererBase
     {
+        public bool IsMiniMode { get; set; }
+
         public FullPhotoRenderer()
         {
             InitializeComponent();
+            IsMiniMode = false;
         }
 
         private SolidColorBrush transparentBrush = new SolidColorBrush(Color.FromArgb(0, 0, 0, 0));
@@ -21,6 +24,7 @@ namespace Indulged.Plugins.Common.PhotoRenderers
         {
             base.OnPhotoSourceChanged();
             ImageView.Source = PhotoRendererDecoder.GetDecodedBitmapImage(PhotoSource, PhotoRendererDecoder.DecodeResolutions.High);
+
             if (PhotoSource.Title.Length > 0)
             {
                 TitleLabel.Text = PhotoSource.Title;
@@ -31,7 +35,11 @@ namespace Indulged.Plugins.Common.PhotoRenderers
                 TitleLabel.Visibility = Visibility.Collapsed;
             }
 
-            if (PhotoSource.Description.Length > 0)
+            if (IsMiniMode)
+            {
+                DescLabel.Visibility = Visibility.Collapsed;
+            }
+            else if (PhotoSource.Description.Length > 0)
             {
                 DescLabel.Text = PhotoSource.Description;
                 DescLabel.Visibility = Visibility.Visible;
@@ -71,7 +79,7 @@ namespace Indulged.Plugins.Common.PhotoRenderers
                 SidePanel.VerticalAlignment = VerticalAlignment.Bottom;
                 SidePanel.MaxHeight = 200;
 
-                if (PhotoSource.Description.Length <= 0)
+                if (PhotoSource.Description.Length <= 0 || IsMiniMode)
                 {
                     SidePanel.Background = transparentBrush;
                 }

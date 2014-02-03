@@ -141,21 +141,6 @@ namespace Indulged.Plugins.Common.PhotoGroupRenderers
             Renderer3.SetValue(Grid.RowProperty, 1);
         }
 
-        private bool IsPortraitAspectRatio(Photo photo)
-        {
-            int w = (photo.Width == 0) ? photo.Width : photo.MediumWidth;
-            int h = (photo.Height == 0) ? photo.Height : photo.MediumHeight;
-
-            if (w == 0 || h == 0)
-            {
-                return false;
-            }
-            else
-            {
-                return (w < h);
-            }
-        }
-
         private float GetHorizontalRatio(Photo leftPhoto, Photo rightPhoto)
         {
             float hRatio;

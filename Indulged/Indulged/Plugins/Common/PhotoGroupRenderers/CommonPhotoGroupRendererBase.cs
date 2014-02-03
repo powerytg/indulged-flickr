@@ -34,6 +34,21 @@ namespace Indulged.Plugins.Common.PhotoGroupRenderers
         {
         }
 
+        protected bool IsPortraitAspectRatio(Photo photo)
+        {
+            int w = (photo.Width == 0) ? photo.Width : photo.MediumWidth;
+            int h = (photo.Height == 0) ? photo.Height : photo.MediumHeight;
+
+            if (w == 0 || h == 0)
+            {
+                return false;
+            }
+            else
+            {
+                return (w < h);
+            }
+        }
+
         // Constructor
         public CommonPhotoGroupRendererBase()
             : base()

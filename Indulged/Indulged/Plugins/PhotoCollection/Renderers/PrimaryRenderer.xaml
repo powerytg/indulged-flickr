@@ -44,7 +44,7 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
-                <RowDefinition Height="60"/>
+                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
             <!--Creation date-->
@@ -97,7 +97,8 @@
                     </Button.Content>
                 </Button>
 
-                <Button x:Name="EditDescriptionButton" Margin="0, 0, 20, 0">
+                <Button x:Name="EditDescriptionButton" Margin="0, 0, 20, 0"
+                        Background="#278153" Style="{StaticResource RoundedButtonStyle}">
                     <Button.Content>
                         <StackPanel Orientation="Horizontal">
                             <Image Source="/Assets/PhotoCollection/PhotoSetDescButton.png" Margin="0, 0, 12, 0"
@@ -107,8 +108,61 @@
                         </StackPanel>
                     </Button.Content>
                 </Button>
-
             </StackPanel>
+            
+            <!--Lower toolbar-->
+            <Grid Grid.Row="3" Height="70" Margin="20, 30, 0, 20">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                
+                <Button x:Name="CameraButton"  Margin="0, 0, 20, 0" 
+                        Background="#3d3b6b" Style="{StaticResource CircularButtonStyle}"
+                        Grid.Column="0" Width="55" Height="55" >
+                    <Button.Content>
+                        <Image Source="/Assets/PhotoCollection/PhotoSetCameraButton.png"/>
+                    </Button.Content>
+                </Button>
+
+                <Button x:Name="UploadButton" Margin="0, 0, 20, 0" 
+                        Background="#3d3b6b" Style="{StaticResource CircularButtonStyle}"
+                        Grid.Column="1" Width="55" Height="55">
+                    <Button.Content>
+                        <Image Source="/Assets/PhotoCollection/PhotoSetUploadButton.png"/>
+                    </Button.Content>
+                </Button>
+
+                <Button x:Name="AddButton"  Margin="0, 0, 20, 0" 
+                        Background="#3d3b6b" Style="{StaticResource CircularButtonStyle}"
+                        Grid.Column="2" Width="55" Height="55">
+                    <Button.Content>
+                        <Image Source="/Assets/PhotoCollection/PhotoSetAddButton.png"/>
+                    </Button.Content>
+                </Button>
+
+                <Canvas Grid.Column="3" Grid.Row="0"/>
+
+                <Button x:Name="EditButton"  Margin="0, 0, 20, 0" 
+                        Background="#278153" Style="{StaticResource CircularButtonStyle}"
+                        Grid.Column="4" Width="55" Height="55">
+                    <Button.Content>
+                        <Image Source="/Assets/PhotoCollection/PhotoSetEditButton.png"/>
+                    </Button.Content>
+                </Button>
+
+                <Button x:Name="DeleteButton"  Margin="0, 0, 20, 0" 
+                        Background="#278153" Style="{StaticResource CircularButtonStyle}"
+                        Grid.Column="5" Width="55" Height="55">
+                    <Button.Content>
+                        <Image Source="/Assets/PhotoCollection/PhotoSetDeleteButton.png"/>
+                    </Button.Content>
+                </Button>
+            </Grid>
         </Grid>
         
     </Grid>
