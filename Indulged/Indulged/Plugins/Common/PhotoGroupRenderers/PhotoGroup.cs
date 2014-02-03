@@ -33,7 +33,5 @@ namespace Indulged.Plugins.Common.PhotoGroupRenderers
 
         public string context { get; set; }
         public string contextType { get; set; }
-
-        public VirtualLayoutRules VirtualLayout { get; set; }
     }
 }

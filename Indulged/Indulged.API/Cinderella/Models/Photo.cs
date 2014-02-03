@@ -24,6 +24,9 @@ namespace Indulged.API.Cinderella.Models
         public int Width { get; set; }
         public int Height { get; set; }
 
+        public int MediumWidth { get; set; }
+        public int MediumHeight { get; set; }
+
         // Comments
         public int CommentCount { get; set; }
         private Dictionary<string, PhotoComment> _commentCache = new Dictionary<string, PhotoComment>();
@@ -66,5 +69,6 @@ namespace Indulged.API.Cinderella.Models
 
             return "http://farm" + Farm + ".staticflickr.com/" + Server + "/" + ResourceId + "_" + Secret + "_" + sizeSuffixe + ".jpg";
         }
+
     }
 }

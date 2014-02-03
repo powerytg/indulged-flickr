@@ -16,61 +16,24 @@
             <phone:LongListSelector.ItemTemplate>
                 <DataTemplate>
                     <renderers:CommonPhotoGroupRendererSelector Content="{Binding}">
-                        <renderers:CommonPhotoGroupRendererSelector.LayoutTemplate1>
+                        <renderers:CommonPhotoGroupRendererSelector.Renderer1>
                             <DataTemplate>
-                                <renderers:CommonPhotoGroupRenderer1 PhotoGroupSource="{Binding}"/>
+                                <renderers:PhotoGroupRenderer1 PhotoGroupSource="{Binding}"/>
                             </DataTemplate>
-                        </renderers:CommonPhotoGroupRendererSelector.LayoutTemplate1>
+                        </renderers:CommonPhotoGroupRendererSelector.Renderer1>
 
-                        <renderers:CommonPhotoGroupRendererSelector.LayoutTemplate2>
+                        <renderers:CommonPhotoGroupRendererSelector.Renderer2>
                             <DataTemplate>
-                                <renderers:CommonPhotoGroupRenderer2 PhotoGroupSource="{Binding}"/>
+                                <renderers:PhotoGroupRenderer2 PhotoGroupSource="{Binding}"/>
                             </DataTemplate>
-                        </renderers:CommonPhotoGroupRendererSelector.LayoutTemplate2>
+                            </renderers:CommonPhotoGroupRendererSelector.Renderer2>
 
-                        <renderers:CommonPhotoGroupRendererSelector.LayoutTemplate3>
+                        <renderers:CommonPhotoGroupRendererSelector.Renderer3>
                             <DataTemplate>
-                                <renderers:CommonPhotoGroupRenderer3 PhotoGroupSource="{Binding}"/>
+                                <renderers:PhotoGroupRenderer3 PhotoGroupSource="{Binding}"/>
                             </DataTemplate>
-                        </renderers:CommonPhotoGroupRendererSelector.LayoutTemplate3>
+                            </renderers:CommonPhotoGroupRendererSelector.Renderer3>
 
-
-                        <renderers:CommonPhotoGroupRendererSelector.LayoutTemplate3A>
-                            <DataTemplate>
-                                <renderers:CommonPhotoGroupRenderer3A PhotoGroupSource="{Binding}"/>
-                            </DataTemplate>
-                        </renderers:CommonPhotoGroupRendererSelector.LayoutTemplate3A>
-
-
-                        <renderers:CommonPhotoGroupRendererSelector.LayoutTemplate4>
-                            <DataTemplate>
-                                <renderers:CommonPhotoGroupRenderer4 PhotoGroupSource="{Binding}"/>
-                            </DataTemplate>
-                        </renderers:CommonPhotoGroupRendererSelector.LayoutTemplate4>
-
-                        <renderers:CommonPhotoGroupRendererSelector.LayoutTemplate4A>
-                            <DataTemplate>
-                                <renderers:CommonPhotoGroupRenderer4A PhotoGroupSource="{Binding}"/>
-                            </DataTemplate>
-                        </renderers:CommonPhotoGroupRendererSelector.LayoutTemplate4A>
-
-                        <renderers:CommonPhotoGroupRendererSelector.LayoutTemplate4B>
-                            <DataTemplate>
-                                <renderers:CommonPhotoGroupRenderer4B PhotoGroupSource="{Binding}"/>
-                            </DataTemplate>
-                        </renderers:CommonPhotoGroupRendererSelector.LayoutTemplate4B>
-
-                        <renderers:CommonPhotoGroupRendererSelector.LayoutTemplate5>
-                            <DataTemplate>
-                                <renderers:CommonPhotoGroupRenderer5 PhotoGroupSource="{Binding}"/>
-                            </DataTemplate>
-                        </renderers:CommonPhotoGroupRendererSelector.LayoutTemplate5>
-
-                        <renderers:CommonPhotoGroupRendererSelector.LayoutTemplate5A>
-                            <DataTemplate>
-                                <renderers:CommonPhotoGroupRenderer5A PhotoGroupSource="{Binding}"/>
-                            </DataTemplate>
-                        </renderers:CommonPhotoGroupRendererSelector.LayoutTemplate5A>
                     </renderers:CommonPhotoGroupRendererSelector>
 
                 </DataTemplate>

@@ -77,6 +77,16 @@ namespace Indulged.API.Cinderella.Factories
                 photo.Height = int.Parse(json["o_height"].ToString());
             }
 
+            if (json.TryGetValue("width_m", out widthValue))
+            {
+                photo.MediumWidth = int.Parse(json["width_m"].ToString());
+            }
+
+            if (json.TryGetValue("height_m", out heightValue))
+            {
+                photo.MediumHeight = int.Parse(json["height_m"].ToString());
+            }
+
             // Tags
             photo.Tags = new List<string>();
             JToken tagsValue;

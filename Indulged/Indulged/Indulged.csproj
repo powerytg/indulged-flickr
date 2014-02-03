@@ -120,37 +120,19 @@
     <Compile Include="Plugins\Common\PhotoGroupRenderers\CommonPhotoGroupFactory.cs" />
     <Compile Include="Plugins\Common\PhotoGroupRenderers\CommonPhotoGroupRendererBase.cs" />
     <Compile Include="Plugins\Common\PhotoGroupRenderers\CommonPhotoGroupRendererSelector.cs" />
-    <Compile Include="Plugins\Common\PhotoGroupRenderers\CommonPhotoGroupRenderer1.xaml.cs">
-      <DependentUpon>CommonPhotoGroupRenderer1.xaml</DependentUpon>
+    <Compile Include="Plugins\Common\PhotoGroupRenderers\PhotoGroupRenderer3.xaml.cs">
+      <DependentUpon>PhotoGroupRenderer3.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Plugins\Common\PhotoGroupRenderers\CommonPhotoGroupRenderer2.xaml.cs">
-      <DependentUpon>CommonPhotoGroupRenderer2.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Plugins\Common\PhotoGroupRenderers\CommonPhotoGroupRenderer3.xaml.cs">
-      <DependentUpon>CommonPhotoGroupRenderer3.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Plugins\Common\PhotoGroupRenderers\CommonPhotoGroupRenderer3A.xaml.cs">
-      <DependentUpon>CommonPhotoGroupRenderer3A.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Plugins\Common\PhotoGroupRenderers\CommonPhotoGroupRenderer4.xaml.cs">
-      <DependentUpon>CommonPhotoGroupRenderer4.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Plugins\Common\PhotoGroupRenderers\CommonPhotoGroupRenderer4A.xaml.cs">
-      <DependentUpon>CommonPhotoGroupRenderer4A.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Plugins\Common\PhotoGroupRenderers\CommonPhotoGroupRenderer4B.xaml.cs">
-      <DependentUpon>CommonPhotoGroupRenderer4B.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Plugins\Common\PhotoGroupRenderers\CommonPhotoGroupRenderer5.xaml.cs">
-      <DependentUpon>CommonPhotoGroupRenderer5.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Plugins\Common\PhotoGroupRenderers\CommonPhotoGroupRenderer5A.xaml.cs">
-      <DependentUpon>CommonPhotoGroupRenderer5A.xaml</DependentUpon>
+    <Compile Include="Plugins\Common\PhotoGroupRenderers\PhotoGroupRenderer2.xaml.cs">
+      <DependentUpon>PhotoGroupRenderer2.xaml</DependentUpon>
     </Compile>
     <Compile Include="Plugins\Common\PhotoGroupRenderers\PhotoGroupRenderer1.xaml.cs">
       <DependentUpon>PhotoGroupRenderer1.xaml</DependentUpon>
     </Compile>
     <Compile Include="Plugins\Common\PhotoGroupRenderers\PhotoGroup.cs" />
+    <Compile Include="Plugins\Common\PhotoRenderers\MediumPhotoRenderer.xaml.cs">
+      <DependentUpon>MediumPhotoRenderer.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Plugins\Common\PhotoRenderers\FullPhotoRenderer.xaml.cs">
       <DependentUpon>FullPhotoRenderer.xaml</DependentUpon>
     </Compile>
@@ -612,43 +594,19 @@
     <Page Include="Plugins\Chrome\TitleView.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Plugins\Common\PhotoGroupRenderers\CommonPhotoGroupRenderer1.xaml">
+    <Page Include="Plugins\Common\PhotoGroupRenderers\PhotoGroupRenderer3.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Plugins\Common\PhotoGroupRenderers\CommonPhotoGroupRenderer2.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Plugins\Common\PhotoGroupRenderers\CommonPhotoGroupRenderer3.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Plugins\Common\PhotoGroupRenderers\CommonPhotoGroupRenderer3A.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Plugins\Common\PhotoGroupRenderers\CommonPhotoGroupRenderer4.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Plugins\Common\PhotoGroupRenderers\CommonPhotoGroupRenderer4A.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Plugins\Common\PhotoGroupRenderers\CommonPhotoGroupRenderer4B.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Plugins\Common\PhotoGroupRenderers\CommonPhotoGroupRenderer5.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Plugins\Common\PhotoGroupRenderers\CommonPhotoGroupRenderer5A.xaml">
+    <Page Include="Plugins\Common\PhotoGroupRenderers\PhotoGroupRenderer2.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Plugins\Common\PhotoGroupRenderers\PhotoGroupRenderer1.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Plugins\Common\PhotoRenderers\MediumPhotoRenderer.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

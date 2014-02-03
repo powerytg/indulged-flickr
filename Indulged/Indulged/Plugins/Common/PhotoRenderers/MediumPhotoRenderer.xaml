@@ -1,0 +1,34 @@
+﻿<renderer:PhotoRendererBase x:Class="Indulged.Plugins.Common.PhotoRenderers.MediumPhotoRenderer"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:renderer="clr-namespace:Indulged.Plugins.Common.PhotoRenderers"
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    d:DesignHeight="480" d:DesignWidth="480">
+    
+    <Grid x:Name="LayoutRoot" Margin="2,2,2,2">
+        <Image x:Name="ImageView" Stretch="UniformToFill"/>
+
+        <!-- Tool bar -->
+        <Grid x:Name="SidePanel" HorizontalAlignment="Left" VerticalAlignment="Bottom">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <!-- Title view -->
+            <TextBlock x:Name="TitleLabel" 
+                       TextTrimming="WordEllipsis"  TextWrapping="Wrap"
+                       Foreground="#ffffff" FontSize="24" TextAlignment="Left" 
+                       Grid.Row="0" Margin="5" VerticalAlignment="Top" MaxHeight="90" />
+
+            <!-- Stat view -->
+            <renderer:PhotoRendererStatView x:Name="StatView"
+                                            Grid.Row="2" Margin="1" VerticalAlignment="Bottom"/>
+        </Grid>        
+    </Grid>
+</renderer:PhotoRendererBase>

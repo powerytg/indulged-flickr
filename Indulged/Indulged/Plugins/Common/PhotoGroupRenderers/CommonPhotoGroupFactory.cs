@@ -32,13 +32,12 @@ namespace Indulged.Plugins.Common.PhotoGroupRenderers
 
             // Randomly slice the photo into groups
             int min = 1;
-            int max = 6;
+            int max = 4;
             int position = 0;
 
             while (position < photos.Count)
             {
-                //int ranNum = randomGenerator.Next(min, max);
-                int ranNum = 1;
+                int ranNum = randomGenerator.Next(min, max);
                 List<Photo> group = new List<Photo>();
 
                 if (position + ranNum >= photos.Count)
