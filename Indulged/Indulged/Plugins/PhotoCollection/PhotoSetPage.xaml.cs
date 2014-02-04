@@ -1,26 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Net;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Navigation;
-using Microsoft.Phone.Controls;
-using Microsoft.Phone.Shell;
-using Indulged.API.Cinderella.Models;
+﻿using Indulged.API.Anaconda;
+using Indulged.API.Anaconda.Events;
 using Indulged.API.Cinderella;
 using Indulged.API.Cinderella.Events;
-using Indulged.Plugins.Dashboard;
-using Indulged.API.Anaconda;
-using Indulged.API.Anaconda.Events;
-using Indulged.PolKit;
-using Indulged.API.Avarice.Controls;
-using System.Windows.Media.Animation;
-using System.Windows.Media;
-using Indulged.Resources;
+using Indulged.API.Cinderella.Models;
 using Indulged.Plugins.Common.PhotoGroupRenderers;
-using Indulged.Plugins.PhotoCollection.Renderers;
+using Indulged.Resources;
+using Microsoft.Phone.Controls;
+using Microsoft.Phone.Shell;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Windows;
+using System.Windows.Navigation;
 
 namespace Indulged.Plugins.PhotoCollection
 {
@@ -39,13 +29,6 @@ namespace Indulged.Plugins.PhotoCollection
             // Initialize data providers
             PhotoCollection = new ObservableCollection<PhotoGroup>();
             PhotoStreamListView.ItemsSource = PhotoCollection;
-
-            // Events
-            Cinderella.CinderellaCore.PhotoSetPhotosUpdated += OnPhotoStreamUpdated;
-            Anaconda.AnacondaCore.PhotoSetPhotosException += OnPhotoStreamException;
-
-            Cinderella.CinderellaCore.AddPhotoToSetCompleted += OnPhotoAddedToSet;
-            Cinderella.CinderellaCore.RemovePhotoFromSetCompleted += OnPhotoRemovedFromSet;
         }
 
         private bool executedOnce;
@@ -58,6 +41,9 @@ namespace Indulged.Plugins.PhotoCollection
                 return;
 
             executedOnce = true;
+
+            // Events
+            InitializeEventListeners();
 
             string setId = NavigationContext.QueryString["photoset_id"];
             PhotoSetSource = Cinderella.CinderellaCore.PhotoSetCache[setId];
@@ -80,11 +66,7 @@ namespace Indulged.Plugins.PhotoCollection
 
         protected override void OnRemovedFromJournal(JournalEntryRemovedEventArgs e)
         {
-            Cinderella.CinderellaCore.PhotoSetPhotosUpdated -= OnPhotoStreamUpdated;
-            Cinderella.CinderellaCore.AddPhotoToSetCompleted -= OnPhotoAddedToSet;
-            Cinderella.CinderellaCore.RemovePhotoFromSetCompleted -= OnPhotoRemovedFromSet;
-
-            Anaconda.AnacondaCore.PhotoSetPhotosException -= OnPhotoStreamException;
+            RemoveEventListeners();
 
             base.OnRemovedFromJournal(e);
         }
@@ -93,9 +75,23 @@ namespace Indulged.Plugins.PhotoCollection
         {
             this.DataContext = PhotoSetSource;
 
+            // Initial items
+            if (PhotoSetSource.Photos.Count > 0)
+            {
+                var exsitsingGroups = rendererFactory.GeneratePhotoGroupsWithHeadline(PhotoSetSource.Photos);
+                foreach (var group in exsitsingGroups)
+                {
+                    PhotoCollection.Add(group);
+                }
+
+            }
+            else
+            {
+                StatusLabel.Visibility = Visibility.Visible;
+                PhotoStreamListView.Visibility = Visibility.Collapsed;
+            }
+
             // Show loading progress indicator
-            StatusLabel.Visibility = Visibility.Visible;
-            PhotoStreamListView.Visibility = Visibility.Collapsed;
             SystemTray.ProgressIndicator = new ProgressIndicator();
             SystemTray.ProgressIndicator.IsIndeterminate = true;
             SystemTray.ProgressIndicator.IsVisible = true;
@@ -185,91 +181,6 @@ namespace Indulged.Plugins.PhotoCollection
             }
         }
 
-        private void RefreshPhotoListButton_Click(object sender, EventArgs e)
-        {
-            SystemTray.ProgressIndicator.IsVisible = true;
-            SystemTray.ProgressIndicator.Text = AppResources.GroupLoadingPhotosText;
-
-            Anaconda.AnacondaCore.GetPhotoSetPhotosAsync(PhotoSetSource.ResourceId, new Dictionary<string, string> { { "page", "1" }, { "per_page", Anaconda.DefaultItemsPerPage.ToString() } });
-        }
-
-        private PhotoSetAddPhotoView addPhotoView;
-        private void AddPhotoButton_Click(object sender, EventArgs e)
-        {
-            addPhotoView = new PhotoSetAddPhotoView(PhotoSetSource);
-            var addPhotoDialog = ModalPopup.Show(addPhotoView, AppResources.PhotoCollectionAddToSetText, new List<string> { "Done Adding Photos" });
-        }
-
-        private void OnPhotoAddedToSet(object sender, AddPhotoToSetCompleteEventArgs e)
-        {
-            Dispatcher.BeginInvoke(() =>
-            {
-                if (e.SetId != PhotoSetSource.ResourceId)
-                    return;
-
-                Photo newPhoto = Cinderella.CinderellaCore.PhotoCache[e.PhotoId];
-                List<PhotoGroup> newGroups = rendererFactory.GeneratePhotoGroups(new List<Photo> { newPhoto });
-                PhotoCollection.Insert(0, newGroups[0]);
-
-                if (PhotoSetSource.Photos.Count > 0)
-                {
-                    StatusLabel.Visibility = Visibility.Collapsed;
-                    PhotoStreamListView.Visibility = Visibility.Visible;
-                }
-            });
-        }
-
-        private void OnPhotoRemovedFromSet(object sender, RemovePhotoFromSetCompleteEventArgs e)
-        {
-
-            Dispatcher.BeginInvoke(() =>
-            {
-                if (e.SetId != PhotoSetSource.ResourceId || PhotoSetSource.Photos.Count == 0)
-                    return;
-
-                PhotoGroup groupToReflow = null;
-                Photo photoToRemove = null;
-                // Find the respective photogroup object
-                foreach (var group in PhotoCollection)
-                {
-                    foreach (var photo in group.Photos)
-                    {
-                        if (groupToReflow != null)
-                        {
-                            break;
-                        }
-
-                        if (photo.ResourceId == e.PhotoId)
-                        {
-                            photoToRemove = photo;
-                            groupToReflow = group;
-                            break;
-                        }
-                    }
-                }
-
-                // Reflow or delete the group
-                if (groupToReflow.Photos.Count == 1)
-                {
-                    PhotoCollection.Remove(groupToReflow);
-                }
-                else
-                {
-                    // Reflow the group
-                    int oldIndex = PhotoCollection.IndexOf(groupToReflow);
-                    PhotoCollection.Remove(groupToReflow);
-                    PhotoCollection.Insert(oldIndex, groupToReflow);
-                }
-
-                if (PhotoSetSource.Photos.Count == 0)
-                {
-                    StatusLabel.Text = AppResources.GenericNoContentFound;
-                    StatusLabel.Visibility = Visibility.Visible;
-                    PhotoStreamListView.Visibility = Visibility.Collapsed;
-                }
-            });
-
-        }
 
         
     }

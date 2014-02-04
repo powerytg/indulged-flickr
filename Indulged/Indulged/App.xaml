@@ -35,6 +35,7 @@
                 <ResourceDictionary Source="Themes/BorderlessButtonStyle.xaml"/>
                 <ResourceDictionary Source="Themes/RoundedButtonStyle.xaml"/>
                 <ResourceDictionary Source="Themes/CircularButtonStyle.xaml"/>
+                <ResourceDictionary Source="Themes/PhotoSetCameraButtonStyle.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
             <Style x:Key="TransitionPageStyle" TargetType="phone:PhoneApplicationPage">

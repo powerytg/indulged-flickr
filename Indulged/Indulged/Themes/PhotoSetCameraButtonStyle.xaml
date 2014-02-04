@@ -4,7 +4,7 @@
     xmlns:sys="clr-namespace:System;assembly=mscorlib"
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone">
 
-    <Style x:Key="CircularButtonStyle" TargetType="Button">
+    <Style x:Key="PhotoSetCameraButtonStyle" TargetType="Button">
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="BorderBrush" Value="{StaticResource PhoneForegroundBrush}"/>
         <Setter Property="Foreground" Value="{StaticResource PhoneForegroundBrush}"/>
@@ -41,7 +41,7 @@
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
 
-                        <Ellipse x:Name="ButtonBackground" Fill="Transparent"/>
+                        <Ellipse x:Name="ButtonBackground" Fill="#3d3b6b"/>
                         <ContentControl x:Name="ContentContainer" ContentTemplate="{TemplateBinding ContentTemplate}" 
                                             Content="{TemplateBinding Content}" 
                                             Foreground="#4f4f4f"

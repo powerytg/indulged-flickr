@@ -16,11 +16,11 @@
     Background="Black" 
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d"
-    shell:SystemTray.IsVisible="True" shell:SystemTray.Opacity="0" shell:SystemTray.ForegroundColor="#536585"
+    shell:SystemTray.IsVisible="True" shell:SystemTray.Opacity="0" shell:SystemTray.ForegroundColor="White"
     Style="{StaticResource TransitionPageStyle}">
 
     <phone:PhoneApplicationPage.Resources>
-        <shell:ApplicationBar x:Key="PhotoPageAppBar" IsVisible="True" IsMenuEnabled="True" Mode="Default" BackgroundColor="Black" ForegroundColor="White">
+        <shell:ApplicationBar x:Key="PhotoPageAppBar" IsVisible="True" IsMenuEnabled="True" Mode="Minimized" BackgroundColor="Black" ForegroundColor="White">
             <shell:ApplicationBar.MenuItems>
                 <shell:ApplicationBarMenuItem Text="refresh" Click="RefreshPhotoListButton_Click"/>
                 <shell:ApplicationBarMenuItem Text="add photo" Click="AddPhotoButton_Click"/>
@@ -43,7 +43,7 @@
                                 ItemsSource="{Binding Items}" ItemRealized="OnItemRealized">
             <phone:LongListSelector.ItemTemplate>
                 <DataTemplate>
-                    <renderers:CommonPhotoGroupRendererSelector Content="{Binding}">
+                    <renderers:CommonPhotoGroupRendererSelector Content="{Binding}" HorizontalContentAlignment="Stretch">
                         <renderers:CommonPhotoGroupRendererSelector.HeadlineLayoutTemplate>
                             <DataTemplate>
                                 <localRenderers:PrimaryRenderer PhotoGroupSource="{Binding}"/>

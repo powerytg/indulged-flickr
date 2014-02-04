@@ -380,6 +380,7 @@
     <Compile Include="Plugins\Login\SettingsPage.xaml.cs">
       <DependentUpon>SettingsPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Plugins\PhotoCollection\PhotoSetPageEventsExtension.cs" />
     <Compile Include="Plugins\PhotoCollection\PhotoSetAddPhotoView.xaml.cs">
       <DependentUpon>PhotoSetAddPhotoView.xaml</DependentUpon>
     </Compile>
@@ -1173,6 +1174,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <ApplicationDefinition Include="Themes\CircularButtonStyle.xaml">
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <ApplicationDefinition Include="Themes\PhotoSetCameraButtonStyle.xaml">
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Page Include="Themes\FullScreenPhotoNavigatorStyle.xaml">

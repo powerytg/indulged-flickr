@@ -3,7 +3,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:common="clr-namespace:Indulged.Plugins.Common"                                       
+    xmlns:common="clr-namespace:Indulged.Plugins.Common"
     xmlns:renderer="clr-namespace:Indulged.Plugins.Common.PhotoGroupRenderers"
     xmlns:photoRenderer="clr-namespace:Indulged.Plugins.Common.Renderers"                         
     mc:Ignorable="d"
@@ -20,7 +20,14 @@
         
         <!--Photo view-->
         <Grid Grid.Row="0">
-            <Image x:Name="ImageView" Stretch="UniformToFill"/>
+            <Image x:Name="ImageView" Stretch="UniformToFill" MaxHeight="360"/>
+            
+            <!--Shadow and curl-->
+            <Image Source="/Assets/PhotoCollection/PhotoSetTopShadow.png" Stretch="Fill"
+                   Height="50" VerticalAlignment="Top"/> 
+            
+            <Image Source="/Assets/PhotoCollection/PhotoSetPageCurl.png" HorizontalAlignment="Right"
+                   VerticalAlignment="Top" Width="47"/> 
             
             <!-- Title and stats-->
             <Grid HorizontalAlignment="Right" VerticalAlignment="Bottom"
@@ -32,9 +39,26 @@
                 </Grid.ColumnDefinitions>
                 
                 <!--Title-->
-                <TextBlock x:Name="TitleView" Foreground="White" FontSize="48" TextWrapping="Wrap" TextTrimming="WordEllipsis"
-                           Grid.Column="0" />
-                            
+                <TextBlock x:Name="TitleView" 
+                           Foreground="White" FontSize="48" TextWrapping="Wrap" TextTrimming="WordEllipsis"
+                           Grid.Column="0" TextAlignment="Right"/>
+
+                <!--Split line vertical-->
+                <Rectangle Width="2" Grid.Column="1" Margin="5">
+                    <Rectangle.Fill>
+                        <SolidColorBrush Color="White" Opacity="0.5"/>
+                    </Rectangle.Fill>
+                </Rectangle>
+                
+                <!--Stat button-->
+                <StackPanel Orientation="Horizontal"
+                            Margin="0, 0, 5, 8" VerticalAlignment="Bottom" Grid.Column="2">
+                    <TextBlock x:Name="StatLabel" Text="items" 
+                                       Foreground="#ffffff" Opacity="0.5" FontSize="14" FontWeight="Normal"
+                                       VerticalAlignment="Center" Margin="0, 0, 6, 0"/>
+                    <Image Source="/Assets/PhotoCollection/PhotoSetInfoSmall.png"
+                                   VerticalAlignment="Center" Width="18" Height="18"/>
+                </StackPanel>
             </Grid> 
         </Grid>
         
@@ -71,8 +95,8 @@
                 <Rectangle Width="2" Margin="30, 0, 18, 0" Grid.Column="0">
                     <Rectangle.Fill>
                         <LinearGradientBrush StartPoint="0, 0" EndPoint="0, 1">
-                            <GradientStop Color="#605ca8"/>
-                            <GradientStop Color="#2dc0ba"/>
+                            <GradientStop Color="#605ca8" Offset="0"/>
+                            <GradientStop Color="#2dc0ba" Offset="1"/>
                         </LinearGradientBrush>
                     </Rectangle.Fill>
                 </Rectangle>
@@ -111,7 +135,7 @@
             </StackPanel>
             
             <!--Lower toolbar-->
-            <Grid Grid.Row="3" Height="70" Margin="20, 30, 0, 20">
+            <Grid Grid.Row="3" Height="70" Margin="20, 20, 0, 10">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="Auto"/>
@@ -122,7 +146,7 @@
                 </Grid.ColumnDefinitions>
                 
                 <Button x:Name="CameraButton"  Margin="0, 0, 20, 0" 
-                        Background="#3d3b6b" Style="{StaticResource CircularButtonStyle}"
+                        Background="#574e4f" Style="{StaticResource PhotoSetCameraButtonStyle}"
                         Grid.Column="0" Width="55" Height="55" >
                     <Button.Content>
                         <Image Source="/Assets/PhotoCollection/PhotoSetCameraButton.png"/>
@@ -139,7 +163,8 @@
 
                 <Button x:Name="AddButton"  Margin="0, 0, 20, 0" 
                         Background="#3d3b6b" Style="{StaticResource CircularButtonStyle}"
-                        Grid.Column="2" Width="55" Height="55">
+                        Grid.Column="2" Width="55" Height="55"
+                        Click="AddButton_Click" >
                     <Button.Content>
                         <Image Source="/Assets/PhotoCollection/PhotoSetAddButton.png"/>
                     </Button.Content>

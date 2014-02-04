@@ -1,23 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Net;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Navigation;
-using Microsoft.Phone.Controls;
-using Microsoft.Phone.Shell;
-
-using Indulged.API.Anaconda;
-using Indulged.API.Cinderella;
-using Indulged.API.Cinderella.Models;
-using Indulged.API.Cinderella.Events;
-using Indulged.PolKit;
-using Indulged.Plugins.Dashboard.Events;
+﻿using Indulged.API.Anaconda;
 using Indulged.API.Anaconda.Events;
+using Indulged.API.Cinderella;
+using Indulged.API.Cinderella.Events;
+using Indulged.API.Cinderella.Models;
 using Indulged.Plugins.Chrome.Services;
 using Indulged.Plugins.Common.PhotoGroupRenderers;
+using Indulged.PolKit;
+using Microsoft.Phone.Controls;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Windows;
+using System.Windows.Controls;
 
 namespace Indulged.Plugins.Dashboard
 {

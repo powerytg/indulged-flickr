@@ -29,7 +29,8 @@ namespace Indulged.Plugins.PhotoCollection.Renderers
             base.OnPhotoGroupSourceChanged();
 
             PhotoSet photoset = Cinderella.CinderellaCore.PhotoSetCache[PhotoGroupSource.context];
-            TitleView.Text = photoset.Name;            
+            TitleView.Text = photoset.Name;
+            StatLabel.Text = photoset.PhotoCount.ToString() + " items";
             DateView.Text = "Created at " + photoset.CreationDate.ToString("MMM dd, yyyy");
 
             if (photoset.Description.Length > 0)
@@ -42,6 +43,11 @@ namespace Indulged.Plugins.PhotoCollection.Renderers
             }
 
             ImageView.Source = new BitmapImage { UriSource = new Uri(photoset.Photos[0].GetImageUrl()), DecodePixelWidth = 640 };
+        }
+
+        private void AddButton_Click(object sender, RoutedEventArgs e)
+        {
+            PhotoSetPage.RequestAddPhotoDialog(this, null);
         }
     }
 }

@@ -25,20 +25,11 @@ namespace Indulged.Plugins.Common.PhotoGroupRenderers
         protected override void OnPhotoGroupSourceChanged()
         {
             base.OnPhotoGroupSourceChanged();
-
-            if (IsPortraitAspectRatio(PhotoGroupSource.Photos[0]) || IsPortraitAspectRatio(PhotoGroupSource.Photos[1]))
-            {
-                LayoutHorizontally();
-            }
-            else
-            {
-                LayoutVertically();
-            }
+            LayoutHorizontally();
         }
 
         private void LayoutHorizontally()
         {
-            LayoutRoot.ClearValue(FrameworkElement.HeightProperty);
             LayoutRoot.MaxHeight = 280;
 
             Renderer1.PhotoSource = PhotoGroupSource.Photos[0];

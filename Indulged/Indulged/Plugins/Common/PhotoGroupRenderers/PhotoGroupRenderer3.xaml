@@ -3,6 +3,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     xmlns:renderer="clr-namespace:Indulged.Plugins.Common.PhotoGroupRenderers"
     xmlns:photoRenderer="clr-namespace:Indulged.Plugins.Common.PhotoRenderers"                         
     mc:Ignorable="d"
@@ -12,8 +13,8 @@
     d:DesignHeight="480" d:DesignWidth="480" >
     
     <Grid x:Name="LayoutRoot">
-        <photoRenderer:MediumPhotoRenderer x:Name="Renderer1"/>
-        <photoRenderer:MediumPhotoRenderer x:Name="Renderer2"/>
-        <photoRenderer:MediumPhotoRenderer x:Name="Renderer3"/>
+        <photoRenderer:MediumPhotoRenderer x:Name="Renderer1" toolkit:TiltEffect.IsTiltEnabled="True"/>
+        <photoRenderer:MediumPhotoRenderer x:Name="Renderer2" toolkit:TiltEffect.IsTiltEnabled="True"/>
+        <photoRenderer:MediumPhotoRenderer x:Name="Renderer3" toolkit:TiltEffect.IsTiltEnabled="True"/>
     </Grid>
 </renderer:CommonPhotoGroupRendererBase>

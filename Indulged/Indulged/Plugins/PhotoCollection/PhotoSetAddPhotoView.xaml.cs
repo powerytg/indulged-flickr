@@ -1,6 +1,5 @@
 ﻿using Indulged.API.Anaconda;
 using Indulged.API.Anaconda.Events;
-using Indulged.API.Avarice.Controls;
 using Indulged.API.Avarice.Controls.SupportClasses;
 using Indulged.API.Cinderella;
 using Indulged.API.Cinderella.Events;
@@ -25,7 +24,7 @@ namespace Indulged.Plugins.PhotoCollection
         private ObservableCollection<SelectablePhoto> PhotoCollection;
 
         // Selected photos
-        private List<string> SelectedPhotos = new List<string>();
+        public List<string> SelectedPhotos { get; set; }
 
         // Message colors
         private SolidColorBrush normalMessageBrush = new SolidColorBrush(Color.FromArgb(0xff, 0x00, 0xae, 0xef));
@@ -36,6 +35,7 @@ namespace Indulged.Plugins.PhotoCollection
         {
             InitializeComponent();
 
+            SelectedPhotos = new List<string>();
             PhotoSetSource = setSource;
 
             // Initialize data providers
