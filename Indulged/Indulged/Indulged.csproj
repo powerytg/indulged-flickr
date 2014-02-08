@@ -396,6 +396,15 @@
     <Compile Include="Plugins\ProCamera\ProCameraWhiteBalanceSettingsView.xaml.cs">
       <DependentUpon>ProCameraWhiteBalanceSettingsView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Plugins\ProCam\Controls\EVDialControl.xaml.cs">
+      <DependentUpon>EVDialControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\ProCam\HUD\EVHUD.xaml.cs">
+      <DependentUpon>EVHUD.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\ProCam\ProCamPage.xaml.cs">
+      <DependentUpon>ProCamPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Plugins\Profile\ContactPage.xaml.cs">
       <DependentUpon>ContactPage.xaml</DependentUpon>
     </Compile>
@@ -922,6 +931,18 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Plugins\ProCam\Controls\EVDialControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Plugins\ProCam\HUD\EVHUD.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Plugins\ProCam\ProCamPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Plugins\Profile\ContactPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -1246,6 +1267,8 @@
     <Content Include="Assets\ProCamera\WB-Shade.png" />
     <Content Include="Assets\ProCamera\WB-Tungsten-Selected.png" />
     <Content Include="Assets\ProCamera\WB-Tungsten.png" />
+    <Content Include="Assets\ProCam\ArrowLeft.png" />
+    <Content Include="Assets\ProCam\EVDial.png" />
     <Content Include="Assets\Profile\ContactPageIcon.png" />
     <Content Include="Assets\Profile\ProfilePageIcon.png" />
     <Content Include="Assets\ProFX\FXAdd.png" />

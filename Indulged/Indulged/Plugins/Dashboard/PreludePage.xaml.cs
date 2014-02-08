@@ -343,7 +343,7 @@ namespace Indulged.Plugins.Dashboard
         {
             Frame rootVisual = System.Windows.Application.Current.RootVisual as Frame;
             PhoneApplicationPage currentPage = (PhoneApplicationPage)rootVisual.Content;
-            currentPage.NavigationService.Navigate(new Uri("/Plugins/ProCamera/ProCameraPage.xaml", UriKind.Relative));
+            currentPage.NavigationService.Navigate(new Uri("/Plugins/ProCam/ProCamPage.xaml", UriKind.Relative));
         }
     }
 }
