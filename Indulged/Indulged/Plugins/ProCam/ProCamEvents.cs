@@ -14,6 +14,10 @@ namespace Indulged.Plugins.ProCam
             EVDialer.DragEnd += OnEVDialDragEnd;
             EVDialer.ValueChanged += OnEVDialValueChanged;
 
+            ISODialer.DragBegin += OnISODialDragBegin;
+            ISODialer.DragEnd += OnISODialDragEnd;
+            ISODialer.ValueChanged += OnISODialValueChanged;
+
         }
 
         private void OnEVDialDragBegin(object sender, EventArgs e)
@@ -36,5 +40,24 @@ namespace Indulged.Plugins.ProCam
             evHUDView.SelectedValue = EVDialer.CurrentValue;
         }
 
+        private void OnISODialDragBegin(object sender, EventArgs e)
+        {
+            ShowISOHUD();
+        }
+
+        private void OnISODialDragEnd(object sender, EventArgs e)
+        {
+            DismissISOHUD();
+        }
+
+        private void OnISODialValueChanged(object sender, EventArgs e)
+        {
+            if (isoHUDView == null)
+            {
+                return;
+            }
+
+            isoHUDView.SelectedValue = ISODialer.CurrentValue;
+        }
     }
 }

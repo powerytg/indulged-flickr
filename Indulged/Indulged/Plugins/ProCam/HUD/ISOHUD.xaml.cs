@@ -10,12 +10,11 @@ using System.Diagnostics;
 
 namespace Indulged.Plugins.ProCam.HUD
 {
-    public partial class EVHUD : UserControl
+    public partial class ISOHUD : UserControl
     {
+        private int baseIndex;
         private FrameworkElement firstRenderer = null;
         private Canvas paddingHeader, paddingFooter;
-
-        private int baseIndex;
 
         protected List<Int32> _supportedValues;
         public List<Int32> SupportedValues
@@ -38,26 +37,27 @@ namespace Indulged.Plugins.ProCam.HUD
                 paddingHeader.Height = this.Height;
                 ValuePanel.Children.Add(paddingHeader);
 
-                foreach(var ev in SupportedValues)
+                foreach(var iso in SupportedValues)
                 {
-                    TextBlock evLabel = new TextBlock();
+                    TextBlock isoLabel = new TextBlock();
                     if (firstRenderer == null)
                     {
-                        firstRenderer = evLabel;
+                        firstRenderer = isoLabel;
                     }
 
-                    evLabel.Foreground = new SolidColorBrush(Colors.White);
-                    evLabel.FontSize = 18;
-                    evLabel.FontWeight = FontWeights.Medium;
-                    evLabel.Text = ev.ToEVString();
-                    evLabel.Margin = new Thickness(0, 0, 6, 0);
-                    ValuePanel.Children.Add(evLabel);
+                    isoLabel.Foreground = new SolidColorBrush(Colors.White);
+                    isoLabel.FontSize = 18;
+                    isoLabel.FontWeight = FontWeights.Medium;
+                    isoLabel.Text = iso.ToISOString();
+                    isoLabel.Margin = new Thickness(6, 0, 0, 0);
+                    ValuePanel.Children.Add(isoLabel);
                 }
 
                 // Add a padding footer
                 paddingFooter = new Canvas();
                 paddingFooter.Height = this.Height;
                 ValuePanel.Children.Add(paddingFooter);
+
             }
         }
 
@@ -77,7 +77,7 @@ namespace Indulged.Plugins.ProCam.HUD
         }
 
         // Constructor
-        public EVHUD()
+        public ISOHUD()
         {
             InitializeComponent();
         }
