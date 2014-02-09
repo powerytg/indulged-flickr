@@ -14,7 +14,6 @@ namespace Indulged.Plugins.ProCam
     public partial class ProCamPage : PhoneApplicationPage
     {
 
-        public List<Int32> supportedEVValues = new List<Int32> { -3, -2, -1, 0, 1, 2, 3 };
 
         // Constructor
         public ProCamPage()
@@ -22,26 +21,12 @@ namespace Indulged.Plugins.ProCam
             InitializeComponent();
 
             EVDialer.SupportedValues = supportedEVValues;
-            EVHudView.SupportedValues = supportedEVValues;
+            ISODialer.SupportedValues = supportedISOValues;
 
             // Events
-            EVDialer.DragBegin += OnEVDialDragBegin;
-            EVDialer.DragEnd += OnEVDialDragEnd;
-            EVDialer.ValueChanged += OnEVDialValueChanged;
+            InitializeEventListeners();
         }
 
-        private void OnEVDialDragBegin(object sender, EventArgs e)
-        {
-        }
-
-        private void OnEVDialDragEnd(object sender, EventArgs e)
-        {
-        }
-
-        private void OnEVDialValueChanged(object sender, EventArgs e)
-        {
-            EVHudView.SelectedValue = EVDialer.CurrentValue;
-        }
 
     }
 }

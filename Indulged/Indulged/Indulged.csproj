@@ -396,12 +396,22 @@
     <Compile Include="Plugins\ProCamera\ProCameraWhiteBalanceSettingsView.xaml.cs">
       <DependentUpon>ProCameraWhiteBalanceSettingsView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Plugins\ProCam\Controls\ISODialControl.xaml.cs">
+      <DependentUpon>ISODialControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Plugins\ProCam\Controls\EVDialControl.xaml.cs">
       <DependentUpon>EVDialControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Plugins\ProCam\ProCamAnimation.cs" />
     <Compile Include="Plugins\ProCam\HUD\EVHUD.xaml.cs">
       <DependentUpon>EVHUD.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Plugins\ProCam\ProCamConstraints.cs" />
+    <Compile Include="Plugins\ProCam\ProCamCore.cs" />
+    <Compile Include="Plugins\ProCam\ProCamEvents.cs" />
+    <Compile Include="Plugins\ProCam\ProCamHUD.cs" />
+    <Compile Include="Plugins\ProCam\Utils\ISOUtils.cs" />
+    <Compile Include="Plugins\ProCam\Utils\EVUtils.cs" />
     <Compile Include="Plugins\ProCam\ProCamPage.xaml.cs">
       <DependentUpon>ProCamPage.xaml</DependentUpon>
     </Compile>
@@ -931,6 +941,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Plugins\ProCam\Controls\ISODialControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Plugins\ProCam\Controls\EVDialControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -1268,7 +1282,33 @@
     <Content Include="Assets\ProCamera\WB-Tungsten-Selected.png" />
     <Content Include="Assets\ProCamera\WB-Tungsten.png" />
     <Content Include="Assets\ProCam\ArrowLeft.png" />
+    <Content Include="Assets\ProCam\ArrowRight.png" />
+    <Content Include="Assets\ProCam\BottomToolbar.png" />
     <Content Include="Assets\ProCam\EVDial.png" />
+    <Content Include="Assets\ProCam\EVHighlight.png" />
+    <Content Include="Assets\ProCam\EVHUDTitle.png" />
+    <Content Include="Assets\ProCam\EV\EV-1.png" />
+    <Content Include="Assets\ProCam\EV\EV-10.png" />
+    <Content Include="Assets\ProCam\EV\EV-2.png" />
+    <Content Include="Assets\ProCam\EV\EV-3.png" />
+    <Content Include="Assets\ProCam\EV\EV-4.png" />
+    <Content Include="Assets\ProCam\EV\EV-5.png" />
+    <Content Include="Assets\ProCam\EV\EV-6.png" />
+    <Content Include="Assets\ProCam\EV\EV-7.png" />
+    <Content Include="Assets\ProCam\EV\EV-8.png" />
+    <Content Include="Assets\ProCam\EV\EV-9.png" />
+    <Content Include="Assets\ProCam\EV\EV0.png" />
+    <Content Include="Assets\ProCam\EV\EV1.png" />
+    <Content Include="Assets\ProCam\EV\EV2.png" />
+    <Content Include="Assets\ProCam\EV\EV3.png" />
+    <Content Include="Assets\ProCam\EV\EV4.png" />
+    <Content Include="Assets\ProCam\EV\EV5.png" />
+    <Content Include="Assets\ProCam\EV\EV6.png" />
+    <Content Include="Assets\ProCam\EV\EV7.png" />
+    <Content Include="Assets\ProCam\ISODial.png" />
+    <Content Include="Assets\ProCam\ISOTick.png" />
+    <Content Include="Assets\ProCam\Shutter.png" />
+    <Content Include="Assets\ProCam\TestImage.jpg" />
     <Content Include="Assets\Profile\ContactPageIcon.png" />
     <Content Include="Assets\Profile\ProfilePageIcon.png" />
     <Content Include="Assets\ProFX\FXAdd.png" />
@@ -1316,6 +1356,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Fonts\BenchNine-Regular.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Fonts\digital-7.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Indulged_2013_09_12_19_51_26.sap" />

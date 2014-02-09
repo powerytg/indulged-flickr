@@ -7,25 +7,57 @@
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
-    d:DesignHeight="480" d:DesignWidth="480">
-    
-    <Grid x:Name="LayoutRoot">
-        <Grid.Background>
-            <LinearGradientBrush StartPoint="0, 0" EndPoint="1, 0">
-                <GradientStop Color="#00000000" Offset="0"/>
-                <GradientStop Color="#99000000" Offset="1"/>
-            </LinearGradientBrush>
-        </Grid.Background>
+    d:DesignHeight="120" d:DesignWidth="140"
+    Width="240" Height="250">
 
-        <!--Value list-->
-        <StackPanel x:Name="ValuePanel" Orientation="Vertical"
-                    VerticalAlignment="Center" HorizontalAlignment="Right">
-            <StackPanel.RenderTransform>
-                <TranslateTransform x:Name="ValuePanelTransform"/>
-            </StackPanel.RenderTransform>            
-        </StackPanel>
+    <UserControl.RenderTransform>
+        <TranslateTransform x:Name="PanelTransform"/>
+    </UserControl.RenderTransform>
+
+    <Grid x:Name="LayoutRoot">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
         
-        <Canvas Width="300" Height="30" Background="Red" Opacity="0.4" VerticalAlignment="Center"/>
+        <!--Title-->
+        <Image Source="/Assets/ProCam/EVHUDTitle.png"
+               HorizontalAlignment="Right" Grid.Row="0" 
+               Margin="16"/>
         
+        <!--Values-->
+        <Grid Grid.Row="1">
+            <Grid.Background>
+                <LinearGradientBrush StartPoint="0, 0" EndPoint="1, 0">
+                    <GradientStop Color="#00000000" Offset="0"/>
+                    <GradientStop Color="#99000000" Offset="1"/>
+                </LinearGradientBrush>
+            </Grid.Background>
+
+            <Image x:Name="HighlightView"
+                   Source="/Assets/ProCam/EVHighlight.png"
+                   Width="250" Height="65" Stretch="Fill" />
+
+            <!--Value list-->
+            <ScrollViewer x:Name="Scroller" VerticalContentAlignment="Center"
+                      HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden">
+
+                <ScrollViewer.OpacityMask>
+                    <LinearGradientBrush StartPoint="0, 0" EndPoint="0, 1">
+                        <GradientStop Color="#00000000" Offset="0"/>
+                        <GradientStop Color="#00000000" Offset="0.1"/>
+                        <GradientStop Color="#66000000" Offset="0.4"/>
+                        <GradientStop Color="#ff000000" Offset="0.5"/>
+                        <GradientStop Color="#66000000" Offset="0.6"/>
+                        <GradientStop Color="#00000000" Offset="0.9"/>
+                        <GradientStop Color="#00000000" Offset="1"/>
+                    </LinearGradientBrush>
+                </ScrollViewer.OpacityMask>
+
+                <StackPanel x:Name="ValuePanel" Orientation="Vertical" 
+                        HorizontalAlignment="Right">                    
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
     </Grid>
 </UserControl>

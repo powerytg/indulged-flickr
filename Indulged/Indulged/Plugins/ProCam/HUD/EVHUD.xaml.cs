@@ -1,15 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Navigation;
-using Microsoft.Phone.Controls;
-using Microsoft.Phone.Shell;
 using System.Windows.Media;
-using System.Windows;
 using System.Windows.Media.Animation;
+
+using Indulged.Plugins.ProCam.Utils;
+using System.Diagnostics;
 
 namespace Indulged.Plugins.ProCam.HUD
 {
@@ -27,6 +24,7 @@ namespace Indulged.Plugins.ProCam.HUD
             set
             {
                 _supportedValues = value;
+                
                 baseIndex = _supportedValues.IndexOf(0);
 
                 // Rebuild value panel
@@ -36,12 +34,13 @@ namespace Indulged.Plugins.ProCam.HUD
                 {
                     TextBlock evLabel = new TextBlock();
                     evLabel.Foreground = new SolidColorBrush(Colors.White);
-                    evLabel.FontSize = 36;
+                    evLabel.FontSize = 18;
                     evLabel.FontWeight = FontWeights.Medium;
-                    evLabel.Text = ev.ToString();
-
+                    evLabel.Text = ev.ToEVString();
+                    evLabel.Margin = new Thickness(0, 0, 6, 0);
                     ValuePanel.Children.Add(evLabel);
                 }
+
             }
         }
 
@@ -70,31 +69,15 @@ namespace Indulged.Plugins.ProCam.HUD
         {
             InitializeComponent();
         }
-
+        
         private void SmoothShiftValueListToPosition(int index)
         {
             // Preparation
-            TextBlock firstItem = ValuePanel.Children[0] as TextBlock;
-            double itemHeight = firstItem.ActualHeight;
-            double targetY = -itemHeight * (index - baseIndex);
+            double itemHeight = (ValuePanel.Children[0] as FrameworkElement).ActualHeight;
+            double targetY = itemHeight * index - Scroller.ActualHeight / 2 + itemHeight / 2;
             
-            Storyboard storyboard = new Storyboard();
-            Duration duration = new Duration(TimeSpan.FromSeconds(0.2));
-            storyboard.Duration = duration;
-
-            DoubleAnimation panelAnimation = new DoubleAnimation();
-            panelAnimation.Duration = duration;
-            panelAnimation.To = targetY;
-            panelAnimation.EasingFunction = new CubicEase() { EasingMode = EasingMode.EaseOut };
-            Storyboard.SetTarget(panelAnimation, ValuePanel);
-            Storyboard.SetTargetProperty(panelAnimation, new PropertyPath("(UIElement.RenderTransform).(TranslateTransform.Y)"));
-            storyboard.Children.Add(panelAnimation);
-
-            storyboard.Begin();
-            storyboard.Completed += (sender, e) =>
-            {
-                
-            };
+            Scroller.ScrollToVerticalOffset(targetY);
         }
+
     }
 }
