@@ -23,10 +23,17 @@ namespace Indulged.Plugins.ProCam
             EVDialer.SupportedValues = supportedEVValues;
             ISODialer.SupportedValues = supportedISOValues;
 
+            OSD.MainOSD.SupportedResolutions = supportedResolutions;
+            OSD.MainOSD.CurrentResolution = supportedResolutions[0];
+
+            OSD.WhiteBalanceOSD.SupportedWhiteBalances = supportedWhiteBalances;
+            OSD.WhiteBalanceOSD.CurrentWhiteBalanceIndex = 0;
+
+            HUDSwitchButton.HUDStateChanged += OnOSDStateChanged;
+
             // Events
             InitializeEventListeners();
         }
-
 
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Indulged.Plugins.ProCam
 {
@@ -59,5 +60,30 @@ namespace Indulged.Plugins.ProCam
 
             isoHUDView.SelectedValue = ISODialer.CurrentValue;
         }
+
+        private void OnOSDStateChanged(object sender, EventArgs e)
+        {
+            if (HUDSwitchButton.IsOn)
+            {
+                ShowOSD();
+            }
+            else
+            {
+                DismissOSD();
+            }
+        }
+
+        private void OnWhiteBalanceButtonClick(object sender, RoutedEventArgs e)
+        {
+            if (HUDSwitchButton.IsOn)
+            {
+                ShowOSD(OSD.WhiteBalanceOSD);
+            }
+            else
+            {
+                DismissOSD();
+            }
+        }
+
     }
 }

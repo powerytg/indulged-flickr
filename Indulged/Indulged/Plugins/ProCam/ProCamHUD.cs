@@ -165,5 +165,25 @@ namespace Indulged.Plugins.ProCam
         }
 
         #endregion
+
+        #region OSD
+
+        public void ShowOSD(FrameworkElement view = null)
+        {
+            if (view == null)
+            {
+                view = OSD.MainOSD;
+            }
+
+            OSD.ShowOSD(view);
+        }
+
+        public void DismissOSD()
+        {
+            OSD.DismissOSD();
+        }
+
+        #endregion
+
     }
 }

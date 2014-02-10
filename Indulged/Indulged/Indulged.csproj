@@ -399,14 +399,26 @@
     <Compile Include="Plugins\ProCam\Controls\CamSwitchControl.xaml.cs">
       <DependentUpon>CamSwitchControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Plugins\ProCam\Controls\HUDSwitchControl.xaml.cs">
+      <DependentUpon>HUDSwitchControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Plugins\ProCam\Controls\ISODialControl.xaml.cs">
       <DependentUpon>ISODialControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Plugins\ProCam\Controls\EVDialControl.xaml.cs">
       <DependentUpon>EVDialControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Plugins\ProCam\HUD\HUDContainer.xaml.cs">
+      <DependentUpon>HUDContainer.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Plugins\ProCam\HUD\ISOHUD.xaml.cs">
       <DependentUpon>ISOHUD.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\ProCam\HUD\MainHUD.xaml.cs">
+      <DependentUpon>MainHUD.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\ProCam\HUD\WhiteBalanceHUD.xaml.cs">
+      <DependentUpon>WhiteBalanceHUD.xaml</DependentUpon>
     </Compile>
     <Compile Include="Plugins\ProCam\ProCamAnimation.cs" />
     <Compile Include="Plugins\ProCam\HUD\EVHUD.xaml.cs">
@@ -951,6 +963,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Plugins\ProCam\Controls\HUDSwitchControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Plugins\ProCam\Controls\ISODialControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -959,11 +975,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Plugins\ProCam\HUD\HUDContainer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Plugins\ProCam\HUD\ISOHUD.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Plugins\ProCam\HUD\EVHUD.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Plugins\ProCam\HUD\MainHUD.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Plugins\ProCam\HUD\WhiteBalanceHUD.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1231,6 +1259,12 @@
     <ApplicationDefinition Include="Themes\CapsuleButtonStyle.xaml">
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <ApplicationDefinition Include="Themes\HUDButtonStyle.xaml">
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <ApplicationDefinition Include="Themes\HUDRadioButtonStyle.xaml">
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
     <Page Include="Themes\FullScreenPhotoNavigatorStyle.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -1327,12 +1361,16 @@
     <Content Include="Assets\ProCam\FlashOff.png" />
     <Content Include="Assets\ProCam\FlashOn.png" />
     <Content Include="Assets\ProCam\FrontCamera.png" />
+    <Content Include="Assets\ProCam\HUDListHighlight.png" />
     <Content Include="Assets\ProCam\ISODial.png" />
     <Content Include="Assets\ProCam\ISOHighlight.png" />
     <Content Include="Assets\ProCam\ISOHUDTitle.png" />
     <Content Include="Assets\ProCam\ISOTick.png" />
     <Content Include="Assets\ProCam\Logo.png" />
     <Content Include="Assets\ProCam\MainCamera.png" />
+    <Content Include="Assets\ProCam\OSDArrow.png" />
+    <Content Include="Assets\ProCam\OSDOff.png" />
+    <Content Include="Assets\ProCam\OSDOn.png" />
     <Content Include="Assets\ProCam\Shutter.png" />
     <Content Include="Assets\ProCam\TestImage.jpg" />
     <Content Include="Assets\ProCam\TopToolbar.png" />

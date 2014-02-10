@@ -52,7 +52,7 @@
                            FontFamily="/Assets/Fonts/BenchNine-Bold.ttf#BenchNine" FontSize="22"
                            VerticalAlignment="Center" Margin="0, 0, 8, 0" />
                 <Button x:Name="WBButton" Style="{StaticResource CapsuleButtonStyle}"
-                        VerticalAlignment="Center" >
+                        VerticalAlignment="Center" Click="OnWhiteBalanceButtonClick" >
                     <Button.Content>
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="AUTO" Foreground="White" Width="60" 
@@ -69,6 +69,16 @@
             
         </Grid>
 
+        <!--HUD switch-->
+        <controls:HUDSwitchControl x:Name="HUDSwitchButton"
+                                   HorizontalAlignment="Right" VerticalAlignment="Top"
+                                   Margin="0, 90, 15, 0" />
+        
+        <!--HUD container-->
+        <hud:HUDContainer x:Name="OSD"
+                          HorizontalAlignment="Right" VerticalAlignment="Top"
+                          Margin="0, 130, 0, 0" />
+        
         <!--Camera switch-->
         <controls:CamSwitchControl x:Name="CameraSwitchButton" 
                                    HorizontalAlignment="Right" VerticalAlignment="Bottom"

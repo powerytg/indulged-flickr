@@ -37,6 +37,8 @@
                 <ResourceDictionary Source="Themes/RoundedButtonStyle.xaml"/>
                 <ResourceDictionary Source="Themes/CircularButtonStyle.xaml"/>
                 <ResourceDictionary Source="Themes/PhotoSetCameraButtonStyle.xaml"/>
+                <ResourceDictionary Source="Themes/HUDButtonStyle.xaml"/>
+                <ResourceDictionary Source="Themes/HUDRadioButtonStyle.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
             <Style x:Key="TransitionPageStyle" TargetType="phone:PhoneApplicationPage">
