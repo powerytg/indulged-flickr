@@ -26,5 +26,6 @@
         <hud:MainHUD x:Name="MainOSD" HorizontalAlignment="Right" VerticalAlignment="Top"/>
 
         <hud:WhiteBalanceHUD x:Name="WhiteBalanceOSD" HorizontalAlignment="Right" VerticalAlignment="Top" Visibility="Collapsed"/>
+        <hud:SceneHUD x:Name="SceneOSD" HorizontalAlignment="Right" VerticalAlignment="Top" Visibility="Collapsed"/>
     </Grid>
 </UserControl>

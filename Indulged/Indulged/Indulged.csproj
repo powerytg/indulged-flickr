@@ -408,6 +408,9 @@
     <Compile Include="Plugins\ProCam\Controls\EVDialControl.xaml.cs">
       <DependentUpon>EVDialControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Plugins\ProCam\HUD\SceneHUD.xaml.cs">
+      <DependentUpon>SceneHUD.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Plugins\ProCam\HUD\HUDContainer.xaml.cs">
       <DependentUpon>HUDContainer.xaml</DependentUpon>
     </Compile>
@@ -974,6 +977,10 @@
     <Page Include="Plugins\ProCam\Controls\EVDialControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Plugins\ProCam\HUD\SceneHUD.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Plugins\ProCam\HUD\HUDContainer.xaml">
       <SubType>Designer</SubType>

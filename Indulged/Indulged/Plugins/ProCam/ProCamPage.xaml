@@ -55,7 +55,7 @@
                         VerticalAlignment="Center" Click="OnWhiteBalanceButtonClick" >
                     <Button.Content>
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="AUTO" Foreground="White" Width="60" 
+                            <TextBlock x:Name="WBLabel" Text="AUTO" Foreground="White" Width="60" 
                            FontFamily="/Assets/Fonts/BenchNine-Bold.ttf#BenchNine" FontSize="18"
                            VerticalAlignment="Center" TextAlignment="Right" Margin="14, 0, 12, 0" />
 

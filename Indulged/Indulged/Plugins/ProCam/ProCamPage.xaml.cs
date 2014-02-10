@@ -29,6 +29,9 @@ namespace Indulged.Plugins.ProCam
             OSD.WhiteBalanceOSD.SupportedWhiteBalances = supportedWhiteBalances;
             OSD.WhiteBalanceOSD.CurrentWhiteBalanceIndex = 0;
 
+            OSD.SceneOSD.SupportedSceneModes = supportedSceneModes;
+            OSD.SceneOSD.CurrentIndex = 0;
+
             HUDSwitchButton.HUDStateChanged += OnOSDStateChanged;
 
             // Events

@@ -37,22 +37,9 @@
                        Margin="0, 4, 0, 0" />
         </StackPanel>
 
-        <!--Aspect ratio-->
-        <StackPanel x:Name="AspectRatioPanel" Orientation="Horizontal"
-                    HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0, 0, 0, 12">
-
-            <Button x:Name="AspectRatioButton" Content="AUTO" Style="{StaticResource HUDButtonStyle}"
-                    VerticalAlignment="Center" Margin="0, 0, 12, 0"/>
-
-            <TextBlock Foreground="White" Opacity="0.6"
-                           FontFamily="/Assets/Fonts/BenchNine-Bold#BenchNine"
-                           Text="ASPECT RATIO" VerticalAlignment="Center" 
-                           Margin="0, 0, 12, 0" />
-
-        </StackPanel>
         <!--Scene mode-->
         <StackPanel x:Name="ScenePanel" Orientation="Horizontal"
-                    HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0, 0, 0, 20">
+                    HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0, 0, 0, 0">
             
             <Button x:Name="SceneButton" Content="AUTO" Style="{StaticResource HUDButtonStyle}"
                     VerticalAlignment="Center" Margin="0, 0, 12, 0"/>
@@ -63,7 +50,20 @@
                            Margin="0, 0, 12, 0" />
 
         </StackPanel>
-        
-        
+
+        <!--Focus assist mode-->
+        <StackPanel x:Name="FocusAssistPanel" Orientation="Horizontal"
+                    HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0, 0, 0, 20">
+
+            <Button x:Name="FocusAssistButton" Content="AUTO" Style="{StaticResource HUDButtonStyle}"
+                    VerticalAlignment="Center" Margin="0, 0, 12, 0"/>
+
+            <TextBlock Foreground="White" Opacity="0.6"
+                           FontFamily="/Assets/Fonts/BenchNine-Bold#BenchNine"
+                           Text="FOCUS ASSIST" VerticalAlignment="Center" 
+                           Margin="0, 0, 12, 0" />
+
+        </StackPanel>
+
     </StackPanel>
 </UserControl>

@@ -19,6 +19,9 @@ namespace Indulged.Plugins.ProCam
             ISODialer.DragEnd += OnISODialDragEnd;
             ISODialer.ValueChanged += OnISODialValueChanged;
 
+            OSD.WhiteBalanceOSD.WhiteBalanceChanged += OnWhiteBalanceChanged;
+            OSD.MainOSD.SceneButton.Click += OnSceneButtonClick;
+            OSD.SceneOSD.SceneModeChanged += OnSceneModeChanged;
         }
 
         private void OnEVDialDragBegin(object sender, EventArgs e)
@@ -75,14 +78,38 @@ namespace Indulged.Plugins.ProCam
 
         private void OnWhiteBalanceButtonClick(object sender, RoutedEventArgs e)
         {
-            if (HUDSwitchButton.IsOn)
+            if (OSD.Visibility == Visibility.Collapsed)
             {
                 ShowOSD(OSD.WhiteBalanceOSD);
             }
             else
             {
-                DismissOSD();
+                if (OSD.CurrentOSD == OSD.WhiteBalanceOSD)
+                {
+                    DismissOSD();
+                }
+                else
+                {
+                    ShowOSD(OSD.WhiteBalanceOSD);
+                }
             }
+        }
+
+        private void OnSceneButtonClick(object sender, RoutedEventArgs e)
+        {
+            ShowOSD(OSD.SceneOSD);
+        }
+
+        private void OnWhiteBalanceChanged(object sender, EventArgs e)
+        {
+            DismissOSD();
+
+            WBLabel.Text = OSD.WhiteBalanceOSD.WhiteBalanceStrings[OSD.WhiteBalanceOSD.CurrentWhiteBalanceIndex];
+        }
+
+        private void OnSceneModeChanged(object sender, EventArgs e)
+        {
+            ShowOSD(OSD.MainOSD);
         }
 
     }

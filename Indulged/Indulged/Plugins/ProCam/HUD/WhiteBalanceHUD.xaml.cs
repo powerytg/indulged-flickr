@@ -13,6 +13,9 @@ namespace Indulged.Plugins.ProCam.HUD
 {
     public partial class WhiteBalanceHUD : UserControl
     {
+        // Events
+        public EventHandler WhiteBalanceChanged;
+
         private int _currentWhiteBalanceIndex;
         public int CurrentWhiteBalanceIndex
         {
@@ -86,6 +89,13 @@ namespace Indulged.Plugins.ProCam.HUD
         }
 
         private List<string> whiteBalanceStrings = new List<string>();
+        public List<string> WhiteBalanceStrings
+        {
+            get
+            {
+                return whiteBalanceStrings;
+            }
+        }
 
         // Constructor
         public WhiteBalanceHUD()
@@ -109,6 +119,11 @@ namespace Indulged.Plugins.ProCam.HUD
                 {
                     int index = RadioGroupPanel.Children.IndexOf((RadioButton)sender);
                     CurrentWhiteBalanceIndex = index;
+
+                    if (WhiteBalanceChanged != null)
+                    {
+                        WhiteBalanceChanged(this, null);
+                    }
                 };
                 RadioGroupPanel.Children.Add(button);
             }
