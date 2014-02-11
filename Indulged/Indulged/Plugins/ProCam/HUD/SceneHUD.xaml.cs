@@ -28,7 +28,7 @@ namespace Indulged.Plugins.ProCam.HUD
             {
                 _currentIndex = value;
 
-                Label.Text = sceneStrings[_currentIndex];
+                Label.Text = SceneStrings[_currentIndex];
                 RadioButton button = RadioGroupPanel.Children[_currentIndex] as RadioButton;
 
                 if (button.IsChecked == false)
@@ -50,46 +50,46 @@ namespace Indulged.Plugins.ProCam.HUD
             {
                 _supportedSceneModes = value;
 
-                sceneStrings.Clear();
+                SceneStrings.Clear();
                 foreach (CameraSceneMode mode in _supportedSceneModes)
                 {
                     switch (mode)
                     { 
                         case CameraSceneMode.Auto:
-                            sceneStrings.Add("Auto");
+                            SceneStrings.Add("Auto");
                             break;
                         case CameraSceneMode.Backlit:
-                            sceneStrings.Add("Backlit");
+                            SceneStrings.Add("Backlit");
                             break;
                         case CameraSceneMode.Beach:
-                            sceneStrings.Add("Beach");
+                            SceneStrings.Add("Beach");
                             break;
                         case CameraSceneMode.Candlelight:
-                            sceneStrings.Add("Candle light");
+                            SceneStrings.Add("Candle light");
                             break;
                         case CameraSceneMode.Landscape:
-                            sceneStrings.Add("Landscape");
+                            SceneStrings.Add("Landscape");
                             break;
                         case CameraSceneMode.Macro:
-                            sceneStrings.Add("Macro");
+                            SceneStrings.Add("Macro");
                             break;
                         case CameraSceneMode.Night:
-                            sceneStrings.Add("Night");
+                            SceneStrings.Add("Night");
                             break;
                         case CameraSceneMode.NightPortrait:
-                            sceneStrings.Add("Night Portrait");
+                            SceneStrings.Add("Night Portrait");
                             break;
                         case CameraSceneMode.Portrait:
-                            sceneStrings.Add("Portrait");
+                            SceneStrings.Add("Portrait");
                             break;
                         case CameraSceneMode.Snow:
-                            sceneStrings.Add("Snow");
+                            SceneStrings.Add("Snow");
                             break;
                         case CameraSceneMode.Sport:
-                            sceneStrings.Add("Sport");
+                            SceneStrings.Add("Sport");
                             break;
                         case CameraSceneMode.Sunset:
-                            sceneStrings.Add("Sunset");
+                            SceneStrings.Add("Sunset");
                             break;
                     }
                 }
@@ -99,19 +99,21 @@ namespace Indulged.Plugins.ProCam.HUD
             }
         }
 
-        private List<string> sceneStrings = new List<string>();
+        public List<string> SceneStrings { get; set; }
 
         // Constructor
         public SceneHUD()
         {
             InitializeComponent();
+
+            SceneStrings = new List<string>();
         }
 
         private void RebuildSceneOptions()
         {
             RadioGroupPanel.Children.Clear();
 
-            foreach(var scene in sceneStrings)
+            foreach (var scene in SceneStrings)
             {
                 RadioButton button = new RadioButton();
                 button.GroupName = "sceneMode";

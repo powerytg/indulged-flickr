@@ -20,6 +20,21 @@ namespace Indulged.Plugins.ProCam.Controls
         private BitmapImage backCamIcon = new BitmapImage(new Uri("/Assets/ProCam/MainCamera.png", UriKind.Relative));
         private BitmapImage frontCamIcon = new BitmapImage(new Uri("/Assets/ProCam/FrontCamera.png", UriKind.Relative));
 
+        private bool _shouldUseShortNames = false;
+        public bool ShouldUserShortNames
+        {
+            get
+            {
+                return _shouldUseShortNames;
+            }
+
+            set
+            {
+                _shouldUseShortNames = value;
+                UpdateLabel();                
+            }
+        }
+
         private CameraSensorLocation _currentCamera = CameraSensorLocation.Back;
         public CameraSensorLocation CurrentCamera
         {
@@ -34,14 +49,14 @@ namespace Indulged.Plugins.ProCam.Controls
 
                 if (_currentCamera == CameraSensorLocation.Back)
                 {
-                    Label.Text = "BACK CAMERA";
                     Icon.Source = backCamIcon;
                 }
                 else if (_currentCamera == CameraSensorLocation.Front)
                 {
-                    Label.Text = "FRONT CAMERA";
                     Icon.Source = frontCamIcon;
                 }
+
+                UpdateLabel();
             }
         }
 
@@ -49,6 +64,18 @@ namespace Indulged.Plugins.ProCam.Controls
         public CamSwitchControl()
         {
             InitializeComponent();
+        }
+
+        private void UpdateLabel()
+        {
+            if (_currentCamera == CameraSensorLocation.Back)
+            {
+                Label.Text = _shouldUseShortNames ? "BACK" : "BACK CAMERA";
+            }
+            else if (_currentCamera == CameraSensorLocation.Front)
+            {
+                Label.Text = _shouldUseShortNames ? "FRONT" : "FRONT CAMERA";
+            }
         }
 
         private void SwitchButton_Click(object sender, RoutedEventArgs e)
@@ -66,6 +93,16 @@ namespace Indulged.Plugins.ProCam.Controls
             {
                 CameraChanged(this, null);
             }
+        }
+
+        public void LayoutInLandscapeMode()
+        {
+            ShouldUserShortNames = true;
+        }
+
+        public void LayoutInPortraitMode()
+        {
+            ShouldUserShortNames = false;
         }
     }
 }

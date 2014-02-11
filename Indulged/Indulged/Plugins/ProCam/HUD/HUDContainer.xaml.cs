@@ -136,7 +136,7 @@ namespace Indulged.Plugins.ProCam.HUD
             storyboard.Begin();
         }
 
-        public void DismissOSD()
+        public void DismissOSD(Action completeAction = null)
         {
             Storyboard storyboard = new Storyboard();
             storyboard.Duration = new Duration(TimeSpan.FromSeconds(0.3));
@@ -152,6 +152,11 @@ namespace Indulged.Plugins.ProCam.HUD
             storyboard.Completed += (sender, e) =>
             {
                 this.Visibility = Visibility.Collapsed;
+
+                if (completeAction != null)
+                {
+                    completeAction();
+                }
             };
 
             storyboard.Begin();

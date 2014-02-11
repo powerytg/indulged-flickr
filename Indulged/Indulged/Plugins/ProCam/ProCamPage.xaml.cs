@@ -8,12 +8,15 @@ using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using Indulged.Plugins.ProCam.HUD;
+using System.Windows.Media.Imaging;
 
 namespace Indulged.Plugins.ProCam
 {
     public partial class ProCamPage : PhoneApplicationPage
     {
-
+        private BitmapImage FlashIconAuto = new BitmapImage(new Uri("/Assets/ProCam/FlashAuto.png", UriKind.Relative));
+        private BitmapImage FlashIconOn = new BitmapImage(new Uri("/Assets/ProCam/FlashOn.png", UriKind.Relative));
+        private BitmapImage FlashIconOff = new BitmapImage(new Uri("/Assets/ProCam/FlashOff.png", UriKind.Relative));
 
         // Constructor
         public ProCamPage()
@@ -32,11 +35,16 @@ namespace Indulged.Plugins.ProCam
             OSD.SceneOSD.SupportedSceneModes = supportedSceneModes;
             OSD.SceneOSD.CurrentIndex = 0;
 
-            HUDSwitchButton.HUDStateChanged += OnOSDStateChanged;
+            OSD.FocusAssistOSD.SupportedModes = supportedFocusAssistModes;
+            OSD.FocusAssistOSD.CurrentIndex = 0;
 
             // Events
             InitializeEventListeners();
         }
+
+       
+
+
 
     }
 }

@@ -16,11 +16,11 @@
                Width="18" Height="10">
             <Image.RenderTransform>
                 <RotateTransform x:Name="ArrowTransform"
-                                 CenterX="9" CenterY="5" />
+                                 CenterX="9" CenterY="5" Angle="90" />
             </Image.RenderTransform>
         </Image>
 
-        <Image x:Name="Label" Source="/Assets/ProCam/OSDOn.png"
+        <Image x:Name="Label" Source="/Assets/ProCam/OSDOff.png"
                HorizontalAlignment="Right" VerticalAlignment="Center"
                Width="84" />
 

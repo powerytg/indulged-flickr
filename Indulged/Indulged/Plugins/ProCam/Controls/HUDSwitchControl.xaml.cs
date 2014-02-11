@@ -21,7 +21,7 @@ namespace Indulged.Plugins.ProCam.Controls
         private BitmapImage OnLabelImage = new BitmapImage(new Uri("/Assets/ProCam/OSDOn.png", UriKind.Relative));
         private BitmapImage OffLabelImage = new BitmapImage(new Uri("/Assets/ProCam/OSDOff.png", UriKind.Relative));
 
-        private bool _isOn = true;
+        private bool _isOn = false;
         public bool IsOn
         {
             get

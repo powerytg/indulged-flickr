@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using Windows.Phone.Media.Capture;
 
 namespace Indulged.Plugins.ProCam
 {
@@ -22,6 +23,11 @@ namespace Indulged.Plugins.ProCam
             OSD.WhiteBalanceOSD.WhiteBalanceChanged += OnWhiteBalanceChanged;
             OSD.MainOSD.SceneButton.Click += OnSceneButtonClick;
             OSD.SceneOSD.SceneModeChanged += OnSceneModeChanged;
+            
+            OSD.MainOSD.FocusAssistButton.Click += OnFocusAssistButtonClick;
+            OSD.FocusAssistOSD.FocusAssistModeChanged += OnFocusAssistModeChanged;
+
+            HUDSwitchButton.HUDStateChanged += OnOSDStateChanged;
         }
 
         private void OnEVDialDragBegin(object sender, EventArgs e)
@@ -95,9 +101,53 @@ namespace Indulged.Plugins.ProCam
             }
         }
 
+        private void OnFlashButtonClick(object sender, RoutedEventArgs e)
+        {
+            if (supportedFlashModes.Count < 2)
+            {
+                return;
+            }
+
+            int currentIndex = supportedFlashModes.IndexOf(CurrentFlashMode);
+            if (currentIndex == supportedFlashModes.Count - 1)
+            {
+                currentIndex = 0;
+            }
+            else
+            {
+                currentIndex++;
+            }
+
+            CurrentFlashMode = supportedFlashModes[currentIndex];
+            if (CurrentFlashMode == FlashState.Auto)
+            {
+                FlashButton.Style = (Style)App.Current.Resources["CapsuleButtonStyle"];
+                FlashIcon.Source = FlashIconAuto;
+                FlashLabel.Text = "AUTO";                
+            }
+            else if (CurrentFlashMode == FlashState.On)
+            {
+                FlashButton.Style = (Style)App.Current.Resources["CapsuleButtonActiveStyle"];
+                FlashIcon.Source = FlashIconOn;
+                FlashLabel.Text = "ON";
+            }
+            else
+            {
+                FlashButton.Style = (Style)App.Current.Resources["CapsuleButtonStyle"];
+                FlashIcon.Source = FlashIconOff;
+                FlashLabel.Text = "OFF";
+            }
+
+        }
+
         private void OnSceneButtonClick(object sender, RoutedEventArgs e)
         {
             ShowOSD(OSD.SceneOSD);
+        }
+
+        private void OnFocusAssistButtonClick(object sender, RoutedEventArgs e)
+        {
+            ShowOSD(OSD.FocusAssistOSD);
         }
 
         private void OnWhiteBalanceChanged(object sender, EventArgs e)
@@ -109,6 +159,13 @@ namespace Indulged.Plugins.ProCam
 
         private void OnSceneModeChanged(object sender, EventArgs e)
         {
+            OSD.MainOSD.SceneButton.Content = OSD.SceneOSD.SceneStrings[OSD.SceneOSD.CurrentIndex];
+            ShowOSD(OSD.MainOSD);
+        }
+
+        private void OnFocusAssistModeChanged(object sender, EventArgs e)
+        {
+            OSD.MainOSD.FocusAssistButton.Content = OSD.FocusAssistOSD.ModeStrings[OSD.FocusAssistOSD.CurrentIndex];
             ShowOSD(OSD.MainOSD);
         }
 

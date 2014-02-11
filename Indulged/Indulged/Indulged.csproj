@@ -408,6 +408,9 @@
     <Compile Include="Plugins\ProCam\Controls\EVDialControl.xaml.cs">
       <DependentUpon>EVDialControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Plugins\ProCam\HUD\FocusAssistHUD.xaml.cs">
+      <DependentUpon>FocusAssistHUD.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Plugins\ProCam\HUD\SceneHUD.xaml.cs">
       <DependentUpon>SceneHUD.xaml</DependentUpon>
     </Compile>
@@ -431,6 +434,7 @@
     <Compile Include="Plugins\ProCam\ProCamCore.cs" />
     <Compile Include="Plugins\ProCam\ProCamEvents.cs" />
     <Compile Include="Plugins\ProCam\ProCamHUD.cs" />
+    <Compile Include="Plugins\ProCam\ProCamLayout.cs" />
     <Compile Include="Plugins\ProCam\Utils\ISOUtils.cs" />
     <Compile Include="Plugins\ProCam\Utils\EVUtils.cs" />
     <Compile Include="Plugins\ProCam\ProCamPage.xaml.cs">
@@ -978,6 +982,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Plugins\ProCam\HUD\FocusAssistHUD.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Plugins\ProCam\HUD\SceneHUD.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -1382,8 +1390,11 @@
     <Content Include="Assets\ProCam\TestImage.jpg" />
     <Content Include="Assets\ProCam\TopToolbar.png" />
     <Content Include="Assets\ProCam\UI\CapsuleButtonLeft.png" />
+    <Content Include="Assets\ProCam\UI\CapsuleButtonLeftActive.png" />
     <Content Include="Assets\ProCam\UI\CapsuleButtonMiddle.png" />
+    <Content Include="Assets\ProCam\UI\CapsuleButtonMiddleActive.png" />
     <Content Include="Assets\ProCam\UI\CapsuleButtonRight.png" />
+    <Content Include="Assets\ProCam\UI\CapsuleButtonRightActive.png" />
     <Content Include="Assets\Profile\ContactPageIcon.png" />
     <Content Include="Assets\Profile\ProfilePageIcon.png" />
     <Content Include="Assets\ProFX\FXAdd.png" />

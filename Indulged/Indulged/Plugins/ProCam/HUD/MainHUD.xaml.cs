@@ -75,7 +75,7 @@ namespace Indulged.Plugins.ProCam.HUD
             double result = (res.Width * res.Height) / 1000000;
             int intValue = (int)Math.Ceiling(result);
 
-            return intValue.ToString();
+            return intValue.ToString() + "MP";
         }
 
     }

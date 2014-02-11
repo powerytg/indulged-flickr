@@ -37,9 +37,10 @@
         </Grid>
         
         <!--Unmovable arrow-->
-        <Image Source="/Assets/ProCam/ArrowLeft.png" IsHitTestVisible="False"
+        <Image x:Name="Arrow" Source="/Assets/ProCam/ArrowLeft.png" IsHitTestVisible="False"
                Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"
-               Width="12" /> 
+               Width="12">
+        </Image>
         
         <!--This invisle canvas captures manipulation events-->
         <Canvas x:Name="GestureCaptureCanvas" Background="Black" Opacity="0" IsHitTestVisible="True"

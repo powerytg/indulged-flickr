@@ -6,6 +6,7 @@ using System.Windows.Input;
 using System.Windows.Media.Imaging;
 
 using Indulged.Plugins.ProCam.Utils;
+using System.Windows;
 
 namespace Indulged.Plugins.ProCam.Controls
 {
@@ -28,6 +29,9 @@ namespace Indulged.Plugins.ProCam.Controls
         private BitmapImage baseTickImage;
         private List<BitmapImage> positiveTickImages = new List<BitmapImage>();
         private List<BitmapImage> negativeTickImages = new List<BitmapImage>();
+
+        private BitmapImage arrowLeftImage = new BitmapImage(new Uri("/Assets/ProCam/ArrowLeft.png", UriKind.Relative));
+        private BitmapImage arrowRightImage = new BitmapImage(new Uri("/Assets/ProCam/ArrowRight.png", UriKind.Relative));
 
         private List<Int32> _supportedValues;
         public List<Int32> SupportedValues
@@ -187,6 +191,39 @@ namespace Indulged.Plugins.ProCam.Controls
             }
         }
 
-        
+        public void LayoutInLandscapeMode()
+        {
+            LayoutRoot.ColumnDefinitions.Clear();
+            LayoutRoot.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
+            LayoutRoot.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(60, GridUnitType.Pixel) });
+
+            Dialer.SetValue(Grid.ColumnProperty, 0);
+            
+            Label.SetValue(Grid.ColumnProperty, 1);
+            Label.HorizontalAlignment = HorizontalAlignment.Left;
+            Label.Margin = new Thickness(10, 0, 0, 0);
+
+            Arrow.SetValue(Grid.ColumnProperty, 0);
+            Arrow.Source = arrowRightImage;
+            GestureCaptureCanvas.SetValue(Grid.ColumnProperty, 0);
+        }
+
+        public void LayoutInPortraitMode()
+        {
+            LayoutRoot.ColumnDefinitions.Clear();
+            LayoutRoot.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(60, GridUnitType.Pixel) });
+            LayoutRoot.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
+
+            Label.SetValue(Grid.ColumnProperty, 0);
+            Label.HorizontalAlignment = HorizontalAlignment.Right;
+            Label.Margin = new Thickness(0, 0, 10, 0);
+
+            Dialer.SetValue(Grid.ColumnProperty, 1);
+
+
+            Arrow.SetValue(Grid.ColumnProperty, 1);
+            Arrow.Source = arrowLeftImage;
+            GestureCaptureCanvas.SetValue(Grid.ColumnProperty, 1);
+        }
     }
 }

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media.Animation;
+using Microsoft.Phone.Controls;
 
 namespace Indulged.Plugins.ProCam
 {
@@ -24,8 +25,6 @@ namespace Indulged.Plugins.ProCam
             evHUDView = new EVHUD();
             evHUDView.SupportedValues = supportedEVValues;
             evHUDView.HorizontalAlignment = HorizontalAlignment.Right;
-            evHUDView.VerticalAlignment = VerticalAlignment.Bottom;
-            evHUDView.Margin = new Thickness(0, 0, 0, CameraSwitchButton.Margin.Bottom + 85);
             evHUDView.Visibility = Visibility.Collapsed;
             evHUDView.PanelTransform.X = evHUDView.Width;
 
@@ -38,6 +37,19 @@ namespace Indulged.Plugins.ProCam
             if (evHUDView == null)
             {
                 CreateEVHUD();
+            }
+
+            if (Orientation == PageOrientation.LandscapeLeft || Orientation == PageOrientation.LandscapeRight)
+            {
+                HideLandscapeShutterButton();
+
+                evHUDView.VerticalAlignment = VerticalAlignment.Bottom;
+                evHUDView.Margin = new Thickness(0, 0, 0, 30);
+            }
+            else
+            {
+                evHUDView.VerticalAlignment = VerticalAlignment.Bottom;
+                evHUDView.Margin = new Thickness(0, 0, 0, CameraSwitchButton.Margin.Bottom + 85);
             }
 
             evHUDView.PanelTransform.X = evHUDView.Width;
@@ -58,7 +70,6 @@ namespace Indulged.Plugins.ProCam
             storyboard.Begin();
             storyboard.Completed += (sender, e) =>
             {
-
             };
         }
 
@@ -85,6 +96,12 @@ namespace Indulged.Plugins.ProCam
             storyboard.Completed += (sender, e) =>
             {
                 evHUDView.Visibility = Visibility.Collapsed;
+
+                if (Orientation == PageOrientation.LandscapeLeft || Orientation == PageOrientation.LandscapeRight)
+                {
+                    ShowLandscapeShutterButton();
+                }
+
             };
         }
 
@@ -100,8 +117,7 @@ namespace Indulged.Plugins.ProCam
             isoHUDView = new ISOHUD();
             isoHUDView.SupportedValues = supportedISOValues;
             isoHUDView.HorizontalAlignment = HorizontalAlignment.Left;
-            isoHUDView.VerticalAlignment = VerticalAlignment.Bottom;
-            isoHUDView.Margin = new Thickness(0, 0, 0, CameraSwitchButton.Margin.Bottom);
+            isoHUDView.VerticalAlignment = VerticalAlignment.Center;
             isoHUDView.Visibility = Visibility.Collapsed;
             isoHUDView.PanelTransform.X = -isoHUDView.Width;
 
@@ -114,6 +130,11 @@ namespace Indulged.Plugins.ProCam
             if (isoHUDView == null)
             {
                 CreateISOHUD();
+            }
+
+            if (Orientation == PageOrientation.LandscapeLeft || Orientation == PageOrientation.LandscapeRight)
+            {
+                HideLandscapeShutterButton();
             }
 
             isoHUDView.PanelTransform.X = -isoHUDView.Width;
@@ -145,6 +166,12 @@ namespace Indulged.Plugins.ProCam
                 return;
             }
 
+            if (Orientation == PageOrientation.LandscapeLeft || Orientation == PageOrientation.LandscapeRight)
+            {
+                HideLandscapeShutterButton();
+            }
+
+
             Storyboard storyboard = new Storyboard();
             Duration duration = new Duration(TimeSpan.FromSeconds(0.3));
             storyboard.Duration = duration;
@@ -161,6 +188,12 @@ namespace Indulged.Plugins.ProCam
             storyboard.Completed += (sender, e) =>
             {
                 isoHUDView.Visibility = Visibility.Collapsed;
+
+                if (Orientation == PageOrientation.LandscapeLeft || Orientation == PageOrientation.LandscapeRight)
+                {
+                    ShowLandscapeShutterButton();
+                }
+
             };
         }
 
@@ -170,17 +203,32 @@ namespace Indulged.Plugins.ProCam
 
         public void ShowOSD(FrameworkElement view = null)
         {
+            if (Orientation == PageOrientation.LandscapeLeft || Orientation == PageOrientation.LandscapeRight)
+            {
+                HideLandscapeShutterButton();
+            }
+
             if (view == null)
             {
                 view = OSD.MainOSD;
             }
 
             OSD.ShowOSD(view);
+            HUDSwitchButton.IsOn = true;
         }
 
         public void DismissOSD()
         {
-            OSD.DismissOSD();
+            OSD.DismissOSD(() => 
+            {
+                if (Orientation == PageOrientation.LandscapeLeft || Orientation == PageOrientation.LandscapeRight)
+                {
+                    ShowLandscapeShutterButton();
+                }
+
+            });
+
+            HUDSwitchButton.IsOn = false;
         }
 
         #endregion
