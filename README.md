@@ -52,13 +52,22 @@ Designed by photographer for photographers, Indulged brings a beautifully crafte
 # Screenshots
 
 ![Alt text](/Screenshots/Set2.png "Screenshot")
+
 ![Alt text](/Screenshots/ProCam3.png "Screenshot")
-![Alt text](/Screenshots/Prelude.png "Screenshot")
-![Alt text](/Screenshots/Violet.png "Screenshot")
-![Alt text](/Screenshots/Detail.png "Screenshot")
-![Alt text](/Screenshots/UserStream.png "Screenshot")
-![Alt text](/Screenshots/ProFX.png "Screenshot")
-![Alt text](/Screenshots/AddPhotos.png "Screenshot")
-![Alt text](/Screenshots/Search.png "Screenshot")
-![Alt text](/Screenshots/Tags.png "Screenshot")
+
+![Alt text](/Screenshots/Prelude.jpg "Screenshot")
+
+![Alt text](/Screenshots/Violet.jpg "Screenshot")
+
+![Alt text](/Screenshots/Detail.jpg "Screenshot")
+
+![Alt text](/Screenshots/UserStream.jpg "Screenshot")
+
+![Alt text](/Screenshots/ProFX.jpg "Screenshot")
+
+![Alt text](/Screenshots/AddPhotos.jpg "Screenshot")
+
+![Alt text](/Screenshots/Search.jpg "Screenshot")
+
+![Alt text](/Screenshots/Tags.jpg "Screenshot")
 	
