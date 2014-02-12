@@ -8,7 +8,7 @@ namespace Indulged.Plugins.ProCam
 {
     public class ProCamConstraints
     {
-        public static Int32 PROCAM_AUTO_ISO = -1;
+        public static uint PROCAM_AUTO_ISO = 0;
         public static Int32 PROCAM_AUTO_WHITE_BALANCE = -1;
     }
 }

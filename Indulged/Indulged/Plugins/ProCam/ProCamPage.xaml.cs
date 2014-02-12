@@ -9,6 +9,8 @@ using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using Indulged.Plugins.ProCam.HUD;
 using System.Windows.Media.Imaging;
+using Windows.Phone.Media.Capture;
+using System.Windows.Media;
 
 namespace Indulged.Plugins.ProCam
 {
@@ -23,28 +25,39 @@ namespace Indulged.Plugins.ProCam
         {
             InitializeComponent();
 
-            EVDialer.SupportedValues = supportedEVValues;
-            ISODialer.SupportedValues = supportedISOValues;
+            
+        }
 
-            OSD.MainOSD.SupportedResolutions = supportedResolutions;
-            OSD.MainOSD.CurrentResolution = supportedResolutions[0];
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
 
-            OSD.WhiteBalanceOSD.SupportedWhiteBalances = supportedWhiteBalances;
-            OSD.WhiteBalanceOSD.CurrentWhiteBalanceIndex = 0;
+            // Show loading view until camera is initialized
+            ShowLoadingView();
 
-            OSD.SceneOSD.SupportedSceneModes = supportedSceneModes;
-            OSD.SceneOSD.CurrentIndex = 0;
+            // Initialize camera
+            DetectCameraSensorSupport();
 
-            OSD.FocusAssistOSD.SupportedModes = supportedFocusAssistModes;
-            OSD.FocusAssistOSD.CurrentIndex = 0;
+            if (SupportedCameras.Contains(CameraSensorLocation.Back))
+            {
+                InitializeCameraAsync(CameraSensorLocation.Back);
+            }
+            else if (SupportedCameras.Contains(CameraSensorLocation.Front))
+            {
+                InitializeCameraAsync(CameraSensorLocation.Front);
+            }
 
             // Events
             InitializeEventListeners();
         }
 
-       
+        protected override void OnNavigatingFrom(System.Windows.Navigation.NavigatingCancelEventArgs e)
+        {
+            DestroyCam();
+            Viewfinder.Background = new SolidColorBrush(Colors.Black);
 
-
+            base.OnNavigatingFrom(e);
+        }
 
     }
 }

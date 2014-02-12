@@ -129,8 +129,17 @@ namespace Indulged.Plugins.ProCam.Controls
         }
 
         protected void OnDialerDragDelta(object sender, ManipulationDeltaEventArgs e)
-        {           
-            currentY += e.DeltaManipulation.Translation.Y;
+        {
+            if (Math.Abs(e.DeltaManipulation.Translation.X) > Math.Abs(e.DeltaManipulation.Translation.Y))
+            {
+                currentY += e.DeltaManipulation.Translation.X;
+            }
+            else
+            {
+                currentY += e.DeltaManipulation.Translation.Y;
+            }
+
+            currentY += Math.Max(e.DeltaManipulation.Translation.X, e.DeltaManipulation.Translation.Y);
             double accumatedDist = currentY - previousStepY;
 
             if (Math.Abs(accumatedDist) >= rotationStep)

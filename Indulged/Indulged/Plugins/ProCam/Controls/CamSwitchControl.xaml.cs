@@ -78,7 +78,7 @@ namespace Indulged.Plugins.ProCam.Controls
             }
         }
 
-        private void SwitchButton_Click(object sender, RoutedEventArgs e)
+        private void OnTap(object sender, RoutedEventArgs e)
         {
             if (_currentCamera == CameraSensorLocation.Front)
             {

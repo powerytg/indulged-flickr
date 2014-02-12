@@ -1,8 +1,13 @@
-﻿using System;
+﻿using Microsoft.Devices;
+using Microsoft.Phone.Controls;
+using System;
+using System.Windows;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media;
 using Windows.Foundation;
 using Windows.Phone.Media.Capture;
 
@@ -10,23 +15,249 @@ namespace Indulged.Plugins.ProCam
 {
     public partial class ProCamPage
     {
-        public bool supportCameraSwitch = true;
+        public List<CameraSensorLocation> SupportedCameras { get; set; }
 
-        public List<Int32> supportedEVValues = new List<Int32> { -12, -11, -10, -9, -8, -7, -6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 };
-        public List<Int32> supportedISOValues = new List<Int32> { ProCamConstraints.PROCAM_AUTO_ISO, 100, 150, 200, 400, 800, 1600, 3200, 6400 };
-        public List<Size> supportedResolutions = new List<Size> { new Size(720, 1280), new Size(1080, 1920), new Size(2000, 3000) };
+        public List<Int32> SupportedEVValues { get; set; }
+        public List<uint> SupportedISOValues { get; set; }
+        private List<uint> _supportedISOFixtures = new List<uint> { 100, 125, 160, 200, 250, 320, 400, 500, 640, 800, 1000, 1250, 1600, 2000, 2500, 3200, 4000, 5000, 6400, 12800, 25600 };
 
-        public List<FlashState> supportedFlashModes = new List<FlashState> { FlashState.Auto, FlashState.On, FlashState.Off };
+        public List<Windows.Foundation.Size> SupportedResolutions { get; set; }
+        public Windows.Foundation.Size CurrentResolution { get; set; }
+
+        public List<FlashState> SupportedFlashModes { get; set; }
         public FlashState CurrentFlashMode = FlashState.Auto;
 
-        public List<object> supportedWhiteBalances = new List<object> { ProCamConstraints.PROCAM_AUTO_WHITE_BALANCE, WhiteBalancePreset.Candlelight, WhiteBalancePreset.Cloudy,
-        WhiteBalancePreset.Daylight, WhiteBalancePreset.Flash, WhiteBalancePreset.Fluorescent, WhiteBalancePreset.Tungsten};
+        public List<object> SupportedWhiteBalances { get; set; }
+        public List<CameraSceneMode> SupportedSceneModes { get; set; }
 
-        public List<CameraSceneMode> supportedSceneModes = new List<CameraSceneMode> { CameraSceneMode.Auto, CameraSceneMode.Backlit, CameraSceneMode.Beach, 
-            CameraSceneMode.Candlelight, CameraSceneMode.Landscape, CameraSceneMode .Macro, CameraSceneMode.Night, CameraSceneMode.NightPortrait, CameraSceneMode.Portrait, CameraSceneMode.Snow,
-        CameraSceneMode.Sport, CameraSceneMode.Sunset};
+        public List<FocusIlluminationMode> SupportedFocusAssistModes { get; set; }
 
-        public List<FocusIlluminationMode> supportedFocusAssistModes = new List<FocusIlluminationMode> { FocusIlluminationMode.Auto, FocusIlluminationMode.On, FocusIlluminationMode.Off };
 
+        // Camera
+        private PhotoCaptureDevice cam;
+        private CameraCaptureSequence seq;
+        private MemoryStream capturedStream;
+
+        private void DestroyCam()
+        {
+            if (cam != null)
+            {
+                cam.Dispose();
+                cam = null;
+                seq = null;
+            }
+
+            CameraButtons.ShutterKeyHalfPressed -= OnShutterHalfPress;
+            CameraButtons.ShutterKeyPressed -= OnShutterFullPress;
+            CameraButtons.ShutterKeyReleased -= OnShutterReleased;
+        }
+
+        private void DetectCameraSensorSupport()
+        {
+            SupportedCameras = new List<CameraSensorLocation>();
+
+            if (PhotoCaptureDevice.AvailableSensorLocations.Contains(CameraSensorLocation.Back))
+            {
+                SupportedCameras.Add(CameraSensorLocation.Back);
+            }
+            
+            if (PhotoCaptureDevice.AvailableSensorLocations.Contains(CameraSensorLocation.Front))
+            {
+                SupportedCameras.Add(CameraSensorLocation.Front);
+            }
+
+            if (SupportedCameras.Count > 1)
+            {
+                CameraSwitchButton.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                CameraSwitchButton.Visibility = Visibility.Collapsed;
+            }
+            
+        }
+
+        private async void InitializeCameraAsync(CameraSensorLocation _sensor = CameraSensorLocation.Back)
+        {
+            SupportedResolutions = PhotoCaptureDevice.GetAvailableCaptureResolutions(_sensor).ToList();
+            CurrentResolution = SupportedResolutions[0];
+            cam = await PhotoCaptureDevice.OpenAsync(_sensor, CurrentResolution);
+
+            // Enable shutter sound
+            cam.SetProperty(KnownCameraGeneralProperties.PlayShutterSoundOnCapture, true);
+
+            // Create capture sequence
+            seq = cam.CreateCaptureSequence(1);
+
+            // White balance
+            IReadOnlyList<object> wbList = PhotoCaptureDevice.GetSupportedPropertyValues(_sensor, KnownCameraPhotoProperties.WhiteBalancePreset);
+            SupportedWhiteBalances = new List<object>();
+            SupportedWhiteBalances.Add(ProCamConstraints.PROCAM_AUTO_WHITE_BALANCE);
+
+            foreach (object rawValue in wbList)
+            {
+                SupportedWhiteBalances.Add((WhiteBalancePreset)(uint)rawValue);
+            }
+
+            OSD.WhiteBalanceOSD.SupportedWhiteBalances = SupportedWhiteBalances;
+            OSD.WhiteBalanceOSD.CurrentWhiteBalanceIndex = 0;
+
+            // EV
+            SupportedEVValues = new List<int>();
+            CameraCapturePropertyRange evRange = PhotoCaptureDevice.GetSupportedPropertyRange(_sensor, KnownCameraPhotoProperties.ExposureCompensation);
+            int minEV = (int)evRange.Min;
+            int maxEV = (int)evRange.Max;
+            for (int i = minEV; i <= maxEV; i++)
+            {
+                SupportedEVValues.Add(i);
+            }
+
+            EVDialer.SupportedValues = SupportedEVValues;
+
+            // ISO
+            SupportedISOValues = new List<uint>();
+            SupportedISOValues.Add(ProCamConstraints.PROCAM_AUTO_ISO);
+            CameraCapturePropertyRange isoRange = PhotoCaptureDevice.GetSupportedPropertyRange(_sensor, KnownCameraPhotoProperties.Iso);
+            var minISO = (uint)isoRange.Min;
+            var maxISO = (uint)isoRange.Max;
+            foreach(var fixture in _supportedISOFixtures)
+            {
+                if(fixture >= minISO && fixture <= maxISO)
+                {
+                    SupportedISOValues.Add(fixture);
+                }
+            }
+
+            ISODialer.SupportedValues = SupportedISOValues;
+
+            // Flash
+            IReadOnlyList<object> flashList = PhotoCaptureDevice.GetSupportedPropertyValues(_sensor, KnownCameraPhotoProperties.FlashMode);
+            SupportedFlashModes = new List<FlashState>();
+            foreach (object rawValue in flashList)
+            {
+                SupportedFlashModes.Add((FlashState)(uint)rawValue);
+            }
+
+            // Resolution
+            OSD.MainOSD.SupportedResolutions = SupportedResolutions;
+            OSD.MainOSD.CurrentResolution = CurrentResolution;
+
+            // Scene modes
+            SupportedSceneModes = new List<CameraSceneMode>();
+            IReadOnlyList<object> sceneList = PhotoCaptureDevice.GetSupportedPropertyValues(_sensor, KnownCameraPhotoProperties.SceneMode);
+            foreach (object rawValue in sceneList)
+            {
+                SupportedSceneModes.Add((CameraSceneMode)(uint)rawValue);
+            }
+
+            OSD.SceneOSD.SupportedSceneModes = SupportedSceneModes;
+            OSD.SceneOSD.CurrentIndex = 0;
+
+            // Focus assist
+            IReadOnlyList<object> focusList = PhotoCaptureDevice.GetSupportedPropertyValues(_sensor, KnownCameraPhotoProperties.FocusIlluminationMode);
+            SupportedFocusAssistModes = new List<FocusIlluminationMode>();
+            foreach (object rawValue in focusList)
+            {
+                SupportedFocusAssistModes.Add((FocusIlluminationMode)(uint)rawValue);
+            }
+
+            OSD.FocusAssistOSD.SupportedModes = SupportedFocusAssistModes;
+            OSD.FocusAssistOSD.CurrentIndex = 0;
+
+            // Enable shutter sound
+            cam.SetProperty(KnownCameraGeneralProperties.PlayShutterSoundOnCapture, true);
+
+            // Create capture sequence
+            seq = cam.CreateCaptureSequence(1);
+
+            // Set video brush source
+            ViewfinderBrush.SetSource(cam);
+            CorrectViewfinderOrientation(Orientation);
+
+            // Show UI chrome
+            HideLoadingView();
+
+            // Events
+            CameraButtons.ShutterKeyHalfPressed += OnShutterHalfPress;
+            CameraButtons.ShutterKeyPressed += OnShutterFullPress;
+            CameraButtons.ShutterKeyReleased += OnShutterReleased;
+        }
+
+        // Ensure that the viewfinder is upright in LandscapeRight.
+        private void CorrectViewfinderOrientation(PageOrientation orientation)
+        {
+            if (cam != null)
+            {
+                
+                double ang;
+
+                // LandscapeRight rotation when camera is on back of phone.
+                int landscapeRightRotation = 180;
+                int portraitRotation = 90;
+
+                // Change LandscapeRight rotation for front-facing camera.
+                if (cam.SensorLocation == CameraSensorLocation.Front)
+                {
+                    portraitRotation = -90;
+                    landscapeRightRotation = -180;
+                }
+                
+                // Rotate video brush from camera.
+                if (orientation == PageOrientation.PortraitUp || orientation == PageOrientation.PortraitDown)
+                {
+                    ang = portraitRotation;
+                }
+                else if (orientation == PageOrientation.LandscapeRight)
+                {
+                    ang = landscapeRightRotation;
+                }
+                else
+                {
+                    ang = 0;
+                }
+                
+                var tf = new CompositeTransform() { Rotation = ang };
+                var previewSize = tf.TransformBounds(new System.Windows.Rect(new System.Windows.Point(), new System.Windows.Size(cam.PreviewResolution.Width, cam.PreviewResolution.Height)));
+                double s1 = Viewfinder.ActualWidth / (double)previewSize.Width;
+                double s2 = Viewfinder.ActualHeight / (double)previewSize.Height;
+
+                double scale = Math.Min(s1, s2);
+                if (cam.SensorLocation == CameraSensorLocation.Back)
+                {
+                    ViewfinderBrush.Transform = new CompositeTransform()
+                    {
+                        Rotation = ang,
+                        CenterX = Viewfinder.ActualWidth / 2,
+                        CenterY = Viewfinder.ActualHeight / 2,
+                        ScaleX = scale,
+                        ScaleY = scale
+                    };
+                }
+                else
+                {
+                    double scaleY = scale;
+                    double scaleX = scale;
+                    if ((orientation & PageOrientation.Portrait) == PageOrientation.Portrait)
+                    {
+                        scaleY = scale * -1;
+                    }
+                    else
+                    {
+                        scaleX = scale * -1;
+                    }
+
+                    ViewfinderBrush.Transform = new CompositeTransform()
+                    {
+                        Rotation = ang,
+                        CenterX = Viewfinder.ActualWidth / 2,
+                        CenterY = Viewfinder.ActualHeight / 2,
+                        ScaleX = scaleX,
+                        ScaleY = scaleY
+                    };
+                }
+            }
+        }
+
+       
     }
 }

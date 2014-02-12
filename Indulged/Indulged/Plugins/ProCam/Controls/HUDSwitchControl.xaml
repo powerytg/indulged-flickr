@@ -8,12 +8,12 @@
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     d:DesignHeight="480" d:DesignWidth="480"
-    Width="120" Height="26">
+    Width="160" Height="50">
     
     <Grid x:Name="LayoutRoot" Tap="OnTap">
         <Image x:Name="Arrow" Source="/Assets/ProCam/OSDArrow.png"
-               HorizontalAlignment="Left" VerticalAlignment="Center"
-               Width="18" Height="10">
+               HorizontalAlignment="Right" VerticalAlignment="Center"
+               Width="18" Height="10" Margin="0, 0, 120, 0">
             <Image.RenderTransform>
                 <RotateTransform x:Name="ArrowTransform"
                                  CenterX="9" CenterY="5" Angle="90" />

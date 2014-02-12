@@ -12,6 +12,9 @@ namespace Indulged.Plugins.ProCam.HUD
 {
     public partial class MainHUD : UserControl
     {
+        // Events
+        public EventHandler ResolutionChanged;
+
         private Windows.Foundation.Size _currentResolution;
         public Windows.Foundation.Size CurrentResolution
         {
@@ -66,7 +69,21 @@ namespace Indulged.Plugins.ProCam.HUD
                 button.Style = (Style)App.Current.Resources["FXCompactRadioButtonStyle"];
                 button.Margin = new Thickness(0, 0, 8, 0);
                 button.VerticalAlignment = VerticalAlignment.Center;
+                button.Click += OnResButtonChecked;
                 ResolutionGroupPanel.Children.Add(button);
+            }
+        }
+
+        private void OnResButtonChecked(object sender, RoutedEventArgs e)
+        {
+            RadioButton rb = (RadioButton)sender;
+            int index = ResolutionGroupPanel.Children.IndexOf(rb);
+
+            CurrentResolution = _supportedResolutions[index];
+
+            if (ResolutionChanged != null)
+            {
+                ResolutionChanged(this, null);
             }
         }
 

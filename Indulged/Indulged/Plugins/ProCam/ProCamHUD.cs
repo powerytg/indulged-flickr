@@ -23,7 +23,7 @@ namespace Indulged.Plugins.ProCam
             }
 
             evHUDView = new EVHUD();
-            evHUDView.SupportedValues = supportedEVValues;
+            evHUDView.SupportedValues = SupportedEVValues;
             evHUDView.HorizontalAlignment = HorizontalAlignment.Right;
             evHUDView.Visibility = Visibility.Collapsed;
             evHUDView.PanelTransform.X = evHUDView.Width;
@@ -115,7 +115,7 @@ namespace Indulged.Plugins.ProCam
             }
 
             isoHUDView = new ISOHUD();
-            isoHUDView.SupportedValues = supportedISOValues;
+            isoHUDView.SupportedValues = SupportedISOValues;
             isoHUDView.HorizontalAlignment = HorizontalAlignment.Left;
             isoHUDView.VerticalAlignment = VerticalAlignment.Center;
             isoHUDView.Visibility = Visibility.Collapsed;

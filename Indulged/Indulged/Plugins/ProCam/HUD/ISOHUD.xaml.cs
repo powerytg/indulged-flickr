@@ -16,8 +16,8 @@ namespace Indulged.Plugins.ProCam.HUD
         private FrameworkElement firstRenderer = null;
         private Canvas paddingHeader, paddingFooter;
 
-        protected List<Int32> _supportedValues;
-        public List<Int32> SupportedValues
+        protected List<uint> _supportedValues;
+        public List<uint> SupportedValues
         {
             get
             {
@@ -61,8 +61,8 @@ namespace Indulged.Plugins.ProCam.HUD
             }
         }
 
-        protected Int32 _selectedValue;
-        public Int32 SelectedValue
+        protected uint _selectedValue;
+        public uint SelectedValue
         {
             get
             {

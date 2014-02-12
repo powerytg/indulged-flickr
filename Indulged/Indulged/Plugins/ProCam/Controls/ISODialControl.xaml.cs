@@ -20,10 +20,10 @@ namespace Indulged.Plugins.ProCam.Controls
 
         public bool IsInfiniteScrollingEnabled { get; set; }
 
-        public Int32 CurrentValue { get; set; }
+        public uint CurrentValue { get; set; }
 
-        private List<Int32> _supportedValues;
-        public List<Int32> SupportedValues
+        private List<uint> _supportedValues;
+        public List<uint> SupportedValues
         {
             get
             {
@@ -82,8 +82,16 @@ namespace Indulged.Plugins.ProCam.Controls
         }
 
         protected void OnDialerDragDelta(object sender, ManipulationDeltaEventArgs e)
-        {           
-            currentY += e.DeltaManipulation.Translation.Y;
+        {
+            if (Math.Abs(e.DeltaManipulation.Translation.X) > Math.Abs(e.DeltaManipulation.Translation.Y))
+            {
+                currentY += e.DeltaManipulation.Translation.X;
+            }
+            else
+            {
+                currentY += e.DeltaManipulation.Translation.Y;
+            }
+
             double accumatedDist = currentY - previousStepY;
 
             if (Math.Abs(accumatedDist) >= rotationStep)

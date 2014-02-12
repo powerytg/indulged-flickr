@@ -8,8 +8,8 @@
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     d:DesignHeight="480" d:DesignWidth="480">
-    
-    <Grid x:Name="LayoutRoot">
+
+    <Grid x:Name="LayoutRoot" Tap="OnTap">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="Auto"/>
@@ -20,7 +20,7 @@
                    Foreground="White" />
         
         <Button x:Name="SwitchButton" Style="{StaticResource BorderlessButtonStyle}"
-                Grid.Column="1" Click="SwitchButton_Click" >
+                Grid.Column="1">
             <Button.Content>
                 <Image x:Name="Icon" Source="/Assets/ProCam/MainCamera.png" Width="57"/>
             </Button.Content>

@@ -27,7 +27,10 @@ namespace Indulged.Plugins.ProCam
             OSD.MainOSD.FocusAssistButton.Click += OnFocusAssistButtonClick;
             OSD.FocusAssistOSD.FocusAssistModeChanged += OnFocusAssistModeChanged;
 
+            OSD.MainOSD.ResolutionChanged += OnResolutionChanged;
+
             HUDSwitchButton.HUDStateChanged += OnOSDStateChanged;
+            CameraSwitchButton.CameraChanged += OnCameraChanged;
         }
 
         private void OnEVDialDragBegin(object sender, EventArgs e)
@@ -68,6 +71,18 @@ namespace Indulged.Plugins.ProCam
             }
 
             isoHUDView.SelectedValue = ISODialer.CurrentValue;
+
+            if (cam != null)
+            {
+                if (ISODialer.CurrentValue == ProCamConstraints.PROCAM_AUTO_ISO)
+                {
+                    cam.SetProperty(KnownCameraPhotoProperties.Iso, null);
+                }
+                else
+                {
+                    cam.SetProperty(KnownCameraPhotoProperties.Iso, ISODialer.CurrentValue);
+                }
+            }
         }
 
         private void OnOSDStateChanged(object sender, EventArgs e)
@@ -80,6 +95,21 @@ namespace Indulged.Plugins.ProCam
             {
                 DismissOSD();
             }
+        }
+
+        private void OnResolutionChanged(object sender, EventArgs e)
+        {
+            CurrentResolution = OSD.MainOSD.CurrentResolution;
+            DestroyCam();
+            InitializeCameraAsync(CameraSwitchButton.CurrentCamera);
+        }
+
+        private void OnCameraChanged(object sender, EventArgs e)
+        {
+            ShowLoadingView();
+
+            DestroyCam();
+            InitializeCameraAsync(CameraSwitchButton.CurrentCamera);
         }
 
         private void OnWhiteBalanceButtonClick(object sender, RoutedEventArgs e)
@@ -103,13 +133,13 @@ namespace Indulged.Plugins.ProCam
 
         private void OnFlashButtonClick(object sender, RoutedEventArgs e)
         {
-            if (supportedFlashModes.Count < 2)
+            if (SupportedFlashModes.Count < 2)
             {
                 return;
             }
 
-            int currentIndex = supportedFlashModes.IndexOf(CurrentFlashMode);
-            if (currentIndex == supportedFlashModes.Count - 1)
+            int currentIndex = SupportedFlashModes.IndexOf(CurrentFlashMode);
+            if (currentIndex == SupportedFlashModes.Count - 1)
             {
                 currentIndex = 0;
             }
@@ -118,24 +148,30 @@ namespace Indulged.Plugins.ProCam
                 currentIndex++;
             }
 
-            CurrentFlashMode = supportedFlashModes[currentIndex];
+            CurrentFlashMode = SupportedFlashModes[currentIndex];
             if (CurrentFlashMode == FlashState.Auto)
             {
                 FlashButton.Style = (Style)App.Current.Resources["CapsuleButtonStyle"];
                 FlashIcon.Source = FlashIconAuto;
-                FlashLabel.Text = "AUTO";                
+                FlashLabel.Text = "AUTO";
+
+                cam.SetProperty(KnownCameraPhotoProperties.FlashMode, FlashState.Auto);
             }
             else if (CurrentFlashMode == FlashState.On)
             {
                 FlashButton.Style = (Style)App.Current.Resources["CapsuleButtonActiveStyle"];
                 FlashIcon.Source = FlashIconOn;
                 FlashLabel.Text = "ON";
+
+                cam.SetProperty(KnownCameraPhotoProperties.FlashMode, FlashState.On);
             }
             else
             {
                 FlashButton.Style = (Style)App.Current.Resources["CapsuleButtonStyle"];
                 FlashIcon.Source = FlashIconOff;
                 FlashLabel.Text = "OFF";
+
+                cam.SetProperty(KnownCameraPhotoProperties.FlashMode, FlashState.Off);
             }
 
         }
@@ -155,19 +191,74 @@ namespace Indulged.Plugins.ProCam
             DismissOSD();
 
             WBLabel.Text = OSD.WhiteBalanceOSD.WhiteBalanceStrings[OSD.WhiteBalanceOSD.CurrentWhiteBalanceIndex];
+
+            if (cam != null)
+            {
+                if (OSD.WhiteBalanceOSD.CurrentWhiteBalanceIndex == 0)
+                {
+                    cam.SetProperty(KnownCameraPhotoProperties.WhiteBalancePreset, null);
+                }
+                else
+                {
+                    WhiteBalancePreset wb = (WhiteBalancePreset)OSD.WhiteBalanceOSD.SupportedWhiteBalances[OSD.WhiteBalanceOSD.CurrentWhiteBalanceIndex];
+                    cam.SetProperty(KnownCameraPhotoProperties.WhiteBalancePreset, wb);
+                }
+                
+            }
         }
 
         private void OnSceneModeChanged(object sender, EventArgs e)
         {
             OSD.MainOSD.SceneButton.Content = OSD.SceneOSD.SceneStrings[OSD.SceneOSD.CurrentIndex];
             ShowOSD(OSD.MainOSD);
+
+            CameraSceneMode sceneMode = OSD.SceneOSD.SupportedSceneModes[OSD.SceneOSD.CurrentIndex];
+            cam.SetProperty(KnownCameraPhotoProperties.SceneMode, sceneMode);
         }
 
         private void OnFocusAssistModeChanged(object sender, EventArgs e)
         {
             OSD.MainOSD.FocusAssistButton.Content = OSD.FocusAssistOSD.ModeStrings[OSD.FocusAssistOSD.CurrentIndex];
             ShowOSD(OSD.MainOSD);
+
+            FocusIlluminationMode mode = OSD.FocusAssistOSD.SupportedModes[OSD.FocusAssistOSD.CurrentIndex];
+            cam.SetProperty(KnownCameraPhotoProperties.FocusIlluminationMode, mode);
         }
+
+        private void OnViewFinderTap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            /*
+            if (extendedPanel != null && !isAnimatingExtendedPanel)
+            {
+                HideExtendedPanel();
+            }
+            else
+            {
+                // Perform focus
+                Point pt = e.GetPosition(Viewfinder);
+                CompositeTransform ct = (CompositeTransform)AutoFocusBrackets.RenderTransform;
+                ct.TranslateX = pt.X - LayoutRoot.ActualWidth / 2;
+                ct.TranslateY = pt.Y - LayoutRoot.ActualHeight / 2;
+
+                BeginAutoFocus(new Windows.Foundation.Point(pt.X, pt.Y));
+            }
+             * */
+        }
+
+        private void OnShutterHalfPress(object sender, EventArgs e)
+        {
+            //BeginAutoFocus();
+        }
+
+        private void OnShutterFullPress(object sender, EventArgs e)
+        {
+            //CapturePhoto();
+        }
+
+        private void OnShutterReleased(object sender, EventArgs e)
+        {
+        }
+
 
     }
 }

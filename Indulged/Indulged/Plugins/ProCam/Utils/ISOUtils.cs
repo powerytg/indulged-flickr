@@ -8,7 +8,7 @@ namespace Indulged.Plugins.ProCam.Utils
 {
     public static class ISOUtils
     {
-        public static string ToISOString(this Int32 iso)
+        public static string ToISOString(this uint iso)
         {
             if (iso == ProCamConstraints.PROCAM_AUTO_ISO)
             {
