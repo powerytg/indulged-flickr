@@ -392,12 +392,11 @@
     <Compile Include="Plugins\PhotoCollection\Renderers\PrimaryRenderer.xaml.cs">
       <DependentUpon>PrimaryRenderer.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Plugins\ProCamera\CameraSettingsButton.cs" />
-    <Compile Include="Plugins\ProCamera\ProCameraWhiteBalanceSettingsView.xaml.cs">
-      <DependentUpon>ProCameraWhiteBalanceSettingsView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Plugins\ProCam\Controls\CamSwitchControl.xaml.cs">
       <DependentUpon>CamSwitchControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\ProCam\Controls\FocusRect.xaml.cs">
+      <DependentUpon>FocusRect.xaml</DependentUpon>
     </Compile>
     <Compile Include="Plugins\ProCam\Controls\HUDSwitchControl.xaml.cs">
       <DependentUpon>HUDSwitchControl.xaml</DependentUpon>
@@ -425,6 +424,9 @@
     </Compile>
     <Compile Include="Plugins\ProCam\HUD\WhiteBalanceHUD.xaml.cs">
       <DependentUpon>WhiteBalanceHUD.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\ProCam\ImagePickerPage.xaml.cs">
+      <DependentUpon>ImagePickerPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Plugins\ProCam\ProCamAnimation.cs" />
     <Compile Include="Plugins\ProCam\HUD\EVHUD.xaml.cs">
@@ -565,20 +567,6 @@
     <Compile Include="Plugins\ProFX\ImageProcessingPage.xaml.cs">
       <DependentUpon>ImageProcessingPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Plugins\ProCamera\ProCameraFlashSettingsView.xaml.cs">
-      <DependentUpon>ProCameraFlashSettingsView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Plugins\ProCamera\ProCameraISOSettingsView.xaml.cs">
-      <DependentUpon>ProCameraISOSettingsView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Plugins\ProCamera\ProCameraPage.xaml.cs">
-      <DependentUpon>ProCameraPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Plugins\ProCamera\ProCameraPageAnimationExtension.cs" />
-    <Compile Include="Plugins\ProCamera\ProCameraPageCoreExtension.cs" />
-    <Compile Include="Plugins\ProCamera\ProCameraPageStreamExtension.cs" />
-    <Compile Include="Plugins\ProCamera\ProCameraPageSettingsExtension.cs" />
-    <Compile Include="Plugins\ProCamera\ProCameraSettingsViewBase.cs" />
     <Compile Include="Plugins\ProFX\ImageProcessingPageAnimationExtension.cs" />
     <Compile Include="Plugins\ProFX\ImageProcessingPageCoreExtension.cs" />
     <Compile Include="Plugins\ProFX\ImageUploaderView.xaml.cs">
@@ -962,11 +950,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Plugins\ProCamera\ProCameraWhiteBalanceSettingsView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Plugins\ProCam\Controls\CamSwitchControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Plugins\ProCam\Controls\FocusRect.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1007,6 +995,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Plugins\ProCam\HUD\WhiteBalanceHUD.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Plugins\ProCam\ImagePickerPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1170,18 +1162,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Plugins\ProCamera\ProCameraFlashSettingsView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Plugins\ProCamera\ProCameraISOSettingsView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Plugins\ProCamera\ProCameraPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Plugins\ProFX\ImageUploaderView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -1217,15 +1197,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <ApplicationDefinition Include="Themes\CameraSettingsButtonStyle.xaml">
-      <SubType>Designer</SubType>
-    </ApplicationDefinition>
-    <ApplicationDefinition Include="Themes\CameraShutterButtonStyle.xaml">
-      <SubType>Designer</SubType>
-    </ApplicationDefinition>
-    <ApplicationDefinition Include="Themes\CameraSubsettingsButtonStyle.xaml">
-      <SubType>Designer</SubType>
-    </ApplicationDefinition>
     <ApplicationDefinition Include="Themes\DeleteFilterButtonStyle.xaml">
       <SubType>Designer</SubType>
     </ApplicationDefinition>
@@ -1335,18 +1306,6 @@
     <Content Include="Assets\PhotoCollection\PhotoSetPageCurl.png" />
     <Content Include="Assets\PhotoCollection\PhotoSetTopShadow.png" />
     <Content Include="Assets\PhotoCollection\PhotoSetUploadButton.png" />
-    <Content Include="Assets\ProCamera\WB-Cloudy-Selected.png" />
-    <Content Include="Assets\ProCamera\WB-Cloudy.png" />
-    <Content Include="Assets\ProCamera\WB-Daylight-Selected.png" />
-    <Content Include="Assets\ProCamera\WB-Daylight.png" />
-    <Content Include="Assets\ProCamera\WB-Flash-Selected.png" />
-    <Content Include="Assets\ProCamera\WB-Flash.png" />
-    <Content Include="Assets\ProCamera\WB-Fluorescent-Selected.png" />
-    <Content Include="Assets\ProCamera\WB-Fluorescent.png" />
-    <Content Include="Assets\ProCamera\WB-Shade-Selected.png" />
-    <Content Include="Assets\ProCamera\WB-Shade.png" />
-    <Content Include="Assets\ProCamera\WB-Tungsten-Selected.png" />
-    <Content Include="Assets\ProCamera\WB-Tungsten.png" />
     <Content Include="Assets\ProCam\ArrowDown.png" />
     <Content Include="Assets\ProCam\ArrowLeft.png" />
     <Content Include="Assets\ProCam\ArrowRight.png" />
@@ -1375,6 +1334,7 @@
     <Content Include="Assets\ProCam\FlashAuto.png" />
     <Content Include="Assets\ProCam\FlashOff.png" />
     <Content Include="Assets\ProCam\FlashOn.png" />
+    <Content Include="Assets\ProCam\FocusRect.png" />
     <Content Include="Assets\ProCam\FrontCamera.png" />
     <Content Include="Assets\ProCam\HUDListHighlight.png" />
     <Content Include="Assets\ProCam\ISODial.png" />
@@ -1473,9 +1433,6 @@
     <Content Include="Assets\Dashboard\Prelude\PreludeContentGuide.png" />
     <Content Include="Assets\Group\NoThrottleIcon.png" />
     <Content Include="Assets\Group\ThrottleIcon.png" />
-    <Content Include="Assets\ProCamera\CameraBottomMask.png" />
-    <Content Include="Assets\ProCamera\CameraFlipIcon.png" />
-    <Content Include="Assets\ProCamera\ShutterButton.png" />
     <Content Include="Assets\Tiles\FlipCycleTileLarge.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

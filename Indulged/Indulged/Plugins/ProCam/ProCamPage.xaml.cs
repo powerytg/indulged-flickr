@@ -24,8 +24,6 @@ namespace Indulged.Plugins.ProCam
         public ProCamPage()
         {
             InitializeComponent();
-
-            
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -53,11 +51,12 @@ namespace Indulged.Plugins.ProCam
 
         protected override void OnNavigatingFrom(System.Windows.Navigation.NavigatingCancelEventArgs e)
         {
+            RemoveAllEventListeners();
             DestroyCam();
-            Viewfinder.Background = new SolidColorBrush(Colors.Black);
 
             base.OnNavigatingFrom(e);
         }
 
+        
     }
 }

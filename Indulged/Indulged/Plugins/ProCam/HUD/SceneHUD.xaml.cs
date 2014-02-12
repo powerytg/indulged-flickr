@@ -121,7 +121,7 @@ namespace Indulged.Plugins.ProCam.HUD
                 button.Style = (Style)App.Current.Resources["HUDRadioButtonStyle"];
                 button.Margin = new Thickness(0, 4, 4, 0);
                 button.VerticalAlignment = VerticalAlignment.Center;
-                button.Checked += (sender, e) => 
+                button.Click += (sender, e) => 
                 {
                     int index = RadioGroupPanel.Children.IndexOf((RadioButton)sender);
                     CurrentIndex = index;

@@ -3,9 +3,9 @@ using Indulged.API.Avarice.Controls;
 using Indulged.API.Cinderella;
 using Indulged.Plugins.Chrome;
 using Indulged.Plugins.Chrome.Events;
-using Indulged.Plugins.ProCamera;
 using Indulged.Plugins.ProFX.Events;
 using Microsoft.Phone.Controls;
+using Microsoft.Phone.Shell;
 using Nokia.Graphics.Imaging;
 using Nokia.InteropServices.WindowsRuntime;
 using System;
@@ -132,8 +132,13 @@ namespace Indulged.Plugins.ProFX
         {
             base.OnNavigatedTo(e);
 
-            originalImage = ProCameraPage.CapturedImage;
-            //originalImage = new BitmapImage(new Uri(Cinderella.CinderellaCore.CurrentUser.Photos[0].GetImageUrl()));
+            if (originalImage != null)
+            {
+                return;
+            }
+
+            originalImage = (BitmapImage)PhoneApplicationService.Current.State["ChosenPhoto"];
+            PhoneApplicationService.Current.State.Remove("ChosenPhoto");
             originalImage.CreateOptions = BitmapCreateOptions.None;
 
             // Sampling
@@ -214,7 +219,6 @@ namespace Indulged.Plugins.ProFX
 
             AppliedFilters.Clear();
 
-            ProCameraPage.CapturedImage = null;
             originalBitmap = null;
             originalImage = null;
             originalPreviewBitmap = null;

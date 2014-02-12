@@ -13,7 +13,7 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="PortraitOrLandscape" Orientation="Portrait" OrientationChanged="OnPageOrientationChanged"
     mc:Ignorable="d"
-    shell:SystemTray.IsVisible="True">
+    shell:SystemTray.IsVisible="True" Background="Black">
 
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Black">
@@ -89,6 +89,15 @@
 
             </Grid>
 
+            <!--Focus rect-->
+            <Image x:Name="AutoFocusBrackets" Width="266" Height="266"
+                   Source="/Assets/ProCam/FocusRect.png"
+                   Visibility="Collapsed" IsHitTestVisible="False">
+                <Image.RenderTransform>
+                    <CompositeTransform/>
+                </Image.RenderTransform>
+            </Image>
+
             <!--HUD switch-->
             <controls:HUDSwitchControl x:Name="HUDSwitchButton"
                                    HorizontalAlignment="Right" VerticalAlignment="Top"
@@ -108,12 +117,11 @@
                 </controls:CamSwitchControl.RenderTransform>
             </controls:CamSwitchControl>
 
-
             <!--Landscape mode shutter-->
             <Button x:Name="LandscapeShutterButton" Visibility="Collapsed" 
                     HorizontalAlignment="Right" VerticalAlignment="Bottom"
                     Style="{StaticResource BorderlessButtonStyle}" 
-                    Margin="0, 0, 20, 20">
+                    Margin="0, 0, 20, 20" Click="OnShutterButtonClick">
                 <Button.Content>
                     <Image Source="/Assets/ProCam/Shutter.png" Width="150"/>
                 </Button.Content>
@@ -126,7 +134,8 @@
 
             <!--Bottom toolbar-->
             <Grid x:Name="BottomToolbar" Height="212" VerticalAlignment="Bottom">
-                <Image x:Name="BottomToolbarBackground" Source="/Assets/ProCam/BottomToolbar.png" Stretch="Fill" Opacity="0.85"/>
+                <Image x:Name="BottomToolbarBackground" Source="/Assets/ProCam/BottomToolbar.png" Stretch="Fill" Opacity="0.85"
+                       IsHitTestVisible="False" />
 
                 <!--ISO-->
                 <controls:ISODialControl x:Name="ISODialer" 
@@ -136,7 +145,7 @@
                 <!--Shutter-->
                 <Button x:Name="PortraitShutterButton" 
                     HorizontalAlignment="Center" VerticalAlignment="Center"
-                    Style="{StaticResource BorderlessButtonStyle}" >
+                    Style="{StaticResource BorderlessButtonStyle}" Click="OnShutterButtonClick" >
                     <Button.Content>
                         <Image Source="/Assets/ProCam/Shutter.png" Width="150"/>
                     </Button.Content>
@@ -150,9 +159,9 @@
         </Grid>
 
         <!--Loading view-->
-        <TextBlock x:Name="LoadingView" Foreground="White"
+        <TextBlock x:Name="LoadingView" Foreground="White" Text="Initializing camera..."
                    HorizontalAlignment="Center" VerticalAlignment="Center"/>
         
     </Grid>
 
-</phone:PhoneApplicationPage>
+   </phone:PhoneApplicationPage>

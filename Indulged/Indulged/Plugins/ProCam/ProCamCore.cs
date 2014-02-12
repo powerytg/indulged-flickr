@@ -10,6 +10,10 @@ using System.Threading.Tasks;
 using System.Windows.Media;
 using Windows.Foundation;
 using Windows.Phone.Media.Capture;
+using System.Windows.Media.Imaging;
+using Microsoft.Phone.Tasks;
+using Microsoft.Xna.Framework.Media;
+using Microsoft.Phone.Shell;
 
 namespace Indulged.Plugins.ProCam
 {
@@ -258,6 +262,149 @@ namespace Indulged.Plugins.ProCam
             }
         }
 
-       
+#region Shutter and focus
+
+        private int focusId = 0;
+
+        private async void PerformFocus(int fid, Windows.Foundation.Point? point = null)
+        {
+            if (point != null)
+                cam.FocusRegion = new Windows.Foundation.Rect(point.Value.X, point.Value.Y, 0, 0);
+            else
+                cam.FocusRegion = null;
+
+            await this.cam.FocusAsync();
+
+            Dispatcher.BeginInvoke(() =>
+            {
+                OnFocusLocked(fid);
+            });
+        }
+
+        private void BeginAutoFocus(Windows.Foundation.Point? point = null)
+        {
+            if (point != null)
+            {
+                PerformFocusAnimation(point);
+            }
+
+            focusId++;
+            PerformFocus(focusId, point);
+        }
+
+        private void OnFocusLocked(int fid)
+        {
+            if (fid != focusId)
+                return;
+
+            if (focusBinkAnimation != null)
+            {
+                focusBinkAnimation.Stop();
+                focusBinkAnimation = null;
+            }
+
+            PerformFocusLockedAnimation();
+        }
+
+#endregion
+
+        private async void CapturePhoto()
+        {
+            PerformCaptureAnimation();
+
+            await cam.PrepareCaptureSequenceAsync(seq);
+            capturedStream = new MemoryStream();
+            seq.Frames[0].CaptureStream = capturedStream.AsOutputStream();
+
+            // Capture
+            await seq.StartCaptureAsync();
+            capturedStream.Seek(0, SeekOrigin.Begin);
+
+            // Post processing
+            Dispatcher.BeginInvoke(() =>
+            {
+                ProcessCapturedPhoto();
+            });
+
+        }
+
+        private void ProcessCapturedPhoto()
+        {
+            string ramdomFileName = Guid.NewGuid().ToString().Replace("-", null);
+            string fileName = ramdomFileName + ".jpg";
+
+            int angle = 0;
+            MemoryStream ms = null;
+            if (Orientation == PageOrientation.PortraitUp || Orientation == PageOrientation.PortraitDown)
+            {
+                if (cam.SensorLocation == CameraSensorLocation.Back)
+                {
+                    angle = 90;
+                }
+                else
+                {
+                    angle = 270;
+                }
+            }
+
+            if (angle == 0)
+                ms = capturedStream;
+            else
+                ms = (MemoryStream)RotateStream(capturedStream, angle);
+
+            BitmapImage capturedImage = new BitmapImage();
+            capturedImage.SetSource(ms);
+            ms.Close();
+            PhoneApplicationService.Current.State["ChosenPhoto"] = capturedImage;
+
+            Dispatcher.BeginInvoke(() =>
+            {
+                NavigationService.Navigate(new Uri("/Plugins/ProFX/ImageProcessingPage.xaml", UriKind.Relative));
+                NavigationService.RemoveBackEntry();
+            });
+        }
+
+        private Stream RotateStream(Stream stream, int angle)
+        {
+            stream.Position = 0;
+            if (angle % 90 != 0 || angle < 0) throw new ArgumentException();
+            if (angle % 360 == 0) return stream;
+
+            BitmapImage bitmap = new BitmapImage();
+            bitmap.SetSource(stream);
+            WriteableBitmap wbSource = new WriteableBitmap(bitmap);
+
+            WriteableBitmap wbTarget = null;
+            if (angle % 180 == 0)
+            {
+                wbTarget = new WriteableBitmap(wbSource.PixelWidth, wbSource.PixelHeight);
+            }
+            else
+            {
+                wbTarget = new WriteableBitmap(wbSource.PixelHeight, wbSource.PixelWidth);
+            }
+
+            for (int x = 0; x < wbSource.PixelWidth; x++)
+            {
+                for (int y = 0; y < wbSource.PixelHeight; y++)
+                {
+                    switch (angle % 360)
+                    {
+                        case 90:
+                            wbTarget.Pixels[(wbSource.PixelHeight - y - 1) + x * wbTarget.PixelWidth] = wbSource.Pixels[x + y * wbSource.PixelWidth];
+                            break;
+                        case 180:
+                            wbTarget.Pixels[(wbSource.PixelWidth - x - 1) + (wbSource.PixelHeight - y - 1) * wbSource.PixelWidth] = wbSource.Pixels[x + y * wbSource.PixelWidth];
+                            break;
+                        case 270:
+                            wbTarget.Pixels[y + (wbSource.PixelWidth - x - 1) * wbTarget.PixelWidth] = wbSource.Pixels[x + y * wbSource.PixelWidth];
+                            break;
+                    }
+                }
+            }
+            MemoryStream targetStream = new MemoryStream();
+            wbTarget.SaveJpeg(targetStream, wbTarget.PixelWidth, wbTarget.PixelHeight, 0, 100);
+            return targetStream;
+        }
     }
 }

@@ -123,11 +123,11 @@ namespace Indulged
 
                      if (optionsView.CameraButton.IsChecked == true)
                      {
-                         currentPage.NavigationService.Navigate(new Uri("/Plugins/ProCamera/ProCameraPage.xaml", UriKind.Relative));
+                         currentPage.NavigationService.Navigate(new Uri("/Plugins/ProCam/ImagePickerPage.xaml", UriKind.Relative));
                      }
                      else
                      {
-                         currentPage.NavigationService.Navigate(new Uri("/Plugins/ProCamera/ProCameraPage.xaml?is_from_library=true", UriKind.Relative));
+                         currentPage.NavigationService.Navigate(new Uri("/Plugins/ProCam/ImagePickerPage.xaml?is_from_library=true", UriKind.Relative));
                      }
                  }
              };

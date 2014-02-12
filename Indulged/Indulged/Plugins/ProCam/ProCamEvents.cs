@@ -1,15 +1,20 @@
-﻿using System;
+﻿using Microsoft.Phone.Tasks;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Media;
 using Windows.Phone.Media.Capture;
 
 namespace Indulged.Plugins.ProCam
 {
     public partial class ProCamPage
     {
+        // Events
+        public EventHandler<PhotoResult> Complete;
+
         private void InitializeEventListeners()
         {
             EVDialer.DragBegin += OnEVDialDragBegin;
@@ -31,6 +36,29 @@ namespace Indulged.Plugins.ProCam
 
             HUDSwitchButton.HUDStateChanged += OnOSDStateChanged;
             CameraSwitchButton.CameraChanged += OnCameraChanged;
+        }
+
+        private void RemoveAllEventListeners()
+        {
+            EVDialer.DragBegin -= OnEVDialDragBegin;
+            EVDialer.DragEnd -= OnEVDialDragEnd;
+            EVDialer.ValueChanged -= OnEVDialValueChanged;
+
+            ISODialer.DragBegin -= OnISODialDragBegin;
+            ISODialer.DragEnd -= OnISODialDragEnd;
+            ISODialer.ValueChanged -= OnISODialValueChanged;
+
+            OSD.WhiteBalanceOSD.WhiteBalanceChanged -= OnWhiteBalanceChanged;
+            OSD.MainOSD.SceneButton.Click -= OnSceneButtonClick;
+            OSD.SceneOSD.SceneModeChanged -= OnSceneModeChanged;
+
+            OSD.MainOSD.FocusAssistButton.Click -= OnFocusAssistButtonClick;
+            OSD.FocusAssistOSD.FocusAssistModeChanged -= OnFocusAssistModeChanged;
+
+            OSD.MainOSD.ResolutionChanged -= OnResolutionChanged;
+
+            HUDSwitchButton.HUDStateChanged -= OnOSDStateChanged;
+            CameraSwitchButton.CameraChanged -= OnCameraChanged;
         }
 
         private void OnEVDialDragBegin(object sender, EventArgs e)
@@ -106,6 +134,7 @@ namespace Indulged.Plugins.ProCam
 
         private void OnCameraChanged(object sender, EventArgs e)
         {
+            DismissOSD();
             ShowLoadingView();
 
             DestroyCam();
@@ -227,36 +256,35 @@ namespace Indulged.Plugins.ProCam
 
         private void OnViewFinderTap(object sender, System.Windows.Input.GestureEventArgs e)
         {
-            /*
-            if (extendedPanel != null && !isAnimatingExtendedPanel)
+            if (HUDSwitchButton.IsOn)
             {
-                HideExtendedPanel();
+                DismissOSD();
             }
             else
             {
-                // Perform focus
                 Point pt = e.GetPosition(Viewfinder);
-                CompositeTransform ct = (CompositeTransform)AutoFocusBrackets.RenderTransform;
-                ct.TranslateX = pt.X - LayoutRoot.ActualWidth / 2;
-                ct.TranslateY = pt.Y - LayoutRoot.ActualHeight / 2;
-
                 BeginAutoFocus(new Windows.Foundation.Point(pt.X, pt.Y));
             }
-             * */
+        }
+
+        private void OnShutterButtonClick(object sender, RoutedEventArgs e)
+        {
+            CapturePhoto();
         }
 
         private void OnShutterHalfPress(object sender, EventArgs e)
         {
-            //BeginAutoFocus();
+            BeginAutoFocus();
         }
 
         private void OnShutterFullPress(object sender, EventArgs e)
         {
-            //CapturePhoto();
+            CapturePhoto();
         }
 
         private void OnShutterReleased(object sender, EventArgs e)
         {
+            // Ignore
         }
 
 
