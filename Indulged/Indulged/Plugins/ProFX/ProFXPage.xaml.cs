@@ -10,16 +10,11 @@ using Microsoft.Phone.Shell;
 
 namespace Indulged.Plugins.ProFX
 {
-    public partial class FXSettingsStatusView : UserControl
+    public partial class ProFXPage : PhoneApplicationPage
     {
-        public FXSettingsStatusView()
+        public ProFXPage()
         {
             InitializeComponent();
-        }
-
-        private void BackButton_Click(object sender, RoutedEventArgs e)
-        {
-            ImageProcessingPage.RequestDismissSettingsView(this, null);
         }
     }
 }

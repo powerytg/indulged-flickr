@@ -21,8 +21,6 @@
                 <ResourceDictionary Source="Themes/DeleteFilterButtonStyle.xaml"/>
                 <ResourceDictionary Source="Themes/TransparentListPickerStyle.xaml"/>
                 <ResourceDictionary Source="Themes/AvariceSliderStyle.xaml"/>
-                <ResourceDictionary Source="Themes/ColorSelectorButtonStyle.xaml"/>
-                <ResourceDictionary Source="Themes/FXButtonStyle.xaml"/>
                 <ResourceDictionary Source="Themes/FXPanelButtonStyle.xaml"/>
                 <ResourceDictionary Source="Themes/FXSectionTextStyle.xaml"/>
                 <ResourceDictionary Source="Themes/FXRadioButtonStyle.xaml"/>
