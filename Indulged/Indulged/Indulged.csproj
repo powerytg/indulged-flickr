@@ -454,9 +454,14 @@
     <Compile Include="Plugins\Profile\UserProfilePage.xaml.cs">
       <DependentUpon>UserProfilePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Plugins\ProFX\Controls\ViewFinderControl.xaml.cs">
+      <DependentUpon>ViewFinderControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\ProFX\ProFXCore.cs" />
     <Compile Include="Plugins\ProFX\ProFXPage.xaml.cs">
       <DependentUpon>ProFXPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Plugins\ProFX\ProFXUtils.cs" />
     <Compile Include="Plugins\Search\GroupSearchResultView.xaml.cs">
       <DependentUpon>GroupSearchResultView.xaml</DependentUpon>
     </Compile>
@@ -901,6 +906,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Plugins\ProFX\Controls\ViewFinderControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Plugins\ProFX\ProFXPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -974,6 +983,15 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <ApplicationDefinition Include="Themes\HUDRadioButtonStyle.xaml">
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <ApplicationDefinition Include="Themes\FXCropButtonStyle.xaml">
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <ApplicationDefinition Include="Themes\FXButtonStyle.xaml">
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <ApplicationDefinition Include="Themes\FXComboButtonStyle.xaml">
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Page Include="Themes\FullScreenPhotoNavigatorStyle.xaml">
@@ -1089,14 +1107,18 @@
     <Content Include="Assets\ProFX\FXBackButton.png" />
     <Content Include="Assets\ProFX\FXBackButton2.png" />
     <Content Include="Assets\ProFX\FXBackward.png" />
+    <Content Include="Assets\ProFX\FXCrop.png" />
     <Content Include="Assets\ProFX\FXCropHandle.png" />
     <Content Include="Assets\ProFX\FXDelete.png" />
     <Content Include="Assets\ProFX\FXDeleteButton.png" />
     <Content Include="Assets\ProFX\FXForwardButton.png" />
     <Content Include="Assets\ProFX\FXLogo.png" />
+    <Content Include="Assets\ProFX\FXMagicWand.png" />
     <Content Include="Assets\ProFX\FXNext.png" />
     <Content Include="Assets\ProFX\FXNextButton.png" />
     <Content Include="Assets\ProFX\FXOptions.png" />
+    <Content Include="Assets\ProFX\FXProcessor.png" />
+    <Content Include="Assets\ProFX\FXUpload.png" />
     <Content Include="Assets\ProFX\IndulgedFXLogo.png" />
     <Content Include="Assets\ProFX\SelectedFilterIcon.png" />
     <Content Include="Assets\SamplePhoto.jpg" />
