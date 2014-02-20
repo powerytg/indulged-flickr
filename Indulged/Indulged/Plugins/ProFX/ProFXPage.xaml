@@ -7,6 +7,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="clr-namespace:Indulged.Plugins.ProFX.Controls"
+    xmlns:osd="clr-namespace:Indulged.Plugins.ProFX.OSD"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
@@ -65,7 +66,8 @@
 
                     <Button x:Name="CropButton" Style="{StaticResource FXCropButtonStyle}"
                         Width="70" Height="70" 
-                        VerticalAlignment="Center" Margin="0, 0, 12, 0" Grid.Column="1">
+                        VerticalAlignment="Center" Margin="0, 0, 12, 0" Grid.Column="1"
+                        Click="OnCropButtonClick">
                         <Button.Content>
                             <Image Source="/Assets/ProFX/FXCrop.png" Width="24"/>
                         </Button.Content>
@@ -77,7 +79,7 @@
 
                     <Button x:Name="RotationButton" Style="{StaticResource FXButtonStyle}"
                         Height="70" VerticalAlignment="Center" Margin="0, 0, 12, 0" Grid.Column="3"
-                        Content="0 degree"/>
+                        Content="0 degree" Click="OnRotationButtonClick"/>
 
                     <Button x:Name="ResetTransformButton" Style="{StaticResource FXButtonStyle}"
                         Height="70" VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Column="4"
@@ -90,6 +92,9 @@
         <!--Bottom toolbar-->
         <Grid x:Name="BottomToolbar" VerticalAlignment="Bottom" Background="Black"
               Height="145">
+            <Grid.RenderTransform>
+                <TranslateTransform />
+            </Grid.RenderTransform>
             <Image Source="/Assets/ProFX/FXProcessor.png" Width="66"
                    HorizontalAlignment="Left" VerticalAlignment="Top" Margin="6, 12, 6, 6" />
             
@@ -109,7 +114,8 @@
                        TextAlignment="Right" VerticalAlignment="Center" Margin="0, 0, 12, 0" Grid.Column="1"/>
 
                     <Button x:Name="AutoButton" Style="{StaticResource FXButtonStyle}"
-                            Width="70" Height="70" VerticalAlignment="Center" Grid.Column="2">
+                            Width="70" Height="70" VerticalAlignment="Center" Grid.Column="2"
+                            Click="OnAutoEnhanceButtonClick">
                         <Button.Content>
                             <Image Source="/Assets/ProFX/FXMagicWand.png" Width="44"/>
                         </Button.Content>
@@ -126,6 +132,7 @@
                     </Grid.ColumnDefinitions>
 
                     <Button x:Name="AddButton" Style="{StaticResource FXButtonStyle}"
+                            Click="OnAddFilterButtonClick" 
                             Width="70" Height="70" VerticalAlignment="Center" Grid.Column="0">
                         <Button.Content>
                             <Image Source="/Assets/ProFX/FXAdd.png" Width="22"/>
@@ -133,10 +140,10 @@
                     </Button>
 
                     <Button x:Name="FilterListButton" Style="{StaticResource FXComboButtonStyle}"
-                            Height="70" VerticalAlignment="Center" Grid.Column="1">
+                            Height="70" VerticalAlignment="Center" Grid.Column="1" IsEnabled="False">
                         <Button.Content>
                             <StackPanel Orientation="Horizontal" Margin="10, 0, 10, 0" >
-                                <TextBlock Text="3 FILTERS"
+                                <TextBlock x:Name="FilterCountLabel" Text="0 FILTER"
                        Foreground="#267fcb" FontSize="24" FontFamily="/Assets/Fonts/BenchNine-Bold.ttf#BenchNine"
                        TextAlignment="Right" VerticalAlignment="Center" Margin="0, 0, 12, 0" Grid.Column="2"/>
 
@@ -160,6 +167,21 @@
             </StackPanel>
         </Grid>
 
+        <!--Filter gallery-->
+        <osd:FilterGalleryHUD x:Name="FilterGalleryView" VerticalAlignment="Bottom"
+                              Visibility="Collapsed"/>
+        
+        <!--Filter container-->
+        <osd:FilterContainerHUD x:Name="FilterContainerView" VerticalAlignment="Bottom"
+                              Visibility="Collapsed"/>
+
+        <!--Crop OSD-->
+        <osd:CropHUD x:Name="CropView" VerticalAlignment="Bottom"
+                              Visibility="Collapsed"/>
+
+        <!--Rotation OSD-->
+        <osd:RotationHUD x:Name="RotationView" VerticalAlignment="Bottom"
+                              Visibility="Collapsed"/>
 
     </Grid>
 

@@ -454,10 +454,112 @@
     <Compile Include="Plugins\Profile\UserProfilePage.xaml.cs">
       <DependentUpon>UserProfilePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Plugins\ProFX\Controls\ColorSelectorButton.cs" />
+    <Compile Include="Plugins\ProFX\Controls\FilterDropletControl.xaml.cs">
+      <DependentUpon>FilterDropletControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\ProFX\Controls\SectionControl.xaml.cs">
+      <DependentUpon>SectionControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Plugins\ProFX\Controls\ViewFinderControl.xaml.cs">
       <DependentUpon>ViewFinderControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Plugins\ProFX\Events\AddFilterEventArgs.cs" />
+    <Compile Include="Plugins\ProFX\Events\CropAreaChangedEventArgs.cs" />
+    <Compile Include="Plugins\ProFX\Events\RequestFilterEventArgs.cs" />
+    <Compile Include="Plugins\ProFX\Events\DeleteFilterEventArgs.cs" />
+    <Compile Include="Plugins\ProFX\Filters\FilterBase.cs" />
+    <Compile Include="Plugins\ProFX\Filters\FXFilterManager.cs" />
+    <Compile Include="Plugins\ProFX\Filters\FXAntiqueFilter.xaml.cs">
+      <DependentUpon>FXAntiqueFilter.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\ProFX\Filters\FXAutoEnhanceFilter.xaml.cs">
+      <DependentUpon>FXAutoEnhanceFilter.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\ProFX\Filters\FXBlackWhiteFilter.xaml.cs">
+      <DependentUpon>FXBlackWhiteFilter.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\ProFX\Filters\FXBlurFilter.xaml.cs">
+      <DependentUpon>FXBlurFilter.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\ProFX\Filters\FXCartoonFilter.xaml.cs">
+      <DependentUpon>FXCartoonFilter.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\ProFX\Filters\FXClarityFilter.xaml.cs">
+      <DependentUpon>FXClarityFilter.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\ProFX\Filters\FXColorAdjustmentFilter.xaml.cs">
+      <DependentUpon>FXColorAdjustmentFilter.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\ProFX\Filters\FXColorBoostFilter.xaml.cs">
+      <DependentUpon>FXColorBoostFilter.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\ProFX\Filters\FXColorizationFilter.xaml.cs">
+      <DependentUpon>FXColorizationFilter.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\ProFX\Filters\FXCropFilter.xaml.cs">
+      <DependentUpon>FXCropFilter.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\ProFX\Filters\FXExposureFilter.xaml.cs">
+      <DependentUpon>FXExposureFilter.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\ProFX\Filters\FXGrayscaleFilter.xaml.cs">
+      <DependentUpon>FXGrayscaleFilter.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\ProFX\Filters\FXHueSaturationFilter.xaml.cs">
+      <DependentUpon>FXHueSaturationFilter.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\ProFX\Filters\FXLevelFilter.xaml.cs">
+      <DependentUpon>FXLevelFilter.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\ProFX\Filters\FXLomoFilter.xaml.cs">
+      <DependentUpon>FXLomoFilter.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\ProFX\Filters\FXMonoColorFilter.xaml.cs">
+      <DependentUpon>FXMonoColorFilter.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\ProFX\Filters\FXNegativeFilter.xaml.cs">
+      <DependentUpon>FXNegativeFilter.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\ProFX\Filters\FXOilFilter.xaml.cs">
+      <DependentUpon>FXOilFilter.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\ProFX\Filters\FXPaintingFilter.xaml.cs">
+      <DependentUpon>FXPaintingFilter.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\ProFX\Filters\FXPosterizeFilter.xaml.cs">
+      <DependentUpon>FXPosterizeFilter.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\ProFX\Filters\FXRotationFilter.xaml.cs">
+      <DependentUpon>FXRotationFilter.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\ProFX\Filters\FXSepiaFilter.xaml.cs">
+      <DependentUpon>FXSepiaFilter.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\ProFX\Filters\FXSharpenFilter.xaml.cs">
+      <DependentUpon>FXSharpenFilter.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\ProFX\Filters\FXSolarizeFilter.xaml.cs">
+      <DependentUpon>FXSolarizeFilter.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\ProFX\Filters\FXVignetteFilter.xaml.cs">
+      <DependentUpon>FXVignetteFilter.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\ProFX\OSD\RotationHUD.xaml.cs">
+      <DependentUpon>RotationHUD.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\ProFX\OSD\CropHUD.xaml.cs">
+      <DependentUpon>CropHUD.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\ProFX\OSD\FilterContainerHUD.xaml.cs">
+      <DependentUpon>FilterContainerHUD.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\ProFX\OSD\FilterGalleryHUD.xaml.cs">
+      <DependentUpon>FilterGalleryHUD.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\ProFX\ProFXAnimation.cs" />
     <Compile Include="Plugins\ProFX\ProFXCore.cs" />
+    <Compile Include="Plugins\ProFX\ProFXEvents.cs" />
     <Compile Include="Plugins\ProFX\ProFXPage.xaml.cs">
       <DependentUpon>ProFXPage.xaml</DependentUpon>
     </Compile>
@@ -906,7 +1008,106 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Plugins\ProFX\Controls\FilterDropletControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Plugins\ProFX\Controls\SectionControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Plugins\ProFX\Controls\ViewFinderControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Plugins\ProFX\Filters\FXAntiqueFilter.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Plugins\ProFX\Filters\FXAutoEnhanceFilter.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Plugins\ProFX\Filters\FXBlackWhiteFilter.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Plugins\ProFX\Filters\FXBlurFilter.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Plugins\ProFX\Filters\FXCartoonFilter.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Plugins\ProFX\Filters\FXClarityFilter.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Plugins\ProFX\Filters\FXColorAdjustmentFilter.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Plugins\ProFX\Filters\FXColorBoostFilter.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Plugins\ProFX\Filters\FXColorizationFilter.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Plugins\ProFX\Filters\FXCropFilter.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Plugins\ProFX\Filters\FXExposureFilter.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Plugins\ProFX\Filters\FXGrayscaleFilter.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Plugins\ProFX\Filters\FXHueSaturationFilter.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Plugins\ProFX\Filters\FXLevelFilter.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Plugins\ProFX\Filters\FXLomoFilter.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Plugins\ProFX\Filters\FXMonoColorFilter.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Plugins\ProFX\Filters\FXNegativeFilter.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Plugins\ProFX\Filters\FXOilFilter.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Plugins\ProFX\Filters\FXPaintingFilter.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Plugins\ProFX\Filters\FXPosterizeFilter.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Plugins\ProFX\Filters\FXRotationFilter.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Plugins\ProFX\Filters\FXSepiaFilter.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Plugins\ProFX\Filters\FXSharpenFilter.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Plugins\ProFX\Filters\FXSolarizeFilter.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Plugins\ProFX\Filters\FXVignetteFilter.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Plugins\ProFX\OSD\RotationHUD.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Plugins\ProFX\OSD\CropHUD.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Plugins\ProFX\OSD\FilterContainerHUD.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Plugins\ProFX\OSD\FilterGalleryHUD.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -992,6 +1193,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <ApplicationDefinition Include="Themes\FXComboButtonStyle.xaml">
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <ApplicationDefinition Include="Themes\FXCircularButtonStyle.xaml">
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Page Include="Themes\FullScreenPhotoNavigatorStyle.xaml">
@@ -1107,11 +1311,15 @@
     <Content Include="Assets\ProFX\FXBackButton.png" />
     <Content Include="Assets\ProFX\FXBackButton2.png" />
     <Content Include="Assets\ProFX\FXBackward.png" />
+    <Content Include="Assets\ProFX\FXCheckmark.png" />
     <Content Include="Assets\ProFX\FXCrop.png" />
     <Content Include="Assets\ProFX\FXCropHandle.png" />
     <Content Include="Assets\ProFX\FXDelete.png" />
     <Content Include="Assets\ProFX\FXDeleteButton.png" />
+    <Content Include="Assets\ProFX\FXDeleteFilter.png" />
+    <Content Include="Assets\ProFX\FXDone.png" />
     <Content Include="Assets\ProFX\FXForwardButton.png" />
+    <Content Include="Assets\ProFX\FXGallery.png" />
     <Content Include="Assets\ProFX\FXLogo.png" />
     <Content Include="Assets\ProFX\FXMagicWand.png" />
     <Content Include="Assets\ProFX\FXNext.png" />

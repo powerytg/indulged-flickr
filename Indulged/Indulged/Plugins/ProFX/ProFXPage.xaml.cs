@@ -27,7 +27,15 @@ namespace Indulged.Plugins.ProFX
             originalImage.CreateOptions = BitmapCreateOptions.None;
 
             // Prepare for sampling
-            ViewFinder.SizeChanged += OnViewFinderSizeChanged;            
+            ViewFinder.SizeChanged += OnViewFinderSizeChanged;
+
+            // Filters
+            filterManager = new Filters.FXFilterManager();
+            FilterGalleryView.FilterManager = filterManager;
+            FilterGalleryView.InitializeFilterDroplets();
+
+            // Events
+            InitializeEventListeneres();
         }
 
         private void OnViewFinderSizeChanged(object sender, SizeChangedEventArgs e)
@@ -38,5 +46,7 @@ namespace Indulged.Plugins.ProFX
             ViewFinder.Source = currentPreviewBitmap;
             ViewFinder.OriginalBitmap = originalImage;
         }
+
+
     }
 }

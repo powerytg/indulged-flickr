@@ -1,0 +1,53 @@
+﻿<local:FilterBase x:Class="Indulged.Plugins.ProFX.Filters.FXLomoFilter"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="clr-namespace:Indulged.Plugins.ProFX.Filters"
+    xmlns:fx="clr-namespace:Indulged.Plugins.ProFX"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"                  
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    d:DesignHeight="480" d:DesignWidth="480" Height="440">
+    
+    <local:FilterBase.RenderTransform>
+        <CompositeTransform />
+    </local:FilterBase.RenderTransform>
+
+    <Grid x:Name="LayoutRoot">
+        <ScrollViewer>
+            <StackPanel Margin="14, 40, 14, 14">
+            <TextBlock Style="{StaticResource FXSectionTextStyle}" Text="Tint" HorizontalAlignment="Left"/>
+                <toolkit:ListPicker x:Name="TintPicker" Style="{StaticResource TransparentListPickerStyle}" SelectionChanged="TintPicker_SelectionChanged"
+                                    Foreground="#7781aa" Background="#bdccfc"
+                                    Margin="0, 0, 0, 20">
+                    <toolkit:ListPickerItem Content="Neutral"/>
+                    <toolkit:ListPickerItem Content="Red"/>
+                    <toolkit:ListPickerItem Content="Green"/>
+                    <toolkit:ListPickerItem Content="Blue"/>
+                    <toolkit:ListPickerItem Content="Yellow"/>
+                </toolkit:ListPicker>
+
+            <TextBlock Style="{StaticResource FXSectionTextStyle}" Text="Vignetting" HorizontalAlignment="Left"/>
+                <toolkit:ListPicker x:Name="StrengthPicker" Style="{StaticResource TransparentListPickerStyle}" SelectedIndex="1" SelectionChanged="StrengthPicker_SelectionChanged"
+                                    Foreground="#7781aa" Background="#bdccfc"
+                                    Margin="0, 0, 0, 30">
+                    <toolkit:ListPickerItem Content="Low"/>
+                    <toolkit:ListPickerItem Content="Medium"/>
+                    <toolkit:ListPickerItem Content="High"/>
+                </toolkit:ListPicker>
+
+            <TextBlock Style="{StaticResource FXSectionTextStyle}" Text="Brightness" HorizontalAlignment="Left"/>
+                <Slider x:Name="BrightnessSlider" Minimum="0" Maximum="1" Value="0.5" ValueChanged="BrightnessSlider_ValueChanged" Padding="0"
+                         Foreground="#6d87f6" Style="{StaticResource FXSliderStyle}"/>
+
+            <TextBlock Style="{StaticResource FXSectionTextStyle}" Text="Saturation" HorizontalAlignment="Left"/>
+                <Slider x:Name="SaturationSlider" Minimum="0" Maximum="1" Value="0.5" ValueChanged="SaturationSlider_ValueChanged" Margin="0, 0, 0, 40" Padding="0"
+                         Foreground="#6d87f6" Style="{StaticResource FXSliderStyle}"/>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+
+</local:FilterBase>
