@@ -47,6 +47,11 @@ namespace Indulged.Plugins.ProFX
             UpdatePreviewAsync();
         }
 
+        private void OnProcessorButtonClick(object sender, RoutedEventArgs e)
+        {
+            ShowFilterGallery();
+        }
+
         private void OnAddFilterButtonClick(object sender, RoutedEventArgs e)
         {
             ShowFilterGallery();
@@ -255,7 +260,7 @@ namespace Indulged.Plugins.ProFX
                 return;
             }
 
-            var dialog = ModalPopup.Show("Do you wish to reset rotation and crop settings?",
+            var dialog = ModalPopup.Show("This will reset cropping and rotation settings.\n\nDo you wish to continue?",
                    "Reset Transform", new List<string> { AppResources.GenericConfirmText, AppResources.GenericCancelText });
             dialog.DismissWithButtonClick += (s, args) =>
             {
@@ -274,7 +279,7 @@ namespace Indulged.Plugins.ProFX
                 return;
             }
 
-            var dialog = ModalPopup.Show("Do you wish to remove all filters (except for crop and rotation)?",
+            var dialog = ModalPopup.Show("All filters (except for crop and rotation) will be removed. \n\nDo you with to continue?",
                    "Clear Effects", new List<string> { AppResources.GenericConfirmText, AppResources.GenericCancelText });
             dialog.DismissWithButtonClick += (s, args) =>
             {

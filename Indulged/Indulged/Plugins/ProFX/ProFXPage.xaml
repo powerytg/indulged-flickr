@@ -101,8 +101,11 @@
                 <Grid.RenderTransform>
                     <TranslateTransform />
                 </Grid.RenderTransform>
-                <Image Source="/Assets/ProFX/FXProcessor.png" Width="66"
-                   HorizontalAlignment="Left" VerticalAlignment="Top" Margin="6, 12, 6, 6" />
+                <Button x:Name="ProcessorButton" Style="{StaticResource BorderlessButtonStyle}"
+                        HorizontalAlignment="Left" VerticalAlignment="Top"
+                        Margin="6, 12, 6, 6" Click="OnProcessorButtonClick" >
+                    <Image Source="/Assets/ProFX/FXProcessor.png" Width="66"/>
+                </Button>
 
                 <StackPanel Margin="74, 6, 6, 6" Orientation="Vertical">
                     <Grid Margin="12, 0, 0, 0">

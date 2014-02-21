@@ -8,7 +8,7 @@
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     d:DesignHeight="480" d:DesignWidth="480"
-    Width="82" Height="82">
+    Width="100" Height="100">
     
     <Grid x:Name="LayoutRoot">
         <Border x:Name="BackgroundBorder" Background="#1d2733" CornerRadius="6"
@@ -17,9 +17,9 @@
         </Border>
         
         <TextBlock x:Name="Label"
-                   FontWeight="Thin" Foreground="White" FontSize="14" 
-                   TextAlignment="Left" TextWrapping="Wrap"
-                   HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="3" />
+                   FontWeight="Normal" Foreground="White" FontSize="18" 
+                   TextAlignment="Left" TextWrapping="Wrap" TextTrimming="WordEllipsis"
+                   HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="6, 0, 26, 3" />
         
         <Image x:Name="Icon" HorizontalAlignment="Right" VerticalAlignment="Top"
                Margin="5" Visibility="Collapsed"

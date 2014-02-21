@@ -7,7 +7,7 @@
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
-    d:DesignHeight="480" d:DesignWidth="480" Height="56">
+    d:DesignHeight="480" d:DesignWidth="480" Height="64">
     
     <Grid x:Name="LayoutRoot">
         <Grid.ColumnDefinitions>
@@ -19,12 +19,12 @@
         <Button x:Name="VisibilityButton" Style="{StaticResource BorderlessButtonStyle}" 
                 Grid.Column="0" Margin="15, 0, 15, 0" VerticalAlignment="Center" Click="VisibilityButton_Click">
             <Button.Content>
-                <Image x:Name="Icon" Source="/Assets/ProFX/FXFilterEnabled.png" Width="23"/>
+                <Image x:Name="Icon" Source="/Assets/ProFX/FXFilterEnabled.png" Width="32"/>
             </Button.Content>
         </Button>
         
         <TextBlock x:Name="Label"
-                   FontWeight="Thin" Foreground="#4f6782" FontSize="24" 
+                   FontWeight="Thin" Foreground="#4f6782" FontSize="28" 
                    TextAlignment="Left" TextWrapping="Wrap"
                    Grid.Column="1" VerticalAlignment="Center" Tap="Label_Tap"/>
 
