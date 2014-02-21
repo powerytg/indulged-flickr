@@ -25,6 +25,20 @@ namespace Indulged.Plugins.ProFX.Filters
         public EventHandler FilterWillBeRemoved;
         public EventHandler InvalidatePreview;
 
+        private bool _isFilterEnabled = true;
+        public bool IsFilterEnabled 
+        {
+            get
+            {
+                return _isFilterEnabled;
+            }
+
+            set
+            {
+                _isFilterEnabled = value;
+            }
+        }
+
         // Buffer
         public IBuffer Buffer { get; set; }
 

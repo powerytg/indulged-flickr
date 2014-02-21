@@ -34,6 +34,8 @@ namespace Indulged.Plugins.ProFX
             FilterGalleryView.FilterManager = filterManager;
             FilterGalleryView.InitializeFilterDroplets();
 
+            ActiveFilterView.FilterManager = filterManager;
+
             // Events
             InitializeEventListeneres();
         }
@@ -46,7 +48,6 @@ namespace Indulged.Plugins.ProFX
             ViewFinder.Source = currentPreviewBitmap;
             ViewFinder.OriginalBitmap = originalImage;
         }
-
 
     }
 }

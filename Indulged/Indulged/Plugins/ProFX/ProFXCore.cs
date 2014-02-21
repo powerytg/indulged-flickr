@@ -72,7 +72,10 @@ namespace Indulged.Plugins.ProFX
                 // Add all previous filters
                 foreach (FilterBase filterContainer in filterManager.AppliedFilters)
                 {
-                    session.AddFilter(filterContainer.Filter);
+                    if (filterContainer.IsFilterEnabled)
+                    {
+                        session.AddFilter(filterContainer.Filter);
+                    }
                 }
 
                 await session.RenderToWriteableBitmapAsync(currentPreviewBitmap, OutputOption.PreserveAspectRatio);

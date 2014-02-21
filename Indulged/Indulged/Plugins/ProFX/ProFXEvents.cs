@@ -1,4 +1,7 @@
-﻿using Indulged.Plugins.ProFX.Events;
+﻿using Indulged.API.Avarice.Controls;
+using Indulged.API.Avarice.Events;
+using Indulged.Plugins.ProFX.Events;
+using Indulged.Resources;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,6 +22,12 @@ namespace Indulged.Plugins.ProFX
             FilterGalleryView.OnDismiss += OnFilterGalleryDismiss;
             FilterGalleryView.RequestFilter += OnFilterRequested;
 
+            ActiveFilterView.OnDismiss += OnActiveFilterViewDismiss;
+            ActiveFilterView.RequestFilter += OnFilterRequested;
+            ActiveFilterView.RequestCropFilter += OnCropFilterRequested;
+            ActiveFilterView.RequestRotationFilter += OnRotationFilterRequested;
+            ActiveFilterView.RequestFilterGallery += OnRequestFilterGalleryFromFilterList;
+
             FilterContainerView.OnDismiss += OnFilterContainerDismiss;
             FilterContainerView.OnDelete += OnFilterDeleted;
 
@@ -29,6 +38,8 @@ namespace Indulged.Plugins.ProFX
             RotationView.OnDismiss += OnRotationFilterDismiss;
             RotationView.OnDelete += OnRotationFilterDelete;
             RotationView.ValueChanged += OnRotationValueChanged;
+
+            UploaderPage.RequestDismiss += OnUploaderRequestDismiss;
         }
 
         private void OnPreviewInvalidated(object sender, EventArgs e)
@@ -46,9 +57,36 @@ namespace Indulged.Plugins.ProFX
             DismissFilterGallery(true);
         }
 
+        private void OnActiveFilterViewDismiss(object sender, EventArgs e)
+        {
+            DismissActiveFilterList();
+        }
+
+        private void OnRequestFilterGalleryFromFilterList(object sender, EventArgs e)
+        {
+            DismissActiveFilterList(false, () => {
+                ShowFilterGallery();
+            });
+        }
+
         private void OnFilterContainerDismiss(object sender, EventArgs e)
         {
             DismissFilterOSD();
+        }
+
+        private void OnCropFilterRequested(object sender, EventArgs e)
+        {
+            DismissActiveFilterList(false, () => {
+                OnCropButtonClick(this, null);
+            });            
+        }
+
+        private void OnRotationFilterRequested(object sender, EventArgs e)
+        {
+            DismissActiveFilterList(false, () =>
+            {
+                OnRotationButtonClick(this, null);
+            });
         }
 
         private void OnFilterRequested(object sender, RequestFilterEventArgs e)
@@ -56,6 +94,13 @@ namespace Indulged.Plugins.ProFX
             if (FilterGalleryView.Visibility != Visibility.Collapsed)
             {
                 DismissFilterGallery(false, () =>
+                {
+                    ShowFilterOSD(e.Filter);
+                });
+            }
+            else if (ActiveFilterView.Visibility != Visibility.Collapsed)
+            {
+                DismissActiveFilterList(false, () =>
                 {
                     ShowFilterOSD(e.Filter);
                 });
@@ -195,6 +240,63 @@ namespace Indulged.Plugins.ProFX
                 RotationView.AmountSlider.Value = 0;
                 filterManager.DiscardRotationFilter();
             });
+        }
+
+        private void OnFilterListButtonClick(object sender, RoutedEventArgs e)
+        {
+            ShowActiveFilterList();
+        }
+
+        private void OnResetTransformButtonClick(object sender, RoutedEventArgs e)
+        {
+            if (!filterManager.AppliedFilters.Contains(filterManager.CropFilter) 
+                && !filterManager.AppliedFilters.Contains(filterManager.RotationFilter))
+            {
+                return;
+            }
+
+            var dialog = ModalPopup.Show("Do you wish to reset rotation and crop settings?",
+                   "Reset Transform", new List<string> { AppResources.GenericConfirmText, AppResources.GenericCancelText });
+            dialog.DismissWithButtonClick += (s, args) =>
+            {
+                int buttonIndex = (args as ModalPopupEventArgs).ButtonIndex;
+                if (buttonIndex == 0)
+                {
+                    filterManager.ResetTransform();
+                }
+            };
+        }
+
+        private void OnClearFXFiltersButtonClick(object sender, RoutedEventArgs e)
+        {
+            if (!filterManager.HasAppliedFilterOtherThan(Filters.FilterCategory.Transform))
+            {
+                return;
+            }
+
+            var dialog = ModalPopup.Show("Do you wish to remove all filters (except for crop and rotation)?",
+                   "Clear Effects", new List<string> { AppResources.GenericConfirmText, AppResources.GenericCancelText });
+            dialog.DismissWithButtonClick += (s, args) =>
+            {
+                int buttonIndex = (args as ModalPopupEventArgs).ButtonIndex;
+                if (buttonIndex == 0)
+                {
+                    filterManager.ClearAllFiltersOtherThan(Filters.FilterCategory.Transform);
+                    OnFilterCountChanged(this, null);
+                    UpdatePreviewAsync();
+                }
+            };
+
+        }
+
+        private void OnNextButtonClick(object sender, RoutedEventArgs e)
+        {
+            ShowUploaderView();
+        }
+
+        private void OnUploaderRequestDismiss(object sender, EventArgs e)
+        {
+            DismissUploaderView();
         }
     }
 }

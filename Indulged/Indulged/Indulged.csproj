@@ -455,6 +455,9 @@
       <DependentUpon>UserProfilePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Plugins\ProFX\Controls\ColorSelectorButton.cs" />
+    <Compile Include="Plugins\ProFX\Controls\FilterEntryControl.xaml.cs">
+      <DependentUpon>FilterEntryControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Plugins\ProFX\Controls\FilterDropletControl.xaml.cs">
       <DependentUpon>FilterDropletControl.xaml</DependentUpon>
     </Compile>
@@ -545,6 +548,12 @@
     <Compile Include="Plugins\ProFX\Filters\FXVignetteFilter.xaml.cs">
       <DependentUpon>FXVignetteFilter.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Plugins\ProFX\ImageUploaderView.xaml.cs">
+      <DependentUpon>ImageUploaderView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\ProFX\OSD\ActiveFiltersHUD.xaml.cs">
+      <DependentUpon>ActiveFiltersHUD.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Plugins\ProFX\OSD\RotationHUD.xaml.cs">
       <DependentUpon>RotationHUD.xaml</DependentUpon>
     </Compile>
@@ -564,6 +573,9 @@
       <DependentUpon>ProFXPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Plugins\ProFX\ProFXUtils.cs" />
+    <Compile Include="Plugins\ProFX\UploadStatusView.xaml.cs">
+      <DependentUpon>UploadStatusView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Plugins\Search\GroupSearchResultView.xaml.cs">
       <DependentUpon>GroupSearchResultView.xaml</DependentUpon>
     </Compile>
@@ -1008,6 +1020,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Plugins\ProFX\Controls\FilterEntryControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Plugins\ProFX\Controls\FilterDropletControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -1095,6 +1111,13 @@
     <Page Include="Plugins\ProFX\Filters\FXVignetteFilter.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Plugins\ProFX\ImageUploaderView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Plugins\ProFX\OSD\ActiveFiltersHUD.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Plugins\ProFX\OSD\RotationHUD.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -1114,6 +1137,9 @@
     <Page Include="Plugins\ProFX\ProFXPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Plugins\ProFX\UploadStatusView.xaml">
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Plugins\Search\GroupSearchResultView.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -1304,6 +1330,7 @@
     <Content Include="Assets\ProCam\UI\CapsuleButtonRightActive.png" />
     <Content Include="Assets\Profile\ContactPageIcon.png" />
     <Content Include="Assets\Profile\ProfilePageIcon.png" />
+    <Content Include="Assets\ProFX\FXActiveFilters.png" />
     <Content Include="Assets\ProFX\FXAdd.png" />
     <Content Include="Assets\ProFX\FXArrowDown.png" />
     <Content Include="Assets\ProFX\FXArrowUp.png" />
@@ -1318,6 +1345,8 @@
     <Content Include="Assets\ProFX\FXDeleteButton.png" />
     <Content Include="Assets\ProFX\FXDeleteFilter.png" />
     <Content Include="Assets\ProFX\FXDone.png" />
+    <Content Include="Assets\ProFX\FXFilterDisabled.png" />
+    <Content Include="Assets\ProFX\FXFilterEnabled.png" />
     <Content Include="Assets\ProFX\FXForwardButton.png" />
     <Content Include="Assets\ProFX\FXGallery.png" />
     <Content Include="Assets\ProFX\FXLogo.png" />

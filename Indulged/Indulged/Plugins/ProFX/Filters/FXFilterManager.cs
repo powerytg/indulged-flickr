@@ -89,7 +89,7 @@ namespace Indulged.Plugins.ProFX.Filters
             PerformInvalidatePreview();
         }
 
-        private void PerformInvalidatePreview()
+        public void PerformInvalidatePreview()
         {
             if (InvalidatePreview != null)
             {
@@ -104,6 +104,7 @@ namespace Indulged.Plugins.ProFX.Filters
                 return;
             }
 
+            filter.IsFilterEnabled = true;
             AppliedFilters.Add(filter);
 
             if (FilterAdded != null)
@@ -126,12 +127,13 @@ namespace Indulged.Plugins.ProFX.Filters
                 return;
             }
 
+            AppliedFilters.Remove(filter);
+
             if (FilterCountChanged != null)
             {
                 FilterCountChanged(this, null);
             }
 
-            AppliedFilters.Remove(filter);
             PerformInvalidatePreview();
         }
 
@@ -180,6 +182,7 @@ namespace Indulged.Plugins.ProFX.Filters
             foreach (var filter in AutoEnhanceFilters)
             {
                 filter.CreateFilter();
+                filter.IsFilterEnabled = true;
                 AppliedFilters.Add(filter);
             }
 
@@ -196,7 +199,8 @@ namespace Indulged.Plugins.ProFX.Filters
             CropFilter.CreateFilter();
 
             if (!AppliedFilters.Contains(CropFilter))
-            {                
+            {
+                CropFilter.IsFilterEnabled = true;
                 AppliedFilters.Add(CropFilter);
 
                 if (FilterCountChanged != null)
@@ -229,6 +233,7 @@ namespace Indulged.Plugins.ProFX.Filters
 
             if (!AppliedFilters.Contains(RotationFilter))
             {
+                RotationFilter.IsFilterEnabled = true;
                 AppliedFilters.Add(RotationFilter);
 
                 if (FilterCountChanged != null)
@@ -253,6 +258,26 @@ namespace Indulged.Plugins.ProFX.Filters
             }
 
             RotationFilter.Degree = 0;
+            PerformInvalidatePreview();
+        }
+
+        public void ResetTransform()
+        {
+            if (AppliedFilters.Contains(RotationFilter))
+            {
+                AppliedFilters.Remove(RotationFilter);
+            }
+
+            if (AppliedFilters.Contains(CropFilter))
+            {
+                AppliedFilters.Remove(CropFilter);
+            }
+
+            if (FilterCountChanged != null)
+            {
+                FilterCountChanged(this, null);
+            }
+
             PerformInvalidatePreview();
         }
     }
