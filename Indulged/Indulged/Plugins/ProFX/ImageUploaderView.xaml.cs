@@ -27,6 +27,9 @@ namespace Indulged.Plugins.ProFX
         // Events
         public EventHandler RequestDismiss;
 
+        // Upload to photo set id
+        public string UploadToPhotoSetId { get; set; }
+
         public FXFilterManager FilterManager { get; set; }
         public BitmapImage OriginalImage { get; set; }
 
@@ -51,6 +54,9 @@ namespace Indulged.Plugins.ProFX
 
             Anaconda.AnacondaCore.PhotoInfoReturned += OnPhotoInfoReturned;
             Anaconda.AnacondaCore.PhotoInfoException += OnPhotoInfoException;
+
+            Anaconda.AnacondaCore.PhotoAddedToSet += OnPhotoAddedToSet;
+            Anaconda.AnacondaCore.AddPhotoToSetException += OnPhotoAddToSetException;
         }
 
         private bool eventListenersRemoved = false;
@@ -66,6 +72,8 @@ namespace Indulged.Plugins.ProFX
             Anaconda.AnacondaCore.PhotoInfoReturned -= OnPhotoInfoReturned;
             Anaconda.AnacondaCore.PhotoInfoException -= OnPhotoInfoException;
 
+            Anaconda.AnacondaCore.PhotoAddedToSet -= OnPhotoAddedToSet;
+            Anaconda.AnacondaCore.AddPhotoToSetException -= OnPhotoAddToSetException;
         }
              
 
@@ -230,11 +238,7 @@ namespace Indulged.Plugins.ProFX
                 if (statusView == null)
                     return;
 
-                statusView.ProgressView.IsIndeterminate = false;
-                statusView.ProgressView.Value = 1;
-                statusView.StatusLabel.Text = "There was an issue while uploading";
-                statusDialog.Buttons[0].IsEnabled = true;
-                statusDialog.Buttons[0].Content = "Done";
+                ShowCompleteStatus("There was an issue while uploading");
             });
         }
 
@@ -247,10 +251,17 @@ namespace Indulged.Plugins.ProFX
                 if (statusView == null)
                     return;
 
-                statusView.ProgressView.Visibility = Visibility.Collapsed;
-                statusView.StatusLabel.Text = "Upload is complete";
-                statusDialog.Buttons[0].IsEnabled = true;
-                statusDialog.Buttons[0].Content = "Done";
+                // Do we need to upload to a photo collection?
+                if (UploadToPhotoSetId != null)
+                {
+                    statusView.ProgressView.IsIndeterminate = true;
+                    statusView.StatusLabel.Text = "Adding to photo set...";
+                    Anaconda.AnacondaCore.AddPhotoToSetAsync(e.PhotoId, UploadToPhotoSetId);
+                }
+                else
+                {
+                    ShowCompleteStatus("Upload is complete");
+                }
             });
 
         }
@@ -264,13 +275,38 @@ namespace Indulged.Plugins.ProFX
                 if (statusView == null)
                     return;
 
-                statusView.ProgressView.Value = 1;
-                statusView.StatusLabel.Text = "Photo is uploaded, but cannot retrieve from server";
-                statusDialog.Buttons[0].IsEnabled = true;
-                statusDialog.Buttons[0].Content = "Done";
+                ShowCompleteStatus("Photo is uploaded, but cannot retrieve from server");
             });
         }
 
+        private void ShowCompleteStatus(string text)
+        {
+            statusView.ProgressView.IsIndeterminate = false;
+            statusView.ProgressView.Value = 1;
+            statusView.StatusLabel.Text = "Upload is complete";
+            statusDialog.Buttons[0].IsEnabled = true;
+            statusDialog.Buttons[0].Content = "Done";
+        }
+
+        private void OnPhotoAddedToSet(object sender, AddPhotoToSetEventArgs e)
+        {
+            if (e.PhotoId != photoId)
+            {
+                return;
+            }
+
+            ShowCompleteStatus("Photo has been added to set");
+        }
+
+        private void OnPhotoAddToSetException(object sender, AddPhotoToSetExceptionEventArgs e)
+        {
+            if (e.PhotoId != photoId)
+            {
+                return;
+            }
+
+            ShowCompleteStatus("Photo is uploaded, but cannot be added to the set");
+        }
 
     }
 }

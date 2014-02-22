@@ -23,6 +23,13 @@ namespace Indulged.Plugins.ProFX
         {
             base.OnNavigatedTo(e);
 
+            // Get additional init params
+            if (NavigationContext.QueryString.ContainsKey("upload_to_set_id"))
+            { 
+                // Upload to the photo set after editing
+                UploaderPage.UploadToPhotoSetId = NavigationContext.QueryString["upload_to_set_id"];
+            }
+
             originalImage = new BitmapImage(new Uri("/Assets/ProCam/TestImage.jpg", UriKind.Relative));
             originalImage.CreateOptions = BitmapCreateOptions.None;
 
