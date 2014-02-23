@@ -26,6 +26,7 @@ namespace Indulged.Plugins.ProFX
     {
         // Events
         public EventHandler RequestDismiss;
+        public EventHandler RequestExit;
 
         // Upload to photo set id
         public string UploadToPhotoSetId { get; set; }
@@ -299,9 +300,9 @@ namespace Indulged.Plugins.ProFX
                 bitmapForUpload = null;
 
                 // Dismiss the ProFX page
-                if (RequestDismiss != null)
+                if (RequestExit != null)
                 {
-                    RequestDismiss(this, null);
+                    RequestExit(this, null);
                 }
             };
 

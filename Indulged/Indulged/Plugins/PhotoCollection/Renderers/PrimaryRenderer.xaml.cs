@@ -49,5 +49,15 @@ namespace Indulged.Plugins.PhotoCollection.Renderers
         {
             PhotoSetPage.RequestAddPhotoDialog(this, null);
         }
+
+        private void CameraButton_Click(object sender, RoutedEventArgs e)
+        {
+            PhotoSetPage.RequestCamera(this, null);
+        }
+
+        private void UploadButton_Click(object sender, RoutedEventArgs e)
+        {
+            PhotoSetPage.RequestUpload(this, null);
+        }
     }
 }

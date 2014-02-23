@@ -37,6 +37,7 @@ namespace Indulged.Plugins.ProFX
                     }
                     catch (Exception ex)
                     {
+                        Console.WriteLine(ex.ToString());
                     }
 
                     return memoryStream.GetWindowsRuntimeBuffer();

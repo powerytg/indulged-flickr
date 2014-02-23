@@ -15,6 +15,8 @@ namespace Indulged.Plugins.PhotoCollection
     public partial class PhotoSetPage
     {
         public static EventHandler RequestAddPhotoDialog;
+        public static EventHandler RequestCamera;
+        public static EventHandler RequestUpload;
 
         private void InitializeEventListeners()
         {
@@ -25,6 +27,8 @@ namespace Indulged.Plugins.PhotoCollection
             Cinderella.CinderellaCore.RemovePhotoFromSetCompleted += OnPhotoRemovedFromSet;
 
             RequestAddPhotoDialog += OnRequestAddPhotoDialog;
+            RequestCamera += OnCameraRequested;
+            RequestUpload += OnUploadRequested;
         }
 
         private void RemoveEventListeners()
@@ -36,6 +40,7 @@ namespace Indulged.Plugins.PhotoCollection
             Anaconda.AnacondaCore.PhotoSetPhotosException -= OnPhotoStreamException;
 
             RequestAddPhotoDialog -= OnRequestAddPhotoDialog;
+            RequestCamera -= OnCameraRequested;
         }
 
         private void RefreshPhotoListButton_Click(object sender, EventArgs e)
@@ -44,6 +49,16 @@ namespace Indulged.Plugins.PhotoCollection
             SystemTray.ProgressIndicator.Text = AppResources.GroupLoadingPhotosText;
 
             Anaconda.AnacondaCore.GetPhotoSetPhotosAsync(PhotoSetSource.ResourceId, new Dictionary<string, string> { { "page", "1" }, { "per_page", Anaconda.DefaultItemsPerPage.ToString() } });
+        }
+
+        private void OnCameraRequested(object sender, EventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/Plugins/ProCam/ImagePickerPage.xaml?upload_to_set_id=" + PhotoSetSource.ResourceId, UriKind.Relative));
+        }
+
+        private void OnUploadRequested(object sender, EventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/Plugins/ProCam/ImagePickerPage.xaml?is_from_library=true&upload_to_set_id=" + PhotoSetSource.ResourceId, UriKind.Relative));
         }
 
         #region Add Photos

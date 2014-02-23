@@ -40,6 +40,7 @@ namespace Indulged.Plugins.ProFX
             RotationView.ValueChanged += OnRotationValueChanged;
 
             UploaderPage.RequestDismiss += OnUploaderRequestDismiss;
+            UploaderPage.RequestExit += OnUploaderRequestExit;
         }
 
         private void OnPreviewInvalidated(object sender, EventArgs e)
@@ -302,6 +303,12 @@ namespace Indulged.Plugins.ProFX
         private void OnUploaderRequestDismiss(object sender, EventArgs e)
         {
             DismissUploaderView();
+        }
+
+        private void OnUploaderRequestExit(object sender, EventArgs e)
+        {
+            NavigationService.GoBack();
+            NavigationService.RemoveBackEntry();
         }
     }
 }

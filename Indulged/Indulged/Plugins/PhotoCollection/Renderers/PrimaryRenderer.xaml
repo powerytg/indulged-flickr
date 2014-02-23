@@ -147,7 +147,7 @@
                 
                 <Button x:Name="CameraButton"  Margin="0, 0, 20, 0" 
                         Background="#574e4f" Style="{StaticResource PhotoSetCameraButtonStyle}"
-                        Grid.Column="0" Width="55" Height="55" >
+                        Grid.Column="0" Width="55" Height="55" Click="CameraButton_Click" >
                     <Button.Content>
                         <Image Source="/Assets/PhotoCollection/PhotoSetCameraButton.png"/>
                     </Button.Content>
@@ -155,7 +155,7 @@
 
                 <Button x:Name="UploadButton" Margin="0, 0, 20, 0" 
                         Background="#3d3b6b" Style="{StaticResource CircularButtonStyle}"
-                        Grid.Column="1" Width="55" Height="55">
+                        Grid.Column="1" Width="55" Height="55" Click="UploadButton_Click">
                     <Button.Content>
                         <Image Source="/Assets/PhotoCollection/PhotoSetUploadButton.png"/>
                     </Button.Content>
