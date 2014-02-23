@@ -380,6 +380,9 @@
     <Compile Include="Plugins\Login\SettingsPage.xaml.cs">
       <DependentUpon>SettingsPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Plugins\PhotoCollection\PhotoSetPrimaryChooserView.xaml.cs">
+      <DependentUpon>PhotoSetPrimaryChooserView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Plugins\PhotoCollection\PhotoSetPageEventsExtension.cs" />
     <Compile Include="Plugins\PhotoCollection\PhotoSetAddPhotoView.xaml.cs">
       <DependentUpon>PhotoSetAddPhotoView.xaml</DependentUpon>
@@ -391,6 +394,9 @@
     <Compile Include="Plugins\PhotoCollection\PhotoSetPhoto.cs" />
     <Compile Include="Plugins\PhotoCollection\Renderers\PrimaryRenderer.xaml.cs">
       <DependentUpon>PrimaryRenderer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\PhotoCollection\Renderers\SimplePhotoRenderer.xaml.cs">
+      <DependentUpon>SimplePhotoRenderer.xaml</DependentUpon>
     </Compile>
     <Compile Include="Plugins\ProCam\Controls\CamSwitchControl.xaml.cs">
       <DependentUpon>CamSwitchControl.xaml</DependentUpon>
@@ -942,6 +948,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Plugins\PhotoCollection\PhotoSetPrimaryChooserView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Plugins\PhotoCollection\PhotoSetAddPhotoView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -953,6 +963,10 @@
     <Page Include="Plugins\PhotoCollection\Renderers\PrimaryRenderer.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Plugins\PhotoCollection\Renderers\SimplePhotoRenderer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Plugins\ProCam\Controls\CamSwitchControl.xaml">
       <SubType>Designer</SubType>
