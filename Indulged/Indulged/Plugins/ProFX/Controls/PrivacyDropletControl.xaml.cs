@@ -84,5 +84,10 @@ namespace Indulged.Plugins.ProFX.Controls
             InitializeComponent();
             Selected = true;
         }
+
+        private void LayoutRoot_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            Selected = !Selected;
+        }
     }
 }

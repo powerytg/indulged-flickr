@@ -28,8 +28,6 @@ namespace Indulged.Plugins.ProFX.Controls
 
             Ring4Transform.CenterX = Width / 2;
             Ring4Transform.CenterY = Height / 2;
-
-            RingAnimation.Begin();
         }
 
         public void Pause()
@@ -46,5 +44,11 @@ namespace Indulged.Plugins.ProFX.Controls
         {
             RingAnimation.Resume();
         }
+
+        public void Play()
+        {
+            RingAnimation.Begin();
+        }
+
     }
 }

@@ -483,6 +483,7 @@ namespace Indulged.Plugins.ProFX
                 ProcessorPage.Visibility = Visibility.Collapsed;
 
                 UploaderPage.OriginalImage = originalImage;
+                UploaderPage.UploadButton.Play();
             };
 
             animation.Begin();
@@ -490,6 +491,8 @@ namespace Indulged.Plugins.ProFX
 
         private void DismissUploaderView()
         {
+            UploaderPage.UploadButton.Stop();
+
             double w = LayoutRoot.ActualWidth;
             double h = LayoutRoot.ActualHeight;
 

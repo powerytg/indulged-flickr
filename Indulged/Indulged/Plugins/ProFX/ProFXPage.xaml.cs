@@ -50,6 +50,44 @@ namespace Indulged.Plugins.ProFX
             InitializeEventListeneres();
         }
 
+        protected override void OnBackKeyPress(System.ComponentModel.CancelEventArgs e)
+        {
+            if (UploaderPage != null && UploaderPage.Visibility == Visibility.Visible)
+            {
+                e.Cancel = true;
+                DismissUploaderView();
+            }
+            else if (FilterGalleryView != null && FilterGalleryView.Visibility == Visibility.Visible)
+            {
+                e.Cancel = true;
+                DismissFilterGallery();
+            }
+            else if (ActiveFilterView != null && ActiveFilterView.Visibility == Visibility.Visible)
+            {
+                e.Cancel = true;
+                DismissActiveFilterList();
+            }
+            else if (FilterContainerView != null && FilterContainerView.Visibility == Visibility.Visible)
+            {
+                e.Cancel = true;
+                DismissFilterOSD();
+            }
+            else if (CropView != null && CropView.Visibility == Visibility.Visible)
+            {
+                e.Cancel = true;
+                DismissCropOSD();
+            }
+            else if (RotationView != null && RotationView.Visibility == Visibility.Visible)
+            {
+                e.Cancel = true;
+                DismissRotationOSD();
+            }            
+            else
+            {
+                base.OnBackKeyPress(e);
+            }
+        }
+
         private void OnViewFinderSizeChanged(object sender, SizeChangedEventArgs e)
         {
             ViewFinder.SizeChanged -= OnViewFinderSizeChanged;

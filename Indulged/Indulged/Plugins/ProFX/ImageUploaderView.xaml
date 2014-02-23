@@ -50,9 +50,7 @@
             </Grid>
             
             <StackPanel Orientation="Vertical" Grid.Row="1" Margin="20">
-                <TextBlock Foreground="#cccccc" FontWeight="Light" FontSize="28" Text="Essentials" HorizontalAlignment="Left"
-                           Margin="0, 0, 0, 15" />
-                <controls:WatermarkTextBox x:Name="TitleTextBox" WatermarkText="Title (optional)" Margin="0, 0, 0, 15" 
+                <controls:WatermarkTextBox x:Name="TitleTextBox" WatermarkText="Title (optional)" Margin="0, 15, 0, 15" 
                                            Background="Black" BorderBrush="#448ccb" BorderThickness="0, 0, 0, 2" 
                                            Foreground="White" CaretBrush="White" 
                                            Style="{StaticResource WatermarkBoxStyle}"/>

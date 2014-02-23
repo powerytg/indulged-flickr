@@ -10,7 +10,7 @@
     d:DesignHeight="480" d:DesignWidth="480"
     Width="100" Height="100">
     
-    <Grid x:Name="LayoutRoot">
+    <Grid x:Name="LayoutRoot" Tap="LayoutRoot_Tap">
         <Border x:Name="BackgroundBorder" Background="#1d2733" CornerRadius="6"
                 BorderThickness="2" BorderBrush="Transparent" >
             
