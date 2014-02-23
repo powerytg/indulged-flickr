@@ -455,11 +455,17 @@
       <DependentUpon>UserProfilePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Plugins\ProFX\Controls\ColorSelectorButton.cs" />
+    <Compile Include="Plugins\ProFX\Controls\PrivacyDropletControl.xaml.cs">
+      <DependentUpon>PrivacyDropletControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Plugins\ProFX\Controls\FilterEntryControl.xaml.cs">
       <DependentUpon>FilterEntryControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Plugins\ProFX\Controls\FilterDropletControl.xaml.cs">
       <DependentUpon>FilterDropletControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\ProFX\Controls\FXRingControl.xaml.cs">
+      <DependentUpon>FXRingControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Plugins\ProFX\Controls\SectionControl.xaml.cs">
       <DependentUpon>SectionControl.xaml</DependentUpon>
@@ -1020,11 +1026,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Plugins\ProFX\Controls\PrivacyDropletControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Plugins\ProFX\Controls\FilterEntryControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Plugins\ProFX\Controls\FilterDropletControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Plugins\ProFX\Controls\FXRingControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1356,7 +1370,12 @@
     <Content Include="Assets\ProFX\FXOptions.png" />
     <Content Include="Assets\ProFX\FXProcessor.png" />
     <Content Include="Assets\ProFX\FXUpload.png" />
+    <Content Include="Assets\ProFX\FXUploadLogo.png" />
     <Content Include="Assets\ProFX\IndulgedFXLogo.png" />
+    <Content Include="Assets\ProFX\Ring1.png" />
+    <Content Include="Assets\ProFX\Ring2.png" />
+    <Content Include="Assets\ProFX\Ring3.png" />
+    <Content Include="Assets\ProFX\Ring4.png" />
     <Content Include="Assets\ProFX\SelectedFilterIcon.png" />
     <Content Include="Assets\SamplePhoto.jpg" />
     <Page Include="Themes\TransparentListPickerStyle.xaml">

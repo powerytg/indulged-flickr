@@ -129,40 +129,6 @@ namespace Indulged.Plugins.ProFX
             });
         }
 
-        private void UploadButton_Click(object sender, RoutedEventArgs e)
-        {
-            ContentView.IsHitTestVisible = false;
-
-            statusView = new UploadStatusView();
-            statusView.Height = 150;
-            //settingsView.SetValue(Grid.RowProperty, 1);
-            var returnButton = new Indulged.API.Avarice.Controls.Button();
-            returnButton.Content = "Please Wait...";
-            var buttons = new List<Indulged.API.Avarice.Controls.Button> {returnButton};
-            statusDialog = ModalPopup.ShowWithButtons(statusView, "Uploading Photo", buttons);
-            statusDialog.Buttons[0].IsEnabled = false;
-            statusView.StatusLabel.Text = "Rendering image";
-            statusDialog.DismissWithButtonClick += (s, args) =>
-            {
-                statusView = null;
-                statusDialog = null;
-                ContentView.IsHitTestVisible = true;
-
-                uploadStream.Close();
-                uploadStream = null;
-
-                bitmapForUpload = null;
-
-                // Dismiss the ProFX page
-                if (RequestDismiss != null)
-                {
-                    RequestDismiss(this, null);
-                }
-            };
-            
-            PrepareImageForUploadAsync();
-        }
-
         private void BeginUpload()
         {
             statusView.StatusLabel.Text = "Uploading";
@@ -179,9 +145,9 @@ namespace Indulged.Plugins.ProFX
             if (DescriptionTextBox.Text.Length > 0)
                 parameters["description"] = DescriptionTextBox.Text;
 
-            parameters["is_public"] = (PublicSwitch.IsChecked == true) ? "1" : "0";
-            parameters["is_friend"] = (FriendSwitch.IsChecked == true) ? "1" : "0";
-            parameters["is_family"] = (FamilySwitch.IsChecked == true) ? "1" : "0";
+            parameters["is_public"] = (PublicSwitch.Selected == true) ? "1" : "0";
+            parameters["is_friend"] = (FriendSwitch.Selected == true) ? "1" : "0";
+            parameters["is_family"] = (FamilySwitch.Selected == true) ? "1" : "0";
 
             // Create the upload stream
             uploadStream = new MemoryStream();
@@ -306,6 +272,40 @@ namespace Indulged.Plugins.ProFX
             }
 
             ShowCompleteStatus("Photo is uploaded, but cannot be added to the set");
+        }
+
+        private void OnUploadButtonTap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            ContentView.IsHitTestVisible = false;
+
+            statusView = new UploadStatusView();
+            statusView.Height = 150;
+            //settingsView.SetValue(Grid.RowProperty, 1);
+            var returnButton = new Indulged.API.Avarice.Controls.Button();
+            returnButton.Content = "Please Wait...";
+            var buttons = new List<Indulged.API.Avarice.Controls.Button> { returnButton };
+            statusDialog = ModalPopup.ShowWithButtons(statusView, "Uploading Photo", buttons);
+            statusDialog.Buttons[0].IsEnabled = false;
+            statusView.StatusLabel.Text = "Rendering image";
+            statusDialog.DismissWithButtonClick += (s, args) =>
+            {
+                statusView = null;
+                statusDialog = null;
+                ContentView.IsHitTestVisible = true;
+
+                uploadStream.Close();
+                uploadStream = null;
+
+                bitmapForUpload = null;
+
+                // Dismiss the ProFX page
+                if (RequestDismiss != null)
+                {
+                    RequestDismiss(this, null);
+                }
+            };
+
+            PrepareImageForUploadAsync();
         }
 
     }

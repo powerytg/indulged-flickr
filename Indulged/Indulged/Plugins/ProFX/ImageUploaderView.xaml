@@ -6,12 +6,13 @@
     xmlns:controls="clr-namespace:CS.Windows.Controls;assembly=CS.Windows.Controls"
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     xmlns:chrome="clr-namespace:Indulged.Plugins.Chrome"
+    xmlns:fxControls="clr-namespace:Indulged.Plugins.ProFX.Controls"             
     xmlns:avarice="clr-namespace:Indulged.API.Avarice.Controls;assembly=Indulged.API"             
     mc:Ignorable="d"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
-    d:DesignHeight="480" d:DesignWidth="480">
+    d:DesignHeight="800" d:DesignWidth="480">
     
     <Grid x:Name="LayoutRoot" Background="Black">
         <!-- Content UI -->
@@ -23,7 +24,7 @@
             </Grid.RowDefinitions>
 
             <!-- Back button -->
-            <Grid Background="#99000000">
+            <Grid Grid.Row="0">
                 <Button x:Name="BrowserBackButton" Style="{StaticResource BorderlessButtonStyle}" 
                     Grid.Row="0" Margin="4" HorizontalAlignment="Left" Click="BackButton_Click">
                     <Button.Content>
@@ -36,25 +37,47 @@
                     </Button.Content>
                 </Button>
                 
-           </Grid>
+                <Image Source="/Assets/ProFX/FXLogo.png" Width="168" 
+                   VerticalAlignment="Center" HorizontalAlignment="Right" Margin="15, 0, 15, 0"/>
 
+                <Rectangle Height="3" VerticalAlignment="Bottom">
+                    <Rectangle.Fill>
+                        <LinearGradientBrush StartPoint="0, 0" EndPoint="1, 0">
+                            <GradientStop Color="#ff0049a3" Offset="0"/>
+                            <GradientStop Color="#ff1cbbb4" Offset="0.3"/>
+                            <GradientStop Color="#ff3cb878" Offset="0.5"/>
+                            <GradientStop Color="#ffc4df9b" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Rectangle.Fill>
+                </Rectangle>
+            </Grid>
+            
             <StackPanel Orientation="Vertical" Grid.Row="1" Margin="20">
-                <TextBlock Foreground="#cccccc" FontWeight="Light" FontSize="24" Text="Essentials" HorizontalAlignment="Left"/>
+                <TextBlock Foreground="#cccccc" FontWeight="Light" FontSize="28" Text="Essentials" HorizontalAlignment="Left"
+                           Margin="0, 0, 0, 15" />
                 <controls:WatermarkTextBox x:Name="TitleTextBox" WatermarkText="Title (optional)" Margin="0, 0, 0, 15" 
-                                           Background="#333333" Foreground="White" CaretBrush="White" Style="{StaticResource WatermarkBoxStyle}"/>
+                                           Background="#1d1d1d" BorderBrush="#c6771a" 
+                                           Foreground="White" CaretBrush="White" 
+                                           Style="{StaticResource WatermarkBoxStyle}"/>
                 <controls:WatermarkTextBox x:Name="DescriptionTextBox" WatermarkText="Description (optional)" Margin="0, 0, 0, 20" 
-                                           Background="#333333" Foreground="White" CaretBrush="White" Style="{StaticResource WatermarkBoxStyle}"/>
+                                           Background="#1d1d1d" BorderBrush="#c6771a"
+                                           Foreground="White" CaretBrush="White" Style="{StaticResource WatermarkBoxStyle}"/>
 
-                <TextBlock Foreground="#cccccc" FontWeight="Light" FontSize="24" Text="Visible to the following users" HorizontalAlignment="Left"/>
-                <toolkit:ToggleSwitch x:Name="PublicSwitch" Content="Public" IsChecked="True" Foreground="White"/>
-                <toolkit:ToggleSwitch x:Name="FriendSwitch" Content="Friend" IsChecked="True" Foreground="White"/>
-                <toolkit:ToggleSwitch x:Name="FamilySwitch" Content="Family" IsChecked="True" Foreground="White"/>
+                <TextBlock Foreground="#cccccc" FontWeight="Light" FontSize="28" Text="Visible To These Groups" HorizontalAlignment="Left"
+                           Margin="0, 15, 0, 15" />
+
+                <StackPanel Orientation="Horizontal">
+                    <fxControls:PrivacyDropletControl x:Name="PublicSwitch" Title="public" Margin="0, 0, 15, 0"/>
+                    <fxControls:PrivacyDropletControl x:Name="FriendSwitch" Title="friends" Margin="0, 0, 15, 0"/>
+                    <fxControls:PrivacyDropletControl x:Name="FamilySwitch" Title="family" Margin="0, 0, 15, 0"/>
+                </StackPanel>
 
             </StackPanel>
             
             <!-- Upload button -->
-            <avarice:Button x:Name="UploadButton" Content="Upload Photo" Click="UploadButton_Click"
-                    Grid.Row="3" Margin="20" Height="54" />
+            <fxControls:FXRingControl x:Name="UploadButton" Grid.Row="3"
+                                      HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0, 0, 0, 15" 
+                                      Tap="OnUploadButtonTap"/>
         </Grid>
         
         
