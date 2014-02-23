@@ -10,26 +10,24 @@
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
-    d:DesignHeight="480" d:DesignWidth="480" Height="420">
+    d:DesignHeight="480" d:DesignWidth="480" Height="360">
     
     <local:FilterBase.RenderTransform>
         <CompositeTransform />
     </local:FilterBase.RenderTransform>
 
-    <Grid x:Name="LayoutRoot">
-            <StackPanel Margin="14, 40, 14, 14">
-                <TextBlock Style="{StaticResource FXSectionTextStyle}" Text="Red Amount"/>
-                <Slider x:Name="RedAmountSlider" Minimum="-1" Maximum="1" Value="0" Foreground="#ff4458" ValueChanged="RedAmountSlider_ValueChanged" 
+    <StackPanel x:Name="LayoutRoot" Margin="14">
+        <TextBlock Style="{StaticResource FXSectionTextStyle}" Text="Red Amount"/>
+        <Slider x:Name="RedAmountSlider" Minimum="-1" Maximum="1" Value="0" Foreground="#ff4458" ValueChanged="RedAmountSlider_ValueChanged" 
                         Style="{StaticResource FXSliderStyle}"/>
 
-                <TextBlock Style="{StaticResource FXSectionTextStyle}" Text="Green Amount"/>
-                <Slider x:Name="GreenAmountSlider" Minimum="-1" Maximum="1" Value="0" Foreground="#b2f09b" ValueChanged="GreenAmountSlider_ValueChanged" 
+        <TextBlock Style="{StaticResource FXSectionTextStyle}" Text="Green Amount"/>
+        <Slider x:Name="GreenAmountSlider" Minimum="-1" Maximum="1" Value="0" Foreground="#b2f09b" ValueChanged="GreenAmountSlider_ValueChanged" 
                         Style="{StaticResource FXSliderStyle}"/>
 
-                <TextBlock Style="{StaticResource FXSectionTextStyle}" Text="Blue Amount"/>
-                <Slider x:Name="BlueAmountSlider" Minimum="-1" Maximum="1" Value="0" Foreground="#b3dfff" ValueChanged="BlueAmountSlider_ValueChanged" 
+        <TextBlock Style="{StaticResource FXSectionTextStyle}" Text="Blue Amount"/>
+        <Slider x:Name="BlueAmountSlider" Minimum="-1" Maximum="1" Value="0" Foreground="#b3dfff" ValueChanged="BlueAmountSlider_ValueChanged" 
                         Style="{StaticResource FXSliderStyle}"/>
-            </StackPanel>
-    </Grid>
+    </StackPanel>
 
 </local:FilterBase>

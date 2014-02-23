@@ -43,6 +43,9 @@ namespace Indulged.Plugins.ProFX
 
             ActiveFilterView.FilterManager = filterManager;
 
+            // Uploader
+            UploaderPage.FilterManager = filterManager;
+
             // Events
             InitializeEventListeneres();
         }

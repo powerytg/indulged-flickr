@@ -10,23 +10,20 @@
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
-    d:DesignHeight="480" d:DesignWidth="480" Height="350">
+    d:DesignHeight="480" d:DesignWidth="480" Height="280">
     
     <local:FilterBase.RenderTransform>
         <CompositeTransform />
     </local:FilterBase.RenderTransform>
 
-    <Grid x:Name="LayoutRoot">
-        <StackPanel Margin="14, 40, 14, 14">
-            <TextBlock Style="{StaticResource FXSectionTextStyle}" Text="Brightness / Contrast"/>
-            <toolkit:ToggleSwitch x:Name="BrightnessToggle" IsChecked="true" Checked="OnBrightnessToggleChecked" Unchecked="OnBrightnessToggleUnchecked" 
+    <StackPanel x:Name="LayoutRoot" Margin="14">
+        <TextBlock Style="{StaticResource FXSectionTextStyle}" Text="Brightness / Contrast"/>
+        <toolkit:ToggleSwitch x:Name="BrightnessToggle" IsChecked="true" Checked="OnBrightnessToggleChecked" Unchecked="OnBrightnessToggleUnchecked" 
                                   Foreground="#6d87f6" SwitchForeground="#6d87f6" />
 
-            <TextBlock Style="{StaticResource FXSectionTextStyle}" Text="Clarity"/>
-            <toolkit:ToggleSwitch x:Name="ClarityToggle" IsChecked="true" Checked="OnClarityToggleChecked" Unchecked="OnClarityToggleUnchecked"
+        <TextBlock Style="{StaticResource FXSectionTextStyle}" Text="Clarity"/>
+        <toolkit:ToggleSwitch x:Name="ClarityToggle" IsChecked="true" Checked="OnClarityToggleChecked" Unchecked="OnClarityToggleUnchecked"
                                   Foreground="#6d87f6" SwitchForeground="#6d87f6"/>
-        </StackPanel>
-
-    </Grid>
+    </StackPanel>
 
 </local:FilterBase>

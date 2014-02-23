@@ -11,7 +11,7 @@
         <Setter Property="Maximum" Value="10"/>
         <Setter Property="Minimum" Value="0"/>
         <Setter Property="Value" Value="0"/>
-        <Setter Property="Background" Value="{StaticResource PhoneChromeBrush}"/>
+        <Setter Property="Background" Value="#333333"/>
         <Setter Property="Foreground" Value="{StaticResource PhoneAccentBrush}"/>
         <Setter Property="Template">
             <Setter.Value>
@@ -37,7 +37,9 @@
                         </VisualStateManager.VisualStateGroups>
                         <Grid x:Name="HorizontalTemplate" Margin="{StaticResource PhoneHorizontalMargin}">
                             <Rectangle x:Name="HorizontalTrack" Fill="{TemplateBinding Background}" Height="12" IsHitTestVisible="False" Margin="0,22,0,50"/>
-                            <Rectangle x:Name="HorizontalFill" Fill="{TemplateBinding Foreground}" Height="12" IsHitTestVisible="False" Margin="0,22,0,50">
+                            <Rectangle x:Name="HorizontalFill" Fill="{TemplateBinding Foreground}" 
+                                       Height="12" IsHitTestVisible="False" 
+                                       Margin="0,22,0,50" Opacity="0.3">
                                 <Rectangle.Clip>
                                     <RectangleGeometry Rect="0, 0, 6, 12"/>
                                 </Rectangle.Clip>

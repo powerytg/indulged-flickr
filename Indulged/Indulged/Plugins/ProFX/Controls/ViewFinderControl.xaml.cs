@@ -79,7 +79,7 @@ namespace Indulged.Plugins.ProFX.Controls
         {
             double w = OriginalBitmap.PixelWidth;
             double h = OriginalBitmap.PixelHeight;
-            InfoLabel.Text = w.ToString() + " by " + h.ToString() + " JPEG.  Preview Mode: Fill Screen";
+            InfoLabel.Text = w.ToString() + " by " + h.ToString() + " JPEG";
         }
 
         public void ShowInfoView()

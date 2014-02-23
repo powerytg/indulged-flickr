@@ -12,30 +12,28 @@
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
-    d:DesignHeight="480" d:DesignWidth="480" Height="290">
+    d:DesignHeight="480" d:DesignWidth="480" Height="220">
     
     <local:FilterBase.RenderTransform>
         <CompositeTransform />
     </local:FilterBase.RenderTransform>
 
-    <Grid x:Name="LayoutRoot">
-        <StackPanel Margin="14, 40, 14, 14">
-            <Grid Margin="0, 0, 0, 40">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="Auto"/>
-                </Grid.ColumnDefinitions>
+    <StackPanel x:Name="LayoutRoot" Margin="14, 14, 14, 14">
+        <Grid Margin="0, 0, 0, 40">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
 
-                <TextBlock Style="{StaticResource FXSectionTextStyle}" Text="Preserve Color"  VerticalAlignment="Center" Grid.Column="0"/>
-                <controls:ColorSelectorButton x:Name="PickerButton" SelectedColorChanged="PickerButton_SelectedColorChanged" Width="100" Height="45" VerticalAlignment="Center"
+            <TextBlock Style="{StaticResource FXSectionTextStyle}" Text="Preserve Color"  VerticalAlignment="Center" Grid.Column="0"/>
+            <controls:ColorSelectorButton x:Name="PickerButton" SelectedColorChanged="PickerButton_SelectedColorChanged" Width="100" Height="45" VerticalAlignment="Center"
                                             SelectedColor="#abf350" Grid.Column="1"/>
 
-            </Grid>
+        </Grid>
 
-            <TextBlock Style="{StaticResource FXSectionTextStyle}" Text="Tolerance"/>
-            <Slider x:Name="ToleranceSlider" Minimum="1" Maximum="250" Value="40"  ValueChanged="ToleranceSlider_ValueChanged" 
+        <TextBlock Style="{StaticResource FXSectionTextStyle}" Text="Tolerance"/>
+        <Slider x:Name="ToleranceSlider" Minimum="1" Maximum="250" Value="40"  ValueChanged="ToleranceSlider_ValueChanged" 
                      Foreground="#6d87f6" Style="{StaticResource FXSliderStyle}"/>
-        </StackPanel>
-    </Grid>
+    </StackPanel>
 
 </local:FilterBase>

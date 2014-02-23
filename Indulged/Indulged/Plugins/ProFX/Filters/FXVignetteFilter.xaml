@@ -11,31 +11,28 @@
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
-    d:DesignHeight="480" d:DesignWidth="480" Height="300">
+    d:DesignHeight="480" d:DesignWidth="480" Height="220">
 
     <filters:FilterBase.RenderTransform>
         <CompositeTransform />
     </filters:FilterBase.RenderTransform>
 
-    <Grid x:Name="LayoutRoot">
-        <StackPanel Margin="14, 40, 14, 14">
-            <Grid Margin="0, 0, 0, 40">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="Auto"/>
-                </Grid.ColumnDefinitions>
+    <StackPanel x:Name="LayoutRoot" Margin="14, 14, 14, 14">
+        <Grid Margin="0, 0, 0, 40">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
 
-                <TextBlock Style="{StaticResource FXSectionTextStyle}" Text="Color"  VerticalAlignment="Center" Grid.Column="0"/>
-                <controls:ColorSelectorButton x:Name="PickerButton" SelectedColorChanged="OnSelectedColorChanged" Width="100" Height="45" VerticalAlignment="Center"
+            <TextBlock Style="{StaticResource FXSectionTextStyle}" Text="Color"  VerticalAlignment="Center" Grid.Column="0"/>
+            <controls:ColorSelectorButton x:Name="PickerButton" SelectedColorChanged="OnSelectedColorChanged" Width="100" Height="45" VerticalAlignment="Center"
                                             SelectedColor="#abf350" Grid.Column="1"/>
 
-            </Grid>
+        </Grid>
 
-            <TextBlock Style="{StaticResource FXSectionTextStyle}" Text="Radius" HorizontalAlignment="Left"/>
-            <Slider x:Name="AmountSlider" Minimum="0" Maximum="15" Value="0.4" ValueChanged="AmountSlider_ValueChanged" Margin="0, 0, 0, 40" Padding="0"
+        <TextBlock Style="{StaticResource FXSectionTextStyle}" Text="Radius" HorizontalAlignment="Left"/>
+        <Slider x:Name="AmountSlider" Minimum="0" Maximum="15" Value="0.4" ValueChanged="AmountSlider_ValueChanged" Margin="0, 0, 0, 40" Padding="0"
                      Foreground="#6d87f6" Style="{StaticResource FXSliderStyle}"/>
-        </StackPanel>
-
-    </Grid>
+    </StackPanel>
 
 </filters:FilterBase>

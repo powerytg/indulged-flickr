@@ -6,8 +6,7 @@
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone">
 
     <Style x:Key="FXSectionTextStyle" TargetType="TextBlock">
-        <Setter Property="Foreground" Value="#7781aa"/>
-        <Setter Property="FontSize" Value="36"/>
-        <Setter Property="FontWeight" Value="Light"/>
+        <Setter Property="Foreground" Value="#7d7d7d"/>
+        <Setter Property="FontSize" Value="24"/>
     </Style>
 </ResourceDictionary>

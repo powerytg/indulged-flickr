@@ -54,7 +54,7 @@
         </Grid>
 
         <!--Content-->
-        <ScrollViewer x:Name="FilterContainer" Grid.Row="2" />
+        <Grid x:Name="FilterContainer" Grid.Row="2" />
 
         <!--Bottom toolbar-->
         <Grid Grid.Row="3">            

@@ -40,7 +40,9 @@ namespace Indulged.Plugins.ProFX.OSD
         protected virtual void OnFilterChanged()
         {
             TitleLabel.Text = Filter.StatusBarName;
-            FilterContainer.Content = Filter;
+            FilterContainer.Children.Clear();
+            FilterContainer.Children.Add(Filter);
+            //FilterContainer.Content = Filter;
 
             // Re-calculate height
             this.Height = Filter.Height + 140;

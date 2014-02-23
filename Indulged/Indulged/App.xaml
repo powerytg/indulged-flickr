@@ -38,6 +38,7 @@
                 <ResourceDictionary Source="Themes/FXButtonStyle.xaml"/>
                 <ResourceDictionary Source="Themes/FXComboButtonStyle.xaml"/>
                 <ResourceDictionary Source="Themes/FXCircularButtonStyle.xaml"/>
+                <ResourceDictionary Source="Themes/ColorSelectorButtonStyle.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
             <Style x:Key="TransitionPageStyle" TargetType="phone:PhoneApplicationPage">

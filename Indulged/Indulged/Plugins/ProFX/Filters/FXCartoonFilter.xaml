@@ -10,19 +10,16 @@
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
-    d:DesignHeight="480" d:DesignWidth="480" Height="220">
+    d:DesignHeight="480" d:DesignWidth="480" Height="140">
     
     <local:FilterBase.RenderTransform>
         <CompositeTransform />
     </local:FilterBase.RenderTransform>
 
-    <Grid x:Name="LayoutRoot">
-        <StackPanel Margin="14, 40, 14, 14">
-            <TextBlock Style="{StaticResource FXSectionTextStyle}" Text="Trace Edge" HorizontalAlignment="Left"/>
-            <toolkit:ToggleSwitch x:Name="EdgeSwitch" IsChecked="true" Checked="EdgeSwitch_Checked" Unchecked="EdgeSwitch_Unchecked" Padding="0"
+    <StackPanel x:Name="LayoutRoot" Margin="14">
+        <TextBlock Style="{StaticResource FXSectionTextStyle}" Text="Trace Edge" HorizontalAlignment="Left"/>
+        <toolkit:ToggleSwitch x:Name="EdgeSwitch" IsChecked="true" Checked="EdgeSwitch_Checked" Unchecked="EdgeSwitch_Unchecked" Padding="0"
                                   Foreground="#6d87f6" SwitchForeground="#6d87f6" />
-        </StackPanel>
-
-    </Grid>
+    </StackPanel>
 
 </local:FilterBase>

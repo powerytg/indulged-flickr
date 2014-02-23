@@ -10,14 +10,16 @@
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
-    d:DesignHeight="480" d:DesignWidth="480" Height="200">
+    d:DesignHeight="480" d:DesignWidth="480" Height="120">
     
     <local:FilterBase.RenderTransform>
         <CompositeTransform />
     </local:FilterBase.RenderTransform>
 
     <Grid x:Name="LayoutRoot">
-       
+        <TextBlock Text="This filter does not require configurations"
+                   Foreground="#999999" FontStyle="Italic"
+                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
     </Grid>
 
 </local:FilterBase>

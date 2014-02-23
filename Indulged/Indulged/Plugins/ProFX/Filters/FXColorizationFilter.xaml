@@ -12,34 +12,32 @@
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
-    d:DesignHeight="480" d:DesignWidth="480" Height="390">
+    d:DesignHeight="480" d:DesignWidth="480" Height="320">
     
     <local:FilterBase.RenderTransform>
         <CompositeTransform />
     </local:FilterBase.RenderTransform>
 
-    <Grid x:Name="LayoutRoot">
-            <StackPanel Margin="14, 40, 14, 14">
-            <Grid Margin="0, 0, 0, 25">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="Auto"/>
-                </Grid.ColumnDefinitions>
+    <StackPanel x:Name="LayoutRoot" Margin="14">
+        <Grid Margin="0, 0, 0, 25">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
 
-                <TextBlock Style="{StaticResource FXSectionTextStyle}" Text="Tone Color"  VerticalAlignment="Center" Grid.Column="0"/>
-                <controls:ColorSelectorButton x:Name="PickerButton" SelectedColorChanged="OnSelectedColorChanged" Width="100" Height="45" VerticalAlignment="Center"
+            <TextBlock Style="{StaticResource FXSectionTextStyle}" Text="Tone Color"  VerticalAlignment="Center" Grid.Column="0"/>
+            <controls:ColorSelectorButton x:Name="PickerButton" SelectedColorChanged="OnSelectedColorChanged" Width="100" Height="45" VerticalAlignment="Center"
                                             SelectedColor="#abf350" Grid.Column="1"/>
 
-            </Grid>
+        </Grid>
 
-            <TextBlock Style="{StaticResource FXSectionTextStyle}" Text="Luminance"/>
-            <Slider x:Name="LuminanceSlider" Minimum="-100" Maximum="200" Value="0"  ValueChanged="LuminanceSlider_ValueChanged" 
+        <TextBlock Style="{StaticResource FXSectionTextStyle}" Text="Luminance"/>
+        <Slider x:Name="LuminanceSlider" Minimum="-100" Maximum="200" Value="0"  ValueChanged="LuminanceSlider_ValueChanged" 
                     Foreground="#6d87f6" Style="{StaticResource FXSliderStyle}"/>
 
-            <TextBlock Style="{StaticResource FXSectionTextStyle}" Text="Chrominance"/>
-                <Slider x:Name="ChrominanceSlider" Minimum="-100" Maximum="200" Value="100" ValueChanged="ChrominanceSlider_ValueChanged" 
+        <TextBlock Style="{StaticResource FXSectionTextStyle}" Text="Chrominance"/>
+        <Slider x:Name="ChrominanceSlider" Minimum="-100" Maximum="200" Value="100" ValueChanged="ChrominanceSlider_ValueChanged" 
                         Foreground="#6d87f6" Style="{StaticResource FXSliderStyle}"/>
-            </StackPanel>
-    </Grid>
+    </StackPanel>
 
 </local:FilterBase>

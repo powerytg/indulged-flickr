@@ -1238,6 +1238,9 @@
     <ApplicationDefinition Include="Themes\FXCircularButtonStyle.xaml">
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Themes\ColorSelectorButtonStyle.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Themes\FullScreenPhotoNavigatorStyle.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -1347,27 +1350,19 @@
     <Content Include="Assets\ProFX\FXActiveFilters.png" />
     <Content Include="Assets\ProFX\FXAdd.png" />
     <Content Include="Assets\ProFX\FXArrowDown.png" />
-    <Content Include="Assets\ProFX\FXArrowUp.png" />
-    <Content Include="Assets\ProFX\FXArrowUpWhite.png" />
-    <Content Include="Assets\ProFX\FXBackButton.png" />
     <Content Include="Assets\ProFX\FXBackButton2.png" />
     <Content Include="Assets\ProFX\FXBackward.png" />
     <Content Include="Assets\ProFX\FXCheckmark.png" />
     <Content Include="Assets\ProFX\FXCrop.png" />
     <Content Include="Assets\ProFX\FXCropHandle.png" />
     <Content Include="Assets\ProFX\FXDelete.png" />
-    <Content Include="Assets\ProFX\FXDeleteButton.png" />
     <Content Include="Assets\ProFX\FXDeleteFilter.png" />
     <Content Include="Assets\ProFX\FXDone.png" />
     <Content Include="Assets\ProFX\FXFilterDisabled.png" />
     <Content Include="Assets\ProFX\FXFilterEnabled.png" />
-    <Content Include="Assets\ProFX\FXForwardButton.png" />
     <Content Include="Assets\ProFX\FXGallery.png" />
     <Content Include="Assets\ProFX\FXLogo.png" />
     <Content Include="Assets\ProFX\FXMagicWand.png" />
-    <Content Include="Assets\ProFX\FXNext.png" />
-    <Content Include="Assets\ProFX\FXNextButton.png" />
-    <Content Include="Assets\ProFX\FXOptions.png" />
     <Content Include="Assets\ProFX\FXProcessor.png" />
     <Content Include="Assets\ProFX\FXUpload.png" />
     <Content Include="Assets\ProFX\FXUploadLogo.png" />

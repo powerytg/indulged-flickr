@@ -29,16 +29,13 @@
                     Grid.Row="0" Margin="4" HorizontalAlignment="Left" Click="BackButton_Click">
                     <Button.Content>
                         <StackPanel Orientation="Horizontal">
-                            <Image Source="/Assets/ProFX/FXBackButton2.png" Stretch="None" VerticalAlignment="Center" Margin="0, 0, 15, 0"/>
-                            <TextBlock FontSize="36" FontWeight="Light" Foreground="#32afe0" Text="Back"
-                                   VerticalAlignment="Center" />
+                            <Image Source="/Assets/ProFX/FXBackButton2.png" Stretch="None" VerticalAlignment="Center" Margin="0, 0, 0, 0"/>
+                            <Image Source="/Assets/ProFX/FXLogo.png" Width="168" 
+                   VerticalAlignment="Center" Margin="15, 0, 15, 0"/>
                         </StackPanel>
-
                     </Button.Content>
                 </Button>
                 
-                <Image Source="/Assets/ProFX/FXLogo.png" Width="168" 
-                   VerticalAlignment="Center" HorizontalAlignment="Right" Margin="15, 0, 15, 0"/>
 
                 <Rectangle Height="3" VerticalAlignment="Bottom">
                     <Rectangle.Fill>
@@ -56,11 +53,11 @@
                 <TextBlock Foreground="#cccccc" FontWeight="Light" FontSize="28" Text="Essentials" HorizontalAlignment="Left"
                            Margin="0, 0, 0, 15" />
                 <controls:WatermarkTextBox x:Name="TitleTextBox" WatermarkText="Title (optional)" Margin="0, 0, 0, 15" 
-                                           Background="#1d1d1d" BorderBrush="#c6771a" 
+                                           Background="Black" BorderBrush="#448ccb" BorderThickness="0, 0, 0, 2" 
                                            Foreground="White" CaretBrush="White" 
                                            Style="{StaticResource WatermarkBoxStyle}"/>
                 <controls:WatermarkTextBox x:Name="DescriptionTextBox" WatermarkText="Description (optional)" Margin="0, 0, 0, 20" 
-                                           Background="#1d1d1d" BorderBrush="#c6771a"
+                                           Background="Black" BorderBrush="#448ccb" BorderThickness="0, 0, 0, 2"
                                            Foreground="White" CaretBrush="White" Style="{StaticResource WatermarkBoxStyle}"/>
 
                 <TextBlock Foreground="#cccccc" FontWeight="Light" FontSize="28" Text="Visible To These Groups" HorizontalAlignment="Left"
