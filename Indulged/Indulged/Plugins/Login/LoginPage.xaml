@@ -66,7 +66,7 @@
                     HorizontalAlignment="Left" Click="BrowserBackButton_Click">
                     <Button.Content>
                         <StackPanel Orientation="Horizontal">
-                            <Image Source="/Assets/ProFX/FXBackButton2.png" Stretch="None" VerticalAlignment="Center" Margin="0, 0, 15, 0"/>
+                            <Image Source="/Assets/Common/BlueBackButton.png" Stretch="None" VerticalAlignment="Center" Margin="0, 0, 15, 0"/>
                             <TextBlock FontSize="36" FontWeight="Light" Foreground="#32afe0" Text="{Binding Path=LocalizedResources.LoginBackText, Source={StaticResource LocalizedStrings}}"
                                    VerticalAlignment="Center" />
                         </StackPanel>

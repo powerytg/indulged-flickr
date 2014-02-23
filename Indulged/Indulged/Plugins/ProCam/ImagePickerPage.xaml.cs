@@ -17,6 +17,7 @@ namespace Indulged.Plugins.ProCam
     {
         private PhotoChooserTask photoChooserTask;
         private CameraCaptureTask camTask;
+        string uploadToSetId;
 
         // Constructor
         public ImagePickerPage()
@@ -36,6 +37,13 @@ namespace Indulged.Plugins.ProCam
 
             executedOnce = true;
 
+            if (NavigationContext.QueryString.ContainsKey("upload_to_set_id"))
+            {
+                // Upload to the photo set after editing
+                uploadToSetId = NavigationContext.QueryString["upload_to_set_id"];
+            }
+
+
             if (NavigationContext.QueryString.ContainsKey("is_from_library"))
             {
                 // Choose from media library
@@ -46,7 +54,15 @@ namespace Indulged.Plugins.ProCam
             else if (PolicyKit.ShouldUseProCamera)
             {
                 // Use ProCam
-                NavigationService.Navigate(new Uri("/Plugins/ProCam/ProCamPage.xaml", UriKind.Relative));
+                if (uploadToSetId != null)
+                {
+                    NavigationService.Navigate(new Uri("/Plugins/ProCam/ProCamPage.xaml?upload_to_set_id=" + uploadToSetId, UriKind.Relative));
+                }
+                else
+                {
+                    NavigationService.Navigate(new Uri("/Plugins/ProCam/ProCamPage.xaml", UriKind.Relative));
+                }
+                
                 NavigationService.RemoveBackEntry();
             }
             else
@@ -69,7 +85,15 @@ namespace Indulged.Plugins.ProCam
 
                 Dispatcher.BeginInvoke(() =>
                 {
-                    NavigationService.Navigate(new Uri("/Plugins/ProFX/ImageProcessingPage.xaml", UriKind.Relative));
+                    if (uploadToSetId != null)
+                    {
+                        NavigationService.Navigate(new Uri("/Plugins/ProFX/ProFXPage.xaml?upload_to_set_id=" + uploadToSetId, UriKind.Relative));
+                    }
+                    else
+                    {
+                        NavigationService.Navigate(new Uri("/Plugins/ProFX/ProFXPage.xaml", UriKind.Relative));
+                    }
+                    
                     NavigationService.RemoveBackEntry();
                 });
             }

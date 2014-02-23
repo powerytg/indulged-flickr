@@ -1263,6 +1263,7 @@
     <Content Include="Assets\Common\ActionButton.png" />
     <Content Include="Assets\Common\add.png" />
     <Content Include="Assets\Common\AddComment.png" />
+    <Content Include="Assets\Common\BlueBackButton.png" />
     <Content Include="Assets\Common\cancel.png" />
     <Content Include="Assets\Common\check.png" />
     <Content Include="Assets\Common\Collection.png" />

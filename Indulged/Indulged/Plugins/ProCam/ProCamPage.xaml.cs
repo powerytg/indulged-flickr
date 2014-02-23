@@ -20,6 +20,8 @@ namespace Indulged.Plugins.ProCam
         private BitmapImage FlashIconOn = new BitmapImage(new Uri("/Assets/ProCam/FlashOn.png", UriKind.Relative));
         private BitmapImage FlashIconOff = new BitmapImage(new Uri("/Assets/ProCam/FlashOff.png", UriKind.Relative));
 
+        private string uploadToSetId;
+
         // Constructor
         public ProCamPage()
         {
@@ -29,6 +31,12 @@ namespace Indulged.Plugins.ProCam
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
+
+            if (NavigationContext.QueryString.ContainsKey("upload_to_set_id"))
+            {
+                // Upload to the photo set after editing
+                uploadToSetId = NavigationContext.QueryString["upload_to_set_id"];
+            }
 
             // Show loading view until camera is initialized
             ShowLoadingView();

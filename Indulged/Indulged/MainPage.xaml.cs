@@ -48,10 +48,6 @@ namespace Indulged
         {
             base.OnNavigatedTo(e);
 
-            NavigationService.Navigate(new Uri("/Plugins/ProFX/ProFXPage.xaml", UriKind.Relative));
-            NavigationService.RemoveBackEntry();
-            return;
-
             Dashboard.OnNavigatedToPage();
 
             if (hasExecutedOnce && hasLoggedIn)

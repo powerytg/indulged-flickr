@@ -30,8 +30,16 @@ namespace Indulged.Plugins.ProFX
                 UploaderPage.UploadToPhotoSetId = NavigationContext.QueryString["upload_to_set_id"];
             }
 
-            originalImage = new BitmapImage(new Uri("/Assets/ProCam/TestImage.jpg", UriKind.Relative));
-            originalImage.CreateOptions = BitmapCreateOptions.None;
+            if (PhoneApplicationService.Current.State.ContainsKey("ChosenPhoto"))
+            {
+                originalImage = PhoneApplicationService.Current.State["ChosenPhoto"] as BitmapImage;
+            }
+            else
+            {
+                // Test Mode Only!
+                originalImage = new BitmapImage(new Uri("/Assets/ProCam/TestImage.jpg", UriKind.Relative));
+                originalImage.CreateOptions = BitmapCreateOptions.None;
+            }            
 
             // Prepare for sampling
             ViewFinder.SizeChanged += OnViewFinderSizeChanged;

@@ -359,7 +359,15 @@ namespace Indulged.Plugins.ProCam
 
             Dispatcher.BeginInvoke(() =>
             {
-                NavigationService.Navigate(new Uri("/Plugins/ProFX/ImageProcessingPage.xaml", UriKind.Relative));
+                if (uploadToSetId != null)
+                {
+                    NavigationService.Navigate(new Uri("/Plugins/ProFX/ProFXPage.xaml?upload_to_set_id=" + uploadToSetId, UriKind.Relative));
+                }
+                else
+                {
+                    NavigationService.Navigate(new Uri("/Plugins/ProFX/ProFXPage.xaml", UriKind.Relative));
+                }
+                
                 NavigationService.RemoveBackEntry();
             });
         }
