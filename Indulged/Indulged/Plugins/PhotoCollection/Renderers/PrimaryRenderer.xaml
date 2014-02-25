@@ -110,7 +110,8 @@
             <!--Upper toolbar-->
             <StackPanel Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Right">
                 <Button x:Name="ChangePrimaryButton"  Margin="0, 0, 20, 0" 
-                                      Background="#3d3b6b" Style="{StaticResource RoundedButtonStyle}">
+                        Background="#3d3b6b" Style="{StaticResource RoundedButtonStyle}"
+                        Click="ChangePrimaryButton_Click">
                     <Button.Content>
                         <StackPanel Orientation="Horizontal">
                             <Image Source="/Assets/PhotoCollection/PhotoSetCoverButton.png" Margin="0, 0, 12, 0"

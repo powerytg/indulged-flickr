@@ -17,6 +17,8 @@ namespace Indulged.Plugins.PhotoCollection
         public static EventHandler RequestAddPhotoDialog;
         public static EventHandler RequestCamera;
         public static EventHandler RequestUpload;
+        public static EventHandler RequestChangePrimaryPhoto;
+        public static EventHandler RequestEditProperties;
 
         private void InitializeEventListeners()
         {
@@ -29,6 +31,8 @@ namespace Indulged.Plugins.PhotoCollection
             RequestAddPhotoDialog += OnRequestAddPhotoDialog;
             RequestCamera += OnCameraRequested;
             RequestUpload += OnUploadRequested;
+            RequestChangePrimaryPhoto += OnChangePrimaryPhotoRequested;
+            RequestEditProperties += OnEditPropertiesRequested;
         }
 
         private void RemoveEventListeners()
@@ -41,6 +45,8 @@ namespace Indulged.Plugins.PhotoCollection
 
             RequestAddPhotoDialog -= OnRequestAddPhotoDialog;
             RequestCamera -= OnCameraRequested;
+            RequestChangePrimaryPhoto -= OnChangePrimaryPhotoRequested;
+            RequestEditProperties -= OnEditPropertiesRequested;
         }
 
         private void RefreshPhotoListButton_Click(object sender, EventArgs e)
@@ -60,6 +66,42 @@ namespace Indulged.Plugins.PhotoCollection
         {
             NavigationService.Navigate(new Uri("/Plugins/ProCam/ImagePickerPage.xaml?is_from_library=true&upload_to_set_id=" + PhotoSetSource.ResourceId, UriKind.Relative));
         }
+
+        #region Edit set properties
+
+        private void OnEditPropertiesRequested(object sender, EventArgs e)
+        {
+        }
+
+        #endregion
+
+        #region Change primary photo
+
+        private PhotoSetPrimaryChooserView primaryChooserView;
+        private void OnChangePrimaryPhotoRequested(object sender, EventArgs e)
+        {
+            ShowPrimaryPhotoChooserDialog();
+        }
+
+        private void ShowPrimaryPhotoChooserDialog()
+        {
+            primaryChooserView = new PhotoSetPrimaryChooserView(PhotoSetSource);
+            var dialog = ModalPopup.Show(primaryChooserView, "Choose Cover Photo", new List<string> { "Done" });
+            dialog.DismissWithButtonClick += (s, args) =>
+            {
+                primaryChooserView = null;
+
+                // Re-render all the items since the primary photo may have changed
+                PhotoCollection.Clear();
+                var newGroups = rendererFactory.GeneratePhotoGroupsWithHeadline(PhotoSetSource.Photos, PhotoSetSource.PrimaryPhoto);
+                foreach (var group in newGroups)
+                {
+                    PhotoCollection.Add(group);
+                }
+            };
+        }
+
+        #endregion
 
         #region Add Photos
 

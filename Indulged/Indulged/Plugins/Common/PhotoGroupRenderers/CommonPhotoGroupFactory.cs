@@ -63,22 +63,27 @@ namespace Indulged.Plugins.Common.PhotoGroupRenderers
             return result;
         }
 
-        public List<PhotoGroup> GeneratePhotoGroupsWithHeadline(List<Photo> photos)
+        public List<PhotoGroup> GeneratePhotoGroupsWithHeadline(List<Photo> photos, Photo headlinePhoto = null)
         {
             if (photos.Count == 0)
             {
                 return new List<PhotoGroup>();
             }
 
+            if (headlinePhoto == null)
+            {
+                headlinePhoto = photos[0];
+            }            
+
             List<PhotoGroup> results = new List<PhotoGroup>();
-            PhotoGroup headlineGroup = GenerateHeadlinePhotoGroup(photos[0]);
+            PhotoGroup headlineGroup = GenerateHeadlinePhotoGroup(headlinePhoto);
             results.Add(headlineGroup);
 
             if (photos.Count > 1)
             {
                 List<Photo> otherPhotos = new List<Photo>();
                 otherPhotos.AddRange(photos);
-                otherPhotos.RemoveAt(0);
+                otherPhotos.Remove(headlinePhoto);
 
                 List<PhotoGroup> groups = GeneratePhotoGroups(otherPhotos);
                 results.AddRange(groups);

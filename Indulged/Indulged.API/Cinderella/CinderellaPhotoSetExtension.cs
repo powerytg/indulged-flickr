@@ -135,6 +135,7 @@ namespace Indulged.API.Cinderella
         {
             PhotoSet photoSet = PhotoSetCache[e.SetId];
             photoSet.Primary = e.PhotoId;
+            photoSet.PrimaryPhoto = PhotoCache[photoSet.Primary];
 
             PhotoSetPrimaryUpdatedEventArgs evt = new PhotoSetPrimaryUpdatedEventArgs();
             evt.PhotoSetId = e.SetId;

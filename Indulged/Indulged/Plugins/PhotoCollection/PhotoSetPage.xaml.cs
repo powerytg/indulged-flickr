@@ -78,7 +78,7 @@ namespace Indulged.Plugins.PhotoCollection
             // Initial items
             if (PhotoSetSource.Photos.Count > 0)
             {
-                var exsitsingGroups = rendererFactory.GeneratePhotoGroupsWithHeadline(PhotoSetSource.Photos);
+                var exsitsingGroups = rendererFactory.GeneratePhotoGroupsWithHeadline(PhotoSetSource.Photos, PhotoSetSource.PrimaryPhoto);
                 foreach (var group in exsitsingGroups)
                 {
                     PhotoCollection.Add(group);
@@ -150,7 +150,7 @@ namespace Indulged.Plugins.PhotoCollection
                     }
                     else
                     {
-                        newGroups = rendererFactory.GeneratePhotoGroupsWithHeadline(e.NewPhotos);
+                        newGroups = rendererFactory.GeneratePhotoGroupsWithHeadline(e.NewPhotos, PhotoSetSource.PrimaryPhoto);
                     }
 
                     foreach (var group in newGroups)

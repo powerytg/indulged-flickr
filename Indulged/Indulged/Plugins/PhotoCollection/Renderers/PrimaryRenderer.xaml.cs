@@ -42,7 +42,7 @@ namespace Indulged.Plugins.PhotoCollection.Renderers
                 DescView.Text = "No description available. You can tap on the edit description button to add content.";
             }
 
-            ImageView.Source = new BitmapImage { UriSource = new Uri(photoset.Photos[0].GetImageUrl()), DecodePixelWidth = 640 };
+            ImageView.Source = new BitmapImage { UriSource = new Uri(photoset.PrimaryPhoto.GetImageUrl()), DecodePixelWidth = 640 };
         }
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
@@ -58,6 +58,11 @@ namespace Indulged.Plugins.PhotoCollection.Renderers
         private void UploadButton_Click(object sender, RoutedEventArgs e)
         {
             PhotoSetPage.RequestUpload(this, null);
+        }
+
+        private void ChangePrimaryButton_Click(object sender, RoutedEventArgs e)
+        {
+            PhotoSetPage.RequestChangePrimaryPhoto(this, null);
         }
     }
 }
