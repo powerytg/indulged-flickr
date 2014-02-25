@@ -104,6 +104,20 @@ namespace Indulged.Plugins.PhotoCollection
             ApplicationBar = Resources["PhotoPageAppBar"] as ApplicationBar;
         }
 
+        // Capture back button
+        protected override void OnBackKeyPress(System.ComponentModel.CancelEventArgs e)
+        {
+            if (composerPopup != null)
+            {
+                e.Cancel = true;
+                DismissPropertyEditorView();
+            }
+            else
+            {
+                base.OnBackKeyPress(e);
+            }
+        }
+
         // Cannot load photo set photos
         private void OnPhotoStreamException(object sender, GetPhotoSetPhotosExceptionEventArgs e)
         {
@@ -181,7 +195,5 @@ namespace Indulged.Plugins.PhotoCollection
             }
         }
 
-
-        
     }
 }

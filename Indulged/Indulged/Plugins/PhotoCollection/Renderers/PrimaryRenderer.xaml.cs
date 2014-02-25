@@ -64,5 +64,20 @@ namespace Indulged.Plugins.PhotoCollection.Renderers
         {
             PhotoSetPage.RequestChangePrimaryPhoto(this, null);
         }
+
+        private void EditButton_Click(object sender, RoutedEventArgs e)
+        {
+            PhotoSetPage.RequestEditProperties(this, null);
+        }
+
+        private void EditDescriptionButton_Click(object sender, RoutedEventArgs e)
+        {
+            PhotoSetPage.RequestEditProperties(this, null);
+        }
+
+        private void DeleteButton_Click(object sender, RoutedEventArgs e)
+        {
+            PhotoSetPage.RequestDeletePhotoSet(this, null);
+        }
     }
 }

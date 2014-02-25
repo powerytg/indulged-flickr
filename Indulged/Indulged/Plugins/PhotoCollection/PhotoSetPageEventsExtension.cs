@@ -19,6 +19,7 @@ namespace Indulged.Plugins.PhotoCollection
         public static EventHandler RequestUpload;
         public static EventHandler RequestChangePrimaryPhoto;
         public static EventHandler RequestEditProperties;
+        public static EventHandler RequestDeletePhotoSet;
 
         private void InitializeEventListeners()
         {
@@ -33,6 +34,7 @@ namespace Indulged.Plugins.PhotoCollection
             RequestUpload += OnUploadRequested;
             RequestChangePrimaryPhoto += OnChangePrimaryPhotoRequested;
             RequestEditProperties += OnEditPropertiesRequested;
+            RequestDeletePhotoSet += OnDeletePhotoSetRequested;
         }
 
         private void RemoveEventListeners()
@@ -47,6 +49,7 @@ namespace Indulged.Plugins.PhotoCollection
             RequestCamera -= OnCameraRequested;
             RequestChangePrimaryPhoto -= OnChangePrimaryPhotoRequested;
             RequestEditProperties -= OnEditPropertiesRequested;
+            RequestDeletePhotoSet -= OnDeletePhotoSetRequested;
         }
 
         private void RefreshPhotoListButton_Click(object sender, EventArgs e)
@@ -67,10 +70,24 @@ namespace Indulged.Plugins.PhotoCollection
             NavigationService.Navigate(new Uri("/Plugins/ProCam/ImagePickerPage.xaml?is_from_library=true&upload_to_set_id=" + PhotoSetSource.ResourceId, UriKind.Relative));
         }
 
+        #region Delete photo set
+
+        private void OnDeletePhotoSetRequested(object sender, EventArgs e)
+        {
+            var dialog = ModalPopup.Show("Are you sure to delete this photo set?\n\nThis action cannot be undone", "Delete Set", new List<string> { AppResources.GenericConfirmText, AppResources.GenericCancelText });
+            dialog.DismissWithButtonClick += (s, args) =>
+            {
+                
+            };
+        }
+
+        #endregion
+
         #region Edit set properties
 
         private void OnEditPropertiesRequested(object sender, EventArgs e)
         {
+            ShowPropertyEditorView();
         }
 
         #endregion

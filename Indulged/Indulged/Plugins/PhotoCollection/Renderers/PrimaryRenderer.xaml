@@ -44,21 +44,18 @@
                            Grid.Column="0" TextAlignment="Right"/>
 
                 <!--Split line vertical-->
-                <Rectangle Width="2" Grid.Column="1" Margin="5">
+                <Rectangle Width="2" Grid.Column="1" Margin="8, 5, 8, 5">
                     <Rectangle.Fill>
                         <SolidColorBrush Color="White" Opacity="0.5"/>
                     </Rectangle.Fill>
                 </Rectangle>
                 
                 <!--Stat button-->
-                <StackPanel Orientation="Horizontal"
-                            Margin="0, 0, 5, 8" VerticalAlignment="Bottom" Grid.Column="2">
-                    <TextBlock x:Name="StatLabel" Text="items" 
+                <TextBlock x:Name="StatLabel" Text="items" 
                                        Foreground="#ffffff" Opacity="0.5" FontSize="14" FontWeight="Normal"
-                                       VerticalAlignment="Center" Margin="0, 0, 6, 0"/>
-                    <Image Source="/Assets/PhotoCollection/PhotoSetInfoSmall.png"
-                                   VerticalAlignment="Center" Width="18" Height="18"/>
-                </StackPanel>
+                                       Margin="0, 0, 8, 8"
+                                       VerticalAlignment="Bottom" Grid.Column="2"/>
+
             </Grid> 
         </Grid>
         
@@ -123,7 +120,8 @@
                 </Button>
 
                 <Button x:Name="EditDescriptionButton" Margin="0, 0, 20, 0"
-                        Background="#278153" Style="{StaticResource RoundedButtonStyle}">
+                        Background="#278153" Style="{StaticResource RoundedButtonStyle}"
+                        Click="EditDescriptionButton_Click">
                     <Button.Content>
                         <StackPanel Orientation="Horizontal">
                             <Image Source="/Assets/PhotoCollection/PhotoSetDescButton.png" Margin="0, 0, 12, 0"
@@ -175,7 +173,7 @@
 
                 <Button x:Name="EditButton"  Margin="0, 0, 20, 0" 
                         Background="#278153" Style="{StaticResource CircularButtonStyle}"
-                        Grid.Column="4" Width="55" Height="55">
+                        Grid.Column="4" Width="55" Height="55" Click="EditButton_Click">
                     <Button.Content>
                         <Image Source="/Assets/PhotoCollection/PhotoSetEditButton.png"/>
                     </Button.Content>
@@ -183,7 +181,7 @@
 
                 <Button x:Name="DeleteButton"  Margin="0, 0, 20, 0" 
                         Background="#278153" Style="{StaticResource CircularButtonStyle}"
-                        Grid.Column="5" Width="55" Height="55">
+                        Grid.Column="5" Width="55" Height="55" Click="DeleteButton_Click">
                     <Button.Content>
                         <Image Source="/Assets/PhotoCollection/PhotoSetDeleteButton.png"/>
                     </Button.Content>

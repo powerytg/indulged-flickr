@@ -61,7 +61,7 @@
                     <TextBlock Text="{Binding Path=LocalizedResources.TopicComposerBodyText, Source={StaticResource LocalizedStrings}}" Foreground="#cccccc" VerticalAlignment="Center"  FontSize="24"/>
                 </StackPanel>
 
-                <avarice:AvariceTextBox x:Name="DescTextBox" Grid.Row="1" 
+                <avarice:AvariceTextBox x:Name="DescTextBox" Grid.Row="1"
                                         AcceptsReturn="True"/>
             </Grid>
 

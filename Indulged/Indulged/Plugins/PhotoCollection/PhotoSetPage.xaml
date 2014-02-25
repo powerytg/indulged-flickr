@@ -26,6 +26,11 @@
                 <shell:ApplicationBarMenuItem Text="add photo" Click="AddPhotoButton_Click"/>
             </shell:ApplicationBar.MenuItems>
         </shell:ApplicationBar>
+
+        <shell:ApplicationBar x:Key="PropertyEditorrAppBar" IsVisible="True" IsMenuEnabled="False" Mode="Default" Opacity="1" >
+            <shell:ApplicationBarIconButton x:Name="ComfirmEditPropertyButton" IconUri="/Assets/Common/check.png" Text="Confirm" Click="ComfirmEditPropertyButton_Click"/>
+            <shell:ApplicationBarIconButton x:Name="CancelEditPropertyButton" IconUri="/Assets/Common/cancel.png" Text="Cancel" Click="CancelEditPropertyButton_Click"/>
+        </shell:ApplicationBar>
     </phone:PhoneApplicationPage.Resources>
 
 

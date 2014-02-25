@@ -380,6 +380,7 @@
     <Compile Include="Plugins\Login\SettingsPage.xaml.cs">
       <DependentUpon>SettingsPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Plugins\PhotoCollection\PhotoSetPropertiesEditorExtension.cs" />
     <Compile Include="Plugins\PhotoCollection\PhotoSetPrimaryChooserView.xaml.cs">
       <DependentUpon>PhotoSetPrimaryChooserView.xaml</DependentUpon>
     </Compile>
