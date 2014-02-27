@@ -4,10 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Indulged.Plugins.Chrome.Services
+namespace Indulged.Plugins.Chrome
 {
-    public class GlobalService
+    public enum Themes
     {
-        public static string AppVersion = "2.0";
+        Dark,
+        Light
+    };
+
+    class ChromeThemes
+    {
     }
 }

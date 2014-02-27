@@ -5,7 +5,7 @@
     <Language code="qps-ploc" />
     <Language code="zh-Hans" />
   </Languages>
-  <App xmlns="" ProductID="{d987655e-0122-436a-abe4-431da22cd511}" Title="Indulged" RuntimeType="Silverlight" Version="1.2.0.0" Genre="apps.normal" Author="Indulged author" Description="Indulged brings a most unique rich experience to Flickr. &#xD;&#xA;&#xD;&#xA;Designed by photographer for photographers, Indulged brings a beautifully designed user experience, more than 20 image filters, and most importanly, extensive Flickr supports. " Publisher="Indulged" PublisherID="{8eb7e57f-7e42-4e6e-b274-0896a7589555}">
+  <App xmlns="" ProductID="{d987655e-0122-436a-abe4-431da22cd511}" Title="Indulged" RuntimeType="Silverlight" Version="2.0.0.0" Genre="apps.normal" Author="Indulged author" Description="Indulged brings a most unique rich experience to Flickr. &#xD;&#xA;&#xD;&#xA;Designed by photographer for photographers, Indulged brings a beautifully designed user experience, more than 20 image filters, and most importanly, extensive Flickr supports. " Publisher="Indulged" PublisherID="{8eb7e57f-7e42-4e6e-b274-0896a7589555}">
     <IconPath IsRelative="true" IsResource="false">AppIcon.png</IconPath>
     <Capabilities>
       <Capability Name="ID_CAP_NETWORKING" />

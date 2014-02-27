@@ -6,6 +6,7 @@
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:fx="clr-namespace:Indulged.Plugins.ProFX.Controls"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
@@ -16,39 +17,61 @@
 
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Black">
-        <!--Background-->
-        <Image Source="/Assets/Login/LoginScreen.png" VerticalAlignment="Center"/>
         
         <!--Title-->
-        <Image Source="/Assets/Login/LoginTitle.png" HorizontalAlignment="left" VerticalAlignment="Top" 
+        <Image Source="/Assets/Login/LoginTitle.png" HorizontalAlignment="Center" VerticalAlignment="Top" 
                Margin="25, 25, 0, 0" Width="320"/>
         
         <!--Sign in button-->
-        <Button x:Name="SignInButton" Height="91" HorizontalAlignment="Center" VerticalAlignment="Center"
-                Margin="0,150,0,0" Style="{StaticResource BorderlessButtonStyle}" Click="SignInButton_Click" >
-            <Button.Content>
-                <Image Source="/Assets/Login/LoginButton.png"/>
-            </Button.Content>
-        </Button>
+        <StackPanel Orientation="Vertical"
+                    HorizontalAlignment="Center" VerticalAlignment="Center">
+
+            <fx:FXRingControl x:Name="SignInButton" Width="378" Height="378" 
+                                  Tap="SignInButton_Tap" />
+
+            <TextBlock Text="Tap to sign in"
+                       Foreground="#666666" FontSize="26" FontWeight="Light"
+                       VerticalAlignment="Center" HorizontalAlignment="Center" 
+                       Margin="0, 35, 0, 0" Tap="SignInButton_Tap"/>
+
+        </StackPanel>
         
         <!--Bottom bar-->
-        <Grid VerticalAlignment="Bottom" Margin="15">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
-            </Grid.ColumnDefinitions>
-            <TextBlock x:Name="LoginAboutLabel" Foreground="White" FontSize="18" FontWeight="Light"
-                       VerticalAlignment="Center" Grid.Column="0" />
+        <StackPanel VerticalAlignment="Bottom" Orientation="Vertical">
 
-            <Button x:Name="AboutButton" Content="{Binding Path=LocalizedResources.LoginAboutText, Source={StaticResource LocalizedStrings}}" FontSize="18" Grid.Column="2"
-                    Style="{StaticResource BorderlessButtonStyle}" Margin="0, 0, 20, 0" Click="AboutButton_Click"/>
+            <Rectangle Height="3" VerticalAlignment="Top">
+                <Rectangle.Fill>
+                    <LinearGradientBrush StartPoint="0, 0" EndPoint="1, 0">
+                        <GradientStop Color="#ff0049a3" Offset="0"/>
+                        <GradientStop Color="#ff1cbbb4" Offset="0.3"/>
+                        <GradientStop Color="#ff3cb878" Offset="0.5"/>
+                        <GradientStop Color="#ffc4df9b" Offset="1"/>
+                    </LinearGradientBrush>
+                </Rectangle.Fill>
+            </Rectangle>
 
-            <Button x:Name="SignInBottomButton" Content="{Binding Path=LocalizedResources.LoginSignInText, Source={StaticResource LocalizedStrings}}" FontSize="18" Grid.Column="3"
-                    Style="{StaticResource BorderlessButtonStyle}" Click="SignInButton_Click"/>
+            <Grid Margin="15">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
 
-        </Grid>
+                <TextBlock x:Name="LoginAboutLabel" 
+                       Foreground="#a9a9a9" FontSize="18" FontWeight="Light"
+                       VerticalAlignment="Center"
+                       Text="Footnote" Grid.Column="0"/>
+
+                <Button x:Name="AboutButton" Content="{Binding Path=LocalizedResources.LoginAboutText, Source={StaticResource LocalizedStrings}}" FontSize="18"
+                        Style="{StaticResource BorderlessButtonStyle}" 
+                        Grid.Column="1" Margin="0, 0, 20, 0" Click="AboutButton_Click"/>
+
+                <Button x:Name="SignInBottomButton" Content="{Binding Path=LocalizedResources.LoginSignInText, Source={StaticResource LocalizedStrings}}" FontSize="18"
+                        Style="{StaticResource BorderlessButtonStyle}" 
+                        Grid.Column="2" Click="SignInButton_Click"/>
+
+            </Grid>
+        </StackPanel>
         
         <!--Browser-->
         <Grid x:Name="BrowserView" Visibility="Collapsed" Background="White">

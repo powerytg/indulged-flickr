@@ -16,7 +16,10 @@ namespace Indulged.Plugins.ProFX.Controls
         public FXRingControl()
         {
             InitializeComponent();
+        }
 
+        public void ResetTransformCenter()
+        {
             Ring1Transform.CenterX = Width / 2;
             Ring1Transform.CenterY = Height / 2;
 

@@ -58,7 +58,7 @@ namespace Indulged.Plugins.PhotoCollection
             RequestDeletePhotoSet -= OnDeletePhotoSetRequested;
         }
 
-        private void RefreshPhotoListButton_Click(object sender, EventArgs e)
+        private void RefreshMenuButton_Click(object sender, EventArgs e)
         {
             SystemTray.ProgressIndicator.IsVisible = true;
             SystemTray.ProgressIndicator.Text = AppResources.GroupLoadingPhotosText;
@@ -66,9 +66,19 @@ namespace Indulged.Plugins.PhotoCollection
             Anaconda.AnacondaCore.GetPhotoSetPhotosAsync(PhotoSetSource.ResourceId, new Dictionary<string, string> { { "page", "1" }, { "per_page", Anaconda.DefaultItemsPerPage.ToString() } });
         }
 
+        private void CameraMenuButton_Click(object sender, EventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/Plugins/ProCam/ImagePickerPage.xaml?upload_to_set_id=" + PhotoSetSource.ResourceId, UriKind.Relative));
+        }
+
         private void OnCameraRequested(object sender, EventArgs e)
         {
             NavigationService.Navigate(new Uri("/Plugins/ProCam/ImagePickerPage.xaml?upload_to_set_id=" + PhotoSetSource.ResourceId, UriKind.Relative));
+        }
+
+        private void UploadMenuButton_Click(object sender, EventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/Plugins/ProCam/ImagePickerPage.xaml?is_from_library=true&upload_to_set_id=" + PhotoSetSource.ResourceId, UriKind.Relative));
         }
 
         private void OnUploadRequested(object sender, EventArgs e)
@@ -82,7 +92,17 @@ namespace Indulged.Plugins.PhotoCollection
         private ModalPopup deletePhotoSetDialog;
         private Indulged.API.Avarice.Controls.Button deletePhotoSetConfirmButton;
 
+        private void DeleteSetMenuButton_Click(object sender, EventArgs e)
+        {
+            ShowDeletePhotoSetConfirmDialog();
+        }
+
         private void OnDeletePhotoSetRequested(object sender, EventArgs e)
+        {
+            ShowDeletePhotoSetConfirmDialog();
+        }
+
+        private void ShowDeletePhotoSetConfirmDialog()
         {
             var dialog = ModalPopup.Show("Are you sure to delete this photo set?\n\nThis action cannot be undone", "Delete Set", new List<string> { AppResources.GenericConfirmText, AppResources.GenericCancelText });
             dialog.DismissWithButtonClick += (s, args) =>
@@ -144,6 +164,11 @@ namespace Indulged.Plugins.PhotoCollection
 
         #region Edit set properties
 
+        private void EditMenuButton_Click(object sender, EventArgs e)
+        {
+            ShowPropertyEditorView();
+        }
+
         private void OnEditPropertiesRequested(object sender, EventArgs e)
         {
             ShowPropertyEditorView();
@@ -189,7 +214,7 @@ namespace Indulged.Plugins.PhotoCollection
             ShowAddPhotoDialog();
         }
 
-        private void AddPhotoButton_Click(object sender, EventArgs e)
+        private void AddMenuButton_Click(object sender, EventArgs e)
         {
             ShowAddPhotoDialog();
         }

@@ -13,22 +13,11 @@
     <Grid x:Name="LayoutRoot" Margin="2,2,2,2">
         <Image x:Name="ImageView" Stretch="UniformToFill"/>
 
-        <!-- Stat bar -->
-        <Grid VerticalAlignment="Bottom">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="Auto"/>
-            </Grid.ColumnDefinitions>
-
-            <!-- Title view -->
-            <TextBlock x:Name="TitleLabel" 
+        <!-- Title view -->
+        <TextBlock x:Name="TitleLabel" 
                        TextTrimming="WordEllipsis"  TextWrapping="Wrap"
-                       Foreground="#ffffff" FontSize="24" TextAlignment="Left" 
-                       Grid.Column="0" Margin="5, 5, 15, 5" VerticalAlignment="Bottom" MaxHeight="90" />
+                       Foreground="#ffffff" FontSize="18" TextAlignment="Left" 
+                        Margin="5, 5, 15, 5" VerticalAlignment="Bottom" MaxHeight="90" />
 
-            <!-- Stat view -->
-            <renderer:PhotoRendererStatView x:Name="StatView"
-                                            Grid.Column="1" Margin="0, 5, 5, 5" VerticalAlignment="Bottom"/>
-        </Grid>        
     </Grid>
 </renderer:PhotoRendererBase>

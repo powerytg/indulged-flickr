@@ -26,17 +26,7 @@ namespace Indulged.Plugins.Common.PhotoRenderers
             {
                 TitleLabel.Visibility = Visibility.Collapsed;
             }
-            
-            if (PhotoSource.CommentCount > 0 || PhotoSource.ViewCount > 0)
-            {
-                StatView.PhotoSource = PhotoSource;
-                StatView.Visibility = Visibility.Visible;
-            }
-            else
-            {
-                StatView.Visibility = Visibility.Collapsed;
-            }
-
+                        
         }
 
     }

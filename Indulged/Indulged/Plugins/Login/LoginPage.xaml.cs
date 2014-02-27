@@ -42,10 +42,14 @@ namespace Indulged.Plugins.Login
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
+            SignInButton.ResetTransformCenter();
+            SignInButton.Play();
         }
 
         protected override void OnRemovedFromJournal(JournalEntryRemovedEventArgs e)
         {
+            SignInButton.Stop();
+
             Anaconda.AnacondaCore.RequestTokenGranted -= requestTokenGranted;
             Anaconda.AnacondaCore.AccessTokenGranted -= accessTokenGranted;
             Anaconda.AnacondaCore.AccessTokenFailed -= accessTokenFailed;
@@ -185,11 +189,6 @@ namespace Indulged.Plugins.Login
             });
         }
 
-        private void SignInButton_Click(object sender, RoutedEventArgs e)
-        {
-            ShowBrowserView();
-        }
-
         private void BrowserBackButton_Click(object sender, RoutedEventArgs e)
         {
             HideBrowserView();
@@ -204,6 +203,16 @@ namespace Indulged.Plugins.Login
         private void Browser_LoadCompleted(object sender, NavigationEventArgs e)
         {
             LoadingProgressView.Visibility = Visibility.Collapsed;
+        }
+
+        private void SignInButton_Click(object sender, RoutedEventArgs e)
+        {
+            ShowBrowserView();
+        }
+
+        private void SignInButton_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            ShowBrowserView();
         }
 
     }

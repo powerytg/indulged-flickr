@@ -43,16 +43,6 @@
                        HorizontalAlignment="Left" TextWrapping="Wrap"/>
                 <toolkit:ToggleSwitch x:Name="BlurBackgroundSwitch" Content="{Binding Path=LocalizedResources.SettingsBlurBackgroundText, Source={StaticResource LocalizedStrings}}" Checked="BlurBackgroundSwitch_Checked" Unchecked="BlurBackgroundSwitch_Unchecked"/>
 
-                <!--ProFX settings-->
-                <TextBlock Style="{StaticResource PhoneTextTitle2Style}" Text="{Binding Path=LocalizedResources.SettingsProFXHeaderText, Source={StaticResource LocalizedStrings}}" HorizontalAlignment="Left" Margin="0, 20, 0, 0"/>
-                <TextBlock Style="{StaticResource PhoneTextSubtleStyle}" 
-                           Text="{Binding Path=LocalizedResources.SettingsProFXDescText, Source={StaticResource LocalizedStrings}}" 
-                       HorizontalAlignment="Left" TextWrapping="Wrap"/>
-                <toolkit:ListPicker x:Name="FXBackgroundPicker" SelectionChanged="FXBackgroundPicker_SelectionChanged">
-                    <toolkit:ListPickerItem Content="{Binding Path=LocalizedResources.SettingsProFXDarkText, Source={StaticResource LocalizedStrings}}"/>
-                    <toolkit:ListPickerItem Content="{Binding Path=LocalizedResources.SettingsProFXLightText, Source={StaticResource LocalizedStrings}}"/>
-                </toolkit:ListPicker>
-
                 <!--Violet settings-->
                 <TextBlock Style="{StaticResource PhoneTextTitle2Style}" Text="{Binding Path=LocalizedResources.SettingsSubscriptionHeaderText, Source={StaticResource LocalizedStrings}}" HorizontalAlignment="Left" Margin="0, 20, 0, 0"/>
                 <TextBlock Style="{StaticResource PhoneTextSubtleStyle}" 

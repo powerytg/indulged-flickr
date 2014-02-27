@@ -107,13 +107,12 @@
     <Compile Include="Plugins\Chrome\BitmapBackgroundView.xaml.cs">
       <DependentUpon>BitmapBackgroundView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Plugins\Chrome\ChromeThemes.cs" />
     <Compile Include="Plugins\Chrome\PhotoBackgroundView.xaml.cs">
       <DependentUpon>PhotoBackgroundView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Plugins\Chrome\Events\ThemeChangedEventArgs.cs" />
     <Compile Include="Plugins\Chrome\Services\GlobalService.cs" />
     <Compile Include="Plugins\Chrome\Services\LiveTileImageDownloadService.cs" />
-    <Compile Include="Plugins\Chrome\ThemeManager.cs" />
     <Compile Include="Plugins\Chrome\TitleView.xaml.cs">
       <DependentUpon>TitleView.xaml</DependentUpon>
     </Compile>
