@@ -380,6 +380,9 @@
     <Compile Include="Plugins\Login\SettingsPage.xaml.cs">
       <DependentUpon>SettingsPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Plugins\PhotoCollection\DeletePhotoSetView.xaml.cs">
+      <DependentUpon>DeletePhotoSetView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Plugins\PhotoCollection\PhotoSetPropertiesEditorExtension.cs" />
     <Compile Include="Plugins\PhotoCollection\PhotoSetPrimaryChooserView.xaml.cs">
       <DependentUpon>PhotoSetPrimaryChooserView.xaml</DependentUpon>
@@ -951,6 +954,10 @@
     <Page Include="Plugins\Login\SettingsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Plugins\PhotoCollection\DeletePhotoSetView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Plugins\PhotoCollection\PhotoSetPrimaryChooserView.xaml">
       <Generator>MSBuild:Compile</Generator>

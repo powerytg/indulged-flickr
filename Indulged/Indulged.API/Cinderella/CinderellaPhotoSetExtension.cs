@@ -142,5 +142,20 @@ namespace Indulged.API.Cinderella
             PhotoSetPrimaryChanged.DispatchEvent(this, evt);
         }
 
+        private void OnPhotoSetDeleted(object sender, DeletePhotoSetEventArgs e)
+        {
+            PhotoSet photoSet = PhotoSetCache[e.SetId];
+            PhotoSetCache.Remove(e.SetId);
+            PhotoSetList.Remove(photoSet);
+
+            photoSet = null;
+
+            // Dispatch event
+            PhotoSetListUpdatedEventArgs args = new PhotoSetListUpdatedEventArgs();
+            args.UserId = CurrentUser.ResourceId;
+            PhotoSetListUpdated.DispatchEvent(this, args);
+
+        }
+
     }
 }

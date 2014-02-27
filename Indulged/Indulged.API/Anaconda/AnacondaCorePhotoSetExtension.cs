@@ -425,5 +425,72 @@ namespace Indulged.API.Anaconda
                     PhotoSetEditException.DispatchEvent(this, exceptionArgs);
                 });
         }
+
+        public void DeletePhotoSetAsync(string setId)
+        {
+            string timestamp = DateTimeUtils.GetTimestamp();
+            string nonce = Guid.NewGuid().ToString().Replace("-", null);
+
+            Dictionary<string, string> paramDict = new Dictionary<string, string>();
+            paramDict["method"] = "flickr.photosets.delete";
+            paramDict["format"] = "json";
+            paramDict["nojsoncallback"] = "1";
+            paramDict["oauth_consumer_key"] = consumerKey;
+            paramDict["oauth_nonce"] = nonce;
+            paramDict["oauth_signature_method"] = "HMAC-SHA1";
+            paramDict["oauth_timestamp"] = timestamp;
+            paramDict["oauth_token"] = AccessToken;
+            paramDict["oauth_version"] = "1.0";
+            paramDict["photoset_id"] = setId;
+
+            string signature = OAuthCalculateSignature("POST", "http://api.flickr.com/services/rest/", paramDict, AccessTokenSecret);
+            paramDict["oauth_signature"] = signature;
+
+            DispatchPostRequest("POST", "http://api.flickr.com/services/rest/", paramDict,
+                (response) =>
+                {
+                    bool success = true;
+                    string errorMessage = "";
+
+                    try
+                    {
+                        JObject json = JObject.Parse(response);
+                        string status = json["stat"].ToString();
+                        if (status != "ok")
+                        {
+                            success = false;
+                            errorMessage = json["message"].ToString();
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        Debug.WriteLine(e.Message);
+
+                        success = false;
+                    }
+
+                    if (!success)
+                    {
+                        DeletePhotoSetExceptionEventArgs exceptionArgs = new DeletePhotoSetExceptionEventArgs();
+                        exceptionArgs.SetId = setId;
+                        exceptionArgs.ErrorMessage = errorMessage;
+                        PhotoSetDeleteException.DispatchEvent(this, exceptionArgs);
+                    }
+                    else
+                    {
+                        DeletePhotoSetEventArgs args = new DeletePhotoSetEventArgs();
+                        args.SetId = setId;
+                        PhotoSetDeleted.DispatchEvent(this, args);
+                    }
+
+
+                }, (ex) =>
+                {
+                    DeletePhotoSetExceptionEventArgs exceptionArgs = new DeletePhotoSetExceptionEventArgs();
+                    exceptionArgs.SetId = setId;
+                    exceptionArgs.ErrorMessage = "Unknown network error";
+                    PhotoSetDeleteException.DispatchEvent(this, exceptionArgs);
+                });
+        }
     }
 }

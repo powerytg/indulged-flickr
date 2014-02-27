@@ -1,4 +1,5 @@
 ﻿using Indulged.API.Anaconda;
+using Indulged.API.Anaconda.Events;
 using Indulged.API.Avarice.Controls;
 using Indulged.API.Cinderella;
 using Indulged.API.Cinderella.Events;
@@ -29,6 +30,9 @@ namespace Indulged.Plugins.PhotoCollection
             Cinderella.CinderellaCore.AddPhotoToSetCompleted += OnPhotoAddedToSet;
             Cinderella.CinderellaCore.RemovePhotoFromSetCompleted += OnPhotoRemovedFromSet;
 
+            Anaconda.AnacondaCore.PhotoSetDeleted += OnPhotoSetDeleted;
+            Anaconda.AnacondaCore.PhotoSetDeleteException += OnPhotoSetDeleteException;
+
             RequestAddPhotoDialog += OnRequestAddPhotoDialog;
             RequestCamera += OnCameraRequested;
             RequestUpload += OnUploadRequested;
@@ -44,6 +48,8 @@ namespace Indulged.Plugins.PhotoCollection
             Cinderella.CinderellaCore.RemovePhotoFromSetCompleted -= OnPhotoRemovedFromSet;
 
             Anaconda.AnacondaCore.PhotoSetPhotosException -= OnPhotoStreamException;
+            Anaconda.AnacondaCore.PhotoSetDeleted -= OnPhotoSetDeleted;
+            Anaconda.AnacondaCore.PhotoSetDeleteException -= OnPhotoSetDeleteException;
 
             RequestAddPhotoDialog -= OnRequestAddPhotoDialog;
             RequestCamera -= OnCameraRequested;
@@ -72,13 +78,66 @@ namespace Indulged.Plugins.PhotoCollection
 
         #region Delete photo set
 
+        private DeletePhotoSetView deleteView;
+        private ModalPopup deletePhotoSetDialog;
+        private Indulged.API.Avarice.Controls.Button deletePhotoSetConfirmButton;
+
         private void OnDeletePhotoSetRequested(object sender, EventArgs e)
         {
             var dialog = ModalPopup.Show("Are you sure to delete this photo set?\n\nThis action cannot be undone", "Delete Set", new List<string> { AppResources.GenericConfirmText, AppResources.GenericCancelText });
             dialog.DismissWithButtonClick += (s, args) =>
             {
-                
+                if (args.ButtonIndex == 0)
+                {
+                    PerformDeletePhotoSet();
+                }
             };
+        }
+
+        private void PerformDeletePhotoSet()
+        {
+            deletePhotoSetConfirmButton = new Button();
+            deletePhotoSetConfirmButton.Content = AppResources.GenericConfirmText;
+            deletePhotoSetConfirmButton.IsEnabled = false;
+
+            deleteView = new DeletePhotoSetView();
+            deletePhotoSetDialog = ModalPopup.ShowWithButtons(deleteView, "Sending Request", new List<Button> { deletePhotoSetConfirmButton });
+            deletePhotoSetDialog.DismissWithButtonClick += (s, args) =>
+            {
+                deletePhotoSetDialog = null;
+                deleteView = null;
+                deletePhotoSetConfirmButton = null;
+
+                if (NavigationService.CanGoBack)
+                {
+                    NavigationService.GoBack();
+                    NavigationService.RemoveBackEntry();
+                }
+            };
+
+            Anaconda.AnacondaCore.DeletePhotoSetAsync(PhotoSetSource.ResourceId);
+        }
+
+        private void OnPhotoSetDeleted(object sender, DeletePhotoSetEventArgs e)
+        {
+            if (deletePhotoSetDialog == null || e.SetId != PhotoSetSource.ResourceId)
+            {
+                return;
+            }
+
+            deleteView.ShowCompleteMessage("Complete. Please click on the confirm button to go back");
+            deletePhotoSetConfirmButton.IsEnabled = true;
+        }
+
+        private void OnPhotoSetDeleteException(object sender, DeletePhotoSetExceptionEventArgs e)
+        {
+            if (deletePhotoSetDialog == null || e.SetId != PhotoSetSource.ResourceId)
+            {
+                return;
+            }
+
+            deleteView.ShowCompleteMessage("An error happened while attempting to delete this photo set. Please go back and retry");
+            deletePhotoSetConfirmButton.IsEnabled = true;
         }
 
         #endregion

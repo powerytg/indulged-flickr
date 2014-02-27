@@ -115,6 +115,8 @@
     <Compile Include="Anaconda\Events\AddPhotoToSetExceptionEventArgs.cs" />
     <Compile Include="Anaconda\Events\ChangePhotoSetPrimaryExceptionEventArgs.cs" />
     <Compile Include="Anaconda\Events\ChangePhotoSetPrimaryEventArgs.cs" />
+    <Compile Include="Anaconda\Events\DeletePhotoSetEventArgs.cs" />
+    <Compile Include="Anaconda\Events\DeletePhotoSetExceptionEventArgs.cs" />
     <Compile Include="Anaconda\Events\EditPhotoSetEventArgs.cs" />
     <Compile Include="Anaconda\Events\EditPhotoSetExceptionEventArgs.cs" />
     <Compile Include="Anaconda\Events\GetPhotoSetPhotosExceptionEventArgs.cs" />
