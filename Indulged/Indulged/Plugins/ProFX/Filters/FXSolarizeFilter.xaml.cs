@@ -18,12 +18,13 @@ namespace Indulged.Plugins.ProFX.Filters
         public FXSolarizeFilter()
         {
             InitializeComponent();
+            Category = FilterCategory.Effect;
 
             DisplayName = "solarize";
             StatusBarName = "Solarize";
         }
 
-        protected override void CreateFilter()
+        public override void CreateFilter()
         {
             Filter = FilterFactory.CreateSolarizeFilter(level);
         }

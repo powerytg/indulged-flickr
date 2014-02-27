@@ -21,9 +21,10 @@ namespace Indulged.Plugins.ProFX.Filters
 
             DisplayName = "cartoon";
             StatusBarName = "Cartoon";
+            Category = FilterCategory.Effect;
         }
 
-        protected override void CreateFilter()
+        public override void CreateFilter()
         {
             Filter = FilterFactory.CreateCartoonFilter(shouldTraceEdge);
         }

@@ -37,7 +37,7 @@
                        MaxHeight="160" />
             <TextBlock x:Name="DescriptionLabel" TextWrapping="Wrap" TextTrimming="WordEllipsis" TextAlignment="Left"
                        HorizontalAlignment="Left"
-                       Foreground="#3c4449" FontSize="26" FontFamily="/Assets/Fonts/BenchNine-Regular.ttf#BenchNine"
+                       Foreground="#3c4449" FontSize="26"
                        Margin="8,4,8,8" MaxHeight="200" />
 
         </StackPanel>

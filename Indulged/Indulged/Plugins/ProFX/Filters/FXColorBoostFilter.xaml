@@ -10,21 +10,16 @@
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
-    d:DesignHeight="480" d:DesignWidth="480" Height="200">
+    d:DesignHeight="480" d:DesignWidth="480" Height="120">
     
     <local:FilterBase.RenderTransform>
         <CompositeTransform />
     </local:FilterBase.RenderTransform>
 
-    <Grid x:Name="LayoutRoot">
-        <fx:FilterBackground/>
-        
-        <StackPanel Margin="14, 40, 14, 14">
-            <TextBlock Style="{StaticResource FXSectionTextStyle}" Text="Vibrance" HorizontalAlignment="Left"/>
-            <Slider x:Name="AmountSlider" Minimum="-1" Maximum="20" Value="0" ValueChanged="AmountSlider_ValueChanged" Margin="0, 0, 0, 40" Padding="0"
+    <StackPanel x:Name="LayoutRoot" Margin="14">
+        <TextBlock Style="{StaticResource FXSectionTextStyle}" Text="Vibrance" HorizontalAlignment="Left"/>
+        <Slider x:Name="AmountSlider" Minimum="-1" Maximum="20" Value="0" ValueChanged="AmountSlider_ValueChanged" Margin="0, 0, 0, 40" Padding="0"
                     Foreground="#6d87f6" Style="{StaticResource FXSliderStyle}"/>
-        </StackPanel>
-
-    </Grid>
+    </StackPanel>
 
 </local:FilterBase>

@@ -8,12 +8,37 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 using Windows.Storage.Streams;
-using Indulged.Plugins.ProFX.Events;
 
 namespace Indulged.Plugins.ProFX.Filters
 {
+    public enum FilterCategory 
+    {
+        Color,
+        Transform,
+        Effect,
+        Enhancement
+    };
+
     public class FilterBase : UserControl
     {
+        // Events
+        public EventHandler FilterWillBeRemoved;
+        public EventHandler InvalidatePreview;
+
+        private bool _isFilterEnabled = true;
+        public bool IsFilterEnabled 
+        {
+            get
+            {
+                return _isFilterEnabled;
+            }
+
+            set
+            {
+                _isFilterEnabled = value;
+            }
+        }
+
         // Buffer
         public IBuffer Buffer { get; set; }
 
@@ -26,6 +51,8 @@ namespace Indulged.Plugins.ProFX.Filters
 
         public string DisplayName { get; set; }
         public string StatusBarName { get; set; }
+
+        public FilterCategory Category { get; set; }
 
         public virtual bool hasEditorUI 
         {
@@ -47,7 +74,7 @@ namespace Indulged.Plugins.ProFX.Filters
             }
         }
 
-        protected virtual void CreateFilter()
+        public virtual void CreateFilter()
         {
             // Do nothing
         }
@@ -64,52 +91,31 @@ namespace Indulged.Plugins.ProFX.Filters
 
         public void OnDeleteFilter(object sender, RoutedEventArgs e)
         {
-            DeleteFilterAsync();
+            DeleteFilter();
         }
 
-        public virtual async void DeleteFilterAsync()
+        protected virtual void DeleteFilter()
         {
-            using (EditingSession session = new EditingSession(Buffer))
+            if (FilterWillBeRemoved != null)
             {
-                // Add all previous filters
-                foreach (FilterBase filterContainer in ImageProcessingPage.AppliedFilters)
-                {
-                    if (filterContainer != this)
-                    {
-                        session.AddFilter(filterContainer.Filter);
-                    }
-                }
-
-                await session.RenderToWriteableBitmapAsync(CurrentImage, OutputOption.PreserveAspectRatio);
-                CurrentImage.Invalidate();
+                FilterWillBeRemoved(this, null);
             }
-
-            var evt = new DeleteFilterEventArgs();
-            evt.Filter = this;
-            ImageProcessingPage.RequestDeleteFilter(this, evt);
         }
 
-        protected async void UpdatePreviewAsync()
+        protected virtual void DeleteFilterAsync()
         {
-            using (EditingSession session = new EditingSession(Buffer))
-            {
-                CreateFilter();
-
-                // Add all previous filters
-                foreach (FilterBase filterContainer in ImageProcessingPage.AppliedFilters)
-                {
-                    if (filterContainer.Filter != this.Filter)
-                    {
-                        session.AddFilter(filterContainer.Filter);
-                    }
-                }
-
-                session.AddFilter(Filter);
-                await session.RenderToWriteableBitmapAsync(CurrentImage, OutputOption.PreserveAspectRatio);
-                CurrentImage.Invalidate();
-            }
-
-
+            DeleteFilter();
         }
+
+        public virtual void UpdatePreviewAsync()
+        {
+            CreateFilter();
+
+            if (InvalidatePreview != null)
+            {
+                InvalidatePreview(this, null);
+            }
+        }
+
     }
 }

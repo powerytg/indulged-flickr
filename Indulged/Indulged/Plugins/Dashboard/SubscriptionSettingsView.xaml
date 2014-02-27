@@ -10,12 +10,15 @@
 
     <StackPanel x:Name="LayoutRoot" Orientation="Vertical">
         <RadioButton x:Name="MyStreamButton" Content="{Binding Path=LocalizedResources.SubscriptionMyPhotoStreamText, Source={StaticResource LocalizedStrings}}" 
-                     GroupName="SubscriptionGroup" Margin="20, 15, 20, 0" Style="{StaticResource FXRadioButtonStyle}"/>
+                     GroupName="SubscriptionGroup" VerticalAlignment="Center"
+                     Margin="20, 15, 20, 0" Style="{StaticResource FXRadioButtonStyle}"/>
         
         <RadioButton x:Name="FavouriteStreamButton" Content="{Binding Path=LocalizedResources.SubscriptionFavText, Source={StaticResource LocalizedStrings}}" 
-                     GroupName="SubscriptionGroup" Margin="20, 8, 20, 0" Style="{StaticResource FXRadioButtonStyle}"/>
+                     GroupName="SubscriptionGroup"  VerticalAlignment="Center"
+                     Margin="20, 8, 20, 0" Style="{StaticResource FXRadioButtonStyle}"/>
 
         <RadioButton x:Name="DiscoveryStreamButton" Content="{Binding Path=LocalizedResources.SubscriptionDiscoveryText, Source={StaticResource LocalizedStrings}}" 
-                     GroupName="SubscriptionGroup" Margin="20, 8, 20, 20" Style="{StaticResource FXRadioButtonStyle}"/>
+                     GroupName="SubscriptionGroup" VerticalAlignment="Center"
+                     Margin="20, 8, 20, 20" Style="{StaticResource FXRadioButtonStyle}"/>
     </StackPanel>
 </UserControl>

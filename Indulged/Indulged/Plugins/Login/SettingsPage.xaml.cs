@@ -30,11 +30,6 @@ namespace Indulged.Plugins.Login
             ProCamSwitch.IsChecked = PolicyKit.ShouldUseProCamera;
             BlurBackgroundSwitch.IsChecked = PolicyKit.ShouldUseBlurredBackground;
 
-            if (ThemeManager.CurrentTheme == Themes.Dark)
-                FXBackgroundPicker.SelectedIndex = 0;
-            else
-                FXBackgroundPicker.SelectedIndex = 1;
-
             if (PolicyKit.VioletPageSubscription == PolicyKit.MyStream)
                 VioletPicker.SelectedIndex = 0;
             else if (PolicyKit.VioletPageSubscription == PolicyKit.FavouriteStream)
@@ -42,20 +37,6 @@ namespace Indulged.Plugins.Login
             else if (PolicyKit.VioletPageSubscription == PolicyKit.DiscoveryStream)
                 VioletPicker.SelectedIndex = 2;
         }
-
-        protected override void OnBackKeyPress(System.ComponentModel.CancelEventArgs e)
-        {
-            if (ModalPopup.HasPopupHistory())
-            {
-                e.Cancel = true;
-                ModalPopup.RemoveLastPopup();
-            }
-            else
-            {
-                base.OnBackKeyPress(e);
-            }
-        }
-
 
         private void ProCamSwitch_Checked(object sender, RoutedEventArgs e)
         {
@@ -80,20 +61,7 @@ namespace Indulged.Plugins.Login
             PolicyKit.ShouldUseBlurredBackground = false;
             PolicyKit.SaveSettings();
         }
-
-        private void FXBackgroundPicker_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (FXBackgroundPicker == null)
-                return;
-
-            if (FXBackgroundPicker.SelectedIndex == 0)
-                ThemeManager.CurrentTheme = Themes.Dark;
-            else
-                ThemeManager.CurrentTheme = Themes.Light;
-
-            PolicyKit.SaveSettings();
-        }
-
+      
         private void VioletPicker_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (VioletPicker == null)

@@ -19,12 +19,13 @@ namespace Indulged.Plugins.ProFX.Filters
         public FXLevelFilter()
         {
             InitializeComponent();
+            Category = FilterCategory.Color;
 
             DisplayName = "levels";
             StatusBarName = "Levels";
         }
 
-        protected override void CreateFilter()
+        public override void CreateFilter()
         {
             if (shouldUseAutoLevel)
             {

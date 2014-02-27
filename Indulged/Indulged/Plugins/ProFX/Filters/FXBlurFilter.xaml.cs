@@ -23,9 +23,10 @@ namespace Indulged.Plugins.ProFX.Filters
             StatusBarName = "Blur";
 
             blurLevel = BlurLevel.Blur3;
+            Category = FilterCategory.Effect;
         }
 
-        protected override void CreateFilter()
+        public override void CreateFilter()
         {
             Filter = FilterFactory.CreateBlurFilter(blurLevel);
         }

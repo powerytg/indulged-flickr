@@ -1,0 +1,21 @@
+﻿<UserControl x:Class="Indulged.Plugins.Common.PhotoRenderers.PhotoRendererStatView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    d:DesignHeight="480" d:DesignWidth="480">
+
+    <StackPanel x:Name="LayoutRoot" Orientation="Horizontal">
+        <Image x:Name="ViewIcon" Source="/Assets/Common/View-Light.png" 
+               VerticalAlignment="Center"
+               Grid.Column="1" Width="11"
+               Margin="4,4,4,4"/>
+        <TextBlock x:Name="ViewLabel" Foreground="#ffffff" FontSize="18" VerticalAlignment="Center" Margin="12, 4, 4, 4" Grid.Column="2"/>
+
+    </StackPanel>
+
+</UserControl>

@@ -16,6 +16,7 @@ namespace Indulged.Plugins.ProFX.Filters
         public FXGrayscaleFilter()
         {
             InitializeComponent();
+            Category = FilterCategory.Color;
 
             DisplayName = "grayscale";
             StatusBarName = "Grayscale";
@@ -29,7 +30,7 @@ namespace Indulged.Plugins.ProFX.Filters
             }
         }
 
-        protected override void CreateFilter()
+        public override void CreateFilter()
         {
             Filter = FilterFactory.CreateGrayscaleFilter();
         }

@@ -13,19 +13,21 @@ namespace Indulged.Plugins.ProFX.Filters
 {
     public partial class FXRotationFilter : FilterBase
     {
-        private double degree = 0.0;
+        public double Degree { get; set; }
 
         public FXRotationFilter()
         {
             InitializeComponent();
+            Degree = 0.0;
+            Category = FilterCategory.Transform;
 
             DisplayName = "rotation";
             StatusBarName = "Rotate Image";
         }
 
-        protected override void CreateFilter()
+        public override void CreateFilter()
         {
-            Filter = FilterFactory.CreateFreeRotationFilter(degree, RotationResizeMode.FitInside);
+            Filter = FilterFactory.CreateFreeRotationFilter(Degree, RotationResizeMode.FitInside);
         }
 
         private void AmountSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
@@ -33,7 +35,7 @@ namespace Indulged.Plugins.ProFX.Filters
             if (AmountSlider == null)
                 return;
 
-            degree = AmountSlider.Value;
+            Degree = AmountSlider.Value;
             UpdatePreviewAsync();
         }
 

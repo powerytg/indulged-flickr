@@ -8,6 +8,7 @@ using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using Indulged.API.Cinderella.Models;
+using Indulged.API.Utils;
 using System.Windows.Media;
 
 namespace Indulged.Plugins.Common.Renderers
@@ -38,7 +39,7 @@ namespace Indulged.Plugins.Common.Renderers
             if (PhotoSource.ViewCount > 0)
             {
                 ViewIcon.Visibility = Visibility.Visible;
-                ViewLabel.Text = PhotoSource.ViewCount.ToString();
+                ViewLabel.Text = PhotoSource.ViewCount.ToShortString();
             }
             else
             {
@@ -53,5 +54,6 @@ namespace Indulged.Plugins.Common.Renderers
         {
             InitializeComponent();
         }
+        
     }
 }

@@ -17,8 +17,6 @@
     </local:FilterBase.RenderTransform>
 
     <Grid x:Name="LayoutRoot">
-        <fx:FilterBackground/>
-        
         <StackPanel Margin="14, 40, 14, 14">
             <TextBlock Style="{StaticResource FXSectionTextStyle}" Text="Degree" HorizontalAlignment="Left"/>
             <Slider x:Name="AmountSlider" Minimum="0" Maximum="360" Value="0" ValueChanged="AmountSlider_ValueChanged" Margin="0, 0, 0, 40" Padding="0"

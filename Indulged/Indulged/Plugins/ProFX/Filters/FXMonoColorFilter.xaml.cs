@@ -23,12 +23,13 @@ namespace Indulged.Plugins.ProFX.Filters
         public FXMonoColorFilter()
         {
             InitializeComponent();
+            Category = FilterCategory.Color;
 
-            DisplayName = "monochrome";
+            DisplayName = "mono";
             StatusBarName = "Mono Color";
         }
 
-        protected override void CreateFilter()
+        public override void CreateFilter()
         {
             Filter = FilterFactory.CreateMonoColorFilter(preservedColor, tolerance);
         }

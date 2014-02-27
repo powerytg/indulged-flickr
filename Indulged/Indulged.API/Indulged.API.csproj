@@ -113,6 +113,12 @@
     <Compile Include="Anaconda\Events\AddCommentExceptionEventArgs.cs" />
     <Compile Include="Anaconda\Events\AddPhotoToSetEventArgs.cs" />
     <Compile Include="Anaconda\Events\AddPhotoToSetExceptionEventArgs.cs" />
+    <Compile Include="Anaconda\Events\ChangePhotoSetPrimaryExceptionEventArgs.cs" />
+    <Compile Include="Anaconda\Events\ChangePhotoSetPrimaryEventArgs.cs" />
+    <Compile Include="Anaconda\Events\DeletePhotoSetEventArgs.cs" />
+    <Compile Include="Anaconda\Events\DeletePhotoSetExceptionEventArgs.cs" />
+    <Compile Include="Anaconda\Events\EditPhotoSetEventArgs.cs" />
+    <Compile Include="Anaconda\Events\EditPhotoSetExceptionEventArgs.cs" />
     <Compile Include="Anaconda\Events\GetPhotoSetPhotosExceptionEventArgs.cs" />
     <Compile Include="Anaconda\Events\GetGroupTopicsExceptionEventArgs.cs" />
     <Compile Include="Anaconda\Events\GetGroupPhotosExceptionEventArgs.cs" />
@@ -155,11 +161,10 @@
     <Compile Include="Anaconda\Events\UploadPhotoErrorEventArgs.cs" />
     <Compile Include="Anaconda\Events\UploadPhotoEventArgs.cs" />
     <Compile Include="Anaconda\Events\UploadProgressEventArgs.cs" />
-    <Compile Include="Anaconda\RemoveFavouriteExceptionEventArgs.cs" />
+    <Compile Include="Anaconda\Events\RemoveFavouriteExceptionEventArgs.cs" />
     <Compile Include="Avarice\Controls\AvariceTextBox.cs" />
     <Compile Include="Avarice\Controls\SupportClasses\IModalPopupContent.cs" />
     <Compile Include="Cinderella\Cinderella.cs" />
-    <Compile Include="Cinderella\CinderellaConstants.cs" />
     <Compile Include="Cinderella\CinderellaDiscoveryExtension.cs" />
     <Compile Include="Cinderella\CinderellaFavouriteExtension.cs" />
     <Compile Include="Cinderella\CinderellaGroupExtension.cs" />
@@ -176,6 +181,8 @@
     <Compile Include="Cinderella\Events\AddTopicReplyCompleteEventArgs.cs" />
     <Compile Include="Cinderella\Events\ContactListUpdatedEventArgs.cs" />
     <Compile Include="Cinderella\Events\AddPhotoToSetCompleteEventArgs.cs" />
+    <Compile Include="Cinderella\Events\PhotoSetPrimaryUpdatedEventArgs.cs" />
+    <Compile Include="Cinderella\Events\PhotoSetUpdatedEventArgs.cs" />
     <Compile Include="Cinderella\Events\RemovePhotoFromSetCompleteEventArgs.cs" />
     <Compile Include="Cinderella\Events\FavouriteStreamUpdatedEventArgs.cs" />
     <Compile Include="Cinderella\Events\DiscoveryStreamUpdatedEventArgs.cs" />
@@ -217,7 +224,6 @@
     <Compile Include="Cinderella\Models\PhotoActivityEventBase.cs" />
     <Compile Include="Cinderella\Models\PhotoActivityFaveEvent.cs" />
     <Compile Include="Cinderella\Models\PhotoComment.cs" />
-    <Compile Include="Cinderella\Models\PhotoGroup.cs" />
     <Compile Include="Cinderella\Models\PhotoSet.cs" />
     <Compile Include="Cinderella\Models\PhotoTag.cs" />
     <Compile Include="Cinderella\Models\Topic.cs" />

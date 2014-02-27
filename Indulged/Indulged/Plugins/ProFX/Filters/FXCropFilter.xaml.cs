@@ -23,11 +23,9 @@ namespace Indulged.Plugins.ProFX.Filters
         public FXCropFilter()
         {
             InitializeComponent();
+            Category = FilterCategory.Transform;
 
             DisplayName = "crop";
-
-            // Events
-            ImageProcessingPage.CropAreaChanged += OnCropAreaChanged;
         }
 
         public override bool hasEditorUI
@@ -52,7 +50,7 @@ namespace Indulged.Plugins.ProFX.Filters
             }
         }
 
-        protected override void CreateFilter()
+        public override void CreateFilter()
         {
             if (cropRect.Width == 0 || cropRect.Height == 0)
             {
@@ -64,51 +62,19 @@ namespace Indulged.Plugins.ProFX.Filters
             Filter = FilterFactory.CreateCropFilter(cropRect);
         }
 
-        public override async void DeleteFilterAsync()
+        override protected void DeleteFilter()
         {
             cropRect = new Windows.Foundation.Rect(0, 0, 0, 0);
-            using (EditingSession session = new EditingSession(Buffer))
-            {
-                // Add all previous filters
-                foreach (FilterBase filterContainer in ImageProcessingPage.AppliedFilters)
-                {
-                    if (filterContainer != this)
-                    {
-                        session.AddFilter(filterContainer.Filter);
-                    }
-                }
-
-                await session.RenderToWriteableBitmapAsync(CurrentImage, OutputOption.PreserveAspectRatio);
-                CurrentImage.Invalidate();
-            }
-
-            var evt = new DeleteFilterEventArgs();
-            evt.Filter = this;
-            ImageProcessingPage.RequestDeleteFilter(this, evt);
+            base.DeleteFilter();
         }
 
-        public override void OnFilterUIAdded()
-        {
-            // Show clipping UI
-            ImageProcessingPage.RequestCropView(this, null);
-        }
-
-        public override void OnFilterUIDismissed()
-        {
-            if(cropRect.Width != 0 && cropRect.Height != 0)
-                UpdatePreviewAsync();
-
-            ImageProcessingPage.RequestDismissCropView(this, null);
-
-        }
-
-        private void OnCropAreaChanged(object sender, CropAreaChangedEventArgs e)
+        public void UpdateCropRect(double x, double y, double w, double h)
         {
             // Translate coordinations
-            cropRect.X = e.X;
-            cropRect.Y = e.Y;
-            cropRect.Width = e.Width;
-            cropRect.Height = e.Height;
+            cropRect.X = x;
+            cropRect.Y = y;
+            cropRect.Width = w;
+            cropRect.Height = h;
         }
     }
 }

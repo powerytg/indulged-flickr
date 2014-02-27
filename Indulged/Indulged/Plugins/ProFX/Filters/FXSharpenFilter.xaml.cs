@@ -18,12 +18,13 @@ namespace Indulged.Plugins.ProFX.Filters
         public FXSharpenFilter()
         {
             InitializeComponent();
+            Category = FilterCategory.Enhancement;
 
             DisplayName = "sharpen";
             StatusBarName = "Sharpen Image";
         }
 
-        protected override void CreateFilter()
+        public override void CreateFilter()
         {
             Filter = FilterFactory.CreateSharpnessFilter(level);
         }

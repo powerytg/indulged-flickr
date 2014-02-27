@@ -8,6 +8,7 @@ using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using Indulged.API.Cinderella.Models;
+using Indulged.API.Utils;
 
 namespace Indulged.Plugins.Common.Renderers
 {
@@ -36,7 +37,7 @@ namespace Indulged.Plugins.Common.Renderers
         {
             if (PhotoSource.ViewCount > 0)
             {
-                ViewLabel.Text = PhotoSource.ViewCount.ToString();
+                ViewLabel.Text = PhotoSource.ViewCount.ToShortString();
             }
             else
             {

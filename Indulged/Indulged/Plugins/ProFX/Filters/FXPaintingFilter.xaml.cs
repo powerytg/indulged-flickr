@@ -18,12 +18,13 @@ namespace Indulged.Plugins.ProFX.Filters
         public FXPaintingFilter()
         {
             InitializeComponent();
+            Category = FilterCategory.Effect;
 
             DisplayName = "painting";
             StatusBarName = "Painting Effect";
         }
 
-        protected override void CreateFilter()
+        public override void CreateFilter()
         {
             Filter = FilterFactory.CreatePaintFilter(level);
         }

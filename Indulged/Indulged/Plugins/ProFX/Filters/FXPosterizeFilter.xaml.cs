@@ -18,12 +18,13 @@ namespace Indulged.Plugins.ProFX.Filters
         public FXPosterizeFilter()
         {
             InitializeComponent();
+            Category = FilterCategory.Effect;
 
             DisplayName = "posterize";
             StatusBarName = "Posterize";
         }
 
-        protected override void CreateFilter()
+        public override void CreateFilter()
         {
             Filter = FilterFactory.CreatePosterizeFilter(level);
         }

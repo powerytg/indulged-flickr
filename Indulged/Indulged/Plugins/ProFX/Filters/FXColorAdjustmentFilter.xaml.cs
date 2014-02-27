@@ -23,13 +23,14 @@ namespace Indulged.Plugins.ProFX.Filters
 
             DisplayName = "rgb";
             StatusBarName = "Adjust Color";
+            Category = FilterCategory.Color;
 
             redLevel = 0;
             greenLevel = 0;
             blueLevel = 0;
         }
 
-        protected override void CreateFilter()
+        public override void CreateFilter()
         {
             Filter = FilterFactory.CreateColorAdjustFilter(redLevel, greenLevel, blueLevel);
         }

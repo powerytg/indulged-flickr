@@ -21,6 +21,8 @@ namespace Indulged.Plugins.Group
 {
     public partial class GroupViewPhotoPage : UserControl
     {
+        private CommonPhotoGroupFactory rendererFactory;
+
         private FlickrGroup _group;
         public FlickrGroup Group 
         {
@@ -36,9 +38,12 @@ namespace Indulged.Plugins.Group
                 if (_group == null)
                     return;
 
+                rendererFactory.Context = Group.ResourceId;
+                rendererFactory.ContextType = "Group";
+
                 if (_group.Photos.Count > 0)
                 {
-                    List<PhotoGroup> photoGroups = CommonPhotoGroupFactory.GeneratePhotoGroup(_group.Photos, Group.ResourceId, "Group");
+                    List<PhotoGroup> photoGroups = rendererFactory.GeneratePhotoGroups(_group.Photos);
                     foreach (var group in photoGroups)
                     {
                         PhotoCollection.Add(group);
@@ -57,6 +62,7 @@ namespace Indulged.Plugins.Group
             InitializeComponent();
 
             // Initialize data providers
+            rendererFactory = new CommonPhotoGroupFactory();
             PhotoCollection = new ObservableCollection<PhotoGroup>();
             PhotoStreamListView.ItemsSource = PhotoCollection;
 
@@ -98,7 +104,7 @@ namespace Indulged.Plugins.Group
                 PhotoStreamListView.Visibility = Visibility.Visible;
 
                 Photo newPhoto = Cinderella.CinderellaCore.PhotoCache[e.PhotoId];
-                List<PhotoGroup> photoGroups = CommonPhotoGroupFactory.GeneratePhotoGroup(new List<Photo> { newPhoto }, Group.ResourceId, "Group");
+                List<PhotoGroup> photoGroups = rendererFactory.GeneratePhotoGroups(new List<Photo> { newPhoto });
                 foreach (var group in photoGroups)
                 {
                     PhotoCollection.Insert(0, group);
@@ -123,7 +129,7 @@ namespace Indulged.Plugins.Group
                 else
                 {
                     PhotoCollection.Clear();
-                    List<PhotoGroup> photoGroups = CommonPhotoGroupFactory.GeneratePhotoGroup(Group.Photos, Group.ResourceId, "Group");
+                    List<PhotoGroup> photoGroups = rendererFactory.GeneratePhotoGroups(Group.Photos);
                     foreach (var group in photoGroups)
                     {
                         PhotoCollection.Add(group);
@@ -170,7 +176,7 @@ namespace Indulged.Plugins.Group
                 if (e.Page == 1)
                     PhotoCollection.Clear();
 
-                List<PhotoGroup> newGroups = CommonPhotoGroupFactory.GeneratePhotoGroup(e.NewPhotos, Group.ResourceId, "Group");
+                List<PhotoGroup> newGroups = rendererFactory.GeneratePhotoGroups(e.NewPhotos);
                 foreach (var group in newGroups)
                 {
                     PhotoCollection.Add(group);

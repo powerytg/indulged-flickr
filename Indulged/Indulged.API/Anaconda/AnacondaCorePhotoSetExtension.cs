@@ -280,5 +280,217 @@ namespace Indulged.API.Anaconda
                     RemovePhotoFromSetException.DispatchEvent(this, exceptionArgs);
                 });
         }
+
+        public void ChangePhotoSetPrimaryPhotoAsync(string setId, string photoId)
+        {
+            string timestamp = DateTimeUtils.GetTimestamp();
+            string nonce = Guid.NewGuid().ToString().Replace("-", null);
+
+            Dictionary<string, string> paramDict = new Dictionary<string, string>();
+            paramDict["method"] = "flickr.photosets.setPrimaryPhoto";
+            paramDict["format"] = "json";
+            paramDict["nojsoncallback"] = "1";
+            paramDict["oauth_consumer_key"] = consumerKey;
+            paramDict["oauth_nonce"] = nonce;
+            paramDict["oauth_signature_method"] = "HMAC-SHA1";
+            paramDict["oauth_timestamp"] = timestamp;
+            paramDict["oauth_token"] = AccessToken;
+            paramDict["oauth_version"] = "1.0";
+            paramDict["photoset_id"] = setId;
+            paramDict["photo_id"] = photoId;
+
+            string signature = OAuthCalculateSignature("POST", "http://api.flickr.com/services/rest/", paramDict, AccessTokenSecret);
+            paramDict["oauth_signature"] = signature;
+
+            DispatchPostRequest("POST", "http://api.flickr.com/services/rest/", paramDict,
+                (response) =>
+                {
+                    bool success = true;
+                    string errorMessage = "";
+
+                    try
+                    {
+                        JObject json = JObject.Parse(response);
+                        string status = json["stat"].ToString();
+                        if (status != "ok")
+                        {
+                            success = false;
+                            errorMessage = json["message"].ToString();
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        Debug.WriteLine(e.Message);
+
+                        success = false;
+                    }
+
+                    if (!success)
+                    {
+                        ChangePhotoSetPrimaryExceptionEventArgs exceptionArgs = new ChangePhotoSetPrimaryExceptionEventArgs();
+                        exceptionArgs.PhotoId = photoId;
+                        exceptionArgs.SetId = setId;
+                        exceptionArgs.ErrorMessage = errorMessage;
+                        PhotoSetChangePrimaryException.DispatchEvent(this, exceptionArgs);
+                    }
+                    else
+                    {
+                        ChangePhotoSetPrimaryEventArgs args = new ChangePhotoSetPrimaryEventArgs();
+                        args.PhotoId = photoId;
+                        args.SetId = setId;
+                        PhotoSetChangedPrimary.DispatchEvent(this, args);
+                    }
+
+
+                }, (ex) =>
+                {
+                    ChangePhotoSetPrimaryExceptionEventArgs exceptionArgs = new ChangePhotoSetPrimaryExceptionEventArgs();
+                    exceptionArgs.PhotoId = photoId;
+                    exceptionArgs.SetId = setId;
+                    exceptionArgs.ErrorMessage = "Unknown network error";
+                    PhotoSetChangePrimaryException.DispatchEvent(this, exceptionArgs);
+                });
+        }
+
+        public void EditPhotoSetAsync(string setId, string title, string description = null)
+        {
+            string timestamp = DateTimeUtils.GetTimestamp();
+            string nonce = Guid.NewGuid().ToString().Replace("-", null);
+
+            Dictionary<string, string> paramDict = new Dictionary<string, string>();
+            paramDict["method"] = "flickr.photosets.editMeta";
+            paramDict["format"] = "json";
+            paramDict["nojsoncallback"] = "1";
+            paramDict["oauth_consumer_key"] = consumerKey;
+            paramDict["oauth_nonce"] = nonce;
+            paramDict["oauth_signature_method"] = "HMAC-SHA1";
+            paramDict["oauth_timestamp"] = timestamp;
+            paramDict["oauth_token"] = AccessToken;
+            paramDict["oauth_version"] = "1.0";
+            paramDict["photoset_id"] = setId;
+            paramDict["title"] = title;
+            if (description != null)
+            {
+                paramDict["description"] = description;
+            }
+
+            string signature = OAuthCalculateSignature("POST", "http://api.flickr.com/services/rest/", paramDict, AccessTokenSecret);
+            paramDict["oauth_signature"] = signature;
+
+            DispatchPostRequest("POST", "http://api.flickr.com/services/rest/", paramDict,
+                (response) =>
+                {
+                    bool success = true;
+                    string errorMessage = "";
+
+                    try
+                    {
+                        JObject json = JObject.Parse(response);
+                        string status = json["stat"].ToString();
+                        if (status != "ok")
+                        {
+                            success = false;
+                            errorMessage = json["message"].ToString();
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        Debug.WriteLine(e.Message);
+
+                        success = false;
+                    }
+
+                    if (!success)
+                    {
+                        EditPhotoSetExceptionEventArgs exceptionArgs = new EditPhotoSetExceptionEventArgs();
+                        exceptionArgs.SetId = setId;
+                        exceptionArgs.ErrorMessage = errorMessage;
+                        PhotoSetEditException.DispatchEvent(this, exceptionArgs);
+                    }
+                    else
+                    {
+                        EditPhotoSetEventArgs args = new EditPhotoSetEventArgs();
+                        args.SetId = setId;
+                        args.Title = title;
+                        args.Description = description;
+                        PhotoSetEdited.DispatchEvent(this, args);
+                    }
+
+
+                }, (ex) =>
+                {
+                    EditPhotoSetExceptionEventArgs exceptionArgs = new EditPhotoSetExceptionEventArgs();
+                    exceptionArgs.SetId = setId;
+                    exceptionArgs.ErrorMessage = "Unknown network error";
+                    PhotoSetEditException.DispatchEvent(this, exceptionArgs);
+                });
+        }
+
+        public void DeletePhotoSetAsync(string setId)
+        {
+            string timestamp = DateTimeUtils.GetTimestamp();
+            string nonce = Guid.NewGuid().ToString().Replace("-", null);
+
+            Dictionary<string, string> paramDict = new Dictionary<string, string>();
+            paramDict["method"] = "flickr.photosets.delete";
+            paramDict["format"] = "json";
+            paramDict["nojsoncallback"] = "1";
+            paramDict["oauth_consumer_key"] = consumerKey;
+            paramDict["oauth_nonce"] = nonce;
+            paramDict["oauth_signature_method"] = "HMAC-SHA1";
+            paramDict["oauth_timestamp"] = timestamp;
+            paramDict["oauth_token"] = AccessToken;
+            paramDict["oauth_version"] = "1.0";
+            paramDict["photoset_id"] = setId;
+
+            string signature = OAuthCalculateSignature("POST", "http://api.flickr.com/services/rest/", paramDict, AccessTokenSecret);
+            paramDict["oauth_signature"] = signature;
+
+            DispatchPostRequest("POST", "http://api.flickr.com/services/rest/", paramDict,
+                (response) =>
+                {
+                    bool success = true;
+                    string errorMessage = "";
+
+                    try
+                    {
+                        JObject json = JObject.Parse(response);
+                        string status = json["stat"].ToString();
+                        if (status != "ok")
+                        {
+                            success = false;
+                            errorMessage = json["message"].ToString();
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        Debug.WriteLine(e.Message);
+
+                        success = false;
+                    }
+
+                    if (!success)
+                    {
+                        DeletePhotoSetExceptionEventArgs exceptionArgs = new DeletePhotoSetExceptionEventArgs();
+                        exceptionArgs.SetId = setId;
+                        exceptionArgs.ErrorMessage = errorMessage;
+                        PhotoSetDeleteException.DispatchEvent(this, exceptionArgs);
+                    }
+                    else
+                    {
+                        DeletePhotoSetEventArgs args = new DeletePhotoSetEventArgs();
+                        args.SetId = setId;
+                        PhotoSetDeleted.DispatchEvent(this, args);
+                    }
+
+
+                }, (ex) =>
+                {
+                    DeletePhotoSetExceptionEventArgs exceptionArgs = new DeletePhotoSetExceptionEventArgs();
+                    exceptionArgs.SetId = setId;
+                    exceptionArgs.ErrorMessage = "Unknown network error";
+                    PhotoSetDeleteException.DispatchEvent(this, exceptionArgs);
+                });
+        }
     }
 }

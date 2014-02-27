@@ -14,7 +14,7 @@ namespace Indulged.Plugins.ProFX.Filters
     public partial class FXVignetteFilter : FilterBase
     {
         private Windows.UI.Color vinegetteColor = Windows.UI.Color.FromArgb(0xff, 0, 0, 0);
-        private double radius = 0.6;
+        private double radius = 0.4;
 
         public FXVignetteFilter()
         {
@@ -22,9 +22,11 @@ namespace Indulged.Plugins.ProFX.Filters
 
             DisplayName = "vignette";
             StatusBarName = "Vigenette";
+            Category = FilterCategory.Enhancement
+;
         }
 
-        protected override void CreateFilter()
+        public override void CreateFilter()
         {
             Filter = FilterFactory.CreateVignettingFilter(radius, vinegetteColor);
         }

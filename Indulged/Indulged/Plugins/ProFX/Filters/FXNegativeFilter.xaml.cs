@@ -16,6 +16,7 @@ namespace Indulged.Plugins.ProFX.Filters
         public FXNegativeFilter()
         {
             InitializeComponent();
+            Category = FilterCategory.Color;
 
             DisplayName = "invert";
             StatusBarName = "Invert Color";
@@ -29,7 +30,7 @@ namespace Indulged.Plugins.ProFX.Filters
             }
         }
 
-        protected override void CreateFilter()
+        public override void CreateFilter()
         {
             Filter = FilterFactory.CreateNegativeFilter();
         }

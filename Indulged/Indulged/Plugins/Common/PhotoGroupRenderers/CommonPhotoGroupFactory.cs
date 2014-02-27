@@ -9,16 +9,30 @@ namespace Indulged.Plugins.Common.PhotoGroupRenderers
 {
     public class CommonPhotoGroupFactory
     {
-        // Random generator
-        private static Random randomGenerator = new Random();
+        public string Context { get; set; }
+        public string ContextType { get; set; }
 
-        public static List<PhotoGroup> GeneratePhotoGroup(List<Photo> photos, string context = null, string contextType = null)
+        // Random generator
+        private Random randomGenerator = new Random();
+
+        public PhotoGroup GenerateHeadlinePhotoGroup(Photo photo)
+        {
+            PhotoGroup group = new PhotoGroup();
+            group.IsHeadline = true;
+            group.Photos = new List<Photo> { photo };
+            group.context = Context;
+            group.contextType = ContextType;
+
+            return group;
+        }
+
+        public List<PhotoGroup> GeneratePhotoGroups(List<Photo> photos)
         {
             List<PhotoGroup> result = new List<PhotoGroup>();
 
             // Randomly slice the photo into groups
             int min = 1;
-            int max = 6;
+            int max = 4;
             int position = 0;
 
             while (position < photos.Count)
@@ -33,7 +47,7 @@ namespace Indulged.Plugins.Common.PhotoGroupRenderers
                         group.Add(photos[i]);
                     }
 
-                    result.Add(new PhotoGroup(group, context, contextType));
+                    result.Add(new PhotoGroup(group, Context, ContextType));
                     break;
                 }
 
@@ -42,11 +56,40 @@ namespace Indulged.Plugins.Common.PhotoGroupRenderers
                     group.Add(photos[i]);
                 }
 
-                result.Add(new PhotoGroup(group, context, contextType));
+                result.Add(new PhotoGroup(group, Context, ContextType));
                 position += ranNum;
             }
 
             return result;
+        }
+
+        public List<PhotoGroup> GeneratePhotoGroupsWithHeadline(List<Photo> photos, Photo headlinePhoto = null)
+        {
+            if (photos.Count == 0)
+            {
+                return new List<PhotoGroup>();
+            }
+
+            if (headlinePhoto == null)
+            {
+                headlinePhoto = photos[0];
+            }            
+
+            List<PhotoGroup> results = new List<PhotoGroup>();
+            PhotoGroup headlineGroup = GenerateHeadlinePhotoGroup(headlinePhoto);
+            results.Add(headlineGroup);
+
+            if (photos.Count > 1)
+            {
+                List<Photo> otherPhotos = new List<Photo>();
+                otherPhotos.AddRange(photos);
+                otherPhotos.Remove(headlinePhoto);
+
+                List<PhotoGroup> groups = GeneratePhotoGroups(otherPhotos);
+                results.AddRange(groups);
+            }
+
+            return results;            
         }
     }
 }

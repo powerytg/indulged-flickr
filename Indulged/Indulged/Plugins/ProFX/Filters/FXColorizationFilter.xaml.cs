@@ -24,12 +24,13 @@ namespace Indulged.Plugins.ProFX.Filters
         public FXColorizationmentFilter()
         {
             InitializeComponent();
+            Category = FilterCategory.Color;
 
             DisplayName = "colorization";
             StatusBarName = "Colorization";
         }
 
-        protected override void CreateFilter()
+        public override void CreateFilter()
         {
             Filter = FilterFactory.CreateColorizationFilter(toneColor.R, toneColor.G, toneColor.B, luminance, chrominance);
         }

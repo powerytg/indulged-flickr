@@ -1,22 +1,17 @@
-﻿using System;
+﻿using Indulged.API.Anaconda;
+using Indulged.API.Anaconda.Events;
+using Indulged.API.Cinderella;
+using Indulged.API.Cinderella.Events;
+using Indulged.API.Cinderella.Models;
+using Indulged.Plugins.Chrome.Services;
+using Indulged.Plugins.Common.PhotoGroupRenderers;
+using Indulged.PolKit;
+using Microsoft.Phone.Controls;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Net;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Navigation;
-using Microsoft.Phone.Controls;
-using Microsoft.Phone.Shell;
-
-using Indulged.API.Anaconda;
-using Indulged.API.Cinderella;
-using Indulged.API.Cinderella.Models;
-using Indulged.API.Cinderella.Events;
-using Indulged.PolKit;
-using Indulged.Plugins.Dashboard.Events;
-using Indulged.API.Anaconda.Events;
-using Indulged.Plugins.Chrome.Services;
 
 namespace Indulged.Plugins.Dashboard
 {
@@ -49,6 +44,7 @@ namespace Indulged.Plugins.Dashboard
 
         // Photo data source
         public ObservableCollection<PhotoGroup> PhotoCollection { get; set; }
+        private CommonPhotoGroupFactory rendererFactory;
 
         // Constructor
         public VioletPage()
@@ -58,6 +54,8 @@ namespace Indulged.Plugins.Dashboard
             // Initialize data providers
             PhotoCollection = new ObservableCollection<PhotoGroup>();
             PhotoStreamListView.ItemsSource = PhotoCollection;
+            rendererFactory = new CommonPhotoGroupFactory();
+            rendererFactory.Context = PolicyKit.VioletPageSubscription;
 
             // Events
             PolicyKit.PolicyChanged += OnPolicyChanged;
@@ -94,7 +92,7 @@ namespace Indulged.Plugins.Dashboard
                 Photo newPhoto = Cinderella.CinderellaCore.PhotoCache[e.PhotoId];
                 List<Photo> newPhotos = new List<Photo> { newPhoto };
 
-                List<PhotoGroup> newGroups = VioletPhotoGroupFactory.GeneratePhotoGroup(newPhotos, PolicyKit.MyStream);
+                List<PhotoGroup> newGroups = rendererFactory.GeneratePhotoGroups(newPhotos);
                 PhotoCollection.Insert(0, newGroups[0]);
             });
         }
@@ -157,7 +155,16 @@ namespace Indulged.Plugins.Dashboard
                 if (e.NewPhotos.Count == 0)
                     return;
 
-                List<PhotoGroup> newGroups = VioletPhotoGroupFactory.GeneratePhotoGroup(e.NewPhotos, PolicyKit.MyStream);
+                List<PhotoGroup> newGroups = null;
+                if (PhotoCollection.Count >= 1 && PhotoCollection[0].IsHeadline)
+                {
+                    newGroups = rendererFactory.GeneratePhotoGroups(e.NewPhotos);
+                }
+                else
+                {
+                    newGroups = rendererFactory.GeneratePhotoGroupsWithHeadline(e.NewPhotos);
+                }
+
                 foreach (var group in newGroups)
                 {
                     PhotoCollection.Add(group);
@@ -210,8 +217,17 @@ namespace Indulged.Plugins.Dashboard
 
                 if (e.NewPhotos.Count == 0)
                     return;
-                
-                List<PhotoGroup> newGroups = VioletPhotoGroupFactory.GeneratePhotoGroup(e.NewPhotos, PolicyKit.DiscoveryStream);
+
+                List<PhotoGroup> newGroups = null;
+                if (PhotoCollection.Count >= 1 && PhotoCollection[0].IsHeadline)
+                {
+                    newGroups = rendererFactory.GeneratePhotoGroups(e.NewPhotos);
+                }
+                else
+                {
+                    newGroups = rendererFactory.GeneratePhotoGroupsWithHeadline(e.NewPhotos);
+                }
+
                 foreach (var group in newGroups)
                 {
                     PhotoCollection.Add(group);
@@ -266,7 +282,17 @@ namespace Indulged.Plugins.Dashboard
                 if (e.NewPhotos.Count == 0)
                     return;
 
-                List<PhotoGroup> newGroups = VioletPhotoGroupFactory.GeneratePhotoGroup(e.NewPhotos, PolicyKit.FavouriteStream);
+                // Need a headline renderer?
+                List<PhotoGroup> newGroups = null;
+                if (PhotoCollection.Count >= 1 && PhotoCollection[0].IsHeadline)
+                {
+                    newGroups = rendererFactory.GeneratePhotoGroups(e.NewPhotos);
+                }
+                else
+                {
+                    newGroups = rendererFactory.GeneratePhotoGroupsWithHeadline(e.NewPhotos);
+                }
+
                 foreach (var group in newGroups)
                 {
                     PhotoCollection.Add(group);
@@ -328,12 +354,15 @@ namespace Indulged.Plugins.Dashboard
         {
             PhotoCollection.Clear();
 
+            // Update renderer factory to use the new context
+            rendererFactory.Context = PolicyKit.VioletPageSubscription;
+
             User currentUser = Cinderella.CinderellaCore.CurrentUser;
             if (PolicyKit.VioletPageSubscription == PolicyKit.MyStream)
             {
                 if (currentUser.Photos.Count > 0)
                 {
-                    List<PhotoGroup> newGroups = VioletPhotoGroupFactory.GeneratePhotoGroup(currentUser.Photos);
+                    List<PhotoGroup> newGroups = rendererFactory.GeneratePhotoGroupsWithHeadline(currentUser.Photos);
                     foreach (var group in newGroups)
                     {
                         PhotoCollection.Add(group);
@@ -353,7 +382,7 @@ namespace Indulged.Plugins.Dashboard
             {
                 if (Cinderella.CinderellaCore.DiscoveryList.Count > 0)
                 {
-                    List<PhotoGroup> newGroups = VioletPhotoGroupFactory.GeneratePhotoGroup(Cinderella.CinderellaCore.DiscoveryList);
+                    List<PhotoGroup> newGroups = rendererFactory.GeneratePhotoGroupsWithHeadline(Cinderella.CinderellaCore.DiscoveryList);
                     foreach (var group in newGroups)
                     {
                         PhotoCollection.Add(group);
@@ -372,7 +401,7 @@ namespace Indulged.Plugins.Dashboard
             {
                 if (Cinderella.CinderellaCore.FavouriteList.Count > 0)
                 {
-                    List<PhotoGroup> newGroups = VioletPhotoGroupFactory.GeneratePhotoGroup(Cinderella.CinderellaCore.FavouriteList);
+                    List<PhotoGroup> newGroups = rendererFactory.GeneratePhotoGroupsWithHeadline(Cinderella.CinderellaCore.FavouriteList);
                     foreach (var group in newGroups)
                     {
                         PhotoCollection.Add(group);

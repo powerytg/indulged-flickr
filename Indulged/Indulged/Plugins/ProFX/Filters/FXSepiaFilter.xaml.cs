@@ -16,6 +16,7 @@ namespace Indulged.Plugins.ProFX.Filters
         public FXSepiaFilter()
         {
             InitializeComponent();
+            Category = FilterCategory.Effect;
 
             DisplayName = "sepia";
             StatusBarName = "Sepia";
@@ -29,7 +30,7 @@ namespace Indulged.Plugins.ProFX.Filters
             }
         }
 
-        protected override void CreateFilter()
+        public override void CreateFilter()
         {
             Filter = FilterFactory.CreateAntiqueFilter();
         }

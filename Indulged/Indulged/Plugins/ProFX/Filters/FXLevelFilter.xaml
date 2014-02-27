@@ -10,29 +10,24 @@
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
-    d:DesignHeight="480" d:DesignWidth="480" Height="340">
+    d:DesignHeight="480" d:DesignWidth="480" Height="280">
     
     <local:FilterBase.RenderTransform>
         <CompositeTransform />
     </local:FilterBase.RenderTransform>
 
-    <Grid x:Name="LayoutRoot">
-        <fx:FilterBackground/>
-        
-        <StackPanel Margin="14, 40, 14, 14">
-            <TextBlock Style="{StaticResource FXSectionTextStyle}" Text="Auto Levels"
+    <StackPanel x:Name="LayoutRoot" Margin="14, 14, 14, 14">
+        <TextBlock Style="{StaticResource FXSectionTextStyle}" Text="Auto Levels"
                        HorizontalAlignment="Left" />
 
-            <toolkit:ToggleSwitch x:Name="AutoLevelSwitch"  IsChecked="true" Checked="ToggleSwitch_Checked" Unchecked="ToggleSwitch_Unchecked"
+        <toolkit:ToggleSwitch x:Name="AutoLevelSwitch"  IsChecked="true" Checked="ToggleSwitch_Checked" Unchecked="ToggleSwitch_Unchecked"
                                   Padding="0"  Foreground="#6d87f6" SwitchForeground="#6d87f6"/>
 
-            <TextBlock Style="{StaticResource FXSectionTextStyle}" Text="Mid Tone"
+        <TextBlock Style="{StaticResource FXSectionTextStyle}" Text="Mid Tone"
                        HorizontalAlignment="Left" />
-            <Slider x:Name="MidToneSlider" Minimum="0" Maximum="1" Value="0.5" ValueChanged="MidToneSlider_ValueChanged" Margin="0, 0, 0, 40" 
+        <Slider x:Name="MidToneSlider" Minimum="0" Maximum="1" Value="0.5" ValueChanged="MidToneSlider_ValueChanged" Margin="0, 0, 0, 40" 
                     Padding="0" Style="{StaticResource FXSliderStyle}" Foreground="#6d87f6"/>
 
-        </StackPanel>
-
-    </Grid>
+    </StackPanel>
 
 </local:FilterBase>

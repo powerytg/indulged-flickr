@@ -19,12 +19,13 @@ namespace Indulged.Plugins.ProFX.Filters
         public FXHueSaturationFilter()
         {
             InitializeComponent();
+            Category = FilterCategory.Color;
 
             DisplayName = "hue/saturation";
             StatusBarName = "Hue/Saturation";
         }
 
-        protected override void CreateFilter()
+        public override void CreateFilter()
         {
             Filter = FilterFactory.CreateHueSaturationFilter(hue, saturation);
         }

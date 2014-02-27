@@ -55,12 +55,7 @@ namespace Indulged.Plugins.Detail
         // Capture back button
         protected override void OnBackKeyPress(System.ComponentModel.CancelEventArgs e)
         {
-            if (ModalPopup.HasPopupHistory())
-            {
-                e.Cancel = true;
-                ModalPopup.RemoveLastPopup();
-            }
-            else if (composerPopup != null)
+            if (composerPopup != null)
             {
                 e.Cancel = true;
                 DismissComposerView();

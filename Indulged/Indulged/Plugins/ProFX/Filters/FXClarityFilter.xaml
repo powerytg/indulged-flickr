@@ -10,52 +10,48 @@
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
-    d:DesignHeight="480" d:DesignWidth="480" Height="500">
+    d:DesignHeight="480" d:DesignWidth="480" Height="360">
     
     <local:FilterBase.RenderTransform>
         <CompositeTransform />
     </local:FilterBase.RenderTransform>
 
-    <Grid x:Name="LayoutRoot">
-        <fx:FilterBackground/>
-        
-        <ScrollViewer>
-            <StackPanel Margin="14, 40, 14, 14">
-                <TextBlock Style="{StaticResource FXSectionTextStyle}" Text="Auto Boost"
+    <ScrollViewer x:Name="LayoutRoot">
+        <StackPanel Margin="14, 14, 14, 14">
+            <TextBlock Style="{StaticResource FXSectionTextStyle}" Text="Auto Boost"
                        HorizontalAlignment="Left" />
 
-                <toolkit:ToggleSwitch x:Name="AutoBoostSwitch"  IsChecked="true" Checked="ToggleSwitch_Checked" Unchecked="ToggleSwitch_Unchecked"
+            <toolkit:ToggleSwitch x:Name="AutoBoostSwitch"  IsChecked="true" Checked="ToggleSwitch_Checked" Unchecked="ToggleSwitch_Unchecked"
                                   Padding="0" Foreground="#6d87f6" SwitchForeground="#6d87f6" />
 
 
-                <Slider x:Name="AutoLevelSlider" Minimum="0" Maximum="14" Value="8" ValueChanged="AutoLevelSlider_ValueChanged"
+            <Slider x:Name="AutoLevelSlider" Minimum="0" Maximum="14" Value="8" ValueChanged="AutoLevelSlider_ValueChanged"
                     Padding="0" />
 
-                <!-- Gamma -->
-                <TextBlock Foreground="#cccccc" FontWeight="Light" FontSize="24" Text="Gamma Correction"
+            <!-- Gamma -->
+            <TextBlock Foreground="#cccccc" FontWeight="Light" FontSize="24" Text="Gamma Correction"
                        HorizontalAlignment="Left" />
-                <Slider x:Name="GammaSlider" Minimum="0.1" Maximum="4.0" Value="1.9" ValueChanged="GammaSlider_ValueChanged"
+            <Slider x:Name="GammaSlider" Minimum="0.1" Maximum="4.0" Value="1.9" ValueChanged="GammaSlider_ValueChanged"
                     Padding="0" Foreground="#6d87f6" Style="{StaticResource FXSliderStyle}"/>
 
-                <!-- Black -->
-                <TextBlock Style="{StaticResource FXSectionTextStyle}" Text="Blackness"
+            <!-- Black -->
+            <TextBlock Style="{StaticResource FXSectionTextStyle}" Text="Blackness"
                        HorizontalAlignment="Left" />
-                <Slider x:Name="BlackSlider" Minimum="0.5" Maximum="0.9" Value="0.625" ValueChanged="BlackSlider_ValueChanged"
+            <Slider x:Name="BlackSlider" Minimum="0.5" Maximum="0.9" Value="0.625" ValueChanged="BlackSlider_ValueChanged"
                     Padding="0" Foreground="#6d87f6" Style="{StaticResource FXSliderStyle}"/>
 
-                <!-- White -->
-                <TextBlock Style="{StaticResource FXSectionTextStyle}" Text="Whiteness"
+            <!-- White -->
+            <TextBlock Style="{StaticResource FXSectionTextStyle}" Text="Whiteness"
                        HorizontalAlignment="Left" />
-                <Slider x:Name="WhiteSlider" Minimum="0.5" Maximum="0.9" Value="0.5" ValueChanged="WhiteSlider_ValueChanged"
+            <Slider x:Name="WhiteSlider" Minimum="0.5" Maximum="0.9" Value="0.5" ValueChanged="WhiteSlider_ValueChanged"
                     Padding="0" Foreground="#6d87f6" Style="{StaticResource FXSliderStyle}"/>
 
-                <!-- Sensitivity -->
-                <TextBlock Style="{StaticResource FXSectionTextStyle}" Text="Strength"
+            <!-- Sensitivity -->
+            <TextBlock Style="{StaticResource FXSectionTextStyle}" Text="Strength"
                        HorizontalAlignment="Left" />
-                <Slider x:Name="StrengthSlider" Minimum="0" Maximum="256" Value="256" ValueChanged="StrengthSlider_ValueChanged" Margin="0, 0, 0, 40" 
+            <Slider x:Name="StrengthSlider" Minimum="0" Maximum="256" Value="256" ValueChanged="StrengthSlider_ValueChanged" Margin="0, 0, 0, 14" 
                     Padding="0" Foreground="#6d87f6" Style="{StaticResource FXSliderStyle}"/>
-            </StackPanel>
-        </ScrollViewer>
-    </Grid>
+        </StackPanel>
+    </ScrollViewer>
 
 </local:FilterBase>

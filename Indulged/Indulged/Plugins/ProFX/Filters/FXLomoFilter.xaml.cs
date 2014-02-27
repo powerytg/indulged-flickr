@@ -21,12 +21,13 @@ namespace Indulged.Plugins.ProFX.Filters
         public FXLomoFilter()
         {
             InitializeComponent();
+            Category = FilterCategory.Effect;
 
             DisplayName = "lomography";
             StatusBarName = "Lomography";
         }
 
-        protected override void CreateFilter()
+        public override void CreateFilter()
         {
             Filter = FilterFactory.CreateLomoFilter(brightness, saturation, vignetting, style);
         }

@@ -1,0 +1,56 @@
+﻿<UserControl x:Class="Indulged.Plugins.ProFX.Controls.FXRingControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    d:DesignHeight="480" d:DesignWidth="480"
+    Width="270" Height="270">
+    
+    <UserControl.Resources>
+        <Storyboard x:Name="RingAnimation" RepeatBehavior="Forever">
+            <DoubleAnimation Storyboard.TargetName="Ring1Transform" Storyboard.TargetProperty="Angle"
+                             From="0" To="360" Duration="0:0:10" RepeatBehavior="Forever"/>
+
+            <DoubleAnimation Storyboard.TargetName="Ring2Transform" Storyboard.TargetProperty="Angle"
+                             From="0" To="360" Duration="0:0:18" RepeatBehavior="Forever"/>
+
+            <DoubleAnimation Storyboard.TargetName="Ring3Transform" Storyboard.TargetProperty="Angle"
+                             From="0" To="360" Duration="0:0:14" RepeatBehavior="Forever"/>
+
+            <DoubleAnimation Storyboard.TargetName="Ring4Transform" Storyboard.TargetProperty="Angle"
+                             From="0" To="360" Duration="0:0:24" RepeatBehavior="Forever"/>
+        </Storyboard>
+    </UserControl.Resources>
+    
+    <Grid x:Name="LayoutRoot">
+        <Image x:Name="Ring1" Source="/Assets/ProFX/Ring1.png">
+            <Image.RenderTransform>
+                <RotateTransform x:Name="Ring1Transform"/>
+            </Image.RenderTransform>
+        </Image>
+        
+        <Image x:Name="Ring2" Source="/Assets/ProFX/Ring2.png">
+            <Image.RenderTransform>
+                <RotateTransform x:Name="Ring2Transform"/>
+            </Image.RenderTransform>
+        </Image>
+        
+        <Image x:Name="Ring3" Source="/Assets/ProFX/Ring3.png">
+            <Image.RenderTransform>
+                <RotateTransform x:Name="Ring3Transform" />
+            </Image.RenderTransform>
+        </Image>
+        
+        <Image x:Name="Ring4" Source="/Assets/ProFX/Ring4.png">
+            <Image.RenderTransform>
+                <RotateTransform x:Name="Ring4Transform"/>
+            </Image.RenderTransform>
+        </Image>
+
+        <Image x:Name="Icon" Source="/Assets/ProFX/FXUploadLogo.png" Width="140"/>
+    </Grid>
+</UserControl>

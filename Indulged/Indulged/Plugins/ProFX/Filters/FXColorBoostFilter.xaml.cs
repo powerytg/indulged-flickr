@@ -18,12 +18,13 @@ namespace Indulged.Plugins.ProFX.Filters
         public FXColorBoostFilter()
         {
             InitializeComponent();
+            Category = FilterCategory.Enhancement;
 
             DisplayName = "vibrance";
             StatusBarName = "Vibrance";
         }
 
-        protected override void CreateFilter()
+        public override void CreateFilter()
         {
             Filter = FilterFactory.CreateColorBoostFilter(gain);
         }

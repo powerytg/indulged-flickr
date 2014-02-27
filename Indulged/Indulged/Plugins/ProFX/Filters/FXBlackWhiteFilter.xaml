@@ -10,25 +10,20 @@
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
-    d:DesignHeight="480" d:DesignWidth="480" Height="340">
+    d:DesignHeight="480" d:DesignWidth="480" Height="230">
     
     <local:FilterBase.RenderTransform>
         <CompositeTransform />
     </local:FilterBase.RenderTransform>
 
-    <Grid x:Name="LayoutRoot">
-        <fx:FilterBackground/>
-        
-        <StackPanel Margin="14, 40, 14, 14">
-            <TextBlock Style="{StaticResource FXSectionTextStyle}" Text="Smoothness" HorizontalAlignment="Left"/>
-            <Slider x:Name="SmoothAmountSlider" Minimum="0" Maximum="6" Value="2" SmallChange="1" LargeChange="1" ValueChanged="SmoothAmountSlider_ValueChanged" Padding="0"
+    <StackPanel x:Name="LayoutRoot" Margin="14">
+        <TextBlock Style="{StaticResource FXSectionTextStyle}" Text="Smoothness" HorizontalAlignment="Left"/>
+        <Slider x:Name="SmoothAmountSlider" Minimum="0" Maximum="6" Value="2" SmallChange="1" LargeChange="1" ValueChanged="SmoothAmountSlider_ValueChanged" Padding="0"
                     Foreground="#6d87f6" Style="{StaticResource FXSliderStyle}" />
 
-            <TextBlock Style="{StaticResource FXSectionTextStyle}" Text="Threshold" HorizontalAlignment="Left"/>
-            <Slider x:Name="ThresholdAmountSlider" Minimum="0" Maximum="255" Value="128" SmallChange="1" LargeChange="1" ValueChanged="ThresholdAmountSlider_ValueChanged" Margin="0, 0, 0, 40" Padding="0"
+        <TextBlock Style="{StaticResource FXSectionTextStyle}" Text="Threshold" HorizontalAlignment="Left"/>
+        <Slider x:Name="ThresholdAmountSlider" Minimum="0" Maximum="255" Value="128" SmallChange="1" LargeChange="1" ValueChanged="ThresholdAmountSlider_ValueChanged" Margin="0, 0, 0, 40" Padding="0"
                     Foreground="#6d87f6" Style="{StaticResource FXSliderStyle}" />
-        </StackPanel>
-
-    </Grid>
+    </StackPanel>
 
 </local:FilterBase>

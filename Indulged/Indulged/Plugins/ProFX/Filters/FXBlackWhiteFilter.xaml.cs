@@ -20,11 +20,12 @@ namespace Indulged.Plugins.ProFX.Filters
         {
             InitializeComponent();
 
-            DisplayName = "black/white";
+            DisplayName = "b+w";
             StatusBarName = "Black/White";
+            Category = FilterCategory.Color;
         }
 
-        protected override void CreateFilter()
+        public override void CreateFilter()
         {
             Filter = FilterFactory.CreateStampFilter(smoothness, threshold);
         }

@@ -16,6 +16,7 @@ namespace Indulged.Plugins.ProFX.Filters
         public FXOilFilter()
         {
             InitializeComponent();
+            Category = FilterCategory.Effect;
 
             DisplayName = "oil";
             StatusBarName = "Oil Effect";
@@ -29,7 +30,7 @@ namespace Indulged.Plugins.ProFX.Filters
             }
         }
 
-        protected override void CreateFilter()
+        public override void CreateFilter()
         {
             Filter = FilterFactory.CreateOilyFilter();
         }

@@ -1,9 +1,9 @@
-﻿<renderer:VioletRendererBase x:Class="Indulged.Plugins.Dashboard.VioletRenderers.VioletHeadlineRenderer"
+﻿<renderer:CommonPhotoGroupRendererBase x:Class="Indulged.Plugins.Dashboard.VioletRenderers.VioletHeadlineRenderer"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:renderer="clr-namespace:Indulged.Plugins.Dashboard.VioletRenderers"
+    xmlns:renderer="clr-namespace:Indulged.Plugins.Common.PhotoGroupRenderers"
     xmlns:photoRenderer="clr-namespace:Indulged.Plugins.Common.Renderers"                         
     mc:Ignorable="d"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
@@ -15,4 +15,4 @@
     <Grid x:Name="LayoutRoot">
         <photoRenderer:HeadlinePhotoRenderer x:Name="ImageView"/>
     </Grid>
-</renderer:VioletRendererBase>
+</renderer:CommonPhotoGroupRendererBase>

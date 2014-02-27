@@ -45,20 +45,6 @@ namespace Indulged.Plugins.Search
             }
         }
 
-        protected override void OnBackKeyPress(System.ComponentModel.CancelEventArgs e)
-        {
-            if (ModalPopup.HasPopupHistory())
-            {
-                e.Cancel = true;
-                ModalPopup.RemoveLastPopup();
-            }
-            else
-            {
-                base.OnBackKeyPress(e);
-            }
-        }
-
-
         protected override void OnRemovedFromJournal(JournalEntryRemovedEventArgs e)
         {
             TagListView.OnRemovedFromJournal();

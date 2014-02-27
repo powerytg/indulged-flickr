@@ -23,9 +23,10 @@ namespace Indulged.Plugins.ProFX.Filters
 
             DisplayName = "auto enhance";
             StatusBarName = "Auto Enhance";
+            Category = FilterCategory.Enhancement;
         }
 
-        protected override void CreateFilter()
+        public override void CreateFilter()
         {
             if (isAutoBrightnessContrastOn)
                 config.ApplyAutomaticContrastAndBrightness();

@@ -24,6 +24,14 @@ namespace Indulged.Plugins.ProFX
 {
     public partial class ImageUploaderView : UserControl
     {
+        // Events
+        public EventHandler RequestDismiss;
+        public EventHandler RequestExit;
+
+        // Upload to photo set id
+        public string UploadToPhotoSetId { get; set; }
+
+        public FXFilterManager FilterManager { get; set; }
         public BitmapImage OriginalImage { get; set; }
 
         private WriteableBitmap bitmapForUpload;
@@ -47,6 +55,9 @@ namespace Indulged.Plugins.ProFX
 
             Anaconda.AnacondaCore.PhotoInfoReturned += OnPhotoInfoReturned;
             Anaconda.AnacondaCore.PhotoInfoException += OnPhotoInfoException;
+
+            Anaconda.AnacondaCore.PhotoAddedToSet += OnPhotoAddedToSet;
+            Anaconda.AnacondaCore.AddPhotoToSetException += OnPhotoAddToSetException;
         }
 
         private bool eventListenersRemoved = false;
@@ -62,6 +73,8 @@ namespace Indulged.Plugins.ProFX
             Anaconda.AnacondaCore.PhotoInfoReturned -= OnPhotoInfoReturned;
             Anaconda.AnacondaCore.PhotoInfoException -= OnPhotoInfoException;
 
+            Anaconda.AnacondaCore.PhotoAddedToSet -= OnPhotoAddedToSet;
+            Anaconda.AnacondaCore.AddPhotoToSetException -= OnPhotoAddToSetException;
         }
              
 
@@ -79,7 +92,10 @@ namespace Indulged.Plugins.ProFX
                 uploadStream = null;
             }
 
-            ImageProcessingPage.RequestDismissUploaderView(this, null);
+            if (RequestDismiss != null)
+            {
+                RequestDismiss(this, null);
+            }
         }
 
         public async void PrepareImageForUploadAsync()
@@ -96,7 +112,7 @@ namespace Indulged.Plugins.ProFX
             using (EditingSession editsession = new EditingSession(bmpBuffer))
             {
                 // First add an antique effect 
-                foreach (FilterBase fx in ImageProcessingPage.AppliedFilters)
+                foreach (FilterBase fx in FilterManager.AppliedFilters)
                 {
                     editsession.AddFilter(fx.FinalOutputFilter);
                 }                
@@ -112,37 +128,6 @@ namespace Indulged.Plugins.ProFX
             Dispatcher.BeginInvoke(() => {
                 BeginUpload();
             });
-        }
-
-        private void UploadButton_Click(object sender, RoutedEventArgs e)
-        {
-            ContentView.IsHitTestVisible = false;
-
-            statusView = new UploadStatusView();
-            statusView.Height = 150;
-            //settingsView.SetValue(Grid.RowProperty, 1);
-            var returnButton = new Indulged.API.Avarice.Controls.Button();
-            returnButton.Content = "Please Wait...";
-            var buttons = new List<Indulged.API.Avarice.Controls.Button> {returnButton};
-            statusDialog = ModalPopup.ShowWithButtons(statusView, "Uploading Photo", buttons);
-            statusDialog.Buttons[0].IsEnabled = false;
-            statusView.StatusLabel.Text = "Rendering image";
-            statusDialog.DismissWithButtonClick += (s, args) =>
-            {
-                statusView = null;
-                statusDialog = null;
-                ContentView.IsHitTestVisible = true;
-
-                uploadStream.Close();
-                uploadStream = null;
-
-                bitmapForUpload = null;
-
-                // Dismiss the ProFX page
-                ImageProcessingPage.RequestDismiss(this, null);
-            };
-            
-            PrepareImageForUploadAsync();
         }
 
         private void BeginUpload()
@@ -161,9 +146,9 @@ namespace Indulged.Plugins.ProFX
             if (DescriptionTextBox.Text.Length > 0)
                 parameters["description"] = DescriptionTextBox.Text;
 
-            parameters["is_public"] = (PublicSwitch.IsChecked == true) ? "1" : "0";
-            parameters["is_friend"] = (FriendSwitch.IsChecked == true) ? "1" : "0";
-            parameters["is_family"] = (FamilySwitch.IsChecked == true) ? "1" : "0";
+            parameters["is_public"] = (PublicSwitch.Selected == true) ? "1" : "0";
+            parameters["is_friend"] = (FriendSwitch.Selected == true) ? "1" : "0";
+            parameters["is_family"] = (FamilySwitch.Selected == true) ? "1" : "0";
 
             // Create the upload stream
             uploadStream = new MemoryStream();
@@ -220,11 +205,7 @@ namespace Indulged.Plugins.ProFX
                 if (statusView == null)
                     return;
 
-                statusView.ProgressView.IsIndeterminate = false;
-                statusView.ProgressView.Value = 1;
-                statusView.StatusLabel.Text = "There was an issue while uploading";
-                statusDialog.Buttons[0].IsEnabled = true;
-                statusDialog.Buttons[0].Content = "Done";
+                ShowCompleteStatus("There was an issue while uploading");
             });
         }
 
@@ -237,10 +218,17 @@ namespace Indulged.Plugins.ProFX
                 if (statusView == null)
                     return;
 
-                statusView.ProgressView.Visibility = Visibility.Collapsed;
-                statusView.StatusLabel.Text = "Upload is complete";
-                statusDialog.Buttons[0].IsEnabled = true;
-                statusDialog.Buttons[0].Content = "Done";
+                // Do we need to upload to a photo collection?
+                if (UploadToPhotoSetId != null)
+                {
+                    statusView.ProgressView.IsIndeterminate = true;
+                    statusView.StatusLabel.Text = "Adding to photo set...";
+                    Anaconda.AnacondaCore.AddPhotoToSetAsync(e.PhotoId, UploadToPhotoSetId);
+                }
+                else
+                {
+                    ShowCompleteStatus("Upload is complete");
+                }
             });
 
         }
@@ -254,13 +242,72 @@ namespace Indulged.Plugins.ProFX
                 if (statusView == null)
                     return;
 
-                statusView.ProgressView.Value = 1;
-                statusView.StatusLabel.Text = "Photo is uploaded, but cannot retrieve from server";
-                statusDialog.Buttons[0].IsEnabled = true;
-                statusDialog.Buttons[0].Content = "Done";
+                ShowCompleteStatus("Photo is uploaded, but cannot retrieve from server");
             });
         }
 
+        private void ShowCompleteStatus(string text)
+        {
+            statusView.ProgressView.IsIndeterminate = false;
+            statusView.ProgressView.Value = 1;
+            statusView.StatusLabel.Text = "Upload is complete";
+            statusDialog.Buttons[0].IsEnabled = true;
+            statusDialog.Buttons[0].Content = "Done";
+        }
+
+        private void OnPhotoAddedToSet(object sender, AddPhotoToSetEventArgs e)
+        {
+            if (e.PhotoId != photoId)
+            {
+                return;
+            }
+
+            ShowCompleteStatus("Photo has been added to set");
+        }
+
+        private void OnPhotoAddToSetException(object sender, AddPhotoToSetExceptionEventArgs e)
+        {
+            if (e.PhotoId != photoId)
+            {
+                return;
+            }
+
+            ShowCompleteStatus("Photo is uploaded, but cannot be added to the set");
+        }
+
+        private void OnUploadButtonTap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            ContentView.IsHitTestVisible = false;
+
+            statusView = new UploadStatusView();
+            statusView.Height = 150;
+            //settingsView.SetValue(Grid.RowProperty, 1);
+            var returnButton = new Indulged.API.Avarice.Controls.Button();
+            returnButton.Content = "Please Wait...";
+            var buttons = new List<Indulged.API.Avarice.Controls.Button> { returnButton };
+            statusDialog = ModalPopup.ShowWithButtons(statusView, "Uploading Photo", buttons);
+            statusDialog.Buttons[0].IsEnabled = false;
+            statusView.StatusLabel.Text = "Rendering image";
+            statusDialog.DismissWithButtonClick += (s, args) =>
+            {
+                statusView = null;
+                statusDialog = null;
+                ContentView.IsHitTestVisible = true;
+
+                uploadStream.Close();
+                uploadStream = null;
+
+                bitmapForUpload = null;
+
+                // Dismiss the ProFX page
+                if (RequestExit != null)
+                {
+                    RequestExit(this, null);
+                }
+            };
+
+            PrepareImageForUploadAsync();
+        }
 
     }
 }

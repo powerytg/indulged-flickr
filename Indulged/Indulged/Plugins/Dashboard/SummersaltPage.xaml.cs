@@ -46,6 +46,7 @@ namespace Indulged.Plugins.Dashboard
         private bool executedOnce = false;
 
         // Data source
+        private CommonPhotoGroupFactory rendererFactory;
         private ObservableCollection<ModelBase> dataSource;
         public ObservableCollection<ModelBase> DataSource
         {
@@ -59,6 +60,8 @@ namespace Indulged.Plugins.Dashboard
         public SummersaltPage()
         {
             InitializeComponent();
+
+            rendererFactory = new CommonPhotoGroupFactory();
 
             // Events
             Cinderella.CinderellaCore.UserInfoUpdated += OnUserInfoUpdated;
@@ -125,7 +128,7 @@ namespace Indulged.Plugins.Dashboard
                     dataSource.Add(new SummersaltContactHeaderModel { Contact = user });
 
                     var item = photosByContactId[userId];
-                    List<PhotoGroup> photoGroups = CommonPhotoGroupFactory.GeneratePhotoGroup(item);
+                    List<PhotoGroup> photoGroups = rendererFactory.GeneratePhotoGroups(item);
                     foreach (var photoGroup in photoGroups)
                     {
                         dataSource.Add(photoGroup);

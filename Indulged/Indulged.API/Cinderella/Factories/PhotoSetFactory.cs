@@ -44,6 +44,23 @@ namespace Indulged.API.Cinderella.Factories
             photoset.CreationDate = json["date_create"].ToString().ToDateTime();
             photoset.UpdatedDate = json["date_update"].ToString().ToDateTime();
 
+            // Create the primary photo
+            if (Cinderella.CinderellaCore.PhotoCache.ContainsKey(photoset.Primary))
+            {
+                photoset.PrimaryPhoto = Cinderella.CinderellaCore.PhotoCache[photoset.Primary];
+            }
+            else
+            {
+                Photo primaryPhoto = new Photo();
+                primaryPhoto.ResourceId = photoset.Primary;
+                primaryPhoto.Secret = photoset.Secret;
+                primaryPhoto.Server = photoset.Server;
+                primaryPhoto.Farm = photoset.Farm;
+
+                photoset.PrimaryPhoto = primaryPhoto;
+                Cinderella.CinderellaCore.PhotoCache[photoset.Primary] = primaryPhoto;
+            }
+
             return photoset;
 
         }

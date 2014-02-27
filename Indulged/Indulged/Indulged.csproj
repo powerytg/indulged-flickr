@@ -107,44 +107,38 @@
     <Compile Include="Plugins\Chrome\BitmapBackgroundView.xaml.cs">
       <DependentUpon>BitmapBackgroundView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Plugins\Chrome\ChromeThemes.cs" />
     <Compile Include="Plugins\Chrome\PhotoBackgroundView.xaml.cs">
       <DependentUpon>PhotoBackgroundView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Plugins\Chrome\Events\ThemeChangedEventArgs.cs" />
+    <Compile Include="Plugins\Chrome\Services\GlobalService.cs" />
     <Compile Include="Plugins\Chrome\Services\LiveTileImageDownloadService.cs" />
-    <Compile Include="Plugins\Chrome\ThemeManager.cs" />
     <Compile Include="Plugins\Chrome\TitleView.xaml.cs">
       <DependentUpon>TitleView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Plugins\Common\PhotoGroupRenderers\CommonPhotoGroupFactory.cs" />
     <Compile Include="Plugins\Common\PhotoGroupRenderers\CommonPhotoGroupRendererBase.cs" />
     <Compile Include="Plugins\Common\PhotoGroupRenderers\CommonPhotoGroupRendererSelector.cs" />
-    <Compile Include="Plugins\Common\PhotoGroupRenderers\CommonPhotoGroupRenderer1.xaml.cs">
-      <DependentUpon>CommonPhotoGroupRenderer1.xaml</DependentUpon>
+    <Compile Include="Plugins\Common\PhotoGroupRenderers\PhotoGroupRenderer3.xaml.cs">
+      <DependentUpon>PhotoGroupRenderer3.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Plugins\Common\PhotoGroupRenderers\CommonPhotoGroupRenderer2.xaml.cs">
-      <DependentUpon>CommonPhotoGroupRenderer2.xaml</DependentUpon>
+    <Compile Include="Plugins\Common\PhotoGroupRenderers\PhotoGroupRenderer2.xaml.cs">
+      <DependentUpon>PhotoGroupRenderer2.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Plugins\Common\PhotoGroupRenderers\CommonPhotoGroupRenderer3.xaml.cs">
-      <DependentUpon>CommonPhotoGroupRenderer3.xaml</DependentUpon>
+    <Compile Include="Plugins\Common\PhotoGroupRenderers\PhotoGroupRenderer1.xaml.cs">
+      <DependentUpon>PhotoGroupRenderer1.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Plugins\Common\PhotoGroupRenderers\CommonPhotoGroupRenderer3A.xaml.cs">
-      <DependentUpon>CommonPhotoGroupRenderer3A.xaml</DependentUpon>
+    <Compile Include="Plugins\Common\PhotoGroupRenderers\PhotoGroup.cs" />
+    <Compile Include="Plugins\Common\PhotoRenderers\MediumPhotoRenderer.xaml.cs">
+      <DependentUpon>MediumPhotoRenderer.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Plugins\Common\PhotoGroupRenderers\CommonPhotoGroupRenderer4.xaml.cs">
-      <DependentUpon>CommonPhotoGroupRenderer4.xaml</DependentUpon>
+    <Compile Include="Plugins\Common\PhotoRenderers\FullPhotoRenderer.xaml.cs">
+      <DependentUpon>FullPhotoRenderer.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Plugins\Common\PhotoGroupRenderers\CommonPhotoGroupRenderer4A.xaml.cs">
-      <DependentUpon>CommonPhotoGroupRenderer4A.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Plugins\Common\PhotoGroupRenderers\CommonPhotoGroupRenderer4B.xaml.cs">
-      <DependentUpon>CommonPhotoGroupRenderer4B.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Plugins\Common\PhotoGroupRenderers\CommonPhotoGroupRenderer5.xaml.cs">
-      <DependentUpon>CommonPhotoGroupRenderer5.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Plugins\Common\PhotoGroupRenderers\CommonPhotoGroupRenderer5A.xaml.cs">
-      <DependentUpon>CommonPhotoGroupRenderer5A.xaml</DependentUpon>
+    <Compile Include="Plugins\Common\PhotoRenderers\PhotoRendererBase.cs" />
+    <Compile Include="Plugins\Common\PhotoRenderers\PhotoRendererDecoder.cs" />
+    <Compile Include="Plugins\Common\PhotoRenderers\PhotoRendererStatView.xaml.cs">
+      <DependentUpon>PhotoRendererStatView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Plugins\Common\Renderers\ContactRenderer.xaml.cs">
       <DependentUpon>ContactRenderer.xaml</DependentUpon>
@@ -183,6 +177,9 @@
     </Compile>
     <Compile Include="Plugins\Common\UserAvatarView.xaml.cs">
       <DependentUpon>UserAvatarView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\Dashboard\UploadOptionsView.xaml.cs">
+      <DependentUpon>UploadOptionsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Plugins\Dashboard\SummersaltActivityHeaderModel.cs" />
     <Compile Include="Plugins\Dashboard\SummersaltContactHeaderModel.cs" />
@@ -335,42 +332,9 @@
     <Compile Include="Plugins\Dashboard\VioletPage.xaml.cs">
       <DependentUpon>VioletPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Plugins\Dashboard\VioletRendererSelector.cs" />
-    <Compile Include="Plugins\Dashboard\VioletPhotoGroupFactory.cs" />
     <Compile Include="Plugins\Dashboard\VioletRenderers\VioletHeadlineRenderer.xaml.cs">
       <DependentUpon>VioletHeadlineRenderer.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Plugins\Dashboard\VioletRenderers\VioletRenderer5B.xaml.cs">
-      <DependentUpon>VioletRenderer5B.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Plugins\Dashboard\VioletRenderers\VioletRenderer5A.xaml.cs">
-      <DependentUpon>VioletRenderer5A.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Plugins\Dashboard\VioletRenderers\VioletRenderer5.xaml.cs">
-      <DependentUpon>VioletRenderer5.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Plugins\Dashboard\VioletRenderers\VioletRenderer4B.xaml.cs">
-      <DependentUpon>VioletRenderer4B.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Plugins\Dashboard\VioletRenderers\VioletRenderer4A.xaml.cs">
-      <DependentUpon>VioletRenderer4A.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Plugins\Dashboard\VioletRenderers\VioletRenderer4.xaml.cs">
-      <DependentUpon>VioletRenderer4.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Plugins\Dashboard\VioletRenderers\VioletRenderer3A.xaml.cs">
-      <DependentUpon>VioletRenderer3A.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Plugins\Dashboard\VioletRenderers\VioletRenderer3.xaml.cs">
-      <DependentUpon>VioletRenderer3.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Plugins\Dashboard\VioletRenderers\VioletRenderer2.xaml.cs">
-      <DependentUpon>VioletRenderer2.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Plugins\Dashboard\VioletRenderers\VioletRenderer1.xaml.cs">
-      <DependentUpon>VioletRenderer1.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Plugins\Dashboard\VioletRenderers\VioletRendererBase.cs" />
     <Compile Include="Plugins\Detail\PhotoTagsView.xaml.cs">
       <DependentUpon>PhotoTagsView.xaml</DependentUpon>
     </Compile>
@@ -415,16 +379,80 @@
     <Compile Include="Plugins\Login\SettingsPage.xaml.cs">
       <DependentUpon>SettingsPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Plugins\PhotoCollection\DeletePhotoSetView.xaml.cs">
+      <DependentUpon>DeletePhotoSetView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\PhotoCollection\PhotoSetPropertiesEditorExtension.cs" />
+    <Compile Include="Plugins\PhotoCollection\PhotoSetPrimaryChooserView.xaml.cs">
+      <DependentUpon>PhotoSetPrimaryChooserView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\PhotoCollection\PhotoSetPageEventsExtension.cs" />
     <Compile Include="Plugins\PhotoCollection\PhotoSetAddPhotoView.xaml.cs">
       <DependentUpon>PhotoSetAddPhotoView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Plugins\PhotoCollection\PhotoSetPage.xaml.cs">
       <DependentUpon>PhotoSetPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Plugins\PhotoCollection\PhotoSetPageAnimationExtension.cs" />
     <Compile Include="Plugins\PhotoCollection\PhotoSetPhoto.cs" />
-    <Compile Include="Plugins\ProCamera\CameraSettingsButton.cs" />
-    <Compile Include="Plugins\ProCamera\ProCameraWhiteBalanceSettingsView.xaml.cs">
-      <DependentUpon>ProCameraWhiteBalanceSettingsView.xaml</DependentUpon>
+    <Compile Include="Plugins\PhotoCollection\Renderers\PrimaryRenderer.xaml.cs">
+      <DependentUpon>PrimaryRenderer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\PhotoCollection\Renderers\SimplePhotoRenderer.xaml.cs">
+      <DependentUpon>SimplePhotoRenderer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\PhotoCollection\PhotoSetPropertyView.xaml.cs">
+      <DependentUpon>PhotoSetPropertyView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\ProCam\Controls\CamSwitchControl.xaml.cs">
+      <DependentUpon>CamSwitchControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\ProCam\Controls\FocusRect.xaml.cs">
+      <DependentUpon>FocusRect.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\ProCam\Controls\HUDSwitchControl.xaml.cs">
+      <DependentUpon>HUDSwitchControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\ProCam\Controls\ISODialControl.xaml.cs">
+      <DependentUpon>ISODialControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\ProCam\Controls\EVDialControl.xaml.cs">
+      <DependentUpon>EVDialControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\ProCam\HUD\FocusAssistHUD.xaml.cs">
+      <DependentUpon>FocusAssistHUD.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\ProCam\HUD\SceneHUD.xaml.cs">
+      <DependentUpon>SceneHUD.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\ProCam\HUD\HUDContainer.xaml.cs">
+      <DependentUpon>HUDContainer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\ProCam\HUD\ISOHUD.xaml.cs">
+      <DependentUpon>ISOHUD.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\ProCam\HUD\MainHUD.xaml.cs">
+      <DependentUpon>MainHUD.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\ProCam\HUD\WhiteBalanceHUD.xaml.cs">
+      <DependentUpon>WhiteBalanceHUD.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\ProCam\ImagePickerPage.xaml.cs">
+      <DependentUpon>ImagePickerPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\ProCam\ProCamAnimation.cs" />
+    <Compile Include="Plugins\ProCam\HUD\EVHUD.xaml.cs">
+      <DependentUpon>EVHUD.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\ProCam\ProCamConstraints.cs" />
+    <Compile Include="Plugins\ProCam\ProCamCore.cs" />
+    <Compile Include="Plugins\ProCam\ProCamEvents.cs" />
+    <Compile Include="Plugins\ProCam\ProCamHUD.cs" />
+    <Compile Include="Plugins\ProCam\ProCamLayout.cs" />
+    <Compile Include="Plugins\ProCam\Utils\ISOUtils.cs" />
+    <Compile Include="Plugins\ProCam\Utils\EVUtils.cs" />
+    <Compile Include="Plugins\ProCam\ProCamPage.xaml.cs">
+      <DependentUpon>ProCamPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Plugins\Profile\ContactPage.xaml.cs">
       <DependentUpon>ContactPage.xaml</DependentUpon>
@@ -438,50 +466,81 @@
     <Compile Include="Plugins\Profile\UserProfilePage.xaml.cs">
       <DependentUpon>UserProfilePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Plugins\ProFX\ColorSelectorButton.cs" />
-    <Compile Include="Plugins\ProFX\FilterBackground.xaml.cs">
-      <DependentUpon>FilterBackground.xaml</DependentUpon>
+    <Compile Include="Plugins\ProFX\Controls\ColorSelectorButton.cs" />
+    <Compile Include="Plugins\ProFX\Controls\PrivacyDropletControl.xaml.cs">
+      <DependentUpon>PrivacyDropletControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Plugins\ProFX\Filters\FXRotationFilter.xaml.cs">
-      <DependentUpon>FXRotationFilter.xaml</DependentUpon>
+    <Compile Include="Plugins\ProFX\Controls\FilterEntryControl.xaml.cs">
+      <DependentUpon>FilterEntryControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Plugins\ProFX\FXCropStatusView.xaml.cs">
-      <DependentUpon>FXCropStatusView.xaml</DependentUpon>
+    <Compile Include="Plugins\ProFX\Controls\FilterDropletControl.xaml.cs">
+      <DependentUpon>FilterDropletControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Plugins\ProFX\Events\CropAreaChangedEventArgs.cs" />
-    <Compile Include="Plugins\ProFX\Events\RequestFilterViewEventArgs.cs" />
-    <Compile Include="Plugins\ProFX\Filters\FXCropFilter.xaml.cs">
-      <DependentUpon>FXCropFilter.xaml</DependentUpon>
+    <Compile Include="Plugins\ProFX\Controls\FXRingControl.xaml.cs">
+      <DependentUpon>FXRingControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Plugins\ProFX\FXGalleryStatusView.xaml.cs">
-      <DependentUpon>FXGalleryStatusView.xaml</DependentUpon>
+    <Compile Include="Plugins\ProFX\Controls\SectionControl.xaml.cs">
+      <DependentUpon>SectionControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Plugins\ProFX\Events\DismissFilterEventArgs.cs" />
-    <Compile Include="Plugins\ProFX\FXFilterStatusView.xaml.cs">
-      <DependentUpon>FXFilterStatusView.xaml</DependentUpon>
+    <Compile Include="Plugins\ProFX\Controls\ViewFinderControl.xaml.cs">
+      <DependentUpon>ViewFinderControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Plugins\ProFX\Events\AddFilterEventArgs.cs" />
+    <Compile Include="Plugins\ProFX\Events\CropAreaChangedEventArgs.cs" />
+    <Compile Include="Plugins\ProFX\Events\RequestFilterEventArgs.cs" />
     <Compile Include="Plugins\ProFX\Events\DeleteFilterEventArgs.cs" />
-    <Compile Include="Plugins\ProFX\FilterGalleryView.xaml.cs">
-      <DependentUpon>FilterGalleryView.xaml</DependentUpon>
+    <Compile Include="Plugins\ProFX\Filters\FilterBase.cs" />
+    <Compile Include="Plugins\ProFX\Filters\FXFilterManager.cs" />
+    <Compile Include="Plugins\ProFX\Filters\FXAntiqueFilter.xaml.cs">
+      <DependentUpon>FXAntiqueFilter.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Plugins\ProFX\Filters\FXVignetteFilter.xaml.cs">
-      <DependentUpon>FXVignetteFilter.xaml</DependentUpon>
+    <Compile Include="Plugins\ProFX\Filters\FXAutoEnhanceFilter.xaml.cs">
+      <DependentUpon>FXAutoEnhanceFilter.xaml</DependentUpon>
     </Compile>
     <Compile Include="Plugins\ProFX\Filters\FXBlackWhiteFilter.xaml.cs">
       <DependentUpon>FXBlackWhiteFilter.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Plugins\ProFX\Filters\FXSolarizeFilter.xaml.cs">
-      <DependentUpon>FXSolarizeFilter.xaml</DependentUpon>
+    <Compile Include="Plugins\ProFX\Filters\FXBlurFilter.xaml.cs">
+      <DependentUpon>FXBlurFilter.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Plugins\ProFX\Filters\FXSharpenFilter.xaml.cs">
-      <DependentUpon>FXSharpenFilter.xaml</DependentUpon>
+    <Compile Include="Plugins\ProFX\Filters\FXCartoonFilter.xaml.cs">
+      <DependentUpon>FXCartoonFilter.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Plugins\ProFX\Filters\FXSepiaFilter.xaml.cs">
-      <DependentUpon>FXSepiaFilter.xaml</DependentUpon>
+    <Compile Include="Plugins\ProFX\Filters\FXClarityFilter.xaml.cs">
+      <DependentUpon>FXClarityFilter.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Plugins\ProFX\Filters\FXPosterizeFilter.xaml.cs">
-      <DependentUpon>FXPosterizeFilter.xaml</DependentUpon>
+    <Compile Include="Plugins\ProFX\Filters\FXColorAdjustmentFilter.xaml.cs">
+      <DependentUpon>FXColorAdjustmentFilter.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\ProFX\Filters\FXColorBoostFilter.xaml.cs">
+      <DependentUpon>FXColorBoostFilter.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\ProFX\Filters\FXColorizationFilter.xaml.cs">
+      <DependentUpon>FXColorizationFilter.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\ProFX\Filters\FXCropFilter.xaml.cs">
+      <DependentUpon>FXCropFilter.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\ProFX\Filters\FXExposureFilter.xaml.cs">
+      <DependentUpon>FXExposureFilter.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\ProFX\Filters\FXGrayscaleFilter.xaml.cs">
+      <DependentUpon>FXGrayscaleFilter.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\ProFX\Filters\FXHueSaturationFilter.xaml.cs">
+      <DependentUpon>FXHueSaturationFilter.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\ProFX\Filters\FXLevelFilter.xaml.cs">
+      <DependentUpon>FXLevelFilter.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\ProFX\Filters\FXLomoFilter.xaml.cs">
+      <DependentUpon>FXLomoFilter.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\ProFX\Filters\FXMonoColorFilter.xaml.cs">
+      <DependentUpon>FXMonoColorFilter.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\ProFX\Filters\FXNegativeFilter.xaml.cs">
+      <DependentUpon>FXNegativeFilter.xaml</DependentUpon>
     </Compile>
     <Compile Include="Plugins\ProFX\Filters\FXOilFilter.xaml.cs">
       <DependentUpon>FXOilFilter.xaml</DependentUpon>
@@ -489,90 +548,49 @@
     <Compile Include="Plugins\ProFX\Filters\FXPaintingFilter.xaml.cs">
       <DependentUpon>FXPaintingFilter.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Plugins\ProFX\Filters\FXNegativeFilter.xaml.cs">
-      <DependentUpon>FXNegativeFilter.xaml</DependentUpon>
+    <Compile Include="Plugins\ProFX\Filters\FXPosterizeFilter.xaml.cs">
+      <DependentUpon>FXPosterizeFilter.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Plugins\ProFX\Filters\FXMonoColorFilter.xaml.cs">
-      <DependentUpon>FXMonoColorFilter.xaml</DependentUpon>
+    <Compile Include="Plugins\ProFX\Filters\FXRotationFilter.xaml.cs">
+      <DependentUpon>FXRotationFilter.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Plugins\ProFX\Filters\FXLomoFilter.xaml.cs">
-      <DependentUpon>FXLomoFilter.xaml</DependentUpon>
+    <Compile Include="Plugins\ProFX\Filters\FXSepiaFilter.xaml.cs">
+      <DependentUpon>FXSepiaFilter.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Plugins\ProFX\Filters\FXClarityFilter.xaml.cs">
-      <DependentUpon>FXClarityFilter.xaml</DependentUpon>
+    <Compile Include="Plugins\ProFX\Filters\FXSharpenFilter.xaml.cs">
+      <DependentUpon>FXSharpenFilter.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Plugins\ProFX\Filters\FXHueSaturationFilter.xaml.cs">
-      <DependentUpon>FXHueSaturationFilter.xaml</DependentUpon>
+    <Compile Include="Plugins\ProFX\Filters\FXSolarizeFilter.xaml.cs">
+      <DependentUpon>FXSolarizeFilter.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Plugins\ProFX\Filters\FXGrayscaleFilter.xaml.cs">
-      <DependentUpon>FXGrayscaleFilter.xaml</DependentUpon>
+    <Compile Include="Plugins\ProFX\Filters\FXVignetteFilter.xaml.cs">
+      <DependentUpon>FXVignetteFilter.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Plugins\ProFX\Filters\FXExposureFilter.xaml.cs">
-      <DependentUpon>FXExposureFilter.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Plugins\ProFX\Filters\FXColorizationFilter.xaml.cs">
-      <DependentUpon>FXColorizationFilter.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Plugins\ProFX\Filters\FXColorBoostFilter.xaml.cs">
-      <DependentUpon>FXColorBoostFilter.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Plugins\ProFX\Filters\FXCartoonFilter.xaml.cs">
-      <DependentUpon>FXCartoonFilter.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Plugins\ProFX\Filters\FXLevelFilter.xaml.cs">
-      <DependentUpon>FXLevelFilter.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Plugins\ProFX\Filters\FXAutoEnhanceFilter.xaml.cs">
-      <DependentUpon>FXAutoEnhanceFilter.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Plugins\ProFX\Filters\FXAntiqueFilter.xaml.cs">
-      <DependentUpon>FXAntiqueFilter.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Plugins\ProFX\Filters\FXColorAdjustmentFilter.xaml.cs">
-      <DependentUpon>FXColorAdjustmentFilter.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Plugins\ProFX\Filters\FilterButton.cs" />
-    <Compile Include="Plugins\ProFX\Filters\FilterBase.cs" />
-    <Compile Include="Plugins\ProFX\Filters\FXBlurFilter.xaml.cs">
-      <DependentUpon>FXBlurFilter.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Plugins\ProFX\FXBottomPanel.xaml.cs">
-      <DependentUpon>FXBottomPanel.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Plugins\ProFX\FXNormalStatusView.xaml.cs">
-      <DependentUpon>FXNormalStatusView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Plugins\ProFX\FXSettingsStatusView.xaml.cs">
-      <DependentUpon>FXSettingsStatusView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Plugins\ProFX\FXSettingsView.xaml.cs">
-      <DependentUpon>FXSettingsView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Plugins\ProFX\ImageProcessingPage.xaml.cs">
-      <DependentUpon>ImageProcessingPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Plugins\ProCamera\ProCameraFlashSettingsView.xaml.cs">
-      <DependentUpon>ProCameraFlashSettingsView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Plugins\ProCamera\ProCameraISOSettingsView.xaml.cs">
-      <DependentUpon>ProCameraISOSettingsView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Plugins\ProCamera\ProCameraPage.xaml.cs">
-      <DependentUpon>ProCameraPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Plugins\ProCamera\ProCameraPageAnimationExtension.cs" />
-    <Compile Include="Plugins\ProCamera\ProCameraPageCoreExtension.cs" />
-    <Compile Include="Plugins\ProCamera\ProCameraPageStreamExtension.cs" />
-    <Compile Include="Plugins\ProCamera\ProCameraPageSettingsExtension.cs" />
-    <Compile Include="Plugins\ProCamera\ProCameraSettingsViewBase.cs" />
-    <Compile Include="Plugins\ProFX\ImageProcessingPageAnimationExtension.cs" />
-    <Compile Include="Plugins\ProFX\ImageProcessingPageCoreExtension.cs" />
     <Compile Include="Plugins\ProFX\ImageUploaderView.xaml.cs">
       <DependentUpon>ImageUploaderView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Plugins\ProFX\PhotoPreviewer.xaml.cs">
-      <DependentUpon>PhotoPreviewer.xaml</DependentUpon>
+    <Compile Include="Plugins\ProFX\OSD\ActiveFiltersHUD.xaml.cs">
+      <DependentUpon>ActiveFiltersHUD.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Plugins\ProFX\OSD\RotationHUD.xaml.cs">
+      <DependentUpon>RotationHUD.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\ProFX\OSD\CropHUD.xaml.cs">
+      <DependentUpon>CropHUD.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\ProFX\OSD\FilterContainerHUD.xaml.cs">
+      <DependentUpon>FilterContainerHUD.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\ProFX\OSD\FilterGalleryHUD.xaml.cs">
+      <DependentUpon>FilterGalleryHUD.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\ProFX\ProFXAnimation.cs" />
+    <Compile Include="Plugins\ProFX\ProFXCore.cs" />
+    <Compile Include="Plugins\ProFX\ProFXEvents.cs" />
+    <Compile Include="Plugins\ProFX\ProFXPage.xaml.cs">
+      <DependentUpon>ProFXPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\ProFX\ProFXUtils.cs" />
     <Compile Include="Plugins\ProFX\UploadStatusView.xaml.cs">
       <DependentUpon>UploadStatusView.xaml</DependentUpon>
     </Compile>
@@ -625,39 +643,27 @@
     <Page Include="Plugins\Chrome\TitleView.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Plugins\Common\PhotoGroupRenderers\CommonPhotoGroupRenderer1.xaml">
+    <Page Include="Plugins\Common\PhotoGroupRenderers\PhotoGroupRenderer3.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Plugins\Common\PhotoGroupRenderers\CommonPhotoGroupRenderer2.xaml">
+    <Page Include="Plugins\Common\PhotoGroupRenderers\PhotoGroupRenderer2.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Plugins\Common\PhotoGroupRenderers\CommonPhotoGroupRenderer3.xaml">
+    <Page Include="Plugins\Common\PhotoGroupRenderers\PhotoGroupRenderer1.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Plugins\Common\PhotoGroupRenderers\CommonPhotoGroupRenderer3A.xaml">
+    <Page Include="Plugins\Common\PhotoRenderers\MediumPhotoRenderer.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Plugins\Common\PhotoGroupRenderers\CommonPhotoGroupRenderer4.xaml">
+    <Page Include="Plugins\Common\PhotoRenderers\FullPhotoRenderer.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Plugins\Common\PhotoGroupRenderers\CommonPhotoGroupRenderer4A.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Plugins\Common\PhotoGroupRenderers\CommonPhotoGroupRenderer4B.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Plugins\Common\PhotoGroupRenderers\CommonPhotoGroupRenderer5.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Plugins\Common\PhotoGroupRenderers\CommonPhotoGroupRenderer5A.xaml">
+    <Page Include="Plugins\Common\PhotoRenderers\PhotoRendererStatView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -712,6 +718,10 @@
     <Page Include="Plugins\Common\UserAvatarView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Plugins\Dashboard\UploadOptionsView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Plugins\Dashboard\SummersaltRenderers\SummersaltContactHeaderRenderer.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -887,46 +897,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Plugins\Dashboard\VioletRenderers\VioletRenderer5B.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Plugins\Dashboard\VioletRenderers\VioletRenderer5A.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Plugins\Dashboard\VioletRenderers\VioletRenderer5.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Plugins\Dashboard\VioletRenderers\VioletRenderer4B.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Plugins\Dashboard\VioletRenderers\VioletRenderer4A.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Plugins\Dashboard\VioletRenderers\VioletRenderer4.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Plugins\Dashboard\VioletRenderers\VioletRenderer3A.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Plugins\Dashboard\VioletRenderers\VioletRenderer3.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Plugins\Dashboard\VioletRenderers\VioletRenderer2.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Plugins\Dashboard\VioletRenderers\VioletRenderer1.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Plugins\Detail\PhotoTagsView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -984,6 +954,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Plugins\PhotoCollection\DeletePhotoSetView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Plugins\PhotoCollection\PhotoSetPrimaryChooserView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Plugins\PhotoCollection\PhotoSetAddPhotoView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -992,9 +970,72 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Plugins\ProCamera\ProCameraWhiteBalanceSettingsView.xaml">
+    <Page Include="Plugins\PhotoCollection\Renderers\PrimaryRenderer.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Plugins\PhotoCollection\Renderers\SimplePhotoRenderer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Plugins\PhotoCollection\PhotoSetPropertyView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Plugins\ProCam\Controls\CamSwitchControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Plugins\ProCam\Controls\FocusRect.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Plugins\ProCam\Controls\HUDSwitchControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Plugins\ProCam\Controls\ISODialControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Plugins\ProCam\Controls\EVDialControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Plugins\ProCam\HUD\FocusAssistHUD.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Plugins\ProCam\HUD\SceneHUD.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Plugins\ProCam\HUD\HUDContainer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Plugins\ProCam\HUD\ISOHUD.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Plugins\ProCam\HUD\EVHUD.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Plugins\ProCam\HUD\MainHUD.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Plugins\ProCam\HUD\WhiteBalanceHUD.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Plugins\ProCam\ImagePickerPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Plugins\ProCam\ProCamPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Plugins\Profile\ContactPage.xaml">
       <SubType>Designer</SubType>
@@ -1012,169 +1053,134 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Plugins\ProFX\FilterBackground.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Plugins\ProFX\Filters\FXRotationFilter.xaml">
+    <Page Include="Plugins\ProFX\Controls\PrivacyDropletControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Plugins\ProFX\FXCropStatusView.xaml">
+    <Page Include="Plugins\ProFX\Controls\FilterEntryControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Plugins\ProFX\Filters\FXCropFilter.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Plugins\ProFX\FXGalleryStatusView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Plugins\ProFX\FXFilterStatusView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Plugins\ProFX\FilterGalleryView.xaml">
+    <Page Include="Plugins\ProFX\Controls\FilterDropletControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Plugins\ProFX\Filters\FXVignetteFilter.xaml">
-      <Generator>MSBuild:Compile</Generator>
+    <Page Include="Plugins\ProFX\Controls\FXRingControl.xaml">
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Plugins\ProFX\Filters\FXBlackWhiteFilter.xaml">
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Plugins\ProFX\Controls\SectionControl.xaml">
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Plugins\ProFX\Filters\FXSolarizeFilter.xaml">
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Plugins\ProFX\Controls\ViewFinderControl.xaml">
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Plugins\ProFX\Filters\FXSharpenFilter.xaml">
       <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
-    <Page Include="Plugins\ProFX\Filters\FXSepiaFilter.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Plugins\ProFX\Filters\FXPosterizeFilter.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Plugins\ProFX\Filters\FXOilFilter.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Plugins\ProFX\Filters\FXPaintingFilter.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Plugins\ProFX\Filters\FXNegativeFilter.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Plugins\ProFX\Filters\FXMonoColorFilter.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Plugins\ProFX\Filters\FXLomoFilter.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Plugins\ProFX\Filters\FXClarityFilter.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Plugins\ProFX\Filters\FXHueSaturationFilter.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Plugins\ProFX\Filters\FXGrayscaleFilter.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Plugins\ProFX\Filters\FXExposureFilter.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Plugins\ProFX\Filters\FXColorizationFilter.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Plugins\ProFX\Filters\FXColorBoostFilter.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Plugins\ProFX\Filters\FXCartoonFilter.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Plugins\ProFX\Filters\FXLevelFilter.xaml">
-      <Generator>MSBuild:Compile</Generator>
+    <Page Include="Plugins\ProFX\Filters\FXAntiqueFilter.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Plugins\ProFX\Filters\FXAutoEnhanceFilter.xaml">
-      <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Plugins\ProFX\Filters\FXAntiqueFilter.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Plugins\ProFX\Filters\FXColorAdjustmentFilter.xaml">
-      <Generator>MSBuild:Compile</Generator>
+    <Page Include="Plugins\ProFX\Filters\FXBlackWhiteFilter.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Plugins\ProFX\Filters\FXBlurFilter.xaml">
       <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Plugins\ProFX\FXBottomPanel.xaml">
+    <Page Include="Plugins\ProFX\Filters\FXCartoonFilter.xaml">
       <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Plugins\ProFX\FXNormalStatusView.xaml">
+    <Page Include="Plugins\ProFX\Filters\FXClarityFilter.xaml">
       <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Plugins\ProFX\FXSettingsStatusView.xaml">
+    <Page Include="Plugins\ProFX\Filters\FXColorAdjustmentFilter.xaml">
       <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Plugins\ProFX\FXSettingsView.xaml">
+    <Page Include="Plugins\ProFX\Filters\FXColorBoostFilter.xaml">
       <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Plugins\ProFX\ImageProcessingPage.xaml">
+    <Page Include="Plugins\ProFX\Filters\FXColorizationFilter.xaml">
       <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Plugins\ProCamera\ProCameraFlashSettingsView.xaml">
+    <Page Include="Plugins\ProFX\Filters\FXCropFilter.xaml">
       <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Plugins\ProCamera\ProCameraISOSettingsView.xaml">
+    <Page Include="Plugins\ProFX\Filters\FXExposureFilter.xaml">
       <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Plugins\ProCamera\ProCameraPage.xaml">
+    <Page Include="Plugins\ProFX\Filters\FXGrayscaleFilter.xaml">
       <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Plugins\ProFX\Filters\FXHueSaturationFilter.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Plugins\ProFX\Filters\FXLevelFilter.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Plugins\ProFX\Filters\FXLomoFilter.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Plugins\ProFX\Filters\FXMonoColorFilter.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Plugins\ProFX\Filters\FXNegativeFilter.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Plugins\ProFX\Filters\FXOilFilter.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Plugins\ProFX\Filters\FXPaintingFilter.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Plugins\ProFX\Filters\FXPosterizeFilter.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Plugins\ProFX\Filters\FXRotationFilter.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Plugins\ProFX\Filters\FXSepiaFilter.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Plugins\ProFX\Filters\FXSharpenFilter.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Plugins\ProFX\Filters\FXSolarizeFilter.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Plugins\ProFX\Filters\FXVignetteFilter.xaml">
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Plugins\ProFX\ImageUploaderView.xaml">
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Plugins\ProFX\OSD\ActiveFiltersHUD.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Plugins\ProFX\OSD\RotationHUD.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Plugins\ProFX\OSD\CropHUD.xaml">
+      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Plugins\ProFX\PhotoPreviewer.xaml">
+    <Page Include="Plugins\ProFX\OSD\FilterContainerHUD.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Plugins\ProFX\OSD\FilterGalleryHUD.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Plugins\ProFX\ProFXPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Plugins\ProFX\UploadStatusView.xaml">
       <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Plugins\Search\GroupSearchResultView.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -1199,25 +1205,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <ApplicationDefinition Include="Themes\CameraSettingsButtonStyle.xaml">
-      <SubType>Designer</SubType>
-    </ApplicationDefinition>
-    <ApplicationDefinition Include="Themes\CameraShutterButtonStyle.xaml">
-      <SubType>Designer</SubType>
-    </ApplicationDefinition>
-    <ApplicationDefinition Include="Themes\CameraSubsettingsButtonStyle.xaml">
-      <SubType>Designer</SubType>
-    </ApplicationDefinition>
     <ApplicationDefinition Include="Themes\DeleteFilterButtonStyle.xaml">
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <ApplicationDefinition Include="Themes\AvariceSliderStyle.xaml">
-      <SubType>Designer</SubType>
-    </ApplicationDefinition>
-    <ApplicationDefinition Include="Themes\ColorSelectorButtonStyle.xaml">
-      <SubType>Designer</SubType>
-    </ApplicationDefinition>
-    <ApplicationDefinition Include="Themes\FXButtonStyle.xaml">
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <ApplicationDefinition Include="Themes\FXPanelButtonStyle.xaml">
@@ -1244,6 +1235,39 @@
     <ApplicationDefinition Include="Themes\WatermarkBoxStyle.xaml">
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <ApplicationDefinition Include="Themes\RoundedButtonStyle.xaml">
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <ApplicationDefinition Include="Themes\CircularButtonStyle.xaml">
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <ApplicationDefinition Include="Themes\PhotoSetCameraButtonStyle.xaml">
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <ApplicationDefinition Include="Themes\CapsuleButtonStyle.xaml">
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <ApplicationDefinition Include="Themes\HUDButtonStyle.xaml">
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <ApplicationDefinition Include="Themes\HUDRadioButtonStyle.xaml">
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <ApplicationDefinition Include="Themes\FXCropButtonStyle.xaml">
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <ApplicationDefinition Include="Themes\FXButtonStyle.xaml">
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <ApplicationDefinition Include="Themes\FXComboButtonStyle.xaml">
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <ApplicationDefinition Include="Themes\FXCircularButtonStyle.xaml">
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Page Include="Themes\ColorSelectorButtonStyle.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Themes\FullScreenPhotoNavigatorStyle.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -1266,6 +1290,7 @@
     <Content Include="Assets\Common\ActionButton.png" />
     <Content Include="Assets\Common\add.png" />
     <Content Include="Assets\Common\AddComment.png" />
+    <Content Include="Assets\Common\BlueBackButton.png" />
     <Content Include="Assets\Common\cancel.png" />
     <Content Include="Assets\Common\check.png" />
     <Content Include="Assets\Common\Collection.png" />
@@ -1287,36 +1312,93 @@
     <Content Include="Assets\Login\LoginScreen.png" />
     <Content Include="Assets\Login\LoginTitle.png" />
     <Content Include="Assets\Login\LoginVersionBar.png" />
-    <Content Include="Assets\ProCamera\WB-Cloudy-Selected.png" />
-    <Content Include="Assets\ProCamera\WB-Cloudy.png" />
-    <Content Include="Assets\ProCamera\WB-Daylight-Selected.png" />
-    <Content Include="Assets\ProCamera\WB-Daylight.png" />
-    <Content Include="Assets\ProCamera\WB-Flash-Selected.png" />
-    <Content Include="Assets\ProCamera\WB-Flash.png" />
-    <Content Include="Assets\ProCamera\WB-Fluorescent-Selected.png" />
-    <Content Include="Assets\ProCamera\WB-Fluorescent.png" />
-    <Content Include="Assets\ProCamera\WB-Shade-Selected.png" />
-    <Content Include="Assets\ProCamera\WB-Shade.png" />
-    <Content Include="Assets\ProCamera\WB-Tungsten-Selected.png" />
-    <Content Include="Assets\ProCamera\WB-Tungsten.png" />
+    <Content Include="Assets\PhotoCollection\PhotoSetAddButton.png" />
+    <Content Include="Assets\PhotoCollection\PhotoSetCameraButton.png" />
+    <Content Include="Assets\PhotoCollection\PhotoSetCoverButton.png" />
+    <Content Include="Assets\PhotoCollection\PhotoSetDeleteButton.png" />
+    <Content Include="Assets\PhotoCollection\PhotoSetDescButton.png" />
+    <Content Include="Assets\PhotoCollection\PhotoSetDots.png" />
+    <Content Include="Assets\PhotoCollection\PhotoSetEditButton.png" />
+    <Content Include="Assets\PhotoCollection\PhotoSetGradientLine.png" />
+    <Content Include="Assets\PhotoCollection\PhotoSetInfoSmall.png" />
+    <Content Include="Assets\PhotoCollection\PhotoSetPageCurl.png" />
+    <Content Include="Assets\PhotoCollection\PhotoSetTopShadow.png" />
+    <Content Include="Assets\PhotoCollection\PhotoSetUploadButton.png" />
+    <Content Include="Assets\ProCam\ArrowDown.png" />
+    <Content Include="Assets\ProCam\ArrowLeft.png" />
+    <Content Include="Assets\ProCam\ArrowRight.png" />
+    <Content Include="Assets\ProCam\BottomToolbar.png" />
+    <Content Include="Assets\ProCam\EVDial.png" />
+    <Content Include="Assets\ProCam\EVHighlight.png" />
+    <Content Include="Assets\ProCam\EVHUDTitle.png" />
+    <Content Include="Assets\ProCam\EV\EV-1.png" />
+    <Content Include="Assets\ProCam\EV\EV-10.png" />
+    <Content Include="Assets\ProCam\EV\EV-2.png" />
+    <Content Include="Assets\ProCam\EV\EV-3.png" />
+    <Content Include="Assets\ProCam\EV\EV-4.png" />
+    <Content Include="Assets\ProCam\EV\EV-5.png" />
+    <Content Include="Assets\ProCam\EV\EV-6.png" />
+    <Content Include="Assets\ProCam\EV\EV-7.png" />
+    <Content Include="Assets\ProCam\EV\EV-8.png" />
+    <Content Include="Assets\ProCam\EV\EV-9.png" />
+    <Content Include="Assets\ProCam\EV\EV0.png" />
+    <Content Include="Assets\ProCam\EV\EV1.png" />
+    <Content Include="Assets\ProCam\EV\EV2.png" />
+    <Content Include="Assets\ProCam\EV\EV3.png" />
+    <Content Include="Assets\ProCam\EV\EV4.png" />
+    <Content Include="Assets\ProCam\EV\EV5.png" />
+    <Content Include="Assets\ProCam\EV\EV6.png" />
+    <Content Include="Assets\ProCam\EV\EV7.png" />
+    <Content Include="Assets\ProCam\FlashAuto.png" />
+    <Content Include="Assets\ProCam\FlashOff.png" />
+    <Content Include="Assets\ProCam\FlashOn.png" />
+    <Content Include="Assets\ProCam\FocusRect.png" />
+    <Content Include="Assets\ProCam\FrontCamera.png" />
+    <Content Include="Assets\ProCam\HUDListHighlight.png" />
+    <Content Include="Assets\ProCam\ISODial.png" />
+    <Content Include="Assets\ProCam\ISOHighlight.png" />
+    <Content Include="Assets\ProCam\ISOHUDTitle.png" />
+    <Content Include="Assets\ProCam\ISOTick.png" />
+    <Content Include="Assets\ProCam\Logo.png" />
+    <Content Include="Assets\ProCam\MainCamera.png" />
+    <Content Include="Assets\ProCam\OSDArrow.png" />
+    <Content Include="Assets\ProCam\OSDOff.png" />
+    <Content Include="Assets\ProCam\OSDOn.png" />
+    <Content Include="Assets\ProCam\Shutter.png" />
+    <Content Include="Assets\ProCam\TestImage.jpg" />
+    <Content Include="Assets\ProCam\TopToolbar.png" />
+    <Content Include="Assets\ProCam\UI\CapsuleButtonLeft.png" />
+    <Content Include="Assets\ProCam\UI\CapsuleButtonLeftActive.png" />
+    <Content Include="Assets\ProCam\UI\CapsuleButtonMiddle.png" />
+    <Content Include="Assets\ProCam\UI\CapsuleButtonMiddleActive.png" />
+    <Content Include="Assets\ProCam\UI\CapsuleButtonRight.png" />
+    <Content Include="Assets\ProCam\UI\CapsuleButtonRightActive.png" />
     <Content Include="Assets\Profile\ContactPageIcon.png" />
     <Content Include="Assets\Profile\ProfilePageIcon.png" />
+    <Content Include="Assets\ProFX\FXActiveFilters.png" />
     <Content Include="Assets\ProFX\FXAdd.png" />
     <Content Include="Assets\ProFX\FXArrowDown.png" />
-    <Content Include="Assets\ProFX\FXArrowUp.png" />
-    <Content Include="Assets\ProFX\FXArrowUpWhite.png" />
-    <Content Include="Assets\ProFX\FXBackButton.png" />
     <Content Include="Assets\ProFX\FXBackButton2.png" />
     <Content Include="Assets\ProFX\FXBackward.png" />
+    <Content Include="Assets\ProFX\FXCheckmark.png" />
+    <Content Include="Assets\ProFX\FXCrop.png" />
     <Content Include="Assets\ProFX\FXCropHandle.png" />
     <Content Include="Assets\ProFX\FXDelete.png" />
-    <Content Include="Assets\ProFX\FXDeleteButton.png" />
-    <Content Include="Assets\ProFX\FXForwardButton.png" />
+    <Content Include="Assets\ProFX\FXDeleteFilter.png" />
+    <Content Include="Assets\ProFX\FXDone.png" />
+    <Content Include="Assets\ProFX\FXFilterDisabled.png" />
+    <Content Include="Assets\ProFX\FXFilterEnabled.png" />
+    <Content Include="Assets\ProFX\FXGallery.png" />
     <Content Include="Assets\ProFX\FXLogo.png" />
-    <Content Include="Assets\ProFX\FXNext.png" />
-    <Content Include="Assets\ProFX\FXNextButton.png" />
-    <Content Include="Assets\ProFX\FXOptions.png" />
+    <Content Include="Assets\ProFX\FXMagicWand.png" />
+    <Content Include="Assets\ProFX\FXProcessor.png" />
+    <Content Include="Assets\ProFX\FXUpload.png" />
+    <Content Include="Assets\ProFX\FXUploadLogo.png" />
     <Content Include="Assets\ProFX\IndulgedFXLogo.png" />
+    <Content Include="Assets\ProFX\Ring1.png" />
+    <Content Include="Assets\ProFX\Ring2.png" />
+    <Content Include="Assets\ProFX\Ring3.png" />
+    <Content Include="Assets\ProFX\Ring4.png" />
     <Content Include="Assets\ProFX\SelectedFilterIcon.png" />
     <Content Include="Assets\SamplePhoto.jpg" />
     <Page Include="Themes\TransparentListPickerStyle.xaml">
@@ -1348,6 +1430,9 @@
     <Content Include="Assets\Fonts\BenchNine-Regular.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Assets\Fonts\digital-7.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="Indulged_2013_09_12_19_51_26.sap" />
     <None Include="packages.config" />
     <None Include="Properties\AppManifest.xml" />
@@ -1374,9 +1459,6 @@
     <Content Include="Assets\Dashboard\Prelude\PreludeContentGuide.png" />
     <Content Include="Assets\Group\NoThrottleIcon.png" />
     <Content Include="Assets\Group\ThrottleIcon.png" />
-    <Content Include="Assets\ProCamera\CameraBottomMask.png" />
-    <Content Include="Assets\ProCamera\CameraFlipIcon.png" />
-    <Content Include="Assets\ProCamera\ShutterButton.png" />
     <Content Include="Assets\Tiles\FlipCycleTileLarge.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

@@ -75,19 +75,6 @@ namespace Indulged.Plugins.Profile
             base.OnRemovedFromJournal(e);
         }
 
-        protected override void OnBackKeyPress(System.ComponentModel.CancelEventArgs e)
-        {
-            if (ModalPopup.HasPopupHistory())
-            {
-                e.Cancel = true;
-                ModalPopup.RemoveLastPopup();
-            }
-            else
-            {
-                base.OnBackKeyPress(e);
-            }
-        }
-
         private void OnContactListException(object sender, GetContactListExceptionEventArgs e)
         {
             Dispatcher.BeginInvoke(() => {

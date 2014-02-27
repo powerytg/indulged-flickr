@@ -20,6 +20,7 @@ namespace Indulged.Plugins.ProFX.Filters
 
             DisplayName = "antique";
             StatusBarName = "Antique";
+            Category = FilterCategory.Effect;
         }
 
         public override bool hasEditorUI
@@ -30,7 +31,7 @@ namespace Indulged.Plugins.ProFX.Filters
             }
         }
 
-        protected override void CreateFilter()
+        public override void CreateFilter()
         {
             Filter = FilterFactory.CreateAntiqueFilter();
         }

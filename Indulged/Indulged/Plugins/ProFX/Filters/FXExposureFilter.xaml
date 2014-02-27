@@ -10,27 +10,22 @@
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
-    d:DesignHeight="480" d:DesignWidth="480" Height="360">
+    d:DesignHeight="480" d:DesignWidth="480" Height="300">
     
     <local:FilterBase.RenderTransform>
         <CompositeTransform />
     </local:FilterBase.RenderTransform>
 
-    <Grid x:Name="LayoutRoot">
-        <fx:FilterBackground/>
-        
-        <StackPanel Margin="14, 40, 14, 14">
-            <TextBlock Style="{StaticResource FXSectionTextStyle}" Text="Exposure Style" HorizontalAlignment="Left"/>
-            <RadioButton x:Name="NaturalModeButton" GroupName="modeGroup" Content="Natural" IsChecked="true" Checked="NaturalModeButton_Checked"
+    <StackPanel x:Name="LayoutRoot" Margin="14, 14, 14, 14">
+        <TextBlock Style="{StaticResource FXSectionTextStyle}" Text="Exposure Style" HorizontalAlignment="Left"/>
+        <RadioButton x:Name="NaturalModeButton" GroupName="modeGroup" Content="Natural" IsChecked="true" Checked="NaturalModeButton_Checked"
                          Style="{StaticResource FXRadioButtonStyle}"/>
-            <RadioButton x:Name="GammaModeButton" GroupName="modeGroup" Content="Gamma" Checked="GammaModeButton_Checked"
+        <RadioButton x:Name="GammaModeButton" GroupName="modeGroup" Content="Gamma" Checked="GammaModeButton_Checked"
                          Style="{StaticResource FXRadioButtonStyle}"/>
 
-            <TextBlock Style="{StaticResource FXSectionTextStyle}" Text="Gain" HorizontalAlignment="Left"/>
-            <Slider x:Name="AmountSlider" Minimum="-1" Maximum="1.5" Value="0" ValueChanged="AmountSlider_ValueChanged" Margin="0, 0, 0, 20" Padding="0"
+        <TextBlock Style="{StaticResource FXSectionTextStyle}" Text="Gain" HorizontalAlignment="Left"/>
+        <Slider x:Name="AmountSlider" Minimum="-1" Maximum="1.5" Value="0" ValueChanged="AmountSlider_ValueChanged" Margin="0, 0, 0, 20" Padding="0"
                     Foreground="#6d87f6" Style="{StaticResource FXSliderStyle}"/>
-        </StackPanel>
-
-    </Grid>
+    </StackPanel>
 
 </local:FilterBase>

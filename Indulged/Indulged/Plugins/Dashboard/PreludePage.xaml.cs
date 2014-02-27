@@ -17,6 +17,8 @@ using Indulged.API.Cinderella.Events;
 using Indulged.API.Anaconda;
 using Indulged.API.Anaconda.Events;
 using Indulged.Resources;
+using Indulged.API.Avarice.Controls;
+using Indulged.API.Avarice.Events;
 
 namespace Indulged.Plugins.Dashboard
 {
@@ -67,14 +69,12 @@ namespace Indulged.Plugins.Dashboard
             GroupListView.ItemsSource = GroupList;
 
             FeatureStreams = new ObservableCollection<PreludeItemModel>();
-            FeatureStreams.Add(new PreludeItemModel { Name = AppResources.PreludeVioletItemText });
-            FeatureStreams.Add(new PreludeItemModel { Name = AppResources.PreludeSummersaltItemText });
             FeatureStreams.Add(new PreludeItemModel { Name = AppResources.PreludeMyPhotoStreamItemText });
             FeatureStreams.Add(new PreludeItemModel { Name = AppResources.PreludeDiscoveryItemText });
-            FeatureStreams.Add(new PreludeItemModel { Name = AppResources.PreludeContactsItemText });
-            FeatureStreams.Add(new PreludeItemModel { Name = AppResources.PreludeFavItemText, Icon = new System.Windows.Media.Imaging.BitmapImage(new Uri("/Assets/Dashboard/Heart.png", UriKind.Relative)) });
-            FeatureStreams.Add(new PreludeItemModel { Name = AppResources.PreludeSearchItemText });
             FeatureStreams.Add(new PreludeItemModel { Name = AppResources.PreludeUploadPhotoItemText });
+            FeatureStreams.Add(new PreludeItemModel { Name = AppResources.PreludeFavItemText, Icon = new System.Windows.Media.Imaging.BitmapImage(new Uri("/Assets/Dashboard/Heart.png", UriKind.Relative)) });
+            FeatureStreams.Add(new PreludeItemModel { Name = AppResources.PreludeContactsItemText });
+            FeatureStreams.Add(new PreludeItemModel { Name = AppResources.PreludeSearchItemText });
             FeatureListView.ItemsSource = FeatureStreams;
 
             // Section titles
@@ -259,10 +259,7 @@ namespace Indulged.Plugins.Dashboard
             }
             else if (entry.Name == AppResources.PreludeUploadPhotoItemText)
             {
-                Frame rootVisual = System.Windows.Application.Current.RootVisual as Frame;
-                PhoneApplicationPage currentPage = (PhoneApplicationPage)rootVisual.Content;
-                currentPage.NavigationService.Navigate(new Uri("/Plugins/ProCamera/ProCameraPage.xaml", UriKind.Relative));
-
+                ShowUploadOptions();
             }
         }
 
@@ -284,6 +281,33 @@ namespace Indulged.Plugins.Dashboard
             FeatureListView.SelectedItem = null;
             StreamListView.SelectedItem = null;
             GroupListView.SelectedItem = null;
+        }
+
+        private void ShowUploadOptions()
+        {
+            var optionsView = new UploadOptionsView();
+            var dialog = ModalPopup.Show(optionsView, AppResources.PreludeUploadSource, new List<string> { AppResources.GenericConfirmText, AppResources.GenericCancelText });
+            dialog.DismissWithButtonClick += (s, args) =>
+            {
+                ResetListSelection();
+
+                int buttonIndex = (args as ModalPopupEventArgs).ButtonIndex;
+                if (buttonIndex == 0)
+                {
+                    Frame rootVisual = System.Windows.Application.Current.RootVisual as Frame;
+                    PhoneApplicationPage currentPage = (PhoneApplicationPage)rootVisual.Content;
+
+                    if (optionsView.CameraButton.IsChecked == true)
+                    {
+                        currentPage.NavigationService.Navigate(new Uri("/Plugins/ProCam/ImagePickerPage.xaml", UriKind.Relative));
+                    }
+                    else
+                    {
+                        currentPage.NavigationService.Navigate(new Uri("/Plugins/ProCam/ImagePickerPage.xaml?is_from_library=true", UriKind.Relative));
+                    }
+                }
+            };
+
         }
 
         public void RefreshStreams()
@@ -319,7 +343,7 @@ namespace Indulged.Plugins.Dashboard
         {
             Frame rootVisual = System.Windows.Application.Current.RootVisual as Frame;
             PhoneApplicationPage currentPage = (PhoneApplicationPage)rootVisual.Content;
-            currentPage.NavigationService.Navigate(new Uri("/Plugins/ProCamera/ProCameraPage.xaml", UriKind.Relative));
+            currentPage.NavigationService.Navigate(new Uri("/Plugins/ProCam/ProCamPage.xaml", UriKind.Relative));
         }
     }
 }

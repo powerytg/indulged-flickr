@@ -77,61 +77,22 @@
                         <!--Photo group renderers-->
                         <local:SummersaltRendererSelector.LayoutTemplate1>
                             <DataTemplate>
-                                <photoRenderers:CommonPhotoGroupRenderer1 PhotoGroupSource="{Binding}"/>
+                                <photoRenderers:PhotoGroupRenderer1 PhotoGroupSource="{Binding}"/>
                             </DataTemplate>
                         </local:SummersaltRendererSelector.LayoutTemplate1>
 
                         <local:SummersaltRendererSelector.LayoutTemplate2>
                             <DataTemplate>
-                                <photoRenderers:CommonPhotoGroupRenderer2 PhotoGroupSource="{Binding}"/>
+                                <photoRenderers:PhotoGroupRenderer2 PhotoGroupSource="{Binding}"/>
                             </DataTemplate>
                         </local:SummersaltRendererSelector.LayoutTemplate2>
 
                         <local:SummersaltRendererSelector.LayoutTemplate3>
                             <DataTemplate>
-                                <photoRenderers:CommonPhotoGroupRenderer3 PhotoGroupSource="{Binding}"/>
+                                <photoRenderers:PhotoGroupRenderer3 PhotoGroupSource="{Binding}"/>
                             </DataTemplate>
                         </local:SummersaltRendererSelector.LayoutTemplate3>
-
-
-                        <local:SummersaltRendererSelector.LayoutTemplate3A>
-                            <DataTemplate>
-                                <photoRenderers:CommonPhotoGroupRenderer3A PhotoGroupSource="{Binding}"/>
-                            </DataTemplate>
-                        </local:SummersaltRendererSelector.LayoutTemplate3A>
-
-
-                        <local:SummersaltRendererSelector.LayoutTemplate4>
-                            <DataTemplate>
-                                <photoRenderers:CommonPhotoGroupRenderer4 PhotoGroupSource="{Binding}"/>
-                            </DataTemplate>
-                        </local:SummersaltRendererSelector.LayoutTemplate4>
-
-                        <local:SummersaltRendererSelector.LayoutTemplate4A>
-                            <DataTemplate>
-                                <photoRenderers:CommonPhotoGroupRenderer4A PhotoGroupSource="{Binding}"/>
-                            </DataTemplate>
-                        </local:SummersaltRendererSelector.LayoutTemplate4A>
-
-                        <local:SummersaltRendererSelector.LayoutTemplate4B>
-                            <DataTemplate>
-                                <photoRenderers:CommonPhotoGroupRenderer4B PhotoGroupSource="{Binding}"/>
-                            </DataTemplate>
-                        </local:SummersaltRendererSelector.LayoutTemplate4B>
-
-                        <local:SummersaltRendererSelector.LayoutTemplate5>
-                            <DataTemplate>
-                                <photoRenderers:CommonPhotoGroupRenderer5 PhotoGroupSource="{Binding}"/>
-                            </DataTemplate>
-                        </local:SummersaltRendererSelector.LayoutTemplate5>
-
-                        <local:SummersaltRendererSelector.LayoutTemplate5A>
-                            <DataTemplate>
-                                <photoRenderers:CommonPhotoGroupRenderer5A PhotoGroupSource="{Binding}"/>
-                            </DataTemplate>
-                        </local:SummersaltRendererSelector.LayoutTemplate5A>
-                        
-                        
+                                                
                     </local:SummersaltRendererSelector>
                 </DataTemplate>
             </phone:LongListSelector.ItemTemplate>

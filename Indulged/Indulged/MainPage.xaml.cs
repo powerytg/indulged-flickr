@@ -1,26 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Navigation;
-using Microsoft.Phone.Controls;
-using Microsoft.Phone.Shell;
-using Indulged.Resources;
-
-using Indulged.API.Utils;
+﻿using Indulged.API.Anaconda;
 using Indulged.API.Avarice.Controls;
 using Indulged.API.Avarice.Events;
-using Indulged.API.Anaconda;
 using Indulged.API.Cinderella;
 using Indulged.API.Cinderella.Models;
-using Indulged.PolKit;
+using Indulged.API.Utils;
+using Indulged.Plugins.Common.PhotoRenderers;
 using Indulged.Plugins.Dashboard;
-using Indulged.Plugins.Search;
 using Indulged.Plugins.Dashboard.Events;
+using Indulged.PolKit;
+using Indulged.Resources;
+using Microsoft.Phone.Controls;
+using Microsoft.Phone.Shell;
 using Microsoft.Phone.Tasks;
+using System;
+using System.Collections.Generic;
+using System.Windows.Controls;
 using System.Windows.Media;
+using System.Windows.Navigation;
 
 namespace Indulged
 {
@@ -30,6 +26,10 @@ namespace Indulged
         public MainPage()
         {
             InitializeComponent();
+
+            // Effects
+            TiltEffect.TiltableItems.Add(typeof(FullPhotoRenderer));
+            TiltEffect.TiltableItems.Add(typeof(MediumPhotoRenderer)); 
 
             // Events
             DashboardNavigator.DashboardPageChanged += DashboardPageChanged;
@@ -106,20 +106,32 @@ namespace Indulged
 
          private void OnTakePhotoClick(object sender, EventArgs e)
         {
-            NavigationService.Navigate(new Uri("/Plugins/ProCamera/ProCameraPage.xaml", UriKind.Relative));
+            ShowUploadOptions();
         }
 
-         protected override void OnBackKeyPress(System.ComponentModel.CancelEventArgs e)
+         private void ShowUploadOptions()
          {
-             if (ModalPopup.HasPopupHistory())
+             var optionsView = new UploadOptionsView();
+             var dialog = ModalPopup.Show(optionsView, AppResources.PreludeUploadSource, new List<string> { AppResources.GenericConfirmText, AppResources.GenericCancelText });
+             dialog.DismissWithButtonClick += (s, args) =>
              {
-                 e.Cancel = true;
-                 ModalPopup.RemoveLastPopup();
-             }
-             else
-             {
-                 base.OnBackKeyPress(e);
-             }
+                 int buttonIndex = (args as ModalPopupEventArgs).ButtonIndex;
+                 if (buttonIndex == 0)
+                 {
+                     Frame rootVisual = System.Windows.Application.Current.RootVisual as Frame;
+                     PhoneApplicationPage currentPage = (PhoneApplicationPage)rootVisual.Content;
+
+                     if (optionsView.CameraButton.IsChecked == true)
+                     {
+                         currentPage.NavigationService.Navigate(new Uri("/Plugins/ProCam/ImagePickerPage.xaml", UriKind.Relative));
+                     }
+                     else
+                     {
+                         currentPage.NavigationService.Navigate(new Uri("/Plugins/ProCam/ImagePickerPage.xaml?is_from_library=true", UriKind.Relative));
+                     }
+                 }
+             };
+
          }
 
         // Subscription settings view

@@ -19,12 +19,13 @@ namespace Indulged.Plugins.ProFX.Filters
         public FXExposureFilter()
         {
             InitializeComponent();
+            Category = FilterCategory.Enhancement;
 
             DisplayName = "exposure";
             StatusBarName = "Exposure";
         }
 
-        protected override void CreateFilter()
+        public override void CreateFilter()
         {
             Filter = FilterFactory.CreateExposureFilter(expMode, gain);
         }

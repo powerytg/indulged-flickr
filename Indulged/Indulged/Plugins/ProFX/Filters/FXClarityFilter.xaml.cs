@@ -26,9 +26,10 @@ namespace Indulged.Plugins.ProFX.Filters
 
             DisplayName = "clarity";
             StatusBarName = "Clarity";
+            Category = FilterCategory.Enhancement;
         }
 
-        protected override void CreateFilter()
+        public override void CreateFilter()
         {
             if (shouldUseAutoClarity)
             {

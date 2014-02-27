@@ -119,5 +119,43 @@ namespace Indulged.API.Cinderella
             }
 
         }
+
+        private void OnPhotoSetUpdated(object sender, EditPhotoSetEventArgs e)
+        {
+            PhotoSet photoSet = PhotoSetCache[e.SetId];
+            photoSet.Title = e.Title;
+            photoSet.Description = e.Description;
+
+            PhotoSetUpdatedEventArgs evt = new PhotoSetUpdatedEventArgs();
+            evt.PhotoSetId = e.SetId;
+            PhotoSetUpdated.DispatchEvent(this, evt);
+        }
+
+        private void OnPhotoSetPrimaryUpdated(object sender, ChangePhotoSetPrimaryEventArgs e)
+        {
+            PhotoSet photoSet = PhotoSetCache[e.SetId];
+            photoSet.Primary = e.PhotoId;
+            photoSet.PrimaryPhoto = PhotoCache[photoSet.Primary];
+
+            PhotoSetPrimaryUpdatedEventArgs evt = new PhotoSetPrimaryUpdatedEventArgs();
+            evt.PhotoSetId = e.SetId;
+            PhotoSetPrimaryChanged.DispatchEvent(this, evt);
+        }
+
+        private void OnPhotoSetDeleted(object sender, DeletePhotoSetEventArgs e)
+        {
+            PhotoSet photoSet = PhotoSetCache[e.SetId];
+            PhotoSetCache.Remove(e.SetId);
+            PhotoSetList.Remove(photoSet);
+
+            photoSet = null;
+
+            // Dispatch event
+            PhotoSetListUpdatedEventArgs args = new PhotoSetListUpdatedEventArgs();
+            args.UserId = CurrentUser.ResourceId;
+            PhotoSetListUpdated.DispatchEvent(this, args);
+
+        }
+
     }
 }
