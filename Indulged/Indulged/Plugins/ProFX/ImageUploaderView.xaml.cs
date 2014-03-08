@@ -48,6 +48,8 @@ namespace Indulged.Plugins.ProFX
         {
             InitializeComponent();
 
+            UploadButton.ResetTransformCenter();
+
             // Events
             Anaconda.AnacondaCore.PhotoUploadProgress += OnUploadProgress;
             Anaconda.AnacondaCore.PhotoUploaded += OnUploadComplete;
