@@ -37,7 +37,7 @@ namespace Indulged.API.Anaconda
                 }
             }
 
-            string signature = OAuthCalculateSignature("POST", "http://api.flickr.com/services/upload/", paramDict, AccessTokenSecret);
+            string signature = OAuthCalculateSignature("POST", "https://api.flickr.com/services/upload/", paramDict, AccessTokenSecret);
 
             paramDict["oauth_signature"] = signature;
 
@@ -89,7 +89,7 @@ namespace Indulged.API.Anaconda
             string authHeader = AnacondaCore.OAuthCalculateAuthHeader(parameters);
             byte[] dataBuffer = CreateUploadData(imageStream, fileName, parameters, boundary);
 
-            HttpWebRequest req = (HttpWebRequest)HttpWebRequest.Create(new Uri("http://api.flickr.com/services/upload/"));
+            HttpWebRequest req = (HttpWebRequest)HttpWebRequest.Create(new Uri("https://api.flickr.com/services/upload/"));
             req.Method = "POST";
             req.ContentType = "multipart/form-data; boundary=" + boundary;           
             if (!String.IsNullOrEmpty(authHeader))

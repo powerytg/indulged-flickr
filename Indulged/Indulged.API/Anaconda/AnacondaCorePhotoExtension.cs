@@ -46,8 +46,8 @@ namespace Indulged.API.Anaconda
             paramDict["extras"] = UrlHelper.Encode(commonExtraParameters);
 
             string paramString = GenerateParamString(paramDict);
-            string signature = GenerateSignature("GET", AccessTokenSecret, "http://api.flickr.com/services/rest", paramString);
-            string requestUrl = "http://api.flickr.com/services/rest?" + paramString + "&oauth_signature=" + signature;
+            string signature = GenerateSignature("GET", AccessTokenSecret, "https://api.flickr.com/services/rest", paramString);
+            string requestUrl = "https://api.flickr.com/services/rest?" + paramString + "&oauth_signature=" + signature;
             HttpWebResponse response = await DispatchRequest("GET", requestUrl, null).ConfigureAwait(false);
             using (StreamReader reader = new StreamReader(response.GetResponseStream()))
             {
@@ -106,8 +106,8 @@ namespace Indulged.API.Anaconda
             paramDict["photo_id"] = photoId;
 
             string paramString = GenerateParamString(paramDict);
-            string signature = GenerateSignature("GET", AccessTokenSecret, "http://api.flickr.com/services/rest", paramString);
-            string requestUrl = "http://api.flickr.com/services/rest?" + paramString + "&oauth_signature=" + signature;
+            string signature = GenerateSignature("GET", AccessTokenSecret, "https://api.flickr.com/services/rest", paramString);
+            string requestUrl = "https://api.flickr.com/services/rest?" + paramString + "&oauth_signature=" + signature;
             HttpWebResponse response = await DispatchRequest("GET", requestUrl, null).ConfigureAwait(false);
             using (StreamReader reader = new StreamReader(response.GetResponseStream()))
             {
@@ -168,8 +168,8 @@ namespace Indulged.API.Anaconda
             paramDict["photo_id"] = photoId;
 
             string paramString = GenerateParamString(paramDict);
-            string signature = GenerateSignature("GET", AccessTokenSecret, "http://api.flickr.com/services/rest", paramString);
-            string requestUrl = "http://api.flickr.com/services/rest?" + paramString + "&oauth_signature=" + signature;
+            string signature = GenerateSignature("GET", AccessTokenSecret, "https://api.flickr.com/services/rest", paramString);
+            string requestUrl = "https://api.flickr.com/services/rest?" + paramString + "&oauth_signature=" + signature;
             HttpWebResponse response = await DispatchRequest("GET", requestUrl, null).ConfigureAwait(false);
             using (StreamReader reader = new StreamReader(response.GetResponseStream()))
             {
@@ -222,10 +222,10 @@ namespace Indulged.API.Anaconda
             paramDict["photo_id"] = photoId;
             paramDict["comment_text"] = message;
 
-            string signature = OAuthCalculateSignature("POST", "http://api.flickr.com/services/rest/", paramDict, AccessTokenSecret);
+            string signature = OAuthCalculateSignature("POST", "https://api.flickr.com/services/rest/", paramDict, AccessTokenSecret);
             paramDict["oauth_signature"] = signature;
 
-            DispatchPostRequest("POST", "http://api.flickr.com/services/rest/", paramDict,
+            DispatchPostRequest("POST", "https://api.flickr.com/services/rest/", paramDict,
                 (response) =>
                 {
 

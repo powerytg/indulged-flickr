@@ -33,8 +33,8 @@ namespace Indulged.API.Anaconda
             paramString += "&user_id=" + userId;
             paramString += "&method=flickr.photosets.getList";
 
-            string signature = GenerateSignature("GET", AccessTokenSecret, "http://api.flickr.com/services/rest/", paramString);
-            string requestUrl = "http://api.flickr.com/services/rest/?" + paramString + "&oauth_signature=" + signature;
+            string signature = GenerateSignature("GET", AccessTokenSecret, "https://api.flickr.com/services/rest/", paramString);
+            string requestUrl = "https://api.flickr.com/services/rest/?" + paramString + "&oauth_signature=" + signature;
             HttpWebResponse response = await DispatchRequest("GET", requestUrl, null).ConfigureAwait(false);
             using (StreamReader reader = new StreamReader(response.GetResponseStream()))
             {
@@ -103,8 +103,8 @@ namespace Indulged.API.Anaconda
             paramDict["extras"] = UrlHelper.Encode(commonExtraParameters);
 
             string paramString = GenerateParamString(paramDict);
-            string signature = GenerateSignature("GET", AccessTokenSecret, "http://api.flickr.com/services/rest", paramString);
-            string requestUrl = "http://api.flickr.com/services/rest?" + paramString + "&oauth_signature=" + signature;
+            string signature = GenerateSignature("GET", AccessTokenSecret, "https://api.flickr.com/services/rest", paramString);
+            string requestUrl = "https://api.flickr.com/services/rest?" + paramString + "&oauth_signature=" + signature;
             HttpWebResponse response = await DispatchRequest("GET", requestUrl, null).ConfigureAwait(false);
             using (StreamReader reader = new StreamReader(response.GetResponseStream()))
             {
@@ -157,10 +157,10 @@ namespace Indulged.API.Anaconda
             paramDict["photoset_id"] = setId;
             paramDict["photo_id"] = photoId;
 
-            string signature = OAuthCalculateSignature("POST", "http://api.flickr.com/services/rest/", paramDict, AccessTokenSecret);
+            string signature = OAuthCalculateSignature("POST", "https://api.flickr.com/services/rest/", paramDict, AccessTokenSecret);
             paramDict["oauth_signature"] = signature;
 
-            DispatchPostRequest("POST", "http://api.flickr.com/services/rest/", paramDict,
+            DispatchPostRequest("POST", "https://api.flickr.com/services/rest/", paramDict,
                 (response) =>
                 {
                     bool success = true;
@@ -228,10 +228,10 @@ namespace Indulged.API.Anaconda
             paramDict["photoset_id"] = setId;
             paramDict["photo_id"] = photoId;
 
-            string signature = OAuthCalculateSignature("POST", "http://api.flickr.com/services/rest/", paramDict, AccessTokenSecret);
+            string signature = OAuthCalculateSignature("POST", "https://api.flickr.com/services/rest/", paramDict, AccessTokenSecret);
             paramDict["oauth_signature"] = signature;
 
-            DispatchPostRequest("POST", "http://api.flickr.com/services/rest/", paramDict,
+            DispatchPostRequest("POST", "https://api.flickr.com/services/rest/", paramDict,
                 (response) =>
                 {
                     bool success = true;
@@ -299,10 +299,10 @@ namespace Indulged.API.Anaconda
             paramDict["photoset_id"] = setId;
             paramDict["photo_id"] = photoId;
 
-            string signature = OAuthCalculateSignature("POST", "http://api.flickr.com/services/rest/", paramDict, AccessTokenSecret);
+            string signature = OAuthCalculateSignature("POST", "https://api.flickr.com/services/rest/", paramDict, AccessTokenSecret);
             paramDict["oauth_signature"] = signature;
 
-            DispatchPostRequest("POST", "http://api.flickr.com/services/rest/", paramDict,
+            DispatchPostRequest("POST", "https://api.flickr.com/services/rest/", paramDict,
                 (response) =>
                 {
                     bool success = true;
@@ -374,10 +374,10 @@ namespace Indulged.API.Anaconda
                 paramDict["description"] = description;
             }
 
-            string signature = OAuthCalculateSignature("POST", "http://api.flickr.com/services/rest/", paramDict, AccessTokenSecret);
+            string signature = OAuthCalculateSignature("POST", "https://api.flickr.com/services/rest/", paramDict, AccessTokenSecret);
             paramDict["oauth_signature"] = signature;
 
-            DispatchPostRequest("POST", "http://api.flickr.com/services/rest/", paramDict,
+            DispatchPostRequest("POST", "https://api.flickr.com/services/rest/", paramDict,
                 (response) =>
                 {
                     bool success = true;
@@ -443,10 +443,10 @@ namespace Indulged.API.Anaconda
             paramDict["oauth_version"] = "1.0";
             paramDict["photoset_id"] = setId;
 
-            string signature = OAuthCalculateSignature("POST", "http://api.flickr.com/services/rest/", paramDict, AccessTokenSecret);
+            string signature = OAuthCalculateSignature("POST", "https://api.flickr.com/services/rest/", paramDict, AccessTokenSecret);
             paramDict["oauth_signature"] = signature;
 
-            DispatchPostRequest("POST", "http://api.flickr.com/services/rest/", paramDict,
+            DispatchPostRequest("POST", "https://api.flickr.com/services/rest/", paramDict,
                 (response) =>
                 {
                     bool success = true;

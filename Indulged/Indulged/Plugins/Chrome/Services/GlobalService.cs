@@ -8,6 +8,6 @@ namespace Indulged.Plugins.Chrome.Services
 {
     public class GlobalService
     {
-        public static string AppVersion = "2.0.1";
+        public static string AppVersion = "2.0.2";
     }
 }
